@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
     tabs.forEach(tab => tab.style.display = 'none');
 
     // Aggiungi il listener per il cambiamento del dropdown
-    tabSelect.addEventListener('change', function () {
+    tabSelect2.addEventListener('change', function () {
       const selectedValue = tabSelect2.value; // Ottieni il valore selezionato dal dropdown (tab3, tab4)
       
       // Trova il Tab Link corrispondente
