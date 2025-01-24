@@ -1,46 +1,20 @@
 document.addEventListener('DOMContentLoaded', function () {
-    console.log("✅ DOM caricato, avvio script...");
+    // Prendi il dropdown e i Tab Links
+    const tabSelect = document.getElementById('tabSelect'); // Dropdown con ID 'tabSelect'
+    const tabs = document.querySelectorAll('.w-tab-link'); // Tutti i Tab Links con classe 'w-tab-link'
 
-    // Attendi che il dropdown e i tab siano presenti
-    function waitForElements() {
-        const tabSelect = document.getElementById('tabSelect');
-        const tabs = document.querySelectorAll('.w-tab-link');
+    // Nascondi i Tab Links (opzionale)
+    tabs.forEach(tab => tab.style.display = 'none');
 
-        if (tabSelect && tabs.length > 0) {
-            console.log("✅ Dropdown e tab trovati!");
+    // Aggiungi il listener per il cambiamento del dropdown
+    tabSelect.addEventListener('change', function () {
+      const selectedValue = tabSelect.value; // Ottieni il valore selezionato dal dropdown (tab1, tab2)
+      
+      // Trova il Tab Link corrispondente
+      const targetTab = Array.from(tabs).find(tab => tab.id === selectedValue);
 
-            // Nascondi i Tab Links (opzionale)
-            tabs.forEach(tab => tab.style.display = 'none');
-
-            // Aggiungi l'evento di cambio al dropdown
-            tabSelect.addEventListener('change', function () {
-                const selectedValue = tabSelect.value; // Ottieni il valore selezionato
-                console.log("🔄 Selezionato:", selectedValue);
-
-                // Trova il Tab Link corrispondente
-                const targetTab = Array.from(tabs).find(tab => tab.id === selectedValue);
-
-                if (targetTab) {
-                    console.log("✅ Cliccando su:", targetTab.id);
-                    targetTab.click(); // Simula il click sul tab
-                } else {
-                    console.log("⚠️ Nessun tab corrispondente trovato!");
-                }
-            });
-
-        } else {
-            console.log("⏳ Elementi non ancora disponibili, riprovo...");
-            setTimeout(waitForElements, 500); // Riprova dopo 500ms
-        }
-    }
-
-    waitForElements();
+      if (targetTab) {
+        targetTab.click(); // Simula il click sul Tab Link corrispondente
+      }
+    });
 });
-document.addEventListener('DOMContentLoaded', function () {
-  // Forza il ricaricamento completo del file
-  const scriptElement = document.createElement('script');
-  scriptElement.src = "https://cdn.jsdelivr.net/gh/Conjuror1950/Webflow@main/Tab-Select-Media-Video-Embed-Code.js?v=" + new Date().getTime();
-  document.head.appendChild(scriptElement);
-});
-
-
