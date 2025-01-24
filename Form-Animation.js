@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
     .form-input:focus + .form-label,
     .form-input:not(:placeholder-shown) + .form-label {
       top: 0px;
-      font-size: 2rem;
+      font-size: 3rem;
       transform: translateY(0%);
     }
   `;
