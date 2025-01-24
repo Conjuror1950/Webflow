@@ -1,6 +1,10 @@
-.form-input:focus + .form-label,
-.form-input:not(:placeholder-shown) + .form-label {
-  top: 0px;
-  font-size: 0.8rem;
-  transform: translateY(0%);
-}
+const style = document.createElement('style');
+style.innerHTML = `
+  .form-input:focus + .form-label,
+  .form-input:not(:placeholder-shown) + .form-label {
+    top: 0px;
+    font-size: 0.8rem;
+    transform: translateY(0%);
+  }
+`;
+document.head.appendChild(style);
