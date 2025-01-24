@@ -36,4 +36,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     waitForElements();
 });
+document.addEventListener('DOMContentLoaded', function () {
+  // Forza il ricaricamento completo del file
+  const scriptElement = document.createElement('script');
+  scriptElement.src = "https://cdn.jsdelivr.net/gh/Conjuror1950/Webflow@main/Tab-Select-Media-Video-Embed-Code.js?v=" + new Date().getTime();
+  document.head.appendChild(scriptElement);
+});
+
 
