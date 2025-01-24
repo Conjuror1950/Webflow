@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Aggiungi il listener per il cambiamento del dropdown
     tabSelect.addEventListener('change', function () {
-      const selectedValue = tabSelect.value; // Ottieni il valore selezionato dal dropdown (tab1, tab2)
+      const selectedValue = tabSelect.value; // Ottieni il valore selezionato dal dropdown (tab1, tab3)
       
       // Trova il Tab Link corrispondente
       const targetTab = Array.from(tabs).find(tab => tab.id === selectedValue);
