@@ -1,7 +1,7 @@
 // Crea un div che contiene tutto il contenuto HTML
 const container = document.createElement('div');
 container.style.textAlign = 'center';
-container.style.padding = '25px';
+container.style.padding = '50px';
 container.style.fontFamily = "'SF Pro Display', 'SF Pro Icons', 'Helvetica Neue', Helvetica, Arial, sans-serif";
 container.style.color = '#000000';
 
