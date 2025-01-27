@@ -96,4 +96,3 @@
       searchLabel.style.fontSize = '16px';
     }
   }
-</script>
