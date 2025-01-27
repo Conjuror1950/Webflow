@@ -47,9 +47,18 @@ document.body.appendChild(container);
 // Mappa delle parole chiave ai relativi URL
 const urlMap = {
   "home": "/it/home",
+  "biografia": "/it/informazioni/home#bio",
+  "faq": "/it/informazioni/home#faq",
   "portfolio": "/it/portfolio",
+  "galleria": "/it/portfolio#galleria",
   "servizi": "/it/servizi",
+  "attrezzatura": "/it/servizi#attrezzatura",
+  "cv": "/it/servizi#cv",
+  "curriculum": "/it/servizi#cv",
   "social": "/it-it/contatti#social",
+  "modulo": "/it-it/contatti#modulo",
+  "modulo contatti": "/it-it/contatti#modulo",
+  "form": "/it-it/contatti#modulo",
   "contatti": "/it-it/contatti",
   "informazioni": "/it/informazioni/aggiornamenti",
   "aggiornamenti": "/it/informazioni/aggiornamenti",
