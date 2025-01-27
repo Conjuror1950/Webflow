@@ -7,7 +7,7 @@ container.style.color = '#000000';
 
 // Aggiungi l'HTML come contenuto del div
 container.innerHTML = `
-  <h1 style="font-size: 48px; font-weight: 600; line-height: 52px; margin-bottom: 20px; font-family: inherit;">Pagina non trovata</h1>
+  <h1 style="font-size: 48px; font-weight: 600; line-height: 52px; margin-bottom: 20px; font-family: inherit;">Pagina non trovata.</h1>
   <p style="font-size: 18px; line-height: 1.6; margin-bottom: 20px; font-family: inherit;">
   </p>
 
