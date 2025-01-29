@@ -1,49 +1,29 @@
-// Crea un div che contiene tutto il contenuto HTML
-const container = document.createElement('div');
-container.style.textAlign = 'center';
-container.style.padding = '50px';
-container.style.fontFamily = "'SF Pro Display', 'SF Pro Icons', 'Helvetica Neue', Helvetica, Arial, sans-serif";
-container.style.color = '#000000';
-
-// Aggiungi l'HTML come contenuto del div
-container.innerHTML = `
-  <h1 style="font-size: 48px; font-weight: 600; line-height: 52px; margin-bottom: 20px; font-family: inherit;">Pagina non trovata.</h1>
-  <p style="font-size: 18px; line-height: 1.6; margin-bottom: 20px; font-family: inherit;">
-  </p>
-
 <div class="apple-search-container">
   <div class="apple-search-box">
-    <!-- Icona Apple Search cliccabile -->
     <svg class="apple-search-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
       <circle cx="10" cy="10" r="7" stroke="white" stroke-width="1.5" fill="none"></circle>
       <line x1="15" y1="15" x2="20" y2="20" stroke="white" stroke-width="1.5"></line>
     </svg>
-    <input type="text" class="apple-search-input" placeholder="Cerca su andreaingrassia.webflow.io" />
+    <input type="text" class="apple-search-input" placeholder="Cerca nel sito" />
   </div>
   <div class="apple-search-results">
     <p class="results-title">Link rapidi</p>
     <ul class="results-list">
-      <li><a href="/it/home">➜ Home</a></li>
-      <li><a href="/it/portfolio">➜ Portfolio</a></li>
-      <li><a href="/it/servizi">➜ Servizi</a></li>
-      <li><a href="/it-it/contatti#social">➜ Social</a></li>
-      <li><a href="/it-it/contatti">➜ Contatti</a></li>
-      <li><a href="/it/informazioni/aggiornamenti">➜ Informazioni</a></li>
+      <li><a href="./it/home">➜ Home</a></li>
+      <li><a href="./it/portfolio">➜ Portfolio</a></li>
+      <li><a href="./it/servizi">➜ Servizi</a></li>
+      <li><a href="./it-it/contatti#social">➜ Social</a></li>
+      <li><a href="./it-it/contatti">➜ Contatti</a></li>
+      <li><a href="./it/informazioni/aggiornamenti">➜ Informazioni</a></li>
     </ul>
     <p class="no-results" style="display: none;">Nessun risultato trovato.</p>
   </div>
 </div>
 
 <style>
-  /* Font SF Pro */
-  @font-face {
-    font-family: "SF Pro Display";
-    src: url("https://cdn.apple.com/sf-pro/SF-Pro-Display-Regular.woff2") format("woff2");
-  }
-
   body {
     background-color: #121212;
-    font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   }
 
   .apple-search-container {
@@ -59,11 +39,6 @@ container.innerHTML = `
     align-items: center;
     border-bottom: 1px solid rgba(255, 255, 255, 0.4);
     padding: 12px 0;
-    transition: border-color 0.3s ease;
-  }
-
-  .apple-search-box:focus-within {
-    border-color: white;
   }
 
   .apple-search-icon {
@@ -71,7 +46,6 @@ container.innerHTML = `
     height: 20px;
     margin-right: 10px;
     opacity: 0.8;
-    transition: opacity 0.3s ease;
     cursor: pointer;
   }
 
@@ -84,63 +58,12 @@ container.innerHTML = `
     outline: none;
   }
 
-  .apple-search-input::placeholder {
-    color: rgba(255, 255, 255, 0.5);
-  }
-
   .apple-search-results {
     display: none;
     background: rgba(255, 255, 255, 0.1);
     padding: 10px;
     border-radius: 10px;
     margin-top: 8px;
-    backdrop-filter: blur(10px);
-    animation: fadeIn 0.3s ease-in-out;
-  }
-
-  .results-title {
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.7);
-    margin-bottom: 6px;
-  }
-
-  .results-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .results-list li {
-    margin: 5px 0;
-  }
-
-  .results-list a {
-    text-decoration: none;
-    color: white;
-    font-size: 14px;
-    opacity: 0.8;
-    transition: opacity 0.3s;
-  }
-
-  .results-list a:hover {
-    opacity: 1;
-  }
-
-  .no-results {
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 14px;
-    margin-top: 8px;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(-5px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
   }
 </style>
 
@@ -148,84 +71,35 @@ container.innerHTML = `
   document.addEventListener("DOMContentLoaded", function () {
     const searchInput = document.querySelector(".apple-search-input");
     const searchResults = document.querySelector(".apple-search-results");
-    const resultsList = document.querySelectorAll(".results-list li");
     const noResultsMessage = document.querySelector(".no-results");
     const searchIcon = document.querySelector(".apple-search-icon");
-    
-        // Mappatura delle ricerche -> URL di destinazione
+
     const urlMap = {
-      "home": "/it/home",
-      "biografia": "/it/home#bio",
-      "faq": "/it/home#faq",
-      "portfolio": "/it/portfolio",
-      "galleria": "/it/portfolio#galleria",
-      "servizi": "/it/servizi",
-      "attrezzatura": "/it/servizi#attrezzatura",
-      "cv": "/it/servizi#cv",
-      "curriculum": "/it/servizi#cv",
-      "modulo": "/it-it/contatti#modulo",
-      "modulo contatti": "/it-it/contatti#modulo",
-      "form": "/it-it/contatti#modulo",
-      "social": "/it-it/contatti#social",
-      "contatti": "/it-it/contatti",
-      "informazioni": "/it/informazioni/aggiornamenti",
-      "aggiornamenti": "/it/informazioni/aggiornamenti",
+      "home": "./it/home",
+      "portfolio": "./it/portfolio",
+      "servizi": "./it/servizi",
+      "social": "./it-it/contatti#social",
+      "contatti": "./it-it/contatti",
+      "informazioni": "./it/informazioni/aggiornamenti"
     };
-    
-    // Funzione per eseguire la ricerca
-    function performSearch() {
+
+    function performSearch(event) {
       const query = searchInput.value.toLowerCase().trim();
-      let found = false;
-
-      resultsList.forEach(item => {
-        const text = item.textContent.toLowerCase();
-        if (text.includes(query)) {
-          item.style.display = "block";
-          found = true;
-        } else {
-          item.style.display = "none";
-        }
-      });
-
-      noResultsMessage.style.display = found ? "none" : "block";
-      searchResults.style.display = query.length > 0 ? "block" : "none";
-
-      // Reindirizzamento alla corrispondenza esatta
       if (urlMap[query] && (event.key === "Enter" || event.type === "click")) {
         window.location.href = urlMap[query];
+      } else {
+        searchResults.style.display = query.length > 0 ? "block" : "none";
+        noResultsMessage.style.display = query.length > 0 && !urlMap[query] ? "block" : "none";
       }
     }
 
-    // Eventi per mostrare e filtrare i risultati in tempo reale
     searchInput.addEventListener("input", performSearch);
-
-    // Eventi per nascondere i risultati
-    searchInput.addEventListener("blur", () => {
-      setTimeout(() => {
-        searchResults.style.display = "none";
-      }, 200);
-    });
-
-    // Eventi per mostrare i risultati
-    searchInput.addEventListener("focus", () => {
-      searchResults.style.display = "block";
-    });
-
-    searchInput.addEventListener("blur", () => {
-      setTimeout(() => {
-        searchResults.style.display = "none";
-      }, 200);
-    });
-
-    // Attiva la ricerca premendo INVIO
     searchInput.addEventListener("keydown", function (e) {
       if (e.key === "Enter") {
-        e.preventDefault(); // Evita il comportamento predefinito
-        performSearch();
+        e.preventDefault();
+        performSearch(e);
       }
     });
-
-    // Attiva la ricerca cliccando sull'icona della lente
     searchIcon.addEventListener("click", performSearch);
   });
 </script>
