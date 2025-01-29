@@ -1,6 +1,5 @@
 <div class="apple-search-container">
   <div class="apple-search-box">
-    <!-- Icona Apple Search cliccabile -->
     <svg class="apple-search-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
       <circle cx="10" cy="10" r="7" stroke="white" stroke-width="1.5" fill="none"></circle>
       <line x1="15" y1="15" x2="20" y2="20" stroke="white" stroke-width="1.5"></line>
@@ -22,7 +21,6 @@
 </div>
 
 <style>
-  /* Font SF Pro */
   @font-face {
     font-family: "SF Pro Display";
     src: url("https://cdn.apple.com/sf-pro/SF-Pro-Display-Regular.woff2") format("woff2");
@@ -34,7 +32,6 @@
   }
 
   .apple-search-container {
-    width: 100%;
     max-width: 480px;
     margin: 20px auto;
     color: #f5f5f7;
@@ -46,7 +43,7 @@
     align-items: center;
     border-bottom: 1px solid rgba(255, 255, 255, 0.4);
     padding: 12px 0;
-    transition: border-color 0.3s ease;
+    transition: border-color 0.3s;
   }
 
   .apple-search-box:focus-within {
@@ -54,16 +51,14 @@
   }
 
   .apple-search-icon {
-    width: 20px;
-    height: 20px;
     margin-right: 10px;
     opacity: 0.8;
-    transition: opacity 0.3s ease;
     cursor: pointer;
+    transition: opacity 0.3s;
   }
 
   .apple-search-input {
-    width: 100%;
+    flex-grow: 1;
     background: transparent;
     border: none;
     color: white;
@@ -97,11 +92,8 @@
     margin: 0;
   }
 
-  .results-list li {
-    margin: 5px 0;
-  }
-
   .results-list a {
+    display: block;
     text-decoration: none;
     color: white;
     font-size: 14px;
@@ -132,14 +124,12 @@
 </style>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
+  document.addEventListener("DOMContentLoaded", () => {
     const searchInput = document.querySelector(".apple-search-input");
     const searchResults = document.querySelector(".apple-search-results");
-    const resultsList = document.querySelectorAll(".results-list li");
     const noResultsMessage = document.querySelector(".no-results");
     const searchIcon = document.querySelector(".apple-search-icon");
-    
-        // Mappatura delle ricerche -> URL di destinazione
+
     const urlMap = {
       "home": "/it/home",
       "biografia": "/it/home#bio",
@@ -151,67 +141,25 @@
       "cv": "/it/servizi#cv",
       "curriculum": "/it/servizi#cv",
       "modulo": "/it-it/contatti#modulo",
-      "modulo contatti": "/it-it/contatti#modulo",
       "form": "/it-it/contatti#modulo",
       "social": "/it-it/contatti#social",
       "contatti": "/it-it/contatti",
       "informazioni": "/it/informazioni/aggiornamenti",
-      "aggiornamenti": "/it/informazioni/aggiornamenti",
     };
-    
-    // Funzione per eseguire la ricerca
-    function performSearch() {
+
+    function performSearch(event) {
       const query = searchInput.value.toLowerCase().trim();
-      let found = false;
-
-      resultsList.forEach(item => {
-        const text = item.textContent.toLowerCase();
-        if (text.includes(query)) {
-          item.style.display = "block";
-          found = true;
-        } else {
-          item.style.display = "none";
-        }
-      });
-
-      noResultsMessage.style.display = found ? "none" : "block";
-      searchResults.style.display = query.length > 0 ? "block" : "none";
-
-      // Reindirizzamento alla corrispondenza esatta
-      if (urlMap[query] && (event.key === "Enter" || event.type === "click")) {
+      searchResults.style.display = query ? "block" : "none";
+      noResultsMessage.style.display = urlMap[query] ? "none" : "block";
+      
+      if (urlMap[query] && event.key === "Enter") {
         window.location.href = urlMap[query];
       }
     }
 
-    // Eventi per mostrare e filtrare i risultati in tempo reale
     searchInput.addEventListener("input", performSearch);
-
-    // Eventi per nascondere i risultati
-    searchInput.addEventListener("blur", () => {
-      setTimeout(() => {
-        searchResults.style.display = "none";
-      }, 200);
-    });
-
-    // Eventi per mostrare i risultati
-    searchInput.addEventListener("focus", () => {
-      searchResults.style.display = "block";
-    });
-
-    searchInput.addEventListener("blur", () => {
-      setTimeout(() => {
-        searchResults.style.display = "none";
-      }, 200);
-    });
-
-    // Attiva la ricerca premendo INVIO
-    searchInput.addEventListener("keydown", function (e) {
-      if (e.key === "Enter") {
-        e.preventDefault(); // Evita il comportamento predefinito
-        performSearch();
-      }
-    });
-
-    // Attiva la ricerca cliccando sull'icona della lente
+    searchInput.addEventListener("keydown", (e) => e.key === "Enter" && performSearch(e));
+    searchInput.addEventListener("blur", () => setTimeout(() => searchResults.style.display = "none", 200));
     searchIcon.addEventListener("click", performSearch);
   });
+</script>
