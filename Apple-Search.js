@@ -10,12 +10,12 @@
   <div class="apple-search-results">
     <p class="results-title">Link rapidi</p>
     <ul class="results-list">
-      <li><a href="https://andreaingrassia.webflow.io/it/home">➜ Home</a></li>
-      <li><a href="https://andreaingrassia.webflow.io/it/portfolio">➜ Portfolio</a></li>
-      <li><a href="https://andreaingrassia.webflow.io/it/servizi">➜ Servizi</a></li>
-      <li><a href="https://andreaingrassia.webflow.io/it-it/contatti#social">➜ Social</a></li>
-      <li><a href="https://andreaingrassia.webflow.io/it-it/contatti">➜ Contatti</a></li>
-      <li><a href="https://andreaingrassia.webflow.io/it/informazioni/aggiornamenti">➜ Informazioni</a></li>
+      <li><a href="/it/home">➜ Home</a></li>
+      <li><a href="/it/portfolio">➜ Portfolio</a></li>
+      <li><a href="/it/servizi">➜ Servizi</a></li>
+      <li><a href="/it-it/contatti#social">➜ Social</a></li>
+      <li><a href="/it-it/contatti">➜ Contatti</a></li>
+      <li><a href="/it/informazioni/aggiornamenti">➜ Informazioni</a></li>
     </ul>
     <p class="no-results" style="display: none;">Nessun risultato trovato.</p>
   </div>
@@ -131,7 +131,7 @@
   }
 </style>
 
- <script>
+<script>
   document.addEventListener("DOMContentLoaded", function () {
     const searchInput = document.querySelector(".apple-search-input");
     const searchResults = document.querySelector(".apple-search-results");
@@ -139,28 +139,28 @@
     const noResultsMessage = document.querySelector(".no-results");
     const searchIcon = document.querySelector(".apple-search-icon");
     
-    // Mappatura delle ricerche -> URL di destinazione
+        // Mappatura delle ricerche -> URL di destinazione
     const urlMap = {
-      "home": "https://andreaingrassia.webflow.io/it/home",
-      "biografia": "https://andreaingrassia.webflow.io/it/home#bio",
-      "faq": "https://andreaingrassia.webflow.io/it/home#faq",
-      "portfolio": "https://andreaingrassia.webflow.io/it/portfolio",
-      "galleria": "https://andreaingrassia.webflow.io/it/portfolio#galleria",
-      "servizi": "https://andreaingrassia.webflow.io/it/servizi",
-      "attrezzatura": "https://andreaingrassia.webflow.io/it/servizi#attrezzatura",
-      "cv": "https://andreaingrassia.webflow.io/it/servizi#cv",
-      "curriculum": "https://andreaingrassia.webflow.io/it/servizi#cv",
-      "modulo": "https://andreaingrassia.webflow.io/it-it/contatti#modulo",
-      "modulo contatti": "https://andreaingrassia.webflow.io/it-it/contatti#modulo",
-      "form": "https://andreaingrassia.webflow.io/it-it/contatti#modulo",
-      "social": "https://andreaingrassia.webflow.io/it-it/contatti#social",
-      "contatti": "https://andreaingrassia.webflow.io/it-it/contatti",
-      "informazioni": "https://andreaingrassia.webflow.io/it/informazioni/aggiornamenti",
-      "aggiornamenti": "https://andreaingrassia.webflow.io/it/informazioni/aggiornamenti",
+      "home": "/it/home",
+      "biografia": "/it/home#bio",
+      "faq": "/it/home#faq",
+      "portfolio": "/it/portfolio",
+      "galleria": "/it/portfolio#galleria",
+      "servizi": "/it/servizi",
+      "attrezzatura": "/it/servizi#attrezzatura",
+      "cv": "/it/servizi#cv",
+      "curriculum": "/it/servizi#cv",
+      "modulo": "/it-it/contatti#modulo",
+      "modulo contatti": "/it-it/contatti#modulo",
+      "form": "/it-it/contatti#modulo",
+      "social": "/it-it/contatti#social",
+      "contatti": "/it-it/contatti",
+      "informazioni": "/it/informazioni/aggiornamenti",
+      "aggiornamenti": "/it/informazioni/aggiornamenti",
     };
     
     // Funzione per eseguire la ricerca
-    function performSearch(event) {
+    function performSearch() {
       const query = searchInput.value.toLowerCase().trim();
       let found = false;
 
@@ -178,7 +178,7 @@
       searchResults.style.display = query.length > 0 ? "block" : "none";
 
       // Reindirizzamento alla corrispondenza esatta
-      if (urlMap[query] && event && (event.key === "Enter" || event.type === "click")) {
+      if (urlMap[query] && (event.key === "Enter" || event.type === "click")) {
         window.location.href = urlMap[query];
       }
     }
@@ -208,11 +208,11 @@
     searchInput.addEventListener("keydown", function (e) {
       if (e.key === "Enter") {
         e.preventDefault(); // Evita il comportamento predefinito
-        performSearch(e);
+        performSearch();
       }
     });
 
     // Attiva la ricerca cliccando sull'icona della lente
-    searchIcon.addEventListener("click", performSearch(e);
+    searchIcon.addEventListener("click", performSearch);
   });
 </script>
