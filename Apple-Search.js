@@ -160,7 +160,7 @@
     };
     
     // Funzione per eseguire la ricerca
-    function performSearch() {
+    function performSearch(event) {
       const query = searchInput.value.toLowerCase().trim();
       let found = false;
 
@@ -178,7 +178,7 @@
       searchResults.style.display = query.length > 0 ? "block" : "none";
 
       // Reindirizzamento alla corrispondenza esatta
-      if (urlMap[query] && (event.key === "Enter" || event.type === "click")) {
+      if (urlMap[query] && event && (event.key === "Enter" || event.type === "click")) {
         window.location.href = urlMap[query];
       }
     }
@@ -208,11 +208,11 @@
     searchInput.addEventListener("keydown", function (e) {
       if (e.key === "Enter") {
         e.preventDefault(); // Evita il comportamento predefinito
-        performSearch();
+        performSearch(e);
       }
     });
 
     // Attiva la ricerca cliccando sull'icona della lente
-    searchIcon.addEventListener("click", performSearch);
+    searchIcon.addEventListener("click", performSearch(e);
   });
 </script>
