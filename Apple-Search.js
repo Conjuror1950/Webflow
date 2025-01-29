@@ -1,3 +1,16 @@
+// Crea un div che contiene tutto il contenuto HTML
+const container = document.createElement('div');
+container.style.textAlign = 'center';
+container.style.padding = '50px';
+container.style.fontFamily = "'SF Pro Display', 'SF Pro Icons', 'Helvetica Neue', Helvetica, Arial, sans-serif";
+container.style.color = '#000000';
+
+// Aggiungi l'HTML come contenuto del div
+container.innerHTML = `
+  <h1 style="font-size: 48px; font-weight: 600; line-height: 52px; margin-bottom: 20px; font-family: inherit;">Pagina non trovata.</h1>
+  <p style="font-size: 18px; line-height: 1.6; margin-bottom: 20px; font-family: inherit;">
+  </p>
+
 <div class="apple-search-container">
   <div class="apple-search-box">
     <!-- Icona Apple Search cliccabile -->
