@@ -215,4 +215,3 @@
     // Attiva la ricerca cliccando sull'icona della lente
     searchIcon.addEventListener("click", performSearch);
   });
-</script>
