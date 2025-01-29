@@ -131,7 +131,6 @@
   }
 </style>
 
-<script>
   document.addEventListener("DOMContentLoaded", function () {
     const searchInput = document.querySelector(".apple-search-input");
     const searchResults = document.querySelector(".apple-search-results");
@@ -215,4 +214,3 @@
     // Attiva la ricerca cliccando sull'icona della lente
     searchIcon.addEventListener("click", performSearch);
   });
-</script>
