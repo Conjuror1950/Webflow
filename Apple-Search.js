@@ -131,6 +131,7 @@
   }
 </style>
 
+ <script>
   document.addEventListener("DOMContentLoaded", function () {
     const searchInput = document.querySelector(".apple-search-input");
     const searchResults = document.querySelector(".apple-search-results");
@@ -138,7 +139,7 @@
     const noResultsMessage = document.querySelector(".no-results");
     const searchIcon = document.querySelector(".apple-search-icon");
     
-        // Mappatura delle ricerche -> URL di destinazione
+    // Mappatura delle ricerche -> URL di destinazione
     const urlMap = {
       "home": "/it/home",
       "biografia": "/it/home#bio",
@@ -214,3 +215,4 @@
     // Attiva la ricerca cliccando sull'icona della lente
     searchIcon.addEventListener("click", performSearch);
   });
+</script>
