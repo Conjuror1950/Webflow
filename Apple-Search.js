@@ -53,7 +53,7 @@ const appleSearchCSS = `
     max-width: 480px;
     margin: 40px auto;
     color: transparent;
-    position: fixed;
+    position: relative;
   }
 
   .apple-search-box {
