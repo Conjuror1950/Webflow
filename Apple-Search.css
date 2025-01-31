@@ -1,5 +1,4 @@
-<style>
-  /* Font SF Pro */
+/* Font SF Pro */
   @font-face {
     font-family: "SF Pro Display";
     src: url("https://cdn.apple.com/sf-pro/SF-Pro-Display-Regular.woff2") format("woff2");
@@ -170,4 +169,3 @@
   .apple-search-clear:active {
     opacity: 0.6;
   }
-</style>
