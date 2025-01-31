@@ -52,7 +52,7 @@ const appleSearchCSS = `
     width: 100%;
     max-width: 480px;
     margin: 20px auto;
-    color: #f5f5f7;
+    color: black;
     position: relative;
   }
 
