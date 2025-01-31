@@ -1,3 +1,34 @@
+<div class="apple-search-container">
+  <div class="apple-search-box">
+    <!-- Icona Apple Search cliccabile -->
+    <svg class="apple-search-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+      <circle cx="10" cy="10" r="7" stroke="white" stroke-width="1.5" fill="none"></circle>
+      <line x1="15" y1="15" x2="20" y2="20" stroke="white" stroke-width="1.5"></line>
+    </svg>
+    <input type="text" class="apple-search-input" placeholder="Cerca su andreaingrassia.webflow.io" />
+    <svg class="apple-search-clear" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+      <line x1="6" y1="6" x2="18" y2="18" stroke="white" stroke-width="2"></line>
+      <line x1="6" y1="18" x2="18" y2="6" stroke="white" stroke-width="2"></line>
+    </svg>
+  </div>
+  <div class="apple-search-results">
+    <p class="results-title" id="link-rapidi-title">Link rapidi</p>
+    <ul class="results-list">
+      <li><a href="/it/home#faq">➜ FAQ</a></li>
+      <li><a href="/it-it/contatti#modulo">➜ Modulo Contatti</a></li>
+      <li><a href="/it/home#bio">➜ Biografia</a></li>
+      <li><a href="/it/portfolio#galleria">➜ Galleria</a></li>
+      <li><a href="/it/servizi#attrezzatura">➜ Attrezzatura</a></li>
+      <li><a href="/it/informazioni/aggiornamenti">➜ Aggiornamenti</a></li>
+    </ul>
+    <p class="results-title" id="suggestions-title" style="display: none;">Suggerimenti</p>
+    <ul class="suggestions-list">
+      <!-- I suggerimenti verranno popolati dinamicamente tramite JS -->
+    </ul>
+    <p class="no-results" style="display: none;">Nessun risultato trovato.</p>
+  </div>
+</div>
+
 /* Font SF Pro */
   @font-face {
     font-family: "SF Pro Display";
