@@ -44,7 +44,7 @@ const appleSearchCSS = `
   }
 
   body {
-    background-color: black;
+    background-color: transparent;
     font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif; !important;
   }
 
