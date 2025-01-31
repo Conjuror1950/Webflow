@@ -39,13 +39,13 @@ document.body.insertAdjacentHTML('beforeend', appleSearchHTML);
 const appleSearchCSS = `
   /* Font SF Pro */
   @font-face {
-    font-family: "SF Pro Display";
+    font-family: "SF Pro Display"; !important;
     src: url("https://cdn.apple.com/sf-pro/SF-Pro-Display-Regular.woff2") format("woff2");
   }
 
   body {
     background-color: transparent;
-    font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif; !important;
   }
 
   .apple-search-container {
@@ -208,6 +208,14 @@ const appleSearchCSS = `
   .apple-search-clear:active {
     opacity: 0.6;
   }
+
+  .apple-search-results, 
+.results-list a, 
+.suggestions-list a, 
+.no-results, 
+.results-title {
+    font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
 `;
 
 // Aggiunta del CSS al documento
