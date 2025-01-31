@@ -60,7 +60,7 @@ const appleSearchCSS = `
     display: flex;
     align-items: center;
     border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-    padding: 18px 0;
+    padding: 20px 0;
     transition: border-color 0.3s ease;
   }
 
