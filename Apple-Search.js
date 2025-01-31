@@ -30,8 +30,13 @@ const appleSearchHTML = `
     <p class="no-results" style="display: none;">Nessun risultato trovato.</p>
   </div>
 </div>
+`;
 
-<style>
+// Aggiunta dell'HTML al body
+document.body.insertAdjacentHTML('beforeend', appleSearchHTML);
+
+// Definizione del CSS
+const appleSearchCSS = `
   /* Font SF Pro */
   @font-face {
     font-family: "SF Pro Display";  !important;
@@ -211,10 +216,15 @@ const appleSearchHTML = `
 .results-title {
     font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif !important;
 }
-</style>
+`;
 
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
+// Aggiunta del CSS al documento
+const style = document.createElement('style');
+style.innerHTML = appleSearchCSS;
+document.head.appendChild(style);
+
+// JavaScript per la gestione della ricerca
+document.addEventListener("DOMContentLoaded", function () {
   const searchInput = document.querySelector(".apple-search-input");
   const searchResults = document.querySelector(".apple-search-results");
   const suggestionsList = document.querySelector(".suggestions-list");
