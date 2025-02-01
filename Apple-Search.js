@@ -16,12 +16,12 @@ const appleSearchHTML = `
   <div class="apple-search-results">
     <p class="results-title" id="link-rapidi-title">Link rapidi</p>
     <ul class="results-list">
-      <li><a href="/it/home#faq">➜ FAQ</a></li>
-      <li><a href="/it-it/contatti#modulo">➜ Modulo Contatti</a></li>
-      <li><a href="/it/home#bio">➜ Biografia</a></li>
-      <li><a href="/it/portfolio#galleria">➜ Galleria</a></li>
-      <li><a href="/it/servizi#attrezzatura">➜ Attrezzatura</a></li>
-      <li><a href="/it/informazioni/aggiornamenti">➜ Aggiornamenti</a></li>
+      <li><a href="/#faq">➜ FAQ</a></li>
+      <li><a href="/contatti#modulo">➜ Modulo Contatti</a></li>
+      <li><a href="/#bio">➜ Biografia</a></li>
+      <li><a href="/portfolio#galleria">➜ Galleria</a></li>
+      <li><a href="/servizi#attrezzatura">➜ Attrezzatura</a></li>
+      <li><a href="/informazioni/aggiornamenti">➜ Aggiornamenti</a></li>
     </ul>
     <p class="results-title" id="suggestions-title" style="display: none;">Suggerimenti</p>
     <ul class="suggestions-list">
@@ -263,21 +263,21 @@ showQuickLinks(); // Mostra subito i link rapidi al caricamento della pagina
   ];
 
   const urlMap = {
-    "home": "/it/home",
-    "biografia": "/it/home#bio",
-    "faq": "/it/home#faq",
-    "portfolio": "/it/portfolio",
-    "galleria": "/it/portfolio#galleria",
-    "servizi": "/it/servizi",
-    "attrezzatura": "/it/servizi#attrezzatura",
-    "cv": "/it/servizi#cv",
-    "curriculum": "/it/servizi#cv",
-    "modulo": "/it-it/contatti#modulo",
-    "modulo contatti": "/it-it/contatti#modulo",
-    "form": "/it-it/contatti#modulo",
-    "social": "/it-it/contatti#social",
-    "contatti": "/it-it/contatti",
-    "informazioni sugli aggiornamenti": "/it/informazioni/aggiornamenti"
+    "home": "/",
+    "biografia": "/#bio",
+    "faq": "/#faq",
+    "portfolio": "/portfolio",
+    "galleria": "/portfolio#galleria",
+    "servizi": "/servizi",
+    "attrezzatura": "/servizi#attrezzatura",
+    "cv": "/servizi#cv",
+    "curriculum": "/servizi#cv",
+    "modulo": "/contatti#modulo",
+    "modulo contatti": "/contatti#modulo",
+    "form": "/contatti#modulo",
+    "social": "/contatti#social",
+    "contatti": "/contatti",
+    "informazioni sugli aggiornamenti": "/informazioni/aggiornamenti"
   };
 
   function triggerFadeIn(element) {
