@@ -34,7 +34,7 @@ container.innerHTML = `
     </form>
   </div>
 
-  <a href="https://andreaingrassia.webflow.io/it/home" style="font-size: 17px; font-weight: 400; color: #0070c9; text-decoration: none; font-family: inherit; transition: all 0.2s ease;"
+  <a href="https://andreaingrassia.webflow.io/" style="font-size: 17px; font-weight: 400; color: #0070c9; text-decoration: none; font-family: inherit; transition: all 0.2s ease;"
      onmouseover="this.style.textDecoration='underline'"
      onmouseout="this.style.textDecoration='none'">
     Oppure vai alla homepage
