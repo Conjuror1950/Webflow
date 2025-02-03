@@ -63,22 +63,18 @@ document.addEventListener('DOMContentLoaded', function () {
     const faqItems = [
         {
             title: "Scopri i miei lavori",
-            font-family: "SF Pro Display", !important;
             content: `Visita la pagina 'Portfolio', disponibile all'indirizzo <a href="https://andreaingrassia.webflow.io/portfolio">IT</a> (Italia), troverai una selezione di lavori che rappresentano le mie competenze in fotografia e video editing. Include alcuni progetti realizzati a scopo puramente dimostrativo.`
         },
         {
             title: "Servizi offerti",
-            font-family: "SF Pro Display", !important;
             content: `Mi occupo di montaggio, color grading, animazioni e post-produzione. Offro anche pacchetti completi che coprono l'intera produzione video, dalla sceneggiatura alla consegna finale. Realizzo sessioni fotografiche per ritratti ed eventi, garantendo qualità ed attenzione ai dettagli. Per maggiori informazioni visita la pagina Servizi, disponibile all'indirizzo <a href="https://andreaingrassia.webflow.io/servizi">IT</a> (Italia).`
         },
         {
             title: "Aggiornamenti del sito",
-            font-family: "SF Pro Display", !important;
             content: `Visita la pagina 'Aggiornamenti', disponibile all'indirizzo <a href="https://andreaingrassia.webflow.io/informazioni/aggiornamenti">IT</a> (Italia), per scoprire tutte le nuove versioni rilasciate dal lancio del sito. Troverai dettagli su ogni aggiornamento e le novità introdotte.`
         },
         {
             title: "Contatti",
-            font-family: "SF Pro Display", !important;
             content: `Per metterti in contatto, accedi alla pagina 'Contatti' e compila il <a href="https://andreaingrassia.webflow.io/contatti#modulo">modulo contatti</a> oppure invia una <a href="mailto:andrea.ingrassia@zohomail.eu">email.</a>`
         }
     ];
