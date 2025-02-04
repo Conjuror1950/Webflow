@@ -49,21 +49,25 @@ const appleSearchCSS = `
     font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif; !important;
   }
 
-  .apple-search-container {
+.apple-search-container {
     width: 100%;
     max-width: 480px;
     margin: 20px auto;
     color: black;
     position: relative;
-  }
+    background-color: black; /* Imposta lo sfondo nero */
+    padding: 10px;
+    border-radius: 10px;
+}
 
-  .apple-search-box {
+.apple-search-box {
     display: flex;
     align-items: center;
     border-bottom: 1px solid rgba(255, 255, 255, 0.4);
     padding: 20px 0;
     transition: border-color 0.3s ease;
-  }
+    background: transparent; /* Rendi il contenitore trasparente */
+}
 
   .apple-search-box:focus-within {
     border-color: white;
