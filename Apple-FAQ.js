@@ -1,97 +1,8 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAQ</title>
-    <style>
-        /* Impostazione del font globale per l'intera pagina */
-        * {
-            font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif !important;
-            margin: 0;
-            padding: 0;
-        }
-
-        /* Contenitore FAQ */
-        .faq-container {
-            margin: 0;
-            padding: 20px;
-            background-color: white;
-            color: #1d1d1f;
-            max-width: 700px;
-            margin: auto;
-        }
-
-        .faq-item {
-            border-bottom: 1px solid #d2d2d7;
-            cursor: pointer;
-            padding: 8px 0;
-            margin: 8px;
-            position: relative; /* Necessario per posizionare le icone */
-        }
-
-        .faq-item h3 {
-            font-size: 16px;
-            font-weight: 600;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 0;
-        }
-
-        .faq-item p {
-            font-size: 15px;
-            color: #6e6e73;
-            margin-top: 0px;
-            max-height: 0;
-            overflow: hidden;
-            padding: 0;
-            transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
-        }
-
-        /* Icona + e X */
-        .faq-item .icon {
-            font-size: 24px; /* Grandezza dell'icona */
-            transition: transform 0.3s ease-out, color 0.3s ease-out;
-            display: inline-block;
-            width: 30px; /* Larghezza dell'icona */
-            text-align: center;
-            line-height: 24px; /* Centra l'icona verticalmente */
-            color: #1d1d1f; /* Colore iniziale dell'icona */
-            font-weight: semi-bold; /* Enfatizza il simbolo */
-        }
-
-        /* Icona + quando non attiva */
-        .faq-item .icon:before {
-            content: "+"; /* Il simbolo più */
-        }
-
-        /* Icona X quando attiva */
-        .faq-item.active .icon:before {
-            content: "×"; /* Il simbolo di X */
-            transform: rotate(45deg); /* Ruota per la X */
-        }
-
-        .faq-item.active p {
-            max-height: 200px;
-            padding: 8px 0;
-        }
-
-        /* Link dentro FAQ */
-        .faq-container a {
-            color: #06c;
-            text-decoration: none; /* Rimuove la sottolineatura */
-        }
-
-        /* Hover sui link dentro FAQ */
-        .faq-container a:hover {
-            text-decoration: underline;
-        }
-
-    </style>
-</head>
-<body>
-    <div class="faq-container">
+document.addEventListener("DOMContentLoaded", function () {
+    // Creazione del contenitore FAQ
+    const faqContainer = document.createElement("div");
+    faqContainer.className = "faq-container";
+    faqContainer.innerHTML = `
         <div class="faq-item">
             <h3>Scopri i miei lavori<span class="icon"></span></h3>
             <p>Visita la pagina 'Portfolio', disponibile all'indirizzo <a href="https://andreaingrassia.webflow.io/portfolio">IT</a> (Italia), troverai una selezione di lavori che rappresentano le mie competenze in fotografia e video editing. Include alcuni progetti realizzati a scopo puramente dimostrativo.</p>
@@ -108,16 +19,82 @@
         </div>
         <div class="faq-item">
             <h3>Contatti<span class="icon"></span></h3>
-            <p>Per metterti in contatto, accedi alla pagina 'Contatti' e compila il <a href="https://andreaingrassia.webflow.io/contatti#modulo">modulo contatti</a> oppure invia una <a href="mailto:andrea.ingrassia@zohomail.eu">email.</a>
+            <p>Per metterti in contatto, accedi alla pagina 'Contatti' e compila il <a href="https://andreaingrassia.webflow.io/contatti#modulo">modulo contatti</a> oppure invia una <a href="mailto:andrea.ingrassia@zohomail.eu">email.</a></p>
         </div>
-    </div>
+    `;
 
-    <script>
-        document.querySelectorAll('.faq-item').forEach(item => {
-            item.addEventListener('click', () => {
-                item.classList.toggle('active');
-            });
+    document.body.appendChild(faqContainer);
+
+    // Aggiunta dello stile CSS
+    const style = document.createElement("style");
+    style.textContent = `
+        * {
+            font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif !important;
+            margin: 0;
+            padding: 0;
+        }
+        .faq-container {
+            margin: auto;
+            padding: 20px;
+            background-color: white;
+            color: #1d1d1f;
+            max-width: 700px;
+        }
+        .faq-item {
+            border-bottom: 1px solid #d2d2d7;
+            cursor: pointer;
+            padding: 8px 0;
+            margin: 8px;
+            position: relative;
+        }
+        .faq-item h3 {
+            font-size: 16px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-item p {
+            font-size: 15px;
+            color: #6e6e73;
+            margin-top: 0;
+            max-height: 0;
+            overflow: hidden;
+            padding: 0;
+            transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+        }
+        .faq-item .icon {
+            font-size: 24px;
+            transition: transform 0.3s ease-out, color 0.3s ease-out;
+            width: 30px;
+            text-align: center;
+            line-height: 24px;
+            color: #1d1d1f;
+        }
+        .faq-item .icon:before {
+            content: "+";
+        }
+        .faq-item.active .icon:before {
+            content: "×";
+        }
+        .faq-item.active p {
+            max-height: 200px;
+            padding: 8px 0;
+        }
+        .faq-container a {
+            color: #06c;
+            text-decoration: none;
+        }
+        .faq-container a:hover {
+            text-decoration: underline;
+        }
+    `;
+    document.head.appendChild(style);
+
+    // Funzionalità FAQ interattiva
+    document.querySelectorAll(".faq-item").forEach(item => {
+        item.addEventListener("click", () => {
+            item.classList.toggle("active");
         });
-    </script>
-</body>
-</html>
+    });
+});
