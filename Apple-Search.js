@@ -52,7 +52,7 @@ const appleSearchCSS = `
 .apple-search-container {
     width: 100%;
     max-width: auto;
-    margin: 100px auto;
+    margin: 10px auto;
     color: black;
     position: relative;
     background-color: black; /* Imposta lo sfondo nero */
@@ -100,7 +100,7 @@ const appleSearchCSS = `
     display: none;
     background: rgba(255, 255, 255, 0.1);
     padding: 10px;
-    margin-left: 400px;
+    margin-left: 390px;
     border-radius: 10px;
     margin-top: 8px;
     backdrop-filter: blur(10px);
