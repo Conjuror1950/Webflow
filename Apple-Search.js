@@ -206,7 +206,7 @@ const appleSearchCSS = `
   }
 
   .apple-search-clear:hover {
-    background-color: rgba(255, 255, 255, 0.4);
+    background-color: white;
   }
 
   .apple-search-box:focus-within .apple-search-clear {
