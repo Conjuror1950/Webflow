@@ -1,113 +1,58 @@
-document.addEventListener("DOMContentLoaded", function () {
-  // Aggiungi HTML
-  const searchContainer = document.createElement("div");
-  searchContainer.classList.add("apple-search-container");
+// Definizione del contenuto HTML
+const appleSearchHTML = `
+<div class="apple-search-container">
+  <div class="apple-search-box">
+    <!-- Icona Apple Search cliccabile -->
+    <svg class="apple-search-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+      <circle cx="10" cy="10" r="7" stroke="white" stroke-width="1.5" fill="none"></circle>
+      <line x1="15" y1="15" x2="20" y2="20" stroke="white" stroke-width="1.5"></line>
+    </svg>
+    <input type="text" class="apple-search-input" placeholder="Cerca su andreaingrassia.webflow.io" />
+    <svg class="apple-search-clear" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+      <line x1="6" y1="6" x2="18" y2="18" stroke="white" stroke-width="2"></line>
+      <line x1="6" y1="18" x2="18" y2="6" stroke="white" stroke-width="2"></line>
+    </svg>
+  </div>
+  <div class="apple-search-results">
+    <p class="results-title" id="link-rapidi-title">Link rapidi</p>
+    <ul class="results-list">
+      <li><a href="/#faq">➜ FAQ</a></li>
+      <li><a href="/contatti#modulo">➜ Modulo Contatti</a></li>
+      <li><a href="/#bio">➜ Biografia</a></li>
+      <li><a href="/portfolio#galleria">➜ Galleria</a></li>
+      <li><a href="/servizi#attrezzatura">➜ Attrezzatura</a></li>
+      <li><a href="/informazioni/aggiornamenti">➜ Aggiornamenti</a></li>
+    </ul>
+    <p class="results-title" id="suggestions-title" style="display: none;">Suggerimenti</p>
+    <ul class="suggestions-list">
+      <!-- I suggerimenti verranno popolati dinamicamente tramite JS -->
+    </ul>
+    <p class="no-results" style="display: none;">Nessun risultato trovato.</p>
+  </div>
+</div>
+`;
 
-  const searchBox = document.createElement("div");
-  searchBox.classList.add("apple-search-box");
+// Aggiunta dell'HTML al body
+document.body.insertAdjacentHTML('beforeend', appleSearchHTML);
 
-  const searchIcon = document.createElement("svg");
-  searchIcon.classList.add("apple-search-icon");
-  searchIcon.setAttribute("viewBox", "0 0 24 24");
-  searchIcon.setAttribute("width", "20");
-  searchIcon.setAttribute("height", "20");
-  searchIcon.setAttribute("aria-hidden", "true");
-
-  searchIcon.innerHTML = `<circle cx="10" cy="10" r="7" stroke="white" stroke-width="1.5" fill="none"></circle>
-  <line x1="15" y1="15" x2="20" y2="20" stroke="white" stroke-width="1.5"></line>`;
-
-  const searchInput = document.createElement("input");
-  searchInput.type = "text";
-  searchInput.classList.add("apple-search-input");
-  searchInput.setAttribute("placeholder", "Cerca su andreaingrassia.webflow.io");
-
-  const clearButton = document.createElement("svg");
-  clearButton.classList.add("apple-search-clear");
-  clearButton.setAttribute("viewBox", "0 0 24 24");
-  clearButton.setAttribute("width", "16");
-  clearButton.setAttribute("height", "16");
-  clearButton.setAttribute("aria-hidden", "true");
-
-  clearButton.innerHTML = `<line x1="6" y1="6" x2="18" y2="18" stroke="white" stroke-width="2"></line>
-  <line x1="6" y1="18" x2="18" y2="6" stroke="white" stroke-width="2"></line>`;
-
-  const searchResults = document.createElement("div");
-  searchResults.classList.add("apple-search-results");
-
-  const resultsTitle = document.createElement("p");
-  resultsTitle.classList.add("results-title");
-  resultsTitle.setAttribute("id", "link-rapidi-title");
-  resultsTitle.textContent = "Link rapidi";
-
-  const resultsList = document.createElement("ul");
-  resultsList.classList.add("results-list");
-
-  const quickLinks = [
-    { name: "FAQ", href: "/#faq" },
-    { name: "Modulo Contatti", href: "/contatti#modulo" },
-    { name: "Biografia", href: "/#bio" },
-    { name: "Galleria", href: "/portfolio#galleria" },
-    { name: "Attrezzatura", href: "/servizi#attrezzatura" },
-    { name: "Aggiornamenti", href: "/informazioni/aggiornamenti" }
-  ];
-
-  quickLinks.forEach(link => {
-    const listItem = document.createElement("li");
-    const anchor = document.createElement("a");
-    anchor.href = link.href;
-    anchor.textContent = `➜ ${link.name}`;
-    listItem.appendChild(anchor);
-    resultsList.appendChild(listItem);
-  });
-
-  const suggestionsTitle = document.createElement("p");
-  suggestionsTitle.classList.add("results-title");
-  suggestionsTitle.setAttribute("id", "suggestions-title");
-  suggestionsTitle.style.display = "none";
-  suggestionsTitle.textContent = "Suggerimenti";
-
-  const suggestionsList = document.createElement("ul");
-  suggestionsList.classList.add("suggestions-list");
-
-  const noResultsMessage = document.createElement("p");
-  noResultsMessage.classList.add("no-results");
-  noResultsMessage.style.display = "none";
-  noResultsMessage.textContent = "Nessun risultato trovato.";
-
-  searchResults.appendChild(resultsTitle);
-  searchResults.appendChild(resultsList);
-  searchResults.appendChild(suggestionsTitle);
-  searchResults.appendChild(suggestionsList);
-  searchResults.appendChild(noResultsMessage);
-
-  searchBox.appendChild(searchIcon);
-  searchBox.appendChild(searchInput);
-  searchBox.appendChild(clearButton);
-
-  searchContainer.appendChild(searchBox);
-  searchContainer.appendChild(searchResults);
-
-  document.body.appendChild(searchContainer);
-
-  // CSS iniettato come stile
-  const style = document.createElement("style");
-  style.textContent = `
+// Definizione del CSS
+const appleSearchCSS = `
   /* Font SF Pro */
   @font-face {
-    font-family: "SF Pro Display";
+    font-family: "SF Pro Display";  !important;
     src: url("https://cdn.apple.com/sf-pro/SF-Pro-Display-Regular.woff2") format("woff2");
   }
 
   body {
-    background-color: transparent;
-    font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: black;
+    font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif; !important;
   }
 
   .apple-search-container {
     width: 100%;
     max-width: 480px;
     margin: 20px auto;
-    color: #f5f5f7;
+    color: black;
     position: relative;
   }
 
@@ -233,7 +178,7 @@ document.addEventListener("DOMContentLoaded", function () {
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
   }
-
+  
   .apple-search-clear {
     width: 18px;
     height: 18px;
@@ -263,10 +208,44 @@ document.addEventListener("DOMContentLoaded", function () {
   .apple-search-clear:active {
     opacity: 0.6;
   }
-  `;
-  document.head.appendChild(style);
+  
+  .apple-search-results, 
+.results-list a, 
+.suggestions-list a, 
+.no-results, 
+.results-title {
+    font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+`;
 
-  // Funzionalità JavaScript
+// Aggiunta del CSS al documento
+const style = document.createElement('style');
+style.innerHTML = appleSearchCSS;
+document.head.appendChild(style);
+
+// JavaScript per la gestione della ricerca
+document.addEventListener("DOMContentLoaded", function () {
+  const searchInput = document.querySelector(".apple-search-input");
+  const searchResults = document.querySelector(".apple-search-results");
+  const suggestionsList = document.querySelector(".suggestions-list");
+  const suggestionsTitle = document.querySelector("#suggestions-title");
+  const noResultsMessage = document.querySelector(".no-results");
+  const searchIcon = document.querySelector(".apple-search-icon");
+  const resultsList = document.querySelector(".results-list");
+  const linkRapidiTitle = document.querySelector("#link-rapidi-title");
+  const clearButton = document.querySelector(".apple-search-clear");
+
+// Mostrare i Link rapidi all'avvio
+function showQuickLinks() {
+  linkRapidiTitle.style.display = "block";
+  resultsList.style.display = "block";
+  searchResults.style.display = "block";
+  triggerFadeIn(linkRapidiTitle);
+  triggerFadeIn(resultsList);
+}
+
+showQuickLinks(); // Mostra subito i link rapidi al caricamento della pagina
+
   const suggestions = [
     "home",
     "biografia",
@@ -303,14 +282,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function triggerFadeIn(element) {
     element.classList.remove("fade-in");
-    void element.offsetWidth;
+    void element.offsetWidth; // Forza il reflow
     element.classList.add("fade-in");
   }
 
   function showSuggestions(query) {
-    suggestionsList.innerHTML = "";
+    suggestionsList.innerHTML = ""; 
     if (query) {
-      const filteredSuggestions = suggestions.filter(suggestion =>
+      const filteredSuggestions = suggestions.filter(suggestion => 
         suggestion.includes(query.toLowerCase())
       );
       if (filteredSuggestions.length > 0) {
@@ -324,7 +303,7 @@ document.addEventListener("DOMContentLoaded", function () {
           suggestionsList.appendChild(listItem);
         });
       } else {
-        suggestionsTitle.style.display = "none";
+        suggestionsTitle.style.display = "none"; 
       }
     }
   }
@@ -333,12 +312,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const query = searchInput.value.toLowerCase().trim();
 
     if (query === "") {
-      resultsTitle.style.display = "block";
+      linkRapidiTitle.style.display = "block";
       resultsList.style.display = "block";
-      triggerFadeIn(resultsTitle);
+      triggerFadeIn(linkRapidiTitle);
       triggerFadeIn(resultsList);
     } else {
-      resultsTitle.style.display = "none";
+      linkRapidiTitle.style.display = "none";
       resultsList.style.display = "none";
     }
 
@@ -349,24 +328,46 @@ document.addEventListener("DOMContentLoaded", function () {
     noResultsMessage.style.display = suggestionsCount === 0 ? "block" : "none";
   }
 
-  searchInput.addEventListener("input", function () {
-    performSearch();
-    clearButton.style.opacity = searchInput.value.length > 0 ? "0.6" : "0";
-  });
+  // Evento input per aggiornare risultati e animazioni
+  searchInput.addEventListener("input", function() {
+  performSearch();
+  clearButton.style.opacity = searchInput.value.length > 0 ? "0.6" : "0";
 
-  clearButton.addEventListener("click", function () {
-    searchInput.value = "";
-    clearButton.style.opacity = "0";
-    searchInput.focus();
-    performSearch();
-  });
+  if (searchInput.value.trim() === "") {
+    showQuickLinks(); // Mostra i link rapidi se il campo è vuoto
+  }
+});
 
-  searchInput.addEventListener("focus", function () {
-    resultsTitle.style.display = "block";
-    resultsList.style.display = "block";
-    triggerFadeIn(resultsTitle);
-    triggerFadeIn(resultsList);
-  });
+  // Evento focus per ripristinare link rapidi se l'input è vuoto
+  searchInput.addEventListener("focus", function() {
+  showQuickLinks(); // Mostra i link rapidi anche quando si clicca sul campo di ricerca
+});
+  
+   // Funzione Focus
+   searchInput.focus();
 
+  // Evento click sulla X per cancellare l'input e ripristinare link rapidi
+  clearButton.addEventListener("click", function() {
+  searchInput.value = "";
+  clearButton.style.opacity = "0";
   searchInput.focus();
+  performSearch();
+  showQuickLinks(); // Mostra i link rapidi dopo aver cancellato il testo
+});
+
+// Evento pressione tasto Invio per navigare
+searchInput.addEventListener("keydown", function (e) {
+    const query = searchInput.value.toLowerCase().trim(); // Converti in minuscolo
+    if (e.key === "Enter" && urlMap[query]) {
+        window.location.href = urlMap[query];
+    }
+});
+
+// Evento click sull'icona per avviare la ricerca e navigare
+searchIcon.addEventListener("click", function() {
+    const query = searchInput.value.toLowerCase().trim(); // Converti in minuscolo
+    if (urlMap[query]) {
+        window.location.href = urlMap[query];
+    }
+});
 });
