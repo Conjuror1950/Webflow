@@ -1,24 +1,35 @@
-document.addEventListener('DOMContentLoaded', function () {
-    // Aggiungiamo il CSS in modo dinamico
-    const style = document.createElement('style');
-    style.innerHTML = `
-        body {
-            font-family: "SF Pro Display", !important;
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ</title>
+    <style>
+        /* Impostazione del font globale per l'intera pagina */
+        * {
+            font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif !important;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Contenitore FAQ */
+        .faq-container {
             margin: 0;
             padding: 20px;
             background-color: white;
             color: #1d1d1f;
-        }
-        .faq-container {
             max-width: 700px;
             margin: auto;
         }
+
         .faq-item {
             border-bottom: 1px solid #d2d2d7;
             cursor: pointer;
             padding: 8px 0;
-            margin: 8px
+            margin: 8px;
+            position: relative; /* Necessario per posizionare le icone */
         }
+
         .faq-item h3 {
             font-size: 16px;
             font-weight: 600;
@@ -27,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
             align-items: center;
             margin: 0;
         }
+
         .faq-item p {
             font-size: 15px;
             color: #6e6e73;
@@ -36,66 +48,76 @@ document.addEventListener('DOMContentLoaded', function () {
             padding: 0;
             transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
         }
-        .icon {
-            transition: transform 0.3s ease-out;
+
+        /* Icona + e X */
+        .faq-item .icon {
+            font-size: 24px; /* Grandezza dell'icona */
+            transition: transform 0.3s ease-out, color 0.3s ease-out;
+            display: inline-block;
+            width: 30px; /* Larghezza dell'icona */
+            text-align: center;
+            line-height: 24px; /* Centra l'icona verticalmente */
+            color: #1d1d1f; /* Colore iniziale dell'icona */
+            font-weight: semi-bold; /* Enfatizza il simbolo */
         }
-        .faq-item.active .icon {
-            transform: rotate(45deg);
+
+        /* Icona + quando non attiva */
+        .faq-item .icon:before {
+            content: "+"; /* Il simbolo più */
         }
+
+        /* Icona X quando attiva */
+        .faq-item.active .icon:before {
+            content: "×"; /* Il simbolo di X */
+            transform: rotate(45deg); /* Ruota per la X */
+        }
+
         .faq-item.active p {
             max-height: 200px;
             padding: 8px 0;
         }
-        a {
+
+        /* Link dentro FAQ */
+        .faq-container a {
             color: #06c;
-            text-decoration: none;
+            text-decoration: none; /* Rimuove la sottolineatura */
         }
-        a:hover {
+
+        /* Hover sui link dentro FAQ */
+        .faq-container a:hover {
             text-decoration: underline;
         }
-    `;
-    document.head.appendChild(style);
 
-    // Aggiungiamo il contenuto HTML della pagina FAQ
-    const faqContainer = document.createElement('div');
-    faqContainer.classList.add('faq-container');
+    </style>
+</head>
+<body>
+    <div class="faq-container">
+        <div class="faq-item">
+            <h3>Scopri i miei lavori<span class="icon"></span></h3>
+            <p>Visita la pagina 'Portfolio', disponibile all'indirizzo <a href="https://andreaingrassia.webflow.io/portfolio">IT</a> (Italia), troverai una selezione di lavori che rappresentano le mie competenze in fotografia e video editing. Include alcuni progetti realizzati a scopo puramente dimostrativo.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Servizi offerti<span class="icon"></span></h3>
+            <p>Mi occupo di montaggio, color grading, animazioni e post-produzione. Offro anche pacchetti completi che coprono l'intera produzione video, dalla sceneggiatura alla consegna finale.
+               Realizzo sessioni fotografiche per ritratti ed eventi, garantendo qualità ed attenzione ai dettagli.
+               Per maggiori informazioni visita la pagina Servizi, disponibile all'indirizzo <a href="https://andreaingrassia.webflow.io/servizi">IT</a> (Italia).</p>
+        </div>
+        <div class="faq-item">
+            <h3>Aggiornamenti del sito<span class="icon"></span></h3>
+            <p>Visita la pagina 'Aggiornamenti', disponibile all'indirizzo <a href="https://andreaingrassia.webflow.io/informazioni/aggiornamenti">IT</a> (Italia), per scoprire tutte le nuove versioni rilasciate dal lancio del sito. Troverai dettagli su ogni aggiornamento e le novità introdotte.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Contatti<span class="icon"></span></h3>
+            <p>Per metterti in contatto, accedi alla pagina 'Contatti' e compila il <a href="https://andreaingrassia.webflow.io/contatti#modulo">modulo contatti</a> oppure invia una <a href="mailto:andrea.ingrassia@zohomail.eu">email.</a>
+        </div>
+    </div>
 
-    const faqItems = [
-        {
-            title: "Scopri i miei lavori",
-            content: `Visita la pagina 'Portfolio', disponibile all'indirizzo <a href="https://andreaingrassia.webflow.io/portfolio">IT</a> (Italia), troverai una selezione di lavori che rappresentano le mie competenze in fotografia e video editing. Include alcuni progetti realizzati a scopo puramente dimostrativo.`
-        },
-        {
-            title: "Servizi offerti",
-            content: `Mi occupo di montaggio, color grading, animazioni e post-produzione. Offro anche pacchetti completi che coprono l'intera produzione video, dalla sceneggiatura alla consegna finale. Realizzo sessioni fotografiche per ritratti ed eventi, garantendo qualità ed attenzione ai dettagli. Per maggiori informazioni visita la pagina Servizi, disponibile all'indirizzo <a href="https://andreaingrassia.webflow.io/servizi">IT</a> (Italia).`
-        },
-        {
-            title: "Aggiornamenti del sito",
-            content: `Visita la pagina 'Aggiornamenti', disponibile all'indirizzo <a href="https://andreaingrassia.webflow.io/informazioni/aggiornamenti">IT</a> (Italia), per scoprire tutte le nuove versioni rilasciate dal lancio del sito. Troverai dettagli su ogni aggiornamento e le novità introdotte.`
-        },
-        {
-            title: "Contatti",
-            content: `Per metterti in contatto, accedi alla pagina 'Contatti' e compila il <a href="https://andreaingrassia.webflow.io/contatti#modulo">modulo contatti</a> oppure invia una <a href="mailto:andrea.ingrassia@zohomail.eu">email.</a>`
-        }
-    ];
-
-    // Creiamo gli elementi FAQ
-    faqItems.forEach((item, index) => {
-        const faqItem = document.createElement('div');
-        faqItem.classList.add('faq-item');
-        faqItem.innerHTML = `
-            <h3><span class="icon">${index + 1}</span> ${item.title}</h3>
-            <p>${item.content}</p>
-        `;
-        faqContainer.appendChild(faqItem);
-    });
-
-    document.body.appendChild(faqContainer);
-
-    // Funzionalità JavaScript per l'apertura e chiusura delle FAQ
-    document.querySelectorAll('.faq-item').forEach(item => {
-        item.addEventListener('click', () => {
-            item.classList.toggle('active');
+    <script>
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
         });
-    });
-});
+    </script>
+</body>
+</html>
