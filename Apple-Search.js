@@ -64,7 +64,6 @@ const appleSearchCSS = `
     margin-left: 412px;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
     padding: 20px 0;
     transition: border-color 0.3s ease;
     background: transparent; /* Rendi il contenitore trasparente */
@@ -206,7 +205,7 @@ const appleSearchCSS = `
   }
 
   .apple-search-clear:hover {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.4);
   }
 
   .apple-search-box:focus-within .apple-search-clear {
