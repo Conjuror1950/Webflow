@@ -88,6 +88,7 @@ const appleSearchCSS = `
     border: none;
     color: white;
     font-size: 24px;
+    color: #e8e8ed;
     outline: none;
   }
 
@@ -109,12 +110,13 @@ const appleSearchCSS = `
 
   .results-title {
     font-size: 12px;
-    color: #fff;
+    color: #86868b;
     margin-bottom: 6px;
   }
 
   .results-list {
     list-style: none;
+    color: #fff;
     padding: 0;
     margin: 0;
     opacity: 0;
