@@ -23,7 +23,7 @@ const appleSearchHTML = `
       <li><a href="/servizi#attrezzatura">➜ Attrezzatura</a></li>
       <li><a href="/informazioni/aggiornamenti">➜ Aggiornamenti</a></li>
     </ul>
-    <p class="results-title" id="suggestions-title" style="display: none;">Suggerimenti</p>
+    <p class="results-title" id="suggestions-title" style="display: none;">Ricerche suggerite</p>
     <ul class="suggestions-list">
       <!-- I suggerimenti verranno popolati dinamicamente tramite JS -->
     </ul>
@@ -60,7 +60,7 @@ const appleSearchCSS = `
 }
 
 .apple-search-box {
-    max-width: 1000px;
+    max-width: 1100px;
     margin-left: 410px;
     display: flex;
     align-items: center;
@@ -97,7 +97,7 @@ const appleSearchCSS = `
   }
 
   .apple-search-results {
-    max-width: 1000px;
+    max-width: 1100px;
     display: none;
     background: transparent;
     padding: 10px;
