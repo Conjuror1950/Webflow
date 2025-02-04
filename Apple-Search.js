@@ -51,7 +51,7 @@ const appleSearchCSS = `
 
 .apple-search-container {
     width: 100%;
-    max-width: 1920px;
+    max-width: auto;
     margin: 20px auto;
     color: black;
     position: relative;
