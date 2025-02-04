@@ -101,7 +101,7 @@ const appleSearchCSS = `
     display: none;
     background: transparent;
     padding: 10px;
-    margin-left: 400px;
+    margin-left: 402px;
     border-radius: 10px;
     margin-top: 8px;
     backdrop-filter: blur(10px);
