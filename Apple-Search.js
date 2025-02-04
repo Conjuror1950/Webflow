@@ -60,6 +60,7 @@ const appleSearchCSS = `
 }
 
 .apple-search-box {
+    max-width: 700px;
     display: flex;
     align-items: center;
     border-bottom: 1px solid rgba(255, 255, 255, 0.4);
