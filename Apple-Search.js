@@ -365,6 +365,8 @@ searchInput.addEventListener("keydown", function (e) {
 
   // Evento click sull'icona per avviare la ricerca
   searchIcon.addEventListener("click", function() {
-    performSearch();
+    const query = searchInput.value.toLowerCase().trim(); // Converti in minuscolo
+    if (urlMap[query]) {
+        window.location.href = urlMap[query];
   });
 });
