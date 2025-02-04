@@ -60,8 +60,8 @@ const appleSearchCSS = `
 }
 
 .apple-search-box {
-    max-width: 1150px;
-    margin-left: 408px;
+    max-width: 1160px;
+    margin-left: 412px;
     display: flex;
     align-items: center;
     border-bottom: 1px solid rgba(255, 255, 255, 0.4);
@@ -97,7 +97,7 @@ const appleSearchCSS = `
   }
 
   .apple-search-results {
-    max-width: 1150px;
+    max-width: 1160px;
     display: none;
     background: transparent;
     padding: 10px;
