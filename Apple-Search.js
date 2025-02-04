@@ -362,10 +362,9 @@ searchInput.addEventListener("keydown", function (e) {
         window.location.href = urlMap[query];
     }
 });
-// Evento click sull'icona per avviare la ricerca e navigare
-searchIcon.addEventListener("click", function() {
-    const query = searchInput.value.toLowerCase().trim(); // Converti in minuscolo
-    if (urlMap[query]) {
-        window.location.href = urlMap[query];
-    }
+
+  // Evento click sull'icona per avviare la ricerca
+  searchIcon.addEventListener("click", function() {
+    performSearch();
+  });
 });
