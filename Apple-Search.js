@@ -355,13 +355,13 @@ showQuickLinks(); // Mostra subito i link rapidi al caricamento della pagina
   showQuickLinks(); // Mostra i link rapidi dopo aver cancellato il testo
 });
 
-  // Evento pressione tasto Invio per navigare
-  searchInput.addEventListener("keydown", function (e) {
-    if (e.key === "Enter" && urlMap[searchInput.value]) {
-      window.location.href = urlMap[searchInput.value];
+// Evento pressione tasto Invio per navigare
+searchInput.addEventListener("keydown", function (e) {
+    const query = searchInput.value.toLowerCase().trim(); // Converti in minuscolo
+    if (e.key === "Enter" && urlMap[query]) {
+        window.location.href = urlMap[query];
     }
-  });
-
+});
   // Evento click sull'icona per avviare la ricerca
   searchIcon.addEventListener("click", function() {
     performSearch();
