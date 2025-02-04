@@ -51,13 +51,12 @@ const appleSearchCSS = `
 
 .apple-search-container {
     width: 100%;
-    max-width: 480px;
+    max-width: 1920px;
     margin: 20px auto;
     color: black;
     position: relative;
     background-color: black; /* Imposta lo sfondo nero */
     padding: 10px;
-    border-radius: 10px;
 }
 
 .apple-search-box {
