@@ -96,6 +96,7 @@ const appleSearchCSS = `
   }
 
   .apple-search-results {
+    max-width: 700px;
     display: none;
     background: rgba(255, 255, 255, 0.1);
     padding: 10px;
