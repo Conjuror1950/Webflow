@@ -1,6 +1,6 @@
 (function () {
   // Imposta il titolo della pagina
-  document.title = "Video Toggle con Ritardo";
+  document.title = "Guarda Produzioni Cinematografiche - Andrea Ingrassia (IT)";
 
   // Inserisci il CSS nel <head> per evitare flash dell'elemento
   const style = document.createElement("style");
