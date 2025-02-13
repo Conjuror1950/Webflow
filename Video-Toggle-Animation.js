@@ -27,19 +27,6 @@
   videoToggle.appendChild(img);
   document.body.appendChild(videoToggle);
 
-  // Crea l'elemento video con il relativo source
-  const video = document.createElement("video");
-  video.width = 320;
-  video.height = 240;
-  video.controls = true;
-  const source = document.createElement("source");
-  source.src = "movie.mp4"; // Assicurati che il percorso sia corretto
-  source.type = "video/mp4";
-  video.appendChild(source);
-  // Messaggio nel caso il browser non supporti il tag <video>
-  video.appendChild(document.createTextNode("Il tuo browser non supporta il tag video."));
-  document.body.appendChild(video);
-
   // Funzione per assicurarsi che jQuery sia caricato; se non lo è, lo carica dinamicamente
   function onJQueryReady(callback) {
     if (window.jQuery) {
