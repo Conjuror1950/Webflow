@@ -1,6 +1,4 @@
 (function () {
-  // Imposta il titolo della pagina
-  document.title = "Guarda Produzioni Cinematografiche - Andrea Ingrassia (IT)";
 
   // Inserisci il CSS nel <head> per evitare flash dell'elemento
   const style = document.createElement("style");
