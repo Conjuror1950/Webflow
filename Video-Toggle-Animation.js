@@ -1,5 +1,4 @@
 (function () {
-
   // Inserisci il CSS nel <head> per evitare flash dell'elemento
   const style = document.createElement("style");
   style.textContent = `
@@ -11,6 +10,11 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      position: fixed; /* Puoi posizionarlo come preferisci */
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+      cursor: pointer;
     }
   `;
   document.head.appendChild(style);
@@ -22,7 +26,8 @@
 
   // Inserisci il contenuto dell'icona (ad es. un'immagine o SVG)
   const img = document.createElement("img");
-  img.src = "play-pause-icon.svg"; // Assicurati che il percorso sia corretto
+  // Imposta l'icona iniziale (supponendo che il video parta in pausa)
+  img.src = "play-icon.svg"; // Assicurati di avere questo file al percorso corretto
   img.alt = "Play/Pause Icon";
   videoToggle.appendChild(img);
   document.body.appendChild(videoToggle);
@@ -53,8 +58,33 @@
         });
       }
 
+      // Funzione per aggiornare l'icona in base allo stato del video
+      function updateIcon() {
+        // Se almeno un video è in pausa, mostra l'icona "play", altrimenti "pause".
+        // Se hai un solo video, la logica è diretta.
+        let allPlaying = true;
+        $("video").each(function () {
+          if (this.paused) {
+            allPlaying = false;
+          }
+        });
+        if (allPlaying) {
+          // Video in riproduzione: mostra l'icona "pause"
+          img.src = "pause-icon.svg"; // Assicurati di avere questo file
+        } else {
+          // Video in pausa: mostra l'icona "play"
+          img.src = "play-icon.svg";
+        }
+      }
+
       // Associa l'evento click all'icona per gestire play/pause
-      $("#video-toggle").click(togglePlayPause);
+      $("#video-toggle").click(function () {
+        togglePlayPause();
+      });
+
+      // Ascolta gli eventi play e pause su tutti i video, così l'icona si aggiorna anche
+      // quando si interagisce con i controlli nativi (inclusa la modalità a tutto schermo)
+      $("video").on("play pause", updateIcon);
 
       // Dopo 10 secondi mostra l'icona con un effetto di dissolvenza
       setTimeout(function () {
@@ -63,7 +93,9 @@
           opacity: "1",
         });
       }, 10000); // 10 secondi
+
+      // Inizializza l'icona in base allo stato attuale del video
+      updateIcon();
     });
   });
 })();
-
