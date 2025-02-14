@@ -2,7 +2,7 @@
   // Inserisci il CSS nel <head> per evitare flash dell'elemento
   const style = document.createElement("style");
   style.textContent = `
-    #video-toggle {
+    #video {
       opacity: 0;
       visibility: hidden;
       transition: opacity 1s ease-in-out;
@@ -34,7 +34,7 @@
 
   // Crea l'elemento per l'icona e inserisce l'SVG di play (stato iniziale)
   const videoToggle = document.createElement("div");
-  videoToggle.id = "video-toggle";
+  videoToggle.id = "video";
   videoToggle.style.opacity = "0";
   videoToggle.style.visibility = "hidden";
   videoToggle.innerHTML = playSvg;
@@ -85,13 +85,13 @@
       }
 
       // Associa l'evento click all'icona per gestire play/pause
-      $("#video-toggle").click(function () {
+      $("#video").click(function () {
         togglePlayPause();
       });
 
       // Rende visibile l'icona dopo 1 secondo (modifica il delay se necessario)
       setTimeout(function () {
-        $("#video-toggle").css({
+        $("#video").css({
           visibility: "visible",
           opacity: "1",
         });
