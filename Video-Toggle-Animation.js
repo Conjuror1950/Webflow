@@ -58,7 +58,7 @@
 
       // Dopo 10 secondi mostra l'icona con un effetto di dissolvenza
       setTimeout(function () {
-        $("#video-toggle").css({
+        $("#video-toggle, #mute, #full-screen").css({
           visibility: "visible",
           opacity: "1",
         });
