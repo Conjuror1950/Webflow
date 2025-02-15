@@ -23,7 +23,6 @@
   // Inserisci il contenuto dell'icona (ad es. un'immagine o SVG)
   const img = document.createElement("img");
   img.src = "play-pause-icon.svg"; // Assicurati che il percorso sia corretto
-  img.alt = "Play/Pause Icon";
   videoToggle.appendChild(img);
   document.body.appendChild(videoToggle);
 
