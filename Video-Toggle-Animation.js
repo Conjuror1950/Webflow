@@ -20,6 +20,16 @@
   videoToggle.id = "video-toggle";
   videoToggle.setAttribute("style", "opacity: 0; visibility: hidden;");
 
+    // Crea l'elemento per l'icona mute con stile inline per un nascondimento immediato
+  const videoToggle = document.createElement("div");
+  videoToggle.id = "mute";
+  videoToggle.setAttribute("style", "opacity: 0; visibility: hidden;");
+
+    // Crea l'elemento per l'icona fullscreen con stile inline per un nascondimento immediato
+  const videoToggle = document.createElement("div");
+  videoToggle.id = "fullscreen";
+  videoToggle.setAttribute("style", "opacity: 0; visibility: hidden;");
+
   // Inserisci il contenuto dell'icona (ad es. un'immagine o SVG)
   const img = document.createElement("img");
   img.src = "play-pause-icon.svg"; // Assicurati che il percorso sia corretto
