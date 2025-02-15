@@ -4,7 +4,7 @@
   const style = document.createElement("style");
   style.textContent = `
     /* Nasconde l'icona fin dal caricamento della pagina */
-    #video-toggle {
+    #video-toggle, #mute, #full-screen {
       opacity: 0;
       visibility: hidden;
       transition: opacity 1s ease-in-out;
@@ -54,7 +54,7 @@
       }
 
       // Associa l'evento click all'icona per gestire play/pause
-      $("#video-toggle").click(togglePlayPause);
+      $("#video-toggle, #mute, #full-screen").click(togglePlayPause);
 
       // Dopo 10 secondi mostra l'icona con un effetto di dissolvenza
       setTimeout(function () {
