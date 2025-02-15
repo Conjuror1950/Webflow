@@ -54,7 +54,11 @@
       }
 
       // Associa l'evento click all'icona per gestire play/pause
-      $("#video-toggle, #mute, #full-screen").click(togglePlayPause);
+      $("#video-toggle").click(togglePlayPause); // Solo questa icona gestisce play/pause
+$("#mute").click(function (e) {
+  e.stopPropagation(); // Evita qualsiasi azione per questa icona
+});
+
 
       // Dopo 10 secondi mostra l'icona con un effetto di dissolvenza
       setTimeout(function () {
