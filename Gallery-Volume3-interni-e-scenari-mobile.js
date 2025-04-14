@@ -1,3 +1,8 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Gallery Mobile</title>
   <style>
     /* Importazione del font */
     @import url("https://cdn.apple.com/sf-pro/SF-Pro-Display-Regular.woff2") format("woff2");
@@ -634,3 +639,6 @@
         });
       });
     })();
+  </script>
+</body>
+</html>
