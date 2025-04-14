@@ -12,7 +12,7 @@
     head.appendChild(style);
   }
 
-  // CSS della gallery (stile completo)
+  // CSS della gallery (stile completo), con media query per desktop (>= 1280px)
   var galleryCSS = `
     /* Importazione del font */
     @import url("https://cdn.apple.com/sf-pro/SF-Pro-Display-Regular.woff2") format("woff2");
@@ -340,6 +340,13 @@
       font-weight: 400;
       font-size: 13px;
       color: #86868b;
+    }
+
+    /* Media query: visualizza solo su desktop (>= 1280px) */
+    @media screen and (max-width: 1279px) {
+      .wrapper-slider {
+        display: none !important;
+      }
     }
   `;
   addStyle(galleryCSS);
