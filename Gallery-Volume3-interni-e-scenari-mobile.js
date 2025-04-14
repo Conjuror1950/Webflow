@@ -329,7 +329,7 @@
       padding: 18px;
       color: black;
       margin-top: 0px;
-      margin-bottom: 15px;
+      margin-bottom: 5px;
       margin-left: 18px;
       margin-right: 18px;
     }
