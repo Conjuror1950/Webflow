@@ -415,7 +415,7 @@
 
   // Modifica: inietta la gallery dentro un contenitore con ID "gallery-container"
   function injectGallery() {
-    var container = document.getElementById("gallery-container");
+    var container = document.getElementById("gallery-container-mobile");
     if (container) {
       container.innerHTML = galleryHTML;
     } else {
