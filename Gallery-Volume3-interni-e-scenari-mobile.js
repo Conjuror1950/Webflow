@@ -355,7 +355,7 @@
   var galleryHTML = `
 <div class="wrapper-slider-mobile">
   <div class="slider-title-top-mobile">
-    <h2>Interni e Scenaris</h2>
+    <h2>Interni e Scenari</h2>
     <p>Volume 3</p>
   </div>
   
