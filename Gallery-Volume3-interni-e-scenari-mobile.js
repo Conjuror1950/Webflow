@@ -90,7 +90,7 @@
       position: absolute;
       background: #d3d3d3;
       border: none;
-      width: 150px;
+      width: 60px;
       height: 60px;
       color: rgba(29, 29, 29, 0.75);
       font-size: 30px;
@@ -308,6 +308,7 @@
       color: black;
       margin-top: 60px;
       margin-bottom: 20px;
+      margin-left: 20px;
     }
     .slider-title-top-mobile h2 {
       font-family: "SF Pro Display", sans-serif !important;
