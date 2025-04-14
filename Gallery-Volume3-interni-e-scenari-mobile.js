@@ -369,12 +369,12 @@
           <div class="slide-count-mobile">
             <span id="slide-counter-mobile">1 di 10</span>
           </div>
+        </div>   
+      <div class="details-gallery-mobile">
+        <div class="title-wrapper-gallery-mobile">
+          <h1>Download.</h1>
+          <span class="subtitle">Quale scegli?</span>
         </div>
-        <div class="details-gallery-mobile">
-          <div class="title-wrapper-gallery-mobile">
-            <h1>Download.</h1>
-            <span class="subtitle">Quale scegli?</span>
-          </div>
           <div class="option-button-mobile">
             <div class="option-gallery-mobile" id="download-single">
               <div class="option-main-mobile">
