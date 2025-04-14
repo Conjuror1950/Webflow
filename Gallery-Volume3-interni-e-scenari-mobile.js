@@ -151,7 +151,7 @@
     .details-gallery-mobile {
       width: 18%;
       text-align: left;
-      padding: 50px;
+      padding: 18px;
       box-sizing: border-box;
     }
     h1 {
