@@ -149,7 +149,7 @@
     }
     /* --- DETTAGLI --- */
     .details-gallery-mobile {
-      width: 45%;
+      width: 46%;
       text-align: left;
       padding: 18px;
       box-sizing: border-box;
@@ -330,6 +330,7 @@
       margin-top: 0px;
       margin-bottom: 15px;
       margin-left: 18px;
+      margin-right: 18px;
     }
     .slider-title-bottom-mobile h2 {
       font-family: "SF Pro Display", sans-serif !important;
