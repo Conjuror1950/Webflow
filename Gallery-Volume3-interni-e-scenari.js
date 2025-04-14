@@ -405,10 +405,21 @@
       </div>
     </div>
   `;
-  // Aggiunge l'HTML della gallery al body
-  var containerEl = document.createElement("div");
-  containerEl.innerHTML = galleryHTML;
-  document.body.appendChild(containerEl);
+
+  // Modifica: inietta la gallery dentro un contenitore con ID "gallery-container"
+  function injectGallery() {
+    var container = document.getElementById("gallery-container");
+    if (container) {
+      container.innerHTML = galleryHTML;
+    } else {
+      // Se il contenitore non viene trovato, esegue l'append al body come fallback
+      var defaultContainer = document.createElement("div");
+      defaultContainer.innerHTML = galleryHTML;
+      document.body.appendChild(defaultContainer);
+      console.warn("Elemento con ID 'gallery-container' non trovato. Iniettato in body come fallback.");
+    }
+  }
+  injectGallery();
 
   // Funzione per caricare uno script esterno (usata per JSZip)
   function loadScript(src, callback) {
