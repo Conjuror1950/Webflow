@@ -342,7 +342,7 @@
       color: #86868b;
     }
 
-    /* Media query: visualizza solo su desktop (>= 1280px) */
+    /* Media query: visualizza solo su mobile (<= 1280px) */
     @media screen and (min-width: 1280px) {
       .wrapper-slider-mobile {
         display: none !important;
