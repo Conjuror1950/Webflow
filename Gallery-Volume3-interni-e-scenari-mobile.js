@@ -404,7 +404,7 @@
       </div>
       <div class="info-box-mobile">
         <div class="info-bold-mobile">Panoramica del contenuto</div>
-        <div class="info-regular-mobile">Un album che esplora ambienti affascinanti ...</div>
+        <div class="info-regular-mobile">Un album che esplora ambienti affascinanti e suggestivi, catturando l’essenza degli spazi interni e della ristorazione. Ogni immagine racconta un viaggio visivo attraverso ambienti che parlano di stile, comfort e accoglienza.</div>
       </div>
       <div class="additional-info-mobile">
         <div class="info-bold-mobile">Espandi</div>
@@ -416,7 +416,7 @@
   <!-- Blocco Specifiche -->
   <div class="slider-title-bottom-mobile">
     <h2>Specifiche</h2>
-    <p>Realizzato con Canon EOS 2000D e obiettivo 18-55mm EF-S. Il formato RAW (.CR2) ...</p>
+    <p>Realizzato con Canon EOS 2000D e obiettivo 18-55mm EF-S. Il formato RAW (.CR2) garantisce una libertà totale in post-produzione, gestita attraverso Adobe Lightroom Classic. La raccolta contiene 10 elementi, immagini in HD (High Definition) scattate nel cuore della Toscana, Italia, nell'anno 2024.</p>
   </div>
 </div>
   `;
