@@ -38,7 +38,7 @@
     }
 
     /* Container interno per il layout dello slider e dei dettagli */
-    .container-gallery {
+    .container-gallery-mobile {
       display: flex;
       width: 100%;
       align-items: flex-start;
@@ -47,7 +47,7 @@
     }
 
     /* --- SLIDER --- */
-    .slider-gallery {
+    .slider-gallery-mobile {
       position: relative;
       padding: 50px 0;
       overflow: hidden;
@@ -57,36 +57,36 @@
       background: #f7f7f7;
       border-radius: 10px;
     }
-    .slides-gallery {
+    .slides-gallery-mobile {
       display: flex;
       transition: transform 0.3s ease-in-out;
     }
-    .slide-gallery {
+    .slide-gallery-mobile {
       min-width: 100%;
       flex-shrink: 0;
       display: flex;
       justify-content: center;
       align-items: center;
     }
-    .product-image {
+    .product-image-mobile {
       max-height: 65vh;
       max-width: 100%;
       object-fit: contain;
       border-radius: 2%;
       cursor: pointer;
     }
-    .product-image:hover {
+    .product-image-mobile:hover {
       transform: scale(1.0);
     }
     /* Pulsanti per lo slider */
-    .slider-buttons {
+    .slider-buttons-mobile {
       position: absolute;
       top: 50%;
       left: 0;
       right: 0;
       pointer-events: none;
     }
-    .slider-button {
+    .slider-button-mobile {
       position: absolute;
       background: #d3d3d3;
       border: none;
@@ -102,20 +102,20 @@
       align-items: center;
       pointer-events: auto;
     }
-    .slider-button.prev {
+    .slider-button-mobile.prev {
       left: 20px;
       transform: translateY(-50%);
     }
-    .slider-button.next {
+    .slider-button-mobile.next {
       right: 20px;
       transform: translateY(-50%);
     }
-    .slider-button:hover {
+    .slider-button-mobile:hover {
       background: rgba(211, 211, 211, 0.75);
       color: rgba(29, 29, 29, 0.90);
     }
     /* Indicatori delle slide */
-    .slider-indicators {
+    .slider-indicators-mobile {
       position: absolute;
       bottom: 15px;
       left: 50%;
@@ -124,7 +124,7 @@
       gap: 10px;
       z-index: 2;
     }
-    .indicator {
+    .indicator-mobile {
       width: 8px;
       height: 8px;
       background: #86868b;
@@ -132,11 +132,11 @@
       cursor: pointer;
       transition: background 0.3s;
     }
-    .indicator.active {
+    .indicator-mobile.active {
       background: #1d1d1d;
     }
     /* Testo sotto gli indicatori */
-    .slide-count {
+    .slide-count-mobile {
       position: absolute;
       bottom: 65px;
       left: 50%;
@@ -148,7 +148,7 @@
       z-index: 2;
     }
     /* --- DETTAGLI --- */
-    .details-gallery {
+    .details-gallery-mobile {
       width: 18%;
       text-align: left;
       padding: 50px;
@@ -160,12 +160,12 @@
       font-weight: 600;
       color: black;
     }
-    .option-button {
+    .option-button-mobile {
       display: flex;
       flex-direction: column;
       gap: 10px;
     }
-    .option-gallery {
+    .option-gallery-mobile {
       background: white;
       border: 0.8px solid #1d1d1d;
       border-radius: 12px;
@@ -176,32 +176,32 @@
       width: 250%;
       position: relative;
     }
-    .option-gallery:hover,
+    .option-gallery-mobile:hover,
     .option-gallery.selected {
       border-color: #0071e3;
     }
-    .option-main {
+    .option-main-mobile {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-    .option-title {
+    .option-title-mobile {
       font-size: 16px;
       font-weight: 600;
       color: #1d1d1f;
     }
-    .option-side {
+    .option-side-mobile {
       font-size: 13px;
       color: #86868b;
       margin-left: 10px;
       white-space: nowrap;
     }
-    .option-subtext {
+    .option-subtext-mobile {
       font-size: 13px;
       color: #86868b;
       margin-top: 6px;
     }
-    .info-box {
+    .info-box-mobile {
       width: 250%;
       background: #f7f7f7;
       border-radius: 12px;
@@ -210,7 +210,7 @@
       color: black;
       box-sizing: border-box;
     }
-    .additional-info {
+    .additional-info-mobile {
       width: 250%;
       background: transparent;
       border-radius: 12px;
@@ -219,30 +219,30 @@
       color: black;
       box-sizing: border-box;
     }
-    .info-bold {
+    .info-bold-mobile {
       font-weight: 600;
       font-size: 14px;
       margin-bottom: 4px;
     }
-    .info-regular {
+    .info-regular-mobile {
       font-size: 13px;
       line-height: 1.4;
     }
-    .title-wrapper-gallery {
+    .title-wrapper-gallery-mobile {
       display: flex;
       align-items: baseline;
       gap: 5px;
       flex-wrap: nowrap;
       white-space: nowrap;
     }
-    .subtitle {
+    .subtitle-mobile {
       font-family: "SF Pro Display", sans-serif !important;
       font-size: 24px;
       font-weight: 600;
       color: #6e6e73;
     }
     /* Animazione del download: cornice progressiva */
-    .spinner {
+    .spinner-mobile {
       display: none;
       position: absolute;
       bottom: 10px;
@@ -253,7 +253,7 @@
       justify-content: center;
       align-items: center;
     }
-    .progress-frame {
+    .progress-frame-mobile {
       width: 100%;
       height: 100%;
       border-radius: 50%;
@@ -263,7 +263,7 @@
       align-items: center;
       transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1);
     }
-    .progress-frame::after {
+    .progress-frame-mobile::after {
       content: "";
       width: 80%;
       height: 80%;
@@ -271,57 +271,57 @@
       border-radius: 50%;
     }
     /* Fullscreen */
-    :fullscreen .slider-gallery,
-    :-webkit-full-screen .slider-gallery,
-    :-moz-full-screen .slider-gallery,
-    :-ms-fullscreen .slider-gallery {
+    :fullscreen .slider-gallery-mobile,
+    :-webkit-full-screen .slider-gallery-mobile,
+    :-moz-full-screen .slider-gallery-mobile,
+    :-ms-fullscreen .slider-gallery-mobile {
       width: 100vw;
       height: 100vh;
       border-radius: 0;
       padding: 0;
     }
-    :fullscreen .slides-gallery,
-    :-webkit-full-screen .slides-gallery {
+    :fullscreen .slides-gallery-mobile,
+    :-webkit-full-screen .slides-gallery-mobile {
       height: 100%;
     }
-    :fullscreen .slide-gallery {
+    :fullscreen .slide-gallery-mobile {
       height: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
     }
-    :fullscreen .product-image {
+    :fullscreen .product-image-mobile {
       max-width: 100%;
       max-height: 100%;
       object-fit: contain;
       border-radius: 2%;
     }
-    :fullscreen .slider-buttons,
-    :fullscreen .slider-indicators,
-    :fullscreen .slide-count {
+    :fullscreen .slider-buttons-mobile,
+    :fullscreen .slider-indicators-mobile,
+    :fullscreen .slide-count-mobile {
       z-index: 10;
     }
     /* Titoli sopra e sotto lo slider */
-    .slider-title-top {
+    .slider-title-top-mobile {
       font-family: "SF Pro Display", sans-serif !important;
       text-align: left;     
       color: black;
       margin-top: 60px;
       margin-bottom: 20px;
     }
-    .slider-title-top h2 {
+    .slider-title-top-mobile h2 {
       font-family: "SF Pro Display", sans-serif !important;
       font-weight: 600;
       margin: 0;
       font-size: 24px;
     }
-    .slider-title-top p {
+    .slider-title-top-mobile p {
       font-family: "SF Pro Display", sans-serif !important;
       font-weight: 500;
       font-size: 13px;
       color: #86868b;
     }
-    .slider-title-bottom {
+    .slider-title-bottom-mobile {
       font-family: "SF Pro Display", sans-serif !important;
       max-width: 970px;
       text-align: left;     
@@ -329,13 +329,13 @@
       margin-top: 0px;
       margin-bottom: 15px;
     }
-    .slider-title-bottom h2 {
+    .slider-title-bottom-mobile h2 {
       font-family: "SF Pro Display", sans-serif !important;
       font-weight: 600;
       font-size: 14px;
       margin-bottom: -2px;
     }
-    .slider-title-bottom p {
+    .slider-title-bottom-mobile p {
       font-family: "SF Pro Display", sans-serif !important;
       font-weight: 400;
       font-size: 13px;
@@ -354,59 +354,59 @@
   // HTML della gallery
   var galleryHTML = `
     <div class="wrapper-slider-mobile">
-      <div class="slider-title-top">
+      <div class="slider-title-top-mobile">
         <h2>Interni e Scenaris</h2>
         <p>Volume 3</p>
       </div>
-      <div class="container-gallery">
-        <div class="slider-gallery">
-          <div class="slides-gallery"></div>
-          <div class="slider-buttons">
-            <button class="slider-button prev">❮</button>
-            <button class="slider-button next">❯</button>
+      <div class="container-gallery-mobile">
+        <div class="slider-gallery-mobile">
+          <div class="slides-gallery-mobile"></div>
+          <div class="slider-buttons-mobile">
+            <button class="slider-button-mobile prev">❮</button>
+            <button class="slider-button-mobile next">❯</button>
           </div>
-          <div class="slider-indicators"></div>
-          <div class="slide-count">
-            <span id="slide-counter">1 di 10</span>
+          <div class="slider-indicators-mobile"></div>
+          <div class="slide-count-mobile">
+            <span id="slide-counter-mobile">1 di 10</span>
           </div>
         </div>
-        <div class="details-gallery">
-          <div class="title-wrapper-gallery">
+        <div class="details-gallery-mobile">
+          <div class="title-wrapper-gallery-mobile">
             <h1>Download.</h1>
             <span class="subtitle">Quale scegli?</span>
           </div>
-          <div class="option-button">
-            <div class="option-gallery" id="download-single">
-              <div class="option-main">
+          <div class="option-button-mobile">
+            <div class="option-gallery-mobile" id="download-single">
+              <div class="option-main-mobile">
                 <span class="option-title">Immagine selezionata</span>
                 <span class="option-side">.jpg¹</span>
               </div>
-              <div class="option-subtext">Qualità originale, HD</div>
-              <div class="option-subtext">1 elemento, ~3 MB</div>
+              <div class="option-subtext-mobile">Qualità originale, HD</div>
+              <div class="option-subtext-mobile">1 elemento, ~3 MB</div>
             </div>
-            <div class="option-gallery" id="download-all">
-              <div class="option-main">
+            <div class="option-gallery-mobile" id="download-all">
+              <div class="option-main-mobile">
                 <span class="option-title">Intero volume</span>
                 <span class="option-side">.zip²</span>
               </div>
-              <div class="option-subtext">Qualità originale, HD</div>
-              <div class="option-subtext">10 elementi, ~20 MB</div>
-              <div class="spinner">
-                <div class="progress-frame"></div>
+              <div class="option-subtext-mobile">Qualità originale, HD</div>
+              <div class="option-subtext-mobile">10 elementi, ~20 MB</div>
+              <div class="spinner-mobile">
+                <div class="progress-frame-mobile"></div>
               </div>
             </div>
-            <div class="info-box">
-              <div class="info-bold">Panoramica del contenuto</div>
-              <div class="info-regular">Un album che esplora ambienti affascinanti e suggestivi, catturando l’essenza degli spazi interni e della ristorazione. Ogni immagine racconta un viaggio visivo attraverso ambienti che parlano di stile, comfort e accoglienza.</div>
+            <div class="info-box-mobile">
+              <div class="info-bold-mobile">Panoramica del contenuto</div>
+              <div class="info-regular-mobile">Un album che esplora ambienti affascinanti e suggestivi, catturando l’essenza degli spazi interni e della ristorazione. Ogni immagine racconta un viaggio visivo attraverso ambienti che parlano di stile, comfort e accoglienza.</div>
             </div>
-            <div class="additional-info">
-              <div class="info-bold">Espandi</div>
-              <div class="info-regular">Tocca un'immagine per vederla a tutto schermo.</div>
+            <div class="additional-info-mobile">
+              <div class="info-bold-mobile">Espandi</div>
+              <div class="info-regular-mobile">Tocca un'immagine per vederla a tutto schermo.</div>
             </div>
           </div>
         </div>
       </div>
-      <div class="slider-title-bottom">
+      <div class="slider-title-bottom-mobile">
         <h2>Specifiche</h2>
         <p>Realizzato con Canon EOS 2000D e obiettivo 18-55mm EF-S. Il formato RAW (.CR2) garantisce una libertà totale in post-produzione, gestita attraverso Adobe Lightroom Classic. La raccolta contiene 10 elementi, immagini in HD (High Definition) scattate nel cuore della Toscana, Italia, nell'anno 2024.</p>
       </div>
@@ -458,10 +458,10 @@
     
     // Crea le slide dinamicamente
     function createSlides() {
-      var slidesContainer = document.querySelector(".slides-gallery");
+      var slidesContainer = document.querySelector(".slides-gallery-mobile");
       images.forEach(function(img, index) {
         var slide = document.createElement("div");
-        slide.className = "slide-gallery";
+        slide.className = "slide-gallery-mobile";
         var imageEl = document.createElement("img");
         imageEl.src = img.url;
         imageEl.alt = "Image " + (index + 1);
@@ -473,7 +473,7 @@
     
     // Crea gli indicatori
     function createIndicators() {
-      var indicatorContainer = document.querySelector(".slider-indicators");
+      var indicatorContainer = document.querySelector(".slider-indicators-mobile");
       images.forEach(function(_, idx) {
         var dot = document.createElement("div");
         dot.className = "indicator" + (idx === 0 ? " active" : "");
@@ -486,18 +486,18 @@
     
     // Aggiorna il contatore della slide
     function updateSlideCounter() {
-      document.getElementById("slide-counter").textContent = (slideIndex + 1) + " di " + images.length;
+      document.getElementById("slide-counter-mobile").textContent = (slideIndex + 1) + " di " + images.length;
     }
     
     // Aggiorna la visibilità dei pulsanti
     function updateSliderButtons() {
-      document.querySelector(".slider-button.prev").style.display = slideIndex === 0 ? "none" : "flex";
-      document.querySelector(".slider-button.next").style.display = slideIndex === images.length - 1 ? "none" : "flex";
+      document.querySelector(".slider-button-mobile.prev").style.display = slideIndex === 0 ? "none" : "flex";
+      document.querySelector(".slider-button-mobile.next").style.display = slideIndex === images.length - 1 ? "none" : "flex";
     }
     
     // Aggiorna gli indicatori attivi
     function updateIndicators() {
-      var dots = document.querySelectorAll(".indicator");
+      var dots = document.querySelectorAll(".indicator-mobile");
       dots.forEach(function(dot, i) {
         dot.classList.toggle("active", i === slideIndex);
       });
@@ -506,7 +506,7 @@
     // Funzione per spostarsi verso una slide specifica
     function moveToSlide(index) {
       slideIndex = index;
-      document.querySelector(".slides-gallery").style.transform = "translateX(-" + (slideIndex * 100) + "%)";
+      document.querySelector(".slides-gallery-mobile").style.transform = "translateX(-" + (slideIndex * 100) + "%)";
       updateIndicators();
       updateSliderButtons();
       updateSlideCounter();
@@ -518,12 +518,12 @@
     updateSliderButtons();
     
     // Event listener per i pulsanti next e prev
-    document.querySelector(".slider-button.next").addEventListener("click", function() {
+    document.querySelector(".slider-button-mobile.next").addEventListener("click", function() {
       if (slideIndex < images.length - 1) {
         moveToSlide(slideIndex + 1);
       }
     });
-    document.querySelector(".slider-button.prev").addEventListener("click", function() {
+    document.querySelector(".slider-button-mobile.prev").addEventListener("click", function() {
       if (slideIndex > 0) {
         moveToSlide(slideIndex - 1);
       }
@@ -541,7 +541,7 @@
     // Abilita il fullscreen cliccando su un'immagine
     document.querySelectorAll(".product-image").forEach(function(image) {
       image.addEventListener("click", function() {
-        var slider = document.querySelector(".slider-gallery");
+        var slider = document.querySelector(".slider-gallery-mobile");
         if (!document.fullscreenElement) {
           (slider.requestFullscreen || slider.webkitRequestFullscreen || slider.msRequestFullscreen).call(slider);
         } else {
@@ -552,7 +552,7 @@
     
     // Download dell'immagine singola
     document.getElementById("download-single").addEventListener("click", function() {
-      var currentSlide = document.querySelectorAll(".slide-gallery")[slideIndex];
+      var currentSlide = document.querySelectorAll(".slide-gallery-mobile")[slideIndex];
       var imgEl = currentSlide.querySelector("img");
       fetch(imgEl.src)
         .then(function(response) {
@@ -579,8 +579,8 @@
     
     // Download dell'intero volume in ZIP
     var downloadAllButton = document.getElementById("download-all");
-    var spinner = downloadAllButton.querySelector(".spinner");
-    var progressFrame = spinner.querySelector(".progress-frame");
+    var spinner = downloadAllButton.querySelector(".spinner-mobile");
+    var progressFrame = spinner.querySelector(".progress-frame-mobile");
     
     downloadAllButton.addEventListener("click", function() {
       spinner.style.display = "flex";
@@ -611,8 +611,8 @@
     });
     
     // Rendi visibile la gallery (se necessario)
-    document.querySelector(".slider-gallery").style.opacity = "1";
-    document.querySelector(".details-gallery").style.opacity = "1";
+    document.querySelector(".slider-gallery-mobile").style.opacity = "1";
+    document.querySelector(".details-gallery-mobile").style.opacity = "1";
   }
 
   // Avvia l’inizializzazione quando il DOM è completamente caricato
