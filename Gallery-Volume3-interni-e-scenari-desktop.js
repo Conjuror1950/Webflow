@@ -28,7 +28,7 @@
     }
 
     /* Wrapper per isolare lo slider e limitare la larghezza */
-    .wrapper-slider {
+    .wrapper-slider-desktop {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
@@ -344,7 +344,7 @@
 
     /* Media query: visualizza solo su desktop (>= 1280px) */
     @media screen and (max-width: 1279px) {
-      .wrapper-slider {
+      .wrapper-slider-desktop {
         display: none !important;
       }
     }
@@ -353,7 +353,7 @@
 
   // HTML della gallery
   var galleryHTML = `
-    <div class="wrapper-slider">
+    <div class="wrapper-slider-desktop">
       <div class="slider-title-top">
         <h2>Interni e Scenari</h2>
         <p>Volume 3</p>
