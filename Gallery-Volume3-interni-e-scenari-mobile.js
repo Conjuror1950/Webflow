@@ -308,7 +308,7 @@
       color: black;
       margin-top: 60px;
       margin-bottom: 20px;
-      margin-left: 20px;
+      margin-left: 18px;
     }
     .slider-title-top-mobile h2 {
       font-family: "SF Pro Display", sans-serif !important;
@@ -329,6 +329,7 @@
       color: black;
       margin-top: 0px;
       margin-bottom: 15px;
+      margin-left: 18px;
     }
     .slider-title-bottom-mobile h2 {
       font-family: "SF Pro Display", sans-serif !important;
