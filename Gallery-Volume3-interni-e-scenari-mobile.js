@@ -306,7 +306,7 @@
       font-family: "SF Pro Display", sans-serif !important;
       text-align: left;     
       color: black;
-      margin-top: 60px;
+      margin-top: 40px;
       margin-bottom: 20px;
       margin-left: 18px;
     }
