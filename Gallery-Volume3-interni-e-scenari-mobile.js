@@ -325,7 +325,8 @@
     .slider-title-bottom-mobile {
       font-family: "SF Pro Display", sans-serif !important;
       max-width: 970px;
-      text-align: left;     
+      text-align: left;
+      padding: 18px;
       color: black;
       margin-top: 0px;
       margin-bottom: 15px;
