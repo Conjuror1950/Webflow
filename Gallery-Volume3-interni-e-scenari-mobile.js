@@ -386,16 +386,16 @@
     <div class="option-button-mobile">
       <div class="option-gallery-mobile" id="download-single">
         <div class="option-main-mobile">
-          <span class="option-title">Immagine selezionata</span>
-          <span class="option-side">.jpg¹</span>
+          <span class="option-title-mobile">Immagine selezionata</span>
+          <span class="option-side-mobile">.jpg¹</span>
         </div>
         <div class="option-subtext-mobile">Qualità originale, HD</div>
         <div class="option-subtext-mobile">1 elemento, ~3 MB</div>
       </div>
       <div class="option-gallery-mobile" id="download-all">
         <div class="option-main-mobile">
-          <span class="option-title">Intero volume</span>
-          <span class="option-side">.zip²</span>
+          <span class="option-title-mobile">Intero volume</span>
+          <span class="option-side-mobile">.zip²</span>
         </div>
         <div class="option-subtext-mobile">Qualità originale, HD</div>
         <div class="option-subtext-mobile">10 elementi, ~20 MB</div>
