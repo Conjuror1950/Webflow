@@ -149,7 +149,7 @@
     }
     /* --- DETTAGLI --- */
     .details-gallery-mobile {
-      width: 18%;
+      width: 50%;
       text-align: left;
       padding: 18px;
       box-sizing: border-box;
