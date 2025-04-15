@@ -40,7 +40,7 @@
     /* Container interno per il layout dello slider e dei dettagli */
     .container-Volume3-interni-e-scenari-mobile {
       display: flex;
-      width: 105%;
+      width: 100%;
       align-items: flex-start;
       justify-content: space-between;
       position: relative;
@@ -70,7 +70,7 @@
     }
     .product-image-Volume3-interni-e-scenari-mobile {
       max-height: 65vh;
-      max-width: 100%;
+      max-width: 105%;
       object-fit: contain;
       border-radius: 2%;
       cursor: pointer;
