@@ -41,7 +41,7 @@
     .container-Volume3-interni-e-scenari-mobile {
       display: flex;
       width: 90%;
-      left: 20px;
+      left: 18px;
       align-items: flex-start;
       justify-content: space-between;
       position: relative;
