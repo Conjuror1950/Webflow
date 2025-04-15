@@ -40,7 +40,7 @@
     /* Container interno per il layout dello slider e dei dettagli */
     .container-Volume3-interni-e-scenari-mobile {
       display: flex;
-      width: 90%;
+      width: 92%;
       left: 18px;
       align-items: flex-start;
       justify-content: space-between;
