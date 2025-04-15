@@ -41,6 +41,7 @@
     .container-Volume3-interni-e-scenari-mobile {
       display: flex;
       width: 90%;
+      left: 10px;
       align-items: flex-start;
       justify-content: space-between;
       position: relative;
@@ -73,7 +74,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover; /* oppure "contain" se preferisci vedere l’immagine intera */
-    border-radius: 0%;
+    border-radius: 2%;
     cursor: pointer;
     }
     .product-image-Volume3-interni-e-scenari-mobile:hover {
