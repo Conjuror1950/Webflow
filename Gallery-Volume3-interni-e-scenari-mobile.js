@@ -90,8 +90,8 @@
       position: absolute;
       background: #d3d3d3;
       border: none;
-      width: 60px;
-      height: 60px;
+      width: 55px;
+      height: 55px;
       color: rgba(29, 29, 29, 0.75);
       font-size: 30px;
       border-radius: 50%;
@@ -103,11 +103,11 @@
       pointer-events: auto;
     }
     .slider-button-Volume3-interni-e-scenari-mobile.prev {
-      left: 15px;
+      left: 10px;
       transform: translateY(-50%);
     }
     .slider-button-Volume3-interni-e-scenari-mobile.next {
-      right: 15px;
+      right: 10px;
       transform: translateY(-50%);
     }
     .slider-button-Volume3-interni-e-scenari-mobile:hover {
