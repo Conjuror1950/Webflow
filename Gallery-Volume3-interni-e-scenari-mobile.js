@@ -55,7 +55,7 @@
       flex-direction: column;
       justify-content: center;
       background: #f7f7f7;
-      border-radius: 10px;
+      border-radius: 0px;
     }
     .slides-Volume3-interni-e-scenari-mobile {
       display: flex;
@@ -134,7 +134,7 @@
       transition: background 0.3s;
     }
     .indicator-Volume3-interni-e-scenari-mobile.active {
-      background: #1d1d1d;
+      background: white;
     }
     /* Testo sotto gli indicatori */
     .slide-count-Volume3-interni-e-scenari-mobile {
