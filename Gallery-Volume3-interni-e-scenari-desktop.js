@@ -28,7 +28,7 @@
     }
 
     /* Wrapper per isolare lo slider e limitare la larghezza */
-    .wrapper-slider-desktop {
+    .wrapper-slider-Volume3-interni-e-scenari-desktop {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
@@ -38,7 +38,7 @@
     }
 
     /* Container interno per il layout dello slider e dei dettagli */
-    .container-gallery {
+    .container-Volume3-interni-e-scenari-desktop {
       display: flex;
       width: 100%;
       align-items: flex-start;
@@ -47,7 +47,7 @@
     }
 
     /* --- SLIDER --- */
-    .slider-gallery {
+    .slider-Volume3-interni-e-scenari-desktop {
       position: relative;
       padding: 50px 0;
       overflow: hidden;
@@ -57,36 +57,36 @@
       background: #f7f7f7;
       border-radius: 10px;
     }
-    .slides-gallery {
+    .slides-Volume3-interni-e-scenari-desktop {
       display: flex;
       transition: transform 0.3s ease-in-out;
     }
-    .slide-gallery {
+    .slide-Volume3-interni-e-scenari-desktop {
       min-width: 100%;
       flex-shrink: 0;
       display: flex;
       justify-content: center;
       align-items: center;
     }
-    .product-image {
+    .product-image-Volume3-interni-e-scenari-desktop {
       max-height: 65vh;
       max-width: 100%;
       object-fit: contain;
       border-radius: 2%;
       cursor: pointer;
     }
-    .product-image:hover {
+    .product-image-Volume3-interni-e-scenari-desktop:hover {
       transform: scale(1.0);
     }
     /* Pulsanti per lo slider */
-    .slider-buttons {
+    .slider-buttons-Volume3-interni-e-scenari-desktop {
       position: absolute;
       top: 50%;
       left: 0;
       right: 0;
       pointer-events: none;
     }
-    .slider-button {
+    .slider-button-Volume3-interni-e-scenari-desktop {
       position: absolute;
       background: #d3d3d3;
       border: none;
@@ -102,20 +102,20 @@
       align-items: center;
       pointer-events: auto;
     }
-    .slider-button.prev {
+    .slider-button-Volume3-interni-e-scenari-desktop.prev {
       left: 20px;
       transform: translateY(-50%);
     }
-    .slider-button.next {
+    .slider-button-Volume3-interni-e-scenari-desktop.next {
       right: 20px;
       transform: translateY(-50%);
     }
-    .slider-button:hover {
+    .slider-button-Volume3-interni-e-scenari-desktop:hover {
       background: rgba(211, 211, 211, 0.75);
       color: rgba(29, 29, 29, 0.90);
     }
     /* Indicatori delle slide */
-    .slider-indicators {
+    .slider-indicators-Volume3-interni-e-scenari-desktop {
       position: absolute;
       bottom: 15px;
       left: 50%;
@@ -124,7 +124,7 @@
       gap: 10px;
       z-index: 2;
     }
-    .indicator {
+    .indicator-Volume3-interni-e-scenari-desktop {
       width: 8px;
       height: 8px;
       background: #86868b;
@@ -132,11 +132,11 @@
       cursor: pointer;
       transition: background 0.3s;
     }
-    .indicator.active {
+    .indicator-Volume3-interni-e-scenari-desktop.active {
       background: #1d1d1d;
     }
     /* Testo sotto gli indicatori */
-    .slide-count {
+    .slide-count-Volume3-interni-e-scenari-desktop {
       position: absolute;
       bottom: 65px;
       left: 50%;
@@ -148,7 +148,7 @@
       z-index: 2;
     }
     /* --- DETTAGLI --- */
-    .details-gallery {
+    .details-Volume3-interni-e-scenari-desktop {
       width: 18%;
       text-align: left;
       padding: 50px;
@@ -160,12 +160,12 @@
       font-weight: 600;
       color: black;
     }
-    .option-button {
+    .option-button-Volume3-interni-e-scenari-desktop {
       display: flex;
       flex-direction: column;
       gap: 10px;
     }
-    .option-gallery {
+    .option-Volume3-interni-e-scenari-desktop {
       background: white;
       border: 0.8px solid #1d1d1d;
       border-radius: 12px;
@@ -176,32 +176,32 @@
       width: 250%;
       position: relative;
     }
-    .option-gallery:hover,
-    .option-gallery.selected {
+    .option-Volume3-interni-e-scenari-desktop:hover,
+    .option-Volume3-interni-e-scenari-desktop.selected {
       border-color: #0071e3;
     }
-    .option-main {
+    .option-main-Volume3-interni-e-scenari-desktop {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-    .option-title {
+    .option-title-Volume3-interni-e-scenari-desktop {
       font-size: 16px;
       font-weight: 600;
       color: #1d1d1f;
     }
-    .option-side {
+    .option-side-Volume3-interni-e-scenari-desktop {
       font-size: 13px;
       color: #86868b;
       margin-left: 10px;
       white-space: nowrap;
     }
-    .option-subtext {
+    .option-subtext-Volume3-interni-e-scenari-desktop {
       font-size: 13px;
       color: #86868b;
       margin-top: 6px;
     }
-    .info-box {
+    .info-box-Volume3-interni-e-scenari-desktop {
       width: 250%;
       background: #f7f7f7;
       border-radius: 12px;
@@ -210,7 +210,7 @@
       color: black;
       box-sizing: border-box;
     }
-    .additional-info {
+    .additional-info-Volume3-interni-e-scenari-desktop {
       width: 250%;
       background: transparent;
       border-radius: 12px;
@@ -219,30 +219,30 @@
       color: black;
       box-sizing: border-box;
     }
-    .info-bold {
+    .info-bold-Volume3-interni-e-scenari-desktop {
       font-weight: 600;
       font-size: 14px;
       margin-bottom: 4px;
     }
-    .info-regular {
+    .info-regular-Volume3-interni-e-scenari-desktop {
       font-size: 13px;
       line-height: 1.4;
     }
-    .title-wrapper-gallery {
+    .title-wrapper-Volume3-interni-e-scenari-desktop {
       display: flex;
       align-items: baseline;
       gap: 5px;
       flex-wrap: nowrap;
       white-space: nowrap;
     }
-    .subtitle {
+    .subtitle-Volume3-interni-e-scenari-desktop {
       font-family: "SF Pro Display", sans-serif !important;
       font-size: 24px;
       font-weight: 600;
       color: #6e6e73;
     }
     /* Animazione del download: cornice progressiva */
-    .spinner {
+    .spinner-Volume3-interni-e-scenari-desktop {
       display: none;
       position: absolute;
       bottom: 10px;
@@ -253,7 +253,7 @@
       justify-content: center;
       align-items: center;
     }
-    .progress-frame {
+    .progress-frame-Volume3-interni-e-scenari-desktop {
       width: 100%;
       height: 100%;
       border-radius: 50%;
@@ -263,7 +263,7 @@
       align-items: center;
       transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1);
     }
-    .progress-frame::after {
+    .progress-frame-Volume3-interni-e-scenari-desktop::after {
       content: "";
       width: 80%;
       height: 80%;
@@ -271,57 +271,57 @@
       border-radius: 50%;
     }
     /* Fullscreen */
-    :fullscreen .slider-gallery,
-    :-webkit-full-screen .slider-gallery,
-    :-moz-full-screen .slider-gallery,
-    :-ms-fullscreen .slider-gallery {
+    :fullscreen .slider-Volume3-interni-e-scenari-desktop,
+    :-webkit-full-screen .slider-Volume3-interni-e-scenari-desktop,
+    :-moz-full-screen .slider-Volume3-interni-e-scenari-desktop,
+    :-ms-fullscreen .slider-Volume3-interni-e-scenari-desktop {
       width: 100vw;
       height: 100vh;
       border-radius: 0;
       padding: 0;
     }
-    :fullscreen .slides-gallery,
-    :-webkit-full-screen .slides-gallery {
+    :fullscreen .slides-Volume3-interni-e-scenari-desktop,
+    :-webkit-full-screen .slides-Volume3-interni-e-scenari-desktop {
       height: 100%;
     }
-    :fullscreen .slide-gallery {
+    :fullscreen .slide-Volume3-interni-e-scenari-desktop {
       height: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
     }
-    :fullscreen .product-image {
+    :fullscreen .product-image-Volume3-interni-e-scenari-desktop {
       max-width: 100%;
       max-height: 100%;
       object-fit: contain;
       border-radius: 2%;
     }
-    :fullscreen .slider-buttons,
-    :fullscreen .slider-indicators,
-    :fullscreen .slide-count {
+    :fullscreen .slider-buttons-Volume3-interni-e-scenari-desktop,
+    :fullscreen .slider-indicators-Volume3-interni-e-scenari-desktop,
+    :fullscreen .slide-count-Volume3-interni-e-scenari-desktop {
       z-index: 10;
     }
     /* Titoli sopra e sotto lo slider */
-    .slider-title-top {
+    .slider-title-top-Volume3-interni-e-scenari-desktop {
       font-family: "SF Pro Display", sans-serif !important;
       text-align: left;     
       color: black;
       margin-top: 60px;
       margin-bottom: 20px;
     }
-    .slider-title-top h2 {
+    .slider-title-top-Volume3-interni-e-scenari-desktop h2 {
       font-family: "SF Pro Display", sans-serif !important;
       font-weight: 600;
       margin: 0;
       font-size: 24px;
     }
-    .slider-title-top p {
+    .slider-title-top-Volume3-interni-e-scenari-desktop p {
       font-family: "SF Pro Display", sans-serif !important;
       font-weight: 500;
       font-size: 13px;
       color: #86868b;
     }
-    .slider-title-bottom {
+    .slider-title-bottom-Volume3-interni-e-scenari-desktop {
       font-family: "SF Pro Display", sans-serif !important;
       max-width: 970px;
       text-align: left;     
@@ -329,13 +329,13 @@
       margin-top: 0px;
       margin-bottom: 15px;
     }
-    .slider-title-bottom h2 {
+    .slider-title-bottom-Volume3-interni-e-scenari-desktop h2 {
       font-family: "SF Pro Display", sans-serif !important;
       font-weight: 600;
       font-size: 14px;
       margin-bottom: -2px;
     }
-    .slider-title-bottom p {
+    .slider-title-bottom-Volume3-interni-e-scenari-desktop p {
       font-family: "SF Pro Display", sans-serif !important;
       font-weight: 400;
       font-size: 13px;
@@ -344,7 +344,7 @@
 
     /* Media query: visualizza solo su desktop (>= 1280px) */
     @media screen and (max-width: 1279px) {
-      .wrapper-slider-desktop {
+      .wrapper-slider-Volume3-interni-e-scenari-desktop {
         display: none !important;
       }
     }
@@ -353,60 +353,60 @@
 
   // HTML della gallery
   var galleryHTML = `
-    <div class="wrapper-slider-desktop">
-      <div class="slider-title-top">
+    <div class="wrapper-slider-Volume3-interni-e-scenari-desktop">
+      <div class="slider-title-top-Volume3-interni-e-scenari-desktop">
         <h2>Interni e Scenari</h2>
         <p>Volume 3</p>
       </div>
-      <div class="container-gallery">
-        <div class="slider-gallery">
-          <div class="slides-gallery"></div>
-          <div class="slider-buttons">
-            <button class="slider-button prev">❮</button>
-            <button class="slider-button next">❯</button>
+      <div class="container-Volume3-interni-e-scenari-desktop">
+        <div class="slider-Volume3-interni-e-scenari-desktop">
+          <div class="slides-Volume3-interni-e-scenari-desktop"></div>
+          <div class="slider-buttons-Volume3-interni-e-scenari-desktop">
+            <button class="slider-button-Volume3-interni-e-scenari-desktop prev">❮</button>
+            <button class="slider-button-Volume3-interni-e-scenari-desktop next">❯</button>
           </div>
-          <div class="slider-indicators"></div>
-          <div class="slide-count">
-            <span id="slide-counter">1 di 10</span>
+          <div class="slider-indicators-Volume3-interni-e-scenari-desktop"></div>
+          <div class="slide-count-Volume3-interni-e-scenari-desktop">
+            <span id="slide-counter-Volume3-interni-e-scenari-desktop">1 di 10</span>
           </div>
         </div>
-        <div class="details-gallery">
-          <div class="title-wrapper-gallery">
+        <div class="details-Volume3-interni-e-scenari-desktop">
+          <div class="title-wrapper-Volume3-interni-e-scenari-desktop">
             <h1>Download.</h1>
-            <span class="subtitle">Quale scegli?</span>
+            <span class="subtitle-Volume3-interni-e-scenari-desktop">Quale scegli?</span>
           </div>
-          <div class="option-button">
-            <div class="option-gallery" id="download-single-desktop">
-              <div class="option-main">
-                <span class="option-title">Immagine selezionata</span>
-                <span class="option-side">.jpg¹</span>
+          <div class="option-button-Volume3-interni-e-scenari-desktop">
+            <div class="option-Volume3-interni-e-scenari-desktop" id="download-single-Volume3-interni-e-scenari-desktop">
+              <div class="option-main-Volume3-interni-e-scenari-desktop">
+                <span class="option-title-Volume3-interni-e-scenari-desktop">Immagine selezionata</span>
+                <span class="option-side-Volume3-interni-e-scenari-desktop">.jpg¹</span>
               </div>
-              <div class="option-subtext">Qualità originale, HD</div>
-              <div class="option-subtext">1 elemento, ~3 MB</div>
+              <div class="option-subtext-Volume3-interni-e-scenari-desktop">Qualità originale, HD</div>
+              <div class="option-subtext-Volume3-interni-e-scenari-desktop">1 elemento, ~3 MB</div>
             </div>
-            <div class="option-gallery" id="download-all-desktop">
-              <div class="option-main">
-                <span class="option-title">Intero volume</span>
-                <span class="option-side">.zip²</span>
+            <div class="option-Volume3-interni-e-scenari-desktop" id="download-all-Volume3-interni-e-scenari-desktop">
+              <div class="option-main-Volume3-interni-e-scenari-desktop">
+                <span class="option-title-Volume3-interni-e-scenari-desktop">Intero volume</span>
+                <span class="option-side-Volume3-interni-e-scenari-desktop">.zip²</span>
               </div>
-              <div class="option-subtext">Qualità originale, HD</div>
-              <div class="option-subtext">10 elementi, ~20 MB</div>
-              <div class="spinner">
-                <div class="progress-frame"></div>
+              <div class="option-subtext-Volume3-interni-e-scenari-desktop">Qualità originale, HD</div>
+              <div class="option-subtext-Volume3-interni-e-scenari-desktop">10 elementi, ~20 MB</div>
+              <div class="spinner-Volume3-interni-e-scenari-desktop">
+                <div class="progress-frame-Volume3-interni-e-scenari-desktop"></div>
               </div>
             </div>
-            <div class="info-box">
-              <div class="info-bold">Panoramica del contenuto</div>
-              <div class="info-regular">Un album che esplora ambienti affascinanti e suggestivi, catturando l’essenza degli spazi interni e della ristorazione. Ogni immagine racconta un viaggio visivo attraverso ambienti che parlano di stile, comfort e accoglienza.</div>
+            <div class="info-box-Volume3-interni-e-scenari-desktop">
+              <div class="info-bold-Volume3-interni-e-scenari-desktop">Panoramica del contenuto</div>
+              <div class="info-regular-Volume3-interni-e-scenari-desktop">Un album che esplora ambienti affascinanti e suggestivi, catturando l’essenza degli spazi interni e della ristorazione. Ogni immagine racconta un viaggio visivo attraverso ambienti che parlano di stile, comfort e accoglienza.</div>
             </div>
-            <div class="additional-info">
-              <div class="info-bold">Espandi</div>
-              <div class="info-regular">Tocca un'immagine per vederla a tutto schermo.</div>
+            <div class="additional-info-Volume3-interni-e-scenari-desktop">
+              <div class="info-bold-Volume3-interni-e-scenari-desktop">Espandi</div>
+              <div class="info-regular-Volume3-interni-e-scenari-desktop">Tocca un'immagine per vederla a tutto schermo.</div>
             </div>
           </div>
         </div>
       </div>
-      <div class="slider-title-bottom">
+      <div class="slider-title-bottom-Volume3-interni-e-scenari-desktop">
         <h2>Specifiche</h2>
         <p>Realizzato con Canon EOS 2000D e obiettivo 18-55mm EF-S. Il formato RAW (.CR2) garantisce una libertà totale in post-produzione, gestita attraverso Adobe Lightroom Classic. La raccolta contiene 10 elementi, immagini in HD (High Definition) scattate nel cuore della Toscana, Italia, nell'anno 2024.</p>
       </div>
@@ -415,7 +415,7 @@
 
   // Modifica: inietta la gallery dentro un contenitore con ID "gallery-container"
   function injectGallery() {
-    var container = document.getElementById("gallery-container-desktop");
+    var container = document.getElementById("Volume3-interni-e-scenari-container-desktop");
     if (container) {
       container.innerHTML = galleryHTML;
     } else {
@@ -423,7 +423,7 @@
       var defaultContainer = document.createElement("div");
       defaultContainer.innerHTML = galleryHTML;
       document.body.appendChild(defaultContainer);
-      console.warn("Elemento con ID 'gallery-container' non trovato. Iniettato in body come fallback.");
+      console.warn("Elemento con ID 'Volume3-interni-e-scenari-container-desktop' non trovato. Iniettato in body come fallback.");
     }
   }
   injectGallery();
@@ -440,7 +440,7 @@
     document.head.appendChild(s);
   }
 
-  // Funzione di inizializzazione della gallery
+  // Funzione di inizializzazione della Gallery (Immagini)
   function initGallery() {
     var images = [
       { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/67659b5114eea291062dc7fc__MG_0083.jpg", name: "MG_0083.jpg" },
@@ -458,14 +458,14 @@
     
     // Crea le slide dinamicamente
     function createSlides() {
-      var slidesContainer = document.querySelector(".slides-gallery");
+      var slidesContainer = document.querySelector(".slides-Volume3-interni-e-scenari-desktop");
       images.forEach(function(img, index) {
         var slide = document.createElement("div");
-        slide.className = "slide-gallery";
+        slide.className = "slide-Volume3-interni-e-scenari-desktop";
         var imageEl = document.createElement("img");
         imageEl.src = img.url;
         imageEl.alt = "Image " + (index + 1);
-        imageEl.className = "product-image";
+        imageEl.className = "product-image-Volume3-interni-e-scenari-desktop";
         slide.appendChild(imageEl);
         slidesContainer.appendChild(slide);
       });
@@ -473,10 +473,10 @@
     
     // Crea gli indicatori
     function createIndicators() {
-      var indicatorContainer = document.querySelector(".slider-indicators");
+      var indicatorContainer = document.querySelector(".slider-indicators-Volume3-interni-e-scenari-desktop");
       images.forEach(function(_, idx) {
         var dot = document.createElement("div");
-        dot.className = "indicator" + (idx === 0 ? " active" : "");
+        dot.className = "indicator-Volume3-interni-e-scenari-desktop" + (idx === 0 ? " active" : "");
         dot.addEventListener("click", function() {
           moveToSlide(idx);
         });
@@ -486,18 +486,18 @@
     
     // Aggiorna il contatore della slide
     function updateSlideCounter() {
-      document.getElementById("slide-counter").textContent = (slideIndex + 1) + " di " + images.length;
+      document.getElementById("slide-counter-Volume3-interni-e-scenari-desktop").textContent = (slideIndex + 1) + " di " + images.length;
     }
     
     // Aggiorna la visibilità dei pulsanti
     function updateSliderButtons() {
-      document.querySelector(".slider-button.prev").style.display = slideIndex === 0 ? "none" : "flex";
-      document.querySelector(".slider-button.next").style.display = slideIndex === images.length - 1 ? "none" : "flex";
+      document.querySelector(".slider-button-Volume3-interni-e-scenari-desktop.prev").style.display = slideIndex === 0 ? "none" : "flex";
+      document.querySelector(".slider-button-Volume3-interni-e-scenari-desktop.next").style.display = slideIndex === images.length - 1 ? "none" : "flex";
     }
     
     // Aggiorna gli indicatori attivi
     function updateIndicators() {
-      var dots = document.querySelectorAll(".indicator");
+      var dots = document.querySelectorAll(".indicator-Volume3-interni-e-scenari-desktop");
       dots.forEach(function(dot, i) {
         dot.classList.toggle("active", i === slideIndex);
       });
@@ -506,7 +506,7 @@
     // Funzione per spostarsi verso una slide specifica
     function moveToSlide(index) {
       slideIndex = index;
-      document.querySelector(".slides-gallery").style.transform = "translateX(-" + (slideIndex * 100) + "%)";
+      document.querySelector(".slides-Volume3-interni-e-scenari-desktop").style.transform = "translateX(-" + (slideIndex * 100) + "%)";
       updateIndicators();
       updateSliderButtons();
       updateSlideCounter();
@@ -518,12 +518,12 @@
     updateSliderButtons();
     
     // Event listener per i pulsanti next e prev
-    document.querySelector(".slider-button.next").addEventListener("click", function() {
+    document.querySelector(".slider-button-Volume3-interni-e-scenari-desktop.next").addEventListener("click", function() {
       if (slideIndex < images.length - 1) {
         moveToSlide(slideIndex + 1);
       }
     });
-    document.querySelector(".slider-button.prev").addEventListener("click", function() {
+    document.querySelector(".slider-button-Volume3-interni-e-scenari-desktop.prev").addEventListener("click", function() {
       if (slideIndex > 0) {
         moveToSlide(slideIndex - 1);
       }
@@ -539,9 +539,9 @@
     });
     
     // Abilita il fullscreen cliccando su un'immagine
-    document.querySelectorAll(".product-image").forEach(function(image) {
+    document.querySelectorAll(".product-image-Volume3-interni-e-scenari-desktop").forEach(function(image) {
       image.addEventListener("click", function() {
-        var slider = document.querySelector(".slider-gallery");
+        var slider = document.querySelector(".slider-Volume3-interni-e-scenari-desktop");
         if (!document.fullscreenElement) {
           (slider.requestFullscreen || slider.webkitRequestFullscreen || slider.msRequestFullscreen).call(slider);
         } else {
@@ -551,8 +551,8 @@
     });
     
     // Download dell'immagine singola
-    document.getElementById("download-single-desktop").addEventListener("click", function() {
-      var currentSlide = document.querySelectorAll(".slide-gallery")[slideIndex];
+    document.getElementById("download-single-Volume3-interni-e-scenari-desktop").addEventListener("click", function() {
+      var currentSlide = document.querySelectorAll(".slide-Volume3-interni-e-scenari-desktop")[slideIndex];
       var imgEl = currentSlide.querySelector("img");
       fetch(imgEl.src)
         .then(function(response) {
@@ -578,9 +578,9 @@
     });
     
     // Download dell'intero volume in ZIP
-    var downloadAllButton = document.getElementById("download-all-desktop");
-    var spinner = downloadAllButton.querySelector(".spinner");
-    var progressFrame = spinner.querySelector(".progress-frame");
+    var downloadAllButton = document.getElementById("download-all-Volume3-interni-e-scenari-desktop");
+    var spinner = downloadAllButton.querySelector(".spinner-Volume3-interni-e-scenari-desktop");
+    var progressFrame = spinner.querySelector(".progress-frame-Volume3-interni-e-scenari-desktop");
     
     downloadAllButton.addEventListener("click", function() {
       spinner.style.display = "flex";
@@ -611,8 +611,8 @@
     });
     
     // Rendi visibile la gallery (se necessario)
-    document.querySelector(".slider-gallery").style.opacity = "1";
-    document.querySelector(".details-gallery").style.opacity = "1";
+    document.querySelector(".slider-Volume3-interni-e-scenari-desktop").style.opacity = "1";
+    document.querySelector(".details-Volume3-interni-e-scenari-desktop").style.opacity = "1";
   }
 
   // Avvia l’inizializzazione quando il DOM è completamente caricato
