@@ -308,7 +308,7 @@
       text-align: left;     
       color: black;
       margin-top: 20px;
-      margin-bottom: 15px;
+      margin-bottom: 10px;
       margin-left: 18px;
     }
     .slider-title-top-Volume3-interni-e-scenari-mobile h2 {
@@ -547,17 +547,64 @@
       }
     });
     
-    // Abilita il fullscreen cliccando su un'immagine
-    document.querySelectorAll(".product-image-Volume3-interni-e-scenari-mobile").forEach(function(image) {
-      image.addEventListener("click", function() {
-        var slider = document.querySelector(".slider-Volume3-interni-e-scenari-mobile");
-        if (!document.fullscreenElement) {
-          (slider.requestFullscreen || slider.webkitRequestFullscreen || slider.msRequestFullscreen).call(slider);
-        } else {
-          (document.exitFullscreen || document.webkitExitFullscreen || document.msExitFullscreen).call(document);
-        }
-      });
-    });
+    // Abilita lo scroll di un'immagine
+document.addEventListener("DOMContentLoaded", function() {
+  var slider = document.querySelector(".slider-Volume3-interni-e-scenari-mobile");
+  var slidesContainer = document.querySelector(".slides-Volume3-interni-e-scenari-mobile");
+  var slideIndex = 0;
+  var totalSlides = document.querySelectorAll(".slide-Volume3-interni-e-scenari-mobile").length;
+  var touchstartX = 0;
+  var touchendX = 0;
+  var swipeThreshold = 50; // valore minimo del movimento per riconoscere lo swipe
+
+  // Registra il punto di partenza del touch
+  slider.addEventListener('touchstart', function(event) {
+    touchstartX = event.changedTouches[0].screenX;
+  }, false);
+
+  // Al termine del tocco, valuta la direzione dello swipe
+  slider.addEventListener('touchend', function(event) {
+    touchendX = event.changedTouches[0].screenX;
+    handleGesture();
+  }, false);
+
+  function handleGesture() {
+    // Se la differenza supera la soglia, richiama la funzione corrispondente
+    if (touchendX < touchstartX - swipeThreshold) {
+      nextSlide();
+    }
+    if (touchendX > touchstartX + swipeThreshold) {
+      prevSlide();
+    }
+  }
+
+  // Funzione per passare alla slide successiva
+  function nextSlide() {
+    if (slideIndex < totalSlides - 1) {
+      slideIndex++;
+    } else {
+      // Se preferisci non ciclare, puoi togliere questa parte
+      slideIndex = 0; // per tornare alla prima slide
+    }
+    updateSlider();
+  }
+
+  // Funzione per passare alla slide precedente
+  function prevSlide() {
+    if (slideIndex > 0) {
+      slideIndex--;
+    } else {
+      // Se preferisci non ciclare, puoi togliere questa parte
+      slideIndex = totalSlides - 1; // per passare all'ultima slide
+    }
+    updateSlider();
+  }
+
+  // Funzione per aggiornare la posizione dello slider
+  function updateSlider() {
+    slidesContainer.style.transform = 'translateX(-' + (slideIndex * 100) + '%)';
+  }
+});
     
     // Download dell'immagine singola
     document.getElementById("download-single-Volume3-interni-e-scenari-mobile").addEventListener("click", function() {
