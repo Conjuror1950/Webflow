@@ -352,7 +352,7 @@
   <div class="details-Volume3-interni-e-scenari-mobile">
     <div class="title-wrapper-Volume3-interni-e-scenari-mobile">
       <h1>Download.</h1>
-      <span class="subtitle-Volume3-interni-e-scenari-desktop">Quale scegli?</span>
+      <span class="subtitle-Volume3-interni-e-scenari-mobile">Quale scegli?</span>
     </div>
     <div class="option-button-Volume3-interni-e-scenari-mobile">
       <div class="option-Volume3-interni-e-scenari-mobile" id="download-single-Volume3-interni-e-scenari-mobile">
