@@ -69,7 +69,7 @@
       align-items: center;
     }
     .product-image-Volume3-interni-e-scenari-mobile {
-      max-height: 100vh;
+      max-height: 70vh;
       max-width: 100%;
       object-fit: contain;
       border-radius: 2%;
