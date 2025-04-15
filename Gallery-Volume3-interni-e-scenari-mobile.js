@@ -308,7 +308,7 @@
       text-align: left;     
       color: black;
       margin-top: 20px;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
       margin-left: 18px;
     }
     .slider-title-top-Volume3-interni-e-scenari-mobile h2 {
