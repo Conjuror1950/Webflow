@@ -139,7 +139,7 @@
     /* Testo sotto gli indicatori */
     .slide-count-Volume3-interni-e-scenari-mobile {
       position: absolute;
-      bottom: 65px;
+      bottom: 50px;
       left: 50%;
       transform: translateX(-50%);
       color: #f7f7f7;
