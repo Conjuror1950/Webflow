@@ -93,7 +93,7 @@
       width: 55px;
       height: 55px;
       color: rgba(29, 29, 29, 0.75);
-      font-size: 30px;
+      font-size: 35px;
       border-radius: 50%;
       cursor: pointer;
       transition: background 0.3s, color 0.3s;
