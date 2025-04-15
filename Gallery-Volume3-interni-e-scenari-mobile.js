@@ -408,8 +408,8 @@
         <div class="info-regular-Volume3-interni-e-scenari-mobile">Un album che esplora ambienti affascinanti e suggestivi, catturando l’essenza degli spazi interni e della ristorazione. Ogni immagine racconta un viaggio visivo attraverso ambienti che parlano di stile, comfort e accoglienza.</div>
       </div>
       <div class="additional-info-Volume3-interni-e-scenari-mobile">
-        <div class="info-bold-Volume3-interni-e-scenari-mobile">Espandi</div>
-        <div class="info-regular-Volume3-interni-e-scenari-mobile">Tocca un'immagine per vederla a tutto schermo.</div>
+        <div class="info-bold-Volume3-interni-e-scenari-mobile">Naviga</div>
+        <div class="info-regular-Volume3-interni-e-scenari-mobile">Scorri a destra o sinistra per esplorare le immagini.</div>
       </div>
     </div>
   </div>
