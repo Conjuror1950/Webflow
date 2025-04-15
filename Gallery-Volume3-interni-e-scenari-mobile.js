@@ -49,7 +49,7 @@
     /* --- SLIDER --- */
     .slider-Volume3-interni-e-scenari-mobile {
       position: relative;
-      padding: 50px 0;
+      padding: 0px 0;
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -70,12 +70,12 @@
       align-items: center;
     }
     .product-image-Volume3-interni-e-scenari-mobile {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* oppure "contain" se preferisci vedere l’immagine intera */
-  border-radius: 2%;
-  cursor: pointer;
-}
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* oppure "contain" se preferisci vedere l’immagine intera */
+    border-radius: 0%;
+    cursor: pointer;
+    }
     .product-image-Volume3-interni-e-scenari-mobile:hover {
       transform: scale(1.0);
     }
@@ -271,37 +271,7 @@
       background: white;
       border-radius: 50%;
     }
-    /* Fullscreen */
-    :fullscreen .slider-Volume3-interni-e-scenari-mobile,
-    :-webkit-full-screen .slider-Volume3-interni-e-scenari-mobile,
-    :-moz-full-screen .slider-Volume3-interni-e-scenari-mobile,
-    :-ms-fullscreen .slider-Volume3-interni-e-scenari-mobile {
-      width: 100vw;
-      height: 100vh;
-      border-radius: 0;
-      padding: 0;
-    }
-    :fullscreen .slides-Volume3-interni-e-scenari-mobile,
-    :-webkit-full-screen .slides-Volume3-interni-e-scenari-mobile {
-      height: 100%;
-    }
-    :fullscreen .slide-Volume3-interni-e-scenari-mobile {
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    :fullscreen .product-image-Volume3-interni-e-scenari-mobile {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-      border-radius: 2%;
-    }
-    :fullscreen .slider-buttons-Volume3-interni-e-scenari-mobile,
-    :fullscreen .slider-indicators-Volume3-interni-e-scenari-mobile,
-    :fullscreen .slide-count-Volume3-interni-e-scenari-mobile {
-      z-index: 10;
-    }
+    
     /* Titoli sopra e sotto lo slider */
     .slider-title-top-Volume3-interni-e-scenari-mobile {
       font-family: "SF Pro Display", sans-serif !important;
