@@ -70,12 +70,12 @@
       align-items: center;
     }
     .product-image-Volume3-interni-e-scenari-mobile {
-      max-height: 65vh;
-      max-width: 100%;
-      object-fit: contain;
-      border-radius: 2%;
-      cursor: pointer;
-    }
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* oppure "contain" se preferisci vedere l’immagine intera */
+  border-radius: 2%;
+  cursor: pointer;
+}
     .product-image-Volume3-interni-e-scenari-mobile:hover {
       transform: scale(1.0);
     }
