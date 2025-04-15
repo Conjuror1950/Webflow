@@ -59,6 +59,7 @@
     }
     .slides-Volume3-interni-e-scenari-mobile {
       display: flex;
+      flex-wrap: nowrap; /* Impedisce il wrapping degli elementi */
       transition: transform 0.3s ease-in-out;
     }
     .slide-Volume3-interni-e-scenari-mobile {
