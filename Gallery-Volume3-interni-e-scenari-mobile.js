@@ -118,7 +118,7 @@
     /* Indicatori delle slide */
     .slider-indicators-Volume3-interni-e-scenari-mobile {
       position: absolute;
-      bottom: 10px;
+      bottom: 15px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
@@ -139,7 +139,7 @@
     /* Testo sotto gli indicatori */
     .slide-count-Volume3-interni-e-scenari-mobile {
       position: absolute;
-      bottom: 40px;
+      bottom: 30px;
       left: 50%;
       transform: translateX(-50%);
       color: #f7f7f7;
