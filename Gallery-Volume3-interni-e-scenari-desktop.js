@@ -376,7 +376,7 @@
             <span class="subtitle">Quale scegli?</span>
           </div>
           <div class="option-button">
-            <div class="option-gallery" id="download-single">
+            <div class="option-gallery" id="download-single-desktop">
               <div class="option-main">
                 <span class="option-title">Immagine selezionata</span>
                 <span class="option-side">.jpg¹</span>
@@ -384,7 +384,7 @@
               <div class="option-subtext">Qualità originale, HD</div>
               <div class="option-subtext">1 elemento, ~3 MB</div>
             </div>
-            <div class="option-gallery" id="download-all">
+            <div class="option-gallery" id="download-all-desktop">
               <div class="option-main">
                 <span class="option-title">Intero volume</span>
                 <span class="option-side">.zip²</span>
@@ -551,7 +551,7 @@
     });
     
     // Download dell'immagine singola
-    document.getElementById("download-single").addEventListener("click", function() {
+    document.getElementById("download-single-desktop").addEventListener("click", function() {
       var currentSlide = document.querySelectorAll(".slide-gallery")[slideIndex];
       var imgEl = currentSlide.querySelector("img");
       fetch(imgEl.src)
@@ -578,7 +578,7 @@
     });
     
     // Download dell'intero volume in ZIP
-    var downloadAllButton = document.getElementById("download-all");
+    var downloadAllButton = document.getElementById("download-all-desktop");
     var spinner = downloadAllButton.querySelector(".spinner");
     var progressFrame = spinner.querySelector(".progress-frame");
     
