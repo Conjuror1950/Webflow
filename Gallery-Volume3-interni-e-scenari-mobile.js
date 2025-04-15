@@ -326,7 +326,7 @@
       font-family: "SF Pro Display", sans-serif !important;
       max-width: 970px;
       text-align: left;
-      padding: 18px;
+      padding: 40px;
       color: black;
     }
     .slider-title-bottom-mobile h2 {
