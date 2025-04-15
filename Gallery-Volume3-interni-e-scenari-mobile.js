@@ -326,8 +326,8 @@
       font-family: "SF Pro Display", sans-serif !important;
       max-width: 970px;
       text-align: left;
-      margin-top: -30px;
-      margin-bottom: -30px;
+      margin-top: -50px;
+      margin-bottom: -50px;
       padding: 36px;
       color: black;
     }
