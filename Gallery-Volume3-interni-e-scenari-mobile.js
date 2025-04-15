@@ -547,76 +547,53 @@
       }
     });
     
-    // Abilita lo scroll di un'immagine
-    document.addEventListener("DOMContentLoaded", function() {
-  const slider = document.querySelector(".slider-Volume3-interni-e-scenari-mobile");
-  const slidesContainer = document.querySelector(".slides-Volume3-interni-e-scenari-mobile");
+// Swipe touch per mobile
+(function() {
+  const slider = document.querySelector(".slides-Volume3-interni-e-scenari-mobile");
+  if (!slider) return;
+
+  let startX = 0;
+  let currentTranslate = 0;
+  let currentIndex = 0;
   const slides = document.querySelectorAll(".slide-Volume3-interni-e-scenari-mobile");
-  
-  if (!slider || !slidesContainer || slides.length === 0) {
-    console.error("Uno o più elementi dello slider non sono stati trovati.");
-    return;
+  const totalSlides = slides.length;
+
+  // Funzione per aggiornare la slide corrente
+  function goToSlide(index) {
+    if (index < 0) index = 0;
+    if (index >= totalSlides) index = totalSlides - 1;
+    currentIndex = index;
+    currentTranslate = -index * 100;
+    slider.style.transform = `translateX(${currentTranslate}%)`;
+
+    // aggiorna indicatori se presenti
+    document.querySelectorAll(".indicator-Volume3-interni-e-scenari-mobile").forEach((el, i) => {
+      el.classList.toggle("active", i === index);
+    });
   }
 
-  let slideIndex = 0;
-  const totalSlides = slides.length;
-  let startX = 0;
-  let currentX = 0;
-  let isDragging = false;
-  const swipeThreshold = 50; // Soglia minima (in pixel) per considerare un swipe
-
-  // Imposta la larghezza dello slider in pixel nel caso in cui non sia 100% del viewport
-  const sliderWidth = slider.offsetWidth;
-
+  // Gestione touch start
   slider.addEventListener("touchstart", function(e) {
     startX = e.touches[0].clientX;
-    isDragging = true;
-    // Rimuoviamo la transizione per muovere lo slider in tempo reale (facoltativo)
-    slidesContainer.style.transition = "none";
-  }, {passive: true});
+  });
 
-  slider.addEventListener("touchmove", function(e) {
-    if (!isDragging) return;
-    currentX = e.touches[0].clientX;
-    // Calcola lo spostamento in tempo reale e muovi leggermente lo slider
-    const moveX = (slideIndex * sliderWidth) - (startX - currentX);
-    slidesContainer.style.transform = `translateX(-${moveX}px)`;
-  }, {passive: true});
-
+  // Gestione touch end
   slider.addEventListener("touchend", function(e) {
-    if (!isDragging) return;
-    const diffX = startX - currentX;
-    // Riapplica la transizione per lo scorrimento animato
-    slidesContainer.style.transition = "transform 0.3s ease-in-out";
+    const endX = e.changedTouches[0].clientX;
+    const deltaX = endX - startX;
 
-    // Swipe verso sinistra per andare alla slide successiva
-    if (diffX > swipeThreshold && slideIndex < totalSlides - 1) {
-      slideIndex++;
-    }
-    // Swipe verso destra per andare alla slide precedente
-    else if (diffX < -swipeThreshold && slideIndex > 0) {
-      slideIndex--;
-    }
-    updateSlider();
-    isDragging = false;
-  }, {passive: true});
-
-  function updateSlider() {
-    // Calcola la nuova posizione
-    const offset = slideIndex * sliderWidth;
-    slidesContainer.style.transform = `translateX(-${offset}px)`;
-  }
-
-  // Aggiorna la larghezza in caso di ridimensionamento della finestra
-  window.addEventListener("resize", function() {
-    // In caso di resize, recupera la nuova larghezza dello slider
-    const newSliderWidth = slider.offsetWidth;
-    // Se la larghezza è cambiata, aggiorna lo slider e riallinea la posizione
-    if (newSliderWidth !== sliderWidth) {
-      updateSlider();
+    if (deltaX > 50) {
+      // swipe verso destra (vai indietro)
+      goToSlide(currentIndex - 1);
+    } else if (deltaX < -50) {
+      // swipe verso sinistra (vai avanti)
+      goToSlide(currentIndex + 1);
     }
   });
-});
+
+  // Avvia con la prima slide corretta
+  goToSlide(0);
+})();
     
     // Download dell'immagine singola
     document.getElementById("download-single-Volume3-interni-e-scenari-mobile").addEventListener("click", function() {
