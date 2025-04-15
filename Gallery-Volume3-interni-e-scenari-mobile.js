@@ -547,53 +547,29 @@
       }
     });
     
-// Swipe touch per mobile
-(function() {
-  const slider = document.querySelector(".slides-Volume3-interni-e-scenari-mobile");
-  if (!slider) return;
-
-  let startX = 0;
-  let currentTranslate = 0;
-  let currentIndex = 0;
-  const slides = document.querySelectorAll(".slide-Volume3-interni-e-scenari-mobile");
-  const totalSlides = slides.length;
-
-  // Funzione per aggiornare la slide corrente
-  function goToSlide(index) {
-    if (index < 0) index = 0;
-    if (index >= totalSlides) index = totalSlides - 1;
-    currentIndex = index;
-    currentTranslate = -index * 100;
-    slider.style.transform = `translateX(${currentTranslate}%)`;
-
-    // aggiorna indicatori se presenti
-    document.querySelectorAll(".indicator-Volume3-interni-e-scenari-mobile").forEach((el, i) => {
-      el.classList.toggle("active", i === index);
-    });
-  }
-
-  // Gestione touch start
-  slider.addEventListener("touchstart", function(e) {
-    startX = e.touches[0].clientX;
-  });
-
-  // Gestione touch end
-  slider.addEventListener("touchend", function(e) {
-    const endX = e.changedTouches[0].clientX;
-    const deltaX = endX - startX;
-
-    if (deltaX > 50) {
-      // swipe verso destra (vai indietro)
-      goToSlide(currentIndex - 1);
-    } else if (deltaX < -50) {
-      // swipe verso sinistra (vai avanti)
-      goToSlide(currentIndex + 1);
-    }
-  });
-
-  // Avvia con la prima slide corretta
-  goToSlide(0);
-})();
+    // --------------------------
+    // Swipe touch per mobile (con aggiornamento contatore)
+    // --------------------------
+    (function() {
+      var sliderElement = document.querySelector(".slides-Volume3-interni-e-scenari-mobile");
+      var startX = 0;
+      
+      sliderElement.addEventListener("touchstart", function(e) {
+        startX = e.touches[0].clientX;
+      });
+      
+      sliderElement.addEventListener("touchend", function(e) {
+        var endX = e.changedTouches[0].clientX;
+        var deltaX = endX - startX;
+        
+        // Imposta la soglia di swipe a 50px
+        if (deltaX > 50 && slideIndex > 0) {
+          moveToSlide(slideIndex - 1);
+        } else if (deltaX < -50 && slideIndex < images.length - 1) {
+          moveToSlide(slideIndex + 1);
+        }
+      });
+    })();
     
     // Download dell'immagine singola
     document.getElementById("download-single-Volume3-interni-e-scenari-mobile").addEventListener("click", function() {
