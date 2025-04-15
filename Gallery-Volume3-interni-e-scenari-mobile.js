@@ -548,62 +548,74 @@
     });
     
     // Abilita lo scroll di un'immagine
-document.addEventListener("DOMContentLoaded", function() {
-  var slider = document.querySelector(".slider-Volume3-interni-e-scenari-mobile");
-  var slidesContainer = document.querySelector(".slides-Volume3-interni-e-scenari-mobile");
-  var slideIndex = 0;
-  var totalSlides = document.querySelectorAll(".slide-Volume3-interni-e-scenari-mobile").length;
-  var touchstartX = 0;
-  var touchendX = 0;
-  var swipeThreshold = 50; // valore minimo del movimento per riconoscere lo swipe
-
-  // Registra il punto di partenza del touch
-  slider.addEventListener('touchstart', function(event) {
-    touchstartX = event.changedTouches[0].screenX;
-  }, false);
-
-  // Al termine del tocco, valuta la direzione dello swipe
-  slider.addEventListener('touchend', function(event) {
-    touchendX = event.changedTouches[0].screenX;
-    handleGesture();
-  }, false);
-
-  function handleGesture() {
-    // Se la differenza supera la soglia, richiama la funzione corrispondente
-    if (touchendX < touchstartX - swipeThreshold) {
-      nextSlide();
-    }
-    if (touchendX > touchstartX + swipeThreshold) {
-      prevSlide();
-    }
+    document.addEventListener("DOMContentLoaded", function() {
+  const slider = document.querySelector(".slider-Volume3-interni-e-scenari-mobile");
+  const slidesContainer = document.querySelector(".slides-Volume3-interni-e-scenari-mobile");
+  const slides = document.querySelectorAll(".slide-Volume3-interni-e-scenari-mobile");
+  
+  if (!slider || !slidesContainer || slides.length === 0) {
+    console.error("Uno o più elementi dello slider non sono stati trovati.");
+    return;
   }
 
-  // Funzione per passare alla slide successiva
-  function nextSlide() {
-    if (slideIndex < totalSlides - 1) {
+  let slideIndex = 0;
+  const totalSlides = slides.length;
+  let startX = 0;
+  let currentX = 0;
+  let isDragging = false;
+  const swipeThreshold = 50; // Soglia minima (in pixel) per considerare un swipe
+
+  // Imposta la larghezza dello slider in pixel nel caso in cui non sia 100% del viewport
+  const sliderWidth = slider.offsetWidth;
+
+  slider.addEventListener("touchstart", function(e) {
+    startX = e.touches[0].clientX;
+    isDragging = true;
+    // Rimuoviamo la transizione per muovere lo slider in tempo reale (facoltativo)
+    slidesContainer.style.transition = "none";
+  }, {passive: true});
+
+  slider.addEventListener("touchmove", function(e) {
+    if (!isDragging) return;
+    currentX = e.touches[0].clientX;
+    // Calcola lo spostamento in tempo reale e muovi leggermente lo slider
+    const moveX = (slideIndex * sliderWidth) - (startX - currentX);
+    slidesContainer.style.transform = `translateX(-${moveX}px)`;
+  }, {passive: true});
+
+  slider.addEventListener("touchend", function(e) {
+    if (!isDragging) return;
+    const diffX = startX - currentX;
+    // Riapplica la transizione per lo scorrimento animato
+    slidesContainer.style.transition = "transform 0.3s ease-in-out";
+
+    // Swipe verso sinistra per andare alla slide successiva
+    if (diffX > swipeThreshold && slideIndex < totalSlides - 1) {
       slideIndex++;
-    } else {
-      // Se preferisci non ciclare, puoi togliere questa parte
-      slideIndex = 0; // per tornare alla prima slide
     }
-    updateSlider();
-  }
-
-  // Funzione per passare alla slide precedente
-  function prevSlide() {
-    if (slideIndex > 0) {
+    // Swipe verso destra per andare alla slide precedente
+    else if (diffX < -swipeThreshold && slideIndex > 0) {
       slideIndex--;
-    } else {
-      // Se preferisci non ciclare, puoi togliere questa parte
-      slideIndex = totalSlides - 1; // per passare all'ultima slide
     }
     updateSlider();
+    isDragging = false;
+  }, {passive: true});
+
+  function updateSlider() {
+    // Calcola la nuova posizione
+    const offset = slideIndex * sliderWidth;
+    slidesContainer.style.transform = `translateX(-${offset}px)`;
   }
 
-  // Funzione per aggiornare la posizione dello slider
-  function updateSlider() {
-    slidesContainer.style.transform = 'translateX(-' + (slideIndex * 100) + '%)';
-  }
+  // Aggiorna la larghezza in caso di ridimensionamento della finestra
+  window.addEventListener("resize", function() {
+    // In caso di resize, recupera la nuova larghezza dello slider
+    const newSliderWidth = slider.offsetWidth;
+    // Se la larghezza è cambiata, aggiorna lo slider e riallinea la posizione
+    if (newSliderWidth !== sliderWidth) {
+      updateSlider();
+    }
+  });
 });
     
     // Download dell'immagine singola
