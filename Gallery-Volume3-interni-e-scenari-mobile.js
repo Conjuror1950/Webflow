@@ -28,7 +28,7 @@
     }
 
     /* Wrapper per isolare lo slider e limitare la larghezza */
-    .wrapper-slider-mobile {
+    .wrapper-slider-Volume3-interni-e-scenari-mobile {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
@@ -38,7 +38,7 @@
     }
 
     /* Container interno per il layout dello slider e dei dettagli */
-    .container-gallery-mobile {
+    .container-Volume3-interni-e-scenari-mobile {
       display: flex;
       width: 100%;
       align-items: flex-start;
@@ -47,7 +47,7 @@
     }
 
     /* --- SLIDER --- */
-    .slider-gallery-mobile {
+    .slider-Volume3-interni-e-scenari-mobile {
       position: relative;
       padding: 50px 0;
       overflow: hidden;
@@ -57,36 +57,36 @@
       background: #f7f7f7;
       border-radius: 10px;
     }
-    .slides-gallery-mobile {
+    .slides-Volume3-interni-e-scenari-mobile {
       display: flex;
       transition: transform 0.3s ease-in-out;
     }
-    .slide-gallery-mobile {
+    .slide-Volume3-interni-e-scenari-mobile {
       min-width: 100%;
       flex-shrink: 0;
       display: flex;
       justify-content: center;
       align-items: center;
     }
-    .product-image-mobile {
+    .product-image-Volume3-interni-e-scenari-mobile {
       max-height: 65vh;
       max-width: 100%;
       object-fit: contain;
       border-radius: 2%;
       cursor: pointer;
     }
-    .product-image-mobile:hover {
+    .product-image-Volume3-interni-e-scenari-mobile:hover {
       transform: scale(1.0);
     }
     /* Pulsanti per lo slider */
-    .slider-buttons-mobile {
+    .slider-buttons-Volume3-interni-e-scenari-mobile {
       position: absolute;
       top: 50%;
       left: 0;
       right: 0;
       pointer-events: none;
     }
-    .slider-button-mobile {
+    .slider-button-Volume3-interni-e-scenari-mobile {
       position: absolute;
       background: #d3d3d3;
       border: none;
@@ -102,20 +102,20 @@
       align-items: center;
       pointer-events: auto;
     }
-    .slider-button-mobile.prev {
+    .slider-button-Volume3-interni-e-scenari-mobile.prev {
       left: 20px;
       transform: translateY(-50%);
     }
-    .slider-button-mobile.next {
+    .slider-button-Volume3-interni-e-scenari-mobile.next {
       right: 20px;
       transform: translateY(-50%);
     }
-    .slider-button-mobile:hover {
+    .slider-button-Volume3-interni-e-scenari-mobile:hover {
       background: rgba(211, 211, 211, 0.75);
       color: rgba(29, 29, 29, 0.90);
     }
     /* Indicatori delle slide */
-    .slider-indicators-mobile {
+    .slider-indicators-Volume3-interni-e-scenari-mobile {
       position: absolute;
       bottom: 15px;
       left: 50%;
@@ -124,7 +124,7 @@
       gap: 10px;
       z-index: 2;
     }
-    .indicator-mobile {
+    .indicator-Volume3-interni-e-scenari-mobile {
       width: 8px;
       height: 8px;
       background: #86868b;
@@ -132,11 +132,11 @@
       cursor: pointer;
       transition: background 0.3s;
     }
-    .indicator-mobile.active {
+    .indicator-Volume3-interni-e-scenari-mobile.active {
       background: #1d1d1d;
     }
     /* Testo sotto gli indicatori */
-    .slide-count-mobile {
+    .slide-count-Volume3-interni-e-scenari-mobile {
       position: absolute;
       bottom: 65px;
       left: 50%;
@@ -148,7 +148,7 @@
       z-index: 2;
     }
     /* --- DETTAGLI --- */
-    .details-gallery-mobile {
+    .details-Volume3-interni-e-scenari-mobile {
       width: 45.5%;
       text-align: left;
       padding: 18px;
@@ -160,12 +160,12 @@
       font-weight: 600;
       color: black;
     }
-    .option-button-mobile {
+    .option-button-Volume3-interni-e-scenari-mobile {
       display: flex;
       flex-direction: column;
       gap: 10px;
     }
-    .option-gallery-mobile {
+    .option-Volume3-interni-e-scenari-mobile {
       background: white;
       border: 0.8px solid #1d1d1d;
       border-radius: 12px;
@@ -176,32 +176,32 @@
       width: 250%;
       position: relative;
     }
-    .option-gallery-mobile:hover,
-    .option-gallery.selected {
+    .option-Volume3-interni-e-scenari-mobile:hover,
+    .option-Volume3-interni-e-scenari-mobile.selected {
       border-color: #0071e3;
     }
-    .option-main-mobile {
+    .option-main-Volume3-interni-e-scenari-mobile {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-    .option-title-mobile {
+    .option-title-Volume3-interni-e-scenari-mobile {
       font-size: 16px;
       font-weight: 600;
       color: #1d1d1f;
     }
-    .option-side-mobile {
+    .option-side-Volume3-interni-e-scenari-mobile {
       font-size: 13px;
       color: #86868b;
       margin-left: 10px;
       white-space: nowrap;
     }
-    .option-subtext-mobile {
+    .option-subtext-Volume3-interni-e-scenari-mobile {
       font-size: 13px;
       color: #86868b;
       margin-top: 6px;
     }
-    .info-box-mobile {
+    .info-box-Volume3-interni-e-scenari-mobile {
       width: 250%;
       background: #f7f7f7;
       border-radius: 12px;
@@ -210,7 +210,7 @@
       color: black;
       box-sizing: border-box;
     }
-    .additional-info-mobile {
+    .additional-info-Volume3-interni-e-scenari-mobile {
       width: 250%;
       background: transparent;
       border-radius: 12px;
@@ -219,30 +219,30 @@
       color: black;
       box-sizing: border-box;
     }
-    .info-bold-mobile {
+    .info-bold-Volume3-interni-e-scenari-mobile {
       font-weight: 600;
       font-size: 14px;
       margin-bottom: 4px;
     }
-    .info-regular-mobile {
+    .info-regular-Volume3-interni-e-scenari-mobile {
       font-size: 13px;
       line-height: 1.4;
     }
-    .title-wrapper-gallery-mobile {
+    .title-wrapper-Volume3-interni-e-scenari-mobile {
       display: flex;
       align-items: baseline;
       gap: 5px;
       flex-wrap: nowrap;
       white-space: nowrap;
     }
-    .subtitle-mobile {
+    .subtitle-Volume3-interni-e-scenari-mobile {
       font-family: "SF Pro Display", sans-serif !important;
       font-size: 24px;
       font-weight: 600;
       color: #6e6e73;
     }
     /* Animazione del download: cornice progressiva */
-    .spinner-mobile {
+    .spinner-Volume3-interni-e-scenari-mobile {
       display: none;
       position: absolute;
       bottom: 10px;
@@ -253,7 +253,7 @@
       justify-content: center;
       align-items: center;
     }
-    .progress-frame-mobile {
+    .progress-frame-Volume3-interni-e-scenari-mobile {
       width: 100%;
       height: 100%;
       border-radius: 50%;
@@ -263,7 +263,7 @@
       align-items: center;
       transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1);
     }
-    .progress-frame-mobile::after {
+    .progress-frame-Volume3-interni-e-scenari-mobile::after {
       content: "";
       width: 80%;
       height: 80%;
@@ -271,38 +271,38 @@
       border-radius: 50%;
     }
     /* Fullscreen */
-    :fullscreen .slider-gallery-mobile,
-    :-webkit-full-screen .slider-gallery-mobile,
-    :-moz-full-screen .slider-gallery-mobile,
-    :-ms-fullscreen .slider-gallery-mobile {
+    :fullscreen .slider-Volume3-interni-e-scenari-mobile,
+    :-webkit-full-screen .slider-Volume3-interni-e-scenari-mobile,
+    :-moz-full-screen .slider-Volume3-interni-e-scenari-mobile,
+    :-ms-fullscreen .slider-Volume3-interni-e-scenari-mobile {
       width: 100vw;
       height: 100vh;
       border-radius: 0;
       padding: 0;
     }
-    :fullscreen .slides-gallery-mobile,
-    :-webkit-full-screen .slides-gallery-mobile {
+    :fullscreen .slides-Volume3-interni-e-scenari-mobile,
+    :-webkit-full-screen .slides-Volume3-interni-e-scenari-mobile {
       height: 100%;
     }
-    :fullscreen .slide-gallery-mobile {
+    :fullscreen .slide-Volume3-interni-e-scenari-mobile {
       height: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
     }
-    :fullscreen .product-image-mobile {
+    :fullscreen .product-image-Volume3-interni-e-scenari-mobile {
       max-width: 100%;
       max-height: 100%;
       object-fit: contain;
       border-radius: 2%;
     }
-    :fullscreen .slider-buttons-mobile,
-    :fullscreen .slider-indicators-mobile,
-    :fullscreen .slide-count-mobile {
+    :fullscreen .slider-buttons-Volume3-interni-e-scenari-mobile,
+    :fullscreen .slider-indicators-Volume3-interni-e-scenari-mobile,
+    :fullscreen .slide-count-Volume3-interni-e-scenari-mobile {
       z-index: 10;
     }
     /* Titoli sopra e sotto lo slider */
-    .slider-title-top-mobile {
+    .slider-title-top-Volume3-interni-e-scenari-mobile {
       font-family: "SF Pro Display", sans-serif !important;
       text-align: left;     
       color: black;
@@ -310,19 +310,19 @@
       margin-bottom: 20px;
       margin-left: 18px;
     }
-    .slider-title-top-mobile h2 {
+    .slider-title-top-Volume3-interni-e-scenari-mobile h2 {
       font-family: "SF Pro Display", sans-serif !important;
       font-weight: 600;
       margin: 0;
       font-size: 24px;
     }
-    .slider-title-top-mobile p {
+    .slider-title-top-Volume3-interni-e-scenari-mobile p {
       font-family: "SF Pro Display", sans-serif !important;
       font-weight: 500;
       font-size: 13px;
       color: #86868b;
     }
-    .slider-title-bottom-mobile {
+    .slider-title-bottom-Volume3-interni-e-scenari-mobile {
       font-family: "SF Pro Display", sans-serif !important;
       max-width: 970px;
       text-align: left;
@@ -331,13 +331,13 @@
       padding: 36px;
       color: black;
     }
-    .slider-title-bottom-mobile h2 {
+    .slider-title-bottom-Volume3-interni-e-scenari-mobile h2 {
       font-family: "SF Pro Display", sans-serif !important;
       font-weight: 600;
       font-size: 14px;
       margin-bottom: -2px;
     }
-    .slider-title-bottom-mobile p {
+    .slider-title-bottom-Volume3-interni-e-scenari-mobile p {
       font-family: "SF Pro Display", sans-serif !important;
       font-weight: 400;
       font-size: 13px;
@@ -346,84 +346,84 @@
 
     /* Media query: visualizza solo su mobile (<= 1280px) */
     @media screen and (min-width: 1280px) {
-      .wrapper-slider-mobile {
+      .wrapper-slider-Volume3-interni-e-scenari-mobile {
         display: none !important;
       }
     }
   `;
   addStyle(galleryCSS);
 
-  // HTML della gallery
+  // HTML della gallery 'Interni e Scenari'
   var galleryHTML = `
-<div class="wrapper-slider-mobile">
-  <div class="slider-title-top-mobile">
+<div class="wrapper-slider-Volume3-interni-e-scenari-mobile">
+  <div class="slider-title-top-Volume3-interni-e-scenari-mobile">
     <h2>Interni e Scenari</h2>
     <p>Volume 3</p>
   </div>
   
   <!-- Container che contiene solo lo slider -->
-  <div class="container-gallery-mobile">
-    <div class="slider-gallery-mobile">
-      <div class="slides-gallery-mobile"></div>
-      <div class="slider-buttons-mobile">
-        <button class="slider-button-mobile prev">❮</button>
-        <button class="slider-button-mobile next">❯</button>
+  <div class="container-Volume3-interni-e-scenari-mobile">
+    <div class="slider-Volume3-interni-e-scenari-mobile">
+      <div class="slides-Volume3-interni-e-scenari-mobile"></div>
+      <div class="slider-buttons-Volume3-interni-e-scenari-mobile">
+        <button class="slider-button-Volume3-interni-e-scenari-mobile prev">❮</button>
+        <button class="slider-button-Volume3-interni-e-scenari-mobile next">❯</button>
       </div>
-      <div class="slider-indicators-mobile"></div>
-      <div class="slide-count-mobile">
-        <span id="slide-counter-mobile">1 di 10</span>
+      <div class="slider-indicators-Volume3-interni-e-scenari-mobile"></div>
+      <div class="slide-count-Volume3-interni-e-scenari-mobile">
+        <span id="slide-counter-Volume3-interni-e-scenari-mobile">1 di 10</span>
       </div>
     </div>   
   </div>
   
   <!-- Blocco dei dettagli spostato fuori dal container -->
-  <div class="details-gallery-mobile">
-    <div class="title-wrapper-gallery-mobile">
+  <div class="details-Volume3-interni-e-scenari-mobile">
+    <div class="title-wrapper-Volume3-interni-e-scenari-mobile">
       <h1>Download.</h1>
       <span class="subtitle">Quale scegli?</span>
     </div>
-    <div class="option-button-mobile">
-      <div class="option-gallery-mobile" id="download-single">
-        <div class="option-main-mobile">
-          <span class="option-title-mobile">Immagine selezionata</span>
-          <span class="option-side-mobile">.jpg¹</span>
+    <div class="option-button-Volume3-interni-e-scenari-mobile">
+      <div class="option-Volume3-interni-e-scenari-mobile" id="download-single-Volume3-interni-e-scenari-mobile">
+        <div class="option-main-Volume3-interni-e-scenari-mobile">
+          <span class="option-title-Volume3-interni-e-scenari-mobile">Immagine selezionata</span>
+          <span class="option-side-Volume3-interni-e-scenari-mobile">.jpg¹</span>
         </div>
-        <div class="option-subtext-mobile">Qualità originale, HD</div>
-        <div class="option-subtext-mobile">1 elemento, ~3 MB</div>
+        <div class="option-subtext-Volume3-interni-e-scenari-mobile">Qualità originale, HD</div>
+        <div class="option-subtext-Volume3-interni-e-scenari-mobile">1 elemento, ~3 MB</div>
       </div>
-      <div class="option-gallery-mobile" id="download-all">
-        <div class="option-main-mobile">
-          <span class="option-title-mobile">Intero volume</span>
-          <span class="option-side-mobile">.zip²</span>
+      <div class="option-Volume3-interni-e-scenari-mobile" id="download-all-Volume3-interni-e-scenari-mobile">
+        <div class="option-main-Volume3-interni-e-scenari-mobile">
+          <span class="option-title-Volume3-interni-e-scenari-mobile">Intero volume</span>
+          <span class="option-side-Volume3-interni-e-scenari-mobile">.zip²</span>
         </div>
-        <div class="option-subtext-mobile">Qualità originale, HD</div>
-        <div class="option-subtext-mobile">10 elementi, ~20 MB</div>
-        <div class="spinner-mobile">
-          <div class="progress-frame-mobile"></div>
+        <div class="option-subtext-Volume3-interni-e-scenari-mobile">Qualità originale, HD</div>
+        <div class="option-subtext-Volume3-interni-e-scenari-mobile">10 elementi, ~20 MB</div>
+        <div class="spinner-Volume3-interni-e-scenari-mobile">
+          <div class="progress-frame-Volume3-interni-e-scenari-mobile"></div>
         </div>
       </div>
-      <div class="info-box-mobile">
-        <div class="info-bold-mobile">Panoramica del contenuto</div>
-        <div class="info-regular-mobile">Un album che esplora ambienti affascinanti e suggestivi, catturando l’essenza degli spazi interni e della ristorazione. Ogni immagine racconta un viaggio visivo attraverso ambienti che parlano di stile, comfort e accoglienza.</div>
+      <div class="info-box-Volume3-interni-e-scenari-mobile">
+        <div class="info-bold-Volume3-interni-e-scenari-mobile">Panoramica del contenuto</div>
+        <div class="info-regular-Volume3-interni-e-scenari-mobile">Un album che esplora ambienti affascinanti e suggestivi, catturando l’essenza degli spazi interni e della ristorazione. Ogni immagine racconta un viaggio visivo attraverso ambienti che parlano di stile, comfort e accoglienza.</div>
       </div>
-      <div class="additional-info-mobile">
-        <div class="info-bold-mobile">Espandi</div>
-        <div class="info-regular-mobile">Tocca un'immagine per vederla a tutto schermo.</div>
+      <div class="additional-info-Volume3-interni-e-scenari-mobile">
+        <div class="info-bold-Volume3-interni-e-scenari-mobile">Espandi</div>
+        <div class="info-regular-Volume3-interni-e-scenari-mobile">Tocca un'immagine per vederla a tutto schermo.</div>
       </div>
     </div>
   </div>
   
   <!-- Blocco Specifiche -->
-  <div class="slider-title-bottom-mobile">
+  <div class="slider-title-bottom-Volume3-interni-e-scenari-mobile">
     <h2>Specifiche</h2>
     <p>Realizzato con Canon EOS 2000D e obiettivo 18-55mm EF-S. Il formato RAW (.CR2) garantisce una libertà totale in post-produzione, gestita attraverso Adobe Lightroom Classic. La raccolta contiene 10 elementi, immagini in HD (High Definition) scattate nel cuore della Toscana, Italia, nell'anno 2024.</p>
   </div>
 </div>
   `;
 
-  // Modifica: inietta la gallery dentro un contenitore con ID "gallery-container"
+  // Modifica: inietta la gallery dentro un contenitore con ID "Volume3-interni-e-scenari-container-mobile"
   function injectGallery() {
-    var container = document.getElementById("gallery-container-mobile");
+    var container = document.getElementById("Volume3-interni-e-scenari-container-mobile");
     if (container) {
       container.innerHTML = galleryHTML;
     } else {
@@ -431,7 +431,7 @@
       var defaultContainer = document.createElement("div");
       defaultContainer.innerHTML = galleryHTML;
       document.body.appendChild(defaultContainer);
-      console.warn("Elemento con ID 'gallery-container' non trovato. Iniettato in body come fallback.");
+      console.warn("Elemento con ID 'Volume3-interni-e-scenari-container-mobile' non trovato. Iniettato in body come fallback.");
     }
   }
   injectGallery();
@@ -448,7 +448,7 @@
     document.head.appendChild(s);
   }
 
-  // Funzione di inizializzazione della gallery
+  // Funzione di inizializzazione della Gallery (Immagini)
   function initGallery() {
     var images = [
       { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/67659b5114eea291062dc7fc__MG_0083.jpg", name: "MG_0083.jpg" },
@@ -466,14 +466,14 @@
     
     // Crea le slide dinamicamente
     function createSlides() {
-      var slidesContainer = document.querySelector(".slides-gallery-mobile");
+      var slidesContainer = document.querySelector(".slides-Volume3-interni-e-scenari-mobile");
       images.forEach(function(img, index) {
         var slide = document.createElement("div");
-        slide.className = "slide-gallery-mobile";
+        slide.className = "slide-Volume3-interni-e-scenari-mobile";
         var imageEl = document.createElement("img");
         imageEl.src = img.url;
         imageEl.alt = "Image " + (index + 1);
-        imageEl.className = "product-image";
+        imageEl.className = "product-image-Volume3-interni-e-scenari-mobile";
         slide.appendChild(imageEl);
         slidesContainer.appendChild(slide);
       });
@@ -481,10 +481,10 @@
     
     // Crea gli indicatori
     function createIndicators() {
-      var indicatorContainer = document.querySelector(".slider-indicators-mobile");
+      var indicatorContainer = document.querySelector(".slider-indicators-Volume3-interni-e-scenari-mobile");
       images.forEach(function(_, idx) {
         var dot = document.createElement("div");
-        dot.className = "indicator" + (idx === 0 ? " active" : "");
+        dot.className = "indicator-Volume3-interni-e-scenari-mobile" + (idx === 0 ? " active" : "");
         dot.addEventListener("click", function() {
           moveToSlide(idx);
         });
@@ -494,18 +494,18 @@
     
     // Aggiorna il contatore della slide
     function updateSlideCounter() {
-      document.getElementById("slide-counter-mobile").textContent = (slideIndex + 1) + " di " + images.length;
+      document.getElementById("slide-counter-Volume3-interni-e-scenari-mobile").textContent = (slideIndex + 1) + " di " + images.length;
     }
     
     // Aggiorna la visibilità dei pulsanti
     function updateSliderButtons() {
-      document.querySelector(".slider-button-mobile.prev").style.display = slideIndex === 0 ? "none" : "flex";
-      document.querySelector(".slider-button-mobile.next").style.display = slideIndex === images.length - 1 ? "none" : "flex";
+      document.querySelector(".slider-button-Volume3-interni-e-scenari-mobile.prev").style.display = slideIndex === 0 ? "none" : "flex";
+      document.querySelector(".slider-button-Volume3-interni-e-scenari-mobile.next").style.display = slideIndex === images.length - 1 ? "none" : "flex";
     }
     
     // Aggiorna gli indicatori attivi
     function updateIndicators() {
-      var dots = document.querySelectorAll(".indicator-mobile");
+      var dots = document.querySelectorAll(".indicator-Volume3-interni-e-scenari-mobile");
       dots.forEach(function(dot, i) {
         dot.classList.toggle("active", i === slideIndex);
       });
@@ -514,7 +514,7 @@
     // Funzione per spostarsi verso una slide specifica
     function moveToSlide(index) {
       slideIndex = index;
-      document.querySelector(".slides-gallery-mobile").style.transform = "translateX(-" + (slideIndex * 100) + "%)";
+      document.querySelector(".slides-Volume3-interni-e-scenari-mobile").style.transform = "translateX(-" + (slideIndex * 100) + "%)";
       updateIndicators();
       updateSliderButtons();
       updateSlideCounter();
@@ -526,12 +526,12 @@
     updateSliderButtons();
     
     // Event listener per i pulsanti next e prev
-    document.querySelector(".slider-button-mobile.next").addEventListener("click", function() {
+    document.querySelector(".slider-button-Volume3-interni-e-scenari-mobile.next").addEventListener("click", function() {
       if (slideIndex < images.length - 1) {
         moveToSlide(slideIndex + 1);
       }
     });
-    document.querySelector(".slider-button-mobile.prev").addEventListener("click", function() {
+    document.querySelector(".slider-button-Volume3-interni-e-scenari-mobile.prev").addEventListener("click", function() {
       if (slideIndex > 0) {
         moveToSlide(slideIndex - 1);
       }
@@ -547,9 +547,9 @@
     });
     
     // Abilita il fullscreen cliccando su un'immagine
-    document.querySelectorAll(".product-image").forEach(function(image) {
+    document.querySelectorAll(".product-image-Volume3-interni-e-scenari-mobile").forEach(function(image) {
       image.addEventListener("click", function() {
-        var slider = document.querySelector(".slider-gallery-mobile");
+        var slider = document.querySelector(".slider-Volume3-interni-e-scenari-mobile");
         if (!document.fullscreenElement) {
           (slider.requestFullscreen || slider.webkitRequestFullscreen || slider.msRequestFullscreen).call(slider);
         } else {
@@ -559,8 +559,8 @@
     });
     
     // Download dell'immagine singola
-    document.getElementById("download-single").addEventListener("click", function() {
-      var currentSlide = document.querySelectorAll(".slide-gallery-mobile")[slideIndex];
+    document.getElementById("download-single-Volume3-interni-e-scenari-mobile").addEventListener("click", function() {
+      var currentSlide = document.querySelectorAll(".slide-Volume3-interni-e-scenari-mobile")[slideIndex];
       var imgEl = currentSlide.querySelector("img");
       fetch(imgEl.src)
         .then(function(response) {
@@ -586,9 +586,9 @@
     });
     
     // Download dell'intero volume in ZIP
-    var downloadAllButton = document.getElementById("download-all");
-    var spinner = downloadAllButton.querySelector(".spinner-mobile");
-    var progressFrame = spinner.querySelector(".progress-frame-mobile");
+    var downloadAllButton = document.getElementById("download-all-Volume3-interni-e-scenari-mobile");
+    var spinner = downloadAllButton.querySelector(".spinner-Volume3-interni-e-scenari-mobile");
+    var progressFrame = spinner.querySelector(".progress-frame-Volume3-interni-e-scenari-mobile");
     
     downloadAllButton.addEventListener("click", function() {
       spinner.style.display = "flex";
@@ -619,8 +619,8 @@
     });
     
     // Rendi visibile la gallery (se necessario)
-    document.querySelector(".slider-gallery-mobile").style.opacity = "1";
-    document.querySelector(".details-gallery-mobile").style.opacity = "1";
+    document.querySelector(".slider-Volume3-interni-e-scenari-mobile").style.opacity = "1";
+    document.querySelector(".details-Volume3-interni-e-scenari-mobile").style.opacity = "1";
   }
 
   // Avvia l’inizializzazione quando il DOM è completamente caricato
