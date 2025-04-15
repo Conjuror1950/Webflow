@@ -63,7 +63,7 @@
       transition: transform 0.3s ease-in-out;
     }
     .slide-Volume3-interni-e-scenari-mobile {
-      min-width: 100%;
+      flex: 0 0 100%; /* Impedisce la crescita e il restringimento, forza larghezza 100% */
       flex-shrink: 0;
       display: flex;
       justify-content: center;
