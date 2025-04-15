@@ -328,10 +328,6 @@
       text-align: left;
       padding: 18px;
       color: black;
-      margin-top: 0px;
-      margin-bottom: 5px;
-      margin-left: 18px;
-      margin-right: 18px;
     }
     .slider-title-bottom-mobile h2 {
       font-family: "SF Pro Display", sans-serif !important;
