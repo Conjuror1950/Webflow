@@ -103,11 +103,11 @@
       pointer-events: auto;
     }
     .slider-button-Volume3-interni-e-scenari-mobile.prev {
-      left: 20px;
+      left: 15px;
       transform: translateY(-50%);
     }
     .slider-button-Volume3-interni-e-scenari-mobile.next {
-      right: 20px;
+      right: 15px;
       transform: translateY(-50%);
     }
     .slider-button-Volume3-interni-e-scenari-mobile:hover {
