@@ -49,12 +49,12 @@
     /* --- SLIDER --- */
     .slider-Volume2-paesaggi-naturali-mobile {
       position: relative;
-      padding: 20px 0;
+      padding: 50px 0;
       overflow: hidden;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      background: #f7f7f7;
+      background: black;
       border-radius: 0px;
     }
     .slides-Volume2-paesaggi-naturali-mobile {
