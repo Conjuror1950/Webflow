@@ -54,7 +54,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      background: rgba(144, 144, 146, 0.8);
+      background: rgba(159, 159, 160, 0.6);
       border-radius: 0px;
     }
     .slides-Volume2-paesaggi-naturali-mobile {
