@@ -139,7 +139,7 @@
     /* Testo sotto gli indicatori */
     .slide-count-Volume2-paesaggi-naturali-mobile {
       position: absolute;
-      bottom: 40px;
+      bottom: 50px;
       left: 50%;
       transform: translateX(-50%);
       color: #f7f7f7;
