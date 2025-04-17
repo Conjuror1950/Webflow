@@ -32,7 +32,7 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      max-width: 1360px;
+      max-width: 400px;
       margin: 0 auto;
       width: 100%;
     }
@@ -40,8 +40,7 @@
     /* Container interno per il layout dello slider e dei dettagli */
     .container-Volume2-paesaggi-naturali-mobile {
       display: flex;
-      width: 91%;
-      left: 18px;
+      width: 100%;
       align-items: flex-start;
       justify-content: space-between;
       position: relative;
@@ -50,7 +49,7 @@
     /* --- SLIDER --- */
     .slider-Volume2-paesaggi-naturali-mobile {
       position: relative;
-      padding: 0px 0;
+      padding: 20px 0;
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -71,8 +70,8 @@
       align-items: center;
     }
     .product-image-Volume2-paesaggi-naturali-mobile {
-    width: 100%;
-    height: 90%;
+    max-height: 65vh;
+    max-width: 100%;
     object-fit: cover; /* oppure "contain" se preferisci vedere l’immagine intera */
     border-radius: 2%;
     cursor: pointer;
