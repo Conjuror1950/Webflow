@@ -72,7 +72,7 @@
     .product-image-Volume2-paesaggi-naturali-mobile {
     max-height: 65vh;
     max-width: 100%;
-    object-fit: contain; /* oppure "contain" se preferisci vedere l’immagine intera */
+    object-fit: cover; /* oppure "contain" se preferisci vedere l’immagine intera */
     border-radius: 2%;
     cursor: pointer;
     }
@@ -139,7 +139,7 @@
     /* Testo sopra gli indicatori */
     .slide-count-Volume2-paesaggi-naturali-mobile {
       position: absolute;
-      bottom: 46px;
+      bottom: 48px;
       left: 50%;
       transform: translateX(-50%);
       color: #f7f7f7;
