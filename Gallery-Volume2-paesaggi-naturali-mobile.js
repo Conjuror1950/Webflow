@@ -40,8 +40,8 @@
     /* Container interno per il layout dello slider e dei dettagli */
     .container-Volume2-paesaggi-naturali-mobile {
       display: flex;
-      width: 100%;
-      left: 0px;
+      width: 91%;
+      left: 18px;
       align-items: flex-start;
       justify-content: space-between;
       position: relative;
@@ -71,8 +71,8 @@
       align-items: center;
     }
     .product-image-Volume2-paesaggi-naturali-mobile {
-    width: 100%;
-    height: 100%;
+    width: 90%;
+    height: 90%;
     object-fit: cover; /* oppure "contain" se preferisci vedere l’immagine intera */
     border-radius: 2%;
     cursor: pointer;
