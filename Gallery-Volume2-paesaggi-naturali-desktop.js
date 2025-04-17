@@ -102,7 +102,7 @@
       align-items: center;
       pointer-events: auto;
     }
-    .slider-button-Volume2-paesaggi-naturali.prev {
+    .slider-button-Volume2-paesaggi-naturali-desktop.prev {
       left: 20px;
       transform: translateY(-50%);
     }
@@ -390,14 +390,14 @@
                 <span class="option-side-Volume2-paesaggi-naturali-desktop">.zip²</span>
               </div>
               <div class="option-subtext-Volume2-paesaggi-naturali-desktop">Qualità originale, HD</div>
-              <div class="option-subtext-Volume2-paesaggi-naturali-desktop">10 elementi, ~20 MB</div>
+              <div class="option-subtext-Volume2-paesaggi-naturali-desktop">23 elementi, ~50 MB</div>
               <div class="spinner-Volume2-paesaggi-naturali-desktop">
                 <div class="progress-frame-Volume2-paesaggi-naturali-desktop"></div>
               </div>
             </div>
             <div class="info-box-Volume2-paesaggi-naturali-desktop">
               <div class="info-bold-Volume2-paesaggi-naturali-desktop">Panoramica del contenuto</div>
-              <div class="info-regular-Volume2-paesaggi-naturali-desktop">Un album che esplora ambienti affascinanti e suggestivi, catturando l’essenza degli spazi interni e della ristorazione. Ogni immagine racconta un viaggio visivo attraverso ambienti che parlano di stile, comfort e accoglienza.</div>
+              <div class="info-regular-Volume2-paesaggi-naturali-desktop">Una raccolta di fotografie che cattura la bellezza della natura, dai panorami montani alle foreste. Immagini che raccontano la serenità e la forza degli spazi naturali, invitando a fermarsi e ad apprezzare il mondo che ci circonda.</div>
             </div>
             <div class="additional-info-Volume2-paesaggi-naturali-desktop">
               <div class="info-bold-Volume2-paesaggi-naturali-desktop">Espandi</div>
