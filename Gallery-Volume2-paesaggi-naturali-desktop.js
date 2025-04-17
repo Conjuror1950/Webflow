@@ -401,7 +401,9 @@
             </div>
             <div class="additional-info-Volume2-paesaggi-naturali-desktop">
               <div class="info-bold-Volume2-paesaggi-naturali-desktop">Dettagli</div>
-              <div class="info-regular-Volume2-paesaggi-naturali-desktop">Tocca un'immagine per vederla a tutto schermo.</div>
+              <div class="info-regular-Volume2-paesaggi-naturali-desktop">· Scatti 3-7: Viareggio, Toscana, Italia · 2024</div>
+              <div class="info-regular-Volume2-paesaggi-naturali-desktop">· Scatti 8-16: Lucca, Toscana, Italia · 2024</div>
+              <div class="info-regular-Volume2-paesaggi-naturali-desktop">· Scatti 17-23: Palermo, Sicilia, Italia · 2019</div>
             </div>
             <div class="additional-info-Volume2-paesaggi-naturali-desktop">
               <div class="info-bold-Volume2-paesaggi-naturali-desktop">Espandi</div>
