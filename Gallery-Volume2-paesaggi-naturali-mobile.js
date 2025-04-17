@@ -71,8 +71,8 @@
       align-items: center;
     }
     .product-image-Volume2-paesaggi-naturali-mobile {
-    width: 90%;
-    height: 90%;
+    width: 95%;
+    height: 80%;
     object-fit: cover; /* oppure "contain" se preferisci vedere l’immagine intera */
     border-radius: 2%;
     cursor: pointer;
