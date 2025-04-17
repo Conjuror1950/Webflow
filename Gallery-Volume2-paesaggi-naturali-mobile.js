@@ -136,10 +136,10 @@
     .indicator-Volume2-paesaggi-naturali-mobile.active {
       background: white;
     }
-    /* Testo sotto gli indicatori */
+    /* Testo sopra gli indicatori */
     .slide-count-Volume2-paesaggi-naturali-mobile {
       position: absolute;
-      bottom: 50px;
+      bottom: 45px;
       left: 50%;
       transform: translateX(-50%);
       color: #f7f7f7;
