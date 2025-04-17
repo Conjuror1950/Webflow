@@ -177,7 +177,7 @@
       position: relative;
     }
     .option-Volume2-paesaggi-naturali-desktop:hover,
-    .option-Volume3-interni-e-scenari-desktop.selected {
+    .option-Volume2-paesaggi-naturali-desktop.selected {
       border-color: #0071e3;
     }
     .option-main-Volume2-paesaggi-naturali-desktop {
