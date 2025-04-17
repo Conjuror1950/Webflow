@@ -122,12 +122,12 @@
       left: 50%;
       transform: translateX(-50%);
       display: flex;
-      gap: 10px;
+      gap: 8px;
       z-index: 2;
     }
     .indicator-Volume2-paesaggi-naturali-mobile {
-      width: 5px;
-      height: 5px;
+      width: 6px;
+      height: 6px;
       background: #86868b;
       border-radius: 50%;
       cursor: pointer;
@@ -139,7 +139,7 @@
     /* Testo sopra gli indicatori */
     .slide-count-Volume2-paesaggi-naturali-mobile {
       position: absolute;
-      bottom: 45px;
+      bottom: 46px;
       left: 50%;
       transform: translateX(-50%);
       color: #f7f7f7;
