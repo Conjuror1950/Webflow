@@ -408,9 +408,11 @@
       </div>
       <div class="slider-title-bottom-Volume2-paesaggi-naturali-desktop">
         <h2>Specifiche</h2>
-        <p>Realizzato con Canon EOS 2000D e obiettivo 18-55mm EF-S. Il formato RAW (.CR2) garantisce una libertà totale in post-produzione, gestita attraverso Adobe Lightroom Classic. La raccolta contiene 10 elementi, immagini in HD (High Definition) scattate nel cuore della Toscana, Italia, nell'anno 2024.</p>
+        <p>Realizzato con Canon EOS 2000D e obiettivo 18-55mm EF-S. Il formato RAW (.CR2) garantisce una libertà totale in post-produzione, gestita attraverso Adobe Lightroom Classic. La raccolta contiene 23 elementi, immagini in HD (High Definition) scattate Italia, negli anni 2024-2019.</p>
         <h2>Dettagli</h2>
-        <p>Realizzato con Canon EOS 2000D e obiettivo 18-55mm EF-S. Il formato RAW (.CR2) garantisce una libertà totale in post-produzione, gestita attraverso Adobe Lightroom Classic. La raccolta contiene 10 elementi, immagini in HD (High Definition) scattate nel cuore della Toscana, Italia, nell'anno 2024.</p>
+        <p> · Slide 3–7: Viareggio, Toscana, Italia</p>
+        <p> · Slide 8–16: Lucca, Toscana, Italia</p>
+        <p> · Slide 17–23: Palermo, Sicilia, Italia</p>
       </div>
     </div>
   `;
