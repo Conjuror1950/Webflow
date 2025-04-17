@@ -32,7 +32,7 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      max-width: 1360px;
+      max-width: 400px;
       margin: 0 auto;
       width: 100%;
     }
