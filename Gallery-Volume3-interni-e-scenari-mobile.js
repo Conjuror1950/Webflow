@@ -123,12 +123,12 @@
       left: 50%;
       transform: translateX(-50%);
       display: flex;
-      gap: 10px;
+      gap: 6px;
       z-index: 2;
     }
     .indicator-Volume3-interni-e-scenari-mobile {
-      width: 8px;
-      height: 8px;
+      width: 5px;
+      height: 5px;
       background: #86868b;
       border-radius: 50%;
       cursor: pointer;
@@ -140,7 +140,7 @@
     /* Testo sotto gli indicatori */
     .slide-count-Volume3-interni-e-scenari-mobile {
       position: absolute;
-      bottom: 35px;
+      bottom: 30px;
       left: 50%;
       transform: translateX(-50%);
       color: #f7f7f7;
@@ -278,7 +278,7 @@
       font-family: "SF Pro Display", sans-serif !important;
       text-align: left;     
       color: black;
-      margin-top: 20px;
+      margin-top: 15px;
       margin-bottom: 10px;
       margin-left: 18px;
     }
