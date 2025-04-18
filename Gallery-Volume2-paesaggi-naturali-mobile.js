@@ -50,7 +50,7 @@
     /* --- SLIDER --- */
     .slider-Volume2-paesaggi-naturali-mobile {
       position: relative;
-      padding: 10px 0;
+      padding: 20px 0;
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -279,7 +279,7 @@
       text-align: left;     
       color: black;
       margin-top: 20px;
-      margin-bottom: 10px;
+      margin-bottom: 5px;
       margin-left: 18px;
     }
     .slider-title-top-Volume2-paesaggi-naturali-mobile h2 {
