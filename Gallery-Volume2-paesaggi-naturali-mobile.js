@@ -63,20 +63,22 @@
       flex-wrap: nowrap; /* Impedisce il wrapping degli elementi */
       transition: transform 0.3s ease-in-out;
     }
-    .slide-Volume2-paesaggi-naturali-mobile {
-      flex: 0 0 100%; /* Impedisce la crescita e il restringimento, forza larghezza 100% */
-      flex-shrink: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .product-image-Volume2-paesaggi-naturali-mobile {
-    max-width: 100%;
-    max-height: 65vh;
-    object-fit: contain; /* oppure "contain" se preferisci vedere l’immagine intera */
-    border-radius: 2%;
-    cursor: pointer;
-    }
+    /* Fissa l’altezza della slide e fai sì che l’immagine riempia esattamente il box */
+.slide-Volume2-paesaggi-naturali-mobile {
+  flex: 0 0 100%;
+  height: 65vh;              /* altezza fissa uguale a prima */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-image-Volume2-paesaggi-naturali-mobile {
+  width: 100%;               /* tutta la larghezza disponibile */
+  height: 100%;              /* tutta l’altezza del genitore (65vh) */
+  object-fit: cover;         /* ritaglia e scala per riempire */
+  border-radius: 2%;
+  cursor: pointer;
+}
     .product-image-Volume2-paesaggi-naturali-mobile:hover {
       transform: scale(1.0);
     }
