@@ -105,11 +105,11 @@
       pointer-events: auto;
     }
     .slider-button-Volume2-paesaggi-naturali-mobile.prev {
-      left: 20px;
+      left: 30px;
       transform: translateY(-50%);
     }
     .slider-button-Volume2-paesaggi-naturali-mobile.next {
-      right: 20px;
+      right: 30px;
       transform: translateY(-50%);
     }
     .slider-button-Volume2-paesaggi-naturali-mobile:hover {
@@ -135,7 +135,7 @@
       transition: background 0.3s;
     }
     .indicator-Volume2-paesaggi-naturali-mobile.active {
-      background: white;
+      background: #1d1d1d;
     }
     /* Testo sopra gli indicatori */
     .slide-count-Volume2-paesaggi-naturali-mobile {
