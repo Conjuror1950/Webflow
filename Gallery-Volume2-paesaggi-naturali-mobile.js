@@ -73,7 +73,7 @@
     .product-image-Volume2-paesaggi-naturali-mobile {
     max-width: 100%;
     max-height: 65vh;
-    object-fit: cover; /* oppure "contain" se preferisci vedere l’immagine intera */
+    object-fit: contain; /* oppure "contain" se preferisci vedere l’immagine intera */
     border-radius: 2%;
     cursor: pointer;
     }
