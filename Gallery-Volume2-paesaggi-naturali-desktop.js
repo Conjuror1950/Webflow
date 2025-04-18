@@ -412,7 +412,7 @@
         <h2>Dettagli</h2>
         <p>· Scatti 3-7: Viareggio, Toscana, Italia · 2024</p>
         <p>· Scatti 8-15: Lucca, Toscana, Italia · 2024</p>
-        <p>· Scatti 16-23: Palermo, Sicilia, Italia · 2019</p>
+        <p>· Scatti 16-22: Palermo, Sicilia, Italia · 2019</p>
       </div>
     </div>
   `;
