@@ -51,6 +51,7 @@
     .slider-Volume2-paesaggi-naturali-mobile {
       position: relative;
       padding: 30px 0;
+      padding-left: 30px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -71,8 +72,8 @@
       align-items: center;
     }
     .product-image-Volume2-paesaggi-naturali-mobile {
-    width: 95%;
-    height: 95%;
+    width: 100%;
+    height: 100%;
     object-fit: cover; /* oppure "contain" se preferisci vedere l’immagine intera */
     border-radius: 2%;
     cursor: pointer;
