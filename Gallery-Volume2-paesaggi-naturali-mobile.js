@@ -40,8 +40,8 @@
     /* Container interno per il layout dello slider e dei dettagli */
     .container-Volume2-paesaggi-naturali-mobile {
       display: flex;
-      width: 90%;
-      left: 18.5px;
+      width: 100%;
+      left: 0px;
       align-items: flex-start;
       justify-content: space-between;
       position: relative;
@@ -50,7 +50,7 @@
     /* --- SLIDER --- */
     .slider-Volume2-paesaggi-naturali-mobile {
       position: relative;
-      padding: 20px 0;
+      padding: 30px 0;
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -279,7 +279,7 @@
       text-align: left;     
       color: black;
       margin-top: 20px;
-      margin-bottom: 5px;
+      margin-bottom: 0px;
       margin-left: 18px;
     }
     .slider-title-top-Volume2-paesaggi-naturali-mobile h2 {
