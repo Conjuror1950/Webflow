@@ -33,7 +33,7 @@
       flex-direction: column;
       align-items: flex-start;
       max-width: 1360px;
-      margin: 0 auto;
+      margin: 10px auto;
       width: 100%;
     }
 
@@ -71,8 +71,8 @@
       align-items: center;
     }
     .product-image-Volume2-paesaggi-naturali-mobile {
-    width: 90%;
-    height: 95%;
+    width: 100%;
+    height: 100%;
     object-fit: cover; /* oppure "contain" se preferisci vedere l’immagine intera */
     border-radius: 2%;
     cursor: pointer;
