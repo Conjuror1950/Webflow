@@ -119,16 +119,16 @@
     /* Indicatori delle slide */
     .slider-indicators-Volume2-paesaggi-naturali-mobile {
       position: absolute;
-      bottom: 40px;
+      bottom: 15px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
-      gap: 8px;
+      gap: 6px;
       z-index: 2;
     }
     .indicator-Volume2-paesaggi-naturali-mobile {
-      width: 6px;
-      height: 6px;
+      width: 5px;
+      height: 5px;
       background: #86868b;
       border-radius: 50%;
       cursor: pointer;
@@ -140,7 +140,7 @@
     /* Testo sopra gli indicatori */
     .slide-count-Volume2-paesaggi-naturali-mobile {
       position: absolute;
-      bottom: 10px;
+      bottom: 35px;
       left: 50%;
       transform: translateX(-50%);
       color: #f7f7f7;
