@@ -343,7 +343,7 @@
       </div>
       <div class="slider-indicators-Volume2-paesaggi-naturali-mobile"></div>
       <div class="slide-count-Volume2-paesaggi-naturali-mobile">
-        <span id="slide-counter-Volume2-paesaggi-naturali-mobile">1 di 23</span>
+        <span id="slide-counter-Volume2-paesaggi-naturali-mobile">1 di 22</span>
       </div>
     </div>   
   </div>
@@ -369,7 +369,7 @@
           <span class="option-side-Volume2-paesaggi-naturali-mobile">.zip²</span>
         </div>
         <div class="option-subtext-Volume2-paesaggi-naturali-mobile">Qualità originale, HD</div>
-        <div class="option-subtext-Volume2-paesaggi-naturali-mobile">23 elementi, ~50 MB</div>
+        <div class="option-subtext-Volume2-paesaggi-naturali-mobile">22 elementi, ~50 MB</div>
         <div class="spinner-Volume2-paesaggi-naturali-mobile">
           <div class="progress-frame-Volume2-paesaggi-naturali-mobile"></div>
         </div>
@@ -388,11 +388,11 @@
   <!-- Blocco Specifiche -->
   <div class="slider-title-bottom-Volume2-paesaggi-naturali-mobile">
     <h2>Specifiche</h2>
-    <p>Realizzato con Canon EOS 2000D e obiettivo 18-55mm EF-S. Il formato RAW (.CR2) garantisce una libertà totale in post-produzione, gestita attraverso Adobe Lightroom Classic. La raccolta contiene 23 elementi, immagini in HD (High Definition) scattate Italia, negli anni 2024-2019.</p>
+    <p>Realizzato con Canon EOS 2000D e obiettivo 18-55mm EF-S. Il formato RAW (.CR2) garantisce una libertà totale in post-produzione, gestita attraverso Adobe Lightroom Classic. La raccolta contiene 22 elementi, immagini in HD (High Definition) scattate Italia, negli anni 2024-2019.</p>
     <h2>Dettagli</h2>
     <p>· Scatti 3-7: Viareggio, Toscana, Italia · 2024</p>
-    <p>· Scatti 8-16: Lucca, Toscana, Italia · 2024</p>
-    <p>· Scatti 17-23: Palermo, Sicilia, Italia · 2019</p>
+    <p>· Scatti 8-15: Lucca, Toscana, Italia · 2024</p>
+    <p>· Scatti 16-22: Palermo, Sicilia, Italia · 2019</p>
   </div>
 </div>
   `;
@@ -441,7 +441,14 @@
       { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d991884a0d04bc2ffec24b__MG_9441.jpg", name: "MG_9441.jpg" },
       { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d9d92a347269f147c2141a__MG_9445.jpg", name: "MG_9445.jpg" },
       { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d9dde3f52ffcd003f6761a__MG_9448.jpg", name: "MG_9448.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d99306c5813cbffe6b1c9e_IMG_1427.jpg", name: "MG_1427.jpg" }
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d99306c5813cbffe6b1c9e_IMG_1427.jpg", name: "MG_1427.jpg" },
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d9f31e46f76da1efe46790__MG_9224.jpg", name: "MG_9224.jpg" },
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d9f31d74fa30e5e0a55eaf__MG_9304.jpg", name: "MG_9304.jpg" },
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d9f31bf205974f300bff66__MG_9295.jpg", name: "MG_9295.jpg" },
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d9f31bf205974f300bff7d__MG_9583.jpg", name: "MG_9583.jpg" },
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d9f31c45e7797718988be7__MG_9673.jpg", name: "MG_9673.jpg" },
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d9f6e22e9f4849a3440f6f__MG_2711.jpg", name: "MG_2711.jpg" },
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d9f6e45002f3de9aedb53a_IMG_2555.jpg", name: "MG_2555.jpg" }
     ];
     var slideIndex = 0;
     
