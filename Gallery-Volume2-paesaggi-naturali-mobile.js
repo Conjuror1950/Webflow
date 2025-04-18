@@ -119,7 +119,7 @@
     /* Indicatori delle slide */
     .slider-indicators-Volume2-paesaggi-naturali-mobile {
       position: absolute;
-      bottom: 8px;
+      bottom: 10px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
@@ -140,7 +140,7 @@
     /* Testo sopra gli indicatori */
     .slide-count-Volume2-paesaggi-naturali-mobile {
       position: absolute;
-      bottom: 38px;
+      bottom: 28px;
       left: 50%;
       transform: translateX(-50%);
       color: #f7f7f7;
@@ -278,7 +278,7 @@
       font-family: "SF Pro Display", sans-serif !important;
       text-align: left;     
       color: black;
-      margin-top: 20px;
+      margin-top: 15px;
       margin-bottom: 0px;
       margin-left: 18px;
     }
