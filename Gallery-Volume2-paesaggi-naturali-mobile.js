@@ -51,7 +51,8 @@
     .slider-Volume2-paesaggi-naturali-mobile {
       position: relative;
       padding: 30px 0;
-      padding-left: 30px;
+      left: 30px;
+      right: 30px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
