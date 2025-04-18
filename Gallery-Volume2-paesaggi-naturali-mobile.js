@@ -32,16 +32,16 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      max-width: 1360px;
-      margin: 10px auto;
+      max-width: 400px;
+      margin: 0 auto;
       width: 100%;
     }
 
     /* Container interno per il layout dello slider e dei dettagli */
     .container-Volume2-paesaggi-naturali-mobile {
       display: flex;
-      width: 100%;
-      left: 0px;
+      width: 90.8%;
+      left: 18px;
       align-items: flex-start;
       justify-content: space-between;
       position: relative;
