@@ -140,7 +140,7 @@
     /* Testo sopra gli indicatori */
     .slide-count-Collezione1-halloween2024-mobile {
       position: absolute;
-      bottom: 20px;
+      bottom: 25px;
       left: 50%;
       transform: translateX(-50%);
       color: #f7f7f7;
