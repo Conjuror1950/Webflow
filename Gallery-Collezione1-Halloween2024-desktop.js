@@ -367,7 +367,7 @@
           </div>
           <div class="slider-indicators-Collezione1-halloween2024-desktop"></div>
           <div class="slide-count-Collezione1-halloween2024-desktop">
-            <span id="slide-counter-Collezione1-halloween2024-desktop">1 di 34</span>
+            <span id="slide-counter-Collezione1-halloween2024-desktop">1 di 33</span>
           </div>
         </div>
         <div class="details-Collezione1-halloween2024-desktop">
@@ -386,11 +386,11 @@
             </div>
             <div class="option-Collezione1-halloween2024-desktop" id="download-all-Collezione1-halloween2024-desktop">
               <div class="option-main-Collezione1-halloween2024-desktop">
-                <span class="option-title-Collezione1-halloween2024-desktop">Intero volume</span>
+                <span class="option-title-Collezione1-halloween2024-desktop">Intera collezione</span>
                 <span class="option-side-Collezione1-halloween2024-desktop">.zip²</span>
               </div>
               <div class="option-subtext-Collezione1-halloween2024-desktop">Qualità originale, HD</div>
-              <div class="option-subtext-Collezione1-halloween2024-desktop">22 elementi, ~50 MB</div>
+              <div class="option-subtext-Collezione1-halloween2024-desktop">33 elementi, ~92 MB</div>
               <div class="spinner-Collezione1-halloween2024-desktop">
                 <div class="progress-frame-Collezione1-halloween2024-desktop"></div>
               </div>
