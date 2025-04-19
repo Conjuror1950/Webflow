@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     faqContainer.innerHTML = `
         <div class="faq-item">
             <h3>Posso utilizzare le immagini per i miei progetti creativi?<span class="icon"></span></h3>
-            <p>Ogni immagine presente in 'Collezione 1, Halloween 2024' è protetta da copyright, con il fotografo Andrea Ingrassia come titolare dei diritti. Le immagini contengono metadati EXIF completi, inclusi ISO, tempi di scatto, diaframma e tutte le informazioni tecniche relative alla foto. Si garantisce che ogni contenuto è gestito con la massima professionalità, nel pieno rispetto del diritto d'autore e della qualità.</p>
+            <p>Ogni immagine presente in 'Collezione 1, Halloween' è protetta da copyright, con il fotografo Andrea Ingrassia come titolare dei diritti. Le immagini contengono metadati EXIF completi, inclusi ISO, tempi di scatto, diaframma e tutte le informazioni tecniche relative alla foto. Si garantisce che ogni contenuto è gestito con la massima professionalità, nel pieno rispetto del diritto d'autore e della qualità.</p>
         </div>
         <div class="faq-item">
             <h3>Come vengono gestiti i file e le cartelle?<span class="icon"></span></h3>
