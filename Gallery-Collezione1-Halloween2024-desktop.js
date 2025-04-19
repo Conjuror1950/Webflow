@@ -355,7 +355,7 @@
   var galleryHTML = `
     <div class="wrapper-slider-Collezione1-halloween2024-desktop">
       <div class="slider-title-top-Collezione1-halloween2024-desktop">
-        <h2>Halloween</h2>
+        <h2>Halloween, 31 ottobre 2024</h2>
         <p>Collezione 1</p>
       </div>
       <div class="container-Collezione1-halloween2024-desktop">
@@ -408,11 +408,7 @@
       </div>
       <div class="slider-title-bottom-Collezione1-halloween2024-desktop">
         <h2>Specifiche</h2>
-        <p>Realizzato con Canon EOS 2000D e obiettivo 18-55mm EF-S. Il formato RAW (.CR2) garantisce una libertà totale in post-produzione, gestita attraverso Adobe Lightroom Classic. La raccolta contiene 22 elementi, immagini in HD (High Definition) scattate Italia, negli anni 2024-2019.</p>
-        <h2>Dettagli</h2>
-        <p>· Scatti 3-7: Viareggio, Toscana, Italia · 2024</p>
-        <p>· Scatti 8-15: Lucca, Toscana, Italia · 2024</p>
-        <p>· Scatti 16-22: Palermo, Sicilia, Italia · 2019</p>
+        <p>Realizzato con Canon EOS 2000D e obiettivo 18-55mm EF-S. Il formato RAW (.CR2) garantisce una libertà totale in post-produzione, gestita attraverso Adobe Lightroom Classic. La raccolta contiene 33 elementi, immagini in HD (High Definition) scattate in Toscana, Italia, il 31 ottobre 2024.</p>
       </div>
     </div>
   `;
@@ -614,7 +610,7 @@
       progressFrame.style.background = "conic-gradient(#0071e3 0deg, #d3d3d3 0deg)";
       
       var zip = new JSZip();
-      var folder = zip.folder("Halloween 2024");
+      var folder = zip.folder("Halloween, 31 ottobre 2024");
       images.forEach(function(img) {
         folder.file(img.name, fetch(img.url).then(function(r) { return r.blob(); }));
       });
