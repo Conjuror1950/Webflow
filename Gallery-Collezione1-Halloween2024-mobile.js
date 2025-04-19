@@ -334,7 +334,7 @@
   </div>
   
   <!-- Container che contiene solo lo slider -->
-  <div class="container-Collezione1-halloween2024-naturali-mobile">
+  <div class="container-Collezione1-halloween2024-mobile">
     <div class="slider-Collezione1-halloween2024-mobile">
       <div class="slides-Collezione1-halloween2024-mobile"></div>
       <div class="slider-buttons-Collezione1-halloween2024-mobile">
