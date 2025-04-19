@@ -367,7 +367,7 @@
           </div>
           <div class="slider-indicators-Collezione1-halloween2024-desktop"></div>
           <div class="slide-count-Collezione1-halloween2024-desktop">
-            <span id="slide-counter-Collezione1-halloween2024-desktop">1 di 22</span>
+            <span id="slide-counter-Collezione1-halloween2024-desktop">1 di 34</span>
           </div>
         </div>
         <div class="details-Collezione1-halloween2024-desktop">
@@ -447,27 +447,39 @@
   // Funzione di inizializzazione della Gallery (Immagini)
   function initGallery() {
     var images = [
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/6762fe8c0f3530039c376f7d__MG_0070.jpg", name: "MG_0070.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/6762fe8d37578bf940c9e392__MG_0060.jpg", name: "MG_0060.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d9e54384f548f1fb478b0d__MG_9537.jpg", name: "MG_9537.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d9e61b84f548f1fb48389e_IMG_1498.jpg", name: "MG_1498.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d9e61c46bd44365fcd26be_IMG_1500.jpg", name: "MG_1500.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d9e542007f4ca3f9d8a438_IMG_1517.jpg", name: "MG_1517.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d9e543eef98414ac48e1fd_IMG_1518.jpg", name: "MG_1518.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d9dde44dfc73db7c4cfd5f__MG_9431.jpg", name: "MG_9431.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d9de68ba1825b6f068b73b__MG_9433.jpg", name: "MG_9433.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d9dde62650ddc481a55dd8__MG_9439.jpg", name: "MG_9439.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d991884a0d04bc2ffec24b__MG_9441.jpg", name: "MG_9441.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d9d92a347269f147c2141a__MG_9445.jpg", name: "MG_9445.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d9dde3f52ffcd003f6761a__MG_9448.jpg", name: "MG_9448.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d99306c5813cbffe6b1c9e_IMG_1427.jpg", name: "MG_1427.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d9f31e46f76da1efe46790__MG_9224.jpg", name: "MG_9224.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d9f31d74fa30e5e0a55eaf__MG_9304.jpg", name: "MG_9304.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d9f31bf205974f300bff66__MG_9295.jpg", name: "MG_9295.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d9f31bf205974f300bff7d__MG_9583.jpg", name: "MG_9583.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d9f31c45e7797718988be7__MG_9673.jpg", name: "MG_9673.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d9f6e22e9f4849a3440f6f__MG_2711.jpg", name: "MG_2711.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d9f6e45002f3de9aedb53a_IMG_2555.jpg", name: "MG_2555.jpg" }
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/6766e257d5db8b8ca02e71f8__MG_0097.jpg", name: "MG_0097.jpg" },
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/6766e26eb4b2519231018bc7__MG_0230.jpg", name: "MG_0230.jpg" },
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/6766e255798d0b20b2480f21__MG_0146.jpg", name: "MG_0146.jpg" },
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/6766e259b4b2519231017599__MG_0100.jpg", name: "MG_0100.jpg" },
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/6766e25a154bfc5b148457fb__MG_0155.jpg", name: "MG_0155.jpg" },
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/6766e2657d41252d976fe8de__MG_0213.jpg", name: "MG_0213.jpg" },
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/6766e2647bf5a309e0551728__MG_0210.jpg", name: "MG_0210.jpg" },
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/6766e2550db16082afad9ef0__MG_0148.jpg", name: "MG_0148.jpg" },
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/6766e258172848529c704285__MG_0099.jpg", name: "MG_0099.jpg" },
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/6766e262eef1c83a03f51228__MG_0184.jpg", name: "MG_0184.jpg" },
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/6766e25e51ce30e27d03605a__MG_0161.jpg", name: "MG_0161.jpg" },
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/6766e25bd6306d9079e77e6f__MG_0159.jpg", name: "MG_0159.jpg" },
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/6766e25fe08de9e17b4418d5__MG_0165.jpg", name: "MG_0165.jpg" },
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/6766e261fc7f71813b311a37__MG_0169.jpg", name: "MG_0169.jpg" },
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/6766e25d4c0bdd12d5b8d45d__MG_0158.jpg", name: "MG_0158.jpg" },
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/6766e263f6ff5b3bc217a58f__MG_0186.jpg", name: "MG_0186.jpg" },
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/6766e25676667853ccc51eb9__MG_0192.jpg", name: "MG_0192.jpg" },
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/6766e2653496e563bee6761c__MG_0215.jpg", name: "MG_0215.jpg" },
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/6766e2689d84a21d20bf3fd1__MG_0220.jpg", name: "MG_0220.jpg" },
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/6766e26deef1c83a03f517b1__MG_0224.jpg", name: "MG_0224.jpg" },
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/6766e269217b8393dc8e7387__MG_0226.jpg", name: "MG_0226.jpg" },
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/6766e26e0e6dd15579f55213__MG_0231.jpg", name: "MG_0231.jpg" },
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/6766e26f3496e563bee679e6__MG_0232.jpg", name: "MG_0232.jpg" },
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/6766e26fbd286d304ef16117__MG_0235.jpg", name: "MG_0235.jpg" },
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/6766e26f1058b01e4be606ee__MG_0236.jpg", name: "MG_0236.jpg" },
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/6766e2755d86a266fb6ade5a__MG_0245.jpg", name: "MG_0245.jpg" },
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/6766e27589a1188e68eac673__MG_0246.jpg", name: "MG_0246.jpg" },
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/6766e2751225a66bca24ae4d__MG_0248.jpg", name: "MG_0248.jpg" },
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/6766e27db2b012ea1e9a935f__MG_0256.jpg", name: "MG_0256.jpg" },
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/6766e2843496e563bee68dcd__MG_0259.jpg", name: "MG_0259.jpg" },
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/6766e284f6ff5b3bc217ba04__MG_0264.jpg", name: "MG_0264.jpg" },
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/6766e284052fa0377919c143__MG_0265.jpg", name: "MG_0265.jpg" },
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/6766e28425a33401d61ac24b__MG_0266.jpg", name: "MG_0266.jpg" }
     ];
     var slideIndex = 0;
     
