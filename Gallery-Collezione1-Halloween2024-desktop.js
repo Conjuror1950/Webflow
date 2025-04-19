@@ -355,7 +355,7 @@
   var galleryHTML = `
     <div class="wrapper-slider-Collezione1-halloween2024-desktop">
       <div class="slider-title-top-Collezione1-halloween2024-desktop">
-        <h2>Halloween, 31 ottobre 2024</h2>
+        <h2>Halloween</h2>
         <p>Collezione 1</p>
       </div>
       <div class="container-Collezione1-halloween2024-desktop">
