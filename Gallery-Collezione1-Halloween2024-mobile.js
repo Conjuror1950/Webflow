@@ -123,12 +123,12 @@
       left: 50%;
       transform: translateX(-50%);
       display: flex;
-      gap: 6px;
+      gap: 4px;
       z-index: 2;
     }
     .indicator-Collezione1-halloween2024-mobile {
-      width: 5px;
-      height: 5px;
+      width: 4px;
+      height: 4px;
       background: #86868b;
       border-radius: 50%;
       cursor: pointer;
