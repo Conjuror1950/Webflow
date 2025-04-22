@@ -123,12 +123,12 @@
       left: 50%;
       transform: translateX(-50%);
       display: flex;
-      gap: 6px;
+      gap: 2px;
       z-index: 2;
     }
     .indicator-Volume1-ambienti-urbani-mobile {
-      width: 5px;
-      height: 5px;
+      width: 2px;
+      height: 2px;
       background: #86868b;
       border-radius: 50%;
       cursor: pointer;
