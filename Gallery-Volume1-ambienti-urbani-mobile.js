@@ -458,7 +458,6 @@
       { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc6657c2f99b295b94801c__MG_7417.jpg", name: "MG_7417.jpg" },
       { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc665118ffc46b3d1bebba__MG_7421.jpg", name: "MG_7421.jpg" },
       { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc665c76d9846673993f74__MG_7442.jpg", name: "MG_7442.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc665c48f0451490ef7368__MG_7488.jpg", name: "MG_7488.jpg" },
       { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc66539333fe99e9d83c72__MG_7497.jpg", name: "MG_7497.jpg" },
       { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc665cd8e5c09607102bf3__MG_7531.jpg", name: "MG_7531.jpg" }
     ];
