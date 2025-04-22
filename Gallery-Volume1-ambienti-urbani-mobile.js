@@ -123,12 +123,12 @@
       left: 50%;
       transform: translateX(-50%);
       display: flex;
-      gap: 2px;
+      gap: 2.5px;
       z-index: 2;
     }
     .indicator-Volume1-ambienti-urbani-mobile {
-      width: 2px;
-      height: 2px;
+      width: 3px;
+      height: 3px;
       background: #86868b;
       border-radius: 50%;
       cursor: pointer;
@@ -341,7 +341,6 @@
         <button class="slider-button-Volume1-ambienti-urbani-mobile prev">❮</button>
         <button class="slider-button-Volume1-ambienti-urbani-mobile next">❯</button>
       </div>
-      <div class="slider-indicators-Volume1-ambienti-urbani-mobile"></div>
       <div class="slide-count-Volume1-ambienti-urbani-mobile">
         <span id="slide-counter-Volume1-ambienti-urbani-mobile">1 di 80</span>
       </div>
@@ -349,6 +348,7 @@
   </div>
   
   <!-- Blocco dei dettagli spostato fuori dal container -->
+  <div class="slider-indicators-Volume1-ambienti-urbani-mobile"></div>
   <div class="details-Volume1-ambienti-urbani-mobile">
     <div class="title-wrapper-Volume1-ambienti-urbani-mobile">
       <h1>Download.</h1>
