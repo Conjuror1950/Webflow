@@ -491,7 +491,6 @@
       { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc66698e6e09e9b28777b1__MG_8939.jpg", name: "MG_8939.jpg" },
       { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc6669e1e46bad9e703697__MG_8945.jpg", name: "MG_8945.jpg" },
       { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc665cd24c1c04f2e13a52__MG_8964.jpg", name: "MG_8964.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc6669b1ddeddd0ba69c39_20230731_224123.jpg", name: "MG_4123.jpg" },
       { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc3a7ca92a956620fa9e70_Canon%20EOS%202000D%206000x4000_006172.jpg", name: "MG_6172.jpg" },
       { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc3a7d306c6fce7c74a95f_Canon%20EOS%202000D%206000x4000_006173.jpg", name: "MG_6173.jpg" },
       { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc3a7cd30ca26fb5e1418b_Canon%20EOS%202000D%206000x4000_006062.jpg", name: "MG_6062.jpg" },
