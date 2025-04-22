@@ -119,11 +119,11 @@
     /* Indicatori delle slide */
     .slider-indicators-Volume2-paesaggi-naturali-mobile {
       position: absolute;
-      bottom: 15px;
+      bottom: 20px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
-      gap: 6px;
+      gap: 5px;
       z-index: 2;
     }
     .indicator-Volume2-paesaggi-naturali-mobile {
