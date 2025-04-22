@@ -121,12 +121,12 @@
       left: 50%;
       transform: translateX(-50%);
       display: flex;
-      gap: 10px;
+      gap: 6px;
       z-index: 2;
     }
     .indicator-Volume2-paesaggi-naturali-desktop {
-      width: 8px;
-      height: 8px;
+      width: 6px;
+      height: 6px;
       background: #86868b;
       border-radius: 50%;
       cursor: pointer;
@@ -138,7 +138,7 @@
     /* Testo sotto gli indicatori */
     .slide-count-Volume2-paesaggi-naturali-desktop {
       position: absolute;
-      bottom: 65px;
+      bottom: 60px;
       left: 50%;
       transform: translateX(-50%);
       color: #f7f7f7;
