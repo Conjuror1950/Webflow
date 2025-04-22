@@ -121,7 +121,7 @@
       left: 50%;
       transform: translateX(-50%);
       display: flex;
-      gap: 8px;
+      gap: 6px;
       z-index: 2;
     }
     .indicator-Volume1-ambienti-urbani-desktop {
