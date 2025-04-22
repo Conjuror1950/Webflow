@@ -431,7 +431,6 @@
     var images = [
       { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/677e4f9c1938a95af999a355__MG_0323.jpg", name: "MG_0323.jpg" },
       { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/677e4f9b918b7c26dc4de161__MG_0306.jpg", name: "MG_0306.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc3adb43c3d4df2317352f__MG_9010.jpg", name: "MG_9010.jpg" },
       { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/677e4f9c7cb4a47becebd5f8__MG_0337.jpg", name: "MG_0337.jpg" }
     ];
     var slideIndex = 0;
