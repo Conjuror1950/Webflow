@@ -127,6 +127,7 @@
       z-index: 2;
     }
     .indicator-Volume1-ambienti-urbani-mobile {
+      display: none;
       width: 2.8px;
       height: 2.8px;
       background: #86868b;
