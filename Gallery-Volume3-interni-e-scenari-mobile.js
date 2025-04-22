@@ -135,7 +135,7 @@
       transition: background 0.3s;
     }
     .indicator-Volume3-interni-e-scenari-mobile.active {
-      background: white;
+      background: #1d1d1d;
     }
     /* Testo sotto gli indicatori */
     .slide-count-Volume3-interni-e-scenari-mobile {
