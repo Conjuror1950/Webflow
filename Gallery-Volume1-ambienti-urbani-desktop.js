@@ -138,7 +138,7 @@
     /* Testo sotto gli indicatori */
     .slide-count-Volume1-ambienti-urbani-desktop {
       position: absolute;
-      bottom: 65px;
+      bottom: 60px;
       left: 50%;
       transform: translateX(-50%);
       color: #f7f7f7;
