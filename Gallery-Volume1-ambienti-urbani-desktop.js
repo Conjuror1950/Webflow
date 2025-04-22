@@ -121,12 +121,12 @@
       left: 50%;
       transform: translateX(-50%);
       display: flex;
-      gap: 10px;
+      gap: 8px;
       z-index: 2;
     }
     .indicator-Volume1-ambienti-urbani-desktop {
-      width: 8px;
-      height: 8px;
+      width: 6px;
+      height: 6px;
       background: #86868b;
       border-radius: 50%;
       cursor: pointer;
@@ -458,7 +458,6 @@
       { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/677e4f9abd9ccd45f5aba505__MG_0370.jpg", name: "MG_0370.jpg" },
       { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/677e4f982de5250f560756c9__MG_0383.jpg", name: "MG_0383.jpg" },
       { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/677e4f9990f421583d5dd6d9__MG_0393.jpg", name: "MG_0393.jpg" },
-      { url: "", name: "MG_.jpg" },
       { url: "", name: "MG_.jpg" },
       { url: "", name: "MG_.jpg" },
       { url: "", name: "MG_.jpg" },
