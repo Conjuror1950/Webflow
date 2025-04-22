@@ -123,7 +123,7 @@
       left: 50%;
       transform: translateX(-50%);
       display: flex;
-      gap: 6px;
+      gap: 5px;
       z-index: 2;
     }
     .indicator-Volume3-interni-e-scenari-mobile {
@@ -278,7 +278,7 @@
       font-family: "SF Pro Display", sans-serif !important;
       text-align: left;     
       color: black;
-      margin-top: 15px;
+      margin-top: 10px;
       margin-bottom: 0px;
       margin-left: 18px;
     }
