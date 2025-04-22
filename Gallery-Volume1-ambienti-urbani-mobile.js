@@ -123,7 +123,7 @@
       left: 50%;
       transform: translateX(-50%);
       display: flex;
-      gap: 2.5px;
+      gap: 2px;
       z-index: 2;
     }
     .indicator-Volume1-ambienti-urbani-mobile {
@@ -135,7 +135,7 @@
       transition: background 0.3s;
     }
     .indicator-Volume1-ambienti-urbani-mobile.active {
-      background: white;
+      background: #1d1d1d;
     }
     /* Testo sopra gli indicatori */
     .slide-count-Volume1-ambienti-urbani-mobile {
