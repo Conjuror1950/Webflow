@@ -119,7 +119,7 @@
     /* Indicatori delle slide */
     .slider-indicators-Volume1-ambienti-urbani-mobile {
       position: absolute;
-      bottom: 0px;
+      bottom: 5px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
@@ -127,8 +127,8 @@
       z-index: 2;
     }
     .indicator-Volume1-ambienti-urbani-mobile {
-      width: 2.5px;
-      height: 2.5px;
+      width: 2.8px;
+      height: 2.8px;
       background: #86868b;
       border-radius: 50%;
       cursor: pointer;
