@@ -390,7 +390,7 @@
                 <span class="option-side-Volume1-ambienti-urbani-desktop">.zip²</span>
               </div>
               <div class="option-subtext-Volume1-ambienti-urbani-desktop">Qualità originale, HD</div>
-              <div class="option-subtext-Volume1-ambienti-urbani-desktop">22 elementi, ~50 MB</div>
+              <div class="option-subtext-Volume1-ambienti-urbani-desktop">80 elementi, ~180 MB</div>
               <div class="spinner-Volume1-ambienti-urbani-desktop">
                 <div class="progress-frame-Volume1-ambienti-urbani-desktop"></div>
               </div>
@@ -410,9 +410,11 @@
         <h2>Specifiche</h2>
         <p>Realizzato con Canon EOS 2000D e obiettivo 18-55mm EF-S. Il formato RAW (.CR2) garantisce una libertà totale in post-produzione, gestita attraverso Adobe Lightroom Classic. La raccolta contiene 80 elementi, immagini in HD (High Definition) scattate in Europa, negli anni 2025-2019.</p>
         <h2>Dettagli</h2>
-        <p>· Scatti 3-7: Viareggio, Toscana, Italia · 2024</p>
-        <p>· Scatti 8-15: Lucca, Toscana, Italia · 2024</p>
-        <p>· Scatti 16-22: Palermo, Sicilia, Italia · 2019</p>
+        <p>· Scatti 1-17: Palermo, Sicilia, Italia · 2025</p>
+        <p>· Scatti 18-63: Parigi, Francia, Europa · 2023</p>
+        <p>· Scatti 64-70: Roma, Lazio, Italia · 2022</p>
+        <p>· Scatto 71: Firenze, Toscana, Italia · 2020</p>
+        <p>· Scatti 72-80: Varese, Lombardia, Italia · 2019</p>
       </div>
     </div>
   `;
