@@ -490,24 +490,7 @@
       { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc66634915fa802e67344e__MG_8736.jpg", name: "MG_8736.jpg" },
       { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc66698e6e09e9b28777b1__MG_8939.jpg", name: "MG_8939.jpg" },
       { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc6669e1e46bad9e703697__MG_8945.jpg", name: "MG_8945.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc665cd24c1c04f2e13a52__MG_8964.jpg", name: "MG_8964.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc3a7ca92a956620fa9e70_Canon%20EOS%202000D%206000x4000_006172.jpg", name: "MG_6172.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc3a7d306c6fce7c74a95f_Canon%20EOS%202000D%206000x4000_006173.jpg", name: "MG_6173.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc3a7cd30ca26fb5e1418b_Canon%20EOS%202000D%206000x4000_006062.jpg", name: "MG_6062.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc3a7ba8ce8aec557e8fc1_Canon%20EOS%202000D%206000x4000_006040.jpg", name: "MG_6040.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc3a7add607b08dfdd9a6f_Canon%20EOS%202000D%206000x4000_006034.jpg", name: "MG_6034.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc3a7aa92a956620fa9d5c_Canon%20EOS%202000D%206000x4000_006045.jpg", name: "MG_6045.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc3a7cb777df17eebe44ab_Canon%20EOS%202000D%206000x4000_006138.jpg", name: "MG_6138.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc3a493361c83dddcf4a4b_IMG-20220227-WA0042.jpg", name: "MG_0042.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dee639b54573be9f91cce5__MG_1973.jpg", name: "MG_1973.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dee638ce8ad747e194d8fc__MG_2325.jpg", name: "MG_2325.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dee636ca4eaee4ac23fdd4_IMG_2405.jpg", name: "MG_2405.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dee6380ac77a83f1cc701c__MG_2147.jpg", name: "MG_2147.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dee63a4a1834856623494e_IMG_1823.jpg", name: "MG_1823.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dee637f333d94fc1e65ab6__MG_2364.jpg", name: "MG_2364.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dee63a81278ffc7a074312__MG_2366.jpg", name: "MG_2366.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dee63789eade848ec425c7__MG_2213.jpg", name: "MG_2213.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dee638dfde9ab4282fda28__MG_2372.jpg", name: "MG_2372.jpg" }
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc665cd24c1c04f2e13a52__MG_8964.jpg", name: "MG_8964.jpg" }
     ];
     var slideIndex = 0;
     
