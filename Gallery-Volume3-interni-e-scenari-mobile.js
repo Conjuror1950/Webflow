@@ -341,7 +341,6 @@
         <button class="slider-button-Volume3-interni-e-scenari-mobile prev">❮</button>
         <button class="slider-button-Volume3-interni-e-scenari-mobile next">❯</button>
       </div>
-      <div class="slider-indicators-Volume3-interni-e-scenari-mobile"></div>
       <div class="slide-count-Volume3-interni-e-scenari-mobile">
         <span id="slide-counter-Volume3-interni-e-scenari-mobile">1 di 10</span>
       </div>
@@ -349,6 +348,7 @@
   </div>
   
   <!-- Blocco dei dettagli spostato fuori dal container -->
+  <div class="slider-indicators-Volume3-interni-e-scenari-mobile"></div>
   <div class="details-Volume3-interni-e-scenari-mobile">
     <div class="title-wrapper-Volume3-interni-e-scenari-mobile">
       <h1>Download.</h1>
