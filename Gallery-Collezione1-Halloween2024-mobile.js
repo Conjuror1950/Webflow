@@ -119,28 +119,28 @@
     /* Indicatori delle slide */
     .slider-indicators-Collezione1-halloween2024-mobile {
       position: absolute;
-      bottom: 15px;
+      bottom: 5px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
-      gap: 3.5px;
+      gap: 5px;
       z-index: 2;
     }
     .indicator-Collezione1-halloween2024-mobile {
-      width: 4px;
-      height: 4px;
+      width: 5px;
+      height: 5px;
       background: #86868b;
       border-radius: 50%;
       cursor: pointer;
       transition: background 0.3s;
     }
     .indicator-Collezione1-halloween2024-mobile.active {
-      background: white;
+      background: #1d1d1d;
     }
     /* Testo sopra gli indicatori */
     .slide-count-Collezione1-halloween2024-mobile {
       position: absolute;
-      bottom: 25px;
+      bottom: 10px;
       left: 50%;
       transform: translateX(-50%);
       color: #f7f7f7;
@@ -341,7 +341,6 @@
         <button class="slider-button-Collezione1-halloween2024-mobile prev">❮</button>
         <button class="slider-button-Collezione1-halloween2024-mobile next">❯</button>
       </div>
-      <div class="slider-indicators-Collezione1-halloween2024-mobile"></div>
       <div class="slide-count-Collezione1-halloween2024-mobile">
         <span id="slide-counter-Collezione1-halloween2024-mobile">1 di 22</span>
       </div>
@@ -349,6 +348,7 @@
   </div>
   
   <!-- Blocco dei dettagli spostato fuori dal container -->
+  <div class="slider-indicators-Collezione1-halloween2024-mobile"></div>
   <div class="details-Collezione1-halloween2024-mobile">
     <div class="title-wrapper-Collezione1-halloween2024-mobile">
       <h1>Download.</h1>
