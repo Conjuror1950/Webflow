@@ -119,7 +119,7 @@
     /* Indicatori delle slide */
     .slider-indicators-Volume2-paesaggi-naturali-mobile {
       position: absolute;
-      bottom: 20px;
+      bottom: 5px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
@@ -135,12 +135,12 @@
       transition: background 0.3s;
     }
     .indicator-Volume2-paesaggi-naturali-mobile.active {
-      background: white;
+      background: #1d1d1d;
     }
     /* Testo sopra gli indicatori */
     .slide-count-Volume2-paesaggi-naturali-mobile {
       position: absolute;
-      bottom: 30px;
+      bottom: 10px;
       left: 50%;
       transform: translateX(-50%);
       color: #f7f7f7;
@@ -341,7 +341,6 @@
         <button class="slider-button-Volume2-paesaggi-naturali-mobile prev">❮</button>
         <button class="slider-button-Volume2-paesaggi-naturali-mobile next">❯</button>
       </div>
-      <div class="slider-indicators-Volume2-paesaggi-naturali-mobile"></div>
       <div class="slide-count-Volume2-paesaggi-naturali-mobile">
         <span id="slide-counter-Volume2-paesaggi-naturali-mobile">1 di 22</span>
       </div>
@@ -349,6 +348,7 @@
   </div>
   
   <!-- Blocco dei dettagli spostato fuori dal container -->
+  <div class="slider-indicators-Volume2-paesaggi-naturali-mobile"></div>
   <div class="details-Volume2-paesaggi-naturali-mobile">
     <div class="title-wrapper-Volume2-paesaggi-naturali-mobile">
       <h1>Download.</h1>
