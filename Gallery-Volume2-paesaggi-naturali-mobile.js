@@ -338,8 +338,20 @@
     <div class="slider-Volume2-paesaggi-naturali-mobile">
       <div class="slides-Volume2-paesaggi-naturali-mobile"></div>
       <div class="slider-buttons-Volume2-paesaggi-naturali-mobile">
-        <button class="slider-button-Volume2-paesaggi-naturali-mobile prev">❮</button>
-        <button class="slider-button-Volume2-paesaggi-naturali-mobile next">❯</button>
+            <button class="slider-button-Volume2-paesaggi-naturali-mobile prev">
+              <img
+                src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/680a56d179fee9c3b97257aa_chevron.left.svg"
+                alt="Indietro"
+                style="width:24px; height:24px;"
+              />
+            </button>
+            <button class="slider-button-Volume2-paesaggi-naturali-mobile next">
+              <img
+                src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/680a52aa54d1922ad06feeeb_be514248c3f97e7343cec2a888aad323_chevron.right.svg"
+                alt="Avanti"
+                style="width:24px; height:24px;"
+              />
+            </button>
       </div>
       <div class="slide-count-Volume2-paesaggi-naturali-mobile">
         <span id="slide-counter-Volume2-paesaggi-naturali-mobile">1 di 22</span>
