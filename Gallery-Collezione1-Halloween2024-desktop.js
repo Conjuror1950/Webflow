@@ -80,10 +80,11 @@
     }
     /* Pulsanti per lo slider */
     .slider-buttons-Collezione1-halloween2024-desktop {
-      position: absolute;
-      top: 50%;
-      left: 0;
-      right: 0;
+      top: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       pointer-events: none;
     }
     .slider-button-Collezione1-halloween2024-desktop {
@@ -101,6 +102,7 @@
       justify-content: center;
       align-items: center;
       pointer-events: auto;
+      margin: auto 20px;
     }
     /* Chevron SVG dimensions e colore */
 .slider-button-Collezione1-halloween2024-desktop .chevron {
