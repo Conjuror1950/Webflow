@@ -386,7 +386,7 @@
     <path d="M15 6l-6 6l6 6"
           fill="none"
           stroke="currentColor"
-          stroke-width="4"
+          stroke-width="3"
           stroke-linecap="round"
           stroke-linejoin="round"/>
   </svg>
@@ -396,7 +396,7 @@
     <path d="M9 6l6 6l-6 6"
           fill="none"
           stroke="currentColor"
-          stroke-width="4"
+          stroke-width="3"
           stroke-linecap="round"
           stroke-linejoin="round"/>
   </svg>
