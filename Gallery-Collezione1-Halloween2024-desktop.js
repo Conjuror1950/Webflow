@@ -13,7 +13,7 @@
   }
 
   // CSS della gallery (stile completo), con media query per desktop (>= 1280px)
-  var galleryCSS = `
+  var galleryCSS = 
     /* Importazione del font */
     @import url("https://cdn.apple.com/sf-pro/SF-Pro-Display-Regular.woff2") format("woff2");
 
@@ -88,20 +88,19 @@
     }
     .slider-button-Collezione1-halloween2024-desktop {
       position: absolute;
-      background: none;
+      background: #d3d3d3;
       border: none;
-      width: 44px; /* Apple standard touch target */
-      height: 44px;
-      color: rgba(29,29,29,0.75);
+      width: 60px;
+      height: 60px;
+      color: rgba(29, 29, 29, 0.75);
+      font-size: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       pointer-events: auto;
-    }
-    .slider-button-Collezione1-halloween2024-desktop svg {
-      width: 12px;  /* Chevron width */
-      height: 20px; /* Chevron height */
-      fill: currentColor;
     }
     .slider-button-Collezione1-halloween2024-desktop.prev {
       left: 20px;
@@ -349,11 +348,11 @@
         display: none !important;
       }
     }
-  `;
+  ;
   addStyle(galleryCSS);
 
   // HTML della gallery
-  var galleryHTML = `
+  var galleryHTML = 
     <div class="wrapper-slider-Collezione1-halloween2024-desktop">
       <div class="slider-title-top-Collezione1-halloween2024-desktop">
         <h2>Halloween</h2>
@@ -363,16 +362,9 @@
         <div class="slider-Collezione1-halloween2024-desktop">
           <div class="slides-Collezione1-halloween2024-desktop"></div>
           <div class="slider-buttons-Collezione1-halloween2024-desktop">
-            <button class="slider-button-Collezione1-halloween2024-desktop prev" aria-label="Previous slide">
-              <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-                <path d="M10.467 11.533a.644.644 0 0 1 0 .933.605.605 0 0 1-.467.2.605.605 0 0 1-.466-.2l-4-4a.644.644 0 0 1 0-.933l4-4a.644.644 0 0 1 .933 0 .644.644 0 0 1 0 .933L6.933 8l3.534 3.533Z"/>
-              </svg>
-            </button>
-            <button class="slider-button-Collezione1-halloween2024-desktop next"aria-label="Next slide">
-              <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-                <path d="M5.533 4.467a.644.644 0 0 1 0-.933.605.605 0 0 1 .467-.2.605.605 0 0 1 .466.2l4 4a.644.644 0 0 1 0 .933l-4 4a.644.644 0 0 1-.933 0 .644.644 0 0 1 0-.933L9.067 8 5.533 4.467Z"/>
-              </svg>
-            </button>
+            <button class="slider-button-Collezione1-halloween2024-desktop prev">❮</button>
+            <button class="slider-button-Collezione1-halloween2024-desktop next">❯</button>
+          </div>
           <div class="slider-indicators-Collezione1-halloween2024-desktop"></div>
           <div class="slide-count-Collezione1-halloween2024-desktop">
             <span id="slide-counter-Collezione1-halloween2024-desktop">1 di 33</span>
@@ -419,7 +411,7 @@
         <p>Realizzato con Canon EOS 2000D e obiettivo 18-55mm EF-S. Il formato RAW (.CR2) garantisce una libertà totale in post-produzione, gestita attraverso Adobe Lightroom Classic. La raccolta contiene 33 elementi, immagini in HD (High Definition) scattate in Toscana, Italia, il 31 ottobre 2024.</p>
       </div>
     </div>
-  `;
+  ;
 
   // Modifica: inietta la gallery dentro un contenitore con ID "gallery-container"
   function injectGallery() {
