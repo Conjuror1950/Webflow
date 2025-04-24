@@ -21,6 +21,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    setupLightbox("lightbox1", "https://andreaingrassia.webflow.io/show/produzioni-cinematografiche");
-    setupLightbox("lightbox2", "https://andreaingrassia.webflow.io/room/album-fotografici");
+    setupLightbox("lightbox-produzioni-cinematografiche", "https://andreaingrassia.webflow.io/show/produzioni-cinematografiche");
+    setupLightbox("lightbox-album-fotografici", "https://andreaingrassia.webflow.io/room/album-fotografici");
 });
