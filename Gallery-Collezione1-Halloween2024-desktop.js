@@ -104,8 +104,8 @@
     }
     /* Chevron SVG dimensions e colore */
 .slider-button-Collezione1-halloween2024-desktop .chevron {
-  width: 12px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   fill: currentColor;           /* eredita il colore del button */
   display: block;
 }
