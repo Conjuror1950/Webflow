@@ -93,7 +93,8 @@
       width: 55px;
       height: 55px;
       font-size: 0;      /* rimuove qualsiasi spazio tipografico */
-      line-height: 0;    /* azzera l’altezza linea che poteva spostare l’SVG */
+      line-height: 1;
+      vertical-align: middle;
       padding: 0;        /* assicura che non ci siano padding addizionali */
       color: rgba(29, 29, 29, 0.75);
       border-radius: 50%;
@@ -355,12 +356,11 @@
 .slider-button-Collezione1-halloween2024-desktop:hover .icon-chevron {
   color: rgba(29,29,29,0.90);
 }
-
-/* ora il centering verrà applicato davvero */
-.slider-button-Collezione1-halloween2024-desktop.prev,
-.slider-button-Collezione1-halloween2024-desktop.next {
-  top: 50%;
-  transform: translateY(-50%);
+.slider-button-Collezione1-halloween2024-desktop svg {
+  display: block;
+  margin: auto;
+  width: 40px;
+  height: 40px;
 }
 
 }
