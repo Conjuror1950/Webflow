@@ -32,11 +32,19 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   setupLightbox(
-    "lightbox-produzioni-cinematografiche",
+    "lightbox-produzioni-cinematografiche-desktop",
     "https://andreaingrassia.webflow.io/show/produzioni-cinematografiche"
   );
   setupLightbox(
-    "lightbox-album-fotografici",
+    "lightbox-album-fotografici-desktop",
+    "https://andreaingrassia.webflow.io/room/album-fotografici"
+  );
+    setupLightbox(
+    "lightbox-produzioni-cinematografiche-desktop",
+    "https://andreaingrassia.webflow.io/show/produzioni-cinematografiche"
+  );
+    setupLightbox(
+    "lightbox-album-fotografici-mobile",
     "https://andreaingrassia.webflow.io/room/album-fotografici"
   );
 });
