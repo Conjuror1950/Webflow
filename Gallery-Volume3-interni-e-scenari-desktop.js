@@ -363,7 +363,13 @@
           <div class="slides-Volume3-interni-e-scenari-desktop"></div>
           <div class="slider-buttons-Volume3-interni-e-scenari-desktop">
             <button class="slider-button-Volume3-interni-e-scenari-desktop prev">❮</button>
-            <button class="slider-button-Volume3-interni-e-scenari-desktop next">❯</button>
+            <button class="slider-button-Volume3-interni-e-scenari-desktop next">
+              <img
+                src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/680a52aa54d1922ad06feeeb_chevron.right.svg"
+                alt="Avanti"
+                style="width:24px; height:24px;"
+              />
+            </button>
           </div>
           <div class="slider-indicators-Volume3-interni-e-scenari-desktop"></div>
           <div class="slide-count-Volume3-interni-e-scenari-desktop">
