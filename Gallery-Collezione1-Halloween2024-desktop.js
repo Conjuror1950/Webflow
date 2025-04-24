@@ -362,6 +362,18 @@
   width: 40px;
   height: 40px;
 }
+/* override specifico per full-screen: resetto il translateX e sposto manualmente 2px */
+:fullscreen .slider-button-Collezione1-halloween2024-desktop.prev,
+:-webkit-full-screen .slider-button-Collezione1-halloween2024-desktop.prev {
+  transform: translateY(-50%) !important;   /* rimuove il translateX precedente */
+  left: 18px !important;                     /* 20px–2px = 18px dal bordo */
+}
+
+:fullscreen .slider-button-Collezione1-halloween2024-desktop.next,
+:-webkit-full-screen .slider-button-Collezione1-halloween2024-desktop.next {
+  transform: translateY(-50%) !important;   /* rimuove il translateX precedente */
+  right: 18px !important;                    /* 20px–2px = 18px dal bordo */
+}
 
 }
     /* Media query: visualizza solo su desktop (>= 1280px) */
