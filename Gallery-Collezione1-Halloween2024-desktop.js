@@ -92,8 +92,10 @@
       border: none;
       width: 55px;
       height: 55px;
+      font-size: 0;      /* rimuove qualsiasi spazio tipografico */
+      line-height: 0;    /* azzera l’altezza linea che poteva spostare l’SVG */
+      padding: 0;        /* assicura che non ci siano padding addizionali */
       color: rgba(29, 29, 29, 0.75);
-      font-size: 30px;
       border-radius: 50%;
       cursor: pointer;
       transition: background 0.3s, color 0.3s;
@@ -343,6 +345,8 @@
     }
 /* dimensione del solo icon SVG, mantiene stroke-width=2.8px di Apple */
 .slider-button-Collezione1-halloween2024-desktop .icon-chevron {
+  display: block;    /* rimuove il comportamento inline che genera offset */
+  margin: auto;      /* centra perfettamente dentro il button */
   width: 40px;
   height: 40px;
   /* facoltativo: colore identico al testo */
@@ -357,15 +361,6 @@
 .slider-button-Collezione1-halloween2024-desktop.next {
   top: 50%;
   transform: translateY(-50%);
-}
-/* Sposta le frecce */
-.slider-button-Collezione1-halloween2024-desktop.prev {
-  left: 10px;               /* lascia com’era */
-  transform: translate(-2px, -50%);
-}
-.slider-button-Collezione1-halloween2024-desktop.next {
-  right: 10px;              /* lascia com’era */
-  transform: translate(2px, -50%);
 }
 
 }
