@@ -348,13 +348,6 @@
   /* facoltativo: colore identico al testo */
   color: rgba(29,29,29,0.75);
 }
-
-/* il button è già position:absolute e usa transformY(-50%), mantiene vertical-center */
-.slider-button-Collezione1-halloween2024-desktop {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 .slider-button-Collezione1-halloween2024-desktop:hover .icon-chevron {
   color: rgba(29,29,29,0.90);
 }
