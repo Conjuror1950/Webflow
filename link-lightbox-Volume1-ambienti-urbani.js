@@ -37,5 +37,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Lightbox per desktop e mobile
   setupLightbox("lightbox-Volume1-ambienti-urbani-desktop", "https://andreaingrassia.webflow.io/room/album-fotografici/volume-1/ambienti-urbani");
-  setupLightbox("lightbox-Volume1-ambienti-urbani-desktop", "https://andreaingrassia.webflow.io/room/album-fotografici/volume-1/ambienti-urbani");
+  setupLightbox("lightbox-Volume1-ambienti-urbani-mobile", "https://andreaingrassia.webflow.io/room/album-fotografici/volume-1/ambienti-urbani");
 });
