@@ -1,33 +1,34 @@
 document.addEventListener("DOMContentLoaded", function () {
     function setupLightbox(id, url) {
-        var lightbox = document.getElementById(id);
+        const lightbox = document.getElementById(id);
         if (lightbox) {
+            // Crea un link <a> invisibile nel DOM
+            const anchor = document.createElement("a");
+            anchor.href = url;
+            anchor.style.display = "none";
+            anchor.rel = "noopener noreferrer";
+            document.body.appendChild(anchor);
+
             lightbox.addEventListener("click", function (event) {
-                // Rileva Ctrl/Cmd click o tasto centrale (rotellina)
                 const isNewTab = event.ctrlKey || event.metaKey || event.button === 1;
 
                 if (isNewTab) {
-                    const link = document.createElement("a");
-                    link.href = url;
-                    link.target = "_blank";
-                    link.rel = "noopener noreferrer";
-                    // Append temporaneamente al DOM per simulare un click
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
+                    anchor.target = "_blank";
                 } else {
-                    // Apertura nella stessa scheda
-                    window.location.href = url;
+                    anchor.target = "_self";
                 }
 
-                // Previeni comportamento predefinito in entrambi i casi
+                // Simula il click sull'anchor
+                anchor.click();
+
+                // Previene comportamento predefinito
                 event.preventDefault();
             });
 
-            // Aggiunta anche per compatibilità con clic centrale puro (es. Firefox)
+            // Previene apertura doppia su clic centrale in alcuni browser
             lightbox.addEventListener("mousedown", function (event) {
                 if (event.button === 1) {
-                    event.preventDefault(); // Previene l'apertura doppia
+                    event.preventDefault();
                 }
             });
         }
