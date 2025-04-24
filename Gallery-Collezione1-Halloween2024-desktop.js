@@ -13,7 +13,7 @@
   }
 
   // CSS della gallery (stile completo), con media query per desktop (>= 1280px)
-  var galleryCSS = 
+  var galleryCSS = `
     /* Importazione del font */
     @import url("https://cdn.apple.com/sf-pro/SF-Pro-Display-Regular.woff2") format("woff2");
 
@@ -348,11 +348,11 @@
         display: none !important;
       }
     }
-  ;
+  `;
   addStyle(galleryCSS);
 
   // HTML della gallery
-  var galleryHTML = 
+  var galleryHTML = `
     <div class="wrapper-slider-Collezione1-halloween2024-desktop">
       <div class="slider-title-top-Collezione1-halloween2024-desktop">
         <h2>Halloween</h2>
@@ -411,7 +411,7 @@
         <p>Realizzato con Canon EOS 2000D e obiettivo 18-55mm EF-S. Il formato RAW (.CR2) garantisce una libertà totale in post-produzione, gestita attraverso Adobe Lightroom Classic. La raccolta contiene 33 elementi, immagini in HD (High Definition) scattate in Toscana, Italia, il 31 ottobre 2024.</p>
       </div>
     </div>
-  ;
+  `;
 
   // Modifica: inietta la gallery dentro un contenitore con ID "gallery-container"
   function injectGallery() {
