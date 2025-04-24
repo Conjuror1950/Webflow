@@ -359,6 +359,16 @@
   top: 50%;
   transform: translateY(-50%);
 }
+/* Sposta la freccia SINISTRA (verso sinistra) di 10px */
+.w-slider-arrow-left {
+  left: 10px !important;
+}
+
+/* Sposta la freccia DESTRA (verso destra) di 10px */
+.w-slider-arrow-right {
+  right: 10px !important;
+}
+
 }
     /* Media query: visualizza solo su desktop (>= 1280px) */
     @media screen and (max-width: 1279px) {
