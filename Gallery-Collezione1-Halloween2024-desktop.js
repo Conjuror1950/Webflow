@@ -102,6 +102,13 @@
       align-items: center;
       pointer-events: auto;
     }
+    /* Chevron SVG dimensions e colore */
+.slider-button-Collezione1-halloween2024-desktop .chevron {
+  width: 12px;
+  height: 20px;
+  fill: currentColor;           /* eredita il colore del button */
+  display: block;
+}
     .slider-button-Collezione1-halloween2024-desktop.prev {
       left: 20px;
       transform: translateY(-50%);
@@ -362,9 +369,17 @@
         <div class="slider-Collezione1-halloween2024-desktop">
           <div class="slides-Collezione1-halloween2024-desktop"></div>
           <div class="slider-buttons-Collezione1-halloween2024-desktop">
-            <button class="slider-button-Collezione1-halloween2024-desktop prev">❮</button>
-            <button class="slider-button-Collezione1-halloween2024-desktop next">❯</button>
-          </div>
+  <button class="slider-button-Collezione1-halloween2024-desktop prev" aria-label="Previous slide">
+    <svg viewBox="0 0 12 20" class="chevron chevron-left" aria-hidden="true">
+      <path d="M9.3 0.3a1 1 0 0 1 0 1.4L3.4 7.6l5.9 5.9a1 1 0 0 1-1.4 1.4l-6.6-6.6a1 1 0 0 1 0-1.4l6.6-6.6a1 1 0 0 1 1.4 0z"/>
+    </svg>
+  </button>
+  <button class="slider-button-Collezione1-halloween2024-desktop next" aria-label="Next slide">
+    <svg viewBox="0 0 12 20" class="chevron chevron-right" aria-hidden="true">
+      <path d="M2.7 19.7a1 1 0 0 1 0-1.4l5.9-5.9L2.7 7.4a1 1 0 1 1 1.4-1.4l6.6 6.6a1 1 0 0 1 0 1.4l-6.6 6.6a1 1 0 0 1-1.4 0z"/>
+    </svg>
+  </button>
+</div>
           <div class="slider-indicators-Collezione1-halloween2024-desktop"></div>
           <div class="slide-count-Collezione1-halloween2024-desktop">
             <span id="slide-counter-Collezione1-halloween2024-desktop">1 di 33</span>
