@@ -315,12 +315,12 @@
       font-size: 13px;
       color: #86868b;
     }
-    /* dimensione del solo icon SVG, mantiene stroke-width=2.8px di Apple */
+    /* dimensione del solo icon SVG, mantiene stroke-width=2.5px di Apple */
 .slider-button-Collezione1-halloween2024-desktop .icon-chevron {
   display: block;    /* rimuove il comportamento inline che genera offset */
   margin: auto;      /* centra perfettamente dentro il button */
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   /* facoltativo: colore identico al testo */
   color: rgba(29,29,29,0.75);
 }
@@ -354,7 +354,7 @@
     <path d="M15 6l-6 6l6 6"
           fill="none"
           stroke="currentColor"
-          stroke-width="2.8"
+          stroke-width="2.5"
           stroke-linecap="round"
           stroke-linejoin="round"/>
   </svg>
@@ -364,7 +364,7 @@
     <path d="M9 6l6 6l-6 6"
           fill="none"
           stroke="currentColor"
-          stroke-width="2.8"
+          stroke-width="2.5"
           stroke-linecap="round"
           stroke-linejoin="round"/>
   </svg>
