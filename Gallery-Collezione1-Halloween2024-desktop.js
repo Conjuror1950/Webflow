@@ -80,37 +80,29 @@
     }
     /* Pulsanti per lo slider */
     .slider-buttons-Collezione1-halloween2024-desktop {
-      top: 0;
-      bottom: 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
       pointer-events: none;
     }
     .slider-button-Collezione1-halloween2024-desktop {
       position: absolute;
-      background: #d3d3d3;
+      background: none;
       border: none;
-      width: 60px;
-      height: 60px;
-      color: rgba(29, 29, 29, 0.75);
-      font-size: 30px;
-      border-radius: 50%;
-      cursor: pointer;
-      transition: background 0.3s, color 0.3s;
+      width: 44px; /* Apple standard touch target */
+      height: 44px;
+      color: rgba(29,29,29,0.75);
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       pointer-events: auto;
-      margin: auto 20px;
     }
-    /* Chevron SVG dimensions e colore */
-.slider-button-Collezione1-halloween2024-desktop .chevron {
-  width: 30px;
-  height: 30px;
-  fill: currentColor;           /* eredita il colore del button */
-  display: block;
-}
+    .slider-button-Collezione1-halloween2024-desktop svg {
+      width: 12px;  /* Chevron width */
+      height: 20px; /* Chevron height */
+      fill: currentColor;
+    }
     .slider-button-Collezione1-halloween2024-desktop.prev {
       left: 20px;
       transform: translateY(-50%);
@@ -371,17 +363,16 @@
         <div class="slider-Collezione1-halloween2024-desktop">
           <div class="slides-Collezione1-halloween2024-desktop"></div>
           <div class="slider-buttons-Collezione1-halloween2024-desktop">
-  <button class="slider-button-Collezione1-halloween2024-desktop prev" aria-label="Previous slide">
-    <svg viewBox="0 0 12 20" class="chevron chevron-left" aria-hidden="true">
-      <path d="M9.3 0.3a1 1 0 0 1 0 1.4L3.4 7.6l5.9 5.9a1 1 0 0 1-1.4 1.4l-6.6-6.6a1 1 0 0 1 0-1.4l6.6-6.6a1 1 0 0 1 1.4 0z"/>
-    </svg>
-  </button>
-  <button class="slider-button-Collezione1-halloween2024-desktop next" aria-label="Next slide">
-    <svg viewBox="0 0 12 20" class="chevron chevron-right" aria-hidden="true">
-      <path d="M2.7 19.7a1 1 0 0 1 0-1.4l5.9-5.9L2.7 7.4a1 1 0 1 1 1.4-1.4l6.6 6.6a1 1 0 0 1 0 1.4l-6.6 6.6a1 1 0 0 1-1.4 0z"/>
-    </svg>
-  </button>
-</div>
+            <button class="slider-button-Collezione1-halloween2024-desktop prev" aria-label="Previous slide">
+              <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.467 11.533a.644.644 0 0 1 0 .933.605.605 0 0 1-.467.2.605.605 0 0 1-.466-.2l-4-4a.644.644 0 0 1 0-.933l4-4a.644.644 0 0 1 .933 0 .644.644 0 0 1 0 .933L6.933 8l3.534 3.533Z"/>
+              </svg>
+            </button>
+            <button class="slider-button-Collezione1-halloween2024-desktop next"aria-label="Next slide">
+              <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5.533 4.467a.644.644 0 0 1 0-.933.605.605 0 0 1 .467-.2.605.605 0 0 1 .466.2l4 4a.644.644 0 0 1 0 .933l-4 4a.644.644 0 0 1-.933 0 .644.644 0 0 1 0-.933L9.067 8 5.533 4.467Z"/>
+              </svg>
+            </button>
           <div class="slider-indicators-Collezione1-halloween2024-desktop"></div>
           <div class="slide-count-Collezione1-halloween2024-desktop">
             <span id="slide-counter-Collezione1-halloween2024-desktop">1 di 33</span>
