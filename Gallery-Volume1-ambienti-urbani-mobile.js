@@ -127,7 +127,7 @@
       z-index: 2;
     }
     .indicator-Volume1-ambienti-urbani-mobile {
-      display: none;
+      display: none; /* Nascondere gli slider indicator. Per visualizzare eliminare la proprietà */
       width: 2.8px;
       height: 2.8px;
       background: #86868b;
@@ -141,7 +141,7 @@
     /* Testo sopra gli indicatori */
     .slide-count-Volume1-ambienti-urbani-mobile {
       position: absolute;
-      bottom: 30px;
+      bottom: 10px;
       left: 50%;
       transform: translateX(-50%);
       color: #f7f7f7;
