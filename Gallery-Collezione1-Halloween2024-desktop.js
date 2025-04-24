@@ -101,6 +101,7 @@
       justify-content: center;
       align-items: center;
       pointer-events: auto;
+      top: 50%;
     }
     .slider-button-Collezione1-halloween2024-desktop.prev {
       left: 20px;
