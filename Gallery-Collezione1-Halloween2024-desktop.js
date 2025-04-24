@@ -101,7 +101,6 @@
       justify-content: center;
       align-items: center;
       pointer-events: auto;
-      top: 50%;
     }
     .slider-button-Collezione1-halloween2024-desktop.prev {
       left: 20px;
@@ -361,6 +360,13 @@
 }
 .slider-button-Collezione1-halloween2024-desktop:hover .icon-chevron {
   color: rgba(29,29,29,0.90);
+
+.slider-button-Collezione1-halloween2024-desktop.prev,
+.slider-button-Collezione1-halloween2024-desktop.next {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 }
     /* Media query: visualizza solo su desktop (>= 1280px) */
     @media screen and (max-width: 1279px) {
