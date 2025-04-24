@@ -365,7 +365,7 @@
             <button class="slider-button-Volume3-interni-e-scenari-desktop prev">❮</button>
             <button class="slider-button-Volume3-interni-e-scenari-desktop next">
               <img
-                src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/680a52aa54d1922ad06feeeb_chevron.right.svg"
+                src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/680a52aa54d1922ad06feeeb_811970bd0050b0ddf9bc7c7f8d9e5eec_chevron.right.svg"
                 alt="Avanti"
                 style="width:24px; height:24px;"
               />
