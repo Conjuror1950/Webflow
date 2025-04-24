@@ -3,48 +3,41 @@ document.addEventListener("DOMContentLoaded", () => {
     const lightbox = document.getElementById(id);
     if (!lightbox) return;
 
-    // Mostriamo il cursore a mano per far capire che è cliccabile
     lightbox.style.cursor = "pointer";
 
     // Click sinistro, Ctrl/Cmd+click, Shift+click
     lightbox.addEventListener("click", (event) => {
-      // Se è un click con tasto sinistro puro
+      // Click sinistro semplice → stessa scheda
       if (event.button === 0 && !event.ctrlKey && !event.metaKey && !event.shiftKey) {
-        // stessa scheda
+        event.preventDefault(); // blocca solo se gestiamo noi
         window.location.href = url;
-        event.preventDefault();
       }
-      // Se è Ctrl/Cmd+click o Shift+click, lasciamo gestire tutto a window.open
+
+      // Ctrl/Cmd/Shift + click → nuova scheda
       else if (event.button === 0 && (event.ctrlKey || event.metaKey || event.shiftKey)) {
-        window.open(url, "_blank", "noopener,noreferrer");
         event.preventDefault();
+        window.open(url, "_blank", "noopener,noreferrer");
       }
-      // altrimenti (menu contestuale, tasto destro, ecc.) non tocchiamo nulla
+      // Altro? Non facciamo nulla → mobile e menu contestuale funzionano
     });
 
-    // Click centrale (rotellina): auxclick è il modo più affidabile per intercettarlo
+    // Click centrale (rotellina mouse)
     lightbox.addEventListener("auxclick", (event) => {
       if (event.button === 1) {
-        window.open(url, "_blank", "noopener,noreferrer");
         event.preventDefault();
+        window.open(url, "_blank", "noopener,noreferrer");
       }
+    });
+
+    // Non blocchiamo il tasto destro / pressione prolungata su mobile
+    lightbox.addEventListener("contextmenu", () => {
+      // Lascia passare il menu nativo (apri in nuova scheda, ecc.)
     });
   }
 
-  setupLightbox(
-    "lightbox-produzioni-cinematografiche-desktop",
-    "https://andreaingrassia.webflow.io/show/produzioni-cinematografiche"
-  );
-  setupLightbox(
-    "lightbox-album-fotografici-desktop",
-    "https://andreaingrassia.webflow.io/room/album-fotografici"
-  );
-    setupLightbox(
-    "lightbox-produzioni-cinematografiche-desktop",
-    "https://andreaingrassia.webflow.io/show/produzioni-cinematografiche"
-  );
-    setupLightbox(
-    "lightbox-album-fotografici-mobile",
-    "https://andreaingrassia.webflow.io/room/album-fotografici"
-  );
+  // Lightbox per desktop e mobile
+  setupLightbox("lightbox-produzioni-cinematografiche-desktop", "https://andreaingrassia.webflow.io/show/produzioni-cinematografiche");
+  setupLightbox("lightbox-album-fotografici-desktop", "https://andreaingrassia.webflow.io/room/album-fotografici");
+  setupLightbox("lightbox-produzioni-cinematografiche-mobile", "https://andreaingrassia.webflow.io/show/produzioni-cinematografiche");
+  setupLightbox("lightbox-album-fotografici-mobile", "https://andreaingrassia.webflow.io/room/album-fotografici");
 });
