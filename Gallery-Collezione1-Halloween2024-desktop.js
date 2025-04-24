@@ -362,8 +362,6 @@
   width: 40px;
   height: 40px;
 }
-
-}
     /* Media query: visualizza solo su desktop (>= 1280px) */
     @media screen and (max-width: 1279px) {
       .wrapper-slider-Collezione1-halloween2024-desktop {
