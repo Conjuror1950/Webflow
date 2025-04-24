@@ -82,7 +82,6 @@
     .slider-buttons-Collezione1-halloween2024-desktop {
       position: absolute;
       top: 50%;
-      transform: translateY(-50%)
       left: 0;
       right: 0;
       pointer-events: none;
