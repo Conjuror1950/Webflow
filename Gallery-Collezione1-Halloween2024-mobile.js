@@ -317,6 +317,7 @@
     }
     /* dimensione del solo icon SVG, mantiene stroke-width=2.5px di Apple */
 .slider-button-Collezione1-halloween2024-desktop .icon-chevron {
+  transform: translateX(8px); /* verso destra */
   display: block;    /* rimuove il comportamento inline che genera offset */
   margin: auto;      /* centra perfettamente dentro il button */
   width: 35px;
