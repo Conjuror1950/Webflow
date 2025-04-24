@@ -32,7 +32,7 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      max-width: 1360px;
+      max-width: 400px;
       margin: 0 auto;
       width: 100%;
     }
@@ -137,7 +137,7 @@
     .indicator-Volume3-interni-e-scenari-mobile.active {
       background: #1d1d1d;
     }
-    /* Testo sotto gli indicatori */
+    /* Testo sopra gli indicatori */
     .slide-count-Volume3-interni-e-scenari-mobile {
       position: absolute;
       bottom: 10px;
