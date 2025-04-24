@@ -90,13 +90,10 @@
       position: absolute;
       background: #d3d3d3;
       border: none;
-      width: 55px;
-      height: 55px;
-      font-size: 0;      /* rimuove qualsiasi spazio tipografico */
-      line-height: 1;
-      vertical-align: middle;
-      padding: 0;        /* assicura che non ci siano padding addizionali */
+      width: 60px;
+      height: 60px;
       color: rgba(29, 29, 29, 0.75);
+      font-size: 30px;
       border-radius: 50%;
       cursor: pointer;
       transition: background 0.3s, color 0.3s;
@@ -344,24 +341,7 @@
       font-size: 13px;
       color: #86868b;
     }
-/* dimensione del solo icon SVG, mantiene stroke-width=2.8px di Apple */
-.slider-button-Collezione1-halloween2024-desktop .icon-chevron {
-  display: block;    /* rimuove il comportamento inline che genera offset */
-  margin: auto;      /* centra perfettamente dentro il button */
-  width: 40px;
-  height: 40px;
-  /* facoltativo: colore identico al testo */
-  color: rgba(29,29,29,0.75);
-}
-.slider-button-Collezione1-halloween2024-desktop:hover .icon-chevron {
-  color: rgba(29,29,29,0.90);
-}
-.slider-button-Collezione1-halloween2024-desktop svg {
-  display: block;
-  margin: auto;
-  width: 40px;
-  height: 40px;
-}
+
     /* Media query: visualizza solo su desktop (>= 1280px) */
     @media screen and (max-width: 1279px) {
       .wrapper-slider-Collezione1-halloween2024-desktop {
@@ -382,26 +362,8 @@
         <div class="slider-Collezione1-halloween2024-desktop">
           <div class="slides-Collezione1-halloween2024-desktop"></div>
           <div class="slider-buttons-Collezione1-halloween2024-desktop">
-            <button class="slider-button-Collezione1-halloween2024-desktop prev" aria-label="Previous slide">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-chevron">
-    <path d="M15 6l-6 6l6 6"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2.8"
-          stroke-linecap="round"
-          stroke-linejoin="round"/>
-  </svg>
-</button>
-<button class="slider-button-Collezione1-halloween2024-desktop next" aria-label="Next slide">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-chevron">
-    <path d="M9 6l6 6l-6 6"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2.8"
-          stroke-linecap="round"
-          stroke-linejoin="round"/>
-  </svg>
-</button>
+            <button class="slider-button-Collezione1-halloween2024-desktop prev">❮</button>
+            <button class="slider-button-Collezione1-halloween2024-desktop next">❯</button>
           </div>
           <div class="slider-indicators-Collezione1-halloween2024-desktop"></div>
           <div class="slide-count-Collezione1-halloween2024-desktop">
