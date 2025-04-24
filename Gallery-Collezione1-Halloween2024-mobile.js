@@ -315,7 +315,18 @@
       font-size: 13px;
       color: #86868b;
     }
-
+    /* dimensione del solo icon SVG, mantiene stroke-width=2.8px di Apple */
+.slider-button-Collezione1-halloween2024-desktop .icon-chevron {
+  display: block;    /* rimuove il comportamento inline che genera offset */
+  margin: auto;      /* centra perfettamente dentro il button */
+  width: 40px;
+  height: 40px;
+  /* facoltativo: colore identico al testo */
+  color: rgba(29,29,29,0.75);
+}
+.slider-button-Collezione1-halloween2024-desktop:hover .icon-chevron {
+  color: rgba(29,29,29,0.90);
+}
     /* Media query: visualizza solo su mobile (<= 1280px) */
     @media screen and (min-width: 1280px) {
       .wrapper-slider-Collezione1-halloween2024-mobile {
@@ -338,8 +349,26 @@
     <div class="slider-Collezione1-halloween2024-mobile">
       <div class="slides-Collezione1-halloween2024-mobile"></div>
       <div class="slider-buttons-Collezione1-halloween2024-mobile">
-        <button class="slider-button-Collezione1-halloween2024-mobile prev">❮</button>
-        <button class="slider-button-Collezione1-halloween2024-mobile next">❯</button>
+        <button class="slider-button-Collezione1-halloween2024-mobile prev" aria-label="Previous slide">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-chevron">
+    <path d="M15 6l-6 6l6 6"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"/>
+  </svg>
+</button>
+<button class="slider-button-Collezione1-halloween2024-mobile next" aria-label="Next slide">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-chevron">
+    <path d="M9 6l6 6l-6 6"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"/>
+  </svg>
+</button>
       </div>
       <div class="slide-count-Collezione1-halloween2024-mobile">
         <span id="slide-counter-Collezione1-halloween2024-mobile">1 di 22</span>
