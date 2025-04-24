@@ -358,14 +358,14 @@
   top: 50%;
   transform: translateY(-50%);
 }
-/* Sposta la freccia SINISTRA (verso sinistra) di 10px */
-.w-slider-arrow-left {
-  left: 10px !important;
+/* Sposta le frecce */
+.slider-button-Collezione1-halloween2024-desktop.prev {
+  left: 10px;               /* lascia com’era */
+  transform: translate(-2px, -50%);
 }
-
-/* Sposta la freccia DESTRA (verso destra) di 10px */
-.w-slider-arrow-right {
-  right: 10px !important;
+.slider-button-Collezione1-halloween2024-desktop.next {
+  right: 10px;              /* lascia com’era */
+  transform: translate(2px, -50%);
 }
 
 }
