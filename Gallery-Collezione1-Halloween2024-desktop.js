@@ -345,6 +345,8 @@
 .slider-button-Collezione1-halloween2024-desktop .icon-chevron {
   width: 40px;
   height: 40px;
+  /* facoltativo: colore identico al testo */
+  color: rgba(29,29,29,0.75);
 }
 
 /* il button è già position:absolute e usa transformY(-50%), mantiene vertical-center */
@@ -353,14 +355,11 @@
   align-items: center;
   justify-content: center;
 }
-
-/* facoltativo: colore identico al testo */
-.slider-button-Collezione1-halloween2024-desktop .icon-chevron {
-  color: rgba(29,29,29,0.75);
-}
 .slider-button-Collezione1-halloween2024-desktop:hover .icon-chevron {
   color: rgba(29,29,29,0.90);
+}
 
+/* ora il centering verrà applicato davvero */
 .slider-button-Collezione1-halloween2024-desktop.prev,
 .slider-button-Collezione1-halloween2024-desktop.next {
   top: 50%;
