@@ -362,8 +362,20 @@
         <div class="slider-Collezione1-halloween2024-desktop">
           <div class="slides-Collezione1-halloween2024-desktop"></div>
           <div class="slider-buttons-Collezione1-halloween2024-desktop">
-            <button class="slider-button-Collezione1-halloween2024-desktop prev">❮</button>
-            <button class="slider-button-Collezione1-halloween2024-desktop next">❯</button>
+            <button class="slider-button-Collezione1-halloween2024-desktop prev">
+              <img
+                src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/680a56d179fee9c3b97257aa_chevron.left.svg"
+                alt="Indietro"
+                style="width:24px; height:24px;"
+              />
+            </button>
+            <button class="slider-button-Collezione1-halloween2024-desktop next">
+              <img
+                src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/680a52aa54d1922ad06feeeb_be514248c3f97e7343cec2a888aad323_chevron.right.svg"
+                alt="Avanti"
+                style="width:24px; height:24px;"
+              />
+            </button>
           </div>
           <div class="slider-indicators-Collezione1-halloween2024-desktop"></div>
           <div class="slide-count-Collezione1-halloween2024-desktop">
