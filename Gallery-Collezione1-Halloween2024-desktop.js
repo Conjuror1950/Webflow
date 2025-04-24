@@ -341,7 +341,26 @@
       font-size: 13px;
       color: #86868b;
     }
+/* dimensione del solo icon SVG, mantiene stroke-width=2px di Apple */
+.slider-button-Collezione1-halloween2024-desktop .icon-chevron {
+  width: 12px;
+  height: 12px;
+}
 
+/* il button è già position:absolute e usa transformY(-50%), mantiene vertical-center */
+.slider-button-Collezione1-halloween2024-desktop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* facoltativo: colore identico al testo */
+.slider-button-Collezione1-halloween2024-desktop .icon-chevron {
+  color: rgba(29,29,29,0.75);
+}
+.slider-button-Collezione1-halloween2024-desktop:hover .icon-chevron {
+  color: rgba(29,29,29,0.90);
+}
     /* Media query: visualizza solo su desktop (>= 1280px) */
     @media screen and (max-width: 1279px) {
       .wrapper-slider-Collezione1-halloween2024-desktop {
@@ -362,8 +381,26 @@
         <div class="slider-Collezione1-halloween2024-desktop">
           <div class="slides-Collezione1-halloween2024-desktop"></div>
           <div class="slider-buttons-Collezione1-halloween2024-desktop">
-            <button class="slider-button-Collezione1-halloween2024-desktop prev">❮</button>
-            <button class="slider-button-Collezione1-halloween2024-desktop next">❯</button>
+            <button class="slider-button-Collezione1-halloween2024-desktop prev" aria-label="Previous slide">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-chevron">
+    <path d="M15 6l-6 6l6 6"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"/>
+  </svg>
+</button>
+<button class="slider-button-Collezione1-halloween2024-desktop next" aria-label="Next slide">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-chevron">
+    <path d="M9 6l6 6l-6 6"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"/>
+  </svg>
+</button>
           </div>
           <div class="slider-indicators-Collezione1-halloween2024-desktop"></div>
           <div class="slide-count-Collezione1-halloween2024-desktop">
