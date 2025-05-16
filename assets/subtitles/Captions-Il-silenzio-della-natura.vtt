@@ -2,11 +2,14 @@ WEBVTT
 
 STYLE
 ::cue {
-  /* Posiziona tutti i sottotitoli alla stessa altezza (85% dall’alto del video) */
-  line: 50%;
+  /* Altezza fissa (es. 85% dall’alto) */
+  line: 85%;
+  /* Centra orizzontalmente */
+  position: 50%;
+  align: center;
   /* Stile unificato */
   color: white;
-  font-size: 100%;
+  font-size: 150%;
   font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif !important;
   font-weight: 400;
   background: transparent;
