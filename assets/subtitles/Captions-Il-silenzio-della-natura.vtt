@@ -10,11 +10,8 @@ STYLE
   background: transparent; /* Nessuno sfondo nero */
 
   /* ---------- Posizionamento ---------- */
-  /* line imposta l’asse Y: 50% = centro verticale */
-  line: 50%;    
-  /* position imposta l’asse X: 50% = centro orizzontale */
+  line: calc(50% - 30px);    /* sposta 30px più in alto rispetto al centro */
   position: 50%;
-  align: center;           /* Centra il testo dentro il riquadro */
 }
 
 00:00:01.000 --> 00:00:05.000
