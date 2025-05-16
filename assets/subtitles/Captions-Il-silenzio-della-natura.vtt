@@ -4,7 +4,8 @@ STYLE
 ::cue {
   /* rimuove lo sfondo */
   background: rgba(0, 0, 0, 0.80);
-  border-radius: 4px;
+  border-radius: 10px; /* ecco il bordo arrotondato */
+  padding: 0.2em 0.6em; /* importante per vedere bene il bordo */
   /* testo bianco */
   color: white;
   /* dimensione e font */
