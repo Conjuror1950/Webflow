@@ -3,11 +3,11 @@ WEBVTT
 STYLE
 ::cue {
   /* rimuove lo sfondo */
-  background: transparent;
+  background: rgba(0, 0, 0, 0.66);
   /* testo bianco */
   color: white;
   /* dimensione e font */
-  font-size: 90%;
+  font-size: 60%;
   font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif !important;
   font-weight: 400;
 }
@@ -25,10 +25,10 @@ Este texto está posicionado a la izquierda
 Y este a la derecha
 
 00:00:21.000 --> 00:00:25.000 line:88% position:50% align:center
-Este solo ocupa el 33% y por eso tiene varias líneas
+Vedetta Torre Ovest.
 
 00:00:26.000 --> 00:00:30.000 line:88% position:50% align:center
-Este tiene texto en negrita
+Vedetta Torre Ovest.
 
 00:00:31.000 --> 00:00:35.000
 Este contiene cursiva
