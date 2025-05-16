@@ -1,0 +1,18 @@
+cat > prova.vtt << 'EOF'
+WEBVTT
+
+00:00:00.000 --> 00:00:03.000
+Este es un subtítulo de prueba.
+
+00:00:04.000 --> 00:00:07.000
+<b>¡Hola mundo!</b> Esto está en negrita.
+
+00:00:08.000 --> 00:00:11.000
+<i>Este texto</i> está en cursiva.
+
+00:00:12.000 --> 00:00:15.000
+<u>Este texto</u> está subrayado.
+
+00:00:16.000 --> 00:00:19.000
+¡Fin del subtítulo de prueba!
+EOF
