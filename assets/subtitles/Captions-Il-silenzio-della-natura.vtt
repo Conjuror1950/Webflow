@@ -1,5 +1,20 @@
 WEBVTT
 
+STYLE
+::cue {
+  /* Altezza fissa (es. 85% dall’alto) */
+  line: 85%;
+  /* Centra orizzontalmente */
+  position: 50%;
+  align: center;
+  /* Stile unificato */
+  color: white;
+  font-size: 100%;
+  font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-weight: 400;
+  background: transparent;
+}
+
 00:00:01.000 --> 00:00:05.000
 Sottotitoli Italiano (automatico) in formato WebVTT
 
