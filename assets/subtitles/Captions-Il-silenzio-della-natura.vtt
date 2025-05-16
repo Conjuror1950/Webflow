@@ -3,7 +3,7 @@ WEBVTT
 STYLE
 ::cue {
   /* Posiziona tutti i sottotitoli alla stessa altezza (85% dall’alto del video) */
-  line: 85%;
+  line: 50%;
   /* Stile unificato */
   color: white;
   font-size: 100%;
