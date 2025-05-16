@@ -3,9 +3,7 @@ WEBVTT
 STYLE
 ::cue {
   /* rimuove lo sfondo */
-  background: rgba(0, 0, 0, 0.6);
-  border-radius: 10px; /* ecco il bordo arrotondato */
-  padding: 0.4em 0.8em important!;
+  background: rgba(0, 0, 0, 0.75);
   /* testo bianco */
   color: white;
   /* dimensione e font */
