@@ -1,19 +1,5 @@
 WEBVTT
 
-STYLE
-::cue {
-  /* ---------- Aspetto ---------- */
-  font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif !important;
-  font-size: 150%;         /* Modifica qui la dimensione */
-  font-weight: 400;
-  color: white;            /* Colore del testo */
-  background: transparent; /* Nessuno sfondo nero */
-
-  /* ---------- Posizionamento ---------- */
-  line: calc(50% - 430px);    /* sposta 30px più in alto rispetto al centro */
-  position: 50%;
-}
-
 00:00:01.000 --> 00:00:05.000
 Sottotitoli Italiano (automatico) in formato WebVTT
 
