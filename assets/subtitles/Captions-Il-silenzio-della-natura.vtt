@@ -10,7 +10,7 @@ STYLE
   background: transparent; /* Nessuno sfondo nero */
 
   /* ---------- Posizionamento ---------- */
-  line: calc(50% - 30px);    /* sposta 30px più in alto rispetto al centro */
+  line: calc(50% - 130px);    /* sposta 30px più in alto rispetto al centro */
   position: 50%;
 }
 
