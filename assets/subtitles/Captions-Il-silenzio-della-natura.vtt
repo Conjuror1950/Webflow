@@ -3,7 +3,8 @@ WEBVTT
 STYLE
 ::cue {
   /* rimuove lo sfondo */
-  background: rgba(0, 0, 0, 0.66);
+  background: rgba(0, 0, 0, 0.85);
+  border-radius: 4px;
   /* testo bianco */
   color: white;
   /* dimensione e font */
