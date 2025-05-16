@@ -2,17 +2,19 @@ WEBVTT
 
 STYLE
 ::cue {
-  /* Altezza fissa (es. 85% dall’alto) */
-  line: 85%;
-  /* Centra orizzontalmente */
-  position: 50%;
-  align: center;
-  /* Stile unificato */
-  color: white;
-  font-size: 100%;
+  /* ---------- Aspetto ---------- */
   font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 150%;         /* Modifica qui la dimensione */
   font-weight: 400;
-  background: transparent;
+  color: white;            /* Colore del testo */
+  background: transparent; /* Nessuno sfondo nero */
+
+  /* ---------- Posizionamento ---------- */
+  /* line imposta l’asse Y: 50% = centro verticale */
+  line: 50%;    
+  /* position imposta l’asse X: 50% = centro orizzontale */
+  position: 50%;
+  align: center;           /* Centra il testo dentro il riquadro */
 }
 
 00:00:01.000 --> 00:00:05.000
