@@ -12,7 +12,7 @@ STYLE
   font-weight: 400;
 }
 
-00:00:01.000 --> 00:00:05.000 line:90% position:50% align:center
+00:00:01.000 --> 00:00:05.000 line:88% position:50% align:center
 Sottotitoli Italiano (automatico) in formato WebVTT
 
 00:00:06.000 --> 00:00:10.000
@@ -24,10 +24,10 @@ Este texto está posicionado a la izquierda
 00:00:16.000 --> 00:00:20.000
 Y este a la derecha
 
-00:00:21.000 --> 00:00:25.000 line:90% position:50% align:center
+00:00:21.000 --> 00:00:25.000 line:88% position:50% align:center
 Este solo ocupa el 33% y por eso tiene varias líneas
 
-00:00:26.000 --> 00:00:30.000 line:90% position:50% align:center
+00:00:26.000 --> 00:00:30.000 line:88% position:50% align:center
 Este tiene texto en negrita
 
 00:00:31.000 --> 00:00:35.000
