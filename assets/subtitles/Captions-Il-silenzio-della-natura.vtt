@@ -4,7 +4,7 @@ STYLE
 ::cue {
   /* rimuove lo sfondo */
   background: rgba(0, 0, 0, 0.7);
-  border-radius: 20% !important;
+  border-radius: 20px !important;
   /* testo bianco */
   color: white;
   /* dimensione e font */
