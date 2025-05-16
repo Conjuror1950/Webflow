@@ -1,4 +1,26 @@
 WEBVTT
 
-00:00:01.000 --> 00:00:05.000
-Test sottotitolo funzionante.
+STYLE
+::cue(.red) {
+  color: red;
+}
+
+STYLE
+::cue(.big) {
+  font-size: 150%;
+}
+
+00:00:01.000 --> 00:00:04.000
+Este es un ejemplo básico de subtítulos WebVTT.
+
+00:00:05.000 --> 00:00:08.000
+<c.red>Este texto debería aparecer en rojo si el navegador lo soporta.</c>
+
+00:00:09.000 --> 00:00:12.000
+<c.big>Este texto tiene un tamaño de fuente más grande.</c>
+
+00:00:13.000 --> 00:00:16.000
+Este texto tiene <b>negrita</b>, <i>cursiva</i> y <u>subrayado</u>.
+
+00:00:17.000 --> 00:00:20.000
+¡Fin del ejemplo!
