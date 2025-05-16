@@ -16,13 +16,13 @@ STYLE
 00:00:01.000 --> 00:00:05.000 line:84% position:50% align:center
 Sottotitoli Italiano (automatico) in formato WebVTT
 
-00:00:06.000 --> 00:00:10.000
+00:00:06.000 --> 00:00:10.000 line:84% position:50% align:center
 Este texto está posicionado en la parte superior del video
 
-00:00:11.000 --> 00:00:15.000
+00:00:11.000 --> 00:00:15.000 line:84% position:50% align:center
 Este texto está posicionado a la izquierda
 
-00:00:16.000 --> 00:00:20.000
+00:00:16.000 --> 00:00:20.000 line:84% position:50% align:center
 Y este a la derecha
 
 00:00:21.000 --> 00:00:25.000 line:84% position:50% align:center
@@ -31,26 +31,26 @@ Vedetta Torre Ovest.
 00:00:26.000 --> 00:00:30.000 line:84% position:50% align:center
 Vedetta Torre Ovest.
 
-00:00:31.000 --> 00:00:35.000
+00:00:31.000 --> 00:00:35.000 line:84% position:50% align:center
 Este contiene cursiva
 
-00:00:36.000 --> 00:00:40.000
+00:00:36.000 --> 00:00:40.000 line:84% position:50% align:center
 Este contiene subrayado
 
-00:00:41.000 --> 00:00:45.000
+00:00:41.000 --> 00:00:45.000 line:84% position:50% align:center
 Este contiene negrita, cursiva y subrayado tutti insieme
 
-00:00:46.000 --> 00:00:50.000
+00:00:46.000 --> 00:00:50.000 line:84% position:50% align:center
 Este texto debería aparecer en rojo si el navegador lo soporta
 
-00:00:51.000 --> 00:00:55.000
+00:00:51.000 --> 00:00:55.000 line:84% position:50% align:center
 Tarzan está en azul y Jane en verde (se omiten voces CSS qui)
 
-00:00:56.000 --> 00:01:00.000
+00:00:56.000 --> 00:01:00.000 line:84% position:50% align:center
 Yo Tarzan... ¡Entonces yo soy Jane!
 
-00:01:01.000 --> 00:01:05.000
+00:01:01.000 --> 00:01:05.000 line:84% position:50% align:center
 Usando CSS, esta fuente debería ser 150% más grande
 
-00:01:06.000 --> 00:01:10.000
+00:01:06.000 --> 00:01:10.000 line:84% position:50% align:center
 ¡Eso es todo! That's it! Por ahora...
