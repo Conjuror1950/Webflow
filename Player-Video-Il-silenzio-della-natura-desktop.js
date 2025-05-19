@@ -1177,9 +1177,9 @@ document.addEventListener('fullscreenchange', () => {
   if (!fsIcon) return;
 
   if (document.fullscreenElement) {
-    fsIcon.src = 'https://…/arrow.down.forward.and.arrow.up.backward.svg';
+    fsIcon.src = 'https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a610667977d7e81c3aa5c_arrow.down.forward.and.arrow.up.backward.svg';
   } else {
-    fsIcon.src = 'https://…/arrow.up.backward.and.arrow.down.forward.svg';
+    fsIcon.src = 'https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a6105f7d436f1d44084d0_arrow.up.backward.and.arrow.down.forward.svg';
   }
 });
 
