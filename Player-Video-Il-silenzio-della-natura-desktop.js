@@ -628,6 +628,13 @@ justify-content:flex-end;
   10%  { opacity: 1; transform: translateY(0); }   /* fade-in in 0.5s */
   50%  { opacity: 1; transform: translateY(0); }   /* resta visibile */
 }
+
+/* Nasconde per default i menu di sottotitoli, audio e share */
+.subs-menu,
+.lang-menu,
+.share-menu {
+  display: none !important;
+}
 `;
   const styleEl = document.createElement('style');
   styleEl.textContent = css;
@@ -1318,11 +1325,5 @@ document.addEventListener('fullscreenchange', () => {
     wrapper.classList.remove('fullscreen');
   }
 });
-    document.body.appendChild(wrapper);
-
-// chiudo tutti i <details> presenti nel wrapper
-wrapper.querySelectorAll('details')
-       .forEach(d => d.open = false);
-  };
   document.body.appendChild(dashScript);
 })();
