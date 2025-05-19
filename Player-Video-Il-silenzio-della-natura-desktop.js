@@ -84,7 +84,7 @@ video {
   display:flex;
   flex-direction:column;
   justify-content:space-between;
-  padding:5rem;
+  padding:1.5rem;
   color:white;
   pointer-events:none;
   transition:opacity .5s;
