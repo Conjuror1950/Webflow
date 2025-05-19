@@ -631,6 +631,7 @@ justify-content:flex-end;
   /* reset border-radius per le icone tonde */
   .play-pause img,
   .fullscreen-btn img,
+  .share-menu img,
   .subs-btn img {
     border-radius: 0 !important;
   }
