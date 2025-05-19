@@ -1325,5 +1325,6 @@ document.addEventListener('fullscreenchange', () => {
     wrapper.classList.remove('fullscreen');
   }
 });
+  };  
   document.body.appendChild(dashScript);
 })();
