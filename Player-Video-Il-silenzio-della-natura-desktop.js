@@ -630,6 +630,13 @@ justify-content:flex-end;
   .subs-btn img {
     border-radius: 0 !important;
   }
+
+  .center-controls {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+}
 `;
   const styleEl = document.createElement('style');
   styleEl.textContent = css;
