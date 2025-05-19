@@ -175,7 +175,6 @@ justify-content:space-between;
   display:flex;
   justify-content:center;
   gap:2rem;
-  border-radius: 0px !important;
   position: absolute;    /* lo porta fuori dal flow flex standard */
   top: 50%;              /* metà altezza del wrapper */
   left: 50%;             /* metà larghezza (se ti serve orizzontalmente) */
@@ -629,6 +628,12 @@ justify-content:flex-end;
   10%  { opacity: 1; transform: translateY(0); }   /* fade-in in 0.5s */
   50%  { opacity: 1; transform: translateY(0); }   /* resta visibile */
 }
+  /* reset border-radius per le icone tonde */
+  .play-pause img,
+  .fullscreen-btn img,
+  .subs-btn img {
+    border-radius: 0 !important;
+  }
 `;
   const styleEl = document.createElement('style');
   styleEl.textContent = css;
