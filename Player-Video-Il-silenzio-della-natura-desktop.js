@@ -193,7 +193,7 @@ justify-content:space-between;
   width: 50px;             /* fissa la larghezza */
   height: 50px;            /* e l’altezza */
   padding: 0;              /* togli padding extra */
-  border-radius: 0px; 
+  border-radius: 0px !important; 
   display: flex;
   align-items: center;
   justify-content: center;
