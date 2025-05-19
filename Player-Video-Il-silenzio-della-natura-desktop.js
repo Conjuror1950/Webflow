@@ -69,7 +69,7 @@ video {
 
 .preview-time {
   position: absolute;
-  bottom: 1px;
+  bottom: -2px;
   width: 100%;
   text-align: center;
   font-family:inherit;
