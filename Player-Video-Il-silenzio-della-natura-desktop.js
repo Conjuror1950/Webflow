@@ -632,7 +632,7 @@ justify-content:flex-end;
 /* Nasconde per default i menu di sottotitoli, audio e share */
 .subs-menu,
 .lang-menu,
-.share-menu
+.share-menu,
 .preview-container {
   display: none !important;
 }
