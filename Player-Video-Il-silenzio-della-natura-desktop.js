@@ -630,12 +630,17 @@ justify-content:flex-end;
   .subs-btn img {
     border-radius: 0 !important;
   }
-
-  .center-controls {
+  
+  /* override finale per centrare sempre le center-controls */
+.center-controls {
   position: absolute !important;
-  top: 50% !important;
-  left: 50% !important;
+  top: 50%           !important;
+  left: 50%          !important;
   transform: translate(-50%, -50%) !important;
+  display: flex      !important;
+  justify-content: center !important;
+  align-items: center    !important;
+  gap: 2rem          !important;
 }
 `;
   const styleEl = document.createElement('style');
