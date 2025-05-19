@@ -930,8 +930,8 @@ const subsItems = subsMenu.querySelectorAll('.subs-item');
 
 // ← Qui imposto subito che i menu siano nascosti
 shareMenu.style.display = 'none';
-langMenu.style.display = 'none';
-subsMenu.style.display = 'none';
+langMenu.style.display   = 'none';
+subsMenu.style.display   = 'none';
 preview-container.style.display = 'none';
 scrub-thumb.style.display = 'none';
 
