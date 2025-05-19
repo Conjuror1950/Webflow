@@ -1318,6 +1318,11 @@ document.addEventListener('fullscreenchange', () => {
     wrapper.classList.remove('fullscreen');
   }
 });
+    document.body.appendChild(wrapper);
+
+// chiudo tutti i <details> presenti nel wrapper
+wrapper.querySelectorAll('details')
+       .forEach(d => d.open = false);
   };
   document.body.appendChild(dashScript);
 })();
