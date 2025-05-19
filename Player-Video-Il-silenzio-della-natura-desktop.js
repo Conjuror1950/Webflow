@@ -203,11 +203,12 @@ justify-content:space-between;
 
 .play-pause .play-icon,
 .play-pause .pause-icon {
-  position: absolute;      /* sovrapponi le due img */
-  top: 0;
-  left: 0;
-  width: 100%;             /* occupino l’intero contenitore */
-  height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60%;
+  height: 60%;
+  transform: translate(-50%, -50%);
 }
 
 .skip-value {
