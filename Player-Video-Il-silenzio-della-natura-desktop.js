@@ -1172,11 +1172,14 @@ fsBtn.addEventListener('click', () => {
 
 // Cambia icona al cambio di stato fullscreen
 document.addEventListener('fullscreenchange', () => {
-  const fsIcon = document.querySelector('.fullscreen-icon');
+  // prendo direttamente l'<img> dentro il bottone
+  const fsIcon = document.querySelector('.fullscreen-btn img');
+  if (!fsIcon) return;
+
   if (document.fullscreenElement) {
-    fsIcon.src = 'https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a610667977d7e81c3aa5c_arrow.down.forward.and.arrow.up.backward.svg'; // fullscreen attivo
+    fsIcon.src = 'https://…/arrow.down.forward.and.arrow.up.backward.svg';
   } else {
-    fsIcon.src = 'https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a6105f7d436f1d44084d0_arrow.up.backward.and.arrow.down.forward.svg'; // fullscreen disattivo
+    fsIcon.src = 'https://…/arrow.up.backward.and.arrow.down.forward.svg';
   }
 });
 
