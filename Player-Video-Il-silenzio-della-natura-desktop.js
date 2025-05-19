@@ -929,9 +929,11 @@ const subsMenu = document.querySelector('.subs-menu');
 const subsItems = subsMenu.querySelectorAll('.subs-item');
 
 // ← Qui imposto subito che i menu siano nascosti
-shareMenu.style.display = 'none';
-langMenu.style.display   = 'none';
-subsMenu.style.display   = 'none';
+  document.querySelector('.share-menu').style.display = 'none';
+  document.querySelector('.lang-menu').style.display  = 'none';
+  document.querySelector('.subs-menu').style.display  = 'none';
+  document.querySelector('.preview-container').style.display = 'none';
+  document.querySelector('.scrub-thumb').style.display      = 'none';
 
 // apri/chiudi menu sottotitoli
 subsBtn.addEventListener('click', e => {
