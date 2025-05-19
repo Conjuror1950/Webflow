@@ -39,7 +39,7 @@ video {
 
 .preview-container {
   position: absolute;
-  bottom: 75px;               /* sopra la barra dei controlli */
+  bottom: 72px;               /* sopra la barra dei controlli */
   width: 402px;               /* dimensione anteprima */
   height: 220px;
   overflow: hidden;
@@ -57,7 +57,7 @@ video {
 /* 1) il pallino bianco che segue il mouse */
 .scrub-thumb {
   position: absolute;
-  margin-top: -11px;               /* allinea verticalmente al centro della track */
+  margin-top: -15px;               /* allinea verticalmente al centro della track */
   width: 11px;
   height: 11px;
   background: white;
