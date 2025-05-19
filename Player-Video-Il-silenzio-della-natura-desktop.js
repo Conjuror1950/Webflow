@@ -122,14 +122,14 @@
   document.addEventListener("DOMContentLoaded", injectPlayer);
 })();
 
-// Player-Video-Il-silenzio-della-natura-desktop.js
-(function() {
+// Player-Video-Il-silenzio-della-natura-desktop.css.js
 
-  // 1) Utility: inietta style nel <head>
+(function() {
+  // Funzione di utilità per iniettare CSS
   function addStyle(cssText) {
-    const head = document.head || document.getElementsByTagName("head")[0];
-    const style = document.createElement("style");
-    style.type = "text/css";
+    const head  = document.head || document.getElementsByTagName('head')[0];
+    const style = document.createElement('style');
+    style.type = 'text/css';
     if (style.styleSheet) {
       style.styleSheet.cssText = cssText;
     } else {
@@ -138,17 +138,26 @@
     head.appendChild(style);
   }
 
-  // 2) Utility: carica uno script esterno e chiama callback
-  function loadScript(src, callback) {
-    const s = document.createElement("script");
-    s.src = src;
-    s.onload = callback;
-    s.onerror = () => console.error("Impossibile caricare lo script:", src);
-    document.head.appendChild(s);
-  }
+  // Tutto il CSS in un template literal
+  const PLAYER_CSS = `
+.apple-video-wrapper {
+  position:relative;
+  width:100vw;
+  height:100vh;
+  background:black;
+  font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif !important;
+  overflow:hidden;
+}
+/* 1) STATO NORMALE: video “contenuto” e centrato */
+video {
+  width: 95vw;
+  height: 100vh;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
 
-  // 3) Il CSS di tutto il player
-  const playerCSS = `
+/* GLOBAL: sia standard che WebKit fullscreen */
 .apple-video-wrapper {
   position:relative;
   width:100vw;
@@ -775,5 +784,6 @@ justify-content:flex-end;
   10%  { opacity: 1; transform: translateY(0); }   /* fade-in in 0.5s */
   50%  { opacity: 1; transform: translateY(0); }   /* resta visibile */
 }
-  `;
-  addStyle(playerCSS);
+  // Inietta il CSS in head
+  addStyle(PLAYER_CSS);
+})();
