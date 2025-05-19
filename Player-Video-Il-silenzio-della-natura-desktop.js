@@ -1,4 +1,5 @@
-  // HTML del player
+(function() {
+  // HTML del video player
   var playerHTML = `
     <div class="apple-video-wrapper">
       <img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/68286f66a406b7094b5b2407_avviso%20sequenze%20con%20immagini%20e%20luci%20lampeggianti.png"
@@ -16,7 +17,7 @@
         <div class="top-bar">
           <button class="close-btn">
             <img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a6e03d818ab9f59079de2_xmark.svg"
-                 alt="Close" class="close-btn" style="width:18px; height:18px;">
+                 alt="Close" style="width:18px;height:18px;">
           </button>
           <div class="volume-control">
             <input type="range" class="volume" min="0" max="1" step="0.01" value="1">
@@ -26,18 +27,22 @@
           </div>
         </div>
         <div class="center-controls">
-          <button class="rewind"><img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a5fb8fe6435455d3d98da_10.arrow.trianglehead.counterclockwise.svg"
-                                      alt="Rewind 10"></button>
+          <button class="rewind">
+            <img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a5fb8fe6435455d3d98da_10.arrow.trianglehead.counterclockwise.svg"
+                 alt="Rewind 10" style="height:35px;">
+          </button>
           <button class="play-pause">
             <img class="play-icon"
                  src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a7228fdd5352747977676_play.fill.svg"
-                 alt="Play">
+                 alt="Play" style="height:50px;">
             <img class="pause-icon"
                  src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a722870d098221ad93f47_pause.fill.svg"
-                 alt="Pausa" style="display:none;">
+                 alt="Pausa" style="height:50px; display:none;">
           </button>
-          <button class="forward"><img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a5fb8f7a09fb00f328afb_10.arrow.trianglehead.clockwise.svg"
-                                       alt="Forward 10"></button>
+          <button class="forward">
+            <img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a5fb8f7a09fb00f328afb_10.arrow.trianglehead.clockwise.svg"
+                 alt="Forward 10" style="height:35px;">
+          </button>
         </div>
         <div class="bottom-bar">
           <div class="bottom-top-row">
@@ -46,7 +51,7 @@
             <div class="right-controls">
               <button class="subs-btn">
                 <img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681c881581975b4efc170207_captions.bubble.svg"
-                     alt="Sottotitoli">
+                     alt="Sottotitoli" style="width:20px;height:20px;">
               </button>
               <div class="subs-menu" style="display:none;">
                 <button class="title-subs-item">Sottotitoli</button>
@@ -55,37 +60,37 @@
               </div>
               <button class="lang-btn">
                 <img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681bb7eb7c5e96fc0889f14c_waveform.circle.svg"
-                     alt="Lingua" class="lang-icon">
+                     alt="Lingua" class="lang-icon" style="width:20px;height:20px;">
               </button>
               <div class="lang-menu" style="display:none;">
                 <button class="title-lang-item">Audio</button>
-                <button class="lang-item selected" data-lang="it">Originale: Italiano<span class="check">✓</span></button>
+                <button class="lang-item" data-lang="it">Originale: Italiano<span class="check">✓</span></button>
               </div>
               <button class="share-btn">
                 <img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681c7cf63258616ead57cdf0_square.and.arrow.up.svg"
-                     alt="Condividi" class="share-icon">
+                     alt="Condividi" class="share-icon" style="width:18px;height:30px;">
               </button>
               <div class="share-menu" style="display:none;">
                 <button class="share-item copy-link">
                   <span class="item-text">Copia Link</span>
                   <img class="item-icon"
                        src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681b6628e632be2dca7bfe8e_link.svg"
-                       alt="Link Icon">
+                       width="18" height="18" alt="Link Icon">
                 </button>
                 <button class="share-item email-share">
                   <span class="item-text">Email</span>
                   <img class="item-icon"
                        src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681b6628ed25af24c9b87b32_envelope.fill.svg"
-                       alt="Email Icon">
+                       width="18" height="18" alt="Email Icon">
                 </button>
               </div>
               <button class="fullscreen-btn">
                 <img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a6105f7d436f1d44084d0_arrow.up.backward.and.arrow.down.forward.svg"
-                     alt="Fullscreen" class="fullscreen-icon">
+                     alt="Fullscreen" class="fullscreen-icon" style="width:18px;height:18px;">
               </button>
             </div>
           </div>
-          <div class="progress-wrapper">
+          <div class="progress-wrapper" style="position:relative;">
             <input type="range" class="progress" value="0" step="0.1">
             <div class="scrub-thumb"></div>
           </div>
@@ -101,44 +106,18 @@
         </div>
       </div>
     </div>
-`;
+  `;
 
-    // Modifica: inietta il player dentro un contenitore con ID "player-container"
+  // Funzione di iniezione
   function injectPlayer() {
     var container = document.getElementById("Player-Video-Il-silenzio-della-natura-container-desktop");
     if (container) {
       container.innerHTML = playerHTML;
     } else {
-      // Se il contenitore non viene trovato, esegue l'append al body come fallback
-      var defaultContainer = document.createElement("div");
-      defaultContainer.innerHTML = playerHTML;
-      document.body.appendChild(defaultContainer);
-      console.warn("Elemento con ID 'Player-Video-Il-silenzio-della-natura-container-desktop' non trovato. Iniettato in body come fallback.");
+      console.warn("Container video non trovato, id='Player-Video-Il-silenzio-della-natura-container-desktop'");
     }
   }
-  injectPlayer();  
 
-(function() {
-  // Funzione per aggiungere il CSS alla pagina
-  function addStyle(cssText) {
-    var head = document.head || document.getElementsByTagName("head")[0];
-    var style = document.createElement("style");
-    style.type = "text/css";
-    if (style.styleSheet) {
-      style.styleSheet.cssText = cssText;
-    } else {
-      style.appendChild(document.createTextNode(cssText));
-    }
-    head.appendChild(style);
-  }
-  // CSS della gallery (stile completo), con media query per desktop (>= 1280px)
-  var playerCSS = `
-
-
-  `;
-  addStyle(playerCSS);
-}
-
-     });
-  });
+  // Inietta appena il DOM è pronto
+  document.addEventListener("DOMContentLoaded", injectPlayer);
 })();
