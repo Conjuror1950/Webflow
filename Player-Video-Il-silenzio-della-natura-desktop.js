@@ -703,13 +703,621 @@ justify-content:flex-end;
   const dashScript = document.createElement('script');
   dashScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/dashjs/5.0.0/legacy/umd/dash.all.min.js';
   dashScript.onload = () => {
+    /* Video .mp4 in formato dash */
+    // ora il manifest contiene più Representation (4K,1080p,720p,...)
     const manifest = 'https://il-silenzio-della-natura-video.netlify.app/manifest.mpd';
     const video = document.getElementById('apple-video');
     const player = dashjs.MediaPlayer().create();
+    // inizializza e carica il manifest
     player.initialize(video, manifest, false);
     player.enableText(true);
-    // … TUTTO IL RESTO DEL JS ORIGINALE (event listeners, preview, controls, ecc.)
-    // Puoi copiare qui fedelmente la logica completa che avevi nel tuo <script> Webflow.
+  // ─── fade‐in/fade‐out dei sottotitoli ───
+  const track = video.textTracks[0];
+  // disabilitiamo il rendering nativo
+  track.mode = 'hidden';
+
+  track.addEventListener('cuechange', () => {
+    const active = track.activeCues;
+    const subEl  = document.getElementById('custom-subtitles');
+    if (active.length) {
+      subEl.textContent = active[0].text;
+      subEl.classList.add('show');
+    } else {
+      subEl.classList.remove('show');
+    }
+  });
+  // ─────────────────────────────────────────
+
+  // player.attachSource(manifest);
+  window.addEventListener('unhandledrejection', ev => {
+  console.warn('Promise non gestita:', ev.reason);
+});
+
+  player.on(dashjs.MediaPlayer.events.ERROR, e => {
+    console.error('DASH error', e);
+  });
+  
+ // ↓↓↓ personalizzo il buffer e le impostazioni HTTP di dash.js
+player.updateSettings({
+  streaming: {
+    // ★ BUFFERING ★
+    buffer: {
+      // Carica più “cuscinetto” prima di partire
+      initialBufferLevel: 20,        // da 15 → 20 s
+      // Mantieni un lungo buffer in qualità top
+      bufferTimeAtTopQuality: 90,    // da 60 → 90 s
+      // Mantieni un buffer generale consistente
+      bufferTimeDefault: 45,         // da 30 → 45 s
+      // Non scendere mai sotto
+      bufferToKeep: 30,              // da 20 → 30 s
+      // Quando il video è lungo, mantieni la logica “long form”
+      longFormContentDurationThreshold: 120
+    },
+
+    // ★ ADAPTIVE BITRATE (ABR) ★
+    abr: {
+      autoSwitchBitrate: { video: true, audio: true },
+      // usa la strategia basata sul buffer
+      useBufferOccupancyABRStrategy: true,
+      // più “comfort” tra i cambi di qualità
+      abrBola: { bitrateSafetyFactor: 0.90 },  // usa il 90% della banda stimata
+      // intervallo min. tra due switch
+      switchInterval: 10                    // da 8 → 10 s
+    },
+
+    // ★ HTTP / RETRY ★
+    http: {
+      timeout: 60000,
+      enableProgressive: true,
+      withCredentials: false,
+      retry: { maxAttempts: 4, baseDelay: 500, multiplier: 2 }  // un tentativo in più
+    }
+  },
+  debug: { logLevel: dashjs.Debug.LOG_LEVEL_NONE }
+});
+
+  // Controls
+  const playBtn = document.querySelector('.play-pause');
+  const rewindBtn = document.querySelector('.rewind');
+  const forwardBtn = document.querySelector('.forward');
+  const progress = document.querySelector('.progress');
+  // tieni memoria dell’ultimo time calcolato
+  let lastPreviewTime = 0;
+  // 1) crea in JS la preview‑video con UN NUOVO player
+  const previewContainer = document.querySelector('.preview-container');
+  const previewVideo     = document.getElementById('preview-video');
+  
+// 1) Copia il markup del video principale (inclusi i <track>)
+previewVideo.innerHTML = document.getElementById('apple-video').innerHTML;
+
+// 2) inizializza dash.js sul preview
+const previewPlayer = dashjs.MediaPlayer().create();
+previewPlayer.initialize(previewVideo, manifest, false);
+
+// 3) abilita i “subtitles” e, non appena il browser conosce i track,
+//    forziamo la modalità di rendering HTML5
+previewPlayer.enableText(true);
+// giusto: usa l'evento dei text-track appena aggiunti
+previewPlayer.on(dashjs.MediaPlayer.events.TEXT_TRACKS_ADDED, () => {
+  // 1) forziamo il track in modalità hidden (rendering JS-only)
+  const previewTrack = previewVideo.textTracks[0];
+  previewTrack.mode = 'hidden';
+  
+  // 2) selezioniamo la traccia italiana (index 0)
+  previewPlayer.setTextTrack(0);
+
+  // 3) ascoltiamo cuechange e aggiorniamo lo stesso #custom-subtitles
+  previewTrack.addEventListener('cuechange', () => {
+    const cues  = previewTrack.activeCues;
+    const subEl = document.getElementById('preview-subtitles');
+    if (cues.length) {
+      subEl.textContent = cues[0].text;
+      subEl.classList.add('show');
+    } else {
+      subEl.classList.remove('show');
+    }
+  });
+});
+  
+// impostazioni “ultra-light” per il preview
+previewPlayer.updateSettings({
+  streaming: {
+    // continua a scaricare anche quando il video sta in pausa
+    scheduleWhilePaused: true,
+    buffer: {
+      // da 10 s → 20 s di buffer per caricamento anticipato
+      bufferTimeDefault: 30,
+      // da 5 s → 10 s per la qualità massima
+      bufferTimeAtTopQuality: 15,
+      // tieni almeno 5 s di buffer già pronto
+      bufferToKeep: 10
+    },
+    // abilita il low-latency mode di dash.js
+    lowLatencyEnabled: true,
+       abr: {
+     autoSwitchBitrate: { video: false },
+     defaultRepresentation: { video: 0 }
+   },
+    http: {
+      timeout: 20000,          // timeout più breve se vuoi
+      enableProgressive: true
+    }
+  },
+  debug: {
+    logLevel: dashjs.Debug.LOG_LEVEL_NONE
+  }
+});
+
+// 2) quando muovi il mouse sulla barra, calcola il time, muovi il thumb, mostra preview & timecode
+progress.addEventListener('mousemove', e => {
+  const rect = progress.getBoundingClientRect();
+  const pct  = (e.clientX - rect.left) / rect.width;
+  const time = Math.max(0, Math.min(1, pct)) * video.duration;
+  
+ // salva l’ultimo time per il click
+ lastPreviewTime = time;
+
+  // — SCRUB THUMB —
+  const thumb = document.querySelector('.scrub-thumb');
+  const thumbWidth = thumb.offsetWidth;              // 11px
+  // calcola x partendo dalla % e riducendo la “corsia” di thumbWidth
+  const x = pct * (rect.width - thumbWidth) + thumbWidth / 2;
+  thumb.style.left = x + 'px';
+  thumb.style.display = 'block';
+
+  // — PREVIEW TIMECODE —
+  const previewTime = document.querySelector('.preview-time');
+  previewTime.textContent = formatTime(time);
+
+// — PREVIEW VIDEO — (posizione clamped entro il wrapper)
+const halfW = previewContainer.offsetWidth / 2;
+const wrapper = document.querySelector('.apple-video-wrapper');
+const wrapRect = wrapper.getBoundingClientRect();
+const sideMargin = 30;  // <— qui decidi quanti px vuoi di spazio
+
+  // posizione “desiderata” centrata sul mouse RELATIVA al wrapper
+  const localX = e.clientX - wrapRect.left;      // X dentro il wrapper
+  const desiredX = localX - halfW;
+  // clamp fra [sideMargin .. wrapperWidth-previewWidth-sideMargin]
+  const minX = sideMargin;
+  const maxX = wrapRect.width - previewContainer.offsetWidth - sideMargin;
+  const clampedX = Math.min(Math.max(desiredX, minX), maxX);
+  previewContainer.style.left = clampedX + 'px';
+
+previewVideo.currentTime = time;
+previewContainer.style.display = 'block';
+});
+
+// 3) nascondi thumb e preview al mouseout
+progress.addEventListener('mouseout', () => {
+  document.querySelector('.scrub-thumb').style.display = 'none';
+  previewContainer.style.display = 'none';
+});
+
+  const timeLabel = document.querySelector('.time');
+  const remLabel = document.querySelector('.remaining-time');
+  const volume = document.querySelector('.volume');
+  // salvo l’ultimo valore di volume non-zero
+  let lastVolume = parseFloat(volume.value) || 1;
+  // indica se lo stato muto è stato attivato cliccando l’icona
+  let mutedByClick = false;
+  const fsBtn = document.querySelector('.fullscreen-btn');
+  const shareBtn = document.querySelector('.share-btn');
+  // Share: apri menu con opzione “Copia link”
+  const shareMenu = document.querySelector('.share-menu');
+  // Language switcher
+  const langBtn  = document.querySelector('.lang-btn');
+  const langMenu = document.querySelector('.lang-menu');
+  // crea gli span .check e seleziona Italiano
+langMenu.querySelectorAll('.lang-item').forEach(item => {
+  // (se non li hai già messi in HTML) crea lo span
+  if (!item.querySelector('.check')) {
+    const chk = document.createElement('span');
+    chk.classList.add('check');
+    chk.textContent = '✓';
+    item.appendChild(chk);
+  }
+  // se è Italiano, aggiungi la classe selected
+  if (item.dataset.lang === 'it') {
+    item.classList.add('selected');
+    // imposta l’audio in italiano
+    document.documentElement.lang = 'it';
+  }
+});
+  const subsBtn  = document.querySelector('.subs-btn');
+const subsMenu = document.querySelector('.subs-menu');
+const subsItems = subsMenu.querySelectorAll('.subs-item');
+
+// apri/chiudi menu sottotitoli
+subsBtn.addEventListener('click', e => {
+  e.stopPropagation();
+  shareMenu.style.display = 'none';
+  langMenu.style.display = 'none';
+  subsMenu.style.display = subsMenu.style.display === 'flex' ? 'none' : 'flex';
+});
+
+// clic su voce sottotitoli
+subsItems.forEach(item => {
+// <<< aggiunto: appena caricate le tracce, attiva Italiano CC
+player.on(dashjs.MediaPlayer.events.TEXT_TRACKS_ADDED, () => {
+  // forza il track 0 (Italiano) e la UI
+  player.setTextTrack(0);                  
+  const italianItem = subsMenu.querySelector('.subs-item[data-val="0"]');
+  if (italianItem) italianItem.classList.add('selected');
+  });
+  
+  previewPlayer.on(dashjs.MediaPlayer.events.TEXT_TRACKS_ADDED, () => {
+  // forza il track 0 (Italiano) anche nel preview
+  previewPlayer.setTextTrack(0);
+});
+
+  // aggiungi un elemento span per la spunta
+  const chk = document.createElement('span');
+  chk.classList.add('check');
+  chk.textContent = '✓';
+  item.appendChild(chk);
+
+item.addEventListener('click', () => {
+  // Salta se è già selezionato
+  if (item.classList.contains('selected')) {
+    return;
+  }
+  const val = parseInt(item.dataset.val, 10);
+
+  // 1) abilita/disabilita sul video principale
+  const htmlTracks = video.textTracks;
+  for (let i = 0; i < htmlTracks.length; i++) {
+    htmlTracks[i].mode = (i === val) ? 'hidden' : 'disabled';
+  }
+
+  // 2) **identica logica per la preview**
+  const previewTracks = previewVideo.textTracks;
+  for (let i = 0; i < previewTracks.length; i++) {
+    previewTracks[i].mode = (i === val) ? 'hidden' : 'disabled';
+  }
+
+    // 2) Abilita/Disabilita i rendering custom
+    const customSub  = document.getElementById('custom-subtitles');
+    const previewSub = document.getElementById('preview-subtitles');
+    if (val < 0) {
+      // “Disattivati”: nascondi entrambe le <div>
+      customSub.classList.remove('show');
+      previewSub.classList.remove('show');
+    } else {
+      // “Italiano (automatico)”: le tue cuechange listener mostreranno il testo,
+      // qui non serve aggiungere 'show' subito perché lo fai via cuechange
+      // ma puoi opzionalmente pulire il testo precedente
+      customSub.textContent  = '';
+      previewSub.textContent = '';
+    }
+
+    // 3) Aggiorna UI del menu
+    subsItems.forEach(i => i.classList.remove('selected'));
+    item.classList.add('selected');
+    subsMenu.style.display = 'none';
+  });
+});
+
+// chiudi cliccando fuori
+document.addEventListener('click', () => {
+  subsMenu.style.display = 'none';
+});
+
+  const copyLinkBtn = document.querySelector('.copy-link');
+  const emailBtn    = document.querySelector('.email-share');
+  const controls = document.querySelector('.controls');
+  const playPauseBtn = document.getElementById("play-pause");
+  let hideTimeout;
+  // Play/Pause
+  const playIcon = playBtn.querySelector('.play-icon');
+  const pauseIcon = playBtn.querySelector('.pause-icon');
+
+playBtn.addEventListener('click', () => {
+  if (video.paused) {
+    video.play();
+    playIcon.style.display = 'none';
+    pauseIcon.style.display = 'inline';
+  } else {
+    video.pause();
+    playIcon.style.display = 'inline';
+    pauseIcon.style.display = 'none';
+  }
+});
+video.addEventListener('ended', () => {
+  playIcon.style.display = 'inline';
+  pauseIcon.style.display = 'none';
+});
+
+video.addEventListener('pause', () => {
+  // icona
+  playIcon.style.display = 'inline';
+  pauseIcon.style.display = 'none';
+  // controlli
+  clearTimeout(hideTimeout);
+  controls.classList.remove('hide');
+  wrapper.classList.remove('hide-cursor');
+});
+
+video.addEventListener('play', () => {
+  playIcon.style.display = 'none';
+  pauseIcon.style.display = 'inline';
+});
+  // Skip
+  rewindBtn.addEventListener('click', () => video.currentTime = Math.max(0, video.currentTime - 10));
+  forwardBtn.addEventListener('click', () => video.currentTime = Math.min(video.duration, video.currentTime + 10));
+  
+  function updateProgressBar() {
+  // ← aggiorna il valore dell’input, così il thumb si muove
+  progress.value = video.currentTime;
+  const playedPct = (video.currentTime / video.duration) * 100;
+  // buffered: prendi l’ultimo segmento caricato
+  let bufEnd = 0;
+  if (video.buffered.length) {
+    bufEnd = video.buffered.end(video.buffered.length - 1);
+  }
+  const bufferedPct = (bufEnd / video.duration) * 100;
+  // 1° valore = played, 2° = buffered
+  progress.style.backgroundSize = `${playedPct}% 100%, ${bufferedPct}% 100%`;
+  // ←— qui aggiorno i testi del tempo
+  timeLabel.textContent = formatTime(video.currentTime);
+  remLabel.textContent  = '-' + formatTime(video.duration - video.currentTime);
+}
+
+  // Time update
+ video.addEventListener('timeupdate', () => {
+   updateProgressBar();
+ });
+
+ // quando il browser scarica nuovi dati
+ video.addEventListener('progress', () => {
+   updateProgressBar();
+ });
+
+  video.addEventListener('loadedmetadata', () => {
+    progress.max = video.duration;
+    remLabel.textContent = '-' + formatTime(video.duration);
+  });
+  
+// al click sulla progress, salta al frame esatto visto in preview
+progress.addEventListener('click', () => {
+  video.currentTime = lastPreviewTime;
+  updateProgressBar();
+});
+
+// Volume
+  // nuova funzione: imposta anche video.volume e colora il track
+volume.addEventListener('input', () => {
+  mutedByClick = false;      // reset del flag
+  const v = parseFloat(volume.value);
+  if (v > 0) lastVolume = v;  // salva sempre l’ultimo valore non-zero
+  // 1) applica il volume al video nativo (per sicurezza)
+  video.volume = v;
+  // 2) applica il volume al dash.js player
+  player.setVolume(v);
+  // 3) ricrea il gradient: parte sinistra bianca, resto grigio
+  const pct = v * 100;
+  volume.style.background =
+    `linear-gradient(to right,
+       white 0%, white ${pct}%,
+       rgba(255,255,255,0.1) ${pct}%, rgba(255,255,255,0.1) 100%)`;
+});
+
+// 4) subito dopo aver definito il listener, forza l'evento input
+//    così il gradient è già corretto al caricamento (value=1)
+volume.dispatchEvent(new Event('input'));
+
+const volumeIcon = document.getElementById('volume-icon');
+
+volumeIcon.addEventListener('click', () => {
+  const current = parseFloat(volume.value);
+
+  if (current > 0) {
+    // sto mutando: salvo il valore prima di azzerare
+    lastVolume = current;
+    volume.value = 0;
+  } else {
+    // volume==0: ripristino sempre l’ultimo valore non-zero
+    volume.value = lastVolume;
+  }
+
+  // rilancio l’input per aggiornare video.volume, gradient e icona
+  volume.dispatchEvent(new Event('input'));
+});
+
+volume.addEventListener('input', () => {
+  // se l’utente tocca lo slider, non siamo in “mute by click”
+  mutedByClick = false;
+
+  const v = parseFloat(volume.value);
+  video.volume = v;
+  player.setVolume(v);
+  const pct = v * 100;
+  volume.style.background =
+    `linear-gradient(to right, white 0%, white ${pct}%, rgba(255,255,255,0.1) ${pct}%, rgba(255,255,255,0.1) 100%)`;
+
+  if (v > 0) lastVolume = v;
+
+  let iconURL, altText;
+  if (v === 0) {
+    iconURL = 'https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681d13cbee3881a72b73cb87_speaker.slash.fill.svg';
+    altText = 'Volume disattivato';
+  } else if (v <= 0.33) {
+    iconURL = 'https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681d13cb25e28096121c087f_custom.speaker.wave.3.fill.svg';
+    altText = 'Volume basso';
+  } else if (v <= 0.66) {
+    iconURL = 'https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681d13cb4d4abbc10de8ed5d_custom.speaker.wave.3.fill.2.svg';
+    altText = 'Volume medio';
+  } else {
+    iconURL = 'https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681d13cccb3122eb07cc40af_custom.speaker.wave.3.fill.2.2.svg';
+    altText = 'Volume alto';
+  }
+  volumeIcon.src = iconURL;
+  volumeIcon.alt = altText;
+});
+
+  // Fullscreen
+fsBtn.addEventListener('click', () => {
+  if (document.fullscreenElement) {
+    document.exitFullscreen();
+  } else {
+    video.parentElement.requestFullscreen();
+  }
+});
+
+// Cambia icona al cambio di stato fullscreen
+document.addEventListener('fullscreenchange', () => {
+  const fsIcon = document.querySelector('.fullscreen-icon');
+  if (document.fullscreenElement) {
+    fsIcon.src = 'https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a610667977d7e81c3aa5c_arrow.down.forward.and.arrow.up.backward.svg'; // fullscreen attivo
+  } else {
+    fsIcon.src = 'https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a6105f7d436f1d44084d0_arrow.up.backward.and.arrow.down.forward.svg'; // fullscreen disattivo
+  }
+});
+
+// 1) Clic sul video da qualsiasi punto → play/pause
+video.addEventListener('click', () => {
+  playBtn.click();
+});
+
+ shareBtn.addEventListener('click', (e) => {
+   e.stopPropagation();
+   langMenu.style.display = 'none';       // ← chiudo il menu lingua
+   subsMenu.style.display = 'none';      // ← nascondi anche qui il menu subs
+   // toggle visibilità menu
+   shareMenu.style.display = shareMenu.style.display === 'flex' ? 'none' : 'flex';
+ });
+
+ // copia link negli appunti
+ copyLinkBtn.addEventListener('click', async () => {
+   try {
+     await navigator.clipboard.writeText(location.href);
+     copyLinkBtn.textContent = 'Link copiato ✓';
+   } catch {
+     alert('Impossibile copiare il link');
+   }
+   // chiudi dopo un attimo
+   setTimeout(() => shareMenu.style.display = 'none', 1000);
+ });
+
+// email share
+emailBtn.addEventListener('click', () => {
+  const subject = encodeURIComponent(document.title);
+  const body    = encodeURIComponent(`Guarda qui: ${location.href}`);
+  window.location.href = `mailto:?subject=${subject}&body=${body}`;
+});
+
+ // clic fuori per chiudere
+ document.addEventListener('click', () => {
+   shareMenu.style.display = 'none';
+   langMenu.style.display = 'none';
+ });
+
+  // Auto-hide controls
+  const wrapper = document.querySelector('.apple-video-wrapper');
+  const resetHideControls = () => {
+  // mostra subito i controlli
+  controls.classList.remove('hide');
+  wrapper.classList.remove('hide-cursor');
+  // resetta il timeout precedente
+  clearTimeout(hideTimeout);
+  // se il video è in play, ri‑programma l’auto‑hide dopo 3s
+  if (!video.paused) {
+    hideTimeout = setTimeout(() => {
+      controls.classList.add('hide');
+      wrapper.classList.add('hide-cursor');
+    }, 3000);
+  }
+};
+
+// Auto‑hide controls e cursore
+wrapper.addEventListener('mousemove', resetHideControls);
+  controls.classList.remove('hide');
+  wrapper.classList.remove('hide-cursor');
+
+  clearTimeout(hideTimeout);
+  // se il video è in play, allora nascondi dopo 3s
+  if (!video.paused) {
+    hideTimeout = setTimeout(() => {
+      controls.classList.add('hide');
+      wrapper.classList.add('hide-cursor');
+    }, 3000);
+  }
+
+  function formatTime(s) {
+    const m=Math.floor(s/60), sec=Math.floor(s%60).toString().padStart(2,'0');
+    return `${m}:${sec}`;
+  }
+
+// Ri-avvia l’auto-hide su **qualsiasi** interazione
+['click', 'mousemove', 'keydown', 'wheel', 'touchstart', 'pointermove'].forEach(evt => {
+  // sul wrapper per mouse/touch/ruota…
+  wrapper.addEventListener(evt, resetHideControls, { passive: true });
+});
+// e sul documento per garantire di catturare i keydown anche se il focus NON è sul wrapper
+document.addEventListener('keydown', resetHideControls);
+
+// apri/chiudi menu lingua
+langBtn.addEventListener('click', e => {
+  e.stopPropagation();
+  shareMenu.style.display = 'none';      // ← chiudo il menu share
+  subsMenu.style.display   = 'none';    // ← CHIUDI SEMPRE IL MENU SOTTOTITOLI
+  langMenu.style.display = langMenu.style.display === 'flex' ? 'none' : 'flex';
+});
+
+// clic su voce di lingua
+langMenu.querySelectorAll('.lang-item').forEach(item => {
+  item.addEventListener('click', () => {
+    const newLang = item.dataset.lang;            // "it" oppure "en"
+    document.documentElement.lang = newLang;      // imposta lang sull’<html>
+    // (qui potresti aggiungere logica di i18n o ricaricare la pagina)
+    langMenu.style.display = 'none';
+    // opzionale: cambiare tooltip o titolo del button
+    langBtn.title = newLang === 'it' ? 'Italiano' : 'English';
+  });
+});
+
+// 2) Keyboard shortcuts: ←/→ skip 10s, Space toggle play/pause
+document.addEventListener('keydown', (e) => {
+  const tag = document.activeElement.tagName.toLowerCase();
+  if (tag === 'input' || tag === 'textarea' || tag === 'select') return;
+  switch (e.code) {
+    case 'Space':
+      e.preventDefault();
+      if (video.paused) video.play();
+      else           video.pause();
+      break;
+    case 'ArrowRight':
+      e.preventDefault();
+      video.currentTime = Math.min(video.duration, video.currentTime + 10);
+      break;
+    case 'ArrowLeft':
+      e.preventDefault();
+      video.currentTime = Math.max(0, video.currentTime - 10);
+      break;
+    default:
+      return; // non è una chiave d’interesse
+  }
+  // **ri‑attiva** l’auto‑hide dopo la pressione di Space/←/→
+  resetHideControls();
+});
+
+// 3) Doppio‑click sul video → toggle fullscreen
+video.addEventListener('dblclick', () => {
+  if (document.fullscreenElement) {
+    document.exitFullscreen();
+  } else {
+    video.parentElement.requestFullscreen();
+  }
+});
+
+document.addEventListener('fullscreenchange', () => {
+  const wrapper = document.querySelector('.apple-video-wrapper');
+  if (document.fullscreenElement) {
+    wrapper.classList.add('fullscreen');
+  } else {
+    wrapper.classList.remove('fullscreen');
+  }
+});
   };
   document.body.appendChild(dashScript);
 })();
