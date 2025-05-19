@@ -175,6 +175,7 @@ justify-content:space-between;
   display:flex;
   justify-content:center;
   gap:2rem;
+  border-radius: 0px !important;
   position: absolute;    /* lo porta fuori dal flow flex standard */
   top: 50%;              /* metà altezza del wrapper */
   left: 50%;             /* metà larghezza (se ti serve orizzontalmente) */
@@ -192,8 +193,7 @@ justify-content:space-between;
   position: relative;      /* contenitore per le icone */
   width: 50px;             /* fissa la larghezza */
   height: 50px;            /* e l’altezza */
-  padding: 0;              /* togli padding extra */
-  border-radius: 0px !important; 
+  padding: 0;              /* togli padding extra */ 
   display: flex;
   align-items: center;
   justify-content: center;
