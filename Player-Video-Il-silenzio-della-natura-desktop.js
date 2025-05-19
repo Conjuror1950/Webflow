@@ -203,13 +203,11 @@ justify-content:space-between;
 
 .play-pause .play-icon,
 .play-pause .pause-icon {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 24px;    /* o la dimensione desiderata */
-  height: 24px;   /* mantieni le proporzioni originali */
-  transform: translate(-50%, -50%);
-  pointer-events: none;
+  position: absolute;      /* sovrapponi le due img */
+  top: 0;
+  left: 0;
+  width: 100%;             /* occupino l’intero contenitore */
+  height: 100%;
 }
 
 .skip-value {
@@ -217,12 +215,6 @@ font-size:.75rem;
 margin:0 .2rem; }
 
 /* ← Mouse hover on center controls */
-.center-controls {
-  display:flex;
-  justify-content:center;
-  gap:2rem;
-}
-
 /* aggiungi da qui */
 .center-controls button img {
   transition: filter 0.3s ease;
