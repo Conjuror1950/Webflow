@@ -200,17 +200,6 @@ justify-content:space-between;
   border: none;
   margin: 0 0.8rem;   /* ← opzionale: margine orizzontale attorno al play */
 }
-
-.play-pause .play-icon,
-.play-pause .pause-icon {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 60%;
-  height: 60%;
-  transform: translate(-50%, -50%);
-}
-
 .skip-value {
 font-size:.75rem;
 margin:0 .2rem; }
@@ -642,6 +631,15 @@ justify-content:flex-end;
   justify-content: center !important;
   align-items: center    !important;
   gap: 2rem          !important;
+}
+.play-pause .play-icon,
+.play-pause .pause-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60%;
+  height: 60%;
+  transform: translate(-50%, -50%);
 }
 `;
   const styleEl = document.createElement('style');
