@@ -4,6 +4,13 @@
  * Inizializza il player video “Il silenzio della natura” in un contenitore.
  * @param {string} containerSelector - selettore CSS del nodo in cui montare il player
  */
+<div id="Player-Video-Il-silenzio-della-natura-container-desktop"></div>
+<script type="module">
+  import { initVideoPlayer } from './Player-Video-Il-silenzio-della-natura-desktop.js';
+  document.addEventListener('DOMContentLoaded', () => {
+    initVideoPlayer('#Player-Video-Il-silenzio-della-natura-container-desktop');
+  });
+</script>
 export function initVideoPlayer(containerSelector) {
   const container = document.querySelector(containerSelector);
   if (!container) {
