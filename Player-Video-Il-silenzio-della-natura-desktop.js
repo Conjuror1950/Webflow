@@ -628,14 +628,6 @@ justify-content:flex-end;
   10%  { opacity: 1; transform: translateY(0); }   /* fade-in in 0.5s */
   50%  { opacity: 1; transform: translateY(0); }   /* resta visibile */
 }
-
-/* Nasconde per default i menu di sottotitoli, audio e share */
-.subs-menu,
-.lang-menu,
-.share-menu,
-.preview-container {
-  display: none !important;
-}
 `;
   const styleEl = document.createElement('style');
   styleEl.textContent = css;
@@ -935,6 +927,11 @@ langMenu.querySelectorAll('.lang-item').forEach(item => {
   const subsBtn  = document.querySelector('.subs-btn');
 const subsMenu = document.querySelector('.subs-menu');
 const subsItems = subsMenu.querySelectorAll('.subs-item');
+
+// ← Qui imposto subito che i menu siano nascosti
+shareMenu.style.display = 'none';
+langMenu.style.display   = 'none';
+subsMenu.style.display   = 'none';
 
 // apri/chiudi menu sottotitoli
 subsBtn.addEventListener('click', e => {
