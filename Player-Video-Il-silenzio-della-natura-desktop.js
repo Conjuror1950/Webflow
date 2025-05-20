@@ -28,6 +28,17 @@ video {
   background: black !important;    /* fallback “letter-box” nero */
 }
 
+.preview-container .scrub-thumb {
+  position: absolute;
+  bottom: 0;               /* poggiato sul fondo della preview */
+  width: 11px;
+  height: 11px;
+  background: white;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  display: none;           /* mostrato/posizionato via JS */
+  z-index: 2;
+}
 
 /* --- override per la preview quando il wrapper è in fullscreen --- */
 .apple-video-wrapper:fullscreen .preview-container video,
