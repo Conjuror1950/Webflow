@@ -258,7 +258,7 @@ order: 0;           /* prima riga */
 flex-basis: 100%;   /* occupa tutta la larghezza: “S1, E1…” su riga a sé */
 font-weight:400;
 font-size:15px;
-margin-bottom: -4px;
+margin-bottom: -6px;
 color: rgba(211, 211, 211, 0.90);
 }
 .time, .remaining-time {
