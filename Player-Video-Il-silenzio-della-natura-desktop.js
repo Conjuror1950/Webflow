@@ -454,7 +454,7 @@ justify-content:flex-end;
 .title-lang-item {
   background: transparent;
   border: none;
-  padding: 0.2rem 0.4rem;
+  padding: 0rem 0.4rem;
   font-size: 0.9rem;
   text-align: left;
   cursor: default;
