@@ -2,6 +2,11 @@
 (function() {
   // 1) INIETTA IL CSS
   const css = `
+// <<< NASCONDIAMO PREVIEW E THUMB ALL'AVVIO
+.preview-container,
+.scrub-thumb {
+  display: none !important;
+}
 .apple-video-wrapper {
   position:relative;
   width:100vw;
@@ -643,12 +648,6 @@ justify-content:flex-end;
   align-items: center    !important;
   gap: 2rem          !important;
 }
-// <<< NASCONDIAMO PREVIEW E THUMB ALL'AVVIO
-.preview-container,
-.scrub-thumb {
-  display: none !important;
-}
-
 `;
   const styleEl = document.createElement('style');
   styleEl.textContent = css;
