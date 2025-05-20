@@ -662,7 +662,7 @@ justify-content:flex-end;
     <div id="custom-subtitles" class="subtitle-container"></div>
     <div class="controls">
       <div class="top-bar">
-        <button class="close-btn"><img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a6e03d818ab9f59079de2_xmark.svg" alt="Close" style="width:22px;height:22px;"></button>
+        <button class="close-btn"><img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a6e03d818ab9f59079de2_xmark.svg" alt="Close" style="width:24px;height:24px;"></button>
         <div class="volume-control">
           <input type="range" class="volume" min="0" max="1" step="0.01" value="1">
           <img id="volume-icon" src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681d13cccb3122eb07cc40af_custom.speaker.wave.3.fill.2.2.svg" alt="Volume alto">
