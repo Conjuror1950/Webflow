@@ -455,7 +455,7 @@ justify-content:flex-end;
   background: transparent;
   border: none;
   padding-top:    0.4rem;   /* mantieni un po’ di spazio sopra */
-  padding-bottom: 0.1rem;   /* dimezza lo spazio sotto */
+  padding-bottom: 0.05rem;   /* dimezza lo spazio sotto */
   font-size: 0.9rem;
   text-align: left;
   cursor: default;
@@ -526,7 +526,7 @@ justify-content:flex-end;
   background: transparent;
   border: none;
   padding-top:    0.4rem;   /* mantieni un po’ di spazio sopra */
-  padding-bottom: 0.1rem;   /* dimezza lo spazio sotto */
+  padding-bottom: 0.05rem;   /* dimezza lo spazio sotto */
   font-size: 0.9rem;
   text-align: left;
   cursor: default;
