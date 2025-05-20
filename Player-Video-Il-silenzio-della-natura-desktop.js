@@ -873,7 +873,7 @@ progress.addEventListener('mousemove', e => {
   const thumb = document.querySelector('.scrub-thumb');
   thumb.style.left = `${pct * 100}%`;
   thumb.style.display = 'block';
-  
+  });
  // salva l’ultimo time per il click
  lastPreviewTime = time;
 
