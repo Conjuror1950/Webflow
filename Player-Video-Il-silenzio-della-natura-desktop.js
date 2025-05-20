@@ -171,17 +171,17 @@ justify-content:space-between;
   pointer-events: all;
 }
 
+/* RIPRISTINO .center-controls dentro il flusso flex di .controls */
 .center-controls {
-   /* la posiziono rispetto alla bottom-bar invece che al 50% dell’viewport */
-   position: absolute !important;
-   bottom: 50px       !important; /* regola questo valore per alzare/abbassare */
-   left: 50%          !important;
-   transform: translateX(-50%) !important;
-   display: flex      !important;
-   justify-content: center !important;
-   align-items: center    !important;
-   gap: 2rem          !important;
- }
+  position: static !important;
+  top: auto     !important;
+  left: auto    !important;
+  transform: none !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-self: center;       /* la centra orizzontalmente nel flex column */
+  gap: 2rem !important;
+}
 .center-controls button {
   background:none;
   border:none;
