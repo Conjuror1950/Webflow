@@ -248,7 +248,7 @@ margin:0 .2rem; }
   order: 1;           /* ← posa la serie dopo l’episodio */
   flex-basis: auto;   /* ← occupa tutta la riga disponibile */
   margin-right: auto; /* spinge i controlli verso destra */
-  margin-top: 0px;
+  margin-top: 10px;
   font-weight:600;
   font-size:24px;
   color: white;
