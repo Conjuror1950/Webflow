@@ -170,18 +170,6 @@ justify-content:space-between;
   cursor: pointer;
   pointer-events: all;
 }
-
-/* RIPRISTINO .center-controls dentro il flusso flex di .controls */
-.center-controls {
-  position: static !important;
-  top: auto     !important;
-  left: auto    !important;
-  transform: none !important;
-  display: flex !important;
-  justify-content: center !important;
-  align-self: center;       /* la centra orizzontalmente nel flex column */
-  gap: 2rem !important;
-}
 .center-controls button {
   background:none;
   border:none;
