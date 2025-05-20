@@ -38,7 +38,7 @@ video {
 }
 
 .preview-container {
-  position: absolute;
+  position: relative;
   bottom: 70px;               /* sopra la barra dei controlli */
   width: 402px;               /* dimensione anteprima */
   height: 220px;
