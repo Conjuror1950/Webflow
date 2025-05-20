@@ -340,6 +340,10 @@ justify-content:flex-end;
   cursor: pointer;
   -webkit-appearance: none;
 }
+ /* creare contesto di posizionamento per lo scrub-thumb */
+ .progress-wrapper {
+   position: relative;
+ }
 .progress::-moz-range-thumb {
   width: 12px;
   height: 12px;
