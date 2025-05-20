@@ -237,7 +237,7 @@ margin:0 .2rem; }
 /* nuova riga superiore: titolo e right-controls affiancati */
 .bottom-top-row {
   position: relative;
-  top: 1px;   /* metti qui quanti pixel vuoi spostarlo verso l’alto */
+  top: 10px;   /* metti qui quanti pixel vuoi spostarlo verso l’alto */
   display: flex;
   flex-wrap: wrap;           /* ← permetti il wrap su più righe */
   justify-content:space-between;
