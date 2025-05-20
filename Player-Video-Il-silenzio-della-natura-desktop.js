@@ -198,7 +198,17 @@ justify-content:space-between;
   justify-content: center;
   background: none;
   border: none;
-  margin: 0;   /* ← opzionale: margine orizzontale attorno al play */
+  margin: 0 0.8rem;;   /* ← opzionale: margine orizzontale attorno al play */
+}
+
+/* rendi rewind & forward esattamente larghezza/altezza del play-pause */
+.center-controls .rewind,
+.center-controls .forward {
+  width: 50px;
+  height: 50px;
+  display: flex;            /* per centrare l’icona al loro interno */
+  align-items: center;
+  justify-content: center;
 }
 
 .play-pause .play-icon,
