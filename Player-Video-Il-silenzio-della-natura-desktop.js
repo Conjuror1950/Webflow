@@ -481,7 +481,7 @@ justify-content:flex-end;
   border: none;
   cursor: pointer;
   width: 100%;               /* per far coprire l’hover a tutta larghezza */
-  padding: 0.2rem 0.2rem;      /* uguale spazio sopra e sotto, e orizzontale */
+  padding: 0.2rem 0.4rem;      /* uguale spazio sopra e sotto, e orizzontale */
 }
 
 /* separatore sotto ogni voce tranne l’ultima */
@@ -540,7 +540,7 @@ justify-content:flex-end;
 .subs-item {
   background: transparent;
   border: none;
-  padding: 0.2rem 0.2rem;
+  padding: 0.2rem 0.4rem;
   font-size: 0.9rem;
   text-align: left;
   cursor: pointer;
