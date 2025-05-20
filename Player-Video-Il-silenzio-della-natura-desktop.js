@@ -681,18 +681,18 @@ justify-content:flex-end;
           <div class="serie-title">Produzioni Cinematografiche</div>
           <div class="right-controls">
             <button class="subs-btn"><img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681c881581975b4efc170207_captions.bubble.svg" alt="Sottotitoli" style="width:20px;height:20px;"></button>
-            <div class="subs-menu" hidden>
+            <div class="subs-menu" style="display:none;">
               <button class="title-subs-item">Sottotitoli</button>
               <button class="subs-item" data-val="-1">Disattivati</button>
               <button class="subs-item selected" data-val="0">Italiano (automatico)</button>
             </div>
             <button class="lang-btn"><img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681bb7eb7c5e96fc0889f14c_waveform.circle.svg" alt="Lingua" style="width:20px;height:20px;"></button>
-            <div class="lang-menu" hidden>
+            <div class="lang-menu" style="display:none;">
               <button class="title-lang-item">Audio</button>
               <button class="lang-item selected" data-lang="it">Originale: Italiano<span class="check">✓</span></button>
             </div>
             <button class="share-btn"><img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681c7cf63258616ead57cdf0_square.and.arrow.up.svg" alt="Condividi" style="width:18px;height:30px;"></button>
-            <div class="share-menu" hidden>
+            <div class="share-menu" style="display:none;">
               <button class="share-item copy-link"><span class="item-text">Copia Link</span><img class="item-icon" src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681b6628e632be2dca7bfe8e_link.svg" width="18" height="18" alt="Link"></button>
               <button class="share-item email-share"><span class="item-text">Email</span><img class="item-icon" src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681b6628ed25af24c9b87b32_envelope.fill.svg" width="18" height="18" alt="Email"></button>
             </div>
