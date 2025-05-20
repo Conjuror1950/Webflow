@@ -431,7 +431,7 @@ justify-content:flex-end;
 .lang-item {
   background: transparent;
   border: none;
-  padding: 0.4rem 0.2rem;
+  padding: 0.2rem 0.4rem;
   font-size: 0.9rem;
   text-align: left;
   cursor: pointer;
