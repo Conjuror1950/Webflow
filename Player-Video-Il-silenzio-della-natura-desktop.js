@@ -47,7 +47,6 @@ video {
   background: black;
   pointer-events: none;       /* non cattura il mouse */
   border-radius: 10px;
-  left: 50px;
 }
 #preview-video {
   width: 100%;
@@ -868,8 +867,12 @@ previewPlayer.updateSettings({
 // 2) quando muovi il mouse sulla barra, calcola il time, muovi il thumb, mostra preview & timecode
 progress.addEventListener('mousemove', e => {
   const rect = progress.getBoundingClientRect();
-  const pct  = (e.clientX - rect.left) / rect.width;
-  const time = Math.max(0, Math.min(1, pct)) * video.duration;
+  // percentuale orizzontale [0…1]
+  const pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+  // posiziona lo thumb al pct% della larghezza
+  const thumb = document.querySelector('.scrub-thumb');
+  thumb.style.left = `${pct * 100}%`;
+  thumb.style.display = 'block';
   
  // salva l’ultimo time per il click
  lastPreviewTime = time;
