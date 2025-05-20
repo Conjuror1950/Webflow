@@ -248,7 +248,7 @@ margin:0 .2rem; }
   order: 1;           /* ← posa la serie dopo l’episodio */
   flex-basis: auto;   /* ← occupa tutta la riga disponibile */
   margin-right: auto; /* spinge i controlli verso destra */
-  margin-top: 14px;
+  margin-top: 0px;
   font-weight:600;
   font-size:24px;
   color: white;
@@ -258,7 +258,7 @@ order: 0;           /* prima riga */
 flex-basis: 100%;   /* occupa tutta la larghezza: “S1, E1…” su riga a sé */
 font-weight:400;
 font-size:15px;
-margin-bottom: -8px;
+margin-bottom: -10px;
 color: rgba(211, 211, 211, 0.90);
 }
 .time, .remaining-time {
