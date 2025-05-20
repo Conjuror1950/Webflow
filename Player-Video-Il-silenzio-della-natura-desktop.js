@@ -202,11 +202,11 @@ justify-content:space-between;
 
 .play-pause .play-icon,
 .play-pause .pause-icon {
-  /* rimuovo absolute positioning così l’img è figlia flex del button */
-  position: relative;
-  width: 35px;    /* o la dimensione che preferisci, es. in linea con rewind/forward */
-  height: 35px;
-  display: block;
+  position: absolute;
+  top: 100px;
+  left: 100px;
+  width: 100%;
+  height: 100%;
 }
 
 .skip-value {
