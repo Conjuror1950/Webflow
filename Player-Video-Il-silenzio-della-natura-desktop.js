@@ -892,7 +892,7 @@ progress.addEventListener('mousemove', e => {
 const halfW = previewContainer.offsetWidth / 2;
 const wrapper = document.querySelector('.apple-video-wrapper');
 const wrapRect = wrapper.getBoundingClientRect();
-const sideMargin = 70;  // <— qui decidi quanti px vuoi di spazio
+const sideMargin = 25;  // <— qui decidi quanti px vuoi di spazio
 
   // posizione “desiderata” centrata sul mouse RELATIVA al wrapper
   const localX = e.clientX - wrapRect.left;      // X dentro il wrapper
