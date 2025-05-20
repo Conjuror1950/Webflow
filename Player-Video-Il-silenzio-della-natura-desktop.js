@@ -147,7 +147,7 @@ justify-content:space-between;
   height: 11px;
   border-radius: 50%;
   background: white;
-  margin-top: 0px;    /* centra il thumb */
+  margin-top: -5px;    /* centra il thumb */
   cursor: pointer;
 }
 .volume::-moz-range-thumb {
