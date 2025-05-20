@@ -592,7 +592,7 @@ justify-content:flex-end;
 .warning-icon {
   position: absolute;
   top: 50px;            /* sposta l’avviso in alto rispetto al suo normale flow */
-  margin-left: 25px;               /* allineato al bordo sinistro di .bottom-top-row */
+  margin-left: 20px;               /* allineato al bordo sinistro di .bottom-top-row */
   width: 350px;          /* regola a piacere la larghezza */
   opacity: 0;
   animation: warning-fade 8s ease-in-out forwards;
@@ -611,7 +611,7 @@ justify-content:flex-end;
 .warning-age {
   position: absolute;
   top: 60px;            /* sposta l’avviso in alto rispetto al suo normale flow */
-  margin-left: 15px;               /* allineato al bordo sinistro di .bottom-top-row */
+  margin-left: 10px;               /* allineato al bordo sinistro di .bottom-top-row */
   width: 100px;          /* regola a piacere la larghezza */
   opacity: 0;
   animation: warning-fade-age 5s ease-in-out forwards;
