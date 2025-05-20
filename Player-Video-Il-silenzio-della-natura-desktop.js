@@ -172,15 +172,16 @@ justify-content:space-between;
 }
 
 .center-controls {
-  display:flex;
-  justify-content:center;
-  gap:2rem;
-  position: absolute;    /* lo porta fuori dal flow flex standard */
-  top: 50%;              /* metà altezza del wrapper */
-  left: 50%;             /* metà larghezza (se ti serve orizzontalmente) */
-  transform: translate(-50%, -50%);
-  /* se non vuoi centrarlo orizzontalmente puoi omettere left/translateX */
-}
+   /* la posiziono rispetto alla bottom-bar invece che al 50% dell’viewport */
+   position: absolute !important;
+   bottom: 50px       !important; /* regola questo valore per alzare/abbassare */
+   left: 50%          !important;
+   transform: translateX(-50%) !important;
+   display: flex      !important;
+   justify-content: center !important;
+   align-items: center    !important;
+   gap: 2rem          !important;
+ }
 .center-controls button {
   background:none;
   border:none;
