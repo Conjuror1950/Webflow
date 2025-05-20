@@ -198,7 +198,7 @@ justify-content:space-between;
   justify-content: center;
   background: none;
   border: none;
-  margin: 0 0.8rem;   /* ← opzionale: margine orizzontale attorno al play */
+  margin: 0;   /* ← opzionale: margine orizzontale attorno al play */
 }
 
 .play-pause .play-icon,
