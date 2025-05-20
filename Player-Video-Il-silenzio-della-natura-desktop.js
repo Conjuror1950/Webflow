@@ -79,10 +79,14 @@ video {
 }
 
 .center-controls {
-  display: flex;
-  justify-content: center;
-  align-self: center;
-  gap: 2rem;
+  position: absolute !important;
+  top: 50%           !important;
+  left: 50%          !important;
+  transform: translate(-50%, -50%) !important;
+  display: flex      !important;
+  justify-content: center !important;
+  align-items: center    !important;
+  gap: 2rem          !important;
 }
 .controls {
   position:absolute;
