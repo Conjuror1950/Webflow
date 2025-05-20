@@ -28,18 +28,6 @@ video {
   background: black !important;    /* fallback “letter-box” nero */
 }
 
-.preview-container .scrub-thumb {
-  position: absolute;
-  bottom: 0;               /* poggiato sul fondo della preview */
-  width: 11px;
-  height: 11px;
-  background: white;
-  border-radius: 50%;
-  transform: translateX(-50%);
-  display: none;           /* mostrato/posizionato via JS */
-  z-index: 2;
-}
-
 /* --- override per la preview quando il wrapper è in fullscreen --- */
 .apple-video-wrapper:fullscreen .preview-container video,
 .apple-video-wrapper:-webkit-full-screen .preview-container video {
@@ -49,7 +37,7 @@ video {
 }
 
 .preview-container {
-  position: relative;
+  position: absolute;
   bottom: 70px;               /* sopra la barra dei controlli */
   width: 402px;               /* dimensione anteprima */
   height: 220px;
@@ -660,7 +648,7 @@ justify-content:flex-end;
   styleEl.textContent = css;
   document.head.appendChild(styleEl);
 
-  // 2) INIETTA L’HTML
+ // 2) INIETTA L’HTML
   const wrapper = document.createElement('div');
   wrapper.className = 'apple-video-wrapper';
   wrapper.innerHTML = `
@@ -713,12 +701,12 @@ justify-content:flex-end;
         </div>
         <div class="progress-wrapper">
           <input type="range" class="progress" value="0" step="0.1">
+          <div class="scrub-thumb"></div>
         </div>
         <div class="preview-container">
           <video id="preview-video" muted preload="metadata" crossorigin="anonymous"></video>
           <div id="preview-subtitles" class="subtitle-container"></div>
           <div class="preview-time">0:00</div>
-          <div class="scrub-thumb"></div>
         </div>
         <div class="extras"><span class="time">0:00</span><span class="remaining-time">-0:00</span></div>
       </div>
