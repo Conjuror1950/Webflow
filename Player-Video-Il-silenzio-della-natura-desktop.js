@@ -2,11 +2,6 @@
 (function() {
   // 1) INIETTA IL CSS
   const css = `
-// <<< NASCONDIAMO PREVIEW E THUMB ALL'AVVIO
-.preview-container,
-.scrub-thumb {
-  display: none !important;
-}
 .apple-video-wrapper {
   position:relative;
   width:100vw;
@@ -708,7 +703,7 @@ justify-content:flex-end;
           <input type="range" class="progress" value="0" step="0.1">
           <div class="scrub-thumb"></div>
         </div>
-        <div class="preview-container">
+        <div class="preview-container" hidden>
           <video id="preview-video" muted preload="metadata" crossorigin="anonymous"></video>
           <div id="preview-subtitles" class="subtitle-container"></div>
           <div class="preview-time">0:00</div>
