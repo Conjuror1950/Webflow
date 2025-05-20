@@ -147,7 +147,7 @@ justify-content:space-between;
   height: 11px;
   border-radius: 50%;
   background: white;
-  margin-top: -3px;    /* centra il thumb */
+  margin-top: 0px;    /* centra il thumb */
   cursor: pointer;
 }
 .volume::-moz-range-thumb {
@@ -374,7 +374,7 @@ justify-content:flex-end;
 }
 .close-btn {
   background:none;
-  margin-top: -5px;
+  margin-top: 0px;
 }
 /* quando aggiungiamo .hide-cursor sulla wrapper, il cursore scompare */
 .apple-video-wrapper.hide-cursor {
