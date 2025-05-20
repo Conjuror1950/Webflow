@@ -431,7 +431,7 @@ justify-content:flex-end;
 .lang-item {
   background: transparent;
   border: none;
-  padding: 0rem 0.4rem;
+  padding: 0.2rem 0.4rem;
   font-size: 0.9rem;
   text-align: left;
   cursor: pointer;
@@ -454,8 +454,7 @@ justify-content:flex-end;
 .title-lang-item {
   background: transparent;
   border: none;
-  padding-top:    0.2rem;   /* mantieni un po’ di spazio sopra */
-  padding-bottom: 0rem;   /* dimezza lo spazio sotto */
+  padding: 0.2rem 0.4rem;
   font-size: 0.9rem;
   text-align: left;
   cursor: default;
