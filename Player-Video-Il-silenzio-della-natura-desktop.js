@@ -702,12 +702,12 @@ justify-content:flex-end;
         </div>
         <div class="progress-wrapper">
           <input type="range" class="progress" value="0" step="0.1">
-          <div class="scrub-thumb"></div>
         </div>
         <div class="preview-container">
           <video id="preview-video" muted preload="metadata" crossorigin="anonymous"></video>
           <div id="preview-subtitles" class="subtitle-container"></div>
           <div class="preview-time">0:00</div>
+          <div class="scrub-thumb"></div>
         </div>
         <div class="extras"><span class="time">0:00</span><span class="remaining-time">-0:00</span></div>
       </div>
