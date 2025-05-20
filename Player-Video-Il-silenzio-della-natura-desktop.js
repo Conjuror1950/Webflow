@@ -47,6 +47,7 @@ video {
   background: black;
   pointer-events: none;       /* non cattura il mouse */
   border-radius: 10px;
+  left: 50px;
 }
 #preview-video {
   width: 100%;
