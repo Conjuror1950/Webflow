@@ -370,11 +370,11 @@ justify-content:flex-end;
   display:flex;
   justify-content:space-between;
   font-size:.9rem;
-  margin-top: -5px;
+  margin-top: -6px;
 }
 .close-btn {
   background:none;
-  margin-top: -12px;
+  margin-top: -8px;
 }
 /* quando aggiungiamo .hide-cursor sulla wrapper, il cursore scompare */
 .apple-video-wrapper.hide-cursor {
