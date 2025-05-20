@@ -643,6 +643,11 @@ justify-content:flex-end;
   align-items: center    !important;
   gap: 2rem          !important;
 }
+// <<< NASCONDIAMO PREVIEW E THUMB ALL'AVVIO
+.preview-container,
+.scrub-thumb {
+  display: none;
+} 
 `;
   const styleEl = document.createElement('style');
   styleEl.textContent = css;
@@ -801,11 +806,7 @@ player.updateSettings({
   // 1) crea in JS la preview‑video con UN NUOVO player
   const previewContainer = document.querySelector('.preview-container');
   const previewVideo     = document.getElementById('preview-video');
-
-// <<< NASCONDIAMO PREVIEW E THUMB ALL'AVVIO
-previewContainer.style.display = 'none';
-document.querySelector('.scrub-thumb').style.display = 'none';
-  
+ 
 // 1) Copia il markup del video principale (inclusi i <track>)
 previewVideo.innerHTML = document.getElementById('apple-video').innerHTML;
 
