@@ -801,6 +801,10 @@ player.updateSettings({
   // 1) crea in JS la preview‑video con UN NUOVO player
   const previewContainer = document.querySelector('.preview-container');
   const previewVideo     = document.getElementById('preview-video');
+
+// <<< NASCONDIAMO PREVIEW E THUMB ALL'AVVIO
+previewContainer.style.display = 'none';
+document.querySelector('.scrub-thumb').style.display = 'none';
   
 // 1) Copia il markup del video principale (inclusi i <track>)
 previewVideo.innerHTML = document.getElementById('apple-video').innerHTML;
