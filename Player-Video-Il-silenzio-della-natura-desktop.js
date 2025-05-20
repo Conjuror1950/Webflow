@@ -78,6 +78,9 @@ video {
   pointer-events: none;
 }
 
+.center-controls {
+  align-self: center;
+}
 .controls {
   position:absolute;
   inset:0;
