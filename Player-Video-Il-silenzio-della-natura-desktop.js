@@ -259,7 +259,7 @@ order: 0;           /* prima riga */
 flex-basis: 100%;   /* occupa tutta la larghezza: “S1, E1…” su riga a sé */
 font-weight:400;
 font-size:15px;
-margin-bottom: -2px;
+margin-bottom: -4px;
 color: rgba(211, 211, 211, 0.90);
 }
 .time, .remaining-time {
@@ -661,7 +661,7 @@ justify-content:flex-end;
     <div id="custom-subtitles" class="subtitle-container"></div>
     <div class="controls">
       <div class="top-bar">
-        <button class="close-btn"><img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a6e03d818ab9f59079de2_xmark.svg" alt="Close" style="width:18px;height:18px;"></button>
+        <button class="close-btn"><img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a6e03d818ab9f59079de2_xmark.svg" alt="Close" style="width:22px;height:22px;"></button>
         <div class="volume-control">
           <input type="range" class="volume" min="0" max="1" step="0.01" value="1">
           <img id="volume-icon" src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681d13cccb3122eb07cc40af_custom.speaker.wave.3.fill.2.2.svg" alt="Volume alto">
