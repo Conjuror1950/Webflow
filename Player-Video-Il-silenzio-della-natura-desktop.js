@@ -475,7 +475,7 @@ justify-content:flex-end;
   justify-content: space-between;
   align-items: center;
   font-size: 0.78rem;        /* stesso font‑size per entrambe */
-  font-weight: 300;
+  font-weight: 400;
   color: black;
   background: transparent;
   border: none;
@@ -540,7 +540,7 @@ justify-content:flex-end;
 .subs-item {
   background: transparent;
   border: none;
-  padding: 0.2rem 0.4rem;
+  padding: 0.1rem 0.4rem;
   font-size: 0.9rem;
   text-align: left;
   cursor: pointer;
