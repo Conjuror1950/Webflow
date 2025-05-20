@@ -644,9 +644,11 @@ justify-content:flex-end;
   gap: 2rem          !important;
 }
 // <<< NASCONDIAMO PREVIEW E THUMB ALL'AVVIO
-.preview-container .scrub-thumb {
- display: none !important;
-} 
+.preview-container,
+.scrub-thumb {
+  display: none !important;
+}
+
 `;
   const styleEl = document.createElement('style');
   styleEl.textContent = css;
