@@ -190,7 +190,7 @@ justify-content:space-between;
 /* aggiungi subito dopo .center-controls button { … } */
 .play-pause {
   position: relative;      /* contenitore per le icone */
-  width: 150px;             /* fissa la larghezza */
+  width: 50px;             /* fissa la larghezza */
   height: 50px;            /* e l’altezza */
   padding: 0;              /* togli padding extra */ 
   display: flex;
