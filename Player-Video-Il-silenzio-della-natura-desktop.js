@@ -203,7 +203,7 @@ justify-content:space-between;
 .play-pause .play-icon,
 .play-pause .pause-icon {
   position: relative;
-  top: 130px;
+  top: 135px;
   left: 110px;
   width: 100%;
   height: 100%;
