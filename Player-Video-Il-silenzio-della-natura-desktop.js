@@ -1106,6 +1106,8 @@ volume.addEventListener('input', () => {
     `linear-gradient(to right,
        white 0%, white ${pct}%,
        rgba(255,255,255,0.1) ${pct}%, rgba(255,255,255,0.1) 100%)`;
+    // se l’utente tocca lo slider, non siamo in “mute by click”
+  mutedByClick = false;
 });
 
 // 4) subito dopo aver definito il listener, forza l'evento input
@@ -1128,11 +1130,10 @@ volumeIcon.addEventListener('click', () => {
 
   // rilancio l’input per aggiornare video.volume, gradient e icona
   volume.dispatchEvent(new Event('input'));
-});
-
-volume.addEventListener('input', () => {
+  
   // se l’utente tocca lo slider, non siamo in “mute by click”
   mutedByClick = false;
+});
 
   const v = parseFloat(volume.value);
   video.volume = v;
