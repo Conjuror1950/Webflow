@@ -784,8 +784,8 @@ player.updateSettings({
 
   // Controls
   const playBtn = document.querySelector('.play-pause-player-video-il-silenzio-della-natura-desktop');
-  const rewindBtn = document.querySelector('.rewind-player-video-il-silenzio-della-natura-desktop');
-  const forwardBtn = document.querySelector('.forward-player-video-il-silenzio-della-natura-desktop');
+  const rewindBtn = document.querySelector('.rewind');
+  const forwardBtn = document.querySelector('.forward');
   const progress = document.querySelector('.progress-player-video-il-silenzio-della-natura-desktop');
   // tieni memoria dell’ultimo time calcolato
   let lastPreviewTime = 0;
@@ -915,7 +915,7 @@ progress.addEventListener('mouseout', () => {
   const langBtn  = document.querySelector('.lang-btn-player-video-il-silenzio-della-natura-desktop');
   const langMenu = document.querySelector('.lang-menu-player-video-il-silenzio-della-natura-desktop');
   // crea gli span .check e seleziona Italiano
-langMenu.querySelectorAll('.lang-item').forEach(item => {
+langMenu.querySelectorAll('.lang-item-player-video-il-silenzio-della-natura-desktop').forEach(item => {
   // (se non li hai già messi in HTML) crea lo span
   if (!item.querySelector('.check')) {
     const chk = document.createElement('span');
@@ -1015,8 +1015,8 @@ document.addEventListener('click', () => {
   const playPauseBtn = document.getElementById("play-pause-player-video-il-silenzio-della-natura-desktop");
   let hideTimeout;
   // Play/Pause
-  const playIcon = playBtn.querySelector('.play-icon-player-video-il-silenzio-della-natura-desktop');
-  const pauseIcon = playBtn.querySelector('.pause-icon-player-video-il-silenzio-della-natura-desktop');
+  const playIcon = playBtn.querySelector('.play-icon');
+  const pauseIcon = playBtn.querySelector('.pause-icon');
 
 playBtn.addEventListener('click', () => {
   if (video.paused) {
@@ -1274,7 +1274,7 @@ langBtn.addEventListener('click', e => {
 });
 
 // clic su voce di lingua
-langMenu.querySelectorAll('.lang-item').forEach(item => {
+langMenu.querySelectorAll('.lang-item-player-video-il-silenzio-della-natura-desktop').forEach(item => {
   item.addEventListener('click', () => {
     const newLang = item.dataset.lang;            // "it" oppure "en"
     document.documentElement.lang = newLang;      // imposta lang sull’<html>
