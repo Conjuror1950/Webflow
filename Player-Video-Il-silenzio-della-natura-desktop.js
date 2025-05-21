@@ -705,33 +705,6 @@ justify-content:flex-end;
   `;
   document.body.appendChild(wrapper);
 
-// Player-Video-Il-silenzio-della-natura-desktop.js
-(function() {
-  // 1) INIETTA IL CSS
-  const css = `
-    /* … (tutto il tuo CSS come prima, senza modifiche) … */
-  `;
-  const styleEl = document.createElement('style');
-  styleEl.textContent = css;
-  document.head.appendChild(styleEl);
-
-  // 2) INIETTA L’HTML
-  const wrapper = document.createElement('div');
-  wrapper.className = 'apple-video-wrapper-player-video-il-silenzio-della-natura-desktop';
-  wrapper.innerHTML = `
-    <!-- avvisi -->
-    <img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/68286f66a406b7094b5b2407_avviso%20sequenze%20con%20immagini%20e%20luci%20lampeggianti.png" alt="Avviso: sequenze con immagini e luci lampeggianti" class="warning-icon-player-video-il-silenzio-della-natura-desktop">
-    <img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/68288c23d64340a80e1a52e1_avviso%20et%C3%A0.png" alt="Avviso: età" class="warning-age-player-video-il-silenzio-della-natura-desktop">
-    <video id="apple-video-player-video-il-silenzio-della-natura-desktop" preload="metadata" crossorigin="anonymous" autoplay playsinline>
-      <track kind="subtitles" label="Italiano (automatico)" srclang="it" src="https://andreaingrassia.netlify.app/assets/subtitles/captions-il-silenzio-della-natura.vtt">
-    </video>
-    <div id="custom-subtitles-player-video-il-silenzio-della-natura-desktop" class="subtitle-container-player-video-il-silenzio-della-natura-desktop"></div>
-    <div class="controls-player-video-il-silenzio-della-natura-desktop">
-      <!-- … (tutto il markup dei controlli come prima) … -->
-    </div>
-  `;
-  document.body.appendChild(wrapper);
-
   // 3) CARICA DASH.JS E INIZIALIZZA IL PLAYER
   const dashScript = document.createElement('script');
   dashScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/dashjs/5.0.0/legacy/umd/dash.all.min.js';
