@@ -1329,3 +1329,4 @@ document.addEventListener('fullscreenchange', () => {
 });
   };  
   document.body.appendChild(dashScript);
+})();
