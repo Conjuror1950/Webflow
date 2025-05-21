@@ -203,8 +203,8 @@ justify-content:space-between;
 .play-pause-player-video-il-silenzio-della-natura-desktop .play-icon-player-video-il-silenzio-della-natura-desktop,
 .play-pause-player-video-il-silenzio-della-natura-desktop .pause-icon-player-video-il-silenzio-della-natura-desktop {
   position: relative;
-  top: 135px;
-  left: 110px;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
 }
