@@ -712,7 +712,7 @@ justify-content:flex-end;
     /* Video .mp4 in formato dash */
     // ora il manifest contiene più Representation (4K,1080p,720p,...)
     const manifest = 'https://il-silenzio-della-natura-video.netlify.app/manifest.mpd';
-    const video = document.getElementById('apple-video-player-video-il-silenzio-della-natura-desktop');
+    const video = document.getElementById('apple-video');
     const player = dashjs.MediaPlayer().create();
     // inizializza e carica il manifest
     player.initialize(video, manifest, false);
@@ -724,7 +724,7 @@ justify-content:flex-end;
 
   track.addEventListener('cuechange', () => {
     const active = track.activeCues;
-    const subEl  = document.getElementById('custom-subtitles-player-video-il-silenzio-della-natura-desktop');
+    const subEl  = document.getElementById('custom-subtitles');
     if (active.length) {
       subEl.textContent = active[0].text;
       subEl.classList.add('show');
@@ -783,18 +783,18 @@ player.updateSettings({
 });
 
   // Controls
-  const playBtn = document.querySelector('.play-pause-player-video-il-silenzio-della-natura-desktop');
+  const playBtn = document.querySelector('.play-pause');
   const rewindBtn = document.querySelector('.rewind');
   const forwardBtn = document.querySelector('.forward');
-  const progress = document.querySelector('.progress-player-video-il-silenzio-della-natura-desktop');
+  const progress = document.querySelector('.progress');
   // tieni memoria dell’ultimo time calcolato
   let lastPreviewTime = 0;
   // 1) crea in JS la preview‑video con UN NUOVO player
-  const previewContainer = document.querySelector('.preview-container-player-video-il-silenzio-della-natura-desktop');
-  const previewVideo     = document.getElementById('preview-video-player-video-il-silenzio-della-natura-desktop');
+  const previewContainer = document.querySelector('.preview-container');
+  const previewVideo     = document.getElementById('preview-video');
  
 // 1) Copia il markup del video principale (inclusi i <track>)
-previewVideo.innerHTML = document.getElementById('apple-video-player-video-il-silenzio-della-natura-desktop').innerHTML;
+previewVideo.innerHTML = document.getElementById('apple-video').innerHTML;
 
 // 2) inizializza dash.js sul preview
 const previewPlayer = dashjs.MediaPlayer().create();
@@ -815,7 +815,7 @@ previewPlayer.on(dashjs.MediaPlayer.events.TEXT_TRACKS_ADDED, () => {
   // 3) ascoltiamo cuechange e aggiorniamo lo stesso #custom-subtitles
   previewTrack.addEventListener('cuechange', () => {
     const cues  = previewTrack.activeCues;
-    const subEl = document.getElementById('preview-subtitles-player-video-il-silenzio-della-natura-desktop');
+    const subEl = document.getElementById('preview-subtitles');
     if (cues.length) {
       subEl.textContent = cues[0].text;
       subEl.classList.add('show');
@@ -864,7 +864,7 @@ progress.addEventListener('mousemove', e => {
  lastPreviewTime = time;
 
   // — SCRUB THUMB —
-  const thumb = document.querySelector('.scrub-thumb-player-video-il-silenzio-della-natura-desktop');
+  const thumb = document.querySelector('.scrub-thumb');
   const thumbWidth = thumb.offsetWidth;              // 11px
   // calcola x partendo dalla % e riducendo la “corsia” di thumbWidth
   const x = pct * (rect.width - thumbWidth) + thumbWidth / 2;
@@ -872,12 +872,12 @@ progress.addEventListener('mousemove', e => {
   thumb.style.display = 'block';
 
   // — PREVIEW TIMECODE —
-  const previewTime = document.querySelector('.preview-time-player-video-il-silenzio-della-natura-desktop');
+  const previewTime = document.querySelector('.preview-time');
   previewTime.textContent = formatTime(time);
 
 // — PREVIEW VIDEO — (posizione clamped entro il wrapper)
 const halfW = previewContainer.offsetWidth / 2;
-const wrapper = document.querySelector('.apple-video-wrapper-player-video-il-silenzio-della-natura-desktop');
+const wrapper = document.querySelector('.apple-video-wrapper');
 const wrapRect = wrapper.getBoundingClientRect();
 const sideMargin = 24;  // <— qui decidi quanti px vuoi di spazio
 
@@ -900,22 +900,22 @@ progress.addEventListener('mouseout', () => {
   previewContainer.style.display = 'none';
 });
 
-  const timeLabel = document.querySelector('.time-player-video-il-silenzio-della-natura-desktop');
-  const remLabel = document.querySelector('.remaining-time-player-video-il-silenzio-della-natura-desktop');
-  const volume = document.querySelector('.volume-player-video-il-silenzio-della-natura-desktop');
+  const timeLabel = document.querySelector('.time');
+  const remLabel = document.querySelector('.remaining-time');
+  const volume = document.querySelector('.volume');
   // salvo l’ultimo valore di volume non-zero
   let lastVolume = parseFloat(volume.value) || 1;
   // indica se lo stato muto è stato attivato cliccando l’icona
   let mutedByClick = false;
-  const fsBtn = document.querySelector('.fullscreen-btn-player-video-il-silenzio-della-natura-desktop');
-  const shareBtn = document.querySelector('.share-btn-player-video-il-silenzio-della-natura-desktop');
+  const fsBtn = document.querySelector('.fullscreen-btn');
+  const shareBtn = document.querySelector('.share-btn');
   // Share: apri menu con opzione “Copia link”
-  const shareMenu = document.querySelector('.share-menu-player-video-il-silenzio-della-natura-desktop');
+  const shareMenu = document.querySelector('.share-menu');
   // Language switcher
-  const langBtn  = document.querySelector('.lang-btn-player-video-il-silenzio-della-natura-desktop');
-  const langMenu = document.querySelector('.lang-menu-player-video-il-silenzio-della-natura-desktop');
+  const langBtn  = document.querySelector('.lang-btn');
+  const langMenu = document.querySelector('.lang-menu');
   // crea gli span .check e seleziona Italiano
-langMenu.querySelectorAll('.lang-item-player-video-il-silenzio-della-natura-desktop').forEach(item => {
+langMenu.querySelectorAll('.lang-item').forEach(item => {
   // (se non li hai già messi in HTML) crea lo span
   if (!item.querySelector('.check')) {
     const chk = document.createElement('span');
@@ -930,9 +930,9 @@ langMenu.querySelectorAll('.lang-item-player-video-il-silenzio-della-natura-desk
     document.documentElement.lang = 'it';
   }
 });
-  const subsBtn  = document.querySelector('.subs-btn-player-video-il-silenzio-della-natura-desktop');
-const subsMenu = document.querySelector('.subs-menu-player-video-il-silenzio-della-natura-desktop');
-const subsItems = subsMenu.querySelectorAll('.subs-item-player-video-il-silenzio-della-natura-desktop');
+  const subsBtn  = document.querySelector('.subs-btn');
+const subsMenu = document.querySelector('.subs-menu');
+const subsItems = subsMenu.querySelectorAll('.subs-item');
 
 // apri/chiudi menu sottotitoli
 subsBtn.addEventListener('click', e => {
@@ -983,8 +983,8 @@ item.addEventListener('click', () => {
   }
 
     // 2) Abilita/Disabilita i rendering custom
-    const customSub  = document.getElementById('custom-subtitles-player-video-il-silenzio-della-natura-desktop');
-    const previewSub = document.getElementById('preview-subtitles-player-video-il-silenzio-della-natura-desktop');
+    const customSub  = document.getElementById('custom-subtitles');
+    const previewSub = document.getElementById('preview-subtitles');
     if (val < 0) {
       // “Disattivati”: nascondi entrambe le <div>
       customSub.classList.remove('show');
@@ -1009,10 +1009,10 @@ document.addEventListener('click', () => {
   subsMenu.style.display = 'none';
 });
 
-  const copyLinkBtn = document.querySelector('.copy-link-player-video-il-silenzio-della-natura-desktop');
-  const emailBtn    = document.querySelector('.email-share-player-video-il-silenzio-della-natura-desktop');
-  const controls = document.querySelector('.controls-player-video-il-silenzio-della-natura-desktop');
-  const playPauseBtn = document.getElementById("play-pause-player-video-il-silenzio-della-natura-desktop");
+  const copyLinkBtn = document.querySelector('.copy-link');
+  const emailBtn    = document.querySelector('.email-share');
+  const controls = document.querySelector('.controls');
+  const playPauseBtn = document.getElementById("play-pause");
   let hideTimeout;
   // Play/Pause
   const playIcon = playBtn.querySelector('.play-icon');
@@ -1173,7 +1173,7 @@ fsBtn.addEventListener('click', () => {
 // Cambia icona al cambio di stato fullscreen
 document.addEventListener('fullscreenchange', () => {
   // prendo direttamente l'<img> dentro il bottone
-  const fsIcon = document.querySelector('.fullscreen-btn-player-video-il-silenzio-della-natura-desktop img');
+  const fsIcon = document.querySelector('.fullscreen-btn img');
   if (!fsIcon) return;
 
   if (document.fullscreenElement) {
@@ -1222,7 +1222,7 @@ emailBtn.addEventListener('click', () => {
  });
 
   // Auto-hide controls
-  const wrapper = document.querySelector('.apple-video-wrapper-player-video-il-silenzio-della-natura-desktop');
+  const wrapper = document.querySelector('.apple-video-wrapper');
   const resetHideControls = () => {
   // mostra subito i controlli
   controls.classList.remove('hide');
@@ -1274,7 +1274,7 @@ langBtn.addEventListener('click', e => {
 });
 
 // clic su voce di lingua
-langMenu.querySelectorAll('.lang-item-player-video-il-silenzio-della-natura-desktop').forEach(item => {
+langMenu.querySelectorAll('.lang-item').forEach(item => {
   item.addEventListener('click', () => {
     const newLang = item.dataset.lang;            // "it" oppure "en"
     document.documentElement.lang = newLang;      // imposta lang sull’<html>
@@ -1320,7 +1320,7 @@ video.addEventListener('dblclick', () => {
 });
 
 document.addEventListener('fullscreenchange', () => {
-  const wrapper = document.querySelector('.apple-video-wrapper-player-video-il-silenzio-della-natura-desktop');
+  const wrapper = document.querySelector('.apple-video-wrapper');
   if (document.fullscreenElement) {
     wrapper.classList.add('fullscreen');
   } else {
