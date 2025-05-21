@@ -704,7 +704,6 @@ justify-content:flex-end;
     </div>
   `;
   document.body.appendChild(wrapper);
-})();
 
   // 3) CARICA DASH.JS E INIZIALIZZA IL PLAYER
   const dashScript = document.createElement('script');
