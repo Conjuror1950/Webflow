@@ -659,12 +659,12 @@ justify-content:flex-end;
         </div>
       </div>
       <div class="center-controls-player-video-il-silenzio-della-natura-desktop">
-        <button class="rewind"><img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a5fb8fe6435455d3d98da_10.arrow.trianglehead.counterclockwise.svg" alt="Rewind" style="height:35px;"></button>
+        <button class="rewind-player-video-il-silenzio-della-natura-desktop"><img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a5fb8fe6435455d3d98da_10.arrow.trianglehead.counterclockwise.svg" alt="Rewind" style="height:35px;"></button>
         <button class="play-pause-player-video-il-silenzio-della-natura-desktop">
           <img class="play-icon" src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a7228fdd5352747977676_play.fill.svg" alt="Play">
           <img class="pause-icon" src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a722870d098221ad93f47_pause.fill.svg" alt="Pausa">
         </button>
-        <button class="forward"><img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a5fb8f7a09fb00f328afb_10.arrow.trianglehead.clockwise.svg" alt="Forward" style="height:35px;"></button>
+        <button class="forward-player-video-il-silenzio-della-natura-desktop"><img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a5fb8f7a09fb00f328afb_10.arrow.trianglehead.clockwise.svg" alt="Forward" style="height:35px;"></button>
       </div>
       <div class="bottom-bar-player-video-il-silenzio-della-natura-desktop">
         <div class="bottom-top-row-player-video-il-silenzio-della-natura-desktop">
@@ -784,8 +784,8 @@ player.updateSettings({
 
   // Controls
   const playBtn = document.querySelector('.play-pause-player-video-il-silenzio-della-natura-desktop');
-  const rewindBtn = document.querySelector('.rewind');
-  const forwardBtn = document.querySelector('.forward');
+  const rewindBtn = document.querySelector('.rewind-player-video-il-silenzio-della-natura-desktop');
+  const forwardBtn = document.querySelector('.forward-player-video-il-silenzio-della-natura-desktop');
   const progress = document.querySelector('.progress-player-video-il-silenzio-della-natura-desktop');
   // tieni memoria dell’ultimo time calcolato
   let lastPreviewTime = 0;
@@ -1112,7 +1112,7 @@ volume.addEventListener('input', () => {
 //    così il gradient è già corretto al caricamento (value=1)
 volume.dispatchEvent(new Event('input'));
 
-const volumeIcon = document.getElementById('volume-icon');
+const volumeIcon = document.getElementById('volume-icon-player-video-il-silenzio-della-natura-desktop');
 
 volumeIcon.addEventListener('click', () => {
   const current = parseFloat(volume.value);
