@@ -220,8 +220,8 @@ margin:0 .2rem; }
 }
 
 /* su hover rendi l’icona bianca e con un leggero bagliore */
-.center-controls-player-video-il-silenzio-della-natura-desktop .rewind:hover img,
-.center-controls-player-video-il-silenzio-della-natura-desktop .forward:hover img {
+.center-controls-player-video-il-silenzio-della-natura-desktop .rewind-player-video-il-silenzio-della-natura-desktop:hover img,
+.center-controls-player-video-il-silenzio-della-natura-desktop .forward-player-video-il-silenzio-della-natura-desktop:hover img {
   filter: brightness(1) drop-shadow(0 0 0.8px white);
 }
 
