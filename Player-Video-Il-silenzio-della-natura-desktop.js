@@ -1222,7 +1222,6 @@ emailBtn.addEventListener('click', () => {
  });
 
   // Auto-hide controls
-  const controls = document.querySelector('.controls-player-video-il-silenzio-della-natura-desktop');  
   const wrapper = document.querySelector('.apple-video-wrapper-player-video-il-silenzio-della-natura-desktop');
   const resetHideControls = () => {
   // mostra subito i controlli
@@ -1233,7 +1232,7 @@ emailBtn.addEventListener('click', () => {
   // se il video è in play, ri‑programma l’auto‑hide dopo 3s
   if (!video.paused) {
     hideTimeout = setTimeout(() => {
-      controls-player-video-il-silenzio-della-natura-desktop.classList.add('hide');
+      controls.classList.add('hide');
       wrapper.classList.add('hide-cursor');
     }, 3000);
   }
