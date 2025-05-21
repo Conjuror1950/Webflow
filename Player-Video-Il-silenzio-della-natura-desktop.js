@@ -896,7 +896,7 @@ previewContainer.style.display = 'block';
 
 // 3) nascondi thumb e preview al mouseout
 progress.addEventListener('mouseout', () => {
-  document.querySelector('.scrub-thumb-player-video-il-silenzio-della-natura-desktop').style.display = 'none';
+  document.querySelector('.scrub-thumb').style.display = 'none';
   previewContainer.style.display = 'none';
 });
 
@@ -915,7 +915,7 @@ progress.addEventListener('mouseout', () => {
   const langBtn  = document.querySelector('.lang-btn-player-video-il-silenzio-della-natura-desktop');
   const langMenu = document.querySelector('.lang-menu-player-video-il-silenzio-della-natura-desktop');
   // crea gli span .check e seleziona Italiano
-langMenu.querySelectorAll('.lang-item-player-video-il-silenzio-della-natura-desktop').forEach(item => {
+langMenu.querySelectorAll('.lang-item').forEach(item => {
   // (se non li hai già messi in HTML) crea lo span
   if (!item.querySelector('.check')) {
     const chk = document.createElement('span');
@@ -1015,8 +1015,8 @@ document.addEventListener('click', () => {
   const playPauseBtn = document.getElementById("play-pause-player-video-il-silenzio-della-natura-desktop");
   let hideTimeout;
   // Play/Pause
-  const playIcon = playBtn.querySelector('.play-icon');
-  const pauseIcon = playBtn.querySelector('.pause-icon');
+  const playIcon = playBtn.querySelector('.play-icon-player-video-il-silenzio-della-natura-desktop');
+  const pauseIcon = playBtn.querySelector('.pause-icon-player-video-il-silenzio-della-natura-desktop');
 
 playBtn.addEventListener('click', () => {
   if (video.paused) {
@@ -1112,7 +1112,7 @@ volume.addEventListener('input', () => {
 //    così il gradient è già corretto al caricamento (value=1)
 volume.dispatchEvent(new Event('input'));
 
-const volumeIcon = document.getElementById('volume-icon-player-video-il-silenzio-della-natura-desktop');
+const volumeIcon = document.getElementById('volume-icon');
 
 volumeIcon.addEventListener('click', () => {
   const current = parseFloat(volume.value);
