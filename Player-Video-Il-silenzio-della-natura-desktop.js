@@ -173,7 +173,7 @@ justify-content:space-between;
   gap: 0.5rem;
 }
 
-#volume-icon {
+#volume-icon-player-video-il-silenzio-della-natura-desktop {
   width: 22px;
   height: 22px;
   margin-top: -10px;
@@ -655,7 +655,7 @@ justify-content:flex-end;
         <button class="close-btn-player-video-il-silenzio-della-natura-desktop"><img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a6e03d818ab9f59079de2_xmark.svg" alt="Close" style="width:24px;height:24px;"></button>
         <div class="volume-control-player-video-il-silenzio-della-natura-desktop">
           <input type="range" class="volume-player-video-il-silenzio-della-natura-desktop" min="0" max="1" step="0.01" value="1">
-          <img id="volume-icon" src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681d13cccb3122eb07cc40af_custom.speaker.wave.3.fill.2.2.svg" alt="Volume alto">
+          <img id="volume-icon-player-video-il-silenzio-della-natura-desktop" src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681d13cccb3122eb07cc40af_custom.speaker.wave.3.fill.2.2.svg" alt="Volume alto">
         </div>
       </div>
       <div class="center-controls-player-video-il-silenzio-della-natura-desktop">
@@ -1112,7 +1112,7 @@ volume.addEventListener('input', () => {
 //    così il gradient è già corretto al caricamento (value=1)
 volume.dispatchEvent(new Event('input'));
 
-const volumeIcon = document.getElementById('volume-icon');
+const volumeIcon = document.getElementById('volume-icon-player-video-il-silenzio-della-natura-desktop');
 
 volumeIcon.addEventListener('click', () => {
   const current = parseFloat(volume.value);
