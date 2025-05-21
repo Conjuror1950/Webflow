@@ -896,7 +896,7 @@ previewContainer.style.display = 'block';
 
 // 3) nascondi thumb e preview al mouseout
 progress.addEventListener('mouseout', () => {
-  document.querySelector('.scrub-thumb').style.display = 'none';
+  document.querySelector('.scrub-thumb-player-video-il-silenzio-della-natura-desktop').style.display = 'none';
   previewContainer.style.display = 'none';
 });
 
@@ -915,7 +915,7 @@ progress.addEventListener('mouseout', () => {
   const langBtn  = document.querySelector('.lang-btn-player-video-il-silenzio-della-natura-desktop');
   const langMenu = document.querySelector('.lang-menu-player-video-il-silenzio-della-natura-desktop');
   // crea gli span .check e seleziona Italiano
-langMenu.querySelectorAll('.lang-item').forEach(item => {
+langMenu.querySelectorAll('.lang-item-player-video-il-silenzio-della-natura-desktop').forEach(item => {
   // (se non li hai già messi in HTML) crea lo span
   if (!item.querySelector('.check')) {
     const chk = document.createElement('span');
