@@ -11,7 +11,7 @@
   overflow:hidden;
 }
 /* 1) STATO NORMALE: video “contenuto” e centrato */
-video {
+video-player-video-il-silenzio-della-natura-desktop {
   width: 95vw;       /* o la larghezza desiderata quando NON è fullscreen */
   height: 100vh;      /* mantiene l’aspetto originale */
   object-fit: contain; /* evita crop, show letter‑box se serve */
@@ -47,7 +47,7 @@ video {
   pointer-events: none;       /* non cattura il mouse */
   border-radius: 10px;
 }
-#preview-video {
+#preview-video-player-video-il-silenzio-della-natura-desktop {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -578,7 +578,7 @@ justify-content:flex-end;
 }
 
 /* sottotitoli nella preview: scala un po’ più piccolo e in basso */
-.preview-container-player-video-il-silenzio-della-natura-desktop #preview-subtitles {
+.preview-container-player-video-il-silenzio-della-natura-desktop #preview-subtitles-player-video-il-silenzio-della-natura-desktop {
   position: absolute;
   bottom: 31px;       /* regola se vuoi più spazio dal bordo */
   left: 50%;
@@ -597,13 +597,13 @@ justify-content:flex-end;
   margin-left: 20px;               /* allineato al bordo sinistro di .bottom-top-row */
   width: 350px;          /* regola a piacere la larghezza */
   opacity: 0;
-  animation: warning-fade 8s ease-in-out forwards;
+  animation: warning-fade-player-video-il-silenzio-della-natura-desktop 8s ease-in-out forwards;
   animation-delay: 8s;   /* ← qui metti “x” secondi di delay */
   pointer-events: none;  /* non intercetta click */
   z-index: 5;
 }
 
-@keyframes warning-fade {
+@keyframes warning-fade-player-video-il-silenzio-della-natura-desktop {
   0%   { opacity: 0; transform: translateY(0px); }
   10%  { opacity: 1; transform: translateY(0); }   /* fade-in in 0.8s */
   80%  { opacity: 1; transform: translateY(0); }   /* resta visibile */
@@ -616,13 +616,13 @@ justify-content:flex-end;
   margin-left: 10px;               /* allineato al bordo sinistro di .bottom-top-row */
   width: 100px;          /* regola a piacere la larghezza */
   opacity: 0;
-  animation: warning-fade-age 5s ease-in-out forwards;
+  animation: warning-fade-age-player-video-il-silenzio-della-natura-desktop 5s ease-in-out forwards;
   animation-delay: 2s;   /* ← qui metti “x” secondi di delay */
   pointer-events: none;  /* non intercetta click */
   z-index: 5;
 }
 
-@keyframes warning-fade-age {
+@keyframes warning-fade-age-player-video-il-silenzio-della-natura-desktop {
   0%   { opacity: 0; transform: translateY(0px); }
   10%  { opacity: 1; transform: translateY(0); }   /* fade-in in 0.5s */
   50%  { opacity: 1; transform: translateY(0); }   /* resta visibile */
@@ -639,30 +639,30 @@ justify-content:flex-end;
   styleEl.textContent = css;
   document.head.appendChild(styleEl);
 
- // 2) INIETTA L’HTML
+  // 2) INIETTA L’HTML
   const wrapper = document.createElement('div');
   wrapper.className = 'apple-video-wrapper-player-video-il-silenzio-della-natura-desktop';
   wrapper.innerHTML = `
     <!-- avvisi -->
     <img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/68286f66a406b7094b5b2407_avviso%20sequenze%20con%20immagini%20e%20luci%20lampeggianti.png" alt="Avviso: sequenze con immagini e luci lampeggianti" class="warning-icon-player-video-il-silenzio-della-natura-desktop">
-    <img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/68288c23d64340a80e1a52e1_avviso%20et%C3%A0.png" alt="Avviso: età" class="warning-age">
-    <video id="apple-video-player-video-il-silenzio-della-natura-desktop" preload="metadata" crossorigin="anonymous" autoplay playsinline>
+    <img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/68288c23d64340a80e1a52e1_avviso%20et%C3%A0.png" alt="Avviso: età" class="warning-age-player-video-il-silenzio-della-natura-desktop">
+    <video id="apple-video" preload="metadata" crossorigin="anonymous" autoplay playsinline>
       <track kind="subtitles" label="Italiano (automatico)" srclang="it" src="https://andreaingrassia.netlify.app/assets/subtitles/captions-il-silenzio-della-natura.vtt">
     </video>
-    <div id="custom-subtitles-player-video-il-silenzio-della-natura-desktop" class="subtitle-container-player-video-il-silenzio-della-natura-desktop"></div>
+    <div id="custom-subtitles" class="subtitle-container-player-video-il-silenzio-della-natura-desktop"></div>
     <div class="controls-player-video-il-silenzio-della-natura-desktop">
       <div class="top-bar-player-video-il-silenzio-della-natura-desktop">
         <button class="close-btn-player-video-il-silenzio-della-natura-desktop"><img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a6e03d818ab9f59079de2_xmark.svg" alt="Close" style="width:24px;height:24px;"></button>
         <div class="volume-control-player-video-il-silenzio-della-natura-desktop">
           <input type="range" class="volume-player-video-il-silenzio-della-natura-desktop" min="0" max="1" step="0.01" value="1">
-          <img id="volume-icon-player-video-il-silenzio-della-natura-desktop" src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681d13cccb3122eb07cc40af_custom.speaker.wave.3.fill.2.2.svg" alt="Volume alto">
+          <img id="volume-icon" src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681d13cccb3122eb07cc40af_custom.speaker.wave.3.fill.2.2.svg" alt="Volume alto">
         </div>
       </div>
       <div class="center-controls-player-video-il-silenzio-della-natura-desktop">
         <button class="rewind-player-video-il-silenzio-della-natura-desktop"><img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a5fb8fe6435455d3d98da_10.arrow.trianglehead.counterclockwise.svg" alt="Rewind" style="height:35px;"></button>
         <button class="play-pause-player-video-il-silenzio-della-natura-desktop">
-          <img class="play-icon-player-video-il-silenzio-della-natura-desktop" src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a7228fdd5352747977676_play.fill.svg" alt="Play">
-          <img class="pause-icon-player-video-il-silenzio-della-natura-desktop" src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a722870d098221ad93f47_pause.fill.svg" alt="Pausa" style="display:none;">
+          <img class="play-icon" src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a7228fdd5352747977676_play.fill.svg" alt="Play">
+          <img class="pause-icon" src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a722870d098221ad93f47_pause.fill.svg" alt="Pausa">
         </button>
         <button class="forward-player-video-il-silenzio-della-natura-desktop"><img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a5fb8f7a09fb00f328afb_10.arrow.trianglehead.clockwise.svg" alt="Forward" style="height:35px;"></button>
       </div>
@@ -691,19 +691,20 @@ justify-content:flex-end;
           </div>
         </div>
         <div class="progress-wrapper-player-video-il-silenzio-della-natura-desktop">
-          <input type="range" class="progress" value="0" step="0.1">
+          <input type="range" class="progress-player-video-il-silenzio-della-natura-desktop" value="0" step="0.1">
           <div class="scrub-thumb-player-video-il-silenzio-della-natura-desktop"></div>
         </div>
         <div class="preview-container-player-video-il-silenzio-della-natura-desktop" hidden>
-          <video id="preview-video-player-video-il-silenzio-della-natura-desktop" muted preload="metadata" crossorigin="anonymous"></video>
-          <div id="preview-subtitles-player-video-il-silenzio-della-natura-desktop" class="subtitle-container"></div>
+          <video id="preview-video" muted preload="metadata" crossorigin="anonymous"></video>
+          <div id="preview-subtitles" class="subtitle-container-player-video-il-silenzio-della-natura-desktop"></div>
           <div class="preview-time-player-video-il-silenzio-della-natura-desktop">0:00</div>
         </div>
-        <div class="extras-player-video-il-silenzio-della-natura-desktop"><span class="time">0:00</span><span class="remaining-time">-0:00</span></div>
+        <div class="extras-player-video-il-silenzio-della-natura-desktop"><span class="time-player-video-il-silenzio-della-natura-desktop">0:00</span><span class="remaining-time-player-video-il-silenzio-della-natura-desktop">-0:00</span></div>
       </div>
     </div>
   `;
   document.body.appendChild(wrapper);
+})();
 
   // 3) CARICA DASH.JS E INIZIALIZZA IL PLAYER
   const dashScript = document.createElement('script');
