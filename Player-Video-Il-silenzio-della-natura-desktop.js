@@ -200,8 +200,8 @@ justify-content:space-between;
   margin: 0 0.8rem;;   /* ← opzionale: margine orizzontale attorno al play */
 }
 
-.play-pause-player-video-il-silenzio-della-natura-desktop .play-icon-player-video-il-silenzio-della-natura-desktop,
-.play-pause-player-video-il-silenzio-della-natura-desktop .pause-icon-player-video-il-silenzio-della-natura-desktop {
+.play-pause-player-video-il-silenzio-della-natura-desktop .play-icon,
+.play-pause-player-video-il-silenzio-della-natura-desktop .pause-icon {
   position: relative;
   top: 0;
   left: 0;
@@ -661,8 +661,8 @@ justify-content:flex-end;
       <div class="center-controls-player-video-il-silenzio-della-natura-desktop">
         <button class="rewind-player-video-il-silenzio-della-natura-desktop"><img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a5fb8fe6435455d3d98da_10.arrow.trianglehead.counterclockwise.svg" alt="Rewind" style="height:35px;"></button>
         <button class="play-pause-player-video-il-silenzio-della-natura-desktop">
-          <img class="play-icon-player-video-il-silenzio-della-natura-desktop" src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a7228fdd5352747977676_play.fill.svg" alt="Play">
-          <img class="pause-icon-player-video-il-silenzio-della-natura-desktop" src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a722870d098221ad93f47_pause.fill.svg" alt="Pausa">
+          <img class="play-icon" src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a7228fdd5352747977676_play.fill.svg" alt="Play">
+          <img class="pause-icon" src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a722870d098221ad93f47_pause.fill.svg" alt="Pausa">
         </button>
         <button class="forward-player-video-il-silenzio-della-natura-desktop"><img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a5fb8f7a09fb00f328afb_10.arrow.trianglehead.clockwise.svg" alt="Forward" style="height:35px;"></button>
       </div>
@@ -1015,8 +1015,8 @@ document.addEventListener('click', () => {
   const playPauseBtn = document.getElementById("play-pause-player-video-il-silenzio-della-natura-desktop");
   let hideTimeout;
   // Play/Pause
-  const playIcon = playBtn.querySelector('.play-icon-player-video-il-silenzio-della-natura-desktop');
-  const pauseIcon = playBtn.querySelector('.pause-icon-player-video-il-silenzio-della-natura-desktop');
+  const playIcon = playBtn.querySelector('.play-icon');
+  const pauseIcon = playBtn.querySelector('.pause-icon');
 
 playBtn.addEventListener('click', () => {
   if (video.paused) {
