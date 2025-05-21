@@ -1225,7 +1225,7 @@ emailBtn.addEventListener('click', () => {
   const wrapper = document.querySelector('.apple-video-wrapper-player-video-il-silenzio-della-natura-desktop');
   const resetHideControls = () => {
   // mostra subito i controlli
-  controls.classList.remove('hide');
+  controls-player-video-il-silenzio-della-natura-desktop.classList.remove('hide');
   wrapper.classList.remove('hide-cursor');
   // resetta il timeout precedente
   clearTimeout(hideTimeout);
