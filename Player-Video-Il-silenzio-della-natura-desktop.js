@@ -864,7 +864,7 @@ progress.addEventListener('mousemove', e => {
  lastPreviewTime = time;
 
   // — SCRUB THUMB —
-  const thumb = document.querySelector('.scrub-thumb');
+  const thumb = document.querySelector('.scrub-thumb-player-video-il-silenzio-della-natura-desktop');
   const thumbWidth = thumb.offsetWidth;              // 11px
   // calcola x partendo dalla % e riducendo la “corsia” di thumbWidth
   const x = pct * (rect.width - thumbWidth) + thumbWidth / 2;
@@ -896,7 +896,7 @@ previewContainer.style.display = 'block';
 
 // 3) nascondi thumb e preview al mouseout
 progress.addEventListener('mouseout', () => {
-  document.querySelector('.scrub-thumb').style.display = 'none';
+  document.querySelector('.scrub-thumb-player-video-il-silenzio-della-natura-desktop').style.display = 'none';
   previewContainer.style.display = 'none';
 });
 
