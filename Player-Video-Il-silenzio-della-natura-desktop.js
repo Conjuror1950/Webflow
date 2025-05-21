@@ -11,7 +11,7 @@
   overflow:hidden;
 }
 /* 1) STATO NORMALE: video “contenuto” e centrato */
-video-player-video-il-silenzio-della-natura-desktop {
+video {
   width: 95vw;       /* o la larghezza desiderata quando NON è fullscreen */
   height: 100vh;      /* mantiene l’aspetto originale */
   object-fit: contain; /* evita crop, show letter‑box se serve */
