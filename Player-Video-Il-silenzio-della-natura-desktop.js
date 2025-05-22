@@ -705,6 +705,26 @@ justify-content:flex-end;
   `;
   document.body.appendChild(wrapper);
 
+  // 3) Doppio‐click sul video → toggle fullscreen
+const videoEl = wrapper.querySelector('video');
+videoEl.addEventListener('dblclick', () => {
+  if (document.fullscreenElement || document.webkitFullscreenElement) {
+    // esci dal fullscreen (standard + WebKit)
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+    }
+  } else {
+    // entra nel fullscreen sul wrapper (standard + WebKit)
+    if (wrapper.requestFullscreen) {
+      wrapper.requestFullscreen();
+    } else if (wrapper.webkitRequestFullscreen) {
+      wrapper.webkitRequestFullscreen();
+    }
+  }
+});
+
   // 3) CARICA DASH.JS E INIZIALIZZA IL PLAYER
   const dashScript = document.createElement('script');
   dashScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/dashjs/5.0.0/legacy/umd/dash.all.min.js';
@@ -1306,15 +1326,6 @@ document.addEventListener('keydown', function(event) {
   }
   // **ri‑attiva** l’auto‑hide dopo la pressione di Space/←/→
   resetHideControls();
-});
-
-// 3) Doppio‑click sul video → toggle fullscreen
-video.addEventListener('dblclick', () => {
-  if (document.fullscreenElement) {
-    document.exitFullscreen();
-  } else {
-    video.parentElement.requestFullscreen();
-  }
 });
 
 document.addEventListener('fullscreenchange', () => {
