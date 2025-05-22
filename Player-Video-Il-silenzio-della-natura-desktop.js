@@ -1286,27 +1286,24 @@ langMenu.querySelectorAll('.lang-item-player-video-il-silenzio-della-natura-desk
 });
 
 // 2) Keyboard shortcuts: ←/→ skip 10s, Space toggle play/pause
-document.addEventListener('keydown', (e) => {
-  const tag = document.activeElement.tagName.toLowerCase();
-  if (tag === 'input' || tag === 'textarea' || tag === 'select') return;
-  switch (e.code) {
+document.addEventListener('keydown', function(event) {
+  const video = document.querySelector('video');
+  switch (event.code) {
     case 'Space':
-      e.preventDefault();
-      if (video.paused) video.play();
-      else           video.pause();
+      event.preventDefault();
+      if (video.paused) {
+        video.play();
+      } else {
+        video.pause();
+      }
       break;
     case 'ArrowRight':
-      e.preventDefault();
-      video.currentTime = Math.min(video.duration, video.currentTime + 10);
+      video.currentTime += 10;
       break;
     case 'ArrowLeft':
-      e.preventDefault();
-      video.currentTime = Math.max(0, video.currentTime - 10);
+      video.currentTime -= 10;
       break;
-    default:
-      return; // non è una chiave d’interesse
-   }
-  });
+  }
   // **ri‑attiva** l’auto‑hide dopo la pressione di Space/←/→
   resetHideControls();
 });
