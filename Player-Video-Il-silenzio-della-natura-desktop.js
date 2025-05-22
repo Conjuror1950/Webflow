@@ -707,6 +707,7 @@ justify-content:flex-end;
 
    // Javascript (JS)
   // 3) Doppio‐click sul video → toggle fullscreen
+const video = wrapper.querySelector('video');
 const videoEl = wrapper.querySelector('video');
 videoEl.addEventListener('dblclick', () => {
   if (document.fullscreenElement || document.webkitFullscreenElement) {
@@ -1228,12 +1229,20 @@ volume.addEventListener('input', () => {
   volumeIcon.alt = altText;
 });
 
-  // Fullscreen
+// Fullscreen sul wrapper
 fsBtn.addEventListener('click', () => {
-  if (document.fullscreenElement) {
-    document.exitFullscreen();
+  if (document.fullscreenElement || document.webkitFullscreenElement) {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else {
+      document.webkitExitFullscreen();
+    }
   } else {
-    video.parentElement.requestFullscreen();
+    if (wrapper.requestFullscreen) {
+      wrapper.requestFullscreen();
+    } else {
+      wrapper.webkitRequestFullscreen();
+    }
   }
 });
 
@@ -1331,7 +1340,6 @@ langMenu.querySelectorAll('.lang-item-player-video-il-silenzio-della-natura-desk
 });
 
 document.addEventListener('fullscreenchange', () => {
-  const wrapper = document.querySelector('.apple-video-wrapper-player-video-il-silenzio-della-natura-desktop');
   if (document.fullscreenElement) {
     wrapper.classList.add('fullscreen');
   } else {
