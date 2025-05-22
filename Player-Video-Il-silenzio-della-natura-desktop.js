@@ -705,6 +705,7 @@ justify-content:flex-end;
   `;
   document.body.appendChild(wrapper);
 
+   // Javascript (JS)
   // 3) Doppio‐click sul video → toggle fullscreen
 const videoEl = wrapper.querySelector('video');
 videoEl.addEventListener('dblclick', () => {
@@ -725,6 +726,51 @@ videoEl.addEventListener('dblclick', () => {
   }
 });
 
+  // 2) Keyboard shortcuts: ←/→ skip 10s, Space toggle play/pause
+document.addEventListener('keydown', function(event) {
+  const video = document.querySelector('video');
+  switch (event.code) {
+    case 'Space':
+      event.preventDefault();
+      if (video.paused) {
+        video.play();
+      } else {
+        video.pause();
+      }
+      break;
+    case 'ArrowRight':
+      video.currentTime += 10;
+      break;
+    case 'ArrowLeft':
+      video.currentTime -= 10;
+      break;
+  }
+  // **ri‑attiva** l’auto‑hide dopo la pressione di Space/←/→
+  resetHideControls();
+});
+  
+  // Auto‑hide controls e cursore
+wrapper.addEventListener('mousemove', resetHideControls);
+  controls.classList.remove('hide');
+  wrapper.classList.remove('hide-cursor');
+
+  clearTimeout(hideTimeout);
+  // se il video è in play, allora nascondi dopo 3s
+  if (!video.paused) {
+    hideTimeout = setTimeout(() => {
+      controls.classList.add('hide');
+      wrapper.classList.add('hide-cursor');
+    }, 3000);
+  }
+
+  // Ri-avvia l’auto-hide su **qualsiasi** interazione
+['click', 'mousemove', 'keydown', 'wheel', 'touchstart', 'pointermove'].forEach(evt => {
+  // sul wrapper per mouse/touch/ruota…
+  wrapper.addEventListener(evt, resetHideControls, { passive: true });
+});
+// e sul documento per garantire di catturare i keydown anche se il focus NON è sul wrapper
+document.addEventListener('keydown', resetHideControls);
+  
   // 3) CARICA DASH.JS E INIZIALIZZA IL PLAYER
   const dashScript = document.createElement('script');
   dashScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/dashjs/5.0.0/legacy/umd/dash.all.min.js';
@@ -1258,32 +1304,10 @@ emailBtn.addEventListener('click', () => {
   }
 };
 
-// Auto‑hide controls e cursore
-wrapper.addEventListener('mousemove', resetHideControls);
-  controls.classList.remove('hide');
-  wrapper.classList.remove('hide-cursor');
-
-  clearTimeout(hideTimeout);
-  // se il video è in play, allora nascondi dopo 3s
-  if (!video.paused) {
-    hideTimeout = setTimeout(() => {
-      controls.classList.add('hide');
-      wrapper.classList.add('hide-cursor');
-    }, 3000);
-  }
-
   function formatTime(s) {
     const m=Math.floor(s/60), sec=Math.floor(s%60).toString().padStart(2,'0');
     return `${m}:${sec}`;
   }
-
-// Ri-avvia l’auto-hide su **qualsiasi** interazione
-['click', 'mousemove', 'keydown', 'wheel', 'touchstart', 'pointermove'].forEach(evt => {
-  // sul wrapper per mouse/touch/ruota…
-  wrapper.addEventListener(evt, resetHideControls, { passive: true });
-});
-// e sul documento per garantire di catturare i keydown anche se il focus NON è sul wrapper
-document.addEventListener('keydown', resetHideControls);
 
 // apri/chiudi menu lingua
 langBtn.addEventListener('click', e => {
@@ -1303,29 +1327,6 @@ langMenu.querySelectorAll('.lang-item-player-video-il-silenzio-della-natura-desk
     // opzionale: cambiare tooltip o titolo del button
     langBtn.title = newLang === 'it' ? 'Italiano' : 'English';
   });
-});
-
-// 2) Keyboard shortcuts: ←/→ skip 10s, Space toggle play/pause
-document.addEventListener('keydown', function(event) {
-  const video = document.querySelector('video');
-  switch (event.code) {
-    case 'Space':
-      event.preventDefault();
-      if (video.paused) {
-        video.play();
-      } else {
-        video.pause();
-      }
-      break;
-    case 'ArrowRight':
-      video.currentTime += 10;
-      break;
-    case 'ArrowLeft':
-      video.currentTime -= 10;
-      break;
-  }
-  // **ri‑attiva** l’auto‑hide dopo la pressione di Space/←/→
-  resetHideControls();
 });
 
 document.addEventListener('fullscreenchange', () => {
