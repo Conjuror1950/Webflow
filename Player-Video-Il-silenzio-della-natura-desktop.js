@@ -1305,7 +1305,8 @@ document.addEventListener('keydown', (e) => {
       break;
     default:
       return; // non è una chiave d’interesse
-  }
+   }
+  });
   // **ri‑attiva** l’auto‑hide dopo la pressione di Space/←/→
   resetHideControls();
 });
