@@ -1057,36 +1057,48 @@ document.addEventListener('click', () => {
   const playPauseBtn = document.getElementById("play-pause-player-video-il-silenzio-della-natura-desktop");
   let hideTimeout;
 
-  // ─── Auto‐hide controls ──────────────────────────────────
-  let hideControlsTimeout;
+// ─── Auto‐hide controls ──────────────────────────────────
+let hideControlsTimeout;
 
-  function showControls() {
-    controls.classList.remove('hide');
-    wrapper.classList.remove('hide-cursor');
-    resetHideTimeout();
+function showControls() {
+  controls.classList.remove('hide');
+  wrapper.classList.remove('hide-cursor');
+  resetHideTimeout();
+}
+
+function hideControls() {
+  controls.classList.add('hide');
+  wrapper.classList.add('hide-cursor');
+}
+
+function resetHideTimeout() {
+  clearTimeout(hideControlsTimeout);
+  // parte il timeout solo se il video è in riproduzione
+  if (!video.paused) {
+    hideControlsTimeout = setTimeout(() => {
+      // ricontrolla lo stato al momento della callback
+      if (!video.paused) hideControls();
+    }, 3000);
   }
+}
 
-  function hideControls() {
-    controls.classList.add('hide');
-    wrapper.classList.add('hide-cursor');
-  }
+// Eventi utente che ri-mostrano i controlli e resettano il timer
+['mousemove', 'click', 'keydown', 'touchstart'].forEach(evt =>
+  wrapper.addEventListener(evt, showControls, { passive: true })
+);
 
-  function resetHideTimeout() {
-    clearTimeout(hideControlsTimeout);
-    hideControlsTimeout = setTimeout(hideControls, 3000);
-  }
+// evita loop di show/hide sui controlli stessi
+controls.addEventListener('mousemove', e => e.stopPropagation());
 
-  // Eventi utente che ri-mostrano i controlli e resettano il timer
-  ['mousemove', 'click', 'keydown', 'touchstart'].forEach(evt =>
-    wrapper.addEventListener(evt, showControls, { passive: true })
-  );
+// quando il video parte, avvia subito il countdown
+video.addEventListener('play', resetHideTimeout);
 
-  // evita che il mouseover sui controlli stesso resetti il timer in loop
-  controls.addEventListener('mousemove', e => e.stopPropagation());
-
-  // quando il video parte, avvia subito il countdown
-  video.addEventListener('play', resetHideTimeout);
-  // ───────────────────────────────────────────────────────
+// quando il video viene messo in pausa, annulla il timeout e mostra sempre i controlli
+video.addEventListener('pause', () => {
+  clearTimeout(hideControlsTimeout);
+  showControls();
+});
+// ───────────────────────────────────────────────────────
 
   // Play/Pause
   const playIcon = playBtn.querySelector('.play-icon');
