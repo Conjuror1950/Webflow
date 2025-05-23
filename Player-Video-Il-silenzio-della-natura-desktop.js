@@ -1300,32 +1300,33 @@ emailBtn.addEventListener('click', () => {
   const body    = encodeURIComponent(`Guarda qui: ${location.href}`);
   window.location.href = `mailto:?subject=${subject}&body=${body}`;
 });
-
- // clic fuori per chiudere
- document.addEventListener('click', () => {
-   shareMenu.style.display = 'none';
-   langMenu.style.display = 'none';
- });
-
-      // apri/chiudi menu lingua
+    
+// apri/chiudi menu lingua
 langBtn.addEventListener('click', e => {
   e.stopPropagation();
-  shareMenu.style.display = 'none';      // ← chiudo il menu share
-  subsMenu.style.display   = 'none';    // ← CHIUDI SEMPRE IL MENU SOTTOTITOLI
-  langMenu.style.display = langMenu.style.display === 'flex' ? 'none' : 'flex';
+  shareMenu.style.display = 'none';
+  subsMenu.style.display  = 'none';
+  langMenu.style.display  = langMenu.style.display === 'flex' ? 'none' : 'flex';
 });
 
 // clic su voce di lingua
-langMenu.querySelectorAll('.lang-item-player-video-il-silenzio-della-natura-desktop').forEach(item => {
-  item.addEventListener('click', () => {
-    const newLang = item.dataset.lang;            // "it" oppure "en"
-    document.documentElement.lang = newLang;      // imposta lang sull’<html>
-    // (qui potresti aggiungere logica di i18n o ricaricare la pagina)
-    langMenu.style.display = 'none';
-    // opzionale: cambiare tooltip o titolo del button
-    langBtn.title = newLang === 'it' ? 'Italiano' : 'English';
+langMenu
+  .querySelectorAll('.lang-item-player-video-il-silenzio-della-natura-desktop')
+  .forEach(item => {
+    item.addEventListener('click', () => {
+      const newLang = item.dataset.lang;
+      document.documentElement.lang = newLang;
+      langBtn.title = newLang === 'it' ? 'Italiano' : 'English';
+      langMenu.style.display = 'none';
+    });
   });
-});
+    
+ // clic fuori per chiudere
+ document.addEventListener('click', () => {
+   shareMenu.style.display = 'none';
+   subsMenu.style.display  = 'none';
+   langMenu.style.display = 'none';
+ });
  
   //-----   
   function formatTime(s) {
