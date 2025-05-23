@@ -725,6 +725,29 @@ videoEl.addEventListener('dblclick', () => {
     }
   }
 });
+
+        // 2) Keyboard shortcuts: ←/→ skip 10s, Space toggle play/pause
+document.addEventListener('keydown', function(event) {
+  const video = document.querySelector('video');
+  switch (event.code) {
+    case 'Space':
+      event.preventDefault();
+      if (video.paused) {
+        video.play();
+      } else {
+        video.pause();
+      }
+      break;
+    case 'ArrowRight':
+      video.currentTime += 10;
+      break;
+    case 'ArrowLeft':
+      video.currentTime -= 10;
+      break;
+  }
+  // **ri‑attiva** l’auto‑hide dopo la pressione di Space/←/→
+  resetHideControls();
+});
   
   // 3) CARICA DASH.JS E INIZIALIZZA IL PLAYER
   const dashScript = document.createElement('script');
@@ -1283,29 +1306,7 @@ langMenu.querySelectorAll('.lang-item-player-video-il-silenzio-della-natura-desk
     langBtn.title = newLang === 'it' ? 'Italiano' : 'English';
   });
 });
-
-      // 2) Keyboard shortcuts: ←/→ skip 10s, Space toggle play/pause
-document.addEventListener('keydown', function(event) {
-  const video = document.querySelector('video');
-  switch (event.code) {
-    case 'Space':
-      event.preventDefault();
-      if (video.paused) {
-        video.play();
-      } else {
-        video.pause();
-      }
-      break;
-    case 'ArrowRight':
-      video.currentTime += 10;
-      break;
-    case 'ArrowLeft':
-      video.currentTime -= 10;
-      break;
-  }
-  // **ri‑attiva** l’auto‑hide dopo la pressione di Space/←/→
-  resetHideControls();
-});
+    
       // Auto‑hide controls e cursore
 wrapper.addEventListener('mousemove', resetHideControls);
   controls.classList.remove('hide');
