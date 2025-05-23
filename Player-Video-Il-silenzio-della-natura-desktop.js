@@ -1340,6 +1340,7 @@ langMenu.querySelectorAll('.lang-item-player-video-il-silenzio-della-natura-desk
     langBtn.title = newLang === 'it' ? 'Italiano' : 'English';
   });
 });
-    
+
+};
   document.body.appendChild(dashScript);
 })();
