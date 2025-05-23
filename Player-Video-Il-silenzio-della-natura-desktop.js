@@ -746,6 +746,56 @@ document.addEventListener('keydown', function(event) {
       break;
   }
 });
+
+  // 2) IMPOSTO IMMEDIATAMENTE IL MENU LINGUA
+const shareMenu = document.querySelector('.share-menu-player-video-il-silenzio-della-natura-desktop');
+const subsMenu  = document.querySelector('.subs-menu-player-video-il-silenzio-della-natura-desktop');
+const langBtn   = document.querySelector('.lang-btn-player-video-il-silenzio-della-natura-desktop');
+const langMenu  = document.querySelector('.lang-menu-player-video-il-silenzio-della-natura-desktop');
+
+// crea le spunte e seleziona Italiano di default
+langMenu
+  .querySelectorAll('.lang-item-player-video-il-silenzio-della-natura-desktop')
+  .forEach(item => {
+    if (!item.querySelector('.check')) {
+      const chk = document.createElement('span');
+      chk.classList.add('check');
+      chk.textContent = '✓';
+      item.appendChild(chk);
+    }
+    if (item.dataset.lang === 'it') {
+      item.classList.add('selected');
+      document.documentElement.lang = 'it';
+    }
+  });
+
+// apri/chiudi menu lingua
+langBtn.addEventListener('click', e => {
+  e.stopPropagation();
+  shareMenu.style.display = 'none';
+  subsMenu.style.display  = 'none';
+  langMenu.style.display  = langMenu.style.display === 'flex' ? 'none' : 'flex';
+});
+
+// chiudi tutti i menu al click fuori
+document.addEventListener('click', () => {
+  shareMenu.style.display = 'none';
+  subsMenu.style.display  = 'none';
+  langMenu.style.display  = 'none';
+});
+
+// seleziona la lingua e chiudi
+langMenu
+  .querySelectorAll('.lang-item-player-video-il-silenzio-della-natura-desktop')
+  .forEach(item => {
+    item.addEventListener('click', () => {
+      const newLang = item.dataset.lang;
+      document.documentElement.lang = newLang;
+      langBtn.title = newLang === 'it' ? 'Italiano' : 'English';
+      langMenu.style.display = 'none';
+    });
+  });
+// ——————————————
   
   // 3) CARICA DASH.JS E INIZIALIZZA IL PLAYER
   const dashScript = document.createElement('script');
@@ -1301,33 +1351,6 @@ emailBtn.addEventListener('click', () => {
   const body    = encodeURIComponent(`Guarda qui: ${location.href}`);
   window.location.href = `mailto:?subject=${subject}&body=${body}`;
 });
-    
-// apri/chiudi menu lingua
-langBtn.addEventListener('click', e => {
-  e.stopPropagation();
-  shareMenu.style.display = 'none';
-  subsMenu.style.display  = 'none';
-  langMenu.style.display  = langMenu.style.display === 'flex' ? 'none' : 'flex';
-});
-
- // chiudi tutti i menu al click fuori
- document.addEventListener('click', () => {
-   shareMenu.style.display = 'none';
-   subsMenu.style.display  = 'none';
-   langMenu.style.display = 'none';
- });
-
-// clic su voce di lingua
-langMenu
-  .querySelectorAll('.lang-item-player-video-il-silenzio-della-natura-desktop')
-  .forEach(item => {
-    item.addEventListener('click', () => {
-      const newLang = item.dataset.lang;
-      document.documentElement.lang = newLang;
-      langBtn.title = newLang === 'it' ? 'Italiano' : 'English';
-      langMenu.style.display = 'none';
-    });
-  });
  
   //-----   
   function formatTime(s) {
