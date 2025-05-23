@@ -956,8 +956,9 @@ progress.addEventListener('mouseout', () => {
   // Language switcher
   const langBtn  = document.querySelector('.lang-btn-player-video-il-silenzio-della-natura-desktop');
   const langMenu = document.querySelector('.lang-menu-player-video-il-silenzio-della-natura-desktop');
-  // crea gli span .check e seleziona Italiano
-langMenu.querySelectorAll('.lang-item').forEach(item => {
+  
+    // crea gli span .check e seleziona Italiano
+langMenu.querySelectorAll('.lang-item-player-video-il-silenzio-della-natura-desktop').forEach(item => {
   // (se non li hai già messi in HTML) crea lo span
   if (!item.querySelector('.check')) {
     const chk = document.createElement('span');
