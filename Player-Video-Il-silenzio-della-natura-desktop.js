@@ -703,7 +703,7 @@ justify-content:flex-end;
       </div>
     </div>
   `;
-  document.body.appendChild(wrapper);
+    document.body.appendChild(wrapper);
 
    // Javascript (JS)
   // 3) Doppio‐click sul video → toggle fullscreen
@@ -726,7 +726,7 @@ videoEl.addEventListener('dblclick', () => {
   }
 });
 
-        // 2) Keyboard shortcuts: ←/→ skip 10s, Space toggle play/pause
+// 2) Keyboard shortcuts: ←/→ skip 10s, Space toggle play/pause
 document.addEventListener('keydown', function(event) {
   const video = document.querySelector('video');
   switch (event.code) {
@@ -748,7 +748,7 @@ document.addEventListener('keydown', function(event) {
   // **ri‑attiva** l’auto‑hide dopo la pressione di Space/←/→
   resetHideControls();
 });
-
+  
   // 3) CARICA DASH.JS E INIZIALIZZA IL PLAYER
   const dashScript = document.createElement('script');
   dashScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/dashjs/5.0.0/legacy/umd/dash.all.min.js';
@@ -1306,7 +1306,7 @@ langMenu.querySelectorAll('.lang-item-player-video-il-silenzio-della-natura-desk
     langBtn.title = newLang === 'it' ? 'Italiano' : 'English';
   });
 });
-    
+
 // Auto‑hide controls e cursore
 wrapper.addEventListener('mousemove', resetHideControls);
   controls.classList.remove('hide');
@@ -1319,6 +1319,24 @@ wrapper.addEventListener('mousemove', resetHideControls);
       controls.classList.add('hide');
       wrapper.classList.add('hide-cursor');
     }, 3000);
-  } 
+  }
+
+  // Ri-avvia l’auto-hide su **qualsiasi** interazione
+['click', 'mousemove', 'keydown', 'wheel', 'touchstart', 'pointermove'].forEach(evt => {
+  // sul wrapper per mouse/touch/ruota…
+  wrapper.addEventListener(evt, resetHideControls, { passive: true });
+});
+// e sul documento per garantire di catturare i keydown anche se il focus NON è sul wrapper
+document.addEventListener('keydown', resetHideControls);
+
+document.addEventListener('fullscreenchange', () => {
+  const wrapper = document.querySelector('.apple-video-wrapper-player-video-il-silenzio-della-natura-desktop');
+  if (document.fullscreenElement) {
+    wrapper.classList.add('fullscreen');
+  } else {
+    wrapper.classList.remove('fullscreen');
+  }
+});
+  };  
   document.body.appendChild(dashScript);
 })();
