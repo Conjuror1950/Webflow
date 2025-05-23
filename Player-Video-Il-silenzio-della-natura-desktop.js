@@ -1086,9 +1086,6 @@ document.addEventListener('click', () => {
 
   // quando il video parte, avvia subito il countdown
   video.addEventListener('play', resetHideTimeout);
-
-  // nascondi i controlli subito allo start se vuoi (opzionale)
-  hideControls();
   // ───────────────────────────────────────────────────────
 
   // Play/Pause
