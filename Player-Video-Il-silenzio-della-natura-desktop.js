@@ -1271,6 +1271,7 @@ emailBtn.addEventListener('click', () => {
   // mostra subito i controlli
   controls.classList.remove('hide');
   wrapper.classList.remove('hide-cursor');
+  wrapper.addEventListener('mousemove', resetHideControls);
   // resetta il timeout precedente
   clearTimeout(hideTimeout);
   // se il video è in play, ri‑programma l’auto‑hide dopo 3s
@@ -1306,21 +1307,7 @@ langMenu.querySelectorAll('.lang-item-player-video-il-silenzio-della-natura-desk
     langBtn.title = newLang === 'it' ? 'Italiano' : 'English';
   });
 });
-
-// Auto‑hide controls e cursore
-wrapper.addEventListener('mousemove', resetHideControls);
-  controls.classList.remove('hide');
-  wrapper.classList.remove('hide-cursor');
-
-  clearTimeout(hideTimeout);
-  // se il video è in play, allora nascondi dopo 3s
-  if (!video.paused) {
-    hideTimeout = setTimeout(() => {
-      controls.classList.add('hide');
-      wrapper.classList.add('hide-cursor');
-    }, 3000);
-  }
-
+    
   // Ri-avvia l’auto-hide su **qualsiasi** interazione
 ['click', 'mousemove', 'keydown', 'wheel', 'touchstart', 'pointermove'].forEach(evt => {
   // sul wrapper per mouse/touch/ruota…
