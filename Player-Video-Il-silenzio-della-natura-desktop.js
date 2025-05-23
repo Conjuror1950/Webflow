@@ -832,18 +832,15 @@ player.updateSettings({
   const forwardBtn = document.querySelector('.forward-player-video-il-silenzio-della-natura-desktop');
   const progress = document.querySelector('.progress-player-video-il-silenzio-della-natura-desktop');
 
-    // ─── AUTO-HIDE CONTROLS & CURSOR ───
+  // ─── AUTO-HIDE CONTROLS & CURSOR ───
   const wrapper  = document.querySelector('.apple-video-wrapper-player-video-il-silenzio-della-natura-desktop');
   const controls = document.querySelector('.controls-player-video-il-silenzio-della-natura-desktop');
   let hideTimeout;
 
   const resetHideControls = () => {
-    // mostra subito i controlli e il cursore
     controls.classList.remove('hide');
     wrapper.classList.remove('hide-cursor');
-    // resetta eventuale timeout precedente
     clearTimeout(hideTimeout);
-    // se il video è in play, dopo 3s nascondi di nuovo
     if (!video.paused) {
       hideTimeout = setTimeout(() => {
         controls.classList.add('hide');
@@ -858,7 +855,6 @@ player.updateSettings({
     .forEach(evt => wrapper.addEventListener(evt, resetHideControls, { passive: true }));
   document.addEventListener('keydown', resetHideControls);
 
-  // gestione classe fullscreen sul wrapper
   document.addEventListener('fullscreenchange', () => {
     if (document.fullscreenElement) wrapper.classList.add('fullscreen');
     else                              wrapper.classList.remove('fullscreen');
