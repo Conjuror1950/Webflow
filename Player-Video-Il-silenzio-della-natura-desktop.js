@@ -406,11 +406,11 @@ justify-content:flex-end;
   padding: 5px;
   cursor: pointer;
 }
-.lang-btn-player-video-il-silenzio-della-natura-desktop .lang-icon {
+.lang-btn-player-video-il-silenzio-della-natura-desktop {
   pointer-events: none;
   transition: filter 0.3s ease;
 }
-.lang-btn-player-video-il-silenzio-della-natura-desktop:hover .lang-icon {
+.lang-btn-player-video-il-silenzio-della-natura-desktop:hover {
   filter: brightness(1) drop-shadow(0 0 0.5px white);
 }
 
