@@ -705,7 +705,7 @@ justify-content:flex-end;
   `;
     document.body.appendChild(wrapper);
 
-   // Javascript (JS)
+  // Javascript (JS)
   // 3) Doppio‐click sul video → toggle fullscreen
 const videoEl = wrapper.querySelector('video');
 videoEl.addEventListener('dblclick', () => {
@@ -725,24 +725,6 @@ videoEl.addEventListener('dblclick', () => {
     }
   }
 });
-
-    // Auto-hide controls
-  const wrapper = document.querySelector('.apple-video-wrapper-player-video-il-silenzio-della-natura-desktop');
-  const resetHideControls = () => {
-  // mostra subito i controlli
-  controls.classList.remove('hide');
-  wrapper.classList.remove('hide-cursor');
-  wrapper.addEventListener('mousemove', resetHideControls);
-  // resetta il timeout precedente
-  clearTimeout(hideTimeout);
-  // se il video è in play, ri‑programma l’auto‑hide dopo 3s
-  if (!video.paused) {
-    hideTimeout = setTimeout(() => {
-      controls.classList.add('hide');
-      wrapper.classList.add('hide-cursor');
-    }, 3000);
-  }
-};
 
 // 2) Keyboard shortcuts: ←/→ skip 10s, Space toggle play/pause
 document.addEventListener('keydown', function(event) {
@@ -1282,6 +1264,23 @@ emailBtn.addEventListener('click', () => {
    shareMenu.style.display = 'none';
    langMenu.style.display = 'none';
  });
+
+  // Auto-hide controls
+  const wrapper = document.querySelector('.apple-video-wrapper-player-video-il-silenzio-della-natura-desktop');
+  const resetHideControls = () => {
+  // mostra subito i controlli
+  controls.classList.remove('hide');
+  wrapper.classList.remove('hide-cursor');
+  // resetta il timeout precedente
+  clearTimeout(hideTimeout);
+  // se il video è in play, ri‑programma l’auto‑hide dopo 3s
+  if (!video.paused) {
+    hideTimeout = setTimeout(() => {
+      controls.classList.add('hide');
+      wrapper.classList.add('hide-cursor');
+    }, 3000);
+  }
+};
     
   function formatTime(s) {
     const m=Math.floor(s/60), sec=Math.floor(s%60).toString().padStart(2,'0');
@@ -1307,7 +1306,21 @@ langMenu.querySelectorAll('.lang-item-player-video-il-silenzio-della-natura-desk
     langBtn.title = newLang === 'it' ? 'Italiano' : 'English';
   });
 });
-    
+
+// Auto‑hide controls e cursore
+wrapper.addEventListener('mousemove', resetHideControls);
+  controls.classList.remove('hide');
+  wrapper.classList.remove('hide-cursor');
+
+  clearTimeout(hideTimeout);
+  // se il video è in play, allora nascondi dopo 3s
+  if (!video.paused) {
+    hideTimeout = setTimeout(() => {
+      controls.classList.add('hide');
+      wrapper.classList.add('hide-cursor');
+    }, 3000);
+  }
+
   // Ri-avvia l’auto-hide su **qualsiasi** interazione
 ['click', 'mousemove', 'keydown', 'wheel', 'touchstart', 'pointermove'].forEach(evt => {
   // sul wrapper per mouse/touch/ruota…
