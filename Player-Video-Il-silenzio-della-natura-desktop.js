@@ -746,26 +746,6 @@ document.addEventListener('keydown', function(event) {
       break;
   }
 });
-
-  // apri/chiudi menu lingua
-langBtn.addEventListener('click', e => {
-  e.stopPropagation();
-  shareMenu.style.display = 'none';      // ← chiudo il menu share
-  subsMenu.style.display   = 'none';    // ← CHIUDI SEMPRE IL MENU SOTTOTITOLI
-  langMenu.style.display = langMenu.style.display === 'flex' ? 'none' : 'flex';
-});
-
-// clic su voce di lingua
-langMenu.querySelectorAll('.lang-item-player-video-il-silenzio-della-natura-desktop').forEach(item => {
-  item.addEventListener('click', () => {
-    const newLang = item.dataset.lang;            // "it" oppure "en"
-    document.documentElement.lang = newLang;      // imposta lang sull’<html>
-    // (qui potresti aggiungere logica di i18n o ricaricare la pagina)
-    langMenu.style.display = 'none';
-    // opzionale: cambiare tooltip o titolo del button
-    langBtn.title = newLang === 'it' ? 'Italiano' : 'English';
-  });
-});
   
   // 3) CARICA DASH.JS E INIZIALIZZA IL PLAYER
   const dashScript = document.createElement('script');
@@ -1326,6 +1306,26 @@ emailBtn.addEventListener('click', () => {
    shareMenu.style.display = 'none';
    langMenu.style.display = 'none';
  });
+
+      // apri/chiudi menu lingua
+langBtn.addEventListener('click', e => {
+  e.stopPropagation();
+  shareMenu.style.display = 'none';      // ← chiudo il menu share
+  subsMenu.style.display   = 'none';    // ← CHIUDI SEMPRE IL MENU SOTTOTITOLI
+  langMenu.style.display = langMenu.style.display === 'flex' ? 'none' : 'flex';
+});
+
+// clic su voce di lingua
+langMenu.querySelectorAll('.lang-item-player-video-il-silenzio-della-natura-desktop').forEach(item => {
+  item.addEventListener('click', () => {
+    const newLang = item.dataset.lang;            // "it" oppure "en"
+    document.documentElement.lang = newLang;      // imposta lang sull’<html>
+    // (qui potresti aggiungere logica di i18n o ricaricare la pagina)
+    langMenu.style.display = 'none';
+    // opzionale: cambiare tooltip o titolo del button
+    langBtn.title = newLang === 'it' ? 'Italiano' : 'English';
+  });
+});
  
   //-----   
   function formatTime(s) {
