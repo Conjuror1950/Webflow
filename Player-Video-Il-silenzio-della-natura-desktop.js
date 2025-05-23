@@ -1310,6 +1310,13 @@ langBtn.addEventListener('click', e => {
   langMenu.style.display  = langMenu.style.display === 'flex' ? 'none' : 'flex';
 });
 
+ // chiudi tutti i menu al click fuori
+ document.addEventListener('click', () => {
+   shareMenu.style.display = 'none';
+   subsMenu.style.display  = 'none';
+   langMenu.style.display = 'none';
+ });
+
 // clic su voce di lingua
 langMenu
   .querySelectorAll('.lang-item-player-video-il-silenzio-della-natura-desktop')
@@ -1321,13 +1328,6 @@ langMenu
       langMenu.style.display = 'none';
     });
   });
-    
- // clic fuori per chiudere
- document.addEventListener('click', () => {
-   shareMenu.style.display = 'none';
-   subsMenu.style.display  = 'none';
-   langMenu.style.display = 'none';
- });
  
   //-----   
   function formatTime(s) {
