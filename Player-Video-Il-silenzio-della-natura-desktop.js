@@ -672,7 +672,7 @@ justify-content:flex-end;
           <div class="serie-title-player-video-il-silenzio-della-natura-desktop">Produzioni Cinematografiche</div>
           <div class="right-controls-player-video-il-silenzio-della-natura-desktop">
             <button class="subs-btn-player-video-il-silenzio-della-natura-desktop"><img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681c881581975b4efc170207_captions.bubble.svg" alt="Sottotitoli" style="width:20px;height:20px;"></button>
-            <div class="subs-menu-player-video-il-silenzio-della-natura-desktop" style="display:none;">
+            <div class="subs-menu-player-video-il-silenzio-della-natura-desktop">
               <button class="title-subs-item-player-video-il-silenzio-della-natura-desktop">Sottotitoli</button>
               <button class="subs-item-player-video-il-silenzio-della-natura-desktop" data-val="-1">Disattivati</button>
               <button class="subs-item-player-video-il-silenzio-della-natura-desktop selected" data-val="0">Italiano (automatico)</button>
