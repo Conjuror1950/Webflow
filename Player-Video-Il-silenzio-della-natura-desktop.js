@@ -748,23 +748,6 @@ document.addEventListener('keydown', function(event) {
   // **ri‑attiva** l’auto‑hide dopo la pressione di Space/←/→
   resetHideControls();
 });
-
-    // Auto-hide controls
-  const wrapper = document.querySelector('.apple-video-wrapper-player-video-il-silenzio-della-natura-desktop');
-  const resetHideControls = () => {
-  // mostra subito i controlli
-  controls.classList.remove('hide');
-  wrapper.classList.remove('hide-cursor');
-  // resetta il timeout precedente
-  clearTimeout(hideTimeout);
-  // se il video è in play, ri‑programma l’auto‑hide dopo 3s
-  if (!video.paused) {
-    hideTimeout = setTimeout(() => {
-      controls.classList.add('hide');
-      wrapper.classList.add('hide-cursor');
-    }, 3000);
-  }
-};
   
   // 3) CARICA DASH.JS E INIZIALIZZA IL PLAYER
   const dashScript = document.createElement('script');
@@ -991,7 +974,7 @@ langMenu.querySelectorAll('.lang-item').forEach(item => {
     document.documentElement.lang = 'it';
   }
 });
-  const subsBtn  = document.querySelector('.subs-btn-player-video-il-silenzio-della-natura-desktop');
+const subsBtn  = document.querySelector('.subs-btn-player-video-il-silenzio-della-natura-desktop');
 const subsMenu = document.querySelector('.subs-menu-player-video-il-silenzio-della-natura-desktop');
 const subsItems = subsMenu.querySelectorAll('.subs-item-player-video-il-silenzio-della-natura-desktop');
 
@@ -1282,6 +1265,23 @@ emailBtn.addEventListener('click', () => {
    langMenu.style.display = 'none';
  });
 
+  // Auto-hide controls
+  const wrapper = document.querySelector('.apple-video-wrapper-player-video-il-silenzio-della-natura-desktop');
+  const resetHideControls = () => {
+  // mostra subito i controlli
+  controls.classList.remove('hide');
+  wrapper.classList.remove('hide-cursor');
+  // resetta il timeout precedente
+  clearTimeout(hideTimeout);
+  // se il video è in play, ri‑programma l’auto‑hide dopo 3s
+  if (!video.paused) {
+    hideTimeout = setTimeout(() => {
+      controls.classList.add('hide');
+      wrapper.classList.add('hide-cursor');
+    }, 3000);
+  }
+};
+    
   function formatTime(s) {
     const m=Math.floor(s/60), sec=Math.floor(s%60).toString().padStart(2,'0');
     return `${m}:${sec}`;
