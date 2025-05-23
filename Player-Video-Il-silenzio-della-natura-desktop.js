@@ -749,37 +749,6 @@ document.addEventListener('keydown', function(event) {
   resetHideControls();
 });
 
-  // Auto‑hide controls e cursore
-wrapper.addEventListener('mousemove', resetHideControls);
-  controls.classList.remove('hide');
-  wrapper.classList.remove('hide-cursor');
-
-  clearTimeout(hideTimeout);
-  // se il video è in play, allora nascondi dopo 3s
-  if (!video.paused) {
-    hideTimeout = setTimeout(() => {
-      controls.classList.add('hide');
-      wrapper.classList.add('hide-cursor');
-    }, 3000);
-  }
-
-  // Ri-avvia l’auto-hide su **qualsiasi** interazione
-['click', 'mousemove', 'keydown', 'wheel', 'touchstart', 'pointermove'].forEach(evt => {
-  // sul wrapper per mouse/touch/ruota…
-  wrapper.addEventListener(evt, resetHideControls, { passive: true });
-});
-// e sul documento per garantire di catturare i keydown anche se il focus NON è sul wrapper
-document.addEventListener('keydown', resetHideControls);
-
-document.addEventListener('fullscreenchange', () => {
-  const wrapper = document.querySelector('.apple-video-wrapper-player-video-il-silenzio-della-natura-desktop');
-  if (document.fullscreenElement) {
-    wrapper.classList.add('fullscreen');
-  } else {
-    wrapper.classList.remove('fullscreen');
-  }
-});
-  
   // 3) CARICA DASH.JS E INIZIALIZZA IL PLAYER
   const dashScript = document.createElement('script');
   dashScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/dashjs/5.0.0/legacy/umd/dash.all.min.js';
@@ -1338,6 +1307,18 @@ langMenu.querySelectorAll('.lang-item-player-video-il-silenzio-della-natura-desk
   });
 });
     
-  };  
+// Auto‑hide controls e cursore
+wrapper.addEventListener('mousemove', resetHideControls);
+  controls.classList.remove('hide');
+  wrapper.classList.remove('hide-cursor');
+
+  clearTimeout(hideTimeout);
+  // se il video è in play, allora nascondi dopo 3s
+  if (!video.paused) {
+    hideTimeout = setTimeout(() => {
+      controls.classList.add('hide');
+      wrapper.classList.add('hide-cursor');
+    }, 3000);
+  } 
   document.body.appendChild(dashScript);
 })();
