@@ -1056,6 +1056,41 @@ document.addEventListener('click', () => {
   const controls = document.querySelector('.controls-player-video-il-silenzio-della-natura-desktop');
   const playPauseBtn = document.getElementById("play-pause-player-video-il-silenzio-della-natura-desktop");
   let hideTimeout;
+
+  // ─── Auto‐hide controls ──────────────────────────────────
+  let hideControlsTimeout;
+
+  function showControls() {
+    controls.classList.remove('hide');
+    wrapper.classList.remove('hide-cursor');
+    resetHideTimeout();
+  }
+
+  function hideControls() {
+    controls.classList.add('hide');
+    wrapper.classList.add('hide-cursor');
+  }
+
+  function resetHideTimeout() {
+    clearTimeout(hideControlsTimeout);
+    hideControlsTimeout = setTimeout(hideControls, 3000);
+  }
+
+  // Eventi utente che ri-mostrano i controlli e resettano il timer
+  ['mousemove', 'click', 'keydown', 'touchstart'].forEach(evt =>
+    wrapper.addEventListener(evt, showControls, { passive: true })
+  );
+
+  // evita che il mouseover sui controlli stesso resetti il timer in loop
+  controls.addEventListener('mousemove', e => e.stopPropagation());
+
+  // quando il video parte, avvia subito il countdown
+  video.addEventListener('play', resetHideTimeout);
+
+  // nascondi i controlli subito allo start se vuoi (opzionale)
+  hideControls();
+  // ───────────────────────────────────────────────────────
+
   // Play/Pause
   const playIcon = playBtn.querySelector('.play-icon');
   const pauseIcon = playBtn.querySelector('.pause-icon');
