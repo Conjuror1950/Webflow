@@ -1,3 +1,7 @@
 /assets/subtitles/*.vtt
   Content-Type: text/vtt
   Access-Control-Allow-Origin: *
+
+/apple-faq.js
+  Content-Type: application/javascript
+  Access-Control-Allow-Origin: *
