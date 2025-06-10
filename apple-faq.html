@@ -16,16 +16,3 @@
             <h3>Contatti<span class="icon"></span></h3>
             <p>Per metterti in contatto, accedi alla pagina 'Contatti' e compila il <a href="https://andreaingrassia.webflow.io/contatti#modulo">modulo contatti</a> oppure invia una <a href="mailto:andrea.ingrassia@zohomail.eu">email.</a></p>
         </div>
-
-fetch('https://andreaingrassia.netlify.app/apple-faq.html')
-  .then(response => response.text())
-  .then(html => {
-    // Assicurati che esista un contenitore con id "faq-root" nella pagina Webflow
-    const container = document.getElementById('faq-root');
-    if (container) {
-      container.innerHTML = html;
-    } else {
-      console.warn('Contenitore #faq-root non trovato');
-    }
-  })
-  .catch(err => console.error('Errore fetch FAQ:', err));
