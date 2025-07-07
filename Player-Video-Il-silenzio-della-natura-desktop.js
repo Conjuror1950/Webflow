@@ -27,7 +27,7 @@
   width: 100vw; height: 100vh;
   padding: 0; margin: 0;
   overflow: hidden;
-  z-index: 9998;
+  z-index: 10000;
 }
 
 body.player-active {
