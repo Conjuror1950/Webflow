@@ -30,11 +30,6 @@
   z-index: 9998;
 }
 
-html, body {
-  margin: 0;
-  padding: 0;
-}
-
 body.player-active {
   overflow: hidden !important;  /* nasconde scrollbar */
 }
