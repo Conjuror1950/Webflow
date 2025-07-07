@@ -21,15 +21,6 @@
   transform: translateX(0);
 }
 
-#Player-Video-Il-silenzio-della-natura-container-desktop {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  padding: 0; margin: 0;
-  overflow: hidden;
-  z-index: 10000;
-}
-
 body.player-active {
   overflow: hidden !important;  /* nasconde scrollbar */
 }
