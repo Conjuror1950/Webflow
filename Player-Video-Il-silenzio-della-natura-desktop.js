@@ -3,13 +3,31 @@
   // 1) INIETTA IL CSS
   const css = `
 .apple-video-wrapper-player-video-il-silenzio-della-natura-desktop {
-  position:relative;
-  width:100vw;
-  height:100vh;
-  background:black;
-  font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif !important;
-  overflow:hidden;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  transform: translateX(100%);    /* completamente fuori schermo a destra */
+  transition: transform 0.6s ease;
+  z-index: 9999;                  /* sopra tutto il resto */
+  visibility: hidden;             /* non interagibile finché nascosto */
 }
+
+/* 1) stato “aperto” */
+.apple-video-wrapper-player-video-il-silenzio-della-natura-desktop.open {
+  transform: translateX(0);       /* slide in da destra */
+  visibility: visible;
+}
+
+/* 2) quando il player è aperto, nascondi tutto il resto della pagina */
+body.video-active > *:not(.apple-video-wrapper-player-video-il-silenzio-della-natura-desktop) {
+  display: none !important;
+}
+body.video-active {
+  overflow: hidden;               /* blocca lo scroll */
+}
+
 /* 1) STATO NORMALE: video “contenuto” e centrato */
 video {
   width: 95vw;       /* o la larghezza desiderata quando NON è fullscreen */
@@ -798,6 +816,14 @@ langMenu
 // ——————————————
   
   // 3) CARICA DASH.JS E INIZIALIZZA IL PLAYER
+ // ──────────────────────────────────────────────────────────
+ // 2.1) Riferimenti per il lightbox e il lock del body
+ // (metti un id="lightbox-thumb" sull’immagine/thumbnail del lightbox)
+ const lightboxThumb = document.getElementById('lightbox-thumb');
+ const playerWrapper = wrapper;     // il tuo div apple-video-wrapper…
+ const htmlBody      = document.body;
+ // ──────────────────────────────────────────────────────────
+  
   const dashScript = document.createElement('script');
   dashScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/dashjs/5.0.0/legacy/umd/dash.all.min.js';
   dashScript.onload = () => {
@@ -1366,6 +1392,29 @@ document.addEventListener('fullscreenchange', () => {
     wrapper.classList.remove('fullscreen');
   }
 });
+
+    // ──────────────────────────────────────────────────────────
+    // 2.2) Click sulla miniatura → apri il player in lightbox
+    lightboxThumb.addEventListener('click', e => {
+      e.preventDefault();
+      // 1) nascondi il resto della pagina
+      htmlBody.classList.add('video-active');
+      // 2) slide in del player
+      playerWrapper.classList.add('open');
+      // 3) opzionale: parte subito l’auto‑play
+      video.play().catch(() => {});
+    });
+ 
+    // 2.3) Chiusura col tasto “X”
+    const closeBtn = playerWrapper.querySelector('.close-btn-player-video-il-silenzio-della-natura-desktop');
+    closeBtn.addEventListener('click', () => {
+      // slide‑out e mostra di nuovo il sito
+      playerWrapper.classList.remove('open');
+      htmlBody.classList.remove('video-active');
+      video.pause();
+    });
+    // ──────────────────────────────────────────────────────────
+  
   };  
   document.body.appendChild(dashScript);
 })();
