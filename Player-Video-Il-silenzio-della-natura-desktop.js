@@ -6,40 +6,19 @@
   position: fixed !important;
   top: 0;
   left: 0;
-  width:100vw;
+  right: 0;               /* garantisce full-width */
+  width: 100vw;           /* full viewport width */
   height:100vh;
-  transform: translateX(100%);
+  transform: translateX(100vw);    /* sposta di 100% della viewport */
   transition: transform 0.6s ease;
   z-index: 9999;
-  background:black;
-  font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif !important;
-  overflow:hidden;
+  background: black;
+  overflow: hidden;
 }
 
 /* quando apre, fa slide-in da destra */
 .apple-video-wrapper-player-video-il-silenzio-della-natura-desktop.open {
   transform: translateX(0);
-}
-
-/* forziamo il video a riempire tutto lo schermo solo in open */
-.apple-video-wrapper-player-video-il-silenzio-della-natura-desktop.open video {
-  width: 100vw !important;
-  height: 100vh !important;
-  object-fit: cover !important; /* o `contain` se preferisci bande nere */
-}
-
-/* blocca lo scroll del body quando il player è attivo */
-body.player-active {
-  overflow: hidden !important;
-}
-
-/* assicura che anche l’overflow del container padre non faccia vedere scroll */
-#Player-Video-Il-silenzio-della-natura-container-desktop {
-  overflow: hidden;
-  position: fixed;  /* lo porti fuori dal flow, copre tutto */
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  z-index: 9998;    /* sotto al tuo wrapper-video a 9999 */
 }
 
 /* nasconde tutto il sito “normale” */
@@ -675,7 +654,7 @@ justify-content:flex-end;
   const styleEl = document.createElement('style');
   styleEl.textContent = css;
   document.head.appendChild(styleEl);
-
+  
   // 2) INIETTA L’HTML
   const wrapper = document.createElement('div');
   wrapper.className = 'apple-video-wrapper-player-video-il-silenzio-della-natura-desktop';
