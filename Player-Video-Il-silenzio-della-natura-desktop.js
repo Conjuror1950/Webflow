@@ -21,6 +21,27 @@
   transform: translateX(0);
 }
 
+/* forziamo il video a riempire tutto lo schermo solo in open */
+.apple-video-wrapper-player-video-il-silenzio-della-natura-desktop.open video {
+  width: 100vw !important;
+  height: 100vh !important;
+  object-fit: cover !important; /* o `contain` se preferisci bande nere */
+}
+
+/* blocca lo scroll del body quando il player è attivo */
+body.player-active {
+  overflow: hidden !important;
+}
+
+/* assicura che anche l’overflow del container padre non faccia vedere scroll */
+#Player-Video-Il-silenzio-della-natura-container-desktop {
+  overflow: hidden;
+  position: fixed;  /* lo porti fuori dal flow, copre tutto */
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  z-index: 9998;    /* sotto al tuo wrapper-video a 9999 */
+}
+
 /* nasconde tutto il sito “normale” */
 body.player-active #site-wrapper {
   display: none !important;
