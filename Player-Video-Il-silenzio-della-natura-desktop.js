@@ -736,7 +736,7 @@ justify-content:flex-end;
 
    // Javascript (JS)
 // ——— Lightbox → apri player con animazione ———
-const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-container-desktops');
+const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-container-desktop');
 lightbox.addEventListener('click', e => {
   e.preventDefault();
 
