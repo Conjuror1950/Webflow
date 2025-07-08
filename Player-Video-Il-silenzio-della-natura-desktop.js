@@ -4,7 +4,9 @@
   const css = `
 .apple-video-wrapper-player-video-il-silenzio-della-natura-desktop {
   visibility: hidden;          /* non cattura click quando nascosto */
-  position:relative;
+  position: fixed;       /* fissa il wrapper al viewport */
+  top: 0;
+  left: 0;
   width:100vw;
   height:100vh;
   background:black;
