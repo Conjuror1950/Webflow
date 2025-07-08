@@ -26,13 +26,8 @@ body.player-active {
   overflow: hidden !important;
 }
 
-/* quando il player è attivo, nascondi ogni cosa tranne il wrapper */
-body.player-active > :not(.apple-video-wrapper-player-video-il-silenzio-della-natura-desktop) {
-  display: none !important;
-}
-
-/* assicura che il container Webflow sparisca anch’esso se non contiene il wrapper */
-body.player-active #Player-Video-Il-silenzio-della-natura-container-desktop > :not(.apple-video-wrapper-player-video-il-silenzio-della-natura-desktop) {
+/* nasconde qualsiasi elemento figlio diretto di <body> che NON sia il tuo container */
+body.player-active > *:not(#Player-Video-Il-silenzio-della-natura-container-desktop) {
   display: none !important;
 }
 
