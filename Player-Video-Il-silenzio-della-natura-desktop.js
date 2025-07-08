@@ -2,6 +2,23 @@
 (function() {
   // 1) INIETTA IL CSS
   const css = `
+/* 1) Blocca lo scroll */
+body.player-active {
+  overflow: hidden !important;
+}
+
+/* 2) Nascondi TUTTO ciò che è figlio diretto di <body> */
+body.player-active > * {
+  display: none !important;
+}
+
+/* 3) Fai ri-comparire SOLO il container Webflow + tutto il suo interno */
+body.player-active #Player-Video-Il-silenzio-della-natura-container-desktop,
+body.player-active #Player-Video-Il-silenzio-della-natura-container-desktop * {
+  display: block !important;
+  visibility: visible !important;
+}
+  
 .apple-video-wrapper-player-video-il-silenzio-della-natura-desktop {
   position: fixed !important;
   top: 0;
@@ -19,15 +36,6 @@
 /* quando apre, fa slide-in da destra */
 .apple-video-wrapper-player-video-il-silenzio-della-natura-desktop.open {
   transform: translateX(0);
-}
-
-body.player-active {
-  overflow: hidden !important;
-}
-
-/* Quando il player è attivo, NASCONDI ogni elemento che NON è il wrapper del player */
-body.player-active *:not(.Player-Video-Il-silenzio-della-natura-container-desktop):not(.Player-Video-Il-silenzio-della-natura-container-desktop *) {
-  display: none !important;
 }
 
 /* STATO NORMALE: video “contenuto” e centrato */
