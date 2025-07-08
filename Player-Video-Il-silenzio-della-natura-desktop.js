@@ -19,9 +19,14 @@
 .visible-player {
 display: block !important;
 opacity: 1 !important;           /* entra in fade-in */
-/* porta il wrapper a X=0, cioè in vista */
 transform: translateX(0) !important;
 z-index: 9999; /* se serve “sovrapporre” tutti gli altri elementi */
+}
+
+/* classe temporanea per la chiusura: sposta fuori a destra */
+.closing-player {
+  transform: translateX(100%) !important;
+  opacity: 0 !important;
 }
 
 /* tutti gli altri elementi da nascondere: preparali per il fade-out */
@@ -746,8 +751,9 @@ lightbox.addEventListener('click', e => {
        .filter(el => el !== wrapper && el !== lightbox)
     ].forEach(el => el.style.display = 'none');
 
-    // 3) Mostra e animazione in del wrapper
-    wrapper.classList.add('visible-player');
+  // 3) Mostra il player: reset eventuale closing e avvia slide-in
+  wrapper.classList.remove('closing-player');
+  wrapper.classList.add('visible-player');
 
     // 4) Avvia il video da zero
     const video = wrapper.querySelector('video');
@@ -861,8 +867,9 @@ closeBtn.addEventListener('click', () => {
   video.pause();
   video.currentTime = 0;
   
-  // 2) Inizia il fade-out del player
+  // 2) Inizia lo slide‐out: togli visible, aggiungi closing
   wrapper.classList.remove('visible-player');
+  wrapper.classList.add('closing-player');
 
   // 3) Dopo la transizione, ripristina la pagina
   setTimeout(() => {
@@ -877,6 +884,8 @@ closeBtn.addEventListener('click', () => {
     // reset wrapper
     wrapper.style.display = 'none';
     wrapper.classList.remove('visible-player');
+    // nascondi il wrapper definitivamente
+    wrapper.classList.remove('closing-player');
   }, 350);
 });
   
