@@ -10,7 +10,12 @@
   display: none !important;   /* ← nasconde tutto il player all’avvio */
   font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif !important;
   overflow:hidden;
-  z-index: 9999;            /* ← fondamentale per stare sopra tutto */
+}
+
+/* Player visibile */
+.visible-player {
+display: block !important;
+z-index: 9999; /* se serve “sovrapporre” tutti gli altri elementi */
 }
 
 /* 1) STATO NORMALE: video “contenuto” e centrato */
@@ -710,7 +715,6 @@ justify-content:flex-end;
    document.body.appendChild(wrapper);
 
    // Javascript (JS)
-    //  ——————————————
 // Lightbox to Video-Player toggle
 const lightbox = document.getElementById('lightboxTrigger');
 
@@ -728,7 +732,7 @@ lightbox.addEventListener('click', e => {
   });
 
   // 3) Mostra il player
-  wrapper.style.display = 'block';
+  wrapper.classList.add('visible-player');
 
   // 4) (Opzionale) porta il focus al video e autoppl
   const video = wrapper.querySelector('video');
