@@ -748,8 +748,10 @@ lightbox.addEventListener('click', e => {
     // 3) Mostra e animazione in del wrapper
     wrapper.classList.add('visible-player');
 
-    // 4) Avvia il video
+    // 4) Avvia il video da zero
     const video = wrapper.querySelector('video');
+    video.pause();            // assicura che sia fermo
+    video.currentTime = 0;    // resetta al frame iniziale
     video.focus();
     video.play();
   }, 350); // pari a transition-duration
@@ -853,6 +855,11 @@ closeBtn.addEventListener('click', () => {
     document.exitFullscreen();
   }
 
+  // 1b) Ferma il video e resetta la posizione
+  const video = wrapper.querySelector('video');
+  video.pause();
+  video.currentTime = 0;
+  
   // 2) Inizia il fade-out del player
   wrapper.classList.remove('visible-player');
 
