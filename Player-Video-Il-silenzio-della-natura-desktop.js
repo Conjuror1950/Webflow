@@ -21,13 +21,6 @@
   transform: translateX(0);
 }
 
-/* reset globali */
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-}
-
 /* quando il player è attivo, rimuovi qualsiasi scroll sul body */
 body.player-active {
   overflow: hidden !important;
@@ -38,19 +31,13 @@ body.player-active #site-wrapper {
   display: none !important;
 }
 
-/* SOLO in “normal mode” (wrapper **non** open) */
-.apple-video-wrapper-player-video-il-silenzio-della-natura-desktop:not(.open) video {
+/* STATO NORMALE: video “contenuto” e centrato */
+video {
   width: 95vw;
   height: 100vh;
   object-fit: contain;
   display: block;
   margin: 0 auto;
-}
-/* invece, in open forziamo davvero full-screen */
-.apple-video-wrapper-player-video-il-silenzio-della-natura-desktop.open video {
-  width: 100vw !important;
-  height: 100vh !important;
-  object-fit: cover !important;
 }
 
 /* GLOBAL: sia standard che WebKit fullscreen */
