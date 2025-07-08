@@ -7,10 +7,10 @@
   width:100vw;
   height:100vh;
   background:black;
-  display: none;   /* ← nasconde tutto il player all’avvio */
-  z-index: 9999;            /* ← fondamentale per stare sopra tutto */
+  display: none !important;   /* ← nasconde tutto il player all’avvio */
   font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif !important;
   overflow:hidden;
+  z-index: 9999;            /* ← fondamentale per stare sopra tutto */
 }
 
 /* 1) STATO NORMALE: video “contenuto” e centrato */
@@ -707,11 +707,10 @@ justify-content:flex-end;
     </div>
   `;
     // appendo dentro il tuo Div di Webflow
-const container = document.getElementById('Player-Video-Il-silenzio-della-natura-container-desktop');
-container.appendChild(wrapper);
+   document.body.appendChild(wrapper);
 
    // Javascript (JS)
-  //  ——————————————
+    //  ——————————————
 // Lightbox to Video-Player toggle
 const lightbox = document.getElementById('lightboxTrigger');
 
@@ -729,7 +728,7 @@ lightbox.addEventListener('click', e => {
   });
 
   // 3) Mostra il player
-  wrapper.style.display = 'flex';
+  wrapper.style.display = 'block';
 
   // 4) (Opzionale) porta il focus al video e autoppl
   const video = wrapper.querySelector('video');
@@ -737,7 +736,6 @@ lightbox.addEventListener('click', e => {
   video.play();
 });
 //  ——————————————
-  
   // 3) Doppio‐click sul video → toggle fullscreen
 const videoEl = wrapper.querySelector('video');
 videoEl.addEventListener('dblclick', () => {
