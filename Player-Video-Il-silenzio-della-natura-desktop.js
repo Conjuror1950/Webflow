@@ -29,21 +29,6 @@ z-index: 9999; /* se serve “sovrapporre” tutti gli altri elementi */
   opacity: 0 !important;
 }
 
-/* Stato iniziale: fuori dallo schermo sulla destra */
-.player-slide-container {
-  transform: translateX(100%);
-  transition: transform 0.6s ease-in-out;
-  opacity: 0;
-  pointer-events: none;
-}
-
-/* Stato visibile: centrato */
-.player-slide-container.active {
-  transform: translateX(0);
-  opacity: 1;
-  pointer-events: auto;
-}
-
 /* tutti gli altri elementi da nascondere: preparali per il fade-out */
 body > *:not(.apple-video-wrapper-player-video-il-silenzio-della-natura-desktop) {
   transition: opacity 0.35s ease-in-out;
@@ -755,37 +740,35 @@ const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-na
 lightbox.addEventListener('click', e => {
   e.preventDefault();
 
-  // 1) Fade-out lightbox e tutti gli altri
-  [ lightbox, 
-    ...Array.from(document.body.children)
-      .filter(el => el !== wrapper && el !== lightbox)
+  // 1) Fade-out lightbox e altri
+  [lightbox, ...Array.from(document.body.children)
+     .filter(el => el !== wrapper && el !== lightbox)
   ].forEach(el => el.classList.add('fade-out'));
-
-  // 2) Subito dopo il click: mostra il wrapper FUORI schermo
-  wrapper.style.display   = 'block';
-  wrapper.style.transform = 'translateX(100%)';
-  wrapper.style.opacity   = '0';
-  wrapper.offsetHeight;  // forza reflow
-
-  // 3) Dopo la fine della fade degli altri (0.35s), avvia lo slide-in
+  
+  // 2) Dopo la transizione, nascondi a display
   setTimeout(() => {
-    // nascondi davvero lightbox e gli altri
-    [ lightbox, 
-      ...Array.from(document.body.children)
-        .filter(el => el !== wrapper && el !== lightbox)
+    [lightbox, ...Array.from(document.body.children)
+       .filter(el => el !== wrapper && el !== lightbox)
     ].forEach(el => el.style.display = 'none');
 
-    // slide-in: rimuovi eventuale closing e aggiungi la classe visibile
-    wrapper.classList.remove('closing-player');
-    wrapper.classList.add('player-slide-container.active');
+// forziamo il reflow perché veniamo da display:none
+wrapper.style.transform = 'translateX(100%)';
+wrapper.style.opacity = '0';
+wrapper.offsetHeight;  // trucco per ri-calcolare lo stile
+// ora possiamo far partire l’animazione
+wrapper.classList.add('visible-player');
+    
+  // 3) Mostra il player: reset eventuale closing e avvia slide-in
+  wrapper.classList.remove('closing-player');
+  wrapper.classList.add('visible-player');
 
     // 4) Avvia il video da zero
     const video = wrapper.querySelector('video');
-    video.pause();
-    video.currentTime = 0;
+    video.pause();            // assicura che sia fermo
+    video.currentTime = 0;    // resetta al frame iniziale
     video.focus();
     video.play();
-  }, 350); // pari alla transition-duration
+  }, 350); // pari a transition-duration
 });
   
   // 3) Doppio‐click sul video → toggle fullscreen
