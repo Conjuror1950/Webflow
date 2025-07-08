@@ -29,6 +29,21 @@ z-index: 9999; /* se serve “sovrapporre” tutti gli altri elementi */
   opacity: 0 !important;
 }
 
+/* Stato iniziale: fuori dallo schermo sulla destra */
+.player-slide-container {
+  transform: translateX(100%);
+  transition: transform 0.6s ease-in-out;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Stato visibile: centrato */
+.player-slide-container.active {
+  transform: translateX(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
 /* tutti gli altri elementi da nascondere: preparali per il fade-out */
 body > *:not(.apple-video-wrapper-player-video-il-silenzio-della-natura-desktop) {
   transition: opacity 0.35s ease-in-out;
@@ -762,7 +777,7 @@ lightbox.addEventListener('click', e => {
 
     // slide-in: rimuovi eventuale closing e aggiungi la classe visibile
     wrapper.classList.remove('closing-player');
-    wrapper.classList.add('visible-player');
+    wrapper.classList.add('player-slide-container.active');
 
     // 4) Avvia il video da zero
     const video = wrapper.querySelector('video');
