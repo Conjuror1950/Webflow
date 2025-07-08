@@ -735,34 +735,32 @@ justify-content:flex-end;
    document.body.appendChild(wrapper);
 
 // Javascript (JS)
-// riferimenti ai DOM elements
-const wrapper = document.querySelector('.apple-video-wrapper-player-video-il-silenzio-della-natura-desktop');
-// ——— Lightbox → apri player con slide da destra a sinistra ———
+// ——— Lightbox → apri player con animazione ———
 const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-container-desktop');
 lightbox.addEventListener('click', e => {
   e.preventDefault();
 
-  // 1) Fade-out lightbox e tutti gli altri elementi
+  // 1) Fade-out lightbox e tutti gli altri
   [ lightbox, 
     ...Array.from(document.body.children)
       .filter(el => el !== wrapper && el !== lightbox)
   ].forEach(el => el.classList.add('fade-out'));
 
-  // 2) Subito: mostra il wrapper FUORI schermo e forza reflow
+  // 2) Subito dopo il click: mostra il wrapper FUORI schermo
   wrapper.style.display   = 'block';
   wrapper.style.transform = 'translateX(100%)';
   wrapper.style.opacity   = '0';
-  wrapper.offsetHeight; // forza reflow
+  wrapper.offsetHeight;  // forza reflow
 
-  // 3) Dopo 0.35s (fade-out completato), nascondi gli altri e fai slide-in
+  // 3) Dopo la fine della fade degli altri (0.35s), avvia lo slide-in
   setTimeout(() => {
-    // nascondi realmente lightbox e gli altri
+    // nascondi davvero lightbox e gli altri
     [ lightbox, 
       ...Array.from(document.body.children)
         .filter(el => el !== wrapper && el !== lightbox)
     ].forEach(el => el.style.display = 'none');
 
-    // togli eventuale classe di chiusura e avvia slide-in
+    // slide-in: rimuovi eventuale closing e aggiungi la classe visibile
     wrapper.classList.remove('closing-player');
     wrapper.classList.add('visible-player');
 
@@ -772,39 +770,7 @@ lightbox.addEventListener('click', e => {
     video.currentTime = 0;
     video.focus();
     video.play();
-  }, 350); // deve corrispondere al transition-duration CSS
-});
-
-// ——— Chiudi il player (slide da sinistra a destra) ———
-const closeBtn = wrapper.querySelector('.close-btn-player-video-il-silenzio-della-natura-desktop');
-closeBtn.addEventListener('click', () => {
-  // 1) Se in fullscreen, esci
-  if (document.fullscreenElement) document.exitFullscreen();
-
-  // 2) Ferma e resetta il video
-  const video = wrapper.querySelector('video');
-  video.pause();
-  video.currentTime = 0;
-
-  // 3) Avvia slide-out: togli visible, aggiungi closing
-  wrapper.classList.remove('visible-player');
-  wrapper.classList.add('closing-player');
-
-  // 4) Dopo 0.35s, ripristina lightbox e pagina
-  setTimeout(() => {
-    // mostra di nuovo lightbox e gli altri
-    [ lightbox, 
-      ...Array.from(document.body.children)
-        .filter(el => el !== wrapper)
-    ].forEach(el => {
-      el.style.display = '';
-      el.classList.remove('fade-out');
-    });
-
-    // nascondi e resetta il wrapper
-    wrapper.style.display = 'none';
-    wrapper.classList.remove('closing-player');
-  }, 350);
+  }, 350); // pari alla transition-duration
 });
   
   // 3) Doppio‐click sul video → toggle fullscreen
