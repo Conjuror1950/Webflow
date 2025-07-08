@@ -8,9 +8,11 @@
   height:100vh;
   background:black;
   display: none;   /* ← nasconde tutto il player all’avvio */
+  z-index: 9999;            /* ← fondamentale per stare sopra tutto */
   font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif !important;
   overflow:hidden;
 }
+
 /* 1) STATO NORMALE: video “contenuto” e centrato */
 video {
   width: 95vw;       /* o la larghezza desiderata quando NON è fullscreen */
