@@ -21,14 +21,13 @@
   transform: translateX(0);
 }
 
-/* quando il player è attivo, nasconde TUTTI i figli diretti di <body> 
-   eccetto il DIV che contiene il player */
-body.player-active > *:not(#Player-Video-Il-silenzio-della-natura-container-desktop) {
-  display: none !important;
-}
-
 body.player-active {
   overflow: hidden !important;
+}
+
+/* quando il player è attivo, nasconde tutto tranne il container del player */
+body.player-active > *:not(#Player-Video-Il-silenzio-della-natura-container-desktop) {
+  display: none !important;
 }
 
 /* STATO NORMALE: video “contenuto” e centrato */
