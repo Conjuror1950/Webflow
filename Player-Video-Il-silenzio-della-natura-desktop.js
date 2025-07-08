@@ -1395,7 +1395,7 @@ document.addEventListener('fullscreenchange', () => {
 
   // ─── 4) CLICK SUL LIGHTBOX ──────────────────────────────────────────
 // Sostituisci '#lightbox-img' col selettore del tuo lightbox
-const lightbox = document.querySelector('#lightbox-img');
+const lightbox = document.querySelector('#lightboxTrigger');
 lightbox.addEventListener('click', () => {
   // Nasconde tutto il resto della pagina
   document.querySelector('.page-content').classList.add('hidden');
