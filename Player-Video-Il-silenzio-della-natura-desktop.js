@@ -21,14 +21,14 @@
   transform: translateX(0);
 }
 
-/* quando il player è attivo, rimuovi qualsiasi scroll sul body */
-body.player-active {
-  overflow: hidden !important;
-}
-
-/* nasconde qualsiasi elemento figlio diretto di <body> che NON sia il tuo container */
+/* quando il player è attivo, nasconde TUTTI i figli diretti di <body> 
+   eccetto il DIV che contiene il player */
 body.player-active > *:not(#Player-Video-Il-silenzio-della-natura-container-desktop) {
   display: none !important;
+}
+
+body.player-active {
+  overflow: hidden !important;
 }
 
 /* STATO NORMALE: video “contenuto” e centrato */
