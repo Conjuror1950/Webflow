@@ -25,8 +25,8 @@ body.player-active {
   overflow: hidden !important;
 }
 
-/* quando il player è attivo, nasconde tutto tranne il container del player */
-body.player-active > *:not(#Player-Video-Il-silenzio-della-natura-container-desktop) {
+/* Quando il player è attivo, NASCONDI ogni elemento che NON è il wrapper del player */
+body.player-active *:not(.apple-video-wrapper-player-video-il-silenzio-della-natura-desktop):not(.apple-video-wrapper-player-video-il-silenzio-della-natura-desktop *) {
   display: none !important;
 }
 
