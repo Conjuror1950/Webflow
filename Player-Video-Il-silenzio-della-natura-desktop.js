@@ -26,7 +26,7 @@ body.player-active {
 }
 
 /* Quando il player è attivo, NASCONDI ogni elemento che NON è il wrapper del player */
-body.player-active *:not(.apple-video-wrapper-player-video-il-silenzio-della-natura-desktop):not(.apple-video-wrapper-player-video-il-silenzio-della-natura-desktop *) {
+body.player-active *:not(.Player-Video-Il-silenzio-della-natura-container-desktop):not(.Player-Video-Il-silenzio-della-natura-container-desktop *) {
   display: none !important;
 }
 
