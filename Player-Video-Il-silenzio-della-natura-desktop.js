@@ -900,12 +900,14 @@ closeBtn.addEventListener('click', () => {
       el.classList.remove('fade-out');
     });
 
-    // reset wrapper
-    wrapper.style.display = 'none';
-    wrapper.classList.remove('visible-player');
-    // nascondi il wrapper definitivamente
-    wrapper.classList.remove('closing-player');
-    wrapper.style.visibility = 'hidden';
+// 3b) Rimuovi ogni inline‐style e resetta la trasformazione
+wrapper.style.visibility = '';
+wrapper.style.display    = '';
+wrapper.style.transform  = '';
+wrapper.style.opacity    = '';
+
+// 3c) Rimuovi tutte le classi di show/hide
+wrapper.classList.remove('visible-player', 'closing-player');
   }, 350);
 });
   
