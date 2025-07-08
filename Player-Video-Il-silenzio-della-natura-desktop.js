@@ -740,35 +740,37 @@ const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-na
 lightbox.addEventListener('click', e => {
   e.preventDefault();
 
-  // 1) Fade-out lightbox e altri
-  [lightbox, ...Array.from(document.body.children)
-     .filter(el => el !== wrapper && el !== lightbox)
+  // 1) Fade-out lightbox e tutti gli altri
+  [ lightbox, 
+    ...Array.from(document.body.children)
+      .filter(el => el !== wrapper && el !== lightbox)
   ].forEach(el => el.classList.add('fade-out'));
-  
-  // 2) Dopo la transizione, nascondi a display
+
+  // 2) Subito dopo il click: mostra il wrapper FUORI schermo
+  wrapper.style.display   = 'block';
+  wrapper.style.transform = 'translateX(100%)';
+  wrapper.style.opacity   = '0';
+  wrapper.offsetHeight;  // forza reflow
+
+  // 3) Dopo la fine della fade degli altri (0.35s), avvia lo slide-in
   setTimeout(() => {
-    [lightbox, ...Array.from(document.body.children)
-       .filter(el => el !== wrapper && el !== lightbox)
+    // nascondi davvero lightbox e gli altri
+    [ lightbox, 
+      ...Array.from(document.body.children)
+        .filter(el => el !== wrapper && el !== lightbox)
     ].forEach(el => el.style.display = 'none');
 
-// forziamo il reflow perché veniamo da display:none
-wrapper.style.transform = 'translateX(100%)';
-wrapper.style.opacity = '0';
-wrapper.offsetHeight;  // trucco per ri-calcolare lo stile
-// ora possiamo far partire l’animazione
-wrapper.classList.add('visible-player');
-    
-  // 3) Mostra il player: reset eventuale closing e avvia slide-in
-  wrapper.classList.remove('closing-player');
-  wrapper.classList.add('visible-player');
+    // slide-in: rimuovi eventuale closing e aggiungi la classe visibile
+    wrapper.classList.remove('closing-player');
+    wrapper.classList.add('visible-player');
 
     // 4) Avvia il video da zero
     const video = wrapper.querySelector('video');
-    video.pause();            // assicura che sia fermo
-    video.currentTime = 0;    // resetta al frame iniziale
+    video.pause();
+    video.currentTime = 0;
     video.focus();
     video.play();
-  }, 350); // pari a transition-duration
+  }, 350); // pari alla transition-duration
 });
   
   // 3) Doppio‐click sul video → toggle fullscreen
