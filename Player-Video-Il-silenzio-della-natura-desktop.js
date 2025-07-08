@@ -27,8 +27,8 @@ z-index: 9999; /* se serve “sovrapporre” tutti gli altri elementi */
 
 /* classe temporanea per la chiusura: sposta fuori a destra */
 .closing-player {
-  opacity: 0 !important;
   transform: translateX(100%) !important;
+  opacity: 0 !important;
 }
 
 /* tutti gli altri elementi da nascondere: preparali per il fade-out */
@@ -879,6 +879,24 @@ closeBtn.addEventListener('click', () => {
   video.currentTime = 0;
   
   // 2) Inizia lo slide‐out: togli visible, aggiungi closing
+closeBtn.addEventListener('click', () => {
+  if (document.fullscreenElement) {
+    document.exitFullscreen();
+  }
+
+  // 1b) Ferma e resetta il video
+  const video = wrapper.querySelector('video');
+  video.pause();
+  video.currentTime = 0;
+
+  // === NUOVO PASSO PRE-TRANSITION ===
+  // Rimuovi TUTTI gli inline-styles su transform/opacità per partire da CSS
+  wrapper.style.transform = '';
+  wrapper.style.opacity   = '';
+  // Forza reflow in modo che parta davvero da translateX(0)
+  wrapper.offsetHeight;
+
+  // 2) Avvia lo slide‐out: aggiungi closing‐player
   wrapper.classList.remove('visible-player');
   wrapper.classList.add('closing-player');
 
@@ -893,13 +911,11 @@ closeBtn.addEventListener('click', () => {
     });
 
     // reset wrapper
-    wrapper.style.display = 'none';
-    wrapper.classList.remove('visible-player');
-    // nascondi il wrapper definitivamente
     wrapper.classList.remove('closing-player');
+    // (non serve più wrapper.style.display, dato che usi fixed+visibility)
   }, 350);
 });
-  
+
   // 3) CARICA DASH.JS E INIZIALIZZA IL PLAYER
   const dashScript = document.createElement('script');
   dashScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/dashjs/5.0.0/legacy/umd/dash.all.min.js';
