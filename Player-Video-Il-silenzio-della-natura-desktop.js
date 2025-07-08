@@ -2,22 +2,6 @@
 (function() {
   // 1) INIETTA IL CSS
   const css = `
-/* 1) Blocca lo scroll */
-body.player-active {
-  overflow: hidden !important;
-}
-
-/* 2) Nascondi TUTTO ciò che è figlio diretto di <body> */
-body.player-active > * {
-  display: none !important;
-}
-
-/* 3) Fai ri-comparire SOLO il container Webflow + tutto il suo interno */
-body.player-active #Player-Video-Il-silenzio-della-natura-container-desktop,
-body.player-active #Player-Video-Il-silenzio-della-natura-container-desktop * {
-  display: block !important;
-  visibility: visible !important;
-}
   
 .apple-video-wrapper-player-video-il-silenzio-della-natura-desktop {
   position: fixed !important;
