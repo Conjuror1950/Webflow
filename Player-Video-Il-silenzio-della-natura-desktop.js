@@ -751,16 +751,21 @@ lightbox.addEventListener('click', e => {
        .filter(el => el !== wrapper && el !== lightbox)
     ].forEach(el => el.style.display = 'none');
 
-// forziamo il reflow perché veniamo da display:none
-wrapper.style.transform = 'translateX(100%)';
-wrapper.style.opacity = '0';
-wrapper.offsetHeight;  // trucco per ri-calcolare lo stile
-// ora possiamo far partire l’animazione
-wrapper.classList.add('visible-player');
+  // 2.a) Porta il wrapper in flow (diventa visibile nel DOM)
+  wrapper.style.display   = 'block';
+
+  // 2.b) Imposta inline lo stato iniziale: fuori a destra e invisibile
+  wrapper.style.transform = 'translateX(100%)';
+  wrapper.style.opacity   = '0';
+
+  // 2.c) Forza il reflow affinché il browser riconosca i nuovi inline-styles
+  wrapper.offsetHeight;
+
+  // 2.d) Avvia lo slide-in: da translateX(100%) → translateX(0)
+  wrapper.classList.add('visible-player');
     
   // 3) Mostra il player: reset eventuale closing e avvia slide-in
   wrapper.classList.remove('closing-player');
-  wrapper.classList.add('visible-player');
 
     // 4) Avvia il video da zero
     const video = wrapper.querySelector('video');
