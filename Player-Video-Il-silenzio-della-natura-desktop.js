@@ -3,11 +3,11 @@
   // 1) INIETTA IL CSS
   const css = `
 .apple-video-wrapper-player-video-il-silenzio-della-natura-desktop {
+  visibility: hidden;          /* non cattura click quando nascosto */
   position:relative;
   width:100vw;
   height:100vh;
   background:black;
-  display: none !important;   /* ← nasconde tutto il player all’avvio */
   font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif !important;
   overflow:hidden;
   opacity: 0;
@@ -17,7 +17,7 @@
 
 /* Player visibile */
 .visible-player {
-display: block !important;
+visibility: visible;         /* rende nuovamente interactable */
 opacity: 1 !important;           /* entra in fade-in */
 transform: translateX(0) !important;
 z-index: 9999; /* se serve “sovrapporre” tutti gli altri elementi */
@@ -25,8 +25,8 @@ z-index: 9999; /* se serve “sovrapporre” tutti gli altri elementi */
 
 /* classe temporanea per la chiusura: sposta fuori a destra */
 .closing-player {
-  transform: translateX(100%) !important;
   opacity: 0 !important;
+  transform: translateX(100%) !important;
 }
 
 /* tutti gli altri elementi da nascondere: preparali per il fade-out */
@@ -750,9 +750,6 @@ lightbox.addEventListener('click', e => {
     [lightbox, ...Array.from(document.body.children)
        .filter(el => el !== wrapper && el !== lightbox)
     ].forEach(el => el.style.display = 'none');
-
-  // 2.a) Porta il wrapper in flow (diventa visibile nel DOM)
-  wrapper.style.display   = 'block';
 
   // 2.b) Imposta inline lo stato iniziale: fuori a destra e invisibile
   wrapper.style.transform = 'translateX(100%)';
