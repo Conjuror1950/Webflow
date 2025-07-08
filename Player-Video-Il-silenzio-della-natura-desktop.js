@@ -729,7 +729,7 @@ lightbox.addEventListener('click', e => {
   });
 
   // 3) Mostra il player
-  wrapper.style.display = 'block';
+  wrapper.style.display = 'flex';
 
   // 4) (Opzionale) porta il focus al video e autoppl
   const video = wrapper.querySelector('video');
