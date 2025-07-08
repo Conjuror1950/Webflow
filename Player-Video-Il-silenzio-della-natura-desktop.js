@@ -878,9 +878,19 @@ closeBtn.addEventListener('click', () => {
   video.pause();
   video.currentTime = 0;
   
-  // 2) Inizia lo slide‐out: togli visible, aggiungi closing
+  // 2) Inizia lo slide‐out da sinistra-destra
   wrapper.classList.remove('visible-player');
-  wrapper.classList.add('closing-player');
+
+ // 2.b) Imposta inline lo stato iniziale di chiusura
+ //     (translateX(0) + opacity:1)
+ wrapper.style.transform = 'translateX(0)';
+ wrapper.style.opacity   = '1';
+
+ // 2.c) Forza il reflow
+ wrapper.offsetHeight;
+
+ // 2.d) Aggiungi la classe closing che anima verso translateX(100%)
+ wrapper.classList.add('closing-player');
 
   // 3) Dopo la transizione, ripristina la pagina
   setTimeout(() => {
