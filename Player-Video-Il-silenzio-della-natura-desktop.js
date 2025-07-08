@@ -2,7 +2,6 @@
 (function() {
   // 1) INIETTA IL CSS
   const css = `
-  
 .apple-video-wrapper-player-video-il-silenzio-della-natura-desktop {
   position: fixed !important;
   top: 0;
@@ -20,6 +19,16 @@
 /* quando apre, fa slide-in da destra */
 .apple-video-wrapper-player-video-il-silenzio-della-natura-desktop.open {
   transform: translateX(0);
+}
+
+/* quando il player è attivo, rimuovi qualsiasi scroll sul body */
+body.player-active {
+  overflow: hidden !important;
+}
+
+/* nasconde tutto il sito “normale” */
+body.player-active #site-wrapper {
+  display: none !important;
 }
 
 /* STATO NORMALE: video “contenuto” e centrato */
