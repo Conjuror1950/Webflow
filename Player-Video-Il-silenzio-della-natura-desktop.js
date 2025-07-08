@@ -10,12 +10,26 @@
   display: none !important;   /* ← nasconde tutto il player all’avvio */
   font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif !important;
   overflow:hidden;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 /* Player visibile */
 .visible-player {
 display: block !important;
+opacity: 1 !important;           /* entra in fade-in */
+transform: scale(1) !important;  /* scala a 100% */
 z-index: 9999; /* se serve “sovrapporre” tutti gli altri elementi */
+}
+
+/* tutti gli altri elementi da nascondere: preparali per il fade-out */
+body > *:not(.apple-video-wrapper-player-video-il-silenzio-della-natura-desktop) {
+  transition: opacity 0.5s ease;
+}
+/* classe che applicheremo in JS per far sparire gli altri */
+.fade-out {
+  opacity: 0 !important;
 }
 
 /* 1) STATO NORMALE: video “contenuto” e centrato */
@@ -715,31 +729,35 @@ justify-content:flex-end;
    document.body.appendChild(wrapper);
 
    // Javascript (JS)
-// Lightbox to Video-Player toggle
+// ——— Lightbox → apri player con animazione ———
 const lightbox = document.getElementById('lightboxTrigger');
-
 lightbox.addEventListener('click', e => {
   e.preventDefault();
 
-  // 1) Nasconde la lightbox
-  lightbox.style.display = 'none';
+  // 1) Nascondi lightbox con fade
+  lightbox.classList.add('fade-out');
+  setTimeout(() => lightbox.style.display = 'none', 500);
 
-  // 2) Nasconde tutti gli altri elementi del body tranne il video-wrapper
-  Array.from(document.body.children).forEach(child => {
-    if (child !== wrapper) {
-      child.style.display = 'none';
-    }
-  });
+  // 2) Fai sparire gli altri elementi con fade
+  Array.from(document.body.children)
+    .filter(el => el !== wrapper && el !== lightbox)
+    .forEach(child => {
+      child.classList.add('fade-out');
+      setTimeout(() => child.style.display = 'none', 500);
+    });
 
-  // 3) Mostra il player
+  // 3) Mostra il player con animazione
   wrapper.classList.add('visible-player');
 
-  // 4) (Opzionale) porta il focus al video e autoppl
+  // 4) Avvia video
   const video = wrapper.querySelector('video');
-  video.focus();
-  video.play();
+  setTimeout(() => {
+    video.focus();
+    video.play();
+  }, 500); // aspetta fine animazione
 });
-//  ——————————————
+// ——————————————
+  
   // 3) Doppio‐click sul video → toggle fullscreen
 const videoEl = wrapper.querySelector('video');
 videoEl.addEventListener('dblclick', () => {
@@ -829,6 +847,29 @@ langMenu
       langMenu.style.display = 'none';
     });
   });
+
+  // ——— Chiudi il player tornando allo stato iniziale ———
+const closeBtn = wrapper.querySelector('.close-btn-player-video-il-silenzio-della-natura-desktop');
+closeBtn.addEventListener('click', () => {
+  // 1) Nascondi il player con animazione
+  wrapper.classList.remove('visible-player');
+
+  // 2) Riporta in scena lightbox e altri elementi
+  setTimeout(() => {
+    // ripristina lightbox
+    lightbox.style.display = '';
+    lightbox.classList.remove('fade-out');
+    // ripristina gli altri
+    Array.from(document.body.children)
+      .filter(el => el !== wrapper)
+      .forEach(child => {
+        child.style.display = '';
+        child.classList.remove('fade-out');
+      });
+    // reset wrapper
+    wrapper.style.display = 'none';
+  }, 500); // pari alla durata della fade
+});
 // ——————————————
   
   // 3) CARICA DASH.JS E INIZIALIZZA IL PLAYER
