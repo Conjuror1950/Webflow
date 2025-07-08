@@ -734,7 +734,9 @@ justify-content:flex-end;
     // appendo dentro il tuo Div di Webflow
    document.body.appendChild(wrapper);
 
-   // Javascript (JS)
+// Javascript (JS)
+// riferimenti ai DOM elements
+const wrapper = document.querySelector('.apple-video-wrapper-player-video-il-silenzio-della-natura-desktop');
 // ——— Lightbox → apri player con slide da destra a sinistra ———
 const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-container-desktop');
 lightbox.addEventListener('click', e => {
