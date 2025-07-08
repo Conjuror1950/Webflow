@@ -2,14 +2,36 @@
 (function() {
   // 1) INIETTA IL CSS
   const css = `
-.apple-video-wrapper-player-video-il-silenzio-della-natura-desktop {
-  position:relative;
-  width:100vw;
-  height:100vh;
-  background:black;
-  font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif !important;
-  overflow:hidden;
+ .apple-video-wrapper-player-video-il-silenzio-della-natura-desktop {
+   /* → da subito fuori schermo a destra, invisibile */
+   position: fixed;
+   top: 50%;
+   left: 100%;
+   transform: translate(-50%, -50%);
+   width: 100vw;
+   height: 100vh;
+   background: black;
+   opacity: 0;
+   visibility: hidden;
+   transition:
+     left 0.6s cubic-bezier(0.25, 0.1, 0.25, 1),
+     opacity 0.4s ease;
+   z-index: 9999;          /* sopra tutto il resto */
+    font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif !important;
+ }
+
+ .apple-video-wrapper-player-video-il-silenzio-della-natura-desktop.open {
+  /* → porta perfettamente al centro e rendi visibile */
+  left: 50%;
+  opacity: 1;
+  visibility: visible;
 }
+
+/* quando voglio nascondere tutto il resto */
+.page-content.hidden {
+  display: none !important;
+}
+
 /* 1) STATO NORMALE: video “contenuto” e centrato */
 video {
   width: 95vw;       /* o la larghezza desiderata quando NON è fullscreen */
@@ -1370,4 +1392,15 @@ document.addEventListener('fullscreenchange', () => {
 });
   };  
   document.body.appendChild(dashScript);
+
+  // ─── 4) CLICK SUL LIGHTBOX ──────────────────────────────────────────
+// Sostituisci '#lightbox-img' col selettore del tuo lightbox
+const lightbox = document.querySelector('#lightbox-img');
+lightbox.addEventListener('click', () => {
+  // Nasconde tutto il resto della pagina
+  document.querySelector('.page-content').classList.add('hidden');
+  // Apre il player con animazione da destra verso sinistra
+  wrapper.classList.add('open');
+});
+  
 })();
