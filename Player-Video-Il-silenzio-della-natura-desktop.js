@@ -6,14 +6,14 @@
   position: fixed !important;
   top: 0;
   left: 0;
-  right: 0;               /* garantisce full-width */
-  width: 100vw;           /* full viewport width */
+  width:100vw;
   height:100vh;
-  transform: translateX(100vw);    /* sposta di 100% della viewport */
+  transform: translateX(100%);
   transition: transform 0.6s ease;
   z-index: 9999;
-  background: black;
-  overflow: hidden;
+  background:black;
+  font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif !important;
+  overflow:hidden;
 }
 
 /* quando apre, fa slide-in da destra */
@@ -21,23 +21,18 @@
   transform: translateX(0);
 }
 
-/* quando il player è attivo, rimuovi qualsiasi scroll sul body */
-body.player-active {
-  overflow: hidden !important;
-}
-
 /* nasconde tutto il sito “normale” */
 body.player-active #site-wrapper {
   display: none !important;
 }
 
-/* STATO NORMALE: video “contenuto” e centrato */
+/* 1) STATO NORMALE: video “contenuto” e centrato */
 video {
-  width: 95vw;
-  height: 100vh;
-  object-fit: contain;
+  width: 95vw;       /* o la larghezza desiderata quando NON è fullscreen */
+  height: 100vh;      /* mantiene l’aspetto originale */
+  object-fit: contain; /* evita crop, show letter‑box se serve */
   display: block;
-  margin: 0 auto;
+  margin: 0 auto;    /* centra orizzontalmente */
 }
 
 /* GLOBAL: sia standard che WebKit fullscreen */
