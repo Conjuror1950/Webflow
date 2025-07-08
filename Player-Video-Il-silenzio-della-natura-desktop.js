@@ -7,6 +7,7 @@
   width:100vw;
   height:100vh;
   background:black;
+  display: none;   /* ← nasconde tutto il player all’avvio */
   font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif !important;
   overflow:hidden;
 }
@@ -708,6 +709,33 @@ const container = document.getElementById('Player-Video-Il-silenzio-della-natura
 container.appendChild(wrapper);
 
    // Javascript (JS)
+  //  ——————————————
+// Lightbox to Video-Player toggle
+const lightbox = document.getElementById('lightboxTrigger');
+
+lightbox.addEventListener('click', e => {
+  e.preventDefault();
+
+  // 1) Nasconde la lightbox
+  lightbox.style.display = 'none';
+
+  // 2) Nasconde tutti gli altri elementi del body tranne il video-wrapper
+  Array.from(document.body.children).forEach(child => {
+    if (child !== wrapper) {
+      child.style.display = 'none';
+    }
+  });
+
+  // 3) Mostra il player
+  wrapper.style.display = 'block';
+
+  // 4) (Opzionale) porta il focus al video e autoppl
+  const video = wrapper.querySelector('video');
+  video.focus();
+  video.play();
+});
+//  ——————————————
+  
   // 3) Doppio‐click sul video → toggle fullscreen
 const videoEl = wrapper.querySelector('video');
 videoEl.addEventListener('dblclick', () => {
