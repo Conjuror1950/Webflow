@@ -11,7 +11,7 @@
   font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif !important;
   overflow:hidden;
   opacity: 0;
-  transform: scale(0.95);
+  transform: translateX(100%);
   transition: opacity 0.35s ease-in-out, transform 0.35s ease-in-out;
 }
 
@@ -19,7 +19,8 @@
 .visible-player {
 display: block !important;
 opacity: 1 !important;           /* entra in fade-in */
-transform: scale(1) !important;  /* scala a 100% */
+/* porta il wrapper a X=0, cioè in vista */
+transform: translateX(0) !important;
 z-index: 9999; /* se serve “sovrapporre” tutti gli altri elementi */
 }
 
