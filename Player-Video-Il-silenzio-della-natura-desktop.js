@@ -3,29 +3,13 @@
   // 1) INIETTA IL CSS
   const css = `
 .apple-video-wrapper-player-video-il-silenzio-della-natura-desktop {
-  position: fixed !important;
-  top: 0;
-  left: 0;
+  position:relative;
   width:100vw;
   height:100vh;
-  transform: translateX(100%);
-  transition: transform 0.6s ease;
-  z-index: 9999;
   background:black;
   font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif !important;
   overflow:hidden;
 }
-
-/* quando apre, fa slide-in da destra */
-.apple-video-wrapper-player-video-il-silenzio-della-natura-desktop.open {
-  transform: translateX(0);
-}
-
-/* nasconde tutto il sito “normale” */
-body.player-active #site-wrapper {
-  display: none !important;
-}
-
 /* 1) STATO NORMALE: video “contenuto” e centrato */
 video {
   width: 95vw;       /* o la larghezza desiderata quando NON è fullscreen */
@@ -1384,24 +1368,6 @@ document.addEventListener('fullscreenchange', () => {
     wrapper.classList.remove('fullscreen');
   }
 });
-    // 4) click sull’immagine di anteprima
-const lightboxTrigger = document.getElementById('lightboxTrigger');
-lightboxTrigger.addEventListener('click', e => {
-  e.preventDefault();
-  // fai apparire il player
-  wrapper.classList.add('open');
-  // nascondi contenuto sito
-  document.body.classList.add('player-active');
-});
-
-    const closeBtn = wrapper.querySelector('.close-btn-player-video-il-silenzio-della-natura-desktop');
-closeBtn.addEventListener('click', () => {
-  wrapper.classList.remove('open');
-  document.body.classList.remove('player-active');
-  video.pause();         // facoltativo: metti in pausa
-  player.reset();        // facoltativo: resetta dash.js
-});
-    
   };  
   document.body.appendChild(dashScript);
 })();
