@@ -27,6 +27,7 @@ z-index: 9999; /* se serve “sovrapporre” tutti gli altri elementi */
 
 /* classe temporanea per la chiusura: sposta fuori a destra */
 .closing-player {
+  visibility: visible !important;
   transform: translateX(100%) !important;
   opacity: 0 !important;
 }
@@ -880,16 +881,13 @@ closeBtn.addEventListener('click', () => {
   
   // 2) Inizia lo slide‐out da sinistra-destra
   wrapper.classList.remove('visible-player');
+ // 2.b) Forza il wrapper a rimanere "visible" e al punto di partenza
+ wrapper.style.visibility = 'visible';
+ wrapper.style.transform  = 'translateX(0)';
+ wrapper.style.opacity    = '1';
+ wrapper.offsetHeight; // forzo reflow
 
- // 2.b) Imposta inline lo stato iniziale di chiusura
- //     (translateX(0) + opacity:1)
- wrapper.style.transform = 'translateX(0)';
- wrapper.style.opacity   = '1';
-
- // 2.c) Forza il reflow
- wrapper.offsetHeight;
-
- // 2.d) Aggiungi la classe closing che anima verso translateX(100%)
+ // 2.c) Ora aggiungi la classe che anima lo slide‐out verso destra
  wrapper.classList.add('closing-player');
 
   // 3) Dopo la transizione, ripristina la pagina
@@ -907,6 +905,7 @@ closeBtn.addEventListener('click', () => {
     wrapper.classList.remove('visible-player');
     // nascondi il wrapper definitivamente
     wrapper.classList.remove('closing-player');
+    wrapper.style.visibility = 'hidden';
   }, 350);
 });
   
