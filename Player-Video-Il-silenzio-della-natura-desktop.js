@@ -12,7 +12,7 @@
   overflow:hidden;
   opacity: 0;
   transform: scale(0.95);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition: opacity 0.35s ease-in-out, transform 0.35s ease-in-out;
 }
 
 /* Player visibile */
@@ -25,7 +25,7 @@ z-index: 9999; /* se serve “sovrapporre” tutti gli altri elementi */
 
 /* tutti gli altri elementi da nascondere: preparali per il fade-out */
 body > *:not(.apple-video-wrapper-player-video-il-silenzio-della-natura-desktop) {
-  transition: opacity 0.5s ease;
+  transition: opacity 0.35s ease-in-out;
 }
 /* classe che applicheremo in JS per far sparire gli altri */
 .fade-out {
@@ -734,29 +734,26 @@ const lightbox = document.getElementById('lightboxTrigger');
 lightbox.addEventListener('click', e => {
   e.preventDefault();
 
-  // 1) Nascondi lightbox con fade
-  lightbox.classList.add('fade-out');
-  setTimeout(() => lightbox.style.display = 'none', 500);
-
-  // 2) Fai sparire gli altri elementi con fade
-  Array.from(document.body.children)
-    .filter(el => el !== wrapper && el !== lightbox)
-    .forEach(child => {
-      child.classList.add('fade-out');
-      setTimeout(() => child.style.display = 'none', 500);
-    });
-
-  // 3) Mostra il player con animazione
-  wrapper.classList.add('visible-player');
-
-  // 4) Avvia video
-  const video = wrapper.querySelector('video');
+  // 1) Fade-out lightbox e altri
+  [lightbox, ...Array.from(document.body.children)
+     .filter(el => el !== wrapper && el !== lightbox)
+  ].forEach(el => el.classList.add('fade-out'));
+  
+  // 2) Dopo la transizione, nascondi a display
   setTimeout(() => {
+    [lightbox, ...Array.from(document.body.children)
+       .filter(el => el !== wrapper && el !== lightbox)
+    ].forEach(el => el.style.display = 'none');
+
+    // 3) Mostra e animazione in del wrapper
+    wrapper.classList.add('visible-player');
+
+    // 4) Avvia il video
+    const video = wrapper.querySelector('video');
     video.focus();
     video.play();
-  }, 500); // aspetta fine animazione
+  }, 350); // pari a transition-duration
 });
-// ——————————————
   
   // 3) Doppio‐click sul video → toggle fullscreen
 const videoEl = wrapper.querySelector('video');
@@ -851,26 +848,29 @@ langMenu
   // ——— Chiudi il player tornando allo stato iniziale ———
 const closeBtn = wrapper.querySelector('.close-btn-player-video-il-silenzio-della-natura-desktop');
 closeBtn.addEventListener('click', () => {
-  // 1) Nascondi il player con animazione
+  // 1) Se sei in fullscreen, esci prima
+  if (document.fullscreenElement) {
+    document.exitFullscreen();
+  }
+
+  // 2) Inizia il fade-out del player
   wrapper.classList.remove('visible-player');
 
-  // 2) Riporta in scena lightbox e altri elementi
+  // 3) Dopo la transizione, ripristina la pagina
   setTimeout(() => {
-    // ripristina lightbox
-    lightbox.style.display = '';
-    lightbox.classList.remove('fade-out');
-    // ripristina gli altri
-    Array.from(document.body.children)
-      .filter(el => el !== wrapper)
-      .forEach(child => {
-        child.style.display = '';
-        child.classList.remove('fade-out');
-      });
+    // ripristina lightbox e tutti gli altri
+    [lightbox, ...Array.from(document.body.children)
+       .filter(el => el !== wrapper)
+    ].forEach(el => {
+      el.style.display = '';
+      el.classList.remove('fade-out');
+    });
+
     // reset wrapper
     wrapper.style.display = 'none';
-  }, 500); // pari alla durata della fade
+    wrapper.classList.remove('visible-player');
+  }, 350);
 });
-// ——————————————
   
   // 3) CARICA DASH.JS E INIZIALIZZA IL PLAYER
   const dashScript = document.createElement('script');
