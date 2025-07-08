@@ -735,32 +735,32 @@ justify-content:flex-end;
    document.body.appendChild(wrapper);
 
    // Javascript (JS)
-// ——— Lightbox → apri player con animazione ———
+// ——— Lightbox → apri player con slide da destra a sinistra ———
 const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-container-desktop');
 lightbox.addEventListener('click', e => {
   e.preventDefault();
 
-  // 1) Fade-out lightbox e tutti gli altri
+  // 1) Fade-out lightbox e tutti gli altri elementi
   [ lightbox, 
     ...Array.from(document.body.children)
       .filter(el => el !== wrapper && el !== lightbox)
   ].forEach(el => el.classList.add('fade-out'));
 
-  // 2) Subito dopo il click: mostra il wrapper FUORI schermo
+  // 2) Subito: mostra il wrapper FUORI schermo e forza reflow
   wrapper.style.display   = 'block';
   wrapper.style.transform = 'translateX(100%)';
   wrapper.style.opacity   = '0';
-  wrapper.offsetHeight;  // forza reflow
+  wrapper.offsetHeight; // forza reflow
 
-  // 3) Dopo la fine della fade degli altri (0.35s), avvia lo slide-in
+  // 3) Dopo 0.35s (fade-out completato), nascondi gli altri e fai slide-in
   setTimeout(() => {
-    // nascondi davvero lightbox e gli altri
+    // nascondi realmente lightbox e gli altri
     [ lightbox, 
       ...Array.from(document.body.children)
         .filter(el => el !== wrapper && el !== lightbox)
     ].forEach(el => el.style.display = 'none');
 
-    // slide-in: rimuovi eventuale closing e aggiungi la classe visibile
+    // togli eventuale classe di chiusura e avvia slide-in
     wrapper.classList.remove('closing-player');
     wrapper.classList.add('visible-player');
 
@@ -770,7 +770,39 @@ lightbox.addEventListener('click', e => {
     video.currentTime = 0;
     video.focus();
     video.play();
-  }, 350); // pari alla transition-duration
+  }, 350); // deve corrispondere al transition-duration CSS
+});
+
+// ——— Chiudi il player (slide da sinistra a destra) ———
+const closeBtn = wrapper.querySelector('.close-btn-player-video-il-silenzio-della-natura-desktop');
+closeBtn.addEventListener('click', () => {
+  // 1) Se in fullscreen, esci
+  if (document.fullscreenElement) document.exitFullscreen();
+
+  // 2) Ferma e resetta il video
+  const video = wrapper.querySelector('video');
+  video.pause();
+  video.currentTime = 0;
+
+  // 3) Avvia slide-out: togli visible, aggiungi closing
+  wrapper.classList.remove('visible-player');
+  wrapper.classList.add('closing-player');
+
+  // 4) Dopo 0.35s, ripristina lightbox e pagina
+  setTimeout(() => {
+    // mostra di nuovo lightbox e gli altri
+    [ lightbox, 
+      ...Array.from(document.body.children)
+        .filter(el => el !== wrapper)
+    ].forEach(el => {
+      el.style.display = '';
+      el.classList.remove('fade-out');
+    });
+
+    // nascondi e resetta il wrapper
+    wrapper.style.display = 'none';
+    wrapper.classList.remove('closing-player');
+  }, 350);
 });
   
   // 3) Doppio‐click sul video → toggle fullscreen
