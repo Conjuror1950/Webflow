@@ -32,7 +32,7 @@ z-index: 9999; /* se serve “sovrapporre” tutti gli altri elementi */
   opacity: 0 !important;
 }
 
-/* Elementi da nascondere: fade-out (disattivato)*/
+/* Elementi da nascondere: fade-out (disattivato, elimina /* e */ per attivare)*/
 /*
 body > *:not(.apple-video-wrapper-player-video-il-silenzio-della-natura-desktop) {
   transition: opacity 0.35s ease-in-out;
@@ -754,12 +754,12 @@ const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-na
 lightbox.addEventListener('click', e => {
   e.preventDefault();
 
-  // 1) Fade-out lightbox e altri (disattivato)
+  // 1) Fade-out lightbox e altri (disattivato, elimina // per attivare)
   // [lightbox, ...Array.from(document.body.children)
   // .filter(el => el !== wrapper && el !== lightbox)
   // ].forEach(el => el.classList.add('fade-out'));
   
-  // 2) Dopo la transizione, nascondi a display (disattivato)
+  // 2) Dopo la transizione, nascondi a display (disattivato, elimina // per attivare)
   setTimeout(() => {
     // [lightbox, ...Array.from(document.body.children)
     // .filter(el => el !== wrapper && el !== lightbox)
@@ -786,6 +786,7 @@ lightbox.addEventListener('click', e => {
 
   // DISABILITA LO SCROLL DELLA PAGINA
   document.body.classList.add('no-scroll');
+    
   // 2.d) Avvia lo slide-in: da translateX(100%) → translateX(0)
   wrapper.classList.add('visible-player');
     
