@@ -14,7 +14,7 @@
   overflow:hidden;
   opacity: 0;
   transform: translateX(100%);
-  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+  transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out;
 }
 
 /* Player visibile */
