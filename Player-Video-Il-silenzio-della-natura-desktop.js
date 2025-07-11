@@ -14,7 +14,7 @@
   overflow:hidden;
   opacity: 0;
   transform: translateX(100%);
-  transition: opacity 0.35s ease-in-out, transform 0.35s ease-in-out;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
 }
 
 /* Player visibile */
@@ -913,7 +913,7 @@ wrapper.style.opacity    = '';
 
 // 3c) Rimuovi tutte le classi di show/hide
 wrapper.classList.remove('visible-player', 'closing-player');
-  }, 150);
+  }, 350);
 });
   
   // 3) CARICA DASH.JS E INIZIALIZZA IL PLAYER
