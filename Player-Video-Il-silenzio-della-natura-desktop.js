@@ -897,12 +897,12 @@ closeBtn.addEventListener('click', () => {
 
   // 3) Dopo la transizione, ripristina la pagina
   setTimeout(() => {
-    // ripristina lightbox e tutti gli altri
-    [lightbox, ...Array.from(document.body.children)
-       .filter(el => el !== wrapper)
-    ].forEach(el => {
-      el.style.display = '';
-      el.classList.remove('fade-out');
+    // ripristina lightbox e tutti gli altri (disattivato)
+    // [lightbox, ...Array.from(document.body.children)
+    //   .filter(el => el !== wrapper)
+    // ].forEach(el => {
+    //  el.style.display = '';
+    //  el.classList.remove('fade-out');
     });
 
 // 3b) Rimuovi ogni inline‐style e resetta la trasformazione
