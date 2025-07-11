@@ -913,7 +913,7 @@ wrapper.style.opacity    = '';
 
 // 3c) Rimuovi tutte le classi di show/hide
 wrapper.classList.remove('visible-player', 'closing-player');
-  }, 350);
+  }, 150);
 });
   
   // 3) CARICA DASH.JS E INIZIALIZZA IL PLAYER
