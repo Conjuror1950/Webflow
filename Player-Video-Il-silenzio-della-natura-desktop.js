@@ -735,21 +735,15 @@ lightbox.addEventListener('click', e => {
   e.preventDefault();
 
   // 1) Fade-out lightbox e altri
-lightbox.addEventListener('click', e => {
-  e.preventDefault();
-
-  // mostra il player subito
-  wrapper.style.visibility = 'visible';
-  wrapper.style.transform  = 'translateX(100%)';
-  wrapper.style.opacity    = '0';
-  wrapper.offsetHeight;    // forzo reflow
-  wrapper.classList.add('visible-player');
-  wrapper.classList.remove('closing-player');
-
-  const video = wrapper.querySelector('video');
-  video.pause();
-  video.currentTime = 0;
-  video.play();
+  [lightbox, ...Array.from(document.body.children)
+     .filter(el => el !== wrapper && el !== lightbox)
+  // ].forEach(el => el.classList.add('fade-out'));
+  
+  // 2) Dopo la transizione, nascondi a display
+  setTimeout(() => {
+    [lightbox, ...Array.from(document.body.children)
+       .filter(el => el !== wrapper && el !== lightbox)
+    // ].forEach(el => el.style.display = 'none');
 
   // 2.b) Imposta inline lo stato iniziale: fuori a destra e invisibile
   wrapper.style.transform = 'translateX(100%)';
@@ -887,11 +881,21 @@ closeBtn.addEventListener('click', () => {
  // 2.c) Ora aggiungi la classe che anima lo slide‐out verso destra
  wrapper.classList.add('closing-player');
 
+  // 3) Dopo la transizione, ripristina la pagina
+  setTimeout(() => {
+    // ripristina lightbox e tutti gli altri
+    [lightbox, ...Array.from(document.body.children)
+       .filter(el => el !== wrapper)
+    ].forEach(el => {
+      el.style.display = '';
+      el.classList.remove('fade-out');
+    });
+
 // 3b) Rimuovi ogni inline‐style e resetta la trasformazione
 wrapper.style.visibility = '';
 wrapper.style.display    = '';
 wrapper.style.transform  = '';
-wrapper.style.opacity    = '1';
+wrapper.style.opacity    = '';
 
 // 3c) Rimuovi tutte le classi di show/hide
 wrapper.classList.remove('visible-player', 'closing-player');
