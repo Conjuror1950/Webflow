@@ -38,7 +38,7 @@ body > *:not(.apple-video-wrapper-player-video-il-silenzio-della-natura-desktop)
 }
 /* classe che applicheremo in JS per far sparire gli altri */
 .fade-out {
-  opacity: 0 !important;
+  opacity: 1 !important;
 }
 
 /* 1) STATO NORMALE: video “contenuto” e centrato */
