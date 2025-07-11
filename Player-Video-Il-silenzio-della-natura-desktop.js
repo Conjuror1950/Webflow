@@ -765,6 +765,18 @@ lightbox.addEventListener('click', e => {
 
   // 2.c) Forza il reflow affinché il browser riconosca i nuovi inline-styles
   wrapper.offsetHeight;
+      
+  // Resetta le animazioni dei warning
+  ['warning-icon','warning-age'].forEach(name => {
+  const el = wrapper.querySelector(`.${name}-player-video-il-silenzio-della-natura-desktop`);
+  if (!el) return;
+  // azzera l’animazione
+  el.style.animation = 'none';
+  // forzo un reflow
+  void el.offsetWidth;
+  // riapplico l’animazione definita in CSS
+  el.style.animation = '';
+});
 
   // 2.d) Avvia lo slide-in: da translateX(100%) → translateX(0)
   wrapper.classList.add('visible-player');
