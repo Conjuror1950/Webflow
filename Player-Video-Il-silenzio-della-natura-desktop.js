@@ -748,16 +748,16 @@ const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-na
 lightbox.addEventListener('click', e => {
   e.preventDefault();
 
-  // 1) Fade-out lightbox e altri
-  [lightbox, ...Array.from(document.body.children)
-     .filter(el => el !== wrapper && el !== lightbox)
-  ].forEach(el => el.classList.add('fade-out'));
+  // 1) Fade-out lightbox e altri (disattivato)
+  // [lightbox, ...Array.from(document.body.children)
+  // .filter(el => el !== wrapper && el !== lightbox)
+  // ].forEach(el => el.classList.add('fade-out'));
   
-  // 2) Dopo la transizione, nascondi a display
+  // 2) Dopo la transizione, nascondi a display (disattivato)
   setTimeout(() => {
-    [lightbox, ...Array.from(document.body.children)
-       .filter(el => el !== wrapper && el !== lightbox)
-    ].forEach(el => el.style.display = 'none');
+    // [lightbox, ...Array.from(document.body.children)
+    // .filter(el => el !== wrapper && el !== lightbox)
+    // ].forEach(el => el.style.display = 'none');
 
   // 2.b) Imposta inline lo stato iniziale: fuori a destra e invisibile
   wrapper.style.transform = 'translateX(100%)';
