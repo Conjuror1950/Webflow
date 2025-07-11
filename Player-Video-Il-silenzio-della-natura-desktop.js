@@ -32,14 +32,19 @@ z-index: 9999; /* se serve “sovrapporre” tutti gli altri elementi */
   opacity: 0 !important;
 }
 
-/* tutti gli altri elementi da nascondere: preparali per il fade-out */
+/* Elementi da nascondere: fade-out (disattivato)*/
+/*
 body > *:not(.apple-video-wrapper-player-video-il-silenzio-della-natura-desktop) {
   transition: opacity 0.35s ease-in-out;
 }
-/* classe che applicheremo in JS per far sparire gli altri */
+*/
+
+/* classe che applicheremo in JS per far sparire gli altri (disattivato) */
+/*
 .fade-out {
   opacity: 0 !important;
 }
+*/
 
 /* 1) STATO NORMALE: video “contenuto” e centrato */
 video {
