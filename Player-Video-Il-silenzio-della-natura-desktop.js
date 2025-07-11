@@ -34,7 +34,7 @@ z-index: 9999; /* se serve “sovrapporre” tutti gli altri elementi */
 
 /* tutti gli altri elementi da nascondere: preparali per il fade-out */
 body > *:not(.apple-video-wrapper-player-video-il-silenzio-della-natura-desktop) {
-  transition: opacity 0.35s ease-in-out;
+  transition: opacity 0.0s ease-in-out;
 }
 /* classe che applicheremo in JS per far sparire gli altri */
 .fade-out {
@@ -752,7 +752,7 @@ lightbox.addEventListener('click', e => {
   setTimeout(() => {
     [lightbox, ...Array.from(document.body.children)
        .filter(el => el !== wrapper && el !== lightbox)
-    ].forEach(el => el.style.display = 'none');
+    ].forEach(el => el.style.display = 'block');
 
   // 2.b) Imposta inline lo stato iniziale: fuori a destra e invisibile
   wrapper.style.transform = 'translateX(100%)';
