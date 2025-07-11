@@ -46,6 +46,12 @@ body > *:not(.apple-video-wrapper-player-video-il-silenzio-della-natura-desktop)
 }
 */
 
+/* Disabilita lo scroll quando il body ha questa classe */
+body.no-scroll {
+  overflow: hidden;
+  height: 100vh;
+}
+
 /* 1) STATO NORMALE: video “contenuto” e centrato */
 video {
   width: 95vw;       /* o la larghezza desiderata quando NON è fullscreen */
@@ -778,6 +784,8 @@ lightbox.addEventListener('click', e => {
   el.style.animation = '';
 });
 
+  // DISABILITA LO SCROLL DELLA PAGINA
+  document.body.classList.add('no-scroll');
   // 2.d) Avvia lo slide-in: da translateX(100%) → translateX(0)
   wrapper.classList.add('visible-player');
     
@@ -916,6 +924,9 @@ closeBtn.addEventListener('click', () => {
       el.style.display = '';
       el.classList.remove('fade-out');
     });
+
+  // RIABILITA LO SCROLL DELLA PAGINA
+  document.body.classList.remove('no-scroll');
 
 // 3b) Rimuovi ogni inline‐style e resetta la trasformazione
 wrapper.style.visibility = '';
