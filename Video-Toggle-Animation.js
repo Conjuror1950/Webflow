@@ -43,12 +43,12 @@
 
 // Funzione per alternare play/pause del video
 function togglePlayPause() {
-  const $vid = $("#bg-video");
-  if (!$vid.length) return;
-  if ($vid.prop("paused")) {
-    $vid.trigger("play");
+  const vid = document.getElementById("bg-video");
+  if (!vid) return;
+  if (vid.paused) {
+    vid.play();
   } else {
-    $vid.trigger("pause");
+    vid.pause();
   }
 }
 
