@@ -45,11 +45,9 @@
 function togglePlayPause() {
   const $vid = $("#bg-video");
   if (!$vid.length) return;
-  if ($vid.prop("paused")) {
-    $vid.trigger("play");
-  } else {
-    $vid.trigger("pause");
-  }
+  const vid = $vid[0];           // elemento DOM
+  if (vid.paused) vid.play();
+  else            vid.pause();
 }
 
       // Associa l'evento click all'icona per gestire play/pause
