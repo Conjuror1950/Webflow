@@ -4,7 +4,7 @@
   const style = document.createElement("style");
   style.textContent = `
     /* Nasconde l'icona fin dal caricamento della pagina */
-    #video-toggle-background, #mute-background, #full-screen-background {
+    #video-toggle, #mute, #full-screen {
       opacity: 0;
       visibility: hidden;
       transition: opacity 1s ease-in-out;
@@ -17,7 +17,7 @@
 
   // Crea l'elemento per l'icona Play/Pause con stile inline per un nascondimento immediato
   const videoToggle = document.createElement("div");
-  videoToggle.id = "video-toggle-background";
+  videoToggle.id = "video-toggle";
   videoToggle.setAttribute("style", "opacity: 0; visibility: hidden;");
 
   // Inserisci il contenuto dell'icona (ad es. un'immagine o SVG)
@@ -40,27 +40,27 @@
   onJQueryReady(function () {
     // Quando il DOM è pronto esegue il codice
     $(document).ready(function () {
-
-// Funzione per alternare play/pause del video
-function togglePlayPause() {
-  const vid = document.getElementById("bg-video");
-  if (!vid) return;
-  if (vid.paused) {
-    vid.play();
-  } else {
-    vid.pause();
-  }
-}
+      // Funzione per alternare play/pause del video
+      function togglePlayPause() {
+        $("video").each(function () {
+          if (this.paused) {
+            this.play();
+          } else {
+            this.pause();
+          }
+        });
+      }
 
       // Associa l'evento click all'icona per gestire play/pause
-      $("#video-toggle-background").click(togglePlayPause);
-      $("#mute-background").click(function (e) {
-        e.stopPropagation(); // Evita qualsiasi azione per questa icona
-      });
+      $("#video-toggle").click(togglePlayPause); // Solo questa icona gestisce play/pause
+$("#mute").click(function (e) {
+  e.stopPropagation(); // Evita qualsiasi azione per questa icona
+});
+
 
       // Dopo 10 secondi mostra l'icona con un effetto di dissolvenza
       setTimeout(function () {
-        $("#video-toggle-background, #mute-background, #full-screen-background").css({
+        $("#video-toggle, #mute, #full-screen").css({
           visibility: "visible",
           opacity: "1",
         });
