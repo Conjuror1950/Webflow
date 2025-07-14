@@ -42,8 +42,8 @@
     $(document).ready(function () {
       // Funzione per alternare play/pause del video
 function togglePlayPause() {
-  // escludi il video di background con id="video"
-  $("video").not("#video").each(function () {
+  // prende tutti i <video> tranne quelli con data-no-toggle
+  $("video").not("[data-no-toggle]").each(function () {
     if (this.paused) {
       this.play();
     } else {
