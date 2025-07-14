@@ -1,6 +1,5 @@
 (function () {
-
-  // Inserisci il CSS nel <head> per evitare flash dell'elemento
+  // Inserisci il CSS nel <head>
   const style = document.createElement("style");
   style.textContent = `
     #video-toggle, #mute, #full-screen {
@@ -14,18 +13,15 @@
   `;
   document.head.appendChild(style);
 
-  // Crea l'elemento per l'icona Play/Pause
+  // Crea l'elemento dell'icona
   const videoToggle = document.createElement("div");
   videoToggle.id = "video-toggle";
   videoToggle.setAttribute("style", "opacity: 0; visibility: hidden;");
-
   const img = document.createElement("img");
-  img.src = "path/to/playpause.svg"; // <-- aggiungi il tuo path immagine
-  img.alt = "Play/Pause";
   videoToggle.appendChild(img);
   document.body.appendChild(videoToggle);
 
-  // Carica jQuery se non esiste
+  // Funzione per caricare jQuery se necessario
   function onJQueryReady(callback) {
     if (window.jQuery) {
       callback();
@@ -37,35 +33,52 @@
     }
   }
 
+  // ✅ Funzione per aspettare l'esistenza dell'elemento nel DOM
+  function waitForElement(selector, callback) {
+    const el = document.querySelector(selector);
+    if (el) {
+      callback(el);
+    } else {
+      const observer = new MutationObserver(() => {
+        const el = document.querySelector(selector);
+        if (el) {
+          observer.disconnect();
+          callback(el);
+        }
+      });
+      observer.observe(document.body, { childList: true, subtree: true });
+    }
+  }
+
   onJQueryReady(function () {
     $(document).ready(function () {
-      // Funzione aggiornata per controllare solo #video-bg
-      function togglePlayPause() {
-        const video = document.getElementById("video-bg");
-        if (!video) return;
-
-        if (video.paused) {
-          video.play();
-        } else {
-          video.pause();
+      // ✅ Aspetta che il video con id "video-bg" sia nel DOM
+      waitForElement("#video-bg", function (video) {
+        // Funzione play/pause
+        function togglePlayPause() {
+          if (video.paused) {
+            video.play();
+          } else {
+            video.pause();
+          }
         }
-      }
 
-      // Click sull'icona: play/pause solo per #video-bg
-      $("#video-toggle").click(togglePlayPause);
+        // Assegna l'evento click solo dopo che il video esiste
+        $("#video-toggle").click(togglePlayPause);
 
-      // Previeni conflitti sul mute
-      $("#mute").click(function (e) {
-        e.stopPropagation();
-      });
-
-      // Mostra le icone dopo 10 secondi
-      setTimeout(function () {
-        $("#video-toggle, #mute, #full-screen").css({
-          visibility: "visible",
-          opacity: "1",
+        // Icona mute (non fa nulla, evita propagazione)
+        $("#mute").click(function (e) {
+          e.stopPropagation();
         });
-      }, 10000);
+
+        // Dopo 10 secondi, mostra le icone
+        setTimeout(function () {
+          $("#video-toggle, #mute, #full-screen").css({
+            visibility: "visible",
+            opacity: "1",
+          });
+        }, 10000); // 10 secondi
+      });
     });
   });
 })();
