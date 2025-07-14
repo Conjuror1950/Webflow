@@ -4,7 +4,7 @@
   const style = document.createElement("style");
   style.textContent = `
     /* Nasconde l'icona fin dal caricamento della pagina */
-    #video-toggle, #mute, #full-screen {
+    #video-toggle-bg, #mute-bg, #full-screen-bg {
       opacity: 0;
       visibility: hidden;
       transition: opacity 1s ease-in-out;
@@ -17,7 +17,7 @@
 
   // Crea l'elemento per l'icona Play/Pause con stile inline per un nascondimento immediato
   const videoToggle = document.createElement("div");
-  videoToggle.id = "video-toggle";
+  videoToggle.id = "video-toggle-bg";
   videoToggle.setAttribute("style", "opacity: 0; visibility: hidden;");
 
   // Inserisci il contenuto dell'icona (ad es. un'immagine o SVG)
@@ -53,15 +53,15 @@ function togglePlayPause() {
 }
 
       // Associa l'evento click all'icona per gestire play/pause
-      $("#video-toggle").click(togglePlayPause); // Solo questa icona gestisce play/pause
-$("#mute").click(function (e) {
+      $("#video-toggle-bg").click(togglePlayPause); // Solo questa icona gestisce play/pause
+$("#mute-bg").click(function (e) {
   e.stopPropagation(); // Evita qualsiasi azione per questa icona
 });
 
 
       // Dopo 10 secondi mostra l'icona con un effetto di dissolvenza
       setTimeout(function () {
-        $("#video-toggle, #mute, #full-screen").css({
+        $("#video-toggle-bg, #mute-bg, #full-screen-bg").css({
           visibility: "visible",
           opacity: "1",
         });
