@@ -1,7 +1,9 @@
 (function () {
-  // Inserisci il CSS nel <head>
+
+  // Inserisci il CSS nel <head> per evitare flash dell'elemento
   const style = document.createElement("style");
   style.textContent = `
+    /* Nasconde l'icona fin dal caricamento della pagina */
     #video-toggle, #mute, #full-screen {
       opacity: 0;
       visibility: hidden;
@@ -13,15 +15,17 @@
   `;
   document.head.appendChild(style);
 
-  // Crea l'elemento dell'icona
+  // Crea l'elemento per l'icona Play/Pause con stile inline per un nascondimento immediato
   const videoToggle = document.createElement("div");
   videoToggle.id = "video-toggle";
   videoToggle.setAttribute("style", "opacity: 0; visibility: hidden;");
+
+  // Inserisci il contenuto dell'icona (ad es. un'immagine o SVG)
   const img = document.createElement("img");
   videoToggle.appendChild(img);
   document.body.appendChild(videoToggle);
 
-  // Funzione per caricare jQuery se necessario
+  // Funzione per assicurarsi che jQuery sia caricato; se non lo è, lo carica dinamicamente
   function onJQueryReady(callback) {
     if (window.jQuery) {
       callback();
@@ -33,52 +37,34 @@
     }
   }
 
-  // ✅ Funzione per aspettare l'esistenza dell'elemento nel DOM
-  function waitForElement(selector, callback) {
-    const el = document.querySelector(selector);
-    if (el) {
-      callback(el);
-    } else {
-      const observer = new MutationObserver(() => {
-        const el = document.querySelector(selector);
-        if (el) {
-          observer.disconnect();
-          callback(el);
-        }
-      });
-      observer.observe(document.body, { childList: true, subtree: true });
-    }
-  }
-
   onJQueryReady(function () {
+    // Quando il DOM è pronto esegue il codice
     $(document).ready(function () {
-      // ✅ Aspetta che il video con id "video-bg" sia nel DOM
-      waitForElement("#video-bg", function (video) {
-        // Funzione play/pause
-        function togglePlayPause() {
-          if (video.paused) {
-            video.play();
+      // Funzione per alternare play/pause del video
+      function togglePlayPause() {
+        $("video").each(function () {
+          if (this.paused) {
+            this.play();
           } else {
-            video.pause();
+            this.pause();
           }
-        }
-
-        // Assegna l'evento click solo dopo che il video esiste
-        $("#video-toggle").click(togglePlayPause);
-
-        // Icona mute (non fa nulla, evita propagazione)
-        $("#mute").click(function (e) {
-          e.stopPropagation();
         });
+      }
 
-        // Dopo 10 secondi, mostra le icone
-        setTimeout(function () {
-          $("#video-toggle, #mute, #full-screen").css({
-            visibility: "visible",
-            opacity: "1",
-          });
-        }, 10000); // 10 secondi
-      });
+      // Associa l'evento click all'icona per gestire play/pause
+      $("#video-toggle").click(togglePlayPause); // Solo questa icona gestisce play/pause
+$("#mute").click(function (e) {
+  e.stopPropagation(); // Evita qualsiasi azione per questa icona
+});
+
+
+      // Dopo 10 secondi mostra l'icona con un effetto di dissolvenza
+      setTimeout(function () {
+        $("#video-toggle, #mute, #full-screen").css({
+          visibility: "visible",
+          opacity: "1",
+        });
+      }, 10000); // 10 secondi
     });
   });
 })();
