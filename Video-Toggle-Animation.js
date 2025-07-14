@@ -52,11 +52,12 @@
       }
 
       // Associa l'evento click all'icona per gestire play/pause
-      $("#video-toggle").click(togglePlayPause); // Solo questa icona gestisce play/pause
-$("#mute").click(function (e) {
-  e.stopPropagation(); // Evita qualsiasi azione per questa icona
-});
-
+function togglePlayPause() {
+  const vid = document.getElementById("video-bg");
+  if (!vid) return;
+  if (vid.paused) vid.play();
+  else           vid.pause();
+}
 
       // Dopo 10 secondi mostra l'icona con un effetto di dissolvenza
       setTimeout(function () {
