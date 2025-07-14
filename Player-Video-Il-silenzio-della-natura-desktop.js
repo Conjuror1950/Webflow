@@ -824,7 +824,10 @@ videoEl.addEventListener('dblclick', () => {
 
 // 2) Keyboard shortcuts: ←/→ skip 10s, Space toggle play/pause
 document.addEventListener('keydown', function(event) {
-  const video = document.querySelector('video');
+  // prendi il video DENTRO il lightbox
+  const video = wrapper.querySelector('video');
+  if (!video) return;
+  
   switch (event.code) {
     case 'Space':
       event.preventDefault();
