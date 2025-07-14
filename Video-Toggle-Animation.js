@@ -40,16 +40,6 @@
   onJQueryReady(function () {
     // Quando il DOM è pronto esegue il codice
     $(document).ready(function () {
-      // Funzione per alternare play/pause del video
-      function togglePlayPause() {
-        $("video-bg").each(function () {
-          if (this.paused) {
-            this.play();
-          } else {
-            this.pause();
-          }
-        });
-      }
 
 // 1) Definisci UNA SOLA volta la funzione togglePlayPause:
 function togglePlayPause() {
