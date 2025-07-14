@@ -42,7 +42,7 @@
     $(document).ready(function () {
       // Funzione per alternare play/pause del video
       function togglePlayPause() {
-        $("video").each(function () {
+        $("video-bg").each(function () {
           if (this.paused) {
             this.play();
           } else {
