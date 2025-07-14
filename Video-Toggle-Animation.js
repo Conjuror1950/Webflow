@@ -40,16 +40,17 @@
   onJQueryReady(function () {
     // Quando il DOM è pronto esegue il codice
     $(document).ready(function () {
-      // Funzione per alternare play/pause del video
-      function togglePlayPause() {
-        $("video").each(function () {
-          if (this.paused) {
-            this.play();
-          } else {
-            this.pause();
-          }
-        });
-      }
+
+// Funzione per alternare play/pause del video
+function togglePlayPause() {
+  const vid = document.getElementById("bg-video");
+  if (!vid) return;
+  if (vid.paused) {
+    vid.play();
+  } else {
+    vid.pause();
+  }
+}
 
       // Associa l'evento click all'icona per gestire play/pause
       $("#video-toggle-background").click(togglePlayPause);
