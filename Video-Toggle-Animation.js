@@ -41,15 +41,16 @@
     // Quando il DOM è pronto esegue il codice
     $(document).ready(function () {
       // Funzione per alternare play/pause del video
-      function togglePlayPause() {
-        $("video").each(function () {
-          if (this.paused) {
-            this.play();
-          } else {
-            this.pause();
-          }
-        });
-      }
+function togglePlayPause() {
+  // escludi il video di background con id="video"
+  $("video").not("#video").each(function () {
+    if (this.paused) {
+      this.play();
+    } else {
+      this.pause();
+    }
+  });
+}
 
       // Associa l'evento click all'icona per gestire play/pause
       $("#video-toggle").click(togglePlayPause); // Solo questa icona gestisce play/pause
