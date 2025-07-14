@@ -30,6 +30,7 @@ z-index: 9999; /* se serve “sovrapporre” tutti gli altri elementi */
   visibility: visible !important;
   transform: translateX(100%) !important;
   opacity: 0 !important;
+  z-index: 9999; /* se serve “sovrapporre” tutti gli altri elementi */
 }
 
 /* Elementi da nascondere: fade-out (disattivato)*/
