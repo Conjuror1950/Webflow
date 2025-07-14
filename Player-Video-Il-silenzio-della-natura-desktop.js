@@ -54,7 +54,7 @@ body.no-scroll {
 }
 
 /* 1) STATO NORMALE: video “contenuto” e centrato */
-video {
+video-Il-silenzio-della-natura-desktop {
   width: 95vw;       /* o la larghezza desiderata quando NON è fullscreen */
   height: 100vh;      /* mantiene l’aspetto originale */
   object-fit: contain; /* evita crop, show letter‑box se serve */
@@ -795,7 +795,7 @@ lightbox.addEventListener('click', e => {
   wrapper.classList.remove('closing-player');
 
     // 4) Avvia il video da zero
-    const video = wrapper.querySelector('video');
+    const video = wrapper.querySelector('video-Il-silenzio-della-natura-desktop');
     video.pause();            // assicura che sia fermo
     video.currentTime = 0;    // resetta al frame iniziale
     video.focus();
@@ -804,7 +804,7 @@ lightbox.addEventListener('click', e => {
 });
   
   // 3) Doppio‐click sul video → toggle fullscreen
-const videoEl = wrapper.querySelector('video');
+const videoEl = wrapper.querySelector('video-Il-silenzio-della-natura-desktop');
 videoEl.addEventListener('dblclick', () => {
   if (document.fullscreenElement || document.webkitFullscreenElement) {
     // esci dal fullscreen (standard + WebKit)
@@ -826,7 +826,7 @@ videoEl.addEventListener('dblclick', () => {
 // 2) Keyboard shortcuts: ←/→ skip 10s, Space toggle play/pause
 document.addEventListener('keydown', function(event) {
   // prendi il video DENTRO il lightbox
-  const video = wrapper.querySelector('video');
+  const video = wrapper.querySelector('video-Il-silenzio-della-natura-desktop');
   if (!video) return;
   
   switch (event.code) {
@@ -905,7 +905,7 @@ closeBtn.addEventListener('click', () => {
   }
 
   // 1b) Ferma il video e resetta la posizione
-  const video = wrapper.querySelector('video');
+  const video = wrapper.querySelector('video-Il-silenzio-della-natura-desktop');
   video.pause();
   video.currentTime = 0;
   
