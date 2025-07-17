@@ -638,7 +638,7 @@ justify-content:flex-end;
   position: absolute;
   top: 50px;            /* sposta l’avviso in alto rispetto al suo normale flow */
   margin-left: 20px;               /* allineato al bordo sinistro di .bottom-top-row */
-  width: 350px;          /* regola a piacere la larghezza */
+  width: 250px;          /* regola a piacere la larghezza */
   opacity: 0;
   animation: warning-fade-player-video-il-silenzio-della-natura-mobile 8s ease-in-out forwards;
   animation-delay: 8s;   /* ← qui metti “x” secondi di delay */
@@ -657,7 +657,7 @@ justify-content:flex-end;
   position: absolute;
   top: 60px;            /* sposta l’avviso in alto rispetto al suo normale flow */
   margin-left: 10px;               /* allineato al bordo sinistro di .bottom-top-row */
-  width: 100px;          /* regola a piacere la larghezza */
+  width: 80px;          /* regola a piacere la larghezza */
   opacity: 0;
   animation: warning-fade-age-player-video-il-silenzio-della-natura-mobile 5s ease-in-out forwards;
   animation-delay: 2s;   /* ← qui metti “x” secondi di delay */
