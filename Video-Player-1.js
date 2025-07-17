@@ -677,6 +677,22 @@ justify-content:flex-end;
   .subs-btn-player-video-il-silenzio-della-natura-mobile img {
     border-radius: 0 !important;
   }
+
+  /* forza la “landscape” ruotando il wrapper di 90° */
+.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile.force-landscape {
+  position: fixed;             /* stacca dal flusso per sovrapporsi */
+  top: 50%;
+  left: 50%;
+  /* inverti le dimensioni: height → width e viceversa */
+  width: 100vh;                
+  height: 100vw;
+  /* ruota di 90° e centra */
+  transform: translate(-50%, -50%) rotate(90deg);
+  transform-origin: center center;
+  /* assicurati che sia sopra a tutto */
+  z-index: 9999;
+}
+
 `;
   const styleEl = document.createElement('style');
   styleEl.textContent = css;
@@ -689,7 +705,7 @@ justify-content:flex-end;
     <!-- avvisi -->
     <img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/68286f66a406b7094b5b2407_avviso%20sequenze%20con%20immagini%20e%20luci%20lampeggianti.png" alt="Avviso: sequenze con immagini e luci lampeggianti" class="warning-icon-player-video-il-silenzio-della-natura-mobile">
     <img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/68288c23d64340a80e1a52e1_avviso%20et%C3%A0.png" alt="Avviso: età" class="warning-age-player-video-il-silenzio-della-natura-mobile">
-    <video id="apple-video-player-video-il-silenzio-della-natura-mobile" data-no-toggle preload="metadata" crossorigin="anonymous" playsinline webkit-playsinline>
+    <video id="apple-video-player-video-il-silenzio-della-natura-mobile" data-no-toggle preload="metadata" crossorigin="anonymous" playsinline>
       <track kind="subtitles" label="Italiano (automatico)" srclang="it" src="https://andreaingrassia.netlify.app/assets/subtitles/captions-il-silenzio-della-natura.vtt">
     </video>
     <div id="custom-subtitles-player-video-il-silenzio-della-natura-mobile" class="subtitle-container-player-video-il-silenzio-della-natura-mobile"></div>
@@ -790,6 +806,9 @@ lightbox.addEventListener('click', e => {
     
   // 2.d) Avvia lo slide-in: da translateX(100%) → translateX(0)
   wrapper.classList.add('visible-player');
+  
+  // 2.e) FORZA LANDSCAPE
+  wrapper.classList.add('force-landscape');
     
   // 3) Mostra il player: reset eventuale closing e avvia slide-in
   wrapper.classList.remove('closing-player');
@@ -922,7 +941,9 @@ closeBtn.addEventListener('click', () => {
 
   // 3) Dopo la transizione, ripristina la pagina
   setTimeout(() => {
-    // ripristina lightbox e tutti gli altri
+    // 0) Rimuovi landscape-forzato
+     wrapper.classList.remove('force-landscape');
+    // 1) ripristina lightbox e tutti gli altri
      [lightbox, ...Array.from(document.body.children)
        .filter(el => el !== wrapper)
      ].forEach(el => {
@@ -1446,43 +1467,11 @@ volume.addEventListener('input', () => {
 });
 
   // Fullscreen
-// ——— FULLSCREEN “LANDSCAPE” MOBILE / DESKTOP ———
-fsBtn.addEventListener('click', async () => {
-  // se già in fullscreen, esci
-  if (document.fullscreenElement || document.webkitFullscreenElement) {
-    if (document.exitFullscreen) await document.exitFullscreen();
-    else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
-    return;
-  }
-
-  // scegli il target: su iOS deve essere il <video>, altrove il wrapper
-  const isiOS = /iP(hone|ad|od)/.test(navigator.userAgent);
-  const target = isiOS && video.requestFullscreen
-               ? video
-               : wrapper;
-
-  // entra in fullscreen (standard + WebKit)
-  try {
-    if (target.requestFullscreen) {
-      await target.requestFullscreen();
-    } else if (target.webkitRequestFullscreen) {
-      target.webkitRequestFullscreen();
-    }
-  } catch (err) {
-    console.warn('Fullscreen request failed:', err);
-    return;
-  }
-
-  // dopo l’ingresso, blocca in landscape se possibile
-  if (screen.orientation && screen.orientation.lock) {
-    screen.orientation.lock('landscape').catch(() => {/* silenzia */});
-  }
-});
-
-// sblocca l’orientamento all’uscita dal fullscreen
-document.addEventListener('fullscreenchange', () => {
-  if (!document.fullscreenElement && screen.orientation && screen.orientation.unlock) {
-    screen.orientation.unlock();
+fsBtn.addEventListener('click', () => {
+  if (document.fullscreenElement) {
+    document.exitFullscreen();
+  } else {
+    video.parentElement.requestFullscreen();
   }
 });
 
