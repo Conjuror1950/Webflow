@@ -755,24 +755,6 @@ justify-content:flex-end;
 const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-container-mobile');
 lightbox.addEventListener('click', e => {
   e.preventDefault();
-
-// ——— FORZA FULLSCREEN + LOCK ORIENTAMENTO ———
-const doLock = () => {
-  if (screen.orientation && screen.orientation.lock) {
-    screen.orientation.lock('landscape').catch(console.warn);
-  }
-};
-// prova a entrare in fullscreen sul wrapper
-if (wrapper.requestFullscreen) {
-  wrapper.requestFullscreen().then(doLock).catch(doLock);
-} else if (wrapper.webkitRequestFullscreen) {
-  wrapper.webkitRequestFullscreen();
-  doLock();
-} else {
-  // fallback: tenta solo il lock
-  doLock();
-}
-// ————————————————————————————————————
   
   // 1) Fade-out lightbox e altri (disattivato, elimina doppia barra per attivare)
   // [lightbox, ...Array.from(document.body.children)
@@ -922,18 +904,6 @@ closeBtn.addEventListener('click', () => {
   if (document.fullscreenElement) {
     document.exitFullscreen();
   }
-
-// ——— RILASCIA ORIENTAMENTO ———
-if (screen.orientation && screen.orientation.unlock) {
-  screen.orientation.unlock();
-} else if (screen.unlockOrientation) {
-  screen.unlockOrientation();
-} else if (screen.mozUnlockOrientation) {
-  screen.mozUnlockOrientation();
-} else if (screen.msUnlockOrientation) {
-  screen.msUnlockOrientation();
-}
-// ————————————————————————
   
   // 1b) Ferma il video e resetta la posizione
   const video = wrapper.querySelector('video');
