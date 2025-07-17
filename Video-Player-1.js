@@ -689,7 +689,7 @@ justify-content:flex-end;
     <!-- avvisi -->
     <img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/68286f66a406b7094b5b2407_avviso%20sequenze%20con%20immagini%20e%20luci%20lampeggianti.png" alt="Avviso: sequenze con immagini e luci lampeggianti" class="warning-icon-player-video-il-silenzio-della-natura-mobile">
     <img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/68288c23d64340a80e1a52e1_avviso%20et%C3%A0.png" alt="Avviso: età" class="warning-age-player-video-il-silenzio-della-natura-mobile">
-    <video id="apple-video-player-video-il-silenzio-della-natura-mobile" data-no-toggle preload="metadata" crossorigin="anonymous" playsinline>
+    <video id="apple-video-player-video-il-silenzio-della-natura-mobile" data-no-toggle preload="metadata" crossorigin="anonymous" playsinline webkit-playsinline>
       <track kind="subtitles" label="Italiano (automatico)" srclang="it" src="https://andreaingrassia.netlify.app/assets/subtitles/captions-il-silenzio-della-natura.vtt">
     </video>
     <div id="custom-subtitles-player-video-il-silenzio-della-natura-mobile" class="subtitle-container-player-video-il-silenzio-della-natura-mobile"></div>
@@ -1447,10 +1447,43 @@ volume.addEventListener('input', () => {
 
   // Fullscreen
 fsBtn.addEventListener('click', () => {
+  const el = document.fullscreenElement ? document.exitFullscreen :
+             wrapper.requestFullscreen ? wrapper :
+             video.requestFullscreen ? video :
+             wrapper; // fallback
+
   if (document.fullscreenElement) {
     document.exitFullscreen();
   } else {
-    video.parentElement.requestFullscreen();
+    // CHIAMA il fullscreen sul <video> per iOS, sul wrapper per Android/Desktop
+    const target = (video.requestFullscreen && /iP(hone|ad|od)/.test(navigator.userAgent))
+                   ? video
+                   : wrapper;
+    if (target.requestFullscreen) {
+      target.requestFullscreen().then(() => {
+        // dopo l’ingresso in fullscreen, blocca in landscape
+        if (screen.orientation && screen.orientation.lock) {
+          screen.orientation.lock('landscape').catch(()=>{/*silenzia errori*/});
+        }
+      });
+    } else if (target.webkitRequestFullscreen) {
+      target.webkitRequestFullscreen();
+      // WebKit non restituisce Promise, richiedi il lock dopo un breve timeout
+      setTimeout(() => {
+        if (screen.orientation && screen.orientation.lock) {
+          screen.orientation.lock('landscape').catch(()=>{});
+        }
+      }, 200);
+    }
+  }
+});
+
+    document.addEventListener('fullscreenchange', () => {
+  if (!document.fullscreenElement) {
+    // se esci dal fullscreen, riporta in portrait automatico
+    if (screen.orientation && screen.orientation.unlock) {
+      screen.orientation.unlock();
+    }
   }
 });
 
