@@ -751,7 +751,6 @@ justify-content:flex-end;
 
 // Javascript (JS)
 // ——— Lightbox → apri player con animazione ———
-const wrapper = document.querySelector('.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile');
 const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-container-mobile');
 lightbox.addEventListener('click', e => {
   e.preventDefault();
