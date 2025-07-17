@@ -1144,7 +1144,8 @@ progress.addEventListener('mouseout', () => {
 
   const timeLabel = document.querySelector('.time-player-video-il-silenzio-della-natura-mobile');
   const remLabel = document.querySelector('.remaining-time-player-video-il-silenzio-della-natura-mobile');
-  const volume = document.querySelector('.volume-player-video-il-silenzio-della-natura-mobile');
+  // nuovo: prendi esattamente l’input range
+  const volume = document.querySelector('.volume-player-video-il-silenzio-della-natura-mobile input[type="range"]');
   // salvo l’ultimo valore di volume non-zero
   let lastVolume = parseFloat(volume.value) || 1;
   // indica se lo stato muto è stato attivato cliccando l’icona
