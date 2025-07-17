@@ -1447,43 +1447,10 @@ volume.addEventListener('input', () => {
 
   // Fullscreen
 fsBtn.addEventListener('click', () => {
-  const el = document.fullscreenElement ? document.exitFullscreen :
-             wrapper.requestFullscreen ? wrapper :
-             video.requestFullscreen ? video :
-             wrapper; // fallback
-
   if (document.fullscreenElement) {
     document.exitFullscreen();
   } else {
-    // CHIAMA il fullscreen sul <video> per iOS, sul wrapper per Android/Desktop
-    const target = (video.requestFullscreen && /iP(hone|ad|od)/.test(navigator.userAgent))
-                   ? video
-                   : wrapper;
-    if (target.requestFullscreen) {
-      target.requestFullscreen().then(() => {
-        // dopo l’ingresso in fullscreen, blocca in landscape
-        if (screen.orientation && screen.orientation.lock) {
-          screen.orientation.lock('landscape').catch(()=>{/*silenzia errori*/});
-        }
-      });
-    } else if (target.webkitRequestFullscreen) {
-      target.webkitRequestFullscreen();
-      // WebKit non restituisce Promise, richiedi il lock dopo un breve timeout
-      setTimeout(() => {
-        if (screen.orientation && screen.orientation.lock) {
-          screen.orientation.lock('landscape').catch(()=>{});
-        }
-      }, 200);
-    }
-  }
-});
-
-    document.addEventListener('fullscreenchange', () => {
-  if (!document.fullscreenElement) {
-    // se esci dal fullscreen, riporta in portrait automatico
-    if (screen.orientation && screen.orientation.unlock) {
-      screen.orientation.unlock();
-    }
+    video.parentElement.requestFullscreen();
   }
 });
 
