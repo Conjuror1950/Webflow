@@ -755,18 +755,24 @@ justify-content:flex-end;
 const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-container-mobile');
 lightbox.addEventListener('click', e => {
   e.preventDefault();
-  // 0) Provo a forzare landscape via Screen Orientation API
+
+// ——— FORZA FULLSCREEN + LOCK ORIENTAMENTO ———
+const doLock = () => {
   if (screen.orientation && screen.orientation.lock) {
-    screen.orientation.lock('landscape')
-      .catch(err => console.warn('Impossibile bloccare landscape:', err));
-  } else {
-    // Fallback: rotazione CSS (per i browser che non supportano l’API)
-    wrapper.style.transformOrigin = 'center center';
-    wrapper.style.transform = 'rotate(90deg) translateY(-100%)';
-    wrapper.style.width  = '100vh';
-    wrapper.style.height = '100vw';
+    screen.orientation.lock('landscape').catch(console.warn);
   }
-  // ──────────────────
+};
+// prova a entrare in fullscreen sul wrapper
+if (wrapper.requestFullscreen) {
+  wrapper.requestFullscreen().then(doLock).catch(doLock);
+} else if (wrapper.webkitRequestFullscreen) {
+  wrapper.webkitRequestFullscreen();
+  doLock();
+} else {
+  // fallback: tenta solo il lock
+  doLock();
+}
+// ————————————————————————————————————
   
   // 1) Fade-out lightbox e altri (disattivato, elimina doppia barra per attivare)
   // [lightbox, ...Array.from(document.body.children)
@@ -803,9 +809,6 @@ lightbox.addEventListener('click', e => {
     
   // 2.d) Avvia lo slide-in: da translateX(100%) → translateX(0)
   wrapper.classList.add('visible-player');
-  
-  // 2.e) FORZA LANDSCAPE
-  wrapper.classList.add('force-landscape');
     
   // 3) Mostra il player: reset eventuale closing e avvia slide-in
   wrapper.classList.remove('closing-player');
@@ -920,21 +923,17 @@ closeBtn.addEventListener('click', () => {
     document.exitFullscreen();
   }
 
-    // 0) Provo a tornare a portrait
-  if (screen.orientation && screen.orientation.unlock) {
-    screen.orientation.unlock();
-  } else if (screen.orientation && screen.orientation.lock) {
-    // per browser che non hanno unlock
-    screen.orientation.lock('portrait-primary')
-      .catch(err => console.warn('Impossibile ripristinare portrait:', err));
-  } else {
-    // Rimuovo il fallback CSS
-    wrapper.style.transformOrigin = '';
-    wrapper.style.transform = '';
-    wrapper.style.width  = '';
-    wrapper.style.height = '';
-  }
-  // ──────────────────
+// ——— RILASCIA ORIENTAMENTO ———
+if (screen.orientation && screen.orientation.unlock) {
+  screen.orientation.unlock();
+} else if (screen.unlockOrientation) {
+  screen.unlockOrientation();
+} else if (screen.mozUnlockOrientation) {
+  screen.mozUnlockOrientation();
+} else if (screen.msUnlockOrientation) {
+  screen.msUnlockOrientation();
+}
+// ————————————————————————
   
   // 1b) Ferma il video e resetta la posizione
   const video = wrapper.querySelector('video');
