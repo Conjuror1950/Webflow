@@ -751,6 +751,7 @@ justify-content:flex-end;
 
 // Javascript (JS)
 // ——— Lightbox → apri player con animazione ———
+const wrapper = document.querySelector('.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile');
 const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-container-mobile');
 lightbox.addEventListener('click', e => {
   e.preventDefault();
@@ -1446,11 +1447,43 @@ volume.addEventListener('input', () => {
 });
 
   // Fullscreen
-fsBtn.addEventListener('click', () => {
-  if (document.fullscreenElement) {
-    document.exitFullscreen();
-  } else {
-    video.parentElement.requestFullscreen();
+// ——— FULLSCREEN “LANDSCAPE” MOBILE / DESKTOP ———
+fsBtn.addEventListener('click', async () => {
+  // se già in fullscreen, esci
+  if (document.fullscreenElement || document.webkitFullscreenElement) {
+    if (document.exitFullscreen) await document.exitFullscreen();
+    else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+    return;
+  }
+
+  // scegli il target: su iOS deve essere il <video>, altrove il wrapper
+  const isiOS = /iP(hone|ad|od)/.test(navigator.userAgent);
+  const target = isiOS && video.requestFullscreen
+               ? video
+               : wrapper;
+
+  // entra in fullscreen (standard + WebKit)
+  try {
+    if (target.requestFullscreen) {
+      await target.requestFullscreen();
+    } else if (target.webkitRequestFullscreen) {
+      target.webkitRequestFullscreen();
+    }
+  } catch (err) {
+    console.warn('Fullscreen request failed:', err);
+    return;
+  }
+
+  // dopo l’ingresso, blocca in landscape se possibile
+  if (screen.orientation && screen.orientation.lock) {
+    screen.orientation.lock('landscape').catch(() => {/* silenzia */});
+  }
+});
+
+// sblocca l’orientamento all’uscita dal fullscreen
+document.addEventListener('fullscreenchange', () => {
+  if (!document.fullscreenElement && screen.orientation && screen.orientation.unlock) {
+    screen.orientation.unlock();
   }
 });
 
