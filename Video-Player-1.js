@@ -253,7 +253,7 @@ justify-content:space-between;
 }
 
 .skip-value-player-video-il-silenzio-della-natura-mobile {
-font-size:.75rem;
+font-size: 1rem;
 margin:0 .2rem; }
 
 /* ← Mouse hover on center controls */
