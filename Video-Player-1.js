@@ -291,7 +291,7 @@ margin:0 .2rem; }
   flex-basis: auto;   /* ← occupa tutta la riga disponibile */
   margin-right: auto; /* spinge i controlli verso destra */
   margin-top: 8px;
-  font-weight:400;
+  font-weight:500;
   font-size:14px;
   color: white;
   border: 0.8px solid white; /* ← bordo bianco */
