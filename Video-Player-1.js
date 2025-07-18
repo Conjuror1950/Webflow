@@ -771,7 +771,7 @@ lightbox.addEventListener('click', e => {
     // ].forEach(el => el.style.display = 'none');
 
   // 2.b) Imposta inline lo stato iniziale: fuori a destra e invisibile
-  wrapper.style.transform = 'translateX(100%)';
+  wrapper.style.transform = 'translateY(100%)';
   wrapper.style.opacity   = '0';
 
   // 2.c) Forza il reflow affinché il browser riconosca i nuovi inline-styles
