@@ -744,6 +744,7 @@ justify-content:flex-end;
           <div class="preview-time-player-video-il-silenzio-della-natura-mobile">0:00</div>
         </div>
         <div class="extras-player-video-il-silenzio-della-natura-mobile"><span class="time-player-video-il-silenzio-della-natura-mobile">0:00</span><span class="remaining-time-player-video-il-silenzio-della-natura-mobile">-0:00</span></div>
+        <div class="serie-title-player-video-il-silenzio-della-natura-mobile">Produzioni Cinematografiche</div>
       </div>
     </div>
   `;
