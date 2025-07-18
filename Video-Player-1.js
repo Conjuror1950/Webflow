@@ -272,8 +272,8 @@ margin:0 .2rem; }
 .bottom-bar-player-video-il-silenzio-della-natura-mobile {
   display:flex;
   flex-direction:column;
-  gap:.2rem;
-  margin-top:50px;
+  gap:.5rem;
+  margin-top:20px;
   color:white;
 }
 /* nuova riga superiore: titolo e right-controls affiancati */
