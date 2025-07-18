@@ -290,7 +290,7 @@ margin:0 .2rem; }
   order: 1;           /* ← posa la serie dopo l’episodio */
   flex-basis: auto;   /* ← occupa tutta la riga disponibile */
   margin-right: auto; /* spinge i controlli verso destra */
-  margin-top: 4px;
+  margin-top: -4px;
   font-weight:500;
   font-size:14px;
   color: white;
@@ -419,7 +419,7 @@ justify-content:flex-end;
   display:flex;
   justify-content:space-between;
   font-size:.9rem;
-  margin-top: -8px;
+  margin-top: -6px;
 }
 .close-btn-player-video-il-silenzio-della-natura-mobile {
   background:none;
