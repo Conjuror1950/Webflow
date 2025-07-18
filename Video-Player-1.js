@@ -272,7 +272,7 @@ margin:0 .2rem; }
 .bottom-bar-player-video-il-silenzio-della-natura-mobile {
   display:flex;
   flex-direction:column;
-  gap:.5rem;
+  gap:.2rem;
   margin-top:50px;
   color:white;
 }
