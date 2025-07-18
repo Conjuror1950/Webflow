@@ -13,7 +13,7 @@
   font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif !important;
   overflow:hidden;
   opacity: 0;
-  transform: translateX(100%);
+  transform: translateY(100%);
   transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out;
 }
 
