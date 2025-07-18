@@ -419,7 +419,7 @@ justify-content:flex-end;
   display:flex;
   justify-content:space-between;
   font-size:.9rem;
-  margin-top: -6px;
+  margin-top: -4px;
 }
 .close-btn-player-video-il-silenzio-della-natura-mobile {
   background:none;
