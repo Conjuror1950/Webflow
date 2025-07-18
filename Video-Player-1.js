@@ -273,7 +273,7 @@ margin:0 .2rem; }
   display:flex;
   flex-direction:column;
   gap:.5rem;
-  margin-top:20px;
+  margin-top:50px;
   color:white;
 }
 /* nuova riga superiore: titolo e right-controls affiancati */
