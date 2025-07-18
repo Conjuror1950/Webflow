@@ -291,7 +291,7 @@ margin:0 .2rem; }
   flex-basis: auto;   /* ← occupa tutta la riga disponibile */
   margin-right: auto; /* spinge i controlli verso destra */
   margin-top: 8px;
-  font-weight:600;
+  font-weight:400;
   font-size:14px;
   color: white;
   border: 0.8px solid white; /* ← bordo bianco */
@@ -301,11 +301,12 @@ margin:0 .2rem; }
 .ep-title-player-video-il-silenzio-della-natura-mobile {
 order: 0;           /* prima riga */
 flex-basis: 100%;   /* occupa tutta la larghezza: “S1, E1…” su riga a sé */
-font-weight:400;
-font-size:15px;
+font-weight:600;
+font-size:18px;
 margin-bottom: -6px;
-color: rgba(211, 211, 211, 0.90);
+color: white;
 }
+
 .time-player-video-il-silenzio-della-natura-mobile, .remaining-time-player-video-il-silenzio-della-natura-mobile {
 font-size:11px;
 color: rgba(211, 211, 211, 0.75);
