@@ -290,7 +290,7 @@ margin:0 .2rem; }
   order: 1;           /* ← posa la serie dopo l’episodio */
   flex-basis: auto;   /* ← occupa tutta la riga disponibile */
   margin-right: auto; /* spinge i controlli verso destra */
-  margin-top: 8px;
+  margin-top: 4px;
   font-weight:500;
   font-size:14px;
   color: white;
