@@ -285,15 +285,17 @@ margin:0 .2rem; }
   justify-content:space-between;
   align-items: flex-start;   /* ← allinea in alto i figli */
 }
-/* titolo allineato a sinistra */
+/* titolo allineato a sinistra, in basso */
 .serie-title-player-video-il-silenzio-della-natura-mobile {
   order: 1;           /* ← posa la serie dopo l’episodio */
   flex-basis: auto;   /* ← occupa tutta la riga disponibile */
   margin-right: auto; /* spinge i controlli verso destra */
   margin-top: 8px;
   font-weight:600;
-  font-size:24px;
+  font-size:16px;
   color: white;
+  border: 2px solid white; /* ← bordo bianco di 2px */
+  border-radius:10px;
 }
 .ep-title-player-video-il-silenzio-della-natura-mobile {
 order: 0;           /* prima riga */
@@ -713,7 +715,6 @@ justify-content:flex-end;
       <div class="bottom-bar-player-video-il-silenzio-della-natura-mobile">
         <div class="bottom-top-row-player-video-il-silenzio-della-natura-mobile">
           <div class="ep-title-player-video-il-silenzio-della-natura-mobile">S1, E1 · Il silenzio della natura</div>
-          <div class="serie-title-player-video-il-silenzio-della-natura-mobile">Produzioni Cinematografiche</div>
           <div class="right-controls-player-video-il-silenzio-della-natura-mobile">
             <button class="subs-btn-player-video-il-silenzio-della-natura-mobile"><img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681c881581975b4efc170207_captions.bubble.svg" alt="Sottotitoli" style="width:20px;height:20px;"></button>
             <div class="subs-menu-player-video-il-silenzio-della-natura-mobile" style="display:none;">
