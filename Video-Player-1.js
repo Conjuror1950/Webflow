@@ -21,14 +21,14 @@
 .visible-player {
 visibility: visible;         /* rende nuovamente interactable */
 opacity: 1 !important;           /* entra in fade-in */
-transform: translateX(0) !important;
+transform: translateY(0) !important;
 z-index: 9999; /* se serve “sovrapporre” tutti gli altri elementi */
 }
 
 /* classe temporanea per la chiusura: sposta fuori a destra */
 .closing-player {
   visibility: visible !important;
-  transform: translateX(100%) !important;
+  transform: translateY(100%) !important;
   opacity: 0 !important;
   z-index: 9999; /* se serve “sovrapporre” tutti gli altri elementi */
 }
@@ -792,7 +792,7 @@ lightbox.addEventListener('click', e => {
   // DISABILITA LO SCROLL DELLA PAGINA
   document.body.classList.add('no-scroll');
     
-  // 2.d) Avvia lo slide-in: da translateX(100%) → translateX(0)
+  // 2.d) Avvia lo slide-in: da translateY(100%) → translateY(0)
   wrapper.classList.add('visible-player');
     
   // 3) Mostra il player: reset eventuale closing e avvia slide-in
