@@ -292,11 +292,11 @@ margin:0 .2rem; }
   margin-right: auto; /* spinge i controlli verso destra */
   margin-top: 8px;
   font-weight:600;
-  font-size:16px;
+  font-size:14px;
   color: white;
-  border: 2px solid white; /* ← bordo bianco di 2px */
-  border-radius:6px;
-  padding: 4px 8px;         /* padding verticale e orizzontale */
+  border: 0.8px solid white; /* ← bordo bianco */
+  border-radius:5px;
+  padding: 4px 10px;         /* padding verticale e orizzontale */
 }
 .ep-title-player-video-il-silenzio-della-natura-mobile {
 order: 0;           /* prima riga */
