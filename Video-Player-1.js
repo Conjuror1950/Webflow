@@ -129,7 +129,7 @@ video {
   display: flex      !important;
   justify-content: center !important;
   align-items: center    !important;
-  gap: 32px;
+  gap: 50px;
 }
 .controls-player-video-il-silenzio-della-natura-mobile {
   position:absolute;
@@ -253,7 +253,7 @@ justify-content:space-between;
 
 .skip-value-player-video-il-silenzio-della-natura-mobile {
 font-size: 1rem;
-margin:0 .8rem; }
+margin:0 .5rem; }
 
 /* ← Mouse hover on center controls */
 /* aggiungi da qui */
@@ -686,13 +686,6 @@ justify-content:flex-end;
 .center-controls-player-video-il-silenzio-della-natura-mobile .forward-player-video-il-silenzio-della-natura-mobile img {
   width: 35px !important;
   height: 35px !important;
-}
-
-@media (orientation: portrait) {
-  .apple-video-wrapper-player-video-il-silenzio-della-natura-mobile
-    .center-controls-player-video-il-silenzio-della-natura-mobile {
-    gap: 2rem !important; /* ≃48px */
-  }
 }
 
 `;
