@@ -701,8 +701,8 @@ justify-content:flex-end;
   .forward-player-video-il-silenzio-della-natura-mobile img,
 .center-controls-player-video-il-silenzio-della-natura-mobile 
   .play-pause-player-video-il-silenzio-della-natura-mobile img{
-  width: 45px !important;
-  height: 45px !important;
+  width: 50px !important;
+  height: 50px !important;
 }
 
 `;
