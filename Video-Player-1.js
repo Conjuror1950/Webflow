@@ -129,7 +129,7 @@ video {
   display: flex      !important;
   justify-content: center !important;
   align-items: center    !important;
-  gap: 50px;
+  gap: 40px;
 }
 .controls-player-video-il-silenzio-della-natura-mobile {
   position:absolute;
@@ -686,6 +686,12 @@ justify-content:flex-end;
 .center-controls-player-video-il-silenzio-della-natura-mobile .forward-player-video-il-silenzio-della-natura-mobile img {
   width: 35px !important;
   height: 35px !important;
+}
+
+ @media (orientation: portrait) {
+   .center-controls-player-video-il-silenzio-della-natura-mobile {
+     gap: 2.5rem !important;  /* se vuoi usare px: gap: 32px !important; */
+   }
 }
 
 `;
