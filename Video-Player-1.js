@@ -18,7 +18,7 @@
 }
 
 /* Player visibile */
-.visible-player-mobile {
+.visible-player-video-il-silenzio-della-natura-mobile {
 visibility: visible;         /* rende nuovamente interactable */
 opacity: 1 !important;           /* entra in fade-in */
 transform: translateY(0) !important;
@@ -26,7 +26,7 @@ z-index: 9999; /* se serve “sovrapporre” tutti gli altri elementi */
 }
 
 /* classe temporanea per la chiusura: sposta fuori a destra */
-.closing-player-mobile {
+.closing-player-video-il-silenzio-della-natura-mobile {
   visibility: visible !important;
   transform: translateY(100%) !important;
   opacity: 0 !important;
@@ -796,7 +796,7 @@ lightbox.addEventListener('click', e => {
   wrapper.classList.add('visible-player-mobile');
     
   // 3) Mostra il player: reset eventuale closing e avvia slide-in
-  wrapper.classList.remove('closing-player-mobile');
+  wrapper.classList.remove('closing-player-video-il-silenzio-della-natura-mobile');
 
     // 4) Avvia il video da zero
     const video = wrapper.querySelector('video');
@@ -914,7 +914,7 @@ closeBtn.addEventListener('click', () => {
   video.currentTime = 0;
   
   // 2) Inizia lo slide‐out da sinistra-destra
-  wrapper.classList.remove('visible-player-mobile');
+  wrapper.classList.remove('visible-player-video-il-silenzio-della-natura-mobile');
  // 2.b) Forza il wrapper a rimanere "visible" e al punto di partenza
  wrapper.style.visibility = 'visible';
  wrapper.style.transform  = 'translateX(0)';
@@ -922,7 +922,7 @@ closeBtn.addEventListener('click', () => {
  wrapper.offsetHeight; // forzo reflow
 
  // 2.c) Ora aggiungi la classe che anima lo slide‐out verso destra
- wrapper.classList.add('closing-player-mobile');
+ wrapper.classList.add('closing-player-video-il-silenzio-della-natura-mobile');
 
   // 3) Dopo la transizione, ripristina la pagina
   setTimeout(() => {
@@ -946,7 +946,7 @@ wrapper.style.transform  = '';
 wrapper.style.opacity    = '';
 
 // 3c) Rimuovi tutte le classi di show/hide
-wrapper.classList.remove('visible-player', 'closing-player');
+wrapper.classList.remove('visible-player-video-il-silenzio-della-natura-mobile', 'closing-player-video-il-silenzio-della-natura-mobile');
   }, 350);
 });
   
