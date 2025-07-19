@@ -232,8 +232,8 @@ justify-content:space-between;
 /* aggiungi subito dopo .center-controls button { … } */
 .play-pause-player-video-il-silenzio-della-natura-mobile {
   position: relative;      /* contenitore per le icone */
-  width: 28px !important;             /* fissa la larghezza */
-  height: 28px !important;            /* e l’altezza */
+  width: 35px !important;             /* fissa la larghezza */
+  height: 35px !important;            /* e l’altezza */
   padding: 0;              /* togli padding extra */ 
   display: flex;
   align-items: center;
@@ -253,7 +253,7 @@ justify-content:space-between;
 
 .skip-value-player-video-il-silenzio-della-natura-mobile {
 font-size: 1rem;
-margin:0 .2rem; }
+margin:0 .4rem; }
 
 /* ← Mouse hover on center controls */
 /* aggiungi da qui */
