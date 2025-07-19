@@ -793,7 +793,7 @@ lightbox.addEventListener('click', e => {
   document.body.classList.add('no-scroll');
     
   // 2.d) Avvia lo slide-in: da translateY(100%) → translateY(0)
-  wrapper.classList.add('visible-player-mobile');
+  wrapper.classList.add('visible-player-video-il-silenzio-della-natura-mobile');
     
   // 3) Mostra il player: reset eventuale closing e avvia slide-in
   wrapper.classList.remove('closing-player-video-il-silenzio-della-natura-mobile');
