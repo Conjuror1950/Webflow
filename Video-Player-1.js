@@ -240,7 +240,6 @@ justify-content:space-between;
   justify-content: center;
   background: none;
   border: none;
-  margin: 0 0.8rem;;   /* ← opzionale: margine orizzontale attorno al play */
 }
 
 .play-pause-player-video-il-silenzio-della-natura-mobile .play-icon,
@@ -691,7 +690,7 @@ justify-content:flex-end;
 
  @media (orientation: portrait) {
    .center-controls-player-video-il-silenzio-della-natura-mobile {
-     gap: 2rem !important;  /* se vuoi usare px: gap: 32px !important; */
+     gap: 3rem !important;  /* se vuoi usare px: gap: 32px !important; */
    }
 }
 
