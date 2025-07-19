@@ -129,7 +129,7 @@ video {
   display: flex      !important;
   justify-content: center !important;
   align-items: center    !important;
-  gap: 2rem          !important;
+  gap: 32px          !important;
 }
 .controls-player-video-il-silenzio-della-natura-mobile {
   position:absolute;
@@ -137,7 +137,7 @@ video {
   display:flex;
   flex-direction:column;
   justify-content:space-between;
-  padding:1.5rem;
+  padding:24px;
   color:white;
   pointer-events:none;
   transition:opacity .5s;
