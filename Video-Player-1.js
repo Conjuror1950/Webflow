@@ -129,6 +129,7 @@ video {
   display: flex      !important;
   justify-content: center !important;
   align-items: center    !important;
+  gap: 32px;
 }
 .controls-player-video-il-silenzio-della-natura-mobile {
   position:absolute;
