@@ -701,12 +701,22 @@ justify-content:flex-end;
    }
 }
 
-/* Forza dimensioni solo quando l'icona è visibile (display: block) */
+/* Forza dimensioni consistenti per il pulsante play/pause */
 .apple-video-wrapper-player-video-il-silenzio-della-natura-mobile
-  .center-controls-player-video-il-silenzio-della-natura-mobile
-  .play-pause-player-video-il-silenzio-della-natura-mobile img[style*="display: block"] {
-  width: 45px !important;
-  height: 45px !important;
+  .play-pause-player-video-il-silenzio-della-natura-mobile {
+  width: 48px !important;
+  height: 48px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+}
+
+/* Forza dimensioni uguali per entrambe le icone */
+.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile
+  .play-pause-player-video-il-silenzio-della-natura-mobile img {
+  width: 24px !important;
+  height: 24px !important;
 }
 
 `;
