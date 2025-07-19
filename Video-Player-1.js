@@ -232,8 +232,8 @@ justify-content:space-between;
 /* aggiungi subito dopo .center-controls button { … } */
 .play-pause-player-video-il-silenzio-della-natura-mobile {
   position: relative;      /* contenitore per le icone */
-  width: 45px !important;             /* fissa la larghezza */
-  height: 45px !important;            /* e l’altezza */
+  width: 28px !important;             /* fissa la larghezza */
+  height: 28px !important;            /* e l’altezza */
   padding: 0;              /* togli padding extra */ 
   display: flex;
   align-items: center;
@@ -249,13 +249,6 @@ justify-content:space-between;
   left: 0;
   width: 100% !important;
   height: 100% !important;
-}
-
-/* === forza play e pause a 45×45px in portrait (e in qualunque orientamento) === */
-.play-pause-player-video-il-silenzio-della-natura-mobile .play-icon,
-.play-pause-player-video-il-silenzio-della-natura-mobile .pause-icon {
-  width: 45px !important;
-  height: 45px !important;
 }
 
 .skip-value-player-video-il-silenzio-della-natura-mobile {
@@ -699,24 +692,6 @@ justify-content:flex-end;
    .center-controls-player-video-il-silenzio-della-natura-mobile {
      gap: 2rem !important;  /* se vuoi usare px: gap: 32px !important; */
    }
-}
-
-/* Forza dimensioni consistenti per il pulsante play/pause */
-.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile
-  .play-pause-player-video-il-silenzio-della-natura-mobile {
-  width: 48px !important;
-  height: 48px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  padding: 0 !important;
-}
-
-/* Forza dimensioni uguali per entrambe le icone */
-.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile
-  .play-pause-player-video-il-silenzio-della-natura-mobile img {
-  width: 40px !important;
-  height: 40px !important;
 }
 
 `;
