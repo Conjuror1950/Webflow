@@ -129,7 +129,7 @@ video {
   display: flex      !important;
   justify-content: center !important;
   align-items: center    !important;
-  gap: 38px;
+  gap: 35px;
 }
 .controls-player-video-il-silenzio-della-natura-mobile {
   position:absolute;
@@ -686,6 +686,13 @@ justify-content:flex-end;
 .center-controls-player-video-il-silenzio-della-natura-mobile .forward-player-video-il-silenzio-della-natura-mobile img {
   width: 35px !important;
   height: 35px !important;
+}
+
+/* Impedisce a rewind, play e forward di ridursi quando il gap aumenta */
+.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile
+  .center-controls-player-video-il-silenzio-della-natura-mobile
+  button {
+  flex-shrink: 0 !important;
 }
 
 `;
