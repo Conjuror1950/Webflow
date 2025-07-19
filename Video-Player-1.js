@@ -689,6 +689,12 @@ justify-content:flex-end;
   height: 45px !important;
 }
 
+/* — in portrait fissa lo spacing orizzontale (gap) esattamente come in landscape — */
+@media (orientation: portrait) {
+  .center-controls-player-video-il-silenzio-della-natura-mobile {
+    gap: 2rem !important;  /* se vuoi usare px: gap: 32px !important; */
+  }
+  
 `;
   const styleEl = document.createElement('style');
   styleEl.textContent = css;
