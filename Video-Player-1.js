@@ -612,7 +612,7 @@ justify-content:flex-end;
   background: rgba(0, 0, 0, 0.7);
   color: white;
   border-radius: 4px;
-  font-size: 90%;
+  font-size: 89%;
   font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif !important;
   padding: 0.8rem 0.3rem;
   opacity: 0;
