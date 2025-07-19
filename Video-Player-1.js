@@ -715,8 +715,8 @@ justify-content:flex-end;
 /* Forza dimensioni uguali per entrambe le icone */
 .apple-video-wrapper-player-video-il-silenzio-della-natura-mobile
   .play-pause-player-video-il-silenzio-della-natura-mobile img {
-  width: 24px !important;
-  height: 24px !important;
+  width: 45px !important;
+  height: 45px !important;
 }
 
 `;
