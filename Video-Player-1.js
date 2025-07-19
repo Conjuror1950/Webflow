@@ -710,7 +710,6 @@ justify-content:flex-end;
   .play-pause-player-video-il-silenzio-della-natura-mobile .pause-icon {
   width: 45px !important;
   height: 45px !important;
-  display: block !important;
 }
 
 `;
