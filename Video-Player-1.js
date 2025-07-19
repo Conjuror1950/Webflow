@@ -701,13 +701,10 @@ justify-content:flex-end;
    }
 }
 
-/* === ULTIMO OVERRIDE: forza play e pause a 45×45px sempre === */
+/* Forza dimensioni solo quando l'icona è visibile (display: block) */
 .apple-video-wrapper-player-video-il-silenzio-della-natura-mobile
   .center-controls-player-video-il-silenzio-della-natura-mobile
-  .play-pause-player-video-il-silenzio-della-natura-mobile .play-icon,
-.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile
-  .center-controls-player-video-il-silenzio-della-natura-mobile
-  .play-pause-player-video-il-silenzio-della-natura-mobile .pause-icon {
+  .play-pause-player-video-il-silenzio-della-natura-mobile img[style*="display: block"] {
   width: 45px !important;
   height: 45px !important;
 }
