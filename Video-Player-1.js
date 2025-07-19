@@ -129,6 +129,7 @@ video {
   display: flex      !important;
   justify-content: center !important;
   align-items: center    !important;
+  gap: 32px;
 }
 .controls-player-video-il-silenzio-della-natura-mobile {
   position:absolute;
@@ -683,19 +684,14 @@ justify-content:flex-end;
 /* — Override dimensione pulsanti skip — */
 .center-controls-player-video-il-silenzio-della-natura-mobile .rewind-player-video-il-silenzio-della-natura-mobile img,
 .center-controls-player-video-il-silenzio-della-natura-mobile .forward-player-video-il-silenzio-della-natura-mobile img {
-  width: 32px !important;
-  height: 32px !important;
+  width: 35px !important;
+  height: 35px !important;
 }
 
-/* ULTIMO OVERRIDE: aumenta lo spazio tra skip/play/skip */
-.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile
-  .center-controls-player-video-il-silenzio-della-natura-mobile {
-  gap: 48px !important;
-}
 @media (orientation: portrait) {
   .apple-video-wrapper-player-video-il-silenzio-della-natura-mobile
     .center-controls-player-video-il-silenzio-della-natura-mobile {
-    gap: 3rem !important; /* ≃48px */
+    gap: 2rem !important; /* ≃48px */
   }
 }
 
