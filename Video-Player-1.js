@@ -251,6 +251,13 @@ justify-content:space-between;
   height: 100% !important;
 }
 
+/* === forza play e pause a 45×45px in portrait (e in qualunque orientamento) === */
+.play-pause-player-video-il-silenzio-della-natura-mobile .play-icon,
+.play-pause-player-video-il-silenzio-della-natura-mobile .pause-icon {
+  width: 45px !important;
+  height: 45px !important;
+}
+
 .skip-value-player-video-il-silenzio-della-natura-mobile {
 font-size: 1rem;
 margin:0 .2rem; }
