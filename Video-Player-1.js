@@ -232,8 +232,8 @@ justify-content:space-between;
 /* aggiungi subito dopo .center-controls button { … } */
 .play-pause-player-video-il-silenzio-della-natura-mobile {
   position: relative;      /* contenitore per le icone */
-  width: 50px;             /* fissa la larghezza */
-  height: 50px;            /* e l’altezza */
+  width: 40px;             /* fissa la larghezza */
+  height: 40px;            /* e l’altezza */
   padding: 0;              /* togli padding extra */ 
   display: flex;
   align-items: center;
