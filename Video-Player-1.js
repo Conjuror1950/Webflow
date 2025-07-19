@@ -137,7 +137,7 @@ video {
   display:flex;
   flex-direction:column;
   justify-content:space-between;
-  padding:30px;
+  padding:24px;
   color:white;
   pointer-events:none;
   transition:opacity .5s;
@@ -691,6 +691,7 @@ justify-content:flex-end;
  @media (orientation: portrait) {
    .center-controls-player-video-il-silenzio-della-natura-mobile {
      gap: 2rem !important;  /* se vuoi usare px: gap: 32px !important; */
+     padding:24px !important;
    }
 }
 
