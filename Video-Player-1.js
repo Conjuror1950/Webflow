@@ -689,12 +689,23 @@ justify-content:flex-end;
   height: 45px !important;
 }
 
-/* — in portrait fissa lo spacing orizzontale (gap) esattamente come in landscape — */
-@media (orientation: portrait) {
-  .center-controls-player-video-il-silenzio-della-natura-mobile {
-    gap: 2rem !important;  /* se vuoi usare px: gap: 32px !important; */
-  }
-  
+ @media (orientation: portrait) {
+   .center-controls-player-video-il-silenzio-della-natura-mobile {
+     gap: 2rem !important;  /* se vuoi usare px: gap: 32px !important; */
+   }
+}
+
+/* — forza dimensione uguale per skip **e** play/pause — */
+.center-controls-player-video-il-silenzio-della-natura-mobile 
+  .rewind-player-video-il-silenzio-della-natura-mobile img,
+.center-controls-player-video-il-silenzio-della-natura-mobile 
+  .forward-player-video-il-silenzio-della-natura-mobile img,
+.center-controls-player-video-il-silenzio-della-natura-mobile 
+  .play-pause-player-video-il-silenzio-della-natura-mobile {
+  width: 45px !important;
+  height: 45px !important;
+}
+
 `;
   const styleEl = document.createElement('style');
   styleEl.textContent = css;
