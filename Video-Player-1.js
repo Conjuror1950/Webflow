@@ -18,7 +18,7 @@
 }
 
 /* Player visibile */
-.visible-player {
+.visible-player-mobile {
 visibility: visible;         /* rende nuovamente interactable */
 opacity: 1 !important;           /* entra in fade-in */
 transform: translateY(0) !important;
@@ -26,7 +26,7 @@ z-index: 9999; /* se serve “sovrapporre” tutti gli altri elementi */
 }
 
 /* classe temporanea per la chiusura: sposta fuori a destra */
-.closing-player {
+.closing-player-mobile {
   visibility: visible !important;
   transform: translateY(100%) !important;
   opacity: 0 !important;
@@ -793,10 +793,10 @@ lightbox.addEventListener('click', e => {
   document.body.classList.add('no-scroll');
     
   // 2.d) Avvia lo slide-in: da translateY(100%) → translateY(0)
-  wrapper.classList.add('visible-player');
+  wrapper.classList.add('visible-player-mobile');
     
   // 3) Mostra il player: reset eventuale closing e avvia slide-in
-  wrapper.classList.remove('closing-player');
+  wrapper.classList.remove('closing-player-mobile');
 
     // 4) Avvia il video da zero
     const video = wrapper.querySelector('video');
@@ -914,7 +914,7 @@ closeBtn.addEventListener('click', () => {
   video.currentTime = 0;
   
   // 2) Inizia lo slide‐out da sinistra-destra
-  wrapper.classList.remove('visible-player');
+  wrapper.classList.remove('visible-player-mobile');
  // 2.b) Forza il wrapper a rimanere "visible" e al punto di partenza
  wrapper.style.visibility = 'visible';
  wrapper.style.transform  = 'translateX(0)';
@@ -922,7 +922,7 @@ closeBtn.addEventListener('click', () => {
  wrapper.offsetHeight; // forzo reflow
 
  // 2.c) Ora aggiungi la classe che anima lo slide‐out verso destra
- wrapper.classList.add('closing-player');
+ wrapper.classList.add('closing-player-mobile');
 
   // 3) Dopo la transizione, ripristina la pagina
   setTimeout(() => {
