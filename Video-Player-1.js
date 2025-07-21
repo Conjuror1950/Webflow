@@ -765,57 +765,35 @@ volumeIcon.addEventListener('click', () => {
 });
 // ───────────────────────────────────────────────────────────────
   
-// ——— Lightbox → apri player con animazione ———
+// ——— Lightbox → apri player con animazione + fullscreen ———
 const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-container-mobile');
 lightbox.addEventListener('click', e => {
   e.preventDefault();
-  
-  // 1) Fade-out lightbox e altri (disattivato, elimina doppia barra per attivare)
-  // [lightbox, ...Array.from(document.body.children)
-  // .filter(el => el !== wrapper && el !== lightbox)
-  // ].forEach(el => el.classList.add('fade-out'));
-  
-  // 2) Dopo la transizione, nascondi a display (disattivato, elimina doppia barra per attivare)
+
+  // (togli qui ogni wrapper.requestFullscreen!)
+
+  // aspetta la transizione di slide‑in
   setTimeout(() => {
-    // [lightbox, ...Array.from(document.body.children)
-    // .filter(el => el !== wrapper && el !== lightbox)
-    // ].forEach(el => el.style.display = 'none');
-      
-  // Resetta le animazioni dei warning
-  ['warning-icon','warning-age'].forEach(name => {
-  const el = wrapper.querySelector(`.${name}-player-video-il-silenzio-della-natura-mobile`);
-  if (!el) return;
-  // azzera l’animazione
-  el.style.animation = 'none';
-  // forzo un reflow
-  void el.offsetWidth;
-  // riapplico l’animazione definita in CSS
-  el.style.animation = '';
-});
+    // 1) mostra il wrapper
+    wrapper.style.visibility = 'visible';
+    wrapper.style.opacity    = '1';
+    wrapper.style.transform  = 'translateY(0)';
+    wrapper.classList.add('visible-player-video-il-silenzio-della-natura-mobile');
+    document.body.classList.add('no-scroll');
 
-  // 1) Mostra subito il wrapper
-  wrapper.style.visibility = 'visible';
-  wrapper.style.opacity    = '1';
-  wrapper.style.transform  = 'translateY(0)';
-
-  // 2) ENTRA IMMEDIATAMENTE IN FULLSCREEN
-  if (wrapper.requestFullscreen) {
-    wrapper.requestFullscreen();
-  } else if (wrapper.webkitRequestFullscreen) {
-    wrapper.webkitRequestFullscreen();
-  }
-
-  // 3) Avvia l’animazione di slide‑in
-  wrapper.classList.add('visible-player-video-il-silenzio-della-natura-mobile');
-  document.body.classList.add('no-scroll');
-
-  // 4) Dopo 350 ms, avvia il video
-  setTimeout(() => {
+    // 2) **entra in fullscreen sul video** (non sul wrapper)
     const vid = wrapper.querySelector('video');
+    if (vid.requestFullscreen) {
+      vid.requestFullscreen();
+    } else if (vid.webkitRequestFullscreen) {
+      vid.webkitRequestFullscreen();
+    }
+
+    // 3) non serve un altro setTimeout: play immediatamente
     vid.currentTime = 0;
     vid.focus();
     vid.play();
-  }, 350);
+  }, 350); // ← aspetta la durata della tua transition
 });
 
   // 2) IMPOSTO IMMEDIATAMENTE IL MENU LINGUA
