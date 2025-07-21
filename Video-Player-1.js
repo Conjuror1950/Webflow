@@ -680,7 +680,7 @@ video::-webkit-media-controls-volume-control {
     <!-- avvisi -->
     <img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/68286f66a406b7094b5b2407_avviso%20sequenze%20con%20immagini%20e%20luci%20lampeggianti.png" alt="Avviso: sequenze con immagini e luci lampeggianti" class="warning-icon-player-video-il-silenzio-della-natura-mobile">
     <img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/68288c23d64340a80e1a52e1_avviso%20et%C3%A0.png" alt="Avviso: età" class="warning-age-player-video-il-silenzio-della-natura-mobile">
-    <video id="apple-video-player-video-il-silenzio-della-natura-mobile" controls allowfullscreen allow="picture-in-picture" data-no-toggle preload="metadata" crossorigin="anonymous" playsinline>
+    <video id="apple-video-player-video-il-silenzio-della-natura-mobile" controls allow="picture-in-picture" data-no-toggle preload="metadata" crossorigin="anonymous" playsinline>
       <track kind="subtitles" label="Italiano (automatico)" srclang="it" src="https://andreaingrassia.netlify.app/assets/subtitles/captions-il-silenzio-della-natura.vtt">
     </video>
     <div id="custom-subtitles-player-video-il-silenzio-della-natura-mobile" class="subtitle-container-player-video-il-silenzio-della-natura-mobile"></div>
@@ -739,6 +739,30 @@ video::-webkit-media-controls-volume-control {
    document.body.appendChild(wrapper);
 
 // Javascript (JS)
+ // Rimuove .no-scroll ogni volta che si esce dal fullscreen (ESC, gesture, chiusura manuale, ecc.)
+document.addEventListener('fullscreenchange', () => {
+  const isFullscreen = !!document.fullscreenElement;
+
+  if (!isFullscreen) {
+    document.body.classList.remove('no-scroll');
+    wrapper.style.display = ''; // Nasconde anche il player, se vuoi
+  }
+});
+
+// (Compatibilità per WebKit e vecchi browser)
+document.addEventListener('webkitfullscreenchange', () => {
+  if (!document.webkitFullscreenElement) {
+    document.body.classList.remove('no-scroll');
+    wrapper.style.display = '';
+  }
+});
+document.addEventListener('msfullscreenchange', () => {
+  if (!document.msFullscreenElement) {
+    document.body.classList.remove('no-scroll');
+    wrapper.style.display = '';
+  }
+});
+ 
 // ——— Lightbox → apri player in fullscreen e play ———
 const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-container-mobile');
 lightbox.addEventListener('click', e => {
@@ -846,10 +870,6 @@ closeBtn.addEventListener('click', () => {
 
   // 3) Dopo la transizione, ripristina la pagina
   setTimeout(() => {
-  
-    // 0) RIABILITA IMMEDIATAMENTE LO SCROLL
-  document.body.classList.remove('no-scroll');
-  
     // 0) Rimuovi landscape-forzato
      wrapper.classList.remove('force-landscape');
     // 1) ripristina lightbox e tutti gli altri
