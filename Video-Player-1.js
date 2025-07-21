@@ -644,7 +644,7 @@ video::-webkit-media-controls-time-remaining-display {
 video::-webkit-media-controls-volume-slider-container,
 video::-webkit-media-controls-volume-control,
 video::-webkit-media-controls-fullscreen-button,
-video::-webkit-media-controls-pip-button
+video::-webkit-media-controls-pip-button,
 video::-webkit-media-controls-share-button {
 display: inline-flex !important;
 }
@@ -652,7 +652,8 @@ display: inline-flex !important;
 /* Force cursor pointer on the remaining buttons */
 video::-webkit-media-controls-fullscreen-button,
 video::-webkit-media-controls-pip-button,
-video::-webkit-media-controls-volume-control {
+video::-webkit-media-controls-volume-control,
+video::-webkit-media-controls-share-button {
   cursor: pointer !important;
 }
 
