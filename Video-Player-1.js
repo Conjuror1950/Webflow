@@ -2,6 +2,16 @@
 (function() {
   // 1) INIETTA IL CSS
   const css = `
+  /* Nascondi tutti i controlli custom */
+.controls-player-video-il-silenzio-della-natura-mobile {
+  display: none !important;
+}
+.center-controls-player-video-il-silenzio-della-natura-mobile,
+.top-bar-player-video-il-silenzio-della-natura-mobile,
+.bottom-bar-player-video-il-silenzio-della-natura-mobile {
+  display: none !important;
+}
+
 .apple-video-wrapper-player-video-il-silenzio-della-natura-mobile {
   visibility: hidden;          /* non cattura click quando nascosto */
   position: fixed;       /* fissa il wrapper al viewport */
