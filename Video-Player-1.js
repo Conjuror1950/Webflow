@@ -545,7 +545,7 @@ justify-content:flex-end;
 
 .subtitle-container-player-video-il-silenzio-della-natura-mobile {
   position: absolute;
-  bottom: 25%;
+  bottom: 23%;
   left: 50%;
   transform: translateX(-50%);
   background: rgba(0, 0, 0, 0.7);
