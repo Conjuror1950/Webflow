@@ -765,35 +765,56 @@ volumeIcon.addEventListener('click', () => {
 });
 // ───────────────────────────────────────────────────────────────
   
-// ——— Lightbox → apri player con animazione + fullscreen ———
+// ——— Lightbox → apri player con animazione ———
 const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-container-mobile');
 lightbox.addEventListener('click', e => {
   e.preventDefault();
+  
+  // 1) Fade-out lightbox e altri (disattivato, elimina doppia barra per attivare)
+  // [lightbox, ...Array.from(document.body.children)
+  // .filter(el => el !== wrapper && el !== lightbox)
+  // ].forEach(el => el.classList.add('fade-out'));
 
-  // (togli qui ogni wrapper.requestFullscreen!)
-
-  // aspetta la transizione di slide‑in
+  // 1) entra subito in fullscreen (user gesture valida)
+  const vidElem = wrapper.querySelector('video');
+  if (vidElem.requestFullscreen)       vidElem.requestFullscreen();
+  else if (vidElem.webkitRequestFullscreen) vidElem.webkitRequestFullscreen();
+  
+  // 2) Dopo la transizione, nascondi a display (disattivato, elimina doppia barra per attivare)
   setTimeout(() => {
-    // 1) mostra il wrapper
-    wrapper.style.visibility = 'visible';
-    wrapper.style.opacity    = '1';
-    wrapper.style.transform  = 'translateY(0)';
-    wrapper.classList.add('visible-player-video-il-silenzio-della-natura-mobile');
-    document.body.classList.add('no-scroll');
+    // [lightbox, ...Array.from(document.body.children)
+    // .filter(el => el !== wrapper && el !== lightbox)
+    // ].forEach(el => el.style.display = 'none');
 
-    // 2) **entra in fullscreen sul video** (non sul wrapper)
+  // 2.b) Imposta inline lo stato iniziale: fuori a destra e invisibile
+  wrapper.style.transform = 'translateY(100%)';
+  wrapper.style.opacity   = '0';
+
+  // 2.c) Forza il reflow affinché il browser riconosca i nuovi inline-styles
+  wrapper.offsetHeight;
+      
+  // Resetta le animazioni dei warning
+  ['warning-icon','warning-age'].forEach(name => {
+  const el = wrapper.querySelector(`.${name}-player-video-il-silenzio-della-natura-mobile`);
+  if (!el) return;
+  // azzera l’animazione
+  el.style.animation = 'none';
+  // forzo un reflow
+  void el.offsetWidth;
+  // riapplico l’animazione definita in CSS
+  el.style.animation = '';
+});
+
+  // DISABILITA LO SCROLL DELLA PAGINA
+  document.body.classList.add('no-scroll');
+
+    // 3) AVVIA IL VIDEO
     const vid = wrapper.querySelector('video');
-    if (vid.requestFullscreen) {
-      vid.requestFullscreen();
-    } else if (vid.webkitRequestFullscreen) {
-      vid.webkitRequestFullscreen();
-    }
-
-    // 3) non serve un altro setTimeout: play immediatamente
+    vid.pause();
     vid.currentTime = 0;
     vid.focus();
     vid.play();
-  }, 350); // ← aspetta la durata della tua transition
+  }, 350);
 });
 
   // 2) IMPOSTO IMMEDIATAMENTE IL MENU LINGUA
