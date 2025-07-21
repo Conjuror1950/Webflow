@@ -634,6 +634,30 @@ justify-content:flex-end;
   flex-shrink: 0 !important;
 }
 
+/* Chrome / Safari: nascondi play/pause, time display e barra */
+video::-webkit-media-controls-play-button,
+video::-webkit-media-controls-start-playback-button,
+video::-webkit-media-controls-timeline,
+video::-webkit-media-controls-current-time-display,
+video::-webkit-media-controls-time-remaining-display {
+  display: none !important;
+}
+
+/* Mantieni soltanto volume, fullscreen e picture-in-picture */
+video::-webkit-media-controls-volume-slider-container,
+video::-webkit-media-controls-volume-control,
+video::-webkit-media-controls-fullscreen-button,
+video::-webkit-media-controls-pip-button {
+  display: inline-flex !important;
+}
+
+/* Force cursor pointer on the remaining buttons */
+video::-webkit-media-controls-fullscreen-button,
+video::-webkit-media-controls-pip-button,
+video::-webkit-media-controls-volume-control {
+  cursor: pointer !important;
+}
+
 `;
   const styleEl = document.createElement('style');
   styleEl.textContent = css;
@@ -646,7 +670,7 @@ justify-content:flex-end;
     <!-- avvisi -->
     <img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/68286f66a406b7094b5b2407_avviso%20sequenze%20con%20immagini%20e%20luci%20lampeggianti.png" alt="Avviso: sequenze con immagini e luci lampeggianti" class="warning-icon-player-video-il-silenzio-della-natura-mobile">
     <img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/68288c23d64340a80e1a52e1_avviso%20et%C3%A0.png" alt="Avviso: età" class="warning-age-player-video-il-silenzio-della-natura-mobile">
-    <video id="apple-video-player-video-il-silenzio-della-natura-mobile" data-no-toggle preload="metadata" crossorigin="anonymous" playsinline>
+    <video id="apple-video-player-video-il-silenzio-della-natura-mobile" controls controlsList="nodownload noremoteplayback" allowfullscreen allow="picture-in-picture" data-no-toggle preload="metadata" crossorigin="anonymous" playsinline>
       <track kind="subtitles" label="Italiano (automatico)" srclang="it" src="https://andreaingrassia.netlify.app/assets/subtitles/captions-il-silenzio-della-natura.vtt">
     </video>
     <div id="custom-subtitles-player-video-il-silenzio-della-natura-mobile" class="subtitle-container-player-video-il-silenzio-della-natura-mobile"></div>
