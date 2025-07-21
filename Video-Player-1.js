@@ -803,19 +803,20 @@ lightbox.addEventListener('click', e => {
   // DISABILITA LO SCROLL DELLA PAGINA
   document.body.classList.add('no-scroll');
     
-  // 2.d) Avvia lo slide-in: da translateY(100%) → translateY(0)
-  wrapper.classList.add('visible-player-video-il-silenzio-della-natura-mobile');
-    
-  // 3) Mostra il player: reset eventuale closing e avvia slide-in
-  wrapper.classList.remove('closing-player-video-il-silenzio-della-natura-mobile');
+  // dopo 350 ms (durata della tua transition) entra in fullscreen e fai play
+    // 1) mostra il wrapper
+    wrapper.classList.add('visible-player-video-il-silenzio-della-natura-mobile');
+    wrapper.classList.remove('closing-player-video-il-silenzio-della-natura-mobile');
+    document.body.classList.add('no-scroll');
 
-  // full sequence: dopo 350 ms entriamo in fullscreen e partiamo
-  setTimeout(() => {
-    // ** entra in fullscreen sul container **  
-    if (wrapper.requestFullscreen) wrapper.requestFullscreen();
-    else if (wrapper.webkitRequestFullscreen) wrapper.webkitRequestFullscreen();
+    // 2) ENTRA IN FULLSCREEN SUL WRAPPER
+    if (wrapper.requestFullscreen) {
+      wrapper.requestFullscreen();
+    } else if (wrapper.webkitRequestFullscreen) {
+      wrapper.webkitRequestFullscreen();
+    }
 
-    // avvia il video
+    // 3) AVVIA IL VIDEO
     const vid = wrapper.querySelector('video');
     vid.pause();
     vid.currentTime = 0;
@@ -1346,28 +1347,6 @@ video.addEventListener('play', () => {
 progress.addEventListener('click', () => {
   video.currentTime = lastPreviewTime;
   updateProgressBar();
-});
-
-  // Fullscreen
-fsBtn.addEventListener('click', () => {
-  if (document.fullscreenElement) {
-    document.exitFullscreen();
-  } else {
-    video.parentElement.requestFullscreen();
-  }
-});
-
-// Cambia icona al cambio di stato fullscreen
-document.addEventListener('fullscreenchange', () => {
-  // prendo direttamente l'<img> dentro il bottone
-  const fsIcon = document.querySelector('.fullscreen-btn-player-video-il-silenzio-della-natura-mobile img');
-  if (!fsIcon) return;
-
-  if (document.fullscreenElement) {
-    fsIcon.src = 'https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a610667977d7e81c3aa5c_arrow.down.forward.and.arrow.up.backward.svg';
-  } else {
-    fsIcon.src = 'https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a6105f7d436f1d44084d0_arrow.up.backward.and.arrow.down.forward.svg';
-  }
 });
 
 // 1) Clic sul video da qualsiasi punto → play/pause
