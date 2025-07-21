@@ -669,7 +669,6 @@ video::-webkit-media-controls-volume-control {
     <img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/68288c23d64340a80e1a52e1_avviso%20et%C3%A0.png" alt="Avviso: età" class="warning-age-player-video-il-silenzio-della-natura-mobile">
     <video id="apple-video-player-video-il-silenzio-della-natura-mobile" controls allow="picture-in-picture" x-webkit-airplay="allow" data-no-toggle preload="metadata" crossorigin="anonymous" playsinline>
       <track kind="subtitles" label="Italiano (automatico)" srclang="it" src="https://andreaingrassia.netlify.app/assets/subtitles/captions-il-silenzio-della-natura.vtt">
-      <button id="share-button">Condividi</button>
     </video>
     <div id="custom-subtitles-player-video-il-silenzio-della-natura-mobile" class="subtitle-container-player-video-il-silenzio-della-natura-mobile"></div>
     <div class="controls-player-video-il-silenzio-della-natura-mobile">
@@ -1341,30 +1340,6 @@ video.addEventListener('click', () => {
    // chiudi dopo un attimo
    setTimeout(() => shareMenu.style.display = 'none', 1000);
  });
-
-
-
-    
-  document.getElementById('share-button').addEventListener('click', async () => {
-    const videoUrl = document
-      .getElementById('apple-video-player-video-il-silenzio-della-natura-mobile')
-      .querySelector('source').src;
-
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: 'Il Silenzio della Natura',
-          text: 'Guarda questo video!',
-          url: videoUrl,
-        });
-        console.log('Contenuto condiviso con successo');
-      } catch (error) {
-        console.error('Errore durante la condivisione:', error);
-      }
-    } else {
-      alert('La condivisione non è supportata su questo dispositivo.');
-    }
-  });
     
 // email share
 emailBtn.addEventListener('click', () => {
