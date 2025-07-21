@@ -1135,11 +1135,6 @@ progress.addEventListener('mouseout', () => {
 
   const timeLabel = document.querySelector('.time-player-video-il-silenzio-della-natura-mobile');
   const remLabel = document.querySelector('.remaining-time-player-video-il-silenzio-della-natura-mobile');
-  const volume = document.querySelector('.volume-player-video-il-silenzio-della-natura-mobile');
-  // salvo l’ultimo valore di volume non-zero
-  let lastVolume = parseFloat(volume.value) || 1;
-  // indica se lo stato muto è stato attivato cliccando l’icona
-  let mutedByClick = false;
   const fsBtn = document.querySelector('.fullscreen-btn-player-video-il-silenzio-della-natura-mobile');
   const shareBtn = document.querySelector('.share-btn-player-video-il-silenzio-della-natura-mobile');
   // Share: apri menu con opzione “Copia link”
