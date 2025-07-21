@@ -646,7 +646,7 @@ justify-content:flex-end;
     <!-- avvisi -->
     <img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/68286f66a406b7094b5b2407_avviso%20sequenze%20con%20immagini%20e%20luci%20lampeggianti.png" alt="Avviso: sequenze con immagini e luci lampeggianti" class="warning-icon-player-video-il-silenzio-della-natura-mobile">
     <img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/68288c23d64340a80e1a52e1_avviso%20et%C3%A0.png" alt="Avviso: età" class="warning-age-player-video-il-silenzio-della-natura-mobile">
-    <video id="apple-video-player-video-il-silenzio-della-natura-mobile" data-no-toggle preload="metadata" crossorigin="anonymous" playsinline>
+    <video id="apple-video-player-video-il-silenzio-della-natura-mobile" controls data-no-toggle preload="metadata" crossorigin="anonymous" playsinline>
       <track kind="subtitles" label="Italiano (automatico)" srclang="it" src="https://andreaingrassia.netlify.app/assets/subtitles/captions-il-silenzio-della-natura.vtt">
     </video>
     <div id="custom-subtitles-player-video-il-silenzio-della-natura-mobile" class="subtitle-container-player-video-il-silenzio-della-natura-mobile"></div>
