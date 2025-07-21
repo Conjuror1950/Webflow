@@ -739,32 +739,6 @@ video::-webkit-media-controls-volume-control {
    document.body.appendChild(wrapper);
 
 // Javascript (JS)
-// ─── SOLO MUTE / UNMUTE “TV‑LIKE” ─────────────────────────────
-const video      = wrapper.querySelector('video');
-const volumeIcon = wrapper.querySelector('#volume-icon-player-video-il-silenzio-della-natura-mobile');
-
-// URL per le due icone
-const ICON_MUTE   = 'https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681d13cbee3881a72b73cb87_speaker.slash.fill.svg';
-const ICON_UNMUTE = 'https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681d13cccb3122eb07cc40af_custom.speaker.wave.3.fill.2.2.svg';
-
-// inizializza: video non è muted all’avvio
-video.muted = false;
-volumeIcon.src = ICON_UNMUTE;
-volumeIcon.alt = 'Audio attivo';
-
-// al click toggle del flag muted
-volumeIcon.addEventListener('click', () => {
-  video.muted = !video.muted;
-  if (video.muted) {
-    volumeIcon.src = ICON_MUTE;
-    volumeIcon.alt = 'Audio disattivato';
-  } else {
-    volumeIcon.src = ICON_UNMUTE;
-    volumeIcon.alt = 'Audio attivo';
-  }
-});
-// ───────────────────────────────────────────────────────────────
-  
 // ——— Lightbox → apri player in fullscreen e play ———
 const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-container-mobile');
 lightbox.addEventListener('click', e => {
@@ -881,9 +855,6 @@ closeBtn.addEventListener('click', () => {
       el.style.display = '';
       el.classList.remove('fade-out');
     });
-
-  // RIABILITA LO SCROLL DELLA PAGINA
-  document.body.classList.remove('no-scroll');
 
 // 3b) Rimuovi ogni inline‐style e resetta la trasformazione
 wrapper.style.visibility = '';
