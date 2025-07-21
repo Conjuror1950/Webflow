@@ -159,8 +159,8 @@ justify-content:space-between;
   width: 22px;
   height: 22px;
   margin-top: -10px;
+  pointer-events: all !important;
   cursor: pointer;
-  pointer-events: all;
 }
 .center-controls-player-video-il-silenzio-della-natura-mobile button {
   background:none;
