@@ -707,40 +707,32 @@ justify-content:flex-end;
 // Javascript (JS)
 // ─── NUOVA SEZIONE VOLUME ────────────────────────────────────
 // (1) prendi il video e l’icona, usando il wrapper appena creato
-  const video = wrapper.querySelector('video');
-  const volumeIcon = wrapper.querySelector('#volume-icon-player-video-il-silenzio-della-natura-mobile');
+const video      = wrapper.querySelector('video');
+const volumeIcon = wrapper.querySelector('#volume-icon-player-video-il-silenzio-della-natura-mobile');
 
-// (2) icone da usare per i vari stati (usa URL ESATTI, non “…”)
-  const ICONS = {
-    mute: 'https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681d13cbee3881a72b73cb87_speaker.slash.fill.svg',
-    low:  'https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681d13cb25e28096121c087f_custom.speaker.wave.3.fill.svg',
-    med:  'https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681d13cb4d4abbc10de8ed5d_custom.speaker.wave.3.fill.2.svg',
-    high: 'https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681d13cccb3122eb07cc40af_custom.speaker.wave.3.fill.2.2.svg'
-  };
+// (2) URL ICONS
+const ICONS = [
+  'https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681d13cbee3881a72b73cb87_speaker.slash.fill.svg',       // mute
+  'https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681d13cb25e28096121c087f_custom.speaker.wave.3.fill.svg', // low
+  'https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681d13cb4d4abbc10de8ed5d_custom.speaker.wave.3.fill.2.svg', // med
+  'https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681d13cccb3122eb07cc40af_custom.speaker.wave.3.fill.2.2.svg' // high
+];
+// (3) Imposta iniziale
+let volState = 3;            // 0=muto,1=low,2=med,3=high
+video.volume = 1;
+volumeIcon.src = ICONS[volState];
+volumeIcon.alt = ['Volume disattivato','Volume basso','Volume medio','Volume alto'][volState];
 
-  // (3) partiamo con volume=1 (max) e icona “high”
-  video.volume = 1;
-  volumeIcon.src = ICONS.high;
-  volumeIcon.alt = 'Volume alto';
-
-  // (4) al click sull’icona, cicla tra quattro stati:
-  //     0 = muto, >0–0.33 = low, >0.33–0.66 = med, >0.66–1 = high
-  volumeIcon.addEventListener('click', () => {
-    let v = video.volume;
-    // scegli il prossimo step
-    if (v === 0)         v = 1;         // da “mute” a “high”
-    else if (v <= 0.33)  v = 0.5;       // da low a med
-    else if (v <= 0.66)  v = 1;         // da med a high
-    else                 v = 0;         // da high a mute
-
-    video.volume = v;
-    // aggiorna icona
-    if      (v === 0)    { volumeIcon.src = ICONS.mute; volumeIcon.alt = 'Volume disattivato'; }
-    else if (v <= 0.33)  { volumeIcon.src = ICONS.low;  volumeIcon.alt = 'Volume basso';      }
-    else if (v <= 0.66)  { volumeIcon.src = ICONS.med;  volumeIcon.alt = 'Volume medio';      }
-    else                 { volumeIcon.src = ICONS.high; volumeIcon.alt = 'Volume alto';       }
-  });
-  // ─────────────────────────────────────────────────────────────
+// (4) Al click, incremento ciclico volState e applico
+volumeIcon.addEventListener('click', () => {
+  volState = (volState + 1) % 4;        // cicla tra 0–3
+  // imposta video.volume in base allo stato
+  video.volume = [0, 0.3, 0.6, 1][volState];
+  // aggiorna icona e alt
+  volumeIcon.src = ICONS[volState];
+  volumeIcon.alt = ['Volume disattivato','Volume basso','Volume medio','Volume alto'][volState];
+});
+// ─────────────────────────────────────────────────────────────
   
 // ——— Lightbox → apri player con animazione ———
 const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-container-mobile');
