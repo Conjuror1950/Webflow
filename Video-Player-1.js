@@ -809,16 +809,18 @@ lightbox.addEventListener('click', e => {
   // 3) Mostra il player: reset eventuale closing e avvia slide-in
   wrapper.classList.remove('closing-player-video-il-silenzio-della-natura-mobile');
 
-  // 3) Dopo la transizione (350 ms), entra in FULLSCREEN sul WRAPPER
-  if (wrapper.requestFullscreen)       wrapper.requestFullscreen();
-  else if (wrapper.webkitRequestFullscreen) wrapper.webkitRequestFullscreen();
-  
-  // 4) Avvia il video da zero
-  const vid = wrapper.querySelector('video');
-  vid.pause();
-  vid.currentTime = 0;
-  vid.focus();
-  vid.play();
+  // full sequence: dopo 350 ms entriamo in fullscreen e partiamo
+  setTimeout(() => {
+    // ** entra in fullscreen sul container **  
+    if (wrapper.requestFullscreen) wrapper.requestFullscreen();
+    else if (wrapper.webkitRequestFullscreen) wrapper.webkitRequestFullscreen();
+
+    // avvia il video
+    const vid = wrapper.querySelector('video');
+    vid.pause();
+    vid.currentTime = 0;
+    vid.focus();
+    vid.play();
   }, 350);
 });
 
