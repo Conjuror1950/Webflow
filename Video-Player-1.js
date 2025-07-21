@@ -739,6 +739,15 @@ video::-webkit-media-controls-volume-control {
    document.body.appendChild(wrapper);
 
 // Javascript (JS)
+
+  // Rimuove la classe no-scroll quando si esce dal fullscreen (ESC o gesture)
+document.addEventListener('fullscreenchange', () => {
+  if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+    document.body.classList.remove('no-scroll');
+    wrapper.style.display = ''; // Nasconde il player quando esci
+  }
+});
+
 // ——— Lightbox → apri player in fullscreen e play ———
 const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-container-mobile');
 lightbox.addEventListener('click', e => {
