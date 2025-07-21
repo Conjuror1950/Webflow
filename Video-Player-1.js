@@ -753,7 +753,6 @@ lightbox.addEventListener('click', e => {
 });
     console.warn("Autoplay bloccato dal browser:", err);
   });
-});
 
   // 2) prendi il video
   const vid = wrapper.querySelector('video');
