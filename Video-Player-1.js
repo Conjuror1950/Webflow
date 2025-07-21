@@ -705,39 +705,34 @@ justify-content:flex-end;
    document.body.appendChild(wrapper);
 
 // Javascript (JS)
-  // ─── BLOCCO “TV‑LIKE” VOLUME & CONTROLLI ─────────────────────────
-  const video      = wrapper.querySelector('video');
-  const volumeIcon = wrapper.querySelector('#volume-icon-player-video-il-silenzio-della-natura-mobile');
+// ─── SEMPLICE MUTE / UNMUTE “Apple TV+” ─────────────────────────
+const video      = wrapper.querySelector('video');
+const volumeIcon = wrapper.querySelector('#volume-icon-player-video-il-silenzio-della-natura-mobile');
 
-  // URL esatti per le quattro icone
-  const ICONS = [
-    'https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681d13cbee3881a72b73cb87_speaker.slash.fill.svg',        // mute
-    'https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681d13cb25e28096121c087f_custom.speaker.wave.3.fill.svg',  // low
-    'https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681d13cb4d4abbc10de8ed5d_custom.speaker.wave.3.fill.2.svg',// med
-    'https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681d13cccb3122eb07cc40af_custom.speaker.wave.3.fill.2.2.svg'// high
-  ];
-  const ALTS = [
-    'Volume disattivato',
-    'Volume basso',
-    'Volume medio',
-    'Volume alto'
-  ];
+// URL icone esatte per mute / unmute
+const ICON_MUTE   = 'https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681d13cbee3881a72b73cb87_speaker.slash.fill.svg';
+const ICON_UNMUTE = 'https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681d13cccb3122eb07cc40af_custom.speaker.wave.3.fill.2.2.svg';
 
-  // stato interno [0..3]: 0=muto,1=low,2=med,3=high
-  let volState = 3;
-  video.volume = 1;               // gain interno sempre 1
-  volumeIcon.src = ICONS[volState];
-  volumeIcon.alt = ALTS[volState];
+// inizializza: volume interno = 1 (OS applicherà il gain hardware)
+video.volume = 1;
+volumeIcon.src = ICON_UNMUTE;
+volumeIcon.alt = 'Volume attivo';
 
-  volumeIcon.addEventListener('click', () => {
-    volState = (volState + 1) % 4;
-    // assegna il volume “relativo” che userà l’hardware
-    video.volume = [0, 0.3, 0.6, 1][volState];
-    // aggiorna icona e alt
-    volumeIcon.src = ICONS[volState];
-    volumeIcon.alt = ALTS[volState];
-  });
-  // ────────────────────────────────────────────────────────────────
+// toggle mute/unmute on tap
+volumeIcon.addEventListener('click', () => {
+  if (video.volume > 0) {
+    // metto in muto
+    video.volume = 0;
+    volumeIcon.src = ICON_MUTE;
+    volumeIcon.alt = 'Volume disattivato';
+  } else {
+    // riabilito volume (hardware farà il resto)
+    video.volume = 1;
+    volumeIcon.src = ICON_UNMUTE;
+    volumeIcon.alt = 'Volume attivo';
+  }
+});
+// ────────────────────────────────────────────────────────────────
   
 // ——— Lightbox → apri player con animazione ———
 const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-container-mobile');
