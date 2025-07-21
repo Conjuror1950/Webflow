@@ -728,29 +728,28 @@ video::-webkit-media-controls-volume-control {
 // Javascript (JS) 
 // ——— Lightbox → apri player in fullscreen e play ———
 const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-container-mobile');
-lightbox.addEventListener('click', e => {
-  e.preventDefault();
-// 1. Click su Lightbox per mostrare il player
-lightbox.addEventListener('click', () => {
-  wrapper.style.display = 'block';
-  document.body.classList.add('no-scroll');
+ lightbox.addEventListener('click', e => {
+   e.preventDefault();
+   
+   // mostra immediatamente il wrapper e blocca lo scroll
+   wrapper.style.display = 'block';
+   document.body.classList.add('no-scroll');
 
-  const vid = wrapper.querySelector('video');
+   const vid = wrapper.querySelector('video');
+   // fullscreen
+   if (vid.requestFullscreen)       vid.requestFullscreen();
+   else if (vid.webkitRequestFullscreen) vid.webkitRequestFullscreen();
+   else if (vid.msRequestFullscreen)     vid.msRequestFullscreen();
 
-  // Vai fullscreen subito dopo il click
-  if (vid.requestFullscreen) vid.requestFullscreen();
-  else if (vid.webkitRequestFullscreen) vid.webkitRequestFullscreen();
-  else if (vid.msRequestFullscreen) vid.msRequestFullscreen();
-
-  // Play il video
-  vid.play().catch(err => {
-    console.warn("Autoplay bloccato dal browser:", err);
-  });
-});
+   // play
+   vid.play().catch(err =>
+     console.warn("Autoplay bloccato dal browser:", err)
+   );
+ });
 
 // 2. Quando esci dal fullscreen (ESC, swipe, chiusura manuale)
 function exitFullscreenHandler() {
-  const isFullscreen = !!(
+  const isFs = !!(
     document.fullscreenElement ||
     document.webkitFullscreenElement ||
     document.msFullscreenElement
