@@ -727,6 +727,7 @@ video::-webkit-media-controls-volume-control {
 
 // Javascript (JS) 
 // ——— Lightbox → apri player in fullscreen e play ———
+const wrapper = document.querySelector('.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile');
 const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-container-mobile');
  lightbox.addEventListener('click', e => {
    e.preventDefault();
@@ -797,7 +798,6 @@ document.addEventListener('msfullscreenchange', exitFullscreenHandler);
   vid.pause();
   vid.currentTime = 0;
   vid.play();
-});
 
   // 2) IMPOSTO IMMEDIATAMENTE IL MENU LINGUA
 const shareMenu = document.querySelector('.share-menu-player-video-il-silenzio-della-natura-mobile');
