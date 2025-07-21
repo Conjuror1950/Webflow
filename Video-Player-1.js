@@ -809,63 +809,17 @@ lightbox.addEventListener('click', e => {
   // 3) Mostra il player: reset eventuale closing e avvia slide-in
   wrapper.classList.remove('closing-player-video-il-silenzio-della-natura-mobile');
 
-  // 3) Dopo la transizione (350 ms), metti in fullscreen e fai partire il video
-    const vid = wrapper.querySelector('video');
-    // entra in fullscreen sul video (o wrapper, a seconda di cosa preferisci)
-    if (vid.requestFullscreen) vid.requestFullscreen();
-    else if (vid.webkitRequestFullscreen) vid.webkitRequestFullscreen();
-    
-    // 4) Avvia il video da zero
-    const video = wrapper.querySelector('video');
-    video.pause();            // assicura che sia fermo
-    video.currentTime = 0;    // resetta al frame iniziale
-    video.focus();
-    video.play();
-  }, 350); // pari a transition-duration
-});
+  // 3) Dopo la transizione (350 ms), entra in FULLSCREEN sul WRAPPER
+  if (wrapper.requestFullscreen)       wrapper.requestFullscreen();
+  else if (wrapper.webkitRequestFullscreen) wrapper.webkitRequestFullscreen();
   
-  // 3) Doppio‐click sul video → toggle fullscreen
-const videoEl = wrapper.querySelector('video');
-videoEl.addEventListener('dblclick', () => {
-  if (document.fullscreenElement || document.webkitFullscreenElement) {
-    // esci dal fullscreen (standard + WebKit)
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
-    } else if (document.webkitExitFullscreen) {
-      document.webkitExitFullscreen();
-    }
-  } else {
-    // entra nel fullscreen sul wrapper (standard + WebKit)
-    if (wrapper.requestFullscreen) {
-      wrapper.requestFullscreen();
-    } else if (wrapper.webkitRequestFullscreen) {
-      wrapper.webkitRequestFullscreen();
-    }
-  }
-});
-
-// 2) Keyboard shortcuts: ←/→ skip 10s, Space toggle play/pause
-document.addEventListener('keydown', function(event) {
-  // prendi il video DENTRO il lightbox
-  const video = wrapper.querySelector('video');
-  if (!video) return;
-  
-  switch (event.code) {
-    case 'Space':
-      event.preventDefault();
-      if (video.paused) {
-        video.play();
-      } else {
-        video.pause();
-      }
-      break;
-    case 'ArrowRight':
-      video.currentTime += 10;
-      break;
-    case 'ArrowLeft':
-      video.currentTime -= 10;
-      break;
-  }
+  // 4) Avvia il video da zero
+  const vid = wrapper.querySelector('video');
+  vid.pause();
+  vid.currentTime = 0;
+  vid.focus();
+  vid.play();
+  }, 350);
 });
 
   // 2) IMPOSTO IMMEDIATAMENTE IL MENU LINGUA
