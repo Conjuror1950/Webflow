@@ -572,19 +572,6 @@ justify-content:flex-end;
   opacity: 1;
 }
 
-/* sottotitoli nella preview: scala un po’ più piccolo e in basso */
-.preview-container-player-video-il-silenzio-della-natura-mobile #preview-subtitles-player-video-il-silenzio-della-natura-mobile {
-  position: absolute;
-  bottom: 31px;       /* regola se vuoi più spazio dal bordo */
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 40%;    /* un po’ più piccolo rispetto al main */
-  padding: 0.03rem 0.01rem;
-  border-radius: 2px;
-  pointer-events: none;
-  z-index: 5;         /* sopra il video */
-}
-
 /* posiziona l’avviso sopra il titolo e fallo animare come su Apple TV */
 .warning-icon-player-video-il-silenzio-della-natura-mobile {
   position: absolute;
@@ -680,7 +667,7 @@ video::-webkit-media-controls-volume-control {
     <!-- avvisi -->
     <img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/68286f66a406b7094b5b2407_avviso%20sequenze%20con%20immagini%20e%20luci%20lampeggianti.png" alt="Avviso: sequenze con immagini e luci lampeggianti" class="warning-icon-player-video-il-silenzio-della-natura-mobile">
     <img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/68288c23d64340a80e1a52e1_avviso%20et%C3%A0.png" alt="Avviso: età" class="warning-age-player-video-il-silenzio-della-natura-mobile">
-    <video id="apple-video-player-video-il-silenzio-della-natura-mobile" controls allow="picture-in-picture" data-no-toggle preload="metadata" crossorigin="anonymous" playsinline>
+    <video id="apple-video-player-video-il-silenzio-della-natura-mobile" controls allow="picture-in-picture" x-webkit-airplay="allow" data-no-toggle preload="metadata" crossorigin="anonymous" playsinline>
       <track kind="subtitles" label="Italiano (automatico)" srclang="it" src="https://andreaingrassia.netlify.app/assets/subtitles/captions-il-silenzio-della-natura.vtt">
     </video>
     <div id="custom-subtitles-player-video-il-silenzio-della-natura-mobile" class="subtitle-container-player-video-il-silenzio-della-natura-mobile"></div>
