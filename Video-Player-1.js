@@ -786,29 +786,19 @@ lightbox.addEventListener('click', e => {
     // .filter(el => el !== wrapper && el !== lightbox)
     // ].forEach(el => el.style.display = 'none');
 
-  // 2.b) Imposta inline lo stato iniziale: fuori a destra e invisibile
-  wrapper.style.transform = 'translateY(100%)';
-  wrapper.style.opacity   = '0';
+  // 1) azzera subito la trasformazione in linea, così il wrapper è a schermo
+  wrapper.style.transform = '';
+  wrapper.style.opacity   = '';
 
-  // 2.c) Forza il reflow affinché il browser riconosca i nuovi inline-styles
-  wrapper.offsetHeight;
-      
-  // Resetta le animazioni dei warning
-  ['warning-icon','warning-age'].forEach(name => {
-  const el = wrapper.querySelector(`.${name}-player-video-il-silenzio-della-natura-mobile`);
-  if (!el) return;
-  // azzera l’animazione
-  el.style.animation = 'none';
-  // forzo un reflow
-  void el.offsetWidth;
-  // riapplico l’animazione definita in CSS
-  el.style.animation = '';
-});
-
-  // DISABILITA LO SCROLL DELLA PAGINA
+  // 2) mostra il wrapper (entra in transition verso translateY(0), opacity:1)
+  wrapper.classList.add('visible-player-video-il-silenzio-della-natura-mobile');
   document.body.classList.add('no-scroll');
 
-    // 3) AVVIA IL VIDEO
+  // 3) ADESSO che il wrapper è visibile, entri in fullscreen
+  if (wrapper.requestFullscreen) wrapper.requestFullscreen();
+  else if (wrapper.webkitRequestFullscreen) wrapper.webkitRequestFullscreen();
+
+  // 4) dopo la tua animazione (350 ms), avvia il video da zero
     const vid = wrapper.querySelector('video');
     vid.pause();
     vid.currentTime = 0;
