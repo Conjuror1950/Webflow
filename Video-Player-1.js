@@ -727,45 +727,39 @@ video::-webkit-media-controls-volume-control {
 
 // Javascript (JS) 
 // ——— Lightbox → apri player in fullscreen e play ———
-const wrapper = document.querySelector('.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile');
 const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-container-mobile');
- lightbox.addEventListener('click', e => {
-   e.preventDefault();
-   
-   // mostra immediatamente il wrapper e blocca lo scroll
-   wrapper.style.display = 'block';
-   document.body.classList.add('no-scroll');
+lightbox.addEventListener('click', e => {
+  e.preventDefault();
+// 1. Click su Lightbox per mostrare il player
+lightbox.addEventListener('click', () => {
+  wrapper.style.display = 'block';
+  document.body.classList.add('no-scroll');
 
-   const vid = wrapper.querySelector('video');
-   // fullscreen
-   if (vid.requestFullscreen)       vid.requestFullscreen();
-   else if (vid.webkitRequestFullscreen) vid.webkitRequestFullscreen();
-   else if (vid.msRequestFullscreen)     vid.msRequestFullscreen();
+  const vid = wrapper.querySelector('video');
 
-   // play
-   vid.play().catch(err =>
-     console.warn("Autoplay bloccato dal browser:", err)
-   );
- });
+  // Vai fullscreen subito dopo il click
+  if (vid.requestFullscreen) vid.requestFullscreen();
+  else if (vid.webkitRequestFullscreen) vid.webkitRequestFullscreen();
+  else if (vid.msRequestFullscreen) vid.msRequestFullscreen();
+
+  // Play il video
+  vid.play().catch(err => {
+    console.warn("Autoplay bloccato dal browser:", err);
+  });
+});
 
 // 2. Quando esci dal fullscreen (ESC, swipe, chiusura manuale)
 function exitFullscreenHandler() {
-  const isFs = !!(
+  const isFullscreen = !!(
     document.fullscreenElement ||
     document.webkitFullscreenElement ||
     document.msFullscreenElement
   );
 
- if (!isFs) {
-   // 1) ripristina subito lo scroll
-   document.body.classList.remove('no-scroll');
-   // 2) chiudi il wrapper (come fai già tu)
-   wrapper.style.display = 'none';
-   // 3) (facoltativo) reset di eventuali inline‑style residui
-   wrapper.classList.remove('visible-player-video-il-silenzio-della-natura-mobile','closing-player-video-il-silenzio-della-natura-mobile');
-   wrapper.style.transform = '';
-   wrapper.style.opacity   = '';
- }
+  if (!isFullscreen) {
+    document.body.classList.remove('no-scroll');
+    wrapper.style.display = 'none';
+  }
 }
 
 // 3. Eventi per tutti i browser
@@ -798,6 +792,7 @@ document.addEventListener('msfullscreenchange', exitFullscreenHandler);
   vid.pause();
   vid.currentTime = 0;
   vid.play();
+});
 
   // 2) IMPOSTO IMMEDIATAMENTE IL MENU LINGUA
 const shareMenu = document.querySelector('.share-menu-player-video-il-silenzio-della-natura-mobile');
@@ -851,10 +846,6 @@ langMenu
   // ——— Chiudi il player tornando allo stato iniziale ———
 const closeBtn = wrapper.querySelector('.close-btn-player-video-il-silenzio-della-natura-mobile');
 closeBtn.addEventListener('click', () => {
-  
-// RIMUOVI IMMEDIATAMENTE il blocco scroll in ogni caso
-document.body.classList.remove('no-scroll');
-  
   // 1) Se sei in fullscreen, esci prima
   if (document.fullscreenElement) {
     document.exitFullscreen();
@@ -907,10 +898,6 @@ wrapper.classList.remove('visible-player-video-il-silenzio-della-natura-mobile',
     // ora il manifest contiene più Representation (4K,1080p,720p,...)
     const manifest = 'https://il-silenzio-della-natura-video.netlify.app/manifest.mpd';
     const video = document.getElementById('apple-video-player-video-il-silenzio-della-natura-mobile');
-   
-    // ← Aggiungi SUBITO:
-    video.addEventListener('webkitendfullscreen', exitFullscreenHandler);
-    
     const player = dashjs.MediaPlayer().create();
     // inizializza e carica il manifest
     player.initialize(video, manifest, false);
@@ -1367,17 +1354,11 @@ emailBtn.addEventListener('click', () => {
   }
 
 document.addEventListener('fullscreenchange', () => {
-  const isFs = !!(
-    document.fullscreenElement ||
-    document.webkitFullscreenElement ||
-    document.msFullscreenElement
-  );
-  if (isFs) {
+  const wrapper = document.querySelector('.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile');
+  if (document.fullscreenElement) {
     wrapper.classList.add('fullscreen');
   } else {
     wrapper.classList.remove('fullscreen');
-    // forza sempre la stessa logica di chiusura
-    exitFullscreenHandler();
   }
 });
   };  
