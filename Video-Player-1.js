@@ -756,10 +756,16 @@ function exitFullscreenHandler() {
     document.msFullscreenElement
   );
 
-  if (!isFullscreen) {
-    document.body.classList.remove('no-scroll');
-    wrapper.style.display = 'none';
-  }
+ if (!isFs) {
+   // 1) ripristina subito lo scroll
+   document.body.classList.remove('no-scroll');
+   // 2) chiudi il wrapper (come fai già tu)
+   wrapper.style.display = 'none';
+   // 3) (facoltativo) reset di eventuali inline‑style residui
+   wrapper.classList.remove('visible-player-video-il-silenzio-della-natura-mobile','closing-player-video-il-silenzio-della-natura-mobile');
+   wrapper.style.transform = '';
+   wrapper.style.opacity   = '';
+ }
 }
 
 // 3. Eventi per tutti i browser
@@ -902,6 +908,10 @@ wrapper.classList.remove('visible-player-video-il-silenzio-della-natura-mobile',
     // ora il manifest contiene più Representation (4K,1080p,720p,...)
     const manifest = 'https://il-silenzio-della-natura-video.netlify.app/manifest.mpd';
     const video = document.getElementById('apple-video-player-video-il-silenzio-della-natura-mobile');
+   
+    // ← Aggiungi SUBITO:
+    video.addEventListener('webkitendfullscreen', exitFullscreenHandler);
+    
     const player = dashjs.MediaPlayer().create();
     // inizializza e carica il manifest
     player.initialize(video, manifest, false);
@@ -1358,11 +1368,17 @@ emailBtn.addEventListener('click', () => {
   }
 
 document.addEventListener('fullscreenchange', () => {
-  const wrapper = document.querySelector('.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile');
-  if (document.fullscreenElement) {
+  const isFs = !!(
+    document.fullscreenElement ||
+    document.webkitFullscreenElement ||
+    document.msFullscreenElement
+  );
+  if (isFs) {
     wrapper.classList.add('fullscreen');
   } else {
     wrapper.classList.remove('fullscreen');
+    // forza sempre la stessa logica di chiusura
+    exitFullscreenHandler();
   }
 });
   };  
