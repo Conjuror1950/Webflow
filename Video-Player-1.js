@@ -730,6 +730,7 @@ video::-webkit-media-controls-volume-control {
 const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-container-mobile');
 lightbox.addEventListener('click', e => {
   e.preventDefault();
+  
   // 1) Apri il wrapper e vai in fullscreen+play
   wrapper.style.display = 'block';
   document.body.classList.add('no-scroll');
@@ -751,8 +752,6 @@ lightbox.addEventListener('click', e => {
   document.addEventListener('webkitfullscreenchange', exitFullscreenHandler);
   document.addEventListener('msfullscreenchange',     exitFullscreenHandler);
 });
-    console.warn("Autoplay bloccato dal browser:", err);
-  });
 
   // 2) prendi il video
   const vid = wrapper.querySelector('video');
