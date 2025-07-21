@@ -154,67 +154,6 @@ opacity:0;
 display:flex;
 justify-content:space-between;
 }
-/* rendi il volume‐slider simile alla progress‐bar */
-/* ---- sostituisci interamente questa regola ---- */
-.volume-player-video-il-silenzio-della-natura-mobile {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 100px;
-  height: 5px;                     /* stessa altezza di .progress */
-  background: rgba(255,255,255,0.1);/* stesso “track vuoto” di .progress */
-  border-radius: 6px;              /* stesso border‑radius di .progress */
-  margin-top: -10px;
-}
-
-/* track “riempita” e “vuota” nei diversi engine */
-.volume-player-video-il-silenzio-della-natura-mobile::-webkit-slider-runnable-track {
-  height: 4px;
-  background: rgba(255,255,255,0.1);
-  border-radius: 2px;
-}
-.volume-player-video-il-silenzio-della-natura-mobile::-moz-range-track {
-  height: 4px;
-  background: rgba(255,255,255,0.1);
-  border-radius: 2px;
-}
-.volume-player-video-il-silenzio-della-natura-mobile::-ms-track {
-  height: 4px;
-  background: transparent;
-  border-color: transparent;
-  color: transparent;
-}
-.volume-player-video-il-silenzio-della-natura-mobile::-ms-fill-lower {
-  background: white;   /* parte “riempita” MS */
-  border-radius: 2px;
-}
-.volume-player-video-il-silenzio-della-natura-mobile::-ms-fill-upper {
-  background: rgba(255,255,255,0.1);
-  border-radius: 2px;
-}
-
-/* thumb tondo bianco */
-.volume-player-video-il-silenzio-della-natura-mobile::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  background: white;
-  margin-top: -3px;    /* centra il thumb */
-  cursor: pointer;
-}
-.volume-player-video-il-silenzio-della-natura-mobile::-moz-range-thumb {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: white;
-  cursor: pointer;
-}
-
-.volume-control-player-video-il-silenzio-della-natura-mobile {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-}
 
 #volume-icon-player-video-il-silenzio-della-natura-mobile {
   width: 22px;
@@ -715,7 +654,6 @@ justify-content:flex-end;
       <div class="top-bar-player-video-il-silenzio-della-natura-mobile">
         <button class="close-btn-player-video-il-silenzio-della-natura-mobile"><img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a6e03d818ab9f59079de2_xmark.svg" alt="Close" style="width:24px;height:24px;"></button>
         <div class="volume-control-player-video-il-silenzio-della-natura-mobile">
-          <input type="range" class="volume-player-video-il-silenzio-della-natura-mobile" min="0" max="1" step="0.01" value="1">
           <img id="volume-icon-player-video-il-silenzio-della-natura-mobile" src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681d13cccb3122eb07cc40af_custom.speaker.wave.3.fill.2.2.svg" alt="Volume alto">
         </div>
       </div>
@@ -1394,74 +1332,34 @@ progress.addEventListener('click', () => {
 });
 
 // Volume
-  // nuova funzione: imposta anche video.volume e colora il track
-volume.addEventListener('input', () => {
-  mutedByClick = false;      // reset del flag
-  const v = parseFloat(volume.value);
-  if (v > 0) lastVolume = v;  // salva sempre l’ultimo valore non-zero
-  // 1) applica il volume al video nativo (per sicurezza)
-  video.volume = v;
-  // 2) applica il volume al dash.js player
-  player.setVolume(v);
-  // 3) ricrea il gradient: parte sinistra bianca, resto grigio
-  const pct = v * 100;
-  volume.style.background =
-    `linear-gradient(to right,
-       white 0%, white ${pct}%,
-       rgba(255,255,255,0.1) ${pct}%, rgba(255,255,255,0.1) 100%)`;
-});
-
-// 4) subito dopo aver definito il listener, forza l'evento input
-//    così il gradient è già corretto al caricamento (value=1)
-volume.dispatchEvent(new Event('input'));
-
+// 1) prendi il video e l’icona
+const video = wrapper.querySelector('video');
 const volumeIcon = document.getElementById('volume-icon-player-video-il-silenzio-della-natura-mobile');
 
+// 2) icone da usare per i vari stati
+const ICONS = {
+  mute:   'https://cdn.prod.website-files.com/…/speaker.slash.fill.svg',
+  max:    'https://cdn.prod.website-files.com/…/speaker.wave.3.fill.2.2.svg'
+};
+
+// Assicuriamoci di partire con volume=1
+video.volume = 1;
+volumeIcon.src = ICONS.max;
+volumeIcon.alt = 'Volume alto';
+
+// 3) al click sull’icona, toggle mute/unmute
 volumeIcon.addEventListener('click', () => {
-  const current = parseFloat(volume.value);
-
-  if (current > 0) {
-    // sto mutando: salvo il valore prima di azzerare
-    lastVolume = current;
-    volume.value = 0;
+  if (video.volume > 0) {
+    // metto in muto
+    video.volume = 0;
+    volumeIcon.src = ICONS.mute;
+    volumeIcon.alt = 'Volume disattivato';
   } else {
-    // volume==0: ripristino sempre l’ultimo valore non-zero
-    volume.value = lastVolume;
+    // ripristino volume al massimo (hardware farà il resto)
+    video.volume = 1;
+    volumeIcon.src = ICONS.max;
+    volumeIcon.alt = 'Volume alto';
   }
-
-  // rilancio l’input per aggiornare video.volume, gradient e icona
-  volume.dispatchEvent(new Event('input'));
-});
-
-volume.addEventListener('input', () => {
-  // se l’utente tocca lo slider, non siamo in “mute by click”
-  mutedByClick = false;
-
-  const v = parseFloat(volume.value);
-  video.volume = v;
-  player.setVolume(v);
-  const pct = v * 100;
-  volume.style.background =
-    `linear-gradient(to right, white 0%, white ${pct}%, rgba(255,255,255,0.1) ${pct}%, rgba(255,255,255,0.1) 100%)`;
-
-  if (v > 0) lastVolume = v;
-
-  let iconURL, altText;
-  if (v === 0) {
-    iconURL = 'https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681d13cbee3881a72b73cb87_speaker.slash.fill.svg';
-    altText = 'Volume disattivato';
-  } else if (v <= 0.33) {
-    iconURL = 'https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681d13cb25e28096121c087f_custom.speaker.wave.3.fill.svg';
-    altText = 'Volume basso';
-  } else if (v <= 0.66) {
-    iconURL = 'https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681d13cb4d4abbc10de8ed5d_custom.speaker.wave.3.fill.2.svg';
-    altText = 'Volume medio';
-  } else {
-    iconURL = 'https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681d13cccb3122eb07cc40af_custom.speaker.wave.3.fill.2.2.svg';
-    altText = 'Volume alto';
-  }
-  volumeIcon.src = iconURL;
-  volumeIcon.alt = altText;
 });
 
   // Fullscreen
