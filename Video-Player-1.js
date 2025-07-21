@@ -765,46 +765,36 @@ volumeIcon.addEventListener('click', () => {
 });
 // ───────────────────────────────────────────────────────────────
   
-// ——— Lightbox → apri player con animazione ———
+// ——— Lightbox → apri player in fullscreen e play ———
 const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-container-mobile');
 lightbox.addEventListener('click', e => {
   e.preventDefault();
-  
-  // 1) Fade-out lightbox e altri (disattivato, elimina doppia barra per attivare)
-  // [lightbox, ...Array.from(document.body.children)
-  // .filter(el => el !== wrapper && el !== lightbox)
-  // ].forEach(el => el.classList.add('fade-out'));
 
-  // 1) entra subito in fullscreen (user gesture valida)
-  const vidElem = wrapper.querySelector('video');
-  if (vidElem.requestFullscreen)       vidElem.requestFullscreen();
-  else if (vidElem.webkitRequestFullscreen) vidElem.webkitRequestFullscreen();
-  
-  // 2) Dopo la transizione, nascondi a display (disattivato, elimina doppia barra per attivare)
-  setTimeout(() => {
-    // [lightbox, ...Array.from(document.body.children)
-    // .filter(el => el !== wrapper && el !== lightbox)
-    // ].forEach(el => el.style.display = 'none');
-
-  // 1) azzera subito la trasformazione in linea, così il wrapper è a schermo
-  wrapper.style.transform = '';
-  wrapper.style.opacity   = '';
-
-  // 2) mostra il wrapper (entra in transition verso translateY(0), opacity:1)
-  wrapper.classList.add('visible-player-video-il-silenzio-della-natura-mobile');
+  // 1) mostra immediatamente il wrapper
+  wrapper.style.display = 'block';
   document.body.classList.add('no-scroll');
 
-  // 3) ADESSO che il wrapper è visibile, entri in fullscreen
-  if (wrapper.requestFullscreen) wrapper.requestFullscreen();
-  else if (wrapper.webkitRequestFullscreen) wrapper.webkitRequestFullscreen();
+  // 2) prendi il video
+  const vid = wrapper.querySelector('video');
 
-  // 4) dopo la tua animazione (350 ms), avvia il video da zero
-    const vid = wrapper.querySelector('video');
-    vid.pause();
-    vid.currentTime = 0;
-    vid.focus();
-    vid.play();
-  }, 350);
+  // 3) entra in fullscreen SUL VIDEO (più compatibile)
+  if (vid.requestFullscreen) {
+    vid.requestFullscreen();
+  } else if (vid.webkitEnterFullscreen) {
+    // iOS Safari
+    vid.webkitEnterFullscreen();
+  } else if (vid.webkitRequestFullscreen) {
+    // WebKit desktop
+    vid.webkitRequestFullscreen();
+  } else if (vid.msRequestFullscreen) {
+    // IE/Edge
+    vid.msRequestFullscreen();
+  }
+
+  // 4) parti col video da inzio
+  vid.pause();
+  vid.currentTime = 0;
+  vid.play();
 });
 
   // 2) IMPOSTO IMMEDIATAMENTE IL MENU LINGUA
