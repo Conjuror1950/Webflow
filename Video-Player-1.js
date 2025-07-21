@@ -705,31 +705,48 @@ justify-content:flex-end;
    document.body.appendChild(wrapper);
 
 // Javascript (JS)
-// ─── SOLO MUTE / UNMUTE “TV‑LIKE” ─────────────────────────────
+// ─── TOGGLE A 4 STATI: MUTE / LOW / MED / HIGH ────────────────
 const video      = wrapper.querySelector('video');
 const volumeIcon = wrapper.querySelector('#volume-icon-player-video-il-silenzio-della-natura-mobile');
 
-// URL per le due icone
-const ICON_MUTE   = 'https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681d13cbee3881a72b73cb87_speaker.slash.fill.svg';
-const ICON_UNMUTE = 'https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681d13cccb3122eb07cc40af_custom.speaker.wave.3.fill.2.2.svg';
+// 1) URL per le 4 icone (mute, low, med, high)
+const ICONS = [
+  'https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681d13cbee3881a72b73cb87_speaker.slash.fill.svg',      // mute
+  'https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681d13cb25e28096121c087f_custom.speaker.wave.3.fill.svg',// low
+  'https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681d13cb4d4abbc10de8ed5d_custom.speaker.wave.3.fill.2.svg',// med
+  'https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681d13cccb3122eb07cc40af_custom.speaker.wave.3.fill.2.2.svg'// high
+];
+// 2) testo alt corrispondente
+const ALTS = [
+  'Volume disattivato',
+  'Volume basso',
+  'Volume medio',
+  'Volume alto'
+];
+// 3) livelli di gain interno (l’hardware applicherà il suo volume sopra)
+const LEVELS = [0, 0.3, 0.6, 1];
 
-// inizializza: video non è muted all’avvio
+// 4) stato interno [0..3]
+let volState = 3;  
+// init: unmuted, volume al massimo
 video.muted = false;
-volumeIcon.src = ICON_UNMUTE;
-volumeIcon.alt = 'Audio attivo';
+video.volume = LEVELS[volState];
+volumeIcon.src = ICONS[volState];
+volumeIcon.alt = ALTS[volState];
 
-// al click toggle del flag muted
+// 5) al click cicla lo stato
 volumeIcon.addEventListener('click', () => {
-  video.muted = !video.muted;
-  if (video.muted) {
-    volumeIcon.src = ICON_MUTE;
-    volumeIcon.alt = 'Audio disattivato';
+  volState = (volState + 1) % 4;
+  if (volState === 0) {
+    video.muted = true;          // solo in mute userà .muted
   } else {
-    volumeIcon.src = ICON_UNMUTE;
-    volumeIcon.alt = 'Audio attivo';
+    video.muted = false;
+    video.volume = LEVELS[volState];
   }
+  volumeIcon.src = ICONS[volState];
+  volumeIcon.alt = ALTS[volState];
 });
-// ───────────────────────────────────────────────────────────────
+// ────────────────────────────────────────────────────────────────
   
 // ——— Lightbox → apri player con animazione ———
 const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-container-mobile');
