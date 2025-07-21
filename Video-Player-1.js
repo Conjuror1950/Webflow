@@ -780,13 +780,6 @@ lightbox.addEventListener('click', e => {
     // [lightbox, ...Array.from(document.body.children)
     // .filter(el => el !== wrapper && el !== lightbox)
     // ].forEach(el => el.style.display = 'none');
-
-  // 2.b) Imposta inline lo stato iniziale: fuori a destra e invisibile
-  wrapper.style.transform = 'translateY(100%)';
-  wrapper.style.opacity   = '0';
-
-  // 2.c) Forza il reflow affinché il browser riconosca i nuovi inline-styles
-  wrapper.offsetHeight;
       
   // Resetta le animazioni dei warning
   ['warning-icon','warning-age'].forEach(name => {
@@ -800,25 +793,25 @@ lightbox.addEventListener('click', e => {
   el.style.animation = '';
 });
 
-  // DISABILITA LO SCROLL DELLA PAGINA
+  // 1) Mostra subito il wrapper
+  wrapper.style.visibility = 'visible';
+  wrapper.style.opacity    = '1';
+  wrapper.style.transform  = 'translateY(0)';
+
+  // 2) ENTRA IMMEDIATAMENTE IN FULLSCREEN
+  if (wrapper.requestFullscreen) {
+    wrapper.requestFullscreen();
+  } else if (wrapper.webkitRequestFullscreen) {
+    wrapper.webkitRequestFullscreen();
+  }
+
+  // 3) Avvia l’animazione di slide‑in
+  wrapper.classList.add('visible-player-video-il-silenzio-della-natura-mobile');
   document.body.classList.add('no-scroll');
-    
-  // dopo 350 ms (durata della tua transition) entra in fullscreen e fai play
-    // 1) mostra il wrapper
-    wrapper.classList.add('visible-player-video-il-silenzio-della-natura-mobile');
-    wrapper.classList.remove('closing-player-video-il-silenzio-della-natura-mobile');
-    document.body.classList.add('no-scroll');
 
-    // 2) ENTRA IN FULLSCREEN SUL WRAPPER
-    if (wrapper.requestFullscreen) {
-      wrapper.requestFullscreen();
-    } else if (wrapper.webkitRequestFullscreen) {
-      wrapper.webkitRequestFullscreen();
-    }
-
-    // 3) AVVIA IL VIDEO
+  // 4) Dopo 350 ms, avvia il video
+  setTimeout(() => {
     const vid = wrapper.querySelector('video');
-    vid.pause();
     vid.currentTime = 0;
     vid.focus();
     vid.play();
