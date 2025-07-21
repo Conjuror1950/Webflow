@@ -846,6 +846,10 @@ langMenu
   // ——— Chiudi il player tornando allo stato iniziale ———
 const closeBtn = wrapper.querySelector('.close-btn-player-video-il-silenzio-della-natura-mobile');
 closeBtn.addEventListener('click', () => {
+  
+  // **RIMUOVI LO SCROLL** non appena si clicca “X”
+  document.body.classList.remove('no-scroll');
+  
   // 1) Se sei in fullscreen, esci prima
   if (document.fullscreenElement) {
     document.exitFullscreen();
