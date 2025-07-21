@@ -705,6 +705,43 @@ justify-content:flex-end;
    document.body.appendChild(wrapper);
 
 // Javascript (JS)
+// ─── NUOVA SEZIONE VOLUME ────────────────────────────────────
+// (1) prendi il video e l’icona, usando il wrapper appena creato
+  const video = wrapper.querySelector('video');
+  const volumeIcon = wrapper.querySelector('#volume-icon-player-video-il-silenzio-della-natura-mobile');
+
+// (2) icone da usare per i vari stati (usa URL ESATTI, non “…”)
+  const ICONS = {
+    mute: 'https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681d13cbee3881a72b73cb87_speaker.slash.fill.svg',
+    low:  'https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681d13cb25e28096121c087f_custom.speaker.wave.3.fill.svg',
+    med:  'https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681d13cb4d4abbc10de8ed5d_custom.speaker.wave.3.fill.2.svg',
+    high: 'https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681d13cccb3122eb07cc40af_custom.speaker.wave.3.fill.2.2.svg'
+  };
+
+  // (3) partiamo con volume=1 (max) e icona “high”
+  video.volume = 1;
+  volumeIcon.src = ICONS.high;
+  volumeIcon.alt = 'Volume alto';
+
+  // (4) al click sull’icona, cicla tra quattro stati:
+  //     0 = muto, >0–0.33 = low, >0.33–0.66 = med, >0.66–1 = high
+  volumeIcon.addEventListener('click', () => {
+    let v = video.volume;
+    // scegli il prossimo step
+    if (v === 0)         v = 1;         // da “mute” a “high”
+    else if (v <= 0.33)  v = 0.5;       // da low a med
+    else if (v <= 0.66)  v = 1;         // da med a high
+    else                 v = 0;         // da high a mute
+
+    video.volume = v;
+    // aggiorna icona
+    if      (v === 0)    { volumeIcon.src = ICONS.mute; volumeIcon.alt = 'Volume disattivato'; }
+    else if (v <= 0.33)  { volumeIcon.src = ICONS.low;  volumeIcon.alt = 'Volume basso';      }
+    else if (v <= 0.66)  { volumeIcon.src = ICONS.med;  volumeIcon.alt = 'Volume medio';      }
+    else                 { volumeIcon.src = ICONS.high; volumeIcon.alt = 'Volume alto';       }
+  });
+  // ─────────────────────────────────────────────────────────────
+  
 // ——— Lightbox → apri player con animazione ———
 const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-container-mobile');
 lightbox.addEventListener('click', e => {
@@ -1329,37 +1366,6 @@ video.addEventListener('play', () => {
 progress.addEventListener('click', () => {
   video.currentTime = lastPreviewTime;
   updateProgressBar();
-});
-
-// Volume
-// 1) prendi il video e l’icona
-const video = wrapper.querySelector('video');
-const volumeIcon = document.getElementById('volume-icon-player-video-il-silenzio-della-natura-mobile');
-
-// 2) icone da usare per i vari stati
-const ICONS = {
-  mute:   'https://cdn.prod.website-files.com/…/speaker.slash.fill.svg',
-  max:    'https://cdn.prod.website-files.com/…/speaker.wave.3.fill.2.2.svg'
-};
-
-// Assicuriamoci di partire con volume=1
-video.volume = 1;
-volumeIcon.src = ICONS.max;
-volumeIcon.alt = 'Volume alto';
-
-// 3) al click sull’icona, toggle mute/unmute
-volumeIcon.addEventListener('click', () => {
-  if (video.volume > 0) {
-    // metto in muto
-    video.volume = 0;
-    volumeIcon.src = ICONS.mute;
-    volumeIcon.alt = 'Volume disattivato';
-  } else {
-    // ripristino volume al massimo (hardware farà il resto)
-    video.volume = 1;
-    volumeIcon.src = ICONS.max;
-    volumeIcon.alt = 'Volume alto';
-  }
 });
 
   // Fullscreen
