@@ -730,46 +730,30 @@ video::-webkit-media-controls-volume-control {
 const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-container-mobile');
 lightbox.addEventListener('click', e => {
   e.preventDefault();
-// 1. Click su Lightbox per mostrare il player
-lightbox.addEventListener('click', () => {
+  // 1) Apri il wrapper e vai in fullscreen+play
   wrapper.style.display = 'block';
   document.body.classList.add('no-scroll');
-
   const vid = wrapper.querySelector('video');
-
-  // Vai fullscreen subito dopo il click
   if (vid.requestFullscreen) vid.requestFullscreen();
   else if (vid.webkitRequestFullscreen) vid.webkitRequestFullscreen();
   else if (vid.msRequestFullscreen) vid.msRequestFullscreen();
+  vid.play().catch(err => console.warn("Autoplay bloccato:", err));
 
-  // Play il video
-  vid.play().catch(err => {
+  // 2) Quando esci dal fullscreen (ESC, swipe, chiusura manuale)
+  function exitFullscreenHandler() {
+    const isFs = !!(document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement);
+    if (!isFs) {
+      document.body.classList.remove('no-scroll');
+      wrapper.style.display = 'none';
+    }
+  }
+  document.addEventListener('fullscreenchange',    exitFullscreenHandler);
+  document.addEventListener('webkitfullscreenchange', exitFullscreenHandler);
+  document.addEventListener('msfullscreenchange',     exitFullscreenHandler);
+});
     console.warn("Autoplay bloccato dal browser:", err);
   });
 });
-
-// 2. Quando esci dal fullscreen (ESC, swipe, chiusura manuale)
-function exitFullscreenHandler() {
-  const isFullscreen = !!(
-    document.fullscreenElement ||
-    document.webkitFullscreenElement ||
-    document.msFullscreenElement
-  );
-
-  if (!isFullscreen) {
-    document.body.classList.remove('no-scroll');
-    wrapper.style.display = 'none';
-  }
-}
-
-// 3. Eventi per tutti i browser
-document.addEventListener('fullscreenchange', exitFullscreenHandler);
-document.addEventListener('webkitfullscreenchange', exitFullscreenHandler);
-document.addEventListener('msfullscreenchange', exitFullscreenHandler);
-
-  // 1) mostra immediatamente il wrapper
-  wrapper.style.display = 'block';
-  document.body.classList.add('no-scroll');
 
   // 2) prendi il video
   const vid = wrapper.querySelector('video');
