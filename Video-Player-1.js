@@ -655,6 +655,20 @@ video::-webkit-media-controls-volume-control {
   cursor: pointer !important;
 }
 
+#web-share-button {
+  position: absolute;
+  top: 10px;
+  right: 70px; /* adatta in base a AirPlay/PiP */
+  z-index: 10;
+  cursor: pointer;
+  opacity: 0.85;
+  transition: opacity 0.2s;
+}
+
+#web-share-button:hover {
+  opacity: 1;
+}
+
 `;
   const styleEl = document.createElement('style');
   styleEl.textContent = css;
@@ -668,6 +682,13 @@ video::-webkit-media-controls-volume-control {
     <img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/68286f66a406b7094b5b2407_avviso%20sequenze%20con%20immagini%20e%20luci%20lampeggianti.png" alt="Avviso: sequenze con immagini e luci lampeggianti" class="warning-icon-player-video-il-silenzio-della-natura-mobile">
     <img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/68288c23d64340a80e1a52e1_avviso%20et%C3%A0.png" alt="Avviso: età" class="warning-age-player-video-il-silenzio-della-natura-mobile">
     <video id="apple-video-player-video-il-silenzio-della-natura-mobile" controls allow="picture-in-picture" x-webkit-airplay="allow" data-no-toggle preload="metadata" crossorigin="anonymous" playsinline>
+    <button id="web-share-button" aria-label="Condividi" style="background: none; border: none; padding: 8px;">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"/>
+    <polyline points="16 6 12 2 8 6"/>
+    <line x1="12" y1="2" x2="12" y2="15"/>
+  </svg>
+</button>
       <track kind="subtitles" label="Italiano (automatico)" srclang="it" src="https://andreaingrassia.netlify.app/assets/subtitles/captions-il-silenzio-della-natura.vtt">
     </video>
     <div id="custom-subtitles-player-video-il-silenzio-della-natura-mobile" class="subtitle-container-player-video-il-silenzio-della-natura-mobile"></div>
@@ -1340,6 +1361,33 @@ video.addEventListener('click', () => {
    // chiudi dopo un attimo
    setTimeout(() => shareMenu.style.display = 'none', 1000);
  });
+
+
+
+  const shareButton = document.getElementById("web-share-button");
+
+  shareButton.addEventListener("click", async () => {
+    const video = document.getElementById("apple-video-player-video-il-silenzio-della-natura-mobile");
+    const source = video.querySelector("source");
+    const videoUrl = source ? source.src : video.currentSrc;
+
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: 'Il Silenzio della Natura',
+          text: 'Guarda questo video incredibile!',
+          url: videoUrl,
+        });
+        console.log("Condiviso con successo");
+      } catch (err) {
+        console.error("Errore nella condivisione", err);
+      }
+    } else {
+      alert("La condivisione non è supportata su questo dispositivo.");
+    }
+  });
+
+
     
 // email share
 emailBtn.addEventListener('click', () => {
