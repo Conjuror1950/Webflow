@@ -705,34 +705,31 @@ justify-content:flex-end;
    document.body.appendChild(wrapper);
 
 // Javascript (JS)
-// ─── SEMPLICE MUTE / UNMUTE “Apple TV+” ─────────────────────────
+// ─── SOLO MUTE / UNMUTE “TV‑LIKE” ─────────────────────────────
 const video      = wrapper.querySelector('video');
 const volumeIcon = wrapper.querySelector('#volume-icon-player-video-il-silenzio-della-natura-mobile');
 
-// URL icone esatte per mute / unmute
+// URL per le due icone
 const ICON_MUTE   = 'https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681d13cbee3881a72b73cb87_speaker.slash.fill.svg';
 const ICON_UNMUTE = 'https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681d13cccb3122eb07cc40af_custom.speaker.wave.3.fill.2.2.svg';
 
-// inizializza: volume interno = 1 (OS applicherà il gain hardware)
-video.volume = 1;
+// inizializza: video non è muted all’avvio
+video.muted = false;
 volumeIcon.src = ICON_UNMUTE;
-volumeIcon.alt = 'Volume attivo';
+volumeIcon.alt = 'Audio attivo';
 
-// toggle mute/unmute on tap
+// al click toggle del flag muted
 volumeIcon.addEventListener('click', () => {
-  if (video.volume > 0) {
-    // metto in muto
-    video.volume = 0;
+  video.muted = !video.muted;
+  if (video.muted) {
     volumeIcon.src = ICON_MUTE;
-    volumeIcon.alt = 'Volume disattivato';
+    volumeIcon.alt = 'Audio disattivato';
   } else {
-    // riabilito volume (hardware farà il resto)
-    video.volume = 1;
     volumeIcon.src = ICON_UNMUTE;
-    volumeIcon.alt = 'Volume attivo';
+    volumeIcon.alt = 'Audio attivo';
   }
 });
-// ────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────
   
 // ——— Lightbox → apri player con animazione ———
 const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-container-mobile');
