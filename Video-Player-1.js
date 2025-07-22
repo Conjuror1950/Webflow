@@ -902,6 +902,38 @@ wrapper.classList.remove('visible-player-video-il-silenzio-della-natura-mobile',
     const player = dashjs.MediaPlayer().create();
     // inizializza e carica il manifest
     player.initialize(video, manifest, false);
+
+      // ────────────────
+  // 1) Prendi le tracce audio disponibili
+  //    getTracksFor('audio') restituisce un array di oggetti { id, language, ... }
+  player.on(dashjs.MediaPlayer.events.STREAM_INITIALIZED, () => {
+    const audioTracks = player.getTracksFor('audio');
+
+    const langMenu = document.querySelector('.lang-menu-player-video-il-silenzio-della-natura-mobile');
+    langMenu.innerHTML = `<button class="title-lang-item-…">Audio</button>`;
+
+    audioTracks.forEach((track, idx) => {
+      const btn = document.createElement('button');
+      btn.className = 'lang-item-player-video-…';
+      btn.dataset.lang = track.language;
+      btn.textContent  = `${track.language.toUpperCase()}`; 
+      if (idx === 0) btn.classList.add('selected');
+
+      btn.addEventListener('click', () => {
+        // 2) Al click, setta la traccia selezionata
+        player.setCurrentTrack(track);
+        // aggiorna UI
+        langMenu.querySelectorAll('.lang-item-…')
+          .forEach(el => el.classList.remove('selected'));
+        btn.classList.add('selected');
+        langMenu.style.display = 'none';
+      });
+
+      langMenu.appendChild(btn);
+    });
+  });
+  // ────────────────
+    
     player.enableText(true);
   // ─── fade‐in/fade‐out dei sottotitoli ───
   const track = video.textTracks[0];
