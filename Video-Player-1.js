@@ -640,6 +640,21 @@ video::-webkit-media-controls-time-remaining-display {
   display: none !important;
 }
 
+/* Nasconde il pulsante “Mostra testo” (italiano) */
+video::-webkit-media-controls-button[aria-label="Mostra testo"] {
+  display: none !important;
+}
+
+/* Nasconde il pulsante “Show Text” (inglese) */
+video::-webkit-media-controls-button[aria-label="Show Text"] {
+  display: none !important;
+}
+
+/* Variante per WebKit che usa un container “text-track” */
+video::-webkit-media-controls-text-track-container {
+  display: none !important;
+}
+
 /* Mantieni soltanto volume, fullscreen e picture-in-picture */
 video::-webkit-media-controls-volume-slider-container,
 video::-webkit-media-controls-volume-control,
@@ -653,15 +668,6 @@ video::-webkit-media-controls-fullscreen-button,
 video::-webkit-media-controls-pip-button,
 video::-webkit-media-controls-volume-control {
   cursor: pointer !important;
-}
-
-/* Nasconde solo il pulsante “Mostra testo” nei controlli WebKit */
-video::-webkit-media-controls-captions-button {
-  display: none !important;
-}
-/* In alcuni browser potrebbe essere necessario questo ulteriore selettore */
-video::-webkit-media-controls-text-track-container {
-  display: none !important;
 }
 
 `;
