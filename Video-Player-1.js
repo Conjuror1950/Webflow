@@ -501,10 +501,6 @@ video::-webkit-media-controls-volume-control {
 const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-container-mobile');
 lightbox.addEventListener('click', e => {
   e.preventDefault();
-// 1. Click su Lightbox per mostrare il player
-lightbox.addEventListener('click', () => {
-  wrapper.style.display = 'block';
-  document.body.classList.add('no-scroll');
 
   // 1) mostra il wrapper + no-scroll + animazione fade-in
   wrapper.style.display = 'block';
