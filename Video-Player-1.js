@@ -613,6 +613,9 @@ closeBtn.addEventListener('click', () => {
   if (document.fullscreenElement) {
     document.exitFullscreen();
   }
+
+  // togliamo subito lo stop allo scroll
+   document.body.classList.remove('no-scroll');
   
   // 1b) Ferma il video e resetta la posizione
   const video = wrapper.querySelector('video');
@@ -650,6 +653,8 @@ wrapper.style.opacity    = '';
 
 // 3c) Rimuovi tutte le classi di show/hide
 wrapper.classList.remove('visible-player-video-il-silenzio-della-natura-mobile', 'closing-player-video-il-silenzio-della-natura-mobile');
+     // (già rimossa sopra, ma non fa male riconfermarla)
+     document.body.classList.remove('no-scroll');
   }, 350);
 });
   
