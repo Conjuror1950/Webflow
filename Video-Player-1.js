@@ -2,12 +2,6 @@
 (function() {
   // 1) INIETTA IL CSS
   const css = `
-
-  .apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:fullscreen .controls-player-video-il-silenzio-della-natura-mobile {
-  display: flex !important;
-  z-index: 10000 !important;
-}
-
   /* Nascondi tutti i controlli custom */
 .controls-player-video-il-silenzio-della-natura-mobile {
   display: none !important;
@@ -481,6 +475,55 @@ document.addEventListener('msfullscreenchange', exitFullscreenHandler);
   vid.play();
 });
 
+  // 2) IMPOSTO IMMEDIATAMENTE IL MENU LINGUA
+const shareMenu = document.querySelector('.share-menu-player-video-il-silenzio-della-natura-mobile');
+const subsMenu  = document.querySelector('.subs-menu-player-video-il-silenzio-della-natura-mobile');
+const langBtn   = document.querySelector('.lang-btn-player-video-il-silenzio-della-natura-mobile');
+const langMenu  = document.querySelector('.lang-menu-player-video-il-silenzio-della-natura-mobile');
+
+// crea le spunte e seleziona Italiano di default
+langMenu
+  .querySelectorAll('.lang-item-player-video-il-silenzio-della-natura-mobile')
+  .forEach(item => {
+    if (!item.querySelector('.check')) {
+      const chk = document.createElement('span');
+      chk.classList.add('check');
+      chk.textContent = '✓';
+      item.appendChild(chk);
+    }
+    if (item.dataset.lang === 'it') {
+      item.classList.add('selected');
+      document.documentElement.lang = 'it';
+    }
+  });
+
+// apri/chiudi menu lingua
+langBtn.addEventListener('click', e => {
+  e.stopPropagation();
+  shareMenu.style.display = 'none';
+  subsMenu.style.display  = 'none';
+  langMenu.style.display  = langMenu.style.display === 'flex' ? 'none' : 'flex';
+});
+
+// chiudi tutti i menu al click fuori
+document.addEventListener('click', () => {
+  shareMenu.style.display = 'none';
+  subsMenu.style.display  = 'none';
+  langMenu.style.display  = 'none';
+});
+
+// seleziona la lingua e chiudi
+langMenu
+  .querySelectorAll('.lang-item-player-video-il-silenzio-della-natura-mobile')
+  .forEach(item => {
+    item.addEventListener('click', () => {
+      const newLang = item.dataset.lang;
+      document.documentElement.lang = newLang;
+      langBtn.title = newLang === 'it' ? 'Italiano' : 'English';
+      langMenu.style.display = 'none';
+    });
+  });
+
   // ——— Chiudi il player tornando allo stato iniziale ———
 const closeBtn = wrapper.querySelector('.close-btn-player-video-il-silenzio-della-natura-mobile');
 closeBtn.addEventListener('click', () => {
@@ -543,52 +586,6 @@ wrapper.classList.remove('visible-player-video-il-silenzio-della-natura-mobile',
     player.enableText(true);
 
     player.setTextTrack(0); // <--- FORZA i sottotitoli Italiani attivi
-    
-    // Forza l’audio di default a Italiano
-    player.setInitialMediaSettingsFor('audio', { lang: 'it' });
-
-        // — 1) RECUPERA LE TRACCE AUDIO DISPONIBILI
-    const audioTracks = player.getTracksFor("audio"); 
-    // es. [{ id:0, lang:"it", name:"Italiano" }, { id:1, lang:"en", name:"English" }, …]
-
-    // — 2) VUOTA IL MENU E INSERISCI SOLO IL TITOLO
-    const langMenu = document.querySelector('.lang-menu-player-video-il-silenzio-della-natura-mobile');
-    langMenu.innerHTML = `<button class="title-lang-item-player-video-il-silenzio-della-natura-mobile">
-                             Audio
-                          </button>`;
-    
-    // — 3) CREA UN BUTTON per ogni traccia audio
-    audioTracks.forEach(track => {
-      const btn = document.createElement('button');
-      btn.className = 'lang-item-player-video-il-silenzio-della-natura-mobile';
-      // SALVA l’ID della traccia in un data-attribute
-      btn.dataset.audioTrackId = track.id;
-      // Mostra il nome o il codice lingua
-      btn.textContent = track.name || track.lang.toUpperCase();
-      langMenu.appendChild(btn);
-    });
-
-        // — 4) ASSOCIA il click ad ogni item del menu
-    langMenu
-      .querySelectorAll('.lang-item-player-video-il-silenzio-della-natura-mobile')
-      .forEach(item => {
-        item.addEventListener('click', () => {
-          const id = parseInt(item.dataset.audioTrackId, 10);
-          // Trova la traccia corrispondente
-          const chosen = audioTracks.find(t => t.id === id);
-          if (!chosen) return;
-          // Cambia traccia audio in riproduzione
-          player.setCurrentTrack(chosen);
-
-          // Aggiorna l’evidenziazione (selected)
-          langMenu.querySelectorAll('.lang-item-player-video-il-silenzio-della-natura-mobile')
-                  .forEach(btn => btn.classList.remove('selected'));
-          item.classList.add('selected');
-          // Chiudi il menu
-          langMenu.style.display = 'none';
-        });
-      });
-
 
   // player.attachSource(manifest);
   window.addEventListener('unhandledrejection', ev => {
