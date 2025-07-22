@@ -387,25 +387,6 @@ color: rgba(211, 211, 211, 0.75);
   flex-shrink: 0 !important;
 }
 
-/* Chrome / Safari: nascondi play/pause, time display e barra */
-video::-webkit-media-controls-play-button,
-video::-webkit-media-controls-start-playback-button,
-video::-webkit-media-controls-timeline,
-video::-webkit-media-controls-current-time-display,
-video::-webkit-media-controls-time-remaining-display,
-video::-webkit-media-text-showing-button {
-  display: none !important;
-}
-
-/* Mantieni soltanto volume, fullscreen, picture-in-picture e share */
-video::-webkit-media-controls-volume-slider-container,
-video::-webkit-media-controls-volume-control,
-video::-webkit-media-controls-fullscreen-button,
-video::-webkit-media-controls-pip-button,
-video::-webkit-media-controls-share-button {
-display: inline-flex !important;
-}
-
 /* Force cursor pointer on the remaining buttons */
 video::-webkit-media-controls-fullscreen-button,
 video::-webkit-media-controls-pip-button,
