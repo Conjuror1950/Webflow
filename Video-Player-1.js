@@ -27,7 +27,7 @@
   transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out;
 }
 
-/* classe temporanea per la chiusura: sposta fuori a destra */
+/* classe temporanea per la chiusura: sposta fuori in basso */
 .closing-player-video-il-silenzio-della-natura-mobile {
   visibility: visible !important;
   transform: translateY(100%) !important;
@@ -406,9 +406,11 @@ color: rgba(211, 211, 211, 0.75);
   opacity: 1 !important;
 }
 
-/* 3) Assicurati che il tuo wrapper non copra il video nativo */
-.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile {
-  pointer-events: none; /* lascia passare il tocco al video sottostante */
+/* Il video riprende i tocchi, il wrapper non lo copre più */
+.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile video {
+  position: relative;
+  z-index: 1;
+  pointer-events: auto;
 }
 
 `;
