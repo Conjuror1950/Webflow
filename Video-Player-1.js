@@ -904,8 +904,19 @@ wrapper.classList.remove('visible-player-video-il-silenzio-della-natura-mobile',
     player.initialize(video, manifest, false);
     player.enableText(true);
 
-// appena abilitati i subtitles, scegli la traccia 0 (Italiano automatico)
+// 1) seleziona la traccia 0 (Italiano automatico)
 player.setTextTrack(0);
+
+// 2) sincronizza il menu sottotitoli (rimuovi selezione “No” e spunta Italiano)
+subsMenu
+  .querySelectorAll('.subs-item-player-video-il-silenzio-della-natura-mobile')
+  .forEach(btn => {
+    btn.classList.toggle('selected', btn.dataset.val === '0');
+  });
+
+// 3) nascondi il rendering nativo e abilita il tuo custom renderer
+const track = video.textTracks[0];
+track.mode = 'hidden';
     
   // ─── fade‐in/fade‐out dei sottotitoli ───
   const track = video.textTracks[0];
@@ -970,224 +981,6 @@ player.updateSettings({
     }
   },
   debug: { logLevel: dashjs.Debug.LOG_LEVEL_NONE }
-});
-
-  // Controls
-  const playBtn = document.querySelector('.play-pause-player-video-il-silenzio-della-natura-mobile');
-  const rewindBtn = document.querySelector('.rewind-player-video-il-silenzio-della-natura-mobile');
-  const forwardBtn = document.querySelector('.forward-player-video-il-silenzio-della-natura-mobile');
-  const progress = document.querySelector('.progress-player-video-il-silenzio-della-natura-mobile');
-  // tieni memoria dell’ultimo time calcolato
-  let lastPreviewTime = 0;
-  // 1) crea in JS la preview‑video con UN NUOVO player
-  const previewContainer = document.querySelector('.preview-container-player-video-il-silenzio-della-natura-mobile');
-  const previewVideo     = document.getElementById('preview-video-player-video-il-silenzio-della-natura-mobile');
- 
-// 1) Copia il markup del video principale (inclusi i <track>)
-previewVideo.innerHTML = document.getElementById('apple-video-player-video-il-silenzio-della-natura-mobile').innerHTML;
-
-// 2) inizializza dash.js sul preview
-const previewPlayer = dashjs.MediaPlayer().create();
-previewPlayer.initialize(previewVideo, manifest, false);
-
-// 3) abilita i “subtitles” e, non appena il browser conosce i track,
-//    forziamo la modalità di rendering HTML5
-previewPlayer.enableText(true);
-// giusto: usa l'evento dei text-track appena aggiunti
-previewPlayer.on(dashjs.MediaPlayer.events.TEXT_TRACKS_ADDED, () => {
-  // 1) forziamo il track in modalità hidden (rendering JS-only)
-  const previewTrack = previewVideo.textTracks[0];
-  previewTrack.mode = 'hidden';
-  
-  // 2) selezioniamo la traccia italiana (index 0)
-  previewPlayer.setTextTrack(0);
-
-  // 3) ascoltiamo cuechange e aggiorniamo lo stesso #custom-subtitles
-  previewTrack.addEventListener('cuechange', () => {
-    const cues  = previewTrack.activeCues;
-    const subEl = document.getElementById('preview-subtitles-player-video-il-silenzio-della-natura-mobile');
-    if (cues.length) {
-      subEl.textContent = cues[0].text;
-      subEl.classList.add('show');
-    } else {
-      subEl.classList.remove('show');
-    }
-  });
-});
-  
-// impostazioni “ultra-light” per il preview
-previewPlayer.updateSettings({
-  streaming: {
-    // continua a scaricare anche quando il video sta in pausa
-    scheduleWhilePaused: true,
-    buffer: {
-      // da 10 s → 20 s di buffer per caricamento anticipato
-      bufferTimeDefault: 30,
-      // da 5 s → 10 s per la qualità massima
-      bufferTimeAtTopQuality: 15,
-      // tieni almeno 5 s di buffer già pronto
-      bufferToKeep: 10
-    },
-    // abilita il low-latency mode di dash.js
-    lowLatencyEnabled: true,
-       abr: {
-     autoSwitchBitrate: { video: false },
-     defaultRepresentation: { video: 0 }
-   },
-    http: {
-      timeout: 20000,          // timeout più breve se vuoi
-      enableProgressive: true
-    }
-  },
-  debug: {
-    logLevel: dashjs.Debug.LOG_LEVEL_NONE
-  }
-});
-
-// 2) quando muovi il mouse sulla barra, calcola il time, muovi il thumb, mostra preview & timecode
-progress.addEventListener('mousemove', e => {
-  const rect = progress.getBoundingClientRect();
-  const pct  = (e.clientX - rect.left) / rect.width;
-  const time = Math.max(0, Math.min(1, pct)) * video.duration;
-  
- // salva l’ultimo time per il click
- lastPreviewTime = time;
-
-  // — SCRUB THUMB —
-  const thumb = document.querySelector('.scrub-thumb-player-video-il-silenzio-della-natura-mobile');
-  const thumbWidth = thumb.offsetWidth;              // 11px
-  // calcola x partendo dalla % e riducendo la “corsia” di thumbWidth
-  const x = pct * (rect.width - thumbWidth) + thumbWidth / 2;
-  thumb.style.left = x + 'px';
-  thumb.style.display = 'block';
-
-  // — PREVIEW TIMECODE —
-  const previewTime = document.querySelector('.preview-time-player-video-il-silenzio-della-natura-mobile');
-  previewTime.textContent = formatTime(time);
-
-// — PREVIEW VIDEO — (posizione clamped entro il wrapper)
-const halfW = previewContainer.offsetWidth / 2;
-const wrapper = document.querySelector('.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile');
-const wrapRect = wrapper.getBoundingClientRect();
-const sideMargin = 24;  // <— qui decidi quanti px vuoi di spazio
-
-  // posizione “desiderata” centrata sul mouse RELATIVA al wrapper
-  const localX = e.clientX - wrapRect.left;      // X dentro il wrapper
-  const desiredX = localX - halfW;
-  // clamp fra [sideMargin .. wrapperWidth-previewWidth-sideMargin]
-  const minX = sideMargin;
-  const maxX = wrapRect.width - previewContainer.offsetWidth - sideMargin;
-  const clampedX = Math.min(Math.max(desiredX, minX), maxX);
-  previewContainer.style.left = clampedX + 'px';
-
-previewVideo.currentTime = time;
-previewContainer.style.display = 'block';
-});
-
-// 3) nascondi thumb e preview al mouseout
-progress.addEventListener('mouseout', () => {
-  document.querySelector('.scrub-thumb-player-video-il-silenzio-della-natura-mobile').style.display = 'none';
-  previewContainer.style.display = 'none';
-});
-
-  const timeLabel = document.querySelector('.time-player-video-il-silenzio-della-natura-mobile');
-  const remLabel = document.querySelector('.remaining-time-player-video-il-silenzio-della-natura-mobile');
-  const fsBtn = document.querySelector('.fullscreen-btn-player-video-il-silenzio-della-natura-mobile');
-  const shareBtn = document.querySelector('.share-btn-player-video-il-silenzio-della-natura-mobile');
-  // Share: apri menu con opzione “Copia link”
-  const shareMenu = document.querySelector('.share-menu-player-video-il-silenzio-della-natura-mobile');
-  // Language switcher
-  const langBtn  = document.querySelector('.lang-btn-player-video-il-silenzio-della-natura-mobile');
-  const langMenu = document.querySelector('.lang-menu-player-video-il-silenzio-della-natura-mobile');
-  
-    // crea gli span .check e seleziona Italiano
-langMenu.querySelectorAll('.lang-item-player-video-il-silenzio-della-natura-mobile').forEach(item => {
-  // (se non li hai già messi in HTML) crea lo span
-  if (!item.querySelector('.check')) {
-    const chk = document.createElement('span');
-    chk.classList.add('check');
-    chk.textContent = '✓';
-    item.appendChild(chk);
-  }
-  // se è Italiano, aggiungi la classe selected
-  if (item.dataset.lang === 'it') {
-    item.classList.add('selected');
-    // imposta l’audio in italiano
-    document.documentElement.lang = 'it';
-  }
-});
-const subsBtn  = document.querySelector('.subs-btn-player-video-il-silenzio-della-natura-mobile');
-const subsMenu = document.querySelector('.subs-menu-player-video-il-silenzio-della-natura-mobile');
-const subsItems = subsMenu.querySelectorAll('.subs-item-player-video-il-silenzio-della-natura-mobile');
-
-// apri/chiudi menu sottotitoli
-subsBtn.addEventListener('click', e => {
-  e.stopPropagation();
-  shareMenu.style.display = 'none';
-  langMenu.style.display = 'none';
-  subsMenu.style.display = subsMenu.style.display === 'flex' ? 'none' : 'flex';
-});
-
-// clic su voce sottotitoli
-subsItems.forEach(item => {
-// <<< aggiunto: appena caricate le tracce, attiva Italiano CC
-player.on(dashjs.MediaPlayer.events.TEXT_TRACKS_ADDED, () => {
-  // forza il track 0 (Italiano) e la UI
-  player.setTextTrack(0);                  
-  const italianItem = subsMenu.querySelector('.subs-item[data-val="0"]');
-  if (italianItem) italianItem.classList.add('selected');
-  });
-  
-  previewPlayer.on(dashjs.MediaPlayer.events.TEXT_TRACKS_ADDED, () => {
-  // forza il track 0 (Italiano) anche nel preview
-  previewPlayer.setTextTrack(0);
-});
-
-  // aggiungi un elemento span per la spunta
-  const chk = document.createElement('span');
-  chk.classList.add('check');
-  chk.textContent = '✓';
-  item.appendChild(chk);
-
-item.addEventListener('click', () => {
-  // Salta se è già selezionato
-  if (item.classList.contains('selected')) {
-    return;
-  }
-  const val = parseInt(item.dataset.val, 10);
-
-  // 1) abilita/disabilita sul video principale
-  const htmlTracks = video.textTracks;
-  for (let i = 0; i < htmlTracks.length; i++) {
-    htmlTracks[i].mode = (i === val) ? 'hidden' : 'disabled';
-  }
-
-  // 2) **identica logica per la preview**
-  const previewTracks = previewVideo.textTracks;
-  for (let i = 0; i < previewTracks.length; i++) {
-    previewTracks[i].mode = (i === val) ? 'hidden' : 'disabled';
-  }
-
-    // 2) Abilita/Disabilita i rendering custom
-    const customSub  = document.getElementById('custom-subtitles-player-video-il-silenzio-della-natura-mobile');
-    const previewSub = document.getElementById('preview-subtitles-player-video-il-silenzio-della-natura-mobile');
-    if (val < 0) {
-      // “Disattivati”: nascondi entrambe le <div>
-      customSub.classList.remove('show');
-      previewSub.classList.remove('show');
-    } else {
-      // “Italiano (automatico)”: le tue cuechange listener mostreranno il testo,
-      // qui non serve aggiungere 'show' subito perché lo fai via cuechange
-      // ma puoi opzionalmente pulire il testo precedente
-      customSub.textContent  = '';
-      previewSub.textContent = '';
-    }
-
-    // 3) Aggiorna UI del menu
-    subsItems.forEach(i => i.classList.remove('selected'));
-    item.classList.add('selected');
-    subsMenu.style.display = 'none';
-  });
 });
 
 // chiudi cliccando fuori
