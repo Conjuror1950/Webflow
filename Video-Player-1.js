@@ -637,7 +637,8 @@ video::-webkit-media-controls-start-playback-button,
 video::-webkit-media-controls-timeline,
 video::-webkit-media-controls-current-time-display,
 video::-webkit-media-controls-time-remaining-display,
-video::-webkit-media-text-showing-button {
+video::-webkit-media-text-showing-button,
+video::-webkit-media-controls-text-track-button {
   display: none !important;
 }
 
