@@ -397,11 +397,12 @@ video::-webkit-media-text-showing-button {
   display: none !important;
 }
 
-/* Mantieni soltanto volume, fullscreen e picture-in-picture */
+/* Mantieni soltanto volume, fullscreen, picture-in-picture e share */
 video::-webkit-media-controls-volume-slider-container,
 video::-webkit-media-controls-volume-control,
 video::-webkit-media-controls-fullscreen-button,
-video::-webkit-media-controls-pip-button {
+video::-webkit-media-controls-pip-button,
+video::-webkit-media-controls-share-button {
 display: inline-flex !important;
 }
 
