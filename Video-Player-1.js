@@ -89,48 +89,6 @@ video {
   object-fit: cover !important;/* mantieni l’aspetto, niente crop */
 }
 
-.preview-container-player-video-il-silenzio-della-natura-mobile {
-  position: absolute;
-  bottom: 65px;               /* sopra la barra dei controlli */
-  width: 402px;               /* dimensione anteprima */
-  height: 220px;
-  overflow: hidden;
-  border: 0.1px solid rgba(255,255,255,0.2);
-  background: black;
-  pointer-events: none;       /* non cattura il mouse */
-  border-radius: 10px;
-}
-#preview-video-player-video-il-silenzio-della-natura-mobile {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* 1) il pallino bianco che segue il mouse */
-.scrub-thumb-player-video-il-silenzio-della-natura-mobile {
-  position: absolute;
-  margin-top: -13px;               /* allinea verticalmente al centro della track */
-  width: 11px;
-  height: 11px;
-  background: white;
-  border-radius: 50%;
-  transform: translateX(-50%);
-  display: none;            /* mostrato via JS solo on‐hover */
-  z-index: 2;
-}
-
-.preview-time-player-video-il-silenzio-della-natura-mobile {
-  position: absolute;
-  bottom: -1px;
-  width: 100%;
-  text-align: center;
-  font-family:inherit;
-  font-size: 11px;
-  color: white;
-  text-shadow: 0 0 4px rgba(0,0,0,0.8);
-  pointer-events: none;
-}
-
 .center-controls-player-video-il-silenzio-della-natura-mobile {
   position: absolute !important;
   top: 50%           !important;
@@ -163,57 +121,6 @@ opacity:0;
 .top-bar-player-video-il-silenzio-della-natura-mobile {
 display:flex;
 justify-content:space-between;
-}
-
-#volume-icon-player-video-il-silenzio-della-natura-mobile {
-  width: 22px;
-  height: 22px;
-  margin-top: -10px;
-  pointer-events: all !important;
-  cursor: pointer;
-}
-.center-controls-player-video-il-silenzio-della-natura-mobile button {
-  background:none;
-  border:none;
-  color:white;
-  font-size:2rem;
-}
-/* aggiungi subito dopo .center-controls button { … } */
-.play-pause-player-video-il-silenzio-della-natura-mobile {
-  position: relative;      /* contenitore per le icone */
-  width: 38px !important;             /* fissa la larghezza */
-  height: 38px !important;            /* e l’altezza */
-  padding: 0;              /* togli padding extra */ 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: none;
-  border: none;
-}
-
-.play-pause-player-video-il-silenzio-della-natura-mobile .play-icon,
-.play-pause-player-video-il-silenzio-della-natura-mobile .pause-icon {
-  position: relative;
-  top: 0;
-  left: 0;
-  width: 100% !important;
-  height: 100% !important;
-}
-
-.skip-value-player-video-il-silenzio-della-natura-mobile {
-font-size: 1rem;
-margin:0 .5rem; }
-
-/* ← Mouse hover on center controls */
-/* aggiungi da qui */
-.center-controls-player-video-il-silenzio-della-natura-mobile button img {
-  transition: filter 0.3s ease;
-}
-
-/* su hover rendi l’icona bianca e con un leggero bagliore */
-.center-controls-player-video-il-silenzio-della-natura-mobile .rewind-player-video-il-silenzio-della-natura-mobile:hover img,
-.center-controls-player-video-il-silenzio-della-natura-mobile .forward-player-video-il-silenzio-della-natura-mobile:hover img {
-  filter: brightness(1) drop-shadow(0 0 0.8px white);
 }
 
 /* bottom-bar: colonna, con riga superiore per titolo + controlli */
@@ -259,109 +166,7 @@ color: white;
 font-size:11px;
 color: rgba(211, 211, 211, 0.75);
 }
-/* i controlli restano a destra */
-.right-controls-player-video-il-silenzio-della-natura-mobile {
-order: 2;           /* dopo serie-title */
-align-self: center; /* centra verticalmente i pulsanti rispetto al testo “Produzioni Cinematografiche” */
-display:flex;
-gap:.4rem;
-justify-content:flex-end;
-}
-.subs-select-player-video-il-silenzio-della-natura-mobile, .audio-select-player-video-il-silenzio-della-natura-mobile {
-  background:rgba(255,255,255,.1);
-  color:white;
-  border:none;
-  padding:.2rem;
-}
-.fullscreen-btn-player-video-il-silenzio-della-natura-mobile, .share-btn-player-video-il-silenzio-della-natura-mobile {
-  background:none;
-  border:none;
-  color:white;
-  font-size:1.2rem;
-}
-.progress-player-video-il-silenzio-della-natura-mobile {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 100%;
-  height: 5px;
-  background: rgba(255,255,255,0.1);    /* track vuoto */
-  border-radius: 2px;
-  cursor: pointer;
-  /* ——— due background-layer ——— */
-  /* 1° layer = played (white) */
-  /* 2° layer = buffered (light gray) */
-  background-image:
-    linear-gradient(white, white),
-    linear-gradient(rgba(134, 134, 139, 0.7), rgba(134, 134, 139, 0.7));
-  background-repeat: no-repeat, no-repeat;
-  /* inizialmente niente fill */
-  background-size: 0% 100%, 0% 100%;
-}
-/* Firefox: riempimento nativo */
-.progress-player-video-il-silenzio-della-natura-mobile::-moz-range-progress {
-  background: white;
-  height: 5px;
-  border-radius: 2px;
-}
 
-/* Track (la linea su cui scorre il thumb) */
-.progress-player-video-il-silenzio-della-natura-mobile::-webkit-slider-runnable-track {
-  height: 5px;
-  background: rgba(255,255,255,0.1);
-  border-radius: 2px;
-}
-.progress-player-video-il-silenzio-della-natura-mobile::-moz-range-track {
-  height: 5px;
-  background: rgba(255,255,255,0.1);
-  border-radius: 2px;
-}
-.progress-player-video-il-silenzio-della-natura-mobile::-ms-track {
-  height: 5px;
-  background: rgba(255,255,255,0.1);
-  border-radius: 2px;
-  border: none;
-  color: transparent;
-}
-
-/* Thumb (il cerchio che si muove) */
-.progress-player-video-il-silenzio-della-natura-mobile::-webkit-slider-thumb {
-  width: 11px;
-  height: 11px;
-  margin-top: -3px; /* centra il thumb sulla track */
-  background: white;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  -webkit-appearance: none;
-}
- /* creare contesto di posizionamento per lo scrub-thumb */
- .progress-wrapper-player-video-il-silenzio-della-natura-mobile {
-   position: relative;
- }
-.progress-player-video-il-silenzio-della-natura-mobile::-moz-range-thumb {
-  width: 12px;
-  height: 12px;
-  background: white;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-}
-.progress-player-video-il-silenzio-della-natura-mobile::-ms-thumb {
-  width: 12px;
-  height: 12px;
-  background: white;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-/* Rimuovi lo stile di default in IE */
-.progress-player-video-il-silenzio-della-natura-mobile::-ms-fill-lower {
-  background: rgba(255,255,255,0.1);
-}
-.progress-player-video-il-silenzio-della-natura-mobile::-ms-fill-upper {
-  background: rgba(255,255,255,0.1);
-}
 .extras-player-video-il-silenzio-della-natura-mobile {
   font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif !important;
   display:flex;
@@ -376,41 +181,6 @@ justify-content:flex-end;
 /* quando aggiungiamo .hide-cursor sulla wrapper, il cursore scompare */
 .apple-video-wrapper-player-video-il-silenzio-della-natura-mobile.hide-cursor {
   cursor: none;
-}
-
-/* contenitore leggermente grigio */
-.share-menu-player-video-il-silenzio-della-natura-mobile {
-  position: absolute;
-  right: 42px;
-  top: auto !important;
-  /* posiziona il menu appena sopra l’icona */
-  bottom: 70%;
-  background: rgba(211, 211, 211, 0.85);
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  z-index: 10;
-  overflow: hidden;
-  width: 180px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-}
-
-.lang-btn-player-video-il-silenzio-della-natura-mobile {
-  background: none;
-  border: none;
-  padding: 5px;
-  cursor: pointer;
-}
-.lang-btn-player-video-il-silenzio-della-natura-mobile {
-  pointer-events: none;
-  transition: filter 0.3s ease;
-}
-.lang-btn-player-video-il-silenzio-della-natura-mobile:hover {
-  filter: brightness(1) drop-shadow(0 0 0.5px white);
-}
-
-.fullscreen-btn-player-video-il-silenzio-della-natura-mobile:hover {
-  filter: brightness(1) drop-shadow(0 0 0.5px white);
 }
 
 /* menu a comparsa sotto il bottone */
