@@ -636,22 +636,8 @@ video::-webkit-media-controls-play-button,
 video::-webkit-media-controls-start-playback-button,
 video::-webkit-media-controls-timeline,
 video::-webkit-media-controls-current-time-display,
-video::-webkit-media-controls-time-remaining-display {
-  display: none !important;
-}
-
-/* Nasconde il pulsante “Mostra testo” (italiano) */
-video::-webkit-media-controls-button[aria-label="Mostra testo"] {
-  display: none !important;
-}
-
-/* Nasconde il pulsante “Show Text” (inglese) */
-video::-webkit-media-controls-button[aria-label="Show Text"] {
-  display: none !important;
-}
-
-/* Variante per WebKit che usa un container “text-track” */
-video::-webkit-media-controls-text-track-container {
+video::-webkit-media-controls-time-remaining-display,
+video::-webkit-media-text-showing-button {
   display: none !important;
 }
 
