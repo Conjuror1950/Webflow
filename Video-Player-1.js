@@ -148,11 +148,6 @@ margin-bottom: -6px;
 color: white;
 }
 
-.time-player-video-il-silenzio-della-natura-mobile, .remaining-time-player-video-il-silenzio-della-natura-mobile {
-font-size:11px;
-color: rgba(211, 211, 211, 0.75);
-}
-
 .extras-player-video-il-silenzio-della-natura-mobile {
   font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif !important;
   display:flex;
@@ -163,10 +158,6 @@ color: rgba(211, 211, 211, 0.75);
 .close-btn-player-video-il-silenzio-della-natura-mobile {
   background:none;
   margin-top: 0px;
-}
-/* quando aggiungiamo .hide-cursor sulla wrapper, il cursore scompare */
-.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile.hide-cursor {
-  cursor: none;
 }
 
 /* menu a comparsa sotto il bottone */
@@ -222,31 +213,6 @@ color: rgba(211, 211, 211, 0.75);
 .lang-item-player-video-il-silenzio-della-natura-mobile:hover {
   background: rgba(0, 122, 255, 0.80);
   color:white;
-}
-
-.share-item-player-video-il-silenzio-della-natura-mobile {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.78rem;        /* stesso font‑size per entrambe */
-  font-weight: 400;
-  color: black;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  width: 100%;               /* per far coprire l’hover a tutta larghezza */
-  padding: 0.2rem 0.4rem;      /* uguale spazio sopra e sotto, e orizzontale */
-}
-
-/* separatore sotto ogni voce tranne l’ultima */
-.share-item-player-video-il-silenzio-della-natura-mobile:not(:last-child) {
-  border-bottom: 1px solid rgba(0,0,0,0.1);
-}
-
-/* hover chiaro */
-.share-item-player-video-il-silenzio-della-natura-mobile:hover {
-  background: rgba(211, 211, 211, 0.50);
-  width: 100%;
 }
 
 /* --- sottotitoli dropdown --- */
@@ -439,15 +405,6 @@ color: rgba(211, 211, 211, 0.75);
               <button class="share-item-player-video-il-silenzio-della-natura-mobile email-share"><span class="item-text">Email</span><img class="item-icon" src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681b6628ed25af24c9b87b32_envelope.fill.svg" width="18" height="18" alt="Email"></button>
             </div>
           </div>
-        </div>
-        <div class="progress-wrapper-player-video-il-silenzio-della-natura-mobile">
-          <input type="range" class="progress-player-video-il-silenzio-della-natura-mobile" value="0" step="0.1">
-          <div class="scrub-thumb-player-video-il-silenzio-della-natura-mobile"></div>
-        </div>
-        <div class="preview-container-player-video-il-silenzio-della-natura-mobile" hidden>
-          <video id="preview-video-player-video-il-silenzio-della-natura-mobile" muted preload="metadata" crossorigin="anonymous"></video>
-          <div id="preview-subtitles-player-video-il-silenzio-della-natura-mobile" class="subtitle-container-player-video-il-silenzio-della-natura-mobile"></div>
-          <div class="preview-time-player-video-il-silenzio-della-natura-mobile">0:00</div>
         </div>
         <div class="extras-player-video-il-silenzio-della-natura-mobile"><span class="time-player-video-il-silenzio-della-natura-mobile">0:00</span><span class="remaining-time-player-video-il-silenzio-della-natura-mobile">-0:00</span></div>
         <div class="serie-title-player-video-il-silenzio-della-natura-mobile">Produzioni Cinematografiche</div>
