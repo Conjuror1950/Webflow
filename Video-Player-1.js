@@ -462,21 +462,17 @@ color: rgba(211, 211, 211, 0.75);
 const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-container-mobile');
 lightbox.addEventListener('click', e => {
   e.preventDefault();
-// 1. Click su Lightbox per mostrare il player
-lightbox.addEventListener('click', () => {
   wrapper.style.display = 'block';
 
   const vid = wrapper.querySelector('video');
 
-  // Vai fullscreen subito dopo il click
-if (vid.webkitEnterFullscreen) {
-  vid.webkitEnterFullscreen();
-}
+  // ✅ Solo su iOS Safari: entra in full screen nativo
+  if (vid && typeof vid.webkitEnterFullscreen === 'function') {
+    vid.webkitEnterFullscreen();
+  }
 
-  // Play il video
-  vid.play().catch(err => {
-    console.warn("Autoplay bloccato dal browser:", err);
-  });
+  vid.currentTime = 0;
+  vid.play().catch(() => {});
 });
 
 // 2. Quando esci dal fullscreen (ESC, swipe, chiusura manuale)
