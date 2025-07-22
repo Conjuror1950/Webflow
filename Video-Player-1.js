@@ -387,6 +387,30 @@ color: rgba(211, 211, 211, 0.75);
   flex-shrink: 0 !important;
 }
 
+/* 1) Ripristina il pannello dei controlli nativi WebKit */
+.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile video::-webkit-media-controls-panel {
+  display: flex !important;
+  opacity: 1       !important;
+  visibility: visible !important;
+}
+
+/* 2) Ripristina i singoli bottoni “play” e “share” */
+.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile
+  video::-webkit-media-controls-play-button,
+.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile
+  video::-webkit-media-controls-overlay-play-button,
+.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile
+  video::-webkit-media-controls-share-button {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* 3) Assicurati che il tuo wrapper non copra il video nativo */
+.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile {
+  pointer-events: none; /* lascia passare il tocco al video sottostante */
+}
+
 `;
   const styleEl = document.createElement('style');
   styleEl.textContent = css;
@@ -399,7 +423,7 @@ color: rgba(211, 211, 211, 0.75);
     <!-- avvisi -->
     <img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/68286f66a406b7094b5b2407_avviso%20sequenze%20con%20immagini%20e%20luci%20lampeggianti.png" alt="Avviso: sequenze con immagini e luci lampeggianti" class="warning-icon-player-video-il-silenzio-della-natura-mobile">
     <img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/68288c23d64340a80e1a52e1_avviso%20et%C3%A0.png" alt="Avviso: età" class="warning-age-player-video-il-silenzio-della-natura-mobile">
-    <video id="apple-video-player-video-il-silenzio-della-natura-mobile" controls controlsList="share" allow="picture-in-picture" x-webkit-airplay="allow" data-no-toggle preload="metadata" crossorigin="anonymous" playsinline>
+    <video id="apple-video-player-video-il-silenzio-della-natura-mobile" controls webkit-playsinline allow="picture-in-picture" x-webkit-airplay="allow" data-no-toggle preload="metadata" crossorigin="anonymous" playsinline>
       <track kind="subtitles" label="Italiano (automatico)" srclang="it" src="https://andreaingrassia.netlify.app/assets/subtitles/captions-il-silenzio-della-natura.vtt" default>
     </video>
     <div id="custom-subtitles-player-video-il-silenzio-della-natura-mobile" class="subtitle-container-player-video-il-silenzio-della-natura-mobile"></div>
@@ -462,17 +486,21 @@ color: rgba(211, 211, 211, 0.75);
 const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-container-mobile');
 lightbox.addEventListener('click', e => {
   e.preventDefault();
+// 1. Click su Lightbox per mostrare il player
+lightbox.addEventListener('click', () => {
   wrapper.style.display = 'block';
 
   const vid = wrapper.querySelector('video');
 
-  // ✅ Solo su iOS Safari: entra in full screen nativo
-  if (vid && typeof vid.webkitEnterFullscreen === 'function') {
-    vid.webkitEnterFullscreen();
-  }
+  // Vai fullscreen subito dopo il click
+  if (vid.requestFullscreen) vid.requestFullscreen();
+  else if (vid.webkitRequestFullscreen) vid.webkitRequestFullscreen();
+  else if (vid.msRequestFullscreen) vid.msRequestFullscreen();
 
-  vid.currentTime = 0;
-  vid.play().catch(() => {});
+  // Play il video
+  vid.play().catch(err => {
+    console.warn("Autoplay bloccato dal browser:", err);
+  });
 });
 
 // 2. Quando esci dal fullscreen (ESC, swipe, chiusura manuale)
