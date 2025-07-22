@@ -387,13 +387,6 @@ color: rgba(211, 211, 211, 0.75);
   flex-shrink: 0 !important;
 }
 
-/* Force cursor pointer on the remaining buttons */
-video::-webkit-media-controls-fullscreen-button,
-video::-webkit-media-controls-pip-button,
-video::-webkit-media-controls-volume-control {
-  cursor: pointer !important;
-}
-
 `;
   const styleEl = document.createElement('style');
   styleEl.textContent = css;
@@ -510,18 +503,13 @@ document.addEventListener('msfullscreenchange', exitFullscreenHandler);
   // 2) prendi il video
   const vid = wrapper.querySelector('video');
 
-  // 3) entra in fullscreen SUL VIDEO (più compatibile)
-  if (vid.requestFullscreen) {
-    vid.requestFullscreen();
-  } else if (vid.webkitEnterFullscreen) {
-    // iOS Safari
+  // su iOS Safari: usa solo webkitEnterFullscreen
+  if (vid.webkitEnterFullscreen) {
     vid.webkitEnterFullscreen();
-  } else if (vid.webkitRequestFullscreen) {
-    // WebKit desktop
-    vid.webkitRequestFullscreen();
-  } else if (vid.msRequestFullscreen) {
-    // IE/Edge
-    vid.msRequestFullscreen();
+  }
+  // altrove (desktop) puoi ricadere sul fallback standard
+  else if (vid.requestFullscreen) {
+    vid.requestFullscreen();
   }
 
   // 4) parti col video da inzio
