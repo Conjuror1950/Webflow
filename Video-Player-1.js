@@ -49,12 +49,6 @@ body > *:not(.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile) 
 }
 */
 
-/* Disabilita lo scroll quando il body ha questa classe */
-body.no-scroll {
-  overflow: hidden;
-  height: 100vh;
-}
-
 /* 1) STATO NORMALE: video “contenuto” e centrato */
 video {
   width: 95vw;       /* o la larghezza desiderata quando NON è fullscreen */
@@ -496,7 +490,6 @@ lightbox.addEventListener('click', e => {
 // 1. Click su Lightbox per mostrare il player
 lightbox.addEventListener('click', () => {
   wrapper.style.display = 'block';
-  document.body.classList.add('no-scroll');
 
   const vid = wrapper.querySelector('video');
 
@@ -520,7 +513,6 @@ function exitFullscreenHandler() {
   );
 
   if (!isFullscreen) {
-    document.body.classList.remove('no-scroll');
     wrapper.style.display = 'none';
   }
 }
@@ -532,7 +524,6 @@ document.addEventListener('msfullscreenchange', exitFullscreenHandler);
 
   // 1) mostra immediatamente il wrapper
   wrapper.style.display = 'block';
-  document.body.classList.add('no-scroll');
 
   // 2) prendi il video
   const vid = wrapper.querySelector('video');
@@ -609,9 +600,6 @@ langMenu
   // ——— Chiudi il player tornando allo stato iniziale ———
 const closeBtn = wrapper.querySelector('.close-btn-player-video-il-silenzio-della-natura-mobile');
 closeBtn.addEventListener('click', () => {
-
-  // Rimuovo subito la classe che blocca lo scroll
-  document.body.classList.remove('no-scroll');
   
   // 1) Se sei in fullscreen, esci prima
   if (document.fullscreenElement) {
