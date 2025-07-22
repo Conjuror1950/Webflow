@@ -31,7 +31,7 @@
 .visible-player-video-il-silenzio-della-natura-mobile {
 visibility: visible;         /* rende nuovamente interactable */
 opacity: 1 !important;           /* entra in fade-in */
-transform: translateY(0) !important;
+transform: translateY(100%) !important;
 z-index: 9999; /* se serve “sovrapporre” tutti gli altri elementi */
 }
 
