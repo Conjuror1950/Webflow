@@ -550,6 +550,22 @@ document.addEventListener('msfullscreenchange', exitFullscreenHandler);
     // IE/Edge
     vid.msRequestFullscreen();
   }
+  
+// Mostra gli avvisi appena parte il player
+const warningIcon = wrapper.querySelector('.warning-icon-player-video-il-silenzio-della-natura-mobile');
+const warningAge  = wrapper.querySelector('.warning-age-player-video-il-silenzio-della-natura-mobile');
+
+// Rimuove eventuali reset
+warningIcon.style.opacity = '';
+warningAge.style.opacity = '';
+
+// Forza il reflow e riapplica l'animazione
+warningIcon.style.animation = 'none';
+warningAge.style.animation = 'none';
+void warningIcon.offsetWidth;
+void warningAge.offsetWidth;
+warningIcon.style.animation = '';
+warningAge.style.animation = '';
 
   // 4) parti col video da inzio
   vid.pause();
