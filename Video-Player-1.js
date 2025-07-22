@@ -31,7 +31,7 @@
 .visible-player-video-il-silenzio-della-natura-mobile {
 visibility: visible;         /* rende nuovamente interactable */
 opacity: 1 !important;           /* entra in fade-in */
-transform: translateY(100%) !important;
+transform: translateY(0%) !important;
 z-index: 9999; /* se serve “sovrapporre” tutti gli altri elementi */
 }
 
@@ -505,6 +505,9 @@ lightbox.addEventListener('click', e => {
 lightbox.addEventListener('click', () => {
   wrapper.style.display = 'block';
   document.body.classList.add('no-scroll');
+// rende il wrapper visibile (fade-in, mostra avvisi, ecc.)
+wrapper.classList.add('visible-player-video-il-silenzio-della-natura-mobile');
+
 
   const vid = wrapper.querySelector('video');
 
