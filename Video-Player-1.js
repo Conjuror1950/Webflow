@@ -2,6 +2,12 @@
 (function() {
   // 1) INIETTA IL CSS
   const css = `
+
+  .apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:fullscreen .controls-player-video-il-silenzio-della-natura-mobile {
+  display: flex !important;
+  z-index: 10000 !important;
+}
+
   /* Nascondi tutti i controlli custom */
 .controls-player-video-il-silenzio-della-natura-mobile {
   display: none !important;
