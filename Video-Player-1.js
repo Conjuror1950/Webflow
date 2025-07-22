@@ -655,6 +655,15 @@ video::-webkit-media-controls-volume-control {
   cursor: pointer !important;
 }
 
+/* Nasconde solo il pulsante “Mostra testo” nei controlli WebKit */
+video::-webkit-media-controls-captions-button {
+  display: none !important;
+}
+/* In alcuni browser potrebbe essere necessario questo ulteriore selettore */
+video::-webkit-media-controls-text-track-container {
+  display: none !important;
+}
+
 `;
   const styleEl = document.createElement('style');
   styleEl.textContent = css;
