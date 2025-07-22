@@ -530,33 +530,6 @@ document.addEventListener('fullscreenchange', exitFullscreenHandler);
 document.addEventListener('webkitfullscreenchange', exitFullscreenHandler);
 document.addEventListener('msfullscreenchange', exitFullscreenHandler);
 
-  // 1) mostra immediatamente il wrapper
-  wrapper.style.display = 'block';
-  document.body.classList.add('no-scroll');
-
-  // 2) prendi il video
-  const vid = wrapper.querySelector('video');
-
-  // 3) entra in fullscreen SUL VIDEO (più compatibile)
-  if (vid.requestFullscreen) {
-    vid.requestFullscreen();
-  } else if (vid.webkitEnterFullscreen) {
-    // iOS Safari
-    vid.webkitEnterFullscreen();
-  } else if (vid.webkitRequestFullscreen) {
-    // WebKit desktop
-    vid.webkitRequestFullscreen();
-  } else if (vid.msRequestFullscreen) {
-    // IE/Edge
-    vid.msRequestFullscreen();
-  }
-
-  // 4) parti col video da inzio
-  vid.pause();
-  vid.currentTime = 0;
-  vid.play();
-});
-
   // 2) IMPOSTO IMMEDIATAMENTE IL MENU LINGUA
 const shareMenu = document.querySelector('.share-menu-player-video-il-silenzio-della-natura-mobile');
 const subsMenu  = document.querySelector('.subs-menu-player-video-il-silenzio-della-natura-mobile');
