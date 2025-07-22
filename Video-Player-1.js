@@ -674,7 +674,7 @@ wrapper.classList.remove('visible-player-video-il-silenzio-della-natura-mobile',
     player.initialize(video, manifest, false);
     player.enableText(true);
 
-    player.setTextTrack(0);
+    player.setTextTrack(0); // <--- FORZA i sottotitoli Italiani attivi
 
   // player.attachSource(manifest);
   window.addEventListener('unhandledrejection', ev => {
