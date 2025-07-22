@@ -674,6 +674,8 @@ wrapper.classList.remove('visible-player-video-il-silenzio-della-natura-mobile',
     player.initialize(video, manifest, false);
     player.enableText(true);
 
+    player.setTextTrack(0);
+
   // player.attachSource(manifest);
   window.addEventListener('unhandledrejection', ev => {
   console.warn('Promise non gestita:', ev.reason);
