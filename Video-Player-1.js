@@ -493,28 +493,69 @@ video::-webkit-media-controls-volume-control {
 const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-container-mobile');
 lightbox.addEventListener('click', e => {
   e.preventDefault();
-
-  // 1) Mostra il player e blocca lo scroll
+// 1. Click su Lightbox per mostrare il player
+lightbox.addEventListener('click', () => {
   wrapper.style.display = 'block';
   document.body.classList.add('no-scroll');
 
-  // 2) Fullscreen
   const vid = wrapper.querySelector('video');
+
+  // Vai fullscreen subito dopo il click
   if (vid.requestFullscreen) vid.requestFullscreen();
   else if (vid.webkitRequestFullscreen) vid.webkitRequestFullscreen();
   else if (vid.msRequestFullscreen) vid.msRequestFullscreen();
 
-  // 3) Play
-  vid.play().catch(err => console.warn("Autoplay bloccato:", err));
+  // Play il video
+  vid.play().catch(err => {
+    console.warn("Autoplay bloccato dal browser:", err);
+  });
 });
 
-// 4) Handler per uscita da fullscreen
-function exitFullscreenHandler() { … }
+// 2. Quando esci dal fullscreen (ESC, swipe, chiusura manuale)
+function exitFullscreenHandler() {
+  const isFullscreen = !!(
+    document.fullscreenElement ||
+    document.webkitFullscreenElement ||
+    document.msFullscreenElement
+  );
 
-// 5) Registrazione degli eventi fullscreenchange
+  if (!isFullscreen) {
+    document.body.classList.remove('no-scroll');
+    wrapper.style.display = 'none';
+  }
+}
+
+// 3. Eventi per tutti i browser
 document.addEventListener('fullscreenchange', exitFullscreenHandler);
 document.addEventListener('webkitfullscreenchange', exitFullscreenHandler);
 document.addEventListener('msfullscreenchange', exitFullscreenHandler);
+
+  // 1) mostra immediatamente il wrapper
+  wrapper.style.display = 'block';
+  document.body.classList.add('no-scroll');
+
+  // 2) prendi il video
+  const vid = wrapper.querySelector('video');
+
+  // 3) entra in fullscreen SUL VIDEO (più compatibile)
+  if (vid.requestFullscreen) {
+    vid.requestFullscreen();
+  } else if (vid.webkitEnterFullscreen) {
+    // iOS Safari
+    vid.webkitEnterFullscreen();
+  } else if (vid.webkitRequestFullscreen) {
+    // WebKit desktop
+    vid.webkitRequestFullscreen();
+  } else if (vid.msRequestFullscreen) {
+    // IE/Edge
+    vid.msRequestFullscreen();
+  }
+
+  // 4) parti col video da inzio
+  vid.pause();
+  vid.currentTime = 0;
+  vid.play();
+});
 
   // 2) IMPOSTO IMMEDIATAMENTE IL MENU LINGUA
 const shareMenu = document.querySelector('.share-menu-player-video-il-silenzio-della-natura-mobile');
@@ -568,13 +609,14 @@ langMenu
   // ——— Chiudi il player tornando allo stato iniziale ———
 const closeBtn = wrapper.querySelector('.close-btn-player-video-il-silenzio-della-natura-mobile');
 closeBtn.addEventListener('click', () => {
+
+  // Rimuovo subito la classe che blocca lo scroll
+  document.body.classList.remove('no-scroll');
+  
   // 1) Se sei in fullscreen, esci prima
   if (document.fullscreenElement) {
     document.exitFullscreen();
   }
-
-  // togliamo subito lo stop allo scroll
-   document.body.classList.remove('no-scroll');
   
   // 1b) Ferma il video e resetta la posizione
   const video = wrapper.querySelector('video');
@@ -612,8 +654,6 @@ wrapper.style.opacity    = '';
 
 // 3c) Rimuovi tutte le classi di show/hide
 wrapper.classList.remove('visible-player-video-il-silenzio-della-natura-mobile', 'closing-player-video-il-silenzio-della-natura-mobile');
-     // (già rimossa sopra, ma non fa male riconfermarla)
-     document.body.classList.remove('no-scroll');
   }, 350);
 });
   
