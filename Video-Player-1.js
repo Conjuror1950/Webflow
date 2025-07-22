@@ -70,9 +70,6 @@ video {
   object-fit: contain; /* evita crop, show letter‑box se serve */
   display: block;
   margin: 0 auto;    /* centra orizzontalmente */
-  user-select: none;
-  -webkit-user-select: none;
-  -webkit-touch-callout: none;
 }
 
 /* GLOBAL: sia standard che WebKit fullscreen */
