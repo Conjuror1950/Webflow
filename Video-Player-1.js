@@ -910,11 +910,11 @@ wrapper.classList.remove('visible-player-video-il-silenzio-della-natura-mobile',
     const audioTracks = player.getTracksFor('audio');
 
     const langMenu = document.querySelector('.lang-menu-player-video-il-silenzio-della-natura-mobile');
-    langMenu.innerHTML = `<button class="title-lang-item-…">Audio</button>`;
+    langMenu.innerHTML = `<button class="title-lang-item-player-video-il-silenzio-della-natura-mobile">Audio</button>`;
 
     audioTracks.forEach((track, idx) => {
       const btn = document.createElement('button');
-      btn.className = 'lang-item-player-video-…';
+      btn.className = 'lang-item-player-video-il-silenzio-della-natura-mobile';
       btn.dataset.lang = track.language;
       btn.textContent  = `${track.language.toUpperCase()}`; 
       if (idx === 0) btn.classList.add('selected');
@@ -923,7 +923,7 @@ wrapper.classList.remove('visible-player-video-il-silenzio-della-natura-mobile',
         // 2) Al click, setta la traccia selezionata
         player.setCurrentTrack(track);
         // aggiorna UI
-        langMenu.querySelectorAll('.lang-item-…')
+        langMenu.querySelectorAll('.lang-item-player-video-il-silenzio-della-natura-mobile')
           .forEach(el => el.classList.remove('selected'));
         btn.classList.add('selected');
         langMenu.style.display = 'none';
