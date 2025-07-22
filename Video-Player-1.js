@@ -500,18 +500,6 @@ lightbox.addEventListener('click', () => {
 
   const vid = wrapper.querySelector('video');
 
-// Mostra gli avvisi forzando le animazioni
-const warningIcon = wrapper.querySelector('.warning-icon-player-video-il-silenzio-della-natura-mobile');
-const warningAge = wrapper.querySelector('.warning-age-player-video-il-silenzio-della-natura-mobile');
-
-// Resetta e riapplica l'animazione (forza reflow)
-[warningIcon, warningAge].forEach(el => {
-  el.style.animation = 'none';
-  el.offsetHeight; // forza reflow
-  el.style.animation = '';
-  el.style.opacity = '1'; // forza visibilità nel caso il browser non animi
-});
-
   // Vai fullscreen subito dopo il click
   if (vid.requestFullscreen) vid.requestFullscreen();
   else if (vid.webkitRequestFullscreen) vid.webkitRequestFullscreen();
