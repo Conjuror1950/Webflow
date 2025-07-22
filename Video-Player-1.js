@@ -387,13 +387,6 @@ color: rgba(211, 211, 211, 0.75);
   flex-shrink: 0 !important;
 }
 
-/* 1) Ripristina il pannello dei controlli nativi WebKit */
-.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile video::-webkit-media-controls-panel {
-  display: flex !important;
-  opacity: 1       !important;
-  visibility: visible !important;
-}
-
 /* 2) Ripristina i singoli bottoni “play” e “share” */
 .apple-video-wrapper-player-video-il-silenzio-della-natura-mobile
   video::-webkit-media-controls-play-button,
@@ -429,8 +422,9 @@ color: rgba(211, 211, 211, 0.75);
   visibility: visible !important;
 }
 
-/* mantieni il pannello nativo accessibile */
-.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile {
+.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile video {
+  position: relative;
+  z-index: 2;
   pointer-events: auto;
 }
 
@@ -516,9 +510,11 @@ lightbox.addEventListener('click', () => {
   const vid = wrapper.querySelector('video');
 
   // Vai fullscreen subito dopo il click
-  if (vid.requestFullscreen) vid.requestFullscreen();
-  else if (vid.webkitRequestFullscreen) vid.webkitRequestFullscreen();
-  else if (vid.msRequestFullscreen) vid.msRequestFullscreen();
+if (vid.webkitEnterFullscreen) {
+  // questo apre il player iOS nativo, con il suo menu “Condividi”
+  vid.webkitEnterFullscreen();
+  return;  // esci qui, non fare altro
+}
 
   // Play il video
   vid.play().catch(err => {
