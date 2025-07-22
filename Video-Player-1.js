@@ -70,6 +70,9 @@ video {
   object-fit: contain; /* evita crop, show letter‑box se serve */
   display: block;
   margin: 0 auto;    /* centra orizzontalmente */
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
 }
 
 /* GLOBAL: sia standard che WebKit fullscreen */
@@ -637,8 +640,7 @@ video::-webkit-media-controls-start-playback-button,
 video::-webkit-media-controls-timeline,
 video::-webkit-media-controls-current-time-display,
 video::-webkit-media-controls-time-remaining-display,
-video::-webkit-media-text-showing-button,
-video::-webkit-media-controls-text-track-button {
+video::-webkit-media-text-showing-button {
   display: none !important;
 }
 
