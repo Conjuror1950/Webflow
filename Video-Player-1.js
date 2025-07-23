@@ -2,21 +2,6 @@
 (function() {
   // 1) INIETTA IL CSS
   const css = `
-
-/* solo su schermi “stretti” (mobile) in landscape, ruota indietro tutto il body */
-@media only screen 
-  and (max-width: 767px) 
-  and (orientation: landscape) {
-  
-  body {
-    transform: rotate(-90deg);
-    transform-origin: top left;
-    width: 100vh;   /* forza l’altezza come se fosse la larghezza */
-    height: 100vw;  /* forza la larghezza come se fosse l’altezza */
-    overflow: hidden;
-  }
-}
-  
   /* Nascondi tutti i controlli custom */
 .controls-player-video-il-silenzio-della-natura-mobile {
   display: none !important;
