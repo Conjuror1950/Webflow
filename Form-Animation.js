@@ -13,21 +13,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /* Lock-orientation (mobile landscape) */
   /* solo su schermi “stretti” (mobile) in landscape, ruota indietro tutto il body */
-@media only screen 
-  and (max-width: 767px) 
-  and (orientation: landscape) {
-
-  body {
-    /* ruota -90° per riportare l’orientamento portrait */
-    transform: rotate(-90deg);
-    transform-origin: top left;
-    /* scambio width/height per adattare viewport */
-    width: 100vh;
-    height: 100vw;
-    overflow: hidden;
-  }
-}
-
    #mobile-landscape-lock {
      position: fixed;
      top: 0; left: 0;
@@ -38,20 +23,27 @@ document.addEventListener('DOMContentLoaded', function () {
      justify-content: center;
      z-index: 9999;
      transition: opacity 150ms ease-in-out;
+     pointer-events: all;      /* cattura ogni tocco */
+     touch-action: none;       /* disabilita touchmove sotto */
+     will-change: opacity;     /* ottimizza il fade-in/out */
    }
+   
    #mobile-landscape-lock.active {
      display: flex;
      opacity: 1;
    }
+   
    #mobile-landscape-lock .lock-message p {
      color: #fff;
      font-size: 1.2rem;
      font-weight: 300;
      text-align: center;
      margin: 0;
+     font-family: -apple-system, sans-serif;
+     letter-spacing: .05em;
+     opacity: .9;
    }
 
-   
   `;
   
   // Aggiungi il tag <style> al documento
@@ -76,7 +68,12 @@ document.addEventListener('DOMContentLoaded', function () {
      overlay.classList.remove('active');
    }
  }
- window.addEventListener('resize', checkLandscapeLock);
- window.addEventListener('orientationchange', checkLandscapeLock);
+ const mql = window.matchMedia('(orientation: landscape) and (max-width: 767px)');
+mql.addEventListener('change', e => {
+  if (e.matches) overlay.classList.add('active');
+  else overlay.classList.remove('active');
+});
+// chiamata iniziale
+if (mql.matches) overlay.classList.add('active');
  checkLandscapeLock();
 });
