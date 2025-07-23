@@ -70,7 +70,7 @@
       <svg xmlns="http://www.w3.org/2000/svg" 
      viewBox="0 0 24 24" fill="none" stroke="currentColor" 
      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" 
-     style="width: 3rem; height: 3rem; color: #fff; opacity: 0.8;">
+     style="width: 3rem; height: 3rem; color: black; opacity: 0.8;">
   <path d="M3 2v6h6" />
   <path d="M3.05 13a9 9 0 1 0 .5-4.5" />
 </svg>
