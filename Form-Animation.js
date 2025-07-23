@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
      position: fixed;
      top: 0; left: 0;
      width: 100vw; height: 100vh;
-     background: rgba(0,0,0,0.85);
+     background: white;
      display: none;
      align-items: center;
      justify-content: center;
@@ -34,13 +34,13 @@ document.addEventListener('DOMContentLoaded', function () {
    }
    
    #mobile-landscape-lock .lock-message p {
-     color: #fff;
+     color: black;
      font-size: 1.2rem;
-     font-weight: 300;
+     font-weight: 400;
      text-align: center;
      margin: 0;
-     font-family: -apple-system, sans-serif;
-     letter-spacing: .05em;
+     font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif !important;
+     letter-spacing: .04em;
      opacity: .9;
    }
 
