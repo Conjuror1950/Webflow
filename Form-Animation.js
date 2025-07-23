@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+(function () {
   // === STYLE dinamico ===
   const style = document.createElement('style');
   style.innerHTML = `
@@ -57,10 +57,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // === MediaQueryListener ===
   const mql = window.matchMedia('(orientation: landscape) and (max-width: 767px)');
-  const updateOverlay = e => {
+  const updateOverlay = () => {
     overlay.classList.toggle('active', mql.matches);
   };
 
+  // ✅ Mostra subito l'overlay se necessario
+  if (mql.matches) overlay.classList.add('active');
+
   mql.addEventListener('change', updateOverlay);
-  updateOverlay();
-});
+})();
