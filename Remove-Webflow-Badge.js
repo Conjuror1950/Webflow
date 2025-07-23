@@ -1,3 +1,9 @@
+/* Nasconde l'intero blocco FAQ con id="faq-section" */
+#faq-section {
+  display: none !important;
+}
+
+/* Aggiungi da qui il codice del FAQ */
 document.addEventListener("DOMContentLoaded", function () {
     const faqContainer = document.createElement("div");
     faqContainer.className = "lock-screen-mobile-faq-container";
