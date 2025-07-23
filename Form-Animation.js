@@ -31,5 +31,4 @@ document.addEventListener('DOMContentLoaded', function () {
   
   // Aggiungi il tag <style> al documento
   document.head.appendChild(style);
-  });
 });
