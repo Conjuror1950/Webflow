@@ -5,7 +5,7 @@
     #mobile-landscape-lock {
       position: fixed;
       inset: 0;
-      background: white;
+      background: #000;        /* sfondo nero per Apple‑style */
       display: none;
       align-items: center;
       justify-content: center;
@@ -15,16 +15,28 @@
     padding-bottom: env(safe-area-inset-bottom);
     }
 
-  #mobile-landscape-lock .lock-message p {
-    color: black;
-    font-size: 1.2rem;
-    font-weight: 400;
-    text-align: center;
-    margin: 0;
-    font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif;
-    letter-spacing: .04em;
-    opacity: .9;
-  }
+#mobile-landscape-lock .lock-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#mobile-landscape-lock .lock-message svg {
+  width: 3rem;
+  height: 3rem;
+  color: #fff;             /* su sfondo scuro */
+  opacity: 0.8;
+}
+
+#mobile-landscape-lock .lock-message p {
+  font-family: "SF Pro Display", -apple-system, sans-serif !important;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #fff;
+  margin: 0;
+  letter-spacing: 0.02em;
+}
 
   /* media‑query che scatta **istantaneamente** */
   @media (orientation: landscape) and (max-width: 767px) {
@@ -51,8 +63,14 @@
   const overlay = document.createElement('div');
   overlay.id = 'mobile-landscape-lock';
   overlay.innerHTML = `
-    <div class="lock-message">
-      <p>Ruota il dispositivo in verticale per continuare</p>
-    </div>`;
+<div id="mobile-landscape-lock">
+  <div class="lock-message">
+    <!-- SF Symbol "rotate.right.fill" -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 20 20">
+      <path d="M4 4v5h.582A6.002 6.002 0 0110 4a6 6 0 015.657 8.004.75.75 0 11-1.414-.38A4.5 4.5 0 0010 5.5a4.5 4.5 0 00-4.5 4.5h2.25l-3 3-3-3H4A6 6 0 014 4z"/>
+    </svg>
+    <p>Ruota in verticale</p>
+  </div>
+</div>;
   document.body.appendChild(overlay);
 })();
