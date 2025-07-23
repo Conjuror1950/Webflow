@@ -11,9 +11,6 @@
       align-items: center;
       justify-content: center;
       z-index: 9999;
-      /* gestisci notch/barre con safe‑area */
-      padding-top: env(safe-area-inset-top);
-      padding-bottom: env(safe-area-inset-bottom);
     }
 
     #mobile-landscape-lock .lock-message {
