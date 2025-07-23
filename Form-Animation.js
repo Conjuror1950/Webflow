@@ -67,9 +67,13 @@
   overlay.innerHTML = `
     <div class="lock-message">
       <!-- SF Symbol "rotate.right.fill" -->
-      <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 20 20">
-        <path d="M4 4v5h.582A6.002 6.002 0 0110 4a6 6 0 015.657 8.004.75.75 0 11-1.414-.38A4.5 4.5 0 0010 5.5a4.5 4.5 0 00-4.5 4.5h2.25l-3 3-3-3H4A6 6 0 014 4z"/>
-      </svg>
+      <svg xmlns="http://www.w3.org/2000/svg" 
+     viewBox="0 0 24 24" fill="none" stroke="currentColor" 
+     stroke-width="2" stroke-linecap="round" stroke-linejoin="round" 
+     style="width: 3rem; height: 3rem; color: #fff; opacity: 0.8;">
+  <path d="M3 2v6h6" />
+  <path d="M3.05 13a9 9 0 1 0 .5-4.5" />
+</svg>
       <p>Ruota in verticale</p>
     </div>
   `;
