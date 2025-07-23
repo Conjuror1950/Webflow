@@ -18,15 +18,15 @@ document.addEventListener('DOMContentLoaded', function () {
     padding: 0;
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    overflow: hidden; /* blocca lo scroll sul body */
   }
 
   /* il wrapper di tutta la pagina */
   #page-wrapper {
-    position: relative;  /* da default */
+    position: relative;
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    overflow: hidden; /* default */
   }
 
   /* solo mobile small + landscape */
@@ -41,9 +41,19 @@ document.addEventListener('DOMContentLoaded', function () {
       width: 100vh;   /* scambia le dimensioni */
       height: 100vw;
       transform: rotate(-90deg);
-      transform-origin: 0 0;  
-      backface-visibility: hidden;  /* migliora la resa */
-      will-change: transform;       /* hint di performance */
+      transform-origin: 0 0;
+      backface-visibility: hidden;
+      will-change: transform;
+
+      /* abilita lo scroll verticale “locale” */
+      overflow-y: auto;
+      overflow-x: hidden;
+
+      /* inertia su iOS */
+      -webkit-overflow-scrolling: touch;
+
+      /* assicura che i tocchi scorrono il contenuto */
+      touch-action: pan-y;
     }
   }
   `;
