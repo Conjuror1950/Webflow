@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
       z-index: 9999;
       opacity: 0;
       visibility: hidden;
-      transition: opacity 150ms ease-in-out, visibility 0s linear 150ms;
+      transition: opacity 100ms ease-in-out, visibility 0s linear 150ms;
       pointer-events: none;
       touch-action: none;
       will-change: opacity;
