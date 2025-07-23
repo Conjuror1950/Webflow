@@ -1,8 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
-  // Crea un tag <style> dinamicamente
+  // === STYLE dinamico ===
   const style = document.createElement('style');
-  
-  // Aggiungi il tuo CSS al tag <style>
   style.innerHTML = `
     .form-input:focus + .form-label,
     .form-input:not(:placeholder-shown) + .form-label {
@@ -11,69 +9,58 @@ document.addEventListener('DOMContentLoaded', function () {
       transform: translateY(0%);
     }
 
-  /* Lock-orientation (mobile landscape) */
-  /* solo su schermi “stretti” (mobile) in landscape, ruota indietro tutto il body */
-   #mobile-landscape-lock {
-     position: fixed;
-     top: 0; left: 0;
-     width: 100vw; height: 100vh;
-     background: white;
-     display: none;
-     align-items: center;
-     justify-content: center;
-     z-index: 9999;
-     transition: opacity 150ms ease-in-out;
-     pointer-events: all;      /* cattura ogni tocco */
-     touch-action: none;       /* disabilita touchmove sotto */
-     will-change: opacity;     /* ottimizza il fade-in/out */
-   }
-   
-   #mobile-landscape-lock.active {
-     display: flex;
-     opacity: 1;
-   }
-   
-   #mobile-landscape-lock .lock-message p {
-     color: black;
-     font-size: 1.2rem;
-     font-weight: 400;
-     text-align: center;
-     margin: 0;
-     font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif !important;
-     letter-spacing: .04em;
-     opacity: .9;
-   }
+    #mobile-landscape-lock {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 150ms ease-in-out, visibility 0s linear 150ms;
+      pointer-events: none;
+      touch-action: none;
+      will-change: opacity;
+    }
 
+    #mobile-landscape-lock.active {
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 150ms ease-in-out;
+      pointer-events: all;
+    }
+
+    #mobile-landscape-lock .lock-message p {
+      color: black;
+      font-size: 1.2rem;
+      font-weight: 400;
+      text-align: center;
+      margin: 0;
+      font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif !important;
+      letter-spacing: .04em;
+      opacity: .9;
+    }
   `;
-  
-  // Aggiungi il tag <style> al documento
   document.head.appendChild(style);
 
-   // === CREAZIONE DELL'OVERLAY ===
- const overlay = document.createElement('div');
- overlay.id = 'mobile-landscape-lock';
- overlay.innerHTML = `
-   <div class="lock-message">
-     <p>Ruota il dispositivo in verticale per continuare</p>
-   </div>`;
- document.body.appendChild(overlay);
+  // === OVERLAY ===
+  const overlay = document.createElement('div');
+  overlay.id = 'mobile-landscape-lock';
+  overlay.innerHTML = `
+    <div class="lock-message">
+      <p>Ruota il dispositivo in verticale per continuare</p>
+    </div>`;
+  document.body.appendChild(overlay);
 
- // === LOGICA DI CONTROLLO ORIENTAMENTO ===
- function checkLandscapeLock() {
-   const isMobile    = window.matchMedia('(max-width: 767px)').matches;
-   const isLandscape = window.matchMedia('(orientation: landscape)').matches;
-   if (isMobile && isLandscape) {
-     overlay.classList.add('active');
-   } else {
-     overlay.classList.remove('active');
-   }
- }
- const mql = window.matchMedia('(orientation: landscape) and (max-width: 767px)');
-mql.addEventListener('change', e => {
-  if (e.matches) overlay.classList.add('active');
-  else overlay.classList.remove('active');
-});
-// chiamata iniziale
-if (mql.matches) overlay.classList.add('active');
- checkLandscapeLock();
+  // === MediaQueryListener ===
+  const mql = window.matchMedia('(orientation: landscape) and (max-width: 767px)');
+  const updateOverlay = e => {
+    overlay.classList.toggle('active', mql.matches);
+  };
+
+  mql.addEventListener('change', updateOverlay);
+  updateOverlay();
 });
