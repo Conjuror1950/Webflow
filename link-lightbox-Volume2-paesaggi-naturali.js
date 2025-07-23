@@ -1,8 +1,3 @@
-/* Nasconde l'intero blocco FAQ con id="faq-section" */
-#faq-section {
-  display: none !important;
-}
-
 /* Aggiungi da qui il codice del FAQ */
 document.addEventListener("DOMContentLoaded", function () {
     const faqContainer = document.createElement("div");
@@ -38,6 +33,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const style = document.createElement("style");
     style.textContent = `
+
+/* Nasconde l'intero blocco FAQ con id="faq-section" */
+#faq-section {
+  display: none !important;
+}
     
         /* Impostazione del font globale per l'intera pagina */
         * {
