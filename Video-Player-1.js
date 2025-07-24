@@ -353,27 +353,6 @@ color: white;
   flex-shrink: 0 !important;
 }
 
-/* —– mostra il wrapper (overlay) quando entra in fullscreen —– */
-.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:fullscreen,
-.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:-webkit-full-screen {
-  visibility: visible !important;
-  opacity: 1 !important;
-  transform: translateY(0) !important;
-  z-index: 9999; /* sopra ogni cosa */
-}
-
-/* Nascondi i sottotitoli nativi video::cue e webkit track display */
-video::-webkit-media-text-track-display,
-video::cue {
-  display: none !important;
-}
-
-.visible-player-video-il-silenzio-della-natura-mobile {
-  visibility: visible !important;
-  opacity: 1 !important;
-  transform: translateY(0) !important;
-}
-
 `;
   const styleEl = document.createElement('style');
   styleEl.textContent = css;
@@ -447,7 +426,8 @@ lightbox.addEventListener('click', () => {
   const vid = wrapper.querySelector('video');
 
   // Vai fullscreen subito dopo il click
-  if (vid.requestFullscreen) vid.requestFullscreen();
+  if (wrapper.requestFullscreen) wrapper.requestFullscreen();
+  else if (wrapper.webkitRequestFullscreen) wrapper.webkitRequestFullscreen();
   else if (vid.webkitRequestFullscreen) vid.webkitRequestFullscreen();
   else if (vid.msRequestFullscreen) vid.msRequestFullscreen();
 
@@ -456,8 +436,6 @@ lightbox.addEventListener('click', () => {
     console.warn("Autoplay bloccato dal browser:", err);
   });
 });
-
-  wrapper.classList.add('visible-player-video-il-silenzio-della-natura-mobile');
 
 // 2. Quando esci dal fullscreen (ESC, swipe, chiusura manuale)
 function exitFullscreenHandler() {
@@ -550,27 +528,27 @@ langMenu
   // ——— Chiudi il player tornando allo stato iniziale ———
 const closeBtn = wrapper.querySelector('.close-btn-player-video-il-silenzio-della-natura-mobile');
 closeBtn.addEventListener('click', () => {
-  // ESCI DA FULLSCREEN
+  
+  // 1) Se sei in fullscreen, esci prima
   if (document.fullscreenElement) {
     document.exitFullscreen();
   }
   
-  // FERMA E RESET VIDEO
+  // 1b) Ferma il video e resetta la posizione
   const video = wrapper.querySelector('video');
   video.pause();
   video.currentTime = 0;
-
-  // **1) Nascondi IMMEDIATAMENTE il wrapper**
-  wrapper.style.display = 'none';
-
-  // **2) (Facoltativo) Rimuovi subito la classe di visibilità**
+  
+  // 2) Inizia lo slide‐out da sinistra-destra
   wrapper.classList.remove('visible-player-video-il-silenzio-della-natura-mobile');
+ // 2.b) Forza il wrapper a rimanere "visible" e al punto di partenza
+ wrapper.style.visibility = 'visible';
+ wrapper.style.transform  = 'translateX(0)';
+ wrapper.style.opacity    = '1';
+ wrapper.offsetHeight; // forzo reflow
 
-  // **3) In caso serva pulire inline-styles o classi di slide-out**
-  wrapper.style.visibility = '';
-  wrapper.style.opacity    = '';
-  wrapper.style.transform  = '';
-  wrapper.classList.remove('closing-player-video-il-silenzio-della-natura-mobile');
+ // 2.c) Ora aggiungi la classe che anima lo slide‐out verso destra
+ wrapper.classList.add('closing-player-video-il-silenzio-della-natura-mobile');
 
   // 3) Dopo la transizione, ripristina la pagina
   setTimeout(() => {
