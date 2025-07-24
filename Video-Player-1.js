@@ -571,7 +571,6 @@ closeBtn.addEventListener('click', () => {
   wrapper.style.opacity    = '';
   wrapper.style.transform  = '';
   wrapper.classList.remove('closing-player-video-il-silenzio-della-natura-mobile');
-});
 
   // 3) Dopo la transizione, ripristina la pagina
   setTimeout(() => {
