@@ -3,7 +3,7 @@
   // 1) INIETTA IL CSS
   const css = `
 .apple-video-wrapper-player-video-il-silenzio-della-natura-mobile {
-  visibility: hidden;          /* non cattura click quando nascosto */
+  display: none;          /* non cattura click quando nascosto */
   position: fixed;       /* fissa il wrapper al viewport */
   top: 0;
   left: 0;
@@ -12,9 +12,6 @@
   background:black;
   font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif !important;
   overflow:hidden;
-  opacity: 0;
-  transform: translateY(100%);
-  transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out;
 }
 
 /* classe temporanea per la chiusura: sposta fuori a destra */
@@ -365,6 +362,17 @@ color: white;
   display: flex !important;  /* o block, a seconda del tuo layout */
 }
 
+/* quando il wrapper deve comparire (prima del fullscreen) */
+.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile.visible {
+  display: block;
+}
+
+/* se vuoi ancora l’animazione slide-in */
+.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
 `;
   const styleEl = document.createElement('style');
   styleEl.textContent = css;
@@ -472,7 +480,7 @@ document.addEventListener('webkitfullscreenchange', exitFullscreenHandler);
 document.addEventListener('msfullscreenchange', exitFullscreenHandler);
 
   // 1) mostra immediatamente il wrapper
-  wrapper.style.display = 'block';
+  wrapper.classList.add('visible');
 
   // 2) prendi il video
   const vid = wrapper.querySelector('video');
