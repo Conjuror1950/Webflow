@@ -2,8 +2,18 @@
 (function() {
   // 1) INIETTA IL CSS
   const css = `
+  /* Nascondi tutti i controlli custom */
+.controls-player-video-il-silenzio-della-natura-mobile {
+  display: none !important;
+}
+.center-controls-player-video-il-silenzio-della-natura-mobile,
+.top-bar-player-video-il-silenzio-della-natura-mobile,
+.bottom-bar-player-video-il-silenzio-della-natura-mobile {
+  display: none !important;
+}
+
 .apple-video-wrapper-player-video-il-silenzio-della-natura-mobile {
-  display: none;          /* non cattura click quando nascosto */
+  visibility: hidden;          /* non cattura click quando nascosto */
   position: fixed;       /* fissa il wrapper al viewport */
   top: 0;
   left: 0;
@@ -12,6 +22,17 @@
   background:black;
   font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif !important;
   overflow:hidden;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out;
+}
+
+/* classe per l’apertura: slide‑in dal basso */
+.visible-player-video-il-silenzio-della-natura-mobile {
+  visibility: visible !important;
+  transform: translateY(0) !important;
+  opacity: 1 !important;
+  z-index: 9999;
 }
 
 /* classe temporanea per la chiusura: sposta fuori a destra */
@@ -340,39 +361,6 @@ color: white;
   flex-shrink: 0 !important;
 }
 
-/* quando il wrapper va in fullscreen, rendi tutto visibile */
-.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:fullscreen,
-.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:-webkit-full-screen {
-  visibility: visible !important;
-  opacity: 1         !important;
-  transform: none    !important;
-}
-
-/* e fai comparire i controlli che prima erano nascosti */
-.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:fullscreen .controls-player-video-il-silenzio-della-natura-mobile,
-.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:-webkit-full-screen .controls-player-video-il-silenzio-della-natura-mobile {
-  display: flex !important;
-}
-.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:fullscreen .top-bar-player-video-il-silenzio-della-natura-mobile,
-.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:-webkit-full-screen .top-bar-player-video-il-silenzio-della-natura-mobile,
-.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:fullscreen .center-controls-player-video-il-silenzio-della-natura-mobile,
-.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:-webkit-full-screen .center-controls-player-video-il-silenzio-della-natura-mobile,
-.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:fullscreen .bottom-bar-player-video-il-silenzio-della-natura-mobile,
-.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:-webkit-full-screen .bottom-bar-player-video-il-silenzio-della-natura-mobile {
-  display: flex !important;  /* o block, a seconda del tuo layout */
-}
-
-/* quando il wrapper deve comparire (prima del fullscreen) */
-.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile.visible {
-  display: block;
-}
-
-/* se vuoi ancora l’animazione slide-in */
-.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile.visible {
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 0.15s ease, transform 0.15s ease;
-}
 `;
   const styleEl = document.createElement('style');
   styleEl.textContent = css;
@@ -442,18 +430,14 @@ lightbox.addEventListener('click', e => {
 // 1. Click su Lightbox per mostrare il player
 lightbox.addEventListener('click', () => {
   wrapper.style.display = 'block';
+  wrapper.classList.add('visible-player-video-il-silenzio-della-natura-mobile');
 
   const vid = wrapper.querySelector('video');
 
   // Vai fullscreen subito dopo il click
-  if (wrapper.requestFullscreen) wrapper.requestFullscreen();
-  else if (wrapper.webkitRequestFullscreen) wrapper.webkitRequestFullscreen();
-  else if (vid.webkitRequestFullscreen) vid.webkitRequestFullscreen();
-  else if (vid.msRequestFullscreen) vid.msRequestFullscreen();
-
-  wrapper.style.visibility = 'visible';
-  wrapper.style.opacity    = '1';
-  wrapper.style.transform  = 'translateY(0)';
+if (wrapper.requestFullscreen)           wrapper.requestFullscreen();
+else if (wrapper.webkitRequestFullscreen) wrapper.webkitRequestFullscreen();
+else if (wrapper.msRequestFullscreen)     wrapper.msRequestFullscreen();
 
   // Play il video
   vid.play().catch(err => {
@@ -480,7 +464,7 @@ document.addEventListener('webkitfullscreenchange', exitFullscreenHandler);
 document.addEventListener('msfullscreenchange', exitFullscreenHandler);
 
   // 1) mostra immediatamente il wrapper
-  wrapper.classList.add('visible');
+  wrapper.style.display = 'block';
 
   // 2) prendi il video
   const vid = wrapper.querySelector('video');
@@ -490,8 +474,9 @@ document.addEventListener('msfullscreenchange', exitFullscreenHandler);
     vid.webkitEnterFullscreen();
   }
   // altrove (desktop) puoi ricadere sul fallback standard
-  else if (vid.requestFullscreen) {
-    vid.requestFullscreen();
+if (wrapper.requestFullscreen)           wrapper.requestFullscreen();
+else if (wrapper.webkitRequestFullscreen) wrapper.webkitRequestFullscreen();
+else if (wrapper.msRequestFullscreen)     wrapper.msRequestFullscreen();
   }
 
   // 4) parti col video da inzio
@@ -552,11 +537,6 @@ langMenu
   // ——— Chiudi il player tornando allo stato iniziale ———
 const closeBtn = wrapper.querySelector('.close-btn-player-video-il-silenzio-della-natura-mobile');
 closeBtn.addEventListener('click', () => {
-  
-  // 1) Se sei in fullscreen, esci prima
-  if (document.fullscreenElement) {
-    document.exitFullscreen();
-  }
   
   // 1b) Ferma il video e resetta la posizione
   const video = wrapper.querySelector('video');
