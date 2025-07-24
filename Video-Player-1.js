@@ -430,14 +430,13 @@ lightbox.addEventListener('click', e => {
 // 1. Click su Lightbox per mostrare il player
 lightbox.addEventListener('click', () => {
   wrapper.style.display = 'block';
-  wrapper.classList.add('visible-player-video-il-silenzio-della-natura-mobile');
 
   const vid = wrapper.querySelector('video');
 
   // Vai fullscreen subito dopo il click
-if (wrapper.requestFullscreen)           wrapper.requestFullscreen();
-else if (wrapper.webkitRequestFullscreen) wrapper.webkitRequestFullscreen();
-else if (wrapper.msRequestFullscreen)     wrapper.msRequestFullscreen();
+  if (wrapper.requestFullscreen)           wrapper.requestFullscreen();
+  else if (wrapper.webkitRequestFullscreen) wrapper.webkitRequestFullscreen();
+  else if (wrapper.msRequestFullscreen)     wrapper.msRequestFullscreen();
 
   // Play il video
   vid.play().catch(err => {
@@ -465,6 +464,7 @@ document.addEventListener('msfullscreenchange', exitFullscreenHandler);
 
   // 1) mostra immediatamente il wrapper
   wrapper.style.display = 'block';
+  wrapper.classList.add('visible-player-video-il-silenzio-della-natura-mobile');
 
   // 2) prendi il video
   const vid = wrapper.querySelector('video');
@@ -474,9 +474,8 @@ document.addEventListener('msfullscreenchange', exitFullscreenHandler);
     vid.webkitEnterFullscreen();
   }
   // altrove (desktop) puoi ricadere sul fallback standard
-if (wrapper.requestFullscreen)           wrapper.requestFullscreen();
-else if (wrapper.webkitRequestFullscreen) wrapper.webkitRequestFullscreen();
-else if (wrapper.msRequestFullscreen)     wrapper.msRequestFullscreen();
+  else if (vid.requestFullscreen) {
+    vid.requestFullscreen();
   }
 
   // 4) parti col video da inzio
@@ -537,6 +536,11 @@ langMenu
   // ——— Chiudi il player tornando allo stato iniziale ———
 const closeBtn = wrapper.querySelector('.close-btn-player-video-il-silenzio-della-natura-mobile');
 closeBtn.addEventListener('click', () => {
+  
+  // 1) Se sei in fullscreen, esci prima
+  if (document.fullscreenElement) {
+    document.exitFullscreen();
+  }
   
   // 1b) Ferma il video e resetta la posizione
   const video = wrapper.querySelector('video');
