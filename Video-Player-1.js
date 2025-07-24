@@ -353,6 +353,21 @@ color: white;
   flex-shrink: 0 !important;
 }
 
+/* —– mostra il wrapper (overlay) quando entra in fullscreen —– */
+.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:fullscreen,
+.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:-webkit-full-screen {
+  visibility: visible !important;
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  z-index: 9999; /* sopra ogni cosa */
+}
+
+.visible-player-video-il-silenzio-della-natura-mobile {
+  visibility: visible !important;
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
 `;
   const styleEl = document.createElement('style');
   styleEl.textContent = css;
@@ -435,6 +450,8 @@ lightbox.addEventListener('click', () => {
     console.warn("Autoplay bloccato dal browser:", err);
   });
 });
+
+  wrapper.classList.add('visible-player-video-il-silenzio-della-natura-mobile');
 
 // 2. Quando esci dal fullscreen (ESC, swipe, chiusura manuale)
 function exitFullscreenHandler() {
