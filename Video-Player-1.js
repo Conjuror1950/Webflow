@@ -27,14 +27,6 @@
   transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out;
 }
 
-/* classe per l’apertura: slide‑in dal basso */
-.visible-player-video-il-silenzio-della-natura-mobile {
-  visibility: visible !important;
-  transform: translateY(0) !important;
-  opacity: 1 !important;
-  z-index: 9999;
-}
-
 /* classe temporanea per la chiusura: sposta fuori a destra */
 .closing-player-video-il-silenzio-della-natura-mobile {
   visibility: visible !important;
@@ -434,9 +426,9 @@ lightbox.addEventListener('click', () => {
   const vid = wrapper.querySelector('video');
 
   // Vai fullscreen subito dopo il click
-  if (wrapper.requestFullscreen)           wrapper.requestFullscreen();
-  else if (wrapper.webkitRequestFullscreen) wrapper.webkitRequestFullscreen();
-  else if (wrapper.msRequestFullscreen)     wrapper.msRequestFullscreen();
+  if (vid.requestFullscreen) vid.requestFullscreen();
+  else if (vid.webkitRequestFullscreen) vid.webkitRequestFullscreen();
+  else if (vid.msRequestFullscreen) vid.msRequestFullscreen();
 
   // Play il video
   vid.play().catch(err => {
@@ -464,7 +456,6 @@ document.addEventListener('msfullscreenchange', exitFullscreenHandler);
 
   // 1) mostra immediatamente il wrapper
   wrapper.style.display = 'block';
-  wrapper.classList.add('visible-player-video-il-silenzio-della-natura-mobile');
 
   // 2) prendi il video
   const vid = wrapper.querySelector('video');
