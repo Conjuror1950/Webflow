@@ -48,37 +48,6 @@ video {
   margin: 0 auto;    /* centra orizzontalmente */
 }
 
-/* GLOBAL: sia standard che WebKit fullscreen */
-.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:fullscreen video,
-.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:-webkit-full-screen video {
-  width: 100%    !important;
-  height: 100%   !important;
-  object-fit: contain !important;  /* mantieni l’intero frame con bande nere */
-  background: black !important;    /* fallback “letter-box” nero */
-}
-
-/* — mostra gli avvisi anche in fullscreen — */
-.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:fullscreen .warning-icon-player-video-il-silenzio-della-natura-mobile,
-.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:-webkit-full-screen .warning-icon-player-video-il-silenzio-della-natura-mobile,
-.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:fullscreen .warning-age-player-video-il-silenzio-della-natura-mobile,
-.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:-webkit-full-screen .warning-age-player-video-il-silenzio-della-natura-mobile {
-  /* forziamo visibilità e z‑index alto */
-  opacity: 1 !important;
-  visibility: visible !important;
-  z-index: 10000 !important;
-  /* riposizionali se servisse, ad esempio: */
-  top: 20px !important;
-  left: 20px !important;
-}
-
-/* --- override per la preview quando il wrapper è in fullscreen --- */
-.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:fullscreen .preview-container-player-video-il-silenzio-della-natura-mobile video,
-.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:-webkit-full-screen .preview-container-player-video-il-silenzio-della-natura-mobile video {
-  width: 100% !important;       /* piena larghezza del container di preview */
-  height: 100% !important;      /* piena altezza del container di preview */
-  object-fit: cover !important;/* mantieni l’aspetto, niente crop */
-}
-
 .center-controls-player-video-il-silenzio-della-natura-mobile {
   position: absolute !important;
   top: 50%           !important;
