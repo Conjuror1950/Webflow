@@ -2,6 +2,21 @@
 (function() {
   // 1) INIETTA IL CSS
   const css = `
+
+  /* --- TESTO IN OVERLAY --- */
+.overlay-text-player-video-il-silenzio-della-natura-mobile {
+  position: absolute;
+  top: 10%;                       /* regola la distanza dal bordo superiore */
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-size: 1.4rem;
+  font-weight: 600;
+  text-shadow: 0 0 6px rgba(0,0,0,0.8);
+  pointer-events: none;           /* non intercetta click */
+  z-index: 5;                     /* sopra il video */
+}
+
 .apple-video-wrapper-player-video-il-silenzio-della-natura-mobile {
   visibility: hidden;          /* non cattura click quando nascosto */
   position: fixed;       /* fissa il wrapper al viewport */
@@ -341,6 +356,12 @@ color: white;
     <video id="apple-video-player-video-il-silenzio-della-natura-mobile" controls controlsList="share" allow="picture-in-picture" x-webkit-airplay="allow" data-no-toggle preload="metadata" crossorigin="anonymous" playsinline>
       <track kind="subtitles" label="Italiano (automatico)" srclang="it" src="https://andreaingrassia.netlify.app/assets/subtitles/captions-il-silenzio-della-natura.vtt" default>
     </video>
+    
+        <!-- TESTO IN OVERLAY -->
+    <div class="overlay-text-player-video-il-silenzio-della-natura-mobile">
+      Il silenzio della natura
+    </div>
+
     <div id="custom-subtitles-player-video-il-silenzio-della-natura-mobile" class="subtitle-container-player-video-il-silenzio-della-natura-mobile"></div>
     <div class="controls-player-video-il-silenzio-della-natura-mobile">
       <div class="top-bar-player-video-il-silenzio-della-natura-mobile">
