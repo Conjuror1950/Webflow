@@ -432,21 +432,21 @@ color: white;
    document.body.appendChild(wrapper);
 
 // Javascript (JS) 
+// ——— Lightbox → apri pseudo‑fullscreen su iOS o vero fullscreen altrove ———
+const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-container-mobile');
 lightbox.addEventListener('click', e => {
   e.preventDefault();
   wrapper.style.display = 'block';
-
   const vid = wrapper.querySelector('video');
 
-  // se siamo su iOS Safari (user‑agent sniffing, o feature‑detection)
+  // Rileva iOS Safari
   const isIos = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
   if (isIos) {
-    // forzo il mio “pseudo-fullscreen” via CSS
+    // pseudo‑fullscreen CSS
     wrapper.classList.add('force-fullscreen');
-    // disabilito lo scroll della pagina
     document.body.style.overflow = 'hidden';
   } else {
-    // altrimenti fullscreen nativo
+    // vero fullscreen del wrapper
     if (wrapper.requestFullscreen)         wrapper.requestFullscreen();
     else if (wrapper.webkitRequestFullscreen) wrapper.webkitRequestFullscreen();
     else if (wrapper.msRequestFullscreen)     wrapper.msRequestFullscreen();
@@ -455,25 +455,6 @@ lightbox.addEventListener('click', e => {
   vid.currentTime = 0;
   vid.play().catch(err => console.warn("Autoplay bloccato:", err));
 });
-
-// Quando chiudi:
-closeBtn.addEventListener('click', () => {
-  // esco dal fullscreen nativo, se c’ero
-  if (document.fullscreenElement) document.exitFullscreen();
-
-  // tolgo la simulazione iOS
-  if (wrapper.classList.contains('force-fullscreen')) {
-    wrapper.classList.remove('force-fullscreen');
-    document.body.style.overflow = '';
-  }
-
-  // reset video e chiusura wrapper
-  const v = wrapper.querySelector('video');
-  v.pause();
-  v.currentTime = 0;
-  wrapper.style.display = '';
-});
-
 
   // 2) IMPOSTO IMMEDIATAMENTE IL MENU LINGUA
 const shareMenu = document.querySelector('.share-menu-player-video-il-silenzio-della-natura-mobile');
@@ -531,6 +512,11 @@ closeBtn.addEventListener('click', () => {
   // 1) Se sei in fullscreen, esci prima
   if (document.fullscreenElement) {
     document.exitFullscreen();
+    // Se avevamo applicato la simulazione iOS…
+if (wrapper.classList.contains('force-fullscreen')) {
+  wrapper.classList.remove('force-fullscreen');
+  document.body.style.overflow = '';
+}
   }
   
   // 1b) Ferma il video e resetta la posizione
