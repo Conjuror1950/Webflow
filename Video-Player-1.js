@@ -436,22 +436,27 @@ color: white;
 const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-container-mobile');
 lightbox.addEventListener('click', e => {
   e.preventDefault();
+  // 1) mostra il wrapper
   wrapper.style.display = 'block';
-  const vid = wrapper.querySelector('video');
 
-  // Rileva iOS Safari
+  // 2) se iOS, simulo pseudo-fullscreen, altrimenti true fullscreen
   const isIos = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
   if (isIos) {
-    // pseudo‑fullscreen CSS
     wrapper.classList.add('force-fullscreen');
     document.body.style.overflow = 'hidden';
   } else {
-    // vero fullscreen del wrapper
     if (wrapper.requestFullscreen)         wrapper.requestFullscreen();
     else if (wrapper.webkitRequestFullscreen) wrapper.webkitRequestFullscreen();
     else if (wrapper.msRequestFullscreen)     wrapper.msRequestFullscreen();
   }
 
+  // **3) rendi effettivamente visibile il wrapper**
+  wrapper.style.visibility = 'visible';
+  wrapper.style.opacity    = '1';
+  wrapper.style.transform  = 'none';
+
+  // 4) parti il video
+  const vid = wrapper.querySelector('video');
   vid.currentTime = 0;
   vid.play().catch(err => console.warn("Autoplay bloccato:", err));
 });
@@ -508,21 +513,23 @@ langMenu
   // ——— Chiudi il player tornando allo stato iniziale ———
 const closeBtn = wrapper.querySelector('.close-btn-player-video-il-silenzio-della-natura-mobile');
 closeBtn.addEventListener('click', () => {
-  
-  // 1) Se sei in fullscreen, esci prima
-  if (document.fullscreenElement) {
-    document.exitFullscreen();
-    // Se avevamo applicato la simulazione iOS…
-if (wrapper.classList.contains('force-fullscreen')) {
-  wrapper.classList.remove('force-fullscreen');
-  document.body.style.overflow = '';
-}
+  // … esco dal fullscreen nativo
+  if (document.fullscreenElement) document.exitFullscreen();
+  if (wrapper.classList.contains('force-fullscreen')) {
+    wrapper.classList.remove('force-fullscreen');
+    document.body.style.overflow = '';
   }
-  
-  // 1b) Ferma il video e resetta la posizione
-  const video = wrapper.querySelector('video');
-  video.pause();
-  video.currentTime = 0;
+
+  // reset visibilità
+  wrapper.style.visibility = '';
+  wrapper.style.opacity    = '';
+  wrapper.style.transform  = '';
+  wrapper.style.display    = '';
+
+  // ferma/reset video
+  const v = wrapper.querySelector('video');
+  v.pause();
+  v.currentTime = 0;
   
   // 2) Inizia lo slide‐out da sinistra-destra
   wrapper.classList.remove('visible-player-video-il-silenzio-della-natura-mobile');
