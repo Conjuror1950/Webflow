@@ -2,21 +2,6 @@
 (function() {
   // 1) INIETTA IL CSS
   const css = `
-
-  /* --- TESTO IN OVERLAY --- */
-.overlay-text-player-video-il-silenzio-della-natura-mobile {
-  position: absolute;
-  top: 10%;                       /* regola la distanza dal bordo superiore */
-  left: 50%;
-  transform: translateX(-50%);
-  color: white;
-  font-size: 1.4rem;
-  font-weight: 600;
-  text-shadow: 0 0 6px rgba(0,0,0,0.8);
-  pointer-events: none;           /* non intercetta click */
-  z-index: 5;                     /* sopra il video */
-}
-
 .apple-video-wrapper-player-video-il-silenzio-della-natura-mobile {
   visibility: hidden;          /* non cattura click quando nascosto */
   position: fixed;       /* fissa il wrapper al viewport */
@@ -61,6 +46,33 @@ video {
   object-fit: contain; /* evita crop, show letter‑box se serve */
   display: block;
   margin: 0 auto;    /* centra orizzontalmente */
+}
+
+/* GLOBAL: sia standard che WebKit fullscreen */
+.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:fullscreen video,
+.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:-webkit-full-screen video {
+  width: 100%    !important;
+  height: 100%   !important;
+  object-fit: contain !important;  /* mantieni l’intero frame con bande nere */
+  background: black !important;    /* fallback “letter-box” nero */
+}
+
+/* — Override per il container in fullscreen — */
+.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:fullscreen,
+.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:-webkit-full-screen {
+  visibility: visible !important;
+  opacity: 1 !important;
+  transform: none !important;
+  width: 100vw   !important;
+  height: 100vh  !important;
+  z-index: 9999  !important; /* porta il wrapper in primo piano */
+}
+
+/* Assicuriamoci che anche tutti i figli ereditino visibilità e pointer-events */
+.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:fullscreen *,
+.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:-webkit-full-screen * {
+  visibility: visible !important;
+  pointer-events: all !important;
 }
 
 .center-controls-player-video-il-silenzio-della-natura-mobile {
@@ -356,12 +368,6 @@ color: white;
     <video id="apple-video-player-video-il-silenzio-della-natura-mobile" controls controlsList="share" allow="picture-in-picture" x-webkit-airplay="allow" data-no-toggle preload="metadata" crossorigin="anonymous" playsinline>
       <track kind="subtitles" label="Italiano (automatico)" srclang="it" src="https://andreaingrassia.netlify.app/assets/subtitles/captions-il-silenzio-della-natura.vtt" default>
     </video>
-    
-        <!-- TESTO IN OVERLAY -->
-    <div class="overlay-text-player-video-il-silenzio-della-natura-mobile">
-      Il silenzio della natura
-    </div>
-
     <div id="custom-subtitles-player-video-il-silenzio-della-natura-mobile" class="subtitle-container-player-video-il-silenzio-della-natura-mobile"></div>
     <div class="controls-player-video-il-silenzio-della-natura-mobile">
       <div class="top-bar-player-video-il-silenzio-della-natura-mobile">
