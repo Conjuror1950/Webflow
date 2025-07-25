@@ -418,18 +418,18 @@ const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-na
 lightbox.addEventListener('click', e => {
   e.preventDefault();
 
-  // 1) Mostra e anima il wrapper
+  // 1) Mostra il wrapper (slide-in)
   wrapper.style.display    = 'block';
   wrapper.style.visibility = 'visible';
-  wrapper.style.transform  = 'translateY(0)';  // slide in
+  wrapper.style.transform  = 'translateY(0)';
   wrapper.style.opacity    = '1';
 
-  // 2) Entra in fullscreen sul wrapper
-  if (wrapper.requestFullscreen)        wrapper.requestFullscreen();
+  // 2) Fullscreen sul wrapper
+  if (wrapper.requestFullscreen)         wrapper.requestFullscreen();
   else if (wrapper.webkitRequestFullscreen) wrapper.webkitRequestFullscreen();
-  else if (wrapper.msRequestFullscreen)     wrapper.msRequestFullscreen();
+  else if (wrapper.msRequestFullscreen)      wrapper.msRequestFullscreen();
 
-  // 3) Play
+  // 3) Play del video
   const vid = wrapper.querySelector('video');
   vid.play().catch(err => console.warn("Autoplay bloccato:", err));
 });
