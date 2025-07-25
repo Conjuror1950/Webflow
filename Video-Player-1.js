@@ -2,16 +2,6 @@
 (function() {
   // 1) INIETTA IL CSS
   const css = `
-  /* Nascondi tutti i controlli custom */
-.controls-player-video-il-silenzio-della-natura-mobile {
-  display: none !important;
-}
-.center-controls-player-video-il-silenzio-della-natura-mobile,
-.top-bar-player-video-il-silenzio-della-natura-mobile,
-.bottom-bar-player-video-il-silenzio-della-natura-mobile {
-  display: none !important;
-}
-
 .apple-video-wrapper-player-video-il-silenzio-della-natura-mobile {
   visibility: hidden;          /* non cattura click quando nascosto */
   position: fixed;       /* fissa il wrapper al viewport */
@@ -353,15 +343,11 @@ color: white;
   flex-shrink: 0 !important;
 }
 
-/* quando il wrapper è full‑screen */
-.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:fullscreen {
-  visibility: visible !important;
-  opacity: 1 !important;
-  transform: translateY(0) !important;
-}
+/* Fullscreen: rendi il wrapper visibile */
+.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:fullscreen,
 .apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:-webkit-full-screen {
   visibility: visible !important;
-  opacity: 1 !important;
+  opacity: 1         !important;
   transform: translateY(0) !important;
 }
 
@@ -431,21 +417,21 @@ color: white;
 const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-container-mobile');
 lightbox.addEventListener('click', e => {
   e.preventDefault();
-// 1. Click su Lightbox per mostrare il player
-lightbox.addEventListener('click', () => {
-  wrapper.style.display = 'block';
 
+  // 1) Mostra e anima il wrapper
+  wrapper.style.display    = 'block';
+  wrapper.style.visibility = 'visible';
+  wrapper.style.transform  = 'translateY(0)';  // slide in
+  wrapper.style.opacity    = '1';
+
+  // 2) Entra in fullscreen sul wrapper
+  if (wrapper.requestFullscreen)        wrapper.requestFullscreen();
+  else if (wrapper.webkitRequestFullscreen) wrapper.webkitRequestFullscreen();
+  else if (wrapper.msRequestFullscreen)     wrapper.msRequestFullscreen();
+
+  // 3) Play
   const vid = wrapper.querySelector('video');
-
-// Vai fullscreen sul wrapper, non sul video
-if (wrapper.requestFullscreen) wrapper.requestFullscreen();
-else if (wrapper.webkitRequestFullscreen) wrapper.webkitRequestFullscreen();
-else if (wrapper.msRequestFullscreen) wrapper.msRequestFullscreen();
-
-  // Play il video
-  vid.play().catch(err => {
-    console.warn("Autoplay bloccato dal browser:", err);
-  });
+  vid.play().catch(err => console.warn("Autoplay bloccato:", err));
 });
 
 // 2. Quando esci dal fullscreen (ESC, swipe, chiusura manuale)
