@@ -343,14 +343,6 @@ color: white;
   flex-shrink: 0 !important;
 }
 
-/* Fullscreen: rendi il wrapper visibile */
-.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:fullscreen,
-.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:-webkit-full-screen {
-  visibility: visible !important;
-  opacity: 1         !important;
-  transform: translateY(0) !important;
-}
-
 `;
   const styleEl = document.createElement('style');
   styleEl.textContent = css;
@@ -417,21 +409,21 @@ color: white;
 const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-container-mobile');
 lightbox.addEventListener('click', e => {
   e.preventDefault();
+// 1. Click su Lightbox per mostrare il player
+lightbox.addEventListener('click', () => {
+  wrapper.style.display = 'block';
 
-  // 1) Mostra il wrapper (slide-in)
-  wrapper.style.display    = 'block';
-  wrapper.style.visibility = 'visible';
-  wrapper.style.transform  = 'translateY(0)';
-  wrapper.style.opacity    = '1';
-
-  // 2) Fullscreen sul wrapper
-  if (wrapper.requestFullscreen)         wrapper.requestFullscreen();
-  else if (wrapper.webkitRequestFullscreen) wrapper.webkitRequestFullscreen();
-  else if (wrapper.msRequestFullscreen)      wrapper.msRequestFullscreen();
-
-  // 3) Play del video
   const vid = wrapper.querySelector('video');
-  vid.play().catch(err => console.warn("Autoplay bloccato:", err));
+
+  // Vai fullscreen subito dopo il click
+  if (vid.requestFullscreen) vid.requestFullscreen();
+  else if (vid.webkitRequestFullscreen) vid.webkitRequestFullscreen();
+  else if (vid.msRequestFullscreen) vid.msRequestFullscreen();
+
+  // Play il video
+  vid.play().catch(err => {
+    console.warn("Autoplay bloccato dal browser:", err);
+  });
 });
 
 // 2. Quando esci dal fullscreen (ESC, swipe, chiusura manuale)
@@ -459,8 +451,8 @@ document.addEventListener('msfullscreenchange', exitFullscreenHandler);
   const vid = wrapper.querySelector('video');
 
   // su iOS Safari: usa solo webkitEnterFullscreen
-if (wrapper.webkitEnterFullscreen) {
-  wrapper.webkitEnterFullscreen();
+  if (vid.webkitEnterFullscreen) {
+    vid.webkitEnterFullscreen();
   }
   // altrove (desktop) puoi ricadere sul fallback standard
   else if (vid.requestFullscreen) {
