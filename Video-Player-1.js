@@ -432,58 +432,13 @@ color: white;
    document.body.appendChild(wrapper);
 
 // Javascript (JS) 
-// ——— Lightbox → apri player in fullscreen e play ———
-const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-container-mobile');
 lightbox.addEventListener('click', e => {
   e.preventDefault();
-// 1. Click su Lightbox per mostrare il player
-lightbox.addEventListener('click', () => {
   wrapper.style.display = 'block';
 
   const vid = wrapper.querySelector('video');
 
-  // Vai fullscreen subito dopo il click
-if (wrapper.requestFullscreen) {
-  wrapper.requestFullscreen();
-}
-else if (wrapper.webkitRequestFullscreen) {
-  wrapper.webkitRequestFullscreen();  // per WebKit
-}
-else if (wrapper.msRequestFullscreen) {
-  wrapper.msRequestFullscreen();
-}
-
-  // Play il video
-  vid.play().catch(err => {
-    console.warn("Autoplay bloccato dal browser:", err);
-  });
-});
-
-// 2. Quando esci dal fullscreen (ESC, swipe, chiusura manuale)
-function exitFullscreenHandler() {
-  const isFullscreen = !!(
-    document.fullscreenElement ||
-    document.webkitFullscreenElement ||
-    document.msFullscreenElement
-  );
-
-  if (!isFullscreen) {
-    wrapper.style.display = 'none';
-  }
-}
-
-// 3. Eventi per tutti i browser
-document.addEventListener('fullscreenchange', exitFullscreenHandler);
-document.addEventListener('webkitfullscreenchange', exitFullscreenHandler);
-document.addEventListener('msfullscreenchange', exitFullscreenHandler);
-
-  // 1) mostra immediatamente il wrapper
-  wrapper.style.display = 'block';
-
-  // 2) prendi il video
-  const vid = wrapper.querySelector('video');
-
-  // su iOS Safari: usa solo webkitEnterFullscreen
+  // se siamo su iOS Safari (user‑agent sniffing, o feature‑detection)
   const isIos = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
   if (isIos) {
     // forzo il mio “pseudo-fullscreen” via CSS
@@ -496,16 +451,29 @@ document.addEventListener('msfullscreenchange', exitFullscreenHandler);
     else if (wrapper.webkitRequestFullscreen) wrapper.webkitRequestFullscreen();
     else if (wrapper.msRequestFullscreen)     wrapper.msRequestFullscreen();
   }
-  // altrove (desktop) puoi ricadere sul fallback standard
-  else if (vid.requestFullscreen) {
-    vid.requestFullscreen();
+
+  vid.currentTime = 0;
+  vid.play().catch(err => console.warn("Autoplay bloccato:", err));
+});
+
+// Quando chiudi:
+closeBtn.addEventListener('click', () => {
+  // esco dal fullscreen nativo, se c’ero
+  if (document.fullscreenElement) document.exitFullscreen();
+
+  // tolgo la simulazione iOS
+  if (wrapper.classList.contains('force-fullscreen')) {
+    wrapper.classList.remove('force-fullscreen');
+    document.body.style.overflow = '';
   }
 
-  // 4) parti col video da inzio
-  vid.pause();
-  vid.currentTime = 0;
-  vid.play();
+  // reset video e chiusura wrapper
+  const v = wrapper.querySelector('video');
+  v.pause();
+  v.currentTime = 0;
+  wrapper.style.display = '';
 });
+
 
   // 2) IMPOSTO IMMEDIATAMENTE IL MENU LINGUA
 const shareMenu = document.querySelector('.share-menu-player-video-il-silenzio-della-natura-mobile');
