@@ -426,9 +426,15 @@ lightbox.addEventListener('click', () => {
   const vid = wrapper.querySelector('video');
 
   // Vai fullscreen subito dopo il click
-  if (vid.requestFullscreen) vid.requestFullscreen();
-  else if (vid.webkitRequestFullscreen) vid.webkitRequestFullscreen();
-  else if (vid.msRequestFullscreen) vid.msRequestFullscreen();
+if (wrapper.requestFullscreen) {
+  wrapper.requestFullscreen();
+}
+else if (wrapper.webkitRequestFullscreen) {
+  wrapper.webkitRequestFullscreen();  // per WebKit
+}
+else if (wrapper.msRequestFullscreen) {
+  wrapper.msRequestFullscreen();
+}
 
   // Play il video
   vid.play().catch(err => {
