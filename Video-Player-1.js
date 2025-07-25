@@ -57,6 +57,20 @@ video {
   background: black !important;    /* fallback “letter-box” nero */
 }
 
+/* — mostra gli avvisi anche in fullscreen — */
+.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:fullscreen .warning-icon-player-video-il-silenzio-della-natura-mobile,
+.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:-webkit-full-screen .warning-icon-player-video-il-silenzio-della-natura-mobile,
+.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:fullscreen .warning-age-player-video-il-silenzio-della-natura-mobile,
+.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:-webkit-full-screen .warning-age-player-video-il-silenzio-della-natura-mobile {
+  /* forziamo visibilità e z‑index alto */
+  opacity: 1 !important;
+  visibility: visible !important;
+  z-index: 10000 !important;
+  /* riposizionali se servisse, ad esempio: */
+  top: 20px !important;
+  left: 20px !important;
+}
+
 /* --- override per la preview quando il wrapper è in fullscreen --- */
 .apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:fullscreen .preview-container-player-video-il-silenzio-della-natura-mobile video,
 .apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:-webkit-full-screen .preview-container-player-video-il-silenzio-della-natura-mobile video {
