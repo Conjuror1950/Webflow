@@ -27,21 +27,6 @@
   transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out;
 }
 
-/* classe per far apparire il wrapper (override initial hidden) */
-.visible-player-video-il-silenzio-della-natura-mobile {
-  visibility: visible !important;
-  opacity: 1 !important;
-  transform: translateY(0) !important;
-  z-index: 9999; /* sopra tutto */
-}
-
-/* in fullscreen, forziamo anche gli avvisi a rimanere visibili */
-.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:fullscreen .warning-icon-player-video-il-silenzio-della-natura-mobile,
-.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:fullscreen .warning-age-player-video-il-silenzio-della-natura-mobile {
-  visibility: visible !important;
-  opacity: 1 !important;
-}
-
 /* classe temporanea per la chiusura: sposta fuori a destra */
 .closing-player-video-il-silenzio-della-natura-mobile {
   visibility: visible !important;
@@ -368,6 +353,18 @@ color: white;
   flex-shrink: 0 !important;
 }
 
+/* quando il wrapper è full‑screen */
+.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:fullscreen {
+  visibility: visible !important;
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:-webkit-full-screen {
+  visibility: visible !important;
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
 `;
   const styleEl = document.createElement('style');
   styleEl.textContent = css;
@@ -437,15 +434,13 @@ lightbox.addEventListener('click', e => {
 // 1. Click su Lightbox per mostrare il player
 lightbox.addEventListener('click', () => {
   wrapper.style.display = 'block';
-// 1bis) aggiungi la classe “visible” così parte l’animazione di ingresso
-wrapper.classList.add('visible-player-video-il-silenzio-della-natura-mobile');
 
   const vid = wrapper.querySelector('video');
 
-  // Vai fullscreen subito dopo il click
-  if (vid.requestFullscreen) vid.requestFullscreen();
-  else if (vid.webkitRequestFullscreen) vid.webkitRequestFullscreen();
-  else if (vid.msRequestFullscreen) vid.msRequestFullscreen();
+// Vai fullscreen sul wrapper, non sul video
+if (wrapper.requestFullscreen) wrapper.requestFullscreen();
+else if (wrapper.webkitRequestFullscreen) wrapper.webkitRequestFullscreen();
+else if (wrapper.msRequestFullscreen) wrapper.msRequestFullscreen();
 
   // Play il video
   vid.play().catch(err => {
@@ -478,8 +473,8 @@ document.addEventListener('msfullscreenchange', exitFullscreenHandler);
   const vid = wrapper.querySelector('video');
 
   // su iOS Safari: usa solo webkitEnterFullscreen
-  if (vid.webkitEnterFullscreen) {
-    vid.webkitEnterFullscreen();
+if (wrapper.webkitEnterFullscreen) {
+  wrapper.webkitEnterFullscreen();
   }
   // altrove (desktop) puoi ricadere sul fallback standard
   else if (vid.requestFullscreen) {
