@@ -353,6 +353,23 @@ color: white;
   flex-shrink: 0 !important;
 }
 
+/* questo in aggiunta al tuo CSS */
+.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile.force-fullscreen {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 99999 !important;
+  background: black !important;
+}
+/* il video dentro al wrapper prende tutto lo spazio */
+.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile.force-fullscreen video {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+}
+
 `;
   const styleEl = document.createElement('style');
   styleEl.textContent = css;
@@ -467,8 +484,17 @@ document.addEventListener('msfullscreenchange', exitFullscreenHandler);
   const vid = wrapper.querySelector('video');
 
   // su iOS Safari: usa solo webkitEnterFullscreen
-  if (vid.webkitEnterFullscreen) {
-    vid.webkitEnterFullscreen();
+  const isIos = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+  if (isIos) {
+    // forzo il mio “pseudo-fullscreen” via CSS
+    wrapper.classList.add('force-fullscreen');
+    // disabilito lo scroll della pagina
+    document.body.style.overflow = 'hidden';
+  } else {
+    // altrimenti fullscreen nativo
+    if (wrapper.requestFullscreen)         wrapper.requestFullscreen();
+    else if (wrapper.webkitRequestFullscreen) wrapper.webkitRequestFullscreen();
+    else if (wrapper.msRequestFullscreen)     wrapper.msRequestFullscreen();
   }
   // altrove (desktop) puoi ricadere sul fallback standard
   else if (vid.requestFullscreen) {
