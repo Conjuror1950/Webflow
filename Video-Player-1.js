@@ -473,14 +473,6 @@ player.updateSettings({
   },
   debug: { logLevel: dashjs.Debug.LOG_LEVEL_NONE }
 });
-    
-    
-// email share
-emailBtn.addEventListener('click', () => {
-  const subject = encodeURIComponent(document.title);
-  const body    = encodeURIComponent(`Guarda qui: ${location.href}`);
-  window.location.href = `mailto:?subject=${subject}&body=${body}`;
-});
  
   //-----   
   function formatTime(s) {
