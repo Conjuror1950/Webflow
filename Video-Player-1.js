@@ -39,6 +39,13 @@ video:-ms-fullscreen {
   transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out;
 }
 
+/* forza il wrapper visibile quando riceve la classe “visible‑…” */
+.visible-player-video-il-silenzio-della-natura-mobile {
+  visibility: visible !important;
+  opacity:    1         !important;
+  transform:  translateY(0) !important;
+}
+
 /* classe temporanea per la chiusura: sposta fuori a destra */
 .closing-player-video-il-silenzio-della-natura-mobile {
   visibility: visible !important;
@@ -291,25 +298,22 @@ color: white;
 const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-container-mobile');
 lightbox.addEventListener('click', e => {
   e.preventDefault();
-// 1. Click su Lightbox per mostrare il player
-lightbox.addEventListener('click', () => {
+
+  // 1) Mostra subito il wrapper
   wrapper.style.display = 'block';
 
+  // 2) Rendi visibile (override di opacity/transform)
+  wrapper.classList.add('visible-player-video-il-silenzio-della-natura-mobile');
+
+  // 3) Fullscreen sul wrapper
+  const fsTarget = wrapper;
+  if (fsTarget.requestFullscreen)      fsTarget.requestFullscreen();
+  else if (fsTarget.webkitRequestFullscreen) fsTarget.webkitRequestFullscreen();
+  else if (fsTarget.msRequestFullscreen)      fsTarget.msRequestFullscreen();
+
+  // 4) Play
   const vid = wrapper.querySelector('video');
-
-// Entra in fullscreen sul wrapper, così le tue regole CSS wrapper:fullscreen si applicano sempre
-const fsTarget = wrapper;
-if (fsTarget.requestFullscreen)      fsTarget.requestFullscreen();
-else if (fsTarget.webkitRequestFullscreen) fsTarget.webkitRequestFullscreen();
-else if (fsTarget.msRequestFullscreen)       fsTarget.msRequestFullscreen();
-
-// Applica subito la classe “visible” per forzare wrapper visibile (override opacity/transform)
-wrapper.classList.add('visible-player-video-il-silenzio-della-natura-mobile');
-
-  // Play il video
-  vid.play().catch(err => {
-    console.warn("Autoplay bloccato dal browser:", err);
-  });
+  vid.play().catch(err => console.warn('Autoplay bloccato:', err));
 });
 
 // 2. Quando esci dal fullscreen (ESC, swipe, chiusura manuale)
