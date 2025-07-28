@@ -303,12 +303,21 @@ color: white;
     wrapper.style.display = 'block';
     wrapper.classList.add('visible-player-video-il-silenzio-della-natura-mobile');
 
-    // Fullscreen sul wrapper
-    const fsTarget = wrapper;
-    if (fsTarget.requestFullscreen)      fsTarget.requestFullscreen();
-    else if (fsTarget.webkitRequestFullscreen) fsTarget.webkitRequestFullscreen();
-    else if (fsTarget.msRequestFullscreen)      fsTarget.msRequestFullscreen();
+// Fullscreen sul wrapper, se possibile
+if (wrapper.requestFullscreen) {
+  wrapper.requestFullscreen();
+} else if (wrapper.webkitRequestFullscreen) {
+  wrapper.webkitRequestFullscreen();
+}
 
+// *** Fallback per iOS Safari: se il wrapper non supporta fullscreen ma il video sì ***
+else {
+  const vid = wrapper.querySelector('video');
+  if (vid.webkitEnterFullscreen) {
+    vid.webkitEnterFullscreen();
+  }
+}
+    
     // Play
     const vid = wrapper.querySelector('video');
     vid.currentTime = 0;
