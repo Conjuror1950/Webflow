@@ -330,7 +330,6 @@ color: white;
   document.addEventListener('fullscreenchange', exitFullscreenHandler);
   document.addEventListener('webkitfullscreenchange', exitFullscreenHandler);
   document.addEventListener('msfullscreenchange', exitFullscreenHandler);
-});
   
   // 3) CARICA DASH.JS E INIZIALIZZA IL PLAYER
   const dashScript = document.createElement('script');
