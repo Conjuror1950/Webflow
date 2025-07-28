@@ -267,9 +267,6 @@ color: white;
     <div class="controls-player-video-il-silenzio-della-natura-mobile">
       <div class="top-bar-player-video-il-silenzio-della-natura-mobile">
         <button class="close-btn-player-video-il-silenzio-della-natura-mobile"><img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a6e03d818ab9f59079de2_xmark.svg" alt="Close" style="width:24px;height:24px;"></button>
-        <div class="volume-control-player-video-il-silenzio-della-natura-mobile">
-          <img id="volume-icon-player-video-il-silenzio-della-natura-mobile" src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681d13cccb3122eb07cc40af_custom.speaker.wave.3.fill.2.2.svg" alt="Volume alto">
-        </div>
       </div>
       <div class="center-controls-player-video-il-silenzio-della-natura-mobile">
         <button class="rewind-player-video-il-silenzio-della-natura-mobile"><img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a5fb8fe6435455d3d98da_10.arrow.trianglehead.counterclockwise.svg" alt="Rewind" "></button>
