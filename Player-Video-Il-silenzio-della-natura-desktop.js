@@ -1114,6 +1114,9 @@ progress.addEventListener('mousemove', e => {
   const previewTime = document.querySelector('.preview-time-player-video-il-silenzio-della-natura-desktop');
   previewTime.textContent = formatTime(time);
 
+  // mostra subito il container, così offsetWidth diventa quello reale
+  previewContainer.style.display = 'block';
+  
 // — PREVIEW VIDEO — (posizione clamped entro il wrapper)
 const halfW = previewContainer.offsetWidth / 2;
 const wrapper = document.querySelector('.apple-video-wrapper-player-video-il-silenzio-della-natura-desktop');
@@ -1130,7 +1133,6 @@ const sideMargin = 24;  // <— qui decidi quanti px vuoi di spazio
   previewContainer.style.left = clampedX + 'px';
 
 previewVideo.currentTime = time;
-previewContainer.style.display = 'block';
 });
 
 // 3) nascondi thumb e preview al mouseout
