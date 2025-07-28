@@ -2,6 +2,28 @@
 (function() {
   // 1) INIETTA IL CSS
   const css = `
+
+/* Quando il wrapper è in fullscreen (standard, WebKit, MS) */
+.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:fullscreen,
+.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:-webkit-full-screen,
+.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:-ms-fullscreen {
+  visibility: visible !important;
+  opacity:    1         !important;
+  transform:  translateY(0) !important;
+  background: black    !important;
+  z-index:    9999     !important;
+}
+
+/* In più, per sicurezza su Android/Chrome, definisci regole anche per il <video> in fullscreen diretto */
+video:fullscreen,
+video:-webkit-full-screen,
+video:-ms-fullscreen {
+  width:  100vw !important;
+  height: 100vh !important;
+  object-fit: contain !important;
+  background: black !important;
+}
+
 .apple-video-wrapper-player-video-il-silenzio-della-natura-mobile {
   visibility: hidden;          /* non cattura click quando nascosto */
   position: fixed;       /* fissa il wrapper al viewport */
@@ -63,6 +85,79 @@ video {
   width: 100% !important;       /* piena larghezza del container di preview */
   height: 100% !important;      /* piena altezza del container di preview */
   object-fit: cover !important;/* mantieni l’aspetto, niente crop */
+}
+
+.center-controls-player-video-il-silenzio-della-natura-mobile {
+  position: absolute !important;
+  top: 50%           !important;
+  left: 50%          !important;
+  transform: translate(-50%, -50%) !important;
+  display: flex      !important;
+  justify-content: center !important;
+  align-items: center    !important;
+  gap: 60px;
+}
+.controls-player-video-il-silenzio-della-natura-mobile {
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  padding:24px;
+  color:white;
+  pointer-events:none;
+  transition:opacity .5s;
+}
+.controls-player-video-il-silenzio-della-natura-mobile.hide {
+opacity:0;
+}
+.controls-player-video-il-silenzio-della-natura-mobile button, .controls-player-video-il-silenzio-della-natura-mobile input, .controls-player-video-il-silenzio-della-natura-mobile select {
+  pointer-events:all;
+  font-family:inherit;
+}
+/* top e center unchanged */
+.top-bar-player-video-il-silenzio-della-natura-mobile {
+display:flex;
+justify-content:space-between;
+}
+
+/* bottom-bar: colonna, con riga superiore per titolo + controlli */
+.bottom-bar-player-video-il-silenzio-della-natura-mobile {
+  display:flex;
+  flex-direction:column;
+  gap:.5rem;
+  margin-top:50px;
+  color:white;
+}
+/* nuova riga superiore: titolo e right-controls affiancati */
+.bottom-top-row-player-video-il-silenzio-della-natura-mobile {
+  position: relative;
+  top: 10px;   /* metti qui quanti pixel vuoi spostarlo verso l’alto */
+  display: flex;
+  flex-wrap: wrap;           /* ← permetti il wrap su più righe */
+  justify-content:space-between;
+  align-items: flex-start;   /* ← allinea in alto i figli */
+}
+/* titolo allineato a sinistra, in basso */
+.serie-title-player-video-il-silenzio-della-natura-mobile {
+  order: 1;           /* ← posa la serie dopo l’episodio */
+  flex-basis: auto;   /* ← occupa tutta la riga disponibile */
+  margin-right: auto; /* spinge i controlli verso destra */
+  margin-top: -2px;
+  font-weight:500;
+  font-size:14px;
+  color: white;
+  border: 0.8px solid white; /* ← bordo bianco */
+  border-radius:6px;
+  padding: 4px 10px;         /* padding verticale e orizzontale */
+}
+.ep-title-player-video-il-silenzio-della-natura-mobile {
+order: 0;           /* prima riga */
+flex-basis: 100%;   /* occupa tutta la larghezza: “S1, E1…” su riga a sé */
+font-weight:600;
+font-size:18px;
+margin-bottom: -6px;
+color: white;
 }
 
 .extras-player-video-il-silenzio-della-natura-mobile {
@@ -165,28 +260,51 @@ video {
   const wrapper = document.createElement('div');
   wrapper.className = 'apple-video-wrapper-player-video-il-silenzio-della-natura-mobile';
   wrapper.innerHTML = `
-  <video
-    id="apple-video-player-video-il-silenzio-della-natura-mobile"
-    controls controlsList="share"
-    allow="picture-in-picture"
-    x-webkit-airplay="allow"
-    data-no-toggle
-    preload="metadata"
-    crossorigin="anonymous"
-    playsinline
-  >
-    <track
-      kind="subtitles"
-      label="Italiano (automatico)"
-      srclang="it"
-      src="https://andreaingrassia.netlify.app/assets/subtitles/captions-il-silenzio-della-natura.vtt"
-      default
-    >
-  </video>
-  <div
-    id="custom-subtitles-player-video-il-silenzio-della-natura-mobile"
-    class="subtitle-container-player-video-il-silenzio-della-natura-mobile"
-  ></div>
+    <video id="apple-video-player-video-il-silenzio-della-natura-mobile" controls controlsList="share" allow="picture-in-picture" x-webkit-airplay="allow" data-no-toggle preload="metadata" crossorigin="anonymous" playsinline>
+      <track kind="subtitles" label="Italiano (automatico)" srclang="it" src="https://andreaingrassia.netlify.app/assets/subtitles/captions-il-silenzio-della-natura.vtt" default>
+    </video>
+    <div id="custom-subtitles-player-video-il-silenzio-della-natura-mobile" class="subtitle-container-player-video-il-silenzio-della-natura-mobile"></div>
+    <div class="controls-player-video-il-silenzio-della-natura-mobile">
+      <div class="top-bar-player-video-il-silenzio-della-natura-mobile">
+        <button class="close-btn-player-video-il-silenzio-della-natura-mobile"><img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a6e03d818ab9f59079de2_xmark.svg" alt="Close" style="width:24px;height:24px;"></button>
+        <div class="volume-control-player-video-il-silenzio-della-natura-mobile">
+          <img id="volume-icon-player-video-il-silenzio-della-natura-mobile" src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681d13cccb3122eb07cc40af_custom.speaker.wave.3.fill.2.2.svg" alt="Volume alto">
+        </div>
+      </div>
+      <div class="center-controls-player-video-il-silenzio-della-natura-mobile">
+        <button class="rewind-player-video-il-silenzio-della-natura-mobile"><img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a5fb8fe6435455d3d98da_10.arrow.trianglehead.counterclockwise.svg" alt="Rewind" "></button>
+        <button class="play-pause-player-video-il-silenzio-della-natura-mobile">
+          <img class="play-icon" src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a7228fdd5352747977676_play.fill.svg" alt="Play">
+          <img class="pause-icon" src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a722870d098221ad93f47_pause.fill.svg" alt="Pausa" style="display:none;">
+        </button>
+        <button class="forward-player-video-il-silenzio-della-natura-mobile"><img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a5fb8f7a09fb00f328afb_10.arrow.trianglehead.clockwise.svg" alt="Forward" "></button>
+      </div>
+      <div class="bottom-bar-player-video-il-silenzio-della-natura-mobile">
+        <div class="bottom-top-row-player-video-il-silenzio-della-natura-mobile">
+          <div class="ep-title-player-video-il-silenzio-della-natura-mobile">S1, E1 · Il silenzio della natura</div>
+          <div class="right-controls-player-video-il-silenzio-della-natura-mobile">
+            <button class="subs-btn-player-video-il-silenzio-della-natura-mobile"><img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681c881581975b4efc170207_captions.bubble.svg" alt="Sottotitoli" style="width:20px;height:20px;"></button>
+            <div class="subs-menu-player-video-il-silenzio-della-natura-mobile" style="display:none;">
+              <button class="title-subs-item-player-video-il-silenzio-della-natura-mobile">Sottotitoli</button>
+              <button class="subs-item-player-video-il-silenzio-della-natura-mobile" data-val="-1">Disattivati</button>
+              <button class="subs-item-player-video-il-silenzio-della-natura-mobile selected" data-val="0">Italiano (automatico)</button>
+            </div>
+            <button class="lang-btn-player-video-il-silenzio-della-natura-mobile"><img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681bb7eb7c5e96fc0889f14c_waveform.circle.svg" alt="Lingua" style="width:20px;height:20px;"></button>
+            <div class="lang-menu-player-video-il-silenzio-della-natura-mobile" style="display:none;">
+              <button class="title-lang-item-player-video-il-silenzio-della-natura-mobile">Audio</button>
+              <button class="lang-item-player-video-il-silenzio-della-natura-mobile selected" data-lang="it">Originale: Italiano<span class="check">✓</span></button>
+            </div>
+            <button class="share-btn-player-video-il-silenzio-della-natura-mobile"><img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681c7cf63258616ead57cdf0_square.and.arrow.up.svg" alt="Condividi" style="width:18px;height:30px;"></button>
+            <div class="share-menu-player-video-il-silenzio-della-natura-mobile" style="display:none;">
+              <button class="share-item-player-video-il-silenzio-della-natura-mobile copy-link"><span class="item-text">Copia Link</span><img class="item-icon" src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681b6628e632be2dca7bfe8e_link.svg" width="18" height="18" alt="Link"></button>
+              <button class="share-item-player-video-il-silenzio-della-natura-mobile email-share"><span class="item-text">Email</span><img class="item-icon" src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681b6628ed25af24c9b87b32_envelope.fill.svg" width="18" height="18" alt="Email"></button>
+            </div>
+          </div>
+        </div>
+        <div class="extras-player-video-il-silenzio-della-natura-mobile"><span class="time-player-video-il-silenzio-della-natura-mobile">0:00</span><span class="remaining-time-player-video-il-silenzio-della-natura-mobile">-0:00</span></div>
+        <div class="serie-title-player-video-il-silenzio-della-natura-mobile">Produzioni Cinematografiche</div>
+      </div>
+    </div>
   `;
     // appendo dentro il tuo Div di Webflow
    document.body.appendChild(wrapper);
@@ -202,10 +320,14 @@ lightbox.addEventListener('click', () => {
 
   const vid = wrapper.querySelector('video');
 
-  // Vai fullscreen subito dopo il click
-  if (vid.requestFullscreen) vid.requestFullscreen();
-  else if (vid.webkitRequestFullscreen) vid.webkitRequestFullscreen();
-  else if (vid.msRequestFullscreen) vid.msRequestFullscreen();
+// Entra in fullscreen sul wrapper, così le tue regole CSS wrapper:fullscreen si applicano sempre
+const fsTarget = wrapper;
+if (fsTarget.requestFullscreen)      fsTarget.requestFullscreen();
+else if (fsTarget.webkitRequestFullscreen) fsTarget.webkitRequestFullscreen();
+else if (fsTarget.msRequestFullscreen)       fsTarget.msRequestFullscreen();
+
+// Applica subito la classe “visible” per forzare wrapper visibile (override opacity/transform)
+wrapper.classList.add('visible-player-video-il-silenzio-della-natura-mobile');
 
   // Play il video
   vid.play().catch(err => {
@@ -251,55 +373,6 @@ document.addEventListener('msfullscreenchange', exitFullscreenHandler);
   vid.currentTime = 0;
   vid.play();
 });
-
-  // 2) IMPOSTO IMMEDIATAMENTE IL MENU LINGUA
-const shareMenu = document.querySelector('.share-menu-player-video-il-silenzio-della-natura-mobile');
-const subsMenu  = document.querySelector('.subs-menu-player-video-il-silenzio-della-natura-mobile');
-const langBtn   = document.querySelector('.lang-btn-player-video-il-silenzio-della-natura-mobile');
-const langMenu  = document.querySelector('.lang-menu-player-video-il-silenzio-della-natura-mobile');
-
-// crea le spunte e seleziona Italiano di default
-langMenu
-  .querySelectorAll('.lang-item-player-video-il-silenzio-della-natura-mobile')
-  .forEach(item => {
-    if (!item.querySelector('.check')) {
-      const chk = document.createElement('span');
-      chk.classList.add('check');
-      chk.textContent = '✓';
-      item.appendChild(chk);
-    }
-    if (item.dataset.lang === 'it') {
-      item.classList.add('selected');
-      document.documentElement.lang = 'it';
-    }
-  });
-
-// apri/chiudi menu lingua
-langBtn.addEventListener('click', e => {
-  e.stopPropagation();
-  shareMenu.style.display = 'none';
-  subsMenu.style.display  = 'none';
-  langMenu.style.display  = langMenu.style.display === 'flex' ? 'none' : 'flex';
-});
-
-// chiudi tutti i menu al click fuori
-document.addEventListener('click', () => {
-  shareMenu.style.display = 'none';
-  subsMenu.style.display  = 'none';
-  langMenu.style.display  = 'none';
-});
-
-// seleziona la lingua e chiudi
-langMenu
-  .querySelectorAll('.lang-item-player-video-il-silenzio-della-natura-mobile')
-  .forEach(item => {
-    item.addEventListener('click', () => {
-      const newLang = item.dataset.lang;
-      document.documentElement.lang = newLang;
-      langBtn.title = newLang === 'it' ? 'Italiano' : 'English';
-      langMenu.style.display = 'none';
-    });
-  });
 
   // ——— Chiudi il player tornando allo stato iniziale ———
 const closeBtn = wrapper.querySelector('.close-btn-player-video-il-silenzio-della-natura-mobile');
@@ -412,18 +485,6 @@ player.updateSettings({
   debug: { logLevel: dashjs.Debug.LOG_LEVEL_NONE }
 });
     
-
- // copia link negli appunti
- copyLinkBtn.addEventListener('click', async () => {
-   try {
-     await navigator.clipboard.writeText(location.href);
-     copyLinkBtn.textContent = 'Link copiato ✓';
-   } catch {
-     alert('Impossibile copiare il link');
-   }
-   // chiudi dopo un attimo
-   setTimeout(() => shareMenu.style.display = 'none', 1000);
- });
     
 // email share
 emailBtn.addEventListener('click', () => {
