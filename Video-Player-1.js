@@ -3,20 +3,6 @@
   // 1) INIETTA IL CSS
   const css = `
 
-  /* quando il wrapper è fullscreen */
-  .subtitle-container-player-video-il-silenzio-della-natura-mobile {
-  position: absolute;
-  bottom: 5%;
-  left: 0;
-  width: 100%;
-  padding: 0 2%;
-  text-align: center;
-  font-size: 1.2rem;
-  color: white;
-  text-shadow: 0 0 4px rgba(0,0,0,0.8);
-  pointer-events: none;
-}
-
 /* Quando il wrapper è in fullscreen (standard, WebKit, MS) */
 .apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:fullscreen,
 .apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:-webkit-full-screen,
@@ -116,13 +102,7 @@ video {
   wrapper.className = 'apple-video-wrapper-player-video-il-silenzio-della-natura-mobile';
   wrapper.innerHTML = `
     <video id="apple-video-player-video-il-silenzio-della-natura-mobile" controls controlsList="share" allow="picture-in-picture" x-webkit-airplay="allow" data-no-toggle preload="metadata" crossorigin="anonymous" playsinline>
-      <track kind="subtitles" label="Italiano (automatico)" srclang="it" src="https://andreaingrassia.netlify.app/assets/subtitles/captions-il-silenzio-della-natura.vtt" default>
     </video>
-    <div id="custom-subtitles-player-video-il-silenzio-della-natura-mobile" class="subtitle-container-player-video-il-silenzio-della-natura-mobile"></div>
-    <div class="controls-player-video-il-silenzio-della-natura-mobile">
-      <div class="top-bar-player-video-il-silenzio-della-natura-mobile">
-        <button class="close-btn-player-video-il-silenzio-della-natura-mobile"><img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a6e03d818ab9f59079de2_xmark.svg" alt="Close" style="width:24px;height:24px;"></button>
-      </div>
     </div>
   `;
     // appendo dentro il tuo Div di Webflow
