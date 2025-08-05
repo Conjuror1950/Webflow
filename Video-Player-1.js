@@ -103,12 +103,17 @@ video {
   wrapper.innerHTML = `
     <video id="apple-video-player-video-il-silenzio-della-natura-mobile" controls controlsList="share" allow="picture-in-picture" x-webkit-airplay="allow" data-no-toggle preload="metadata" crossorigin="anonymous" playsinline>
     </video>
+    <div id="custom-subtitles-player-video-il-silenzio-della-natura-mobile" class="subtitle-container-player-video-il-silenzio-della-natura-mobile"></div>
+    <div class="controls-player-video-il-silenzio-della-natura-mobile">
+      <div class="top-bar-player-video-il-silenzio-della-natura-mobile">
+        <button class="close-btn-player-video-il-silenzio-della-natura-mobile"><img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a6e03d818ab9f59079de2_xmark.svg" alt="Close" style="width:24px;height:24px;"></button>
+      </div>
     </div>
   `;
     // appendo dentro il tuo Div di Webflow
    document.body.appendChild(wrapper);
 
-// Javascript (JS)   
+// Javascript (JS) 
 // ——— Lightbox → apri player in fullscreen e play ———
 const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-container-mobile');
 lightbox.addEventListener('click', e => {
@@ -231,25 +236,8 @@ wrapper.classList.remove('visible-player-video-il-silenzio-della-natura-mobile',
     const video = document.getElementById('apple-video-player-video-il-silenzio-della-natura-mobile');
     const player = dashjs.MediaPlayer().create();
     // inizializza e carica il manifest
-     player.initialize(video, manifest, false);
+    player.initialize(video, manifest, false);
     player.enableText(true);
-    player.setTextTrack(0); // forzo i sottotitoli Italiani attivi
-
-    // ─── CUSTOM SUBTITLE RENDERER ───
-    const track = video.textTracks[0];
-    track.mode = 'hidden';  // disattiva il rendering nativo
-
-    const subsContainer = document.getElementById('custom-subtitles-player-video-il-silenzio-della-natura-mobile');
-    track.oncuechange = () => {
-      subsContainer.innerHTML = '';
-      for (let i = 0; i < track.activeCues.length; i++) {
-        const cue = track.activeCues[i];
-        const p = document.createElement('p');
-        p.textContent = cue.text;
-        subsContainer.appendChild(p);
-      }
-    };
-    // ─────────────────────────────────
 
   // player.attachSource(manifest);
   window.addEventListener('unhandledrejection', ev => {
