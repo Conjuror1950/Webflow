@@ -3,6 +3,20 @@
   // 1) INIETTA IL CSS
   const css = `
 
+  /* quando il wrapper è fullscreen */
+  .subtitle-container-player-video-il-silenzio-della-natura-mobile {
+  position: absolute;
+  bottom: 5%;
+  left: 0;
+  width: 100%;
+  padding: 0 2%;
+  text-align: center;
+  font-size: 1.2rem;
+  color: white;
+  text-shadow: 0 0 4px rgba(0,0,0,0.8);
+  pointer-events: none;
+}
+
 /* Quando il wrapper è in fullscreen (standard, WebKit, MS) */
 .apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:fullscreen,
 .apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:-webkit-full-screen,
@@ -114,7 +128,7 @@ video {
     // appendo dentro il tuo Div di Webflow
    document.body.appendChild(wrapper);
 
-// Javascript (JS) 
+// Javascript (JS)   
 // ——— Lightbox → apri player in fullscreen e play ———
 const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-container-mobile');
 lightbox.addEventListener('click', e => {
@@ -237,10 +251,25 @@ wrapper.classList.remove('visible-player-video-il-silenzio-della-natura-mobile',
     const video = document.getElementById('apple-video-player-video-il-silenzio-della-natura-mobile');
     const player = dashjs.MediaPlayer().create();
     // inizializza e carica il manifest
-    player.initialize(video, manifest, false);
+     player.initialize(video, manifest, false);
     player.enableText(true);
+    player.setTextTrack(0); // forzo i sottotitoli Italiani attivi
 
-    player.setTextTrack(0); // <--- FORZA i sottotitoli Italiani attivi
+    // ─── CUSTOM SUBTITLE RENDERER ───
+    const track = video.textTracks[0];
+    track.mode = 'hidden';  // disattiva il rendering nativo
+
+    const subsContainer = document.getElementById('custom-subtitles-player-video-il-silenzio-della-natura-mobile');
+    track.oncuechange = () => {
+      subsContainer.innerHTML = '';
+      for (let i = 0; i < track.activeCues.length; i++) {
+        const cue = track.activeCues[i];
+        const p = document.createElement('p');
+        p.textContent = cue.text;
+        subsContainer.appendChild(p);
+      }
+    };
+    // ─────────────────────────────────
 
   // player.attachSource(manifest);
   window.addEventListener('unhandledrejection', ev => {
