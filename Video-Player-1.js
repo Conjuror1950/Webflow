@@ -109,7 +109,7 @@ video {
   const wrapper = document.createElement('div');
   wrapper.className = 'apple-video-wrapper-player-video-il-silenzio-della-natura-mobile';
   wrapper.innerHTML = `
-    <video id="apple-video-player-video-il-silenzio-della-natura-mobile" controls controlsList="share" allow="picture-in-picture" x-webkit-airplay="allow" data-no-toggle preload="metadata" crossorigin="anonymous" playsinline>
+    <video id="apple-video-player-video-il-silenzio-della-natura-mobile" controls controlsList="share" allow="picture-in-picture" x-webkit-airplay="allow" data-no-toggle preload="metadata" crossorigin="anonymous" playsinline webkit-playsinline>
     </video>
     <div id="custom-subtitles-player-video-il-silenzio-della-natura-mobile" class="subtitle-container-player-video-il-silenzio-della-natura-mobile"></div>
     <div class="controls-player-video-il-silenzio-della-natura-mobile">
@@ -126,57 +126,32 @@ video {
 const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-container-mobile');
 lightbox.addEventListener('click', e => {
   e.preventDefault();
+
+  // 1) mostra il wrapper
   wrapper.style.display = 'block';
-  const vid = wrapper.querySelector('video');
-
-  vid.controls = true;
-
-  if (vid.requestFullscreen)          vid.requestFullscreen();
-  else if (vid.webkitEnterFullscreen) vid.webkitEnterFullscreen();
-  else if (vid.msRequestFullscreen)   vid.msRequestFullscreen();
-
   wrapper.classList.add('visible-player-video-il-silenzio-della-natura-mobile');
-  vid.play().catch(err => console.warn("Autoplay bloccato:", err));
- });
-});
 
-// 2. Quando esci dal fullscreen (ESC, swipe, chiusura manuale)
-function exitFullscreenHandler() {
-  const isFullscreen = !!(
-    document.fullscreenElement ||
-    document.webkitFullscreenElement ||
-    document.msFullscreenElement
-  );
-
-  if (!isFullscreen) {
-    wrapper.style.display = 'none';
-  }
-}
-
-// 3. Eventi per tutti i browser
-document.addEventListener('fullscreenchange', exitFullscreenHandler);
-document.addEventListener('webkitfullscreenchange', exitFullscreenHandler);
-document.addEventListener('msfullscreenchange', exitFullscreenHandler);
-
-  // 1) mostra immediatamente il wrapper
-  wrapper.style.display = 'block';
-
-  // 2) prendi il video
+  // 2) prendi il video e assicurati degli attributi
   const vid = wrapper.querySelector('video');
+  vid.controls = true;
+  vid.setAttribute('playsinline', '');
+  vid.setAttribute('webkit-playsinline', '');
 
-  // su iOS Safari: usa solo webkitEnterFullscreen
-  if (vid.webkitEnterFullscreen) {
-    vid.webkitEnterFullscreen();
-  }
-  // altrove (desktop) puoi ricadere sul fallback standard
-  else if (vid.requestFullscreen) {
-    vid.requestFullscreen();
-  }
-
-  // 4) parti col video da inzio
+  // 3) Carica il video dall’inizio
   vid.pause();
   vid.currentTime = 0;
-  vid.play();
+
+  // 4) Entra in fullscreen NATIVE iOS o standard
+  if (vid.webkitEnterFullscreen) {
+    vid.webkitEnterFullscreen();   // *** iOS Safari ***
+  } else if (vid.requestFullscreen) {
+    vid.requestFullscreen();       // desktop / Android / Chrome
+  } else if (vid.msRequestFullscreen) {
+    vid.msRequestFullscreen();     // IE11/Edge legacy
+  }
+
+  // 5) Avvia la riproduzione
+  vid.play().catch(err => console.warn("Autoplay bloccato:", err));
 });
 
   // ——— Chiudi il player tornando allo stato iniziale ———
