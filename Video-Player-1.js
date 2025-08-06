@@ -47,14 +47,6 @@ video::-webkit-media-controls-enclosure {
   transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out;
 }
 
-/* quando forzi il wrapper visibile (prima del fullscreen) */
-.visible-player-video-il-silenzio-della-natura-mobile {
-  visibility: visible !important;
-  opacity:    1         !important;
-  transform:  translateY(0) !important;
-  z-index:    9999      !important;
-}
-
 /* classe temporanea per la chiusura: sposta fuori a destra */
 .closing-player-video-il-silenzio-della-natura-mobile {
   visibility: visible !important;
