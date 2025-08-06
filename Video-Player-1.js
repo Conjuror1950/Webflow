@@ -3,17 +3,6 @@
   // 1) INIETTA IL CSS
   const css = `
 
-/* Quando il wrapper è in fullscreen (standard, WebKit, MS) */
-.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:fullscreen,
-.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:-webkit-full-screen,
-.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:-ms-fullscreen {
-  visibility: visible !important;
-  opacity:    1         !important;
-  transform:  translateY(0) !important;
-  background: black    !important;
-  z-index:    9999     !important;
-}
-
 /* In più, per sicurezza su Android/Chrome, definisci regole anche per il <video> in fullscreen diretto */
 video:fullscreen,
 video:-webkit-full-screen,
@@ -124,11 +113,15 @@ lightbox.addEventListener('click', () => {
 
   const vid = wrapper.querySelector('video');
 
-// Entra in fullscreen sul wrapper, così le tue regole CSS wrapper:fullscreen si applicano sempre
-const fsTarget = wrapper;
-if (fsTarget.requestFullscreen)      fsTarget.requestFullscreen();
-else if (fsTarget.webkitRequestFullscreen) fsTarget.webkitRequestFullscreen();
-else if (fsTarget.msRequestFullscreen)       fsTarget.msRequestFullscreen();
+// Entra in fullscreen sul video, per compatibilità Android/Chrome
+const vid = wrapper.querySelector('video');
+if (vid.requestFullscreen) {
+  vid.requestFullscreen();
+} else if (vid.webkitRequestFullscreen) {
+  vid.webkitRequestFullscreen();
+} else if (vid.msRequestFullscreen) {
+  vid.msRequestFullscreen();
+}
 
 // Applica subito la classe “visible” per forzare wrapper visibile (override opacity/transform)
 wrapper.classList.add('visible-player-video-il-silenzio-della-natura-mobile');
@@ -162,15 +155,6 @@ document.addEventListener('msfullscreenchange', exitFullscreenHandler);
 
   // 2) prendi il video
   const vid = wrapper.querySelector('video');
-
-  // su iOS Safari: usa solo webkitEnterFullscreen
-  if (vid.webkitEnterFullscreen) {
-    vid.webkitEnterFullscreen();
-  }
-  // altrove (desktop) puoi ricadere sul fallback standard
-  else if (vid.requestFullscreen) {
-    vid.requestFullscreen();
-  }
 
   // 4) parti col video da inzio
   vid.pause();
