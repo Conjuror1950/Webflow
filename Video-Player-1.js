@@ -3,6 +3,17 @@
   // 1) INIETTA IL CSS
   const css = `
 
+/* Quando il wrapper è in fullscreen (standard, WebKit, MS) */
+.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:fullscreen,
+.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:-webkit-full-screen,
+.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:-ms-fullscreen {
+  visibility: visible !important;
+  opacity:    1         !important;
+  transform:  translateY(0) !important;
+  background: black    !important;
+  z-index:    9999     !important;
+}
+
 /* In più, per sicurezza su Android/Chrome, definisci regole anche per il <video> in fullscreen diretto */
 video:fullscreen,
 video:-webkit-full-screen,
@@ -111,13 +122,18 @@ lightbox.addEventListener('click', e => {
 lightbox.addEventListener('click', () => {
   wrapper.style.display = 'block';
 
-// Entra in fullscreen sul video, per compatibilità Android/Chrome
-const vid = wrapper.querySelector('video');
+  const vid = wrapper.querySelector('video');
+
+// Entra in fullscreen sul video (compatibile con Android/Chrome, iOS e desktop)
 if (vid.requestFullscreen) {
   vid.requestFullscreen();
-} else if (vid.webkitRequestFullscreen) {
-  vid.webkitRequestFullscreen();
-} else if (vid.msRequestFullscreen) {
+}
+else if (vid.webkitEnterFullscreen) {
+  // iOS Safari
+  vid.webkitEnterFullscreen();
+}
+else if (vid.msRequestFullscreen) {
+  // IE11/Edge legacy
   vid.msRequestFullscreen();
 }
 
@@ -153,6 +169,15 @@ document.addEventListener('msfullscreenchange', exitFullscreenHandler);
 
   // 2) prendi il video
   const vid = wrapper.querySelector('video');
+
+  // su iOS Safari: usa solo webkitEnterFullscreen
+  if (vid.webkitEnterFullscreen) {
+    vid.webkitEnterFullscreen();
+  }
+  // altrove (desktop) puoi ricadere sul fallback standard
+  else if (vid.requestFullscreen) {
+    vid.requestFullscreen();
+  }
 
   // 4) parti col video da inzio
   vid.pause();
