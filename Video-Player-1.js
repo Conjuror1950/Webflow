@@ -22,6 +22,13 @@ video:-ms-fullscreen {
   height: 100vh !important;
   object-fit: contain !important;
   background: black !important;
+  z-index: 9999 !important;        /* FORZA il video sopra tutto */
+}
+
+/* costringi Chrome/Android a mostrare i suoi controlli */
+video::-webkit-media-controls {
+  display: block !important;
+  opacity: 1       !important;
 }
 
 .apple-video-wrapper-player-video-il-silenzio-della-natura-mobile {
@@ -123,6 +130,9 @@ lightbox.addEventListener('click', () => {
   wrapper.style.display = 'block';
 
   const vid = wrapper.querySelector('video');
+
+// subito prima di entrare in fullscreen
+vid.controls = true;
 
 // Entra in fullscreen sul video (compatibile con Android/Chrome, iOS e desktop)
 if (vid.requestFullscreen) {
