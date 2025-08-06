@@ -26,7 +26,8 @@ video:-ms-fullscreen {
 }
 
 /* costringi Chrome/Android a mostrare i suoi controlli */
-video::-webkit-media-controls {
+video::-webkit-media-controls,
+video::-webkit-media-controls-enclosure {
   display: block !important;
   opacity: 1       !important;
 }
@@ -125,35 +126,17 @@ video {
 const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-container-mobile');
 lightbox.addEventListener('click', e => {
   e.preventDefault();
-// 1. Click su Lightbox per mostrare il player
-lightbox.addEventListener('click', () => {
   wrapper.style.display = 'block';
-
   const vid = wrapper.querySelector('video');
 
-// subito prima di entrare in fullscreen
-vid.controls = true;
+  vid.controls = true;
 
-// Entra in fullscreen sul video (compatibile con Android/Chrome, iOS e desktop)
-if (vid.requestFullscreen) {
-  vid.requestFullscreen();
-}
-else if (vid.webkitEnterFullscreen) {
-  // iOS Safari
-  vid.webkitEnterFullscreen();
-}
-else if (vid.msRequestFullscreen) {
-  // IE11/Edge legacy
-  vid.msRequestFullscreen();
-}
+  if (vid.requestFullscreen)          vid.requestFullscreen();
+  else if (vid.webkitEnterFullscreen) vid.webkitEnterFullscreen();
+  else if (vid.msRequestFullscreen)   vid.msRequestFullscreen();
 
-// Applica subito la classe “visible” per forzare wrapper visibile (override opacity/transform)
-wrapper.classList.add('visible-player-video-il-silenzio-della-natura-mobile');
-
-  // Play il video
-  vid.play().catch(err => {
-    console.warn("Autoplay bloccato dal browser:", err);
-  });
+  wrapper.classList.add('visible-player-video-il-silenzio-della-natura-mobile');
+  vid.play().catch(err => console.warn("Autoplay bloccato:", err));
 });
 
 // 2. Quando esci dal fullscreen (ESC, swipe, chiusura manuale)
