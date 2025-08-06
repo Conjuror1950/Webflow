@@ -107,28 +107,57 @@ video {
 const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-container-mobile');
 lightbox.addEventListener('click', e => {
   e.preventDefault();
-
-  // 1) mostra il wrapper
+// 1. Click su Lightbox per mostrare il player
+lightbox.addEventListener('click', () => {
   wrapper.style.display = 'block';
 
-  // 2) seleziona il video
+// Entra in fullscreen sul video, per compatibilità Android/Chrome
+const vid = wrapper.querySelector('video');
+if (vid.requestFullscreen) {
+  vid.requestFullscreen();
+} else if (vid.webkitRequestFullscreen) {
+  vid.webkitRequestFullscreen();
+} else if (vid.msRequestFullscreen) {
+  vid.msRequestFullscreen();
+}
+
+// Applica subito la classe “visible” per forzare wrapper visibile (override opacity/transform)
+wrapper.classList.add('visible-player-video-il-silenzio-della-natura-mobile');
+
+  // Play il video
+  vid.play().catch(err => {
+    console.warn("Autoplay bloccato dal browser:", err);
+  });
+});
+
+// 2. Quando esci dal fullscreen (ESC, swipe, chiusura manuale)
+function exitFullscreenHandler() {
+  const isFullscreen = !!(
+    document.fullscreenElement ||
+    document.webkitFullscreenElement ||
+    document.msFullscreenElement
+  );
+
+  if (!isFullscreen) {
+    wrapper.style.display = 'none';
+  }
+}
+
+// 3. Eventi per tutti i browser
+document.addEventListener('fullscreenchange', exitFullscreenHandler);
+document.addEventListener('webkitfullscreenchange', exitFullscreenHandler);
+document.addEventListener('msfullscreenchange', exitFullscreenHandler);
+
+  // 1) mostra immediatamente il wrapper
+  wrapper.style.display = 'block';
+
+  // 2) prendi il video
   const vid = wrapper.querySelector('video');
 
-  // 3) entra in fullscreen **sul video** (Android/Chrome compatibile)
-  if (vid.requestFullscreen) {
-    vid.requestFullscreen();
-  } else if (vid.webkitRequestFullscreen) {
-    vid.webkitRequestFullscreen();
-  } else if (vid.msRequestFullscreen) {
-    vid.msRequestFullscreen();
-  }
-
-  // 4) applica la classe di visibilità (per l’animazione del wrapper)
-  wrapper.classList.add('visible-player-video-il-silenzio-della-natura-mobile');
-
-  // 5) reset e play
+  // 4) parti col video da inzio
+  vid.pause();
   vid.currentTime = 0;
-  vid.play().catch(err => console.warn("Autoplay bloccato:", err));
+  vid.play();
 });
 
   // ——— Chiudi il player tornando allo stato iniziale ———
