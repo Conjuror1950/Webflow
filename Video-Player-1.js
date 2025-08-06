@@ -137,6 +137,7 @@ lightbox.addEventListener('click', e => {
 
   wrapper.classList.add('visible-player-video-il-silenzio-della-natura-mobile');
   vid.play().catch(err => console.warn("Autoplay bloccato:", err));
+ });
 });
 
 // 2. Quando esci dal fullscreen (ESC, swipe, chiusura manuale)
