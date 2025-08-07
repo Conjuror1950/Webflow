@@ -950,7 +950,7 @@ wrapper.classList.remove('visible-player-video-uno-sguardo-in-anteprima-desktop'
   dashScript.onload = () => {
     /* Video .mp4 in formato dash */
     // ora il manifest contiene più Representation (4K,1080p,720p,...)
-    const manifest = 'https://il-silenzio-della-natura-video.netlify.app/manifest.mpd';
+    const manifest = 'https://dash.akamaized.net/dash264/TestCasesUHD/2b/11/MultiRate.mpd';
     const video = document.getElementById('apple-video-player-video-uno-sguardo-in-anteprima-desktop');
     const player = dashjs.MediaPlayer().create();
     // inizializza e carica il manifest
