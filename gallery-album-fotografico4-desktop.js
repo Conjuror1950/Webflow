@@ -848,7 +848,7 @@ document.addEventListener('keydown', function(event) {
 });
 
   // 2) IMPOSTO IMMEDIATAMENTE IL MENU LINGUA
-const subsMenu  = document.querySelector('.subs-menu-player-video-uno-sguardo-in-anteprima-desktop');
+const subsMenu  = wrapper.querySelector('.subs-menu-player-video-uno-sguardo-in-anteprima-desktop');
 
 // crea le spunte e seleziona Italiano di default
 langMenu
