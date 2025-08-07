@@ -310,7 +310,7 @@ color: rgba(211, 211, 211, 0.75);
 /* i controlli restano a destra */
 .right-controls-player-video-uno-sguardo-in-anteprima-desktop {
 order: 2;           /* dopo serie-title */
-align-self: center; /* centra verticalmente i pulsanti rispetto al testo “Album Fotografici” */
+align-self: center; /* centra verticalmente i pulsanti rispetto al testo “Contenuti esclusivi” */
 display:flex;
 gap:.4rem;
 justify-content:flex-end;
@@ -1483,7 +1483,8 @@ video.addEventListener('click', () => {
  });
 
  // copia link negli appunti
- copyLinkBtn.addEventListener('click', async () => {
+ copyLinkBtn.addEventListener('click', async e => {
+  e.stopPropagation();
    try {
      await navigator.clipboard.writeText(location.href);
      copyLinkBtn.textContent = 'Link copiato ✓';
@@ -1495,7 +1496,8 @@ video.addEventListener('click', () => {
  });
 
 // email share
-emailBtn.addEventListener('click', () => {
+emailBtn.addEventListener('click', e => {
+  e.stopPropagation();
   const subject = encodeURIComponent(document.title);
   const body    = encodeURIComponent(`Guarda qui: ${location.href}`);
   window.location.href = `mailto:?subject=${subject}&body=${body}`;
