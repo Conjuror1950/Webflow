@@ -751,29 +751,6 @@ justify-content:flex-end;
 
 // Javascript (JS)
 // ——— Lightbox → apri player con animazione ———
-const wrapper = document.querySelector('.apple-video-wrapper-player-video-uno-sguardo-in-anteprima-desktop');
-const lightbox = document.getElementById('Open-Player-Video-Uno-sguardo-in-anteprima-container-desktop');
-lightbox.addEventListener('click', e => {
-  e.preventDefault();
-
-  // 1) Fade-out lightbox e altri (disattivato, elimina doppia barra per attivare)
-  // [lightbox, ...Array.from(document.body.children)
-  // .filter(el => el !== wrapper && el !== lightbox)
-  // ].forEach(el => el.classList.add('fade-out'));
-  
-  // 2) Dopo la transizione, nascondi a display (disattivato, elimina doppia barra per attivare)
-  setTimeout(() => {
-    // [lightbox, ...Array.from(document.body.children)
-    // .filter(el => el !== wrapper && el !== lightbox)
-    // ].forEach(el => el.style.display = 'none');
-
-  // 2.b) Imposta inline lo stato iniziale: fuori a destra e invisibile
-  wrapper.style.transform = 'translateX(100%)';
-  wrapper.style.opacity   = '0';
-
-  // 2.c) Forza il reflow affinché il browser riconosca i nuovi inline-styles
-  wrapper.offse// Javascript (JS)
-// ——— Lightbox → apri player con animazione ———
 const lightbox = document.getElementById('Open-Player-Video-Uno-sguardo-in-anteprima-container-desktop');
 lightbox.addEventListener('click', e => {
   e.preventDefault();
