@@ -848,7 +848,10 @@ document.addEventListener('keydown', function(event) {
 });
 
   // 2) IMPOSTO IMMEDIATAMENTE IL MENU LINGUA
+const shareMenu = wrapper.querySelector('.share-menu-player-video-uno-sguardo-in-anteprima-desktop');
 const subsMenu  = wrapper.querySelector('.subs-menu-player-video-uno-sguardo-in-anteprima-desktop');
+const langBtn   = wrapper.querySelector('.lang-btn-player-video-uno-sguardo-in-anteprima-desktop');
+const langMenu  = wrapper.querySelector('.lang-menu-player-video-uno-sguardo-in-anteprima-desktop');
 
 // crea le spunte e seleziona Italiano di default
 langMenu
@@ -1150,8 +1153,8 @@ progress.addEventListener('mouseout', () => {
   // Share: apri menu con opzione “Copia link”
   const shareMenu = wrapper.querySelector('.share-menu-player-video-uno-sguardo-in-anteprima-desktop');
   // Language switcher
-  const langBtn  = wrapper.querySelector('.lang-btn-player-video-uno-sguardo-in-anteprima-desktop');
-  const langMenu = wrapper.querySelector('.lang-menu-player-video-uno-sguardo-in-anteprima-desktop');
+  const langBtn  = document.querySelector('.lang-btn-player-video-uno-sguardo-in-anteprima-desktop');
+  const langMenu = document.querySelector('.lang-menu-player-video-uno-sguardo-in-anteprima-desktop');
   
     // crea gli span .check e seleziona Italiano
 langMenu.querySelectorAll('.lang-item-player-video-uno-sguardo-in-anteprima-desktop').forEach(item => {
