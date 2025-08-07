@@ -711,8 +711,8 @@ justify-content:flex-end;
       </div>
       <div class="bottom-bar-player-video-uno-sguardo-in-anteprima-desktop">
         <div class="bottom-top-row-player-video-uno-sguardo-in-anteprima-desktop">
-          <div class="ep-title-player-video-uno-sguardo-in-anteprima-desktop">E1 · Uno sguardo in anteprima</div>
-          <div class="serie-title-player-video-uno-sguardo-in-anteprima-desktop">Album Fotografici</div>
+          <div class="ep-title-player-video-uno-sguardo-in-anteprima-desktop">Uno sguardo in anteprima</div>
+          <div class="serie-title-player-video-uno-sguardo-in-anteprima-desktop">Contenuti esclusivi</div>
           <div class="right-controls-player-video-uno-sguardo-in-anteprima-desktop">
             <button class="subs-btn-player-video-uno-sguardo-in-anteprima-desktop"><img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681c881581975b4efc170207_captions.bubble.svg" alt="Sottotitoli" style="width:20px;height:20px;"></button>
             <div class="subs-menu-player-video-uno-sguardo-in-anteprima-desktop" style="display:none;">
