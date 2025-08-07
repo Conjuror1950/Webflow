@@ -1482,22 +1482,23 @@ video.addEventListener('click', () => {
    shareMenu.style.display = shareMenu.style.display === 'flex' ? 'none' : 'flex';
  });
 
- // copia link negli appunti
- copyLinkBtn.addEventListener('click', async () => {
-   try {
-     await navigator.clipboard.writeText(location.href);
-     copyLinkBtn.textContent = 'Link copiato ✓';
-   } catch {
-     alert('Impossibile copiare il link');
-   }
-   // chiudi dopo un attimo
-   setTimeout(() => shareMenu.style.display = 'none', 1000);
- });
+// — GESTIONE PULSANTE "COPIA LINK" —
+const copyLinkBtn = wrapper.querySelector('.copy-link');
+copyLinkBtn.addEventListener('click', () => {
+  const url = window.location.href;
+  navigator.clipboard.writeText(url).then(() => {
+    copyLinkBtn.querySelector('.item-text').textContent = 'Link copiato!';
+    setTimeout(() => {
+      copyLinkBtn.querySelector('.item-text').textContent = 'Copia Link';
+    }, 2000);
+  });
+});
 
-// email share
-emailBtn.addEventListener('click', () => {
-  const subject = encodeURIComponent(document.title);
-  const body    = encodeURIComponent(`Guarda qui: ${location.href}`);
+// — GESTIONE PULSANTE "EMAIL" —
+const emailShareBtn = wrapper.querySelector('.email-share');
+emailShareBtn.addEventListener('click', () => {
+  const subject = encodeURIComponent("Guarda questo video");
+  const body = encodeURIComponent("Ecco il link al video: " + window.location.href);
   window.location.href = `mailto:?subject=${subject}&body=${body}`;
 });
  
