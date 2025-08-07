@@ -772,6 +772,28 @@ lightbox.addEventListener('click', e => {
   wrapper.style.opacity   = '0';
 
   // 2.c) Forza il reflow affinché il browser riconosca i nuovi inline-styles
+  wrapper.offse// Javascript (JS)
+// ——— Lightbox → apri player con animazione ———
+const lightbox = document.getElementById('Open-Player-Video-Uno-sguardo-in-anteprima-container-desktop');
+lightbox.addEventListener('click', e => {
+  e.preventDefault();
+
+  // 1) Fade-out lightbox e altri (disattivato, elimina doppia barra per attivare)
+  // [lightbox, ...Array.from(document.body.children)
+  // .filter(el => el !== wrapper && el !== lightbox)
+  // ].forEach(el => el.classList.add('fade-out'));
+  
+  // 2) Dopo la transizione, nascondi a display (disattivato, elimina doppia barra per attivare)
+  setTimeout(() => {
+    // [lightbox, ...Array.from(document.body.children)
+    // .filter(el => el !== wrapper && el !== lightbox)
+    // ].forEach(el => el.style.display = 'none');
+
+  // 2.b) Imposta inline lo stato iniziale: fuori a destra e invisibile
+  wrapper.style.transform = 'translateX(100%)';
+  wrapper.style.opacity   = '0';
+
+  // 2.c) Forza il reflow affinché il browser riconosca i nuovi inline-styles
   wrapper.offsetHeight;
       
   // Resetta le animazioni dei warning
@@ -849,10 +871,10 @@ document.addEventListener('keydown', function(event) {
 });
 
   // 2) IMPOSTO IMMEDIATAMENTE IL MENU LINGUA
-const shareMenu = wrapper.querySelector('.share-menu-player-video-uno-sguardo-in-anteprima-desktop');
-const subsMenu  = wrapper.querySelector('.subs-menu-player-video-uno-sguardo-in-anteprima-desktop');
-const langBtn   = wrapper.querySelector('.lang-btn-player-video-uno-sguardo-in-anteprima-desktop');
-const langMenu  = wrapper.querySelector('.lang-menu-player-video-uno-sguardo-in-anteprima-desktop');
+const shareMenu = document.querySelector('.share-menu-player-video-uno-sguardo-in-anteprima-desktop');
+const subsMenu  = document.querySelector('.subs-menu-player-video-uno-sguardo-in-anteprima-desktop');
+const langBtn   = document.querySelector('.lang-btn-player-video-uno-sguardo-in-anteprima-desktop');
+const langMenu  = document.querySelector('.lang-menu-player-video-uno-sguardo-in-anteprima-desktop');
 
 // crea le spunte e seleziona Italiano di default
 langMenu
@@ -1120,6 +1142,7 @@ progress.addEventListener('mousemove', e => {
   
 // — PREVIEW VIDEO — (posizione clamped entro il wrapper)
 const halfW = previewContainer.offsetWidth / 2;
+const wrapper = document.querySelector('.apple-video-wrapper-player-video-uno-sguardo-in-anteprima-desktop');
 const wrapRect = wrapper.getBoundingClientRect();
 const sideMargin = 24;  // <— qui decidi quanti px vuoi di spazio
 
@@ -1149,12 +1172,12 @@ progress.addEventListener('mouseout', () => {
   // indica se lo stato muto è stato attivato cliccando l’icona
   let mutedByClick = false;
   const fsBtn = document.querySelector('.fullscreen-btn-player-video-uno-sguardo-in-anteprima-desktop');
-  const shareBtn = wrapper.querySelector('.share-btn-player-video-uno-sguardo-in-anteprima-desktop');
+  const shareBtn = document.querySelector('.share-btn-player-video-uno-sguardo-in-anteprima-desktop');
   // Share: apri menu con opzione “Copia link”
-  const shareMenu = wrapper.querySelector('.share-menu-player-video-uno-sguardo-in-anteprima-desktop');
+  const shareMenu = document.querySelector('.share-menu-player-video-uno-sguardo-in-anteprima-desktop');
   // Language switcher
-  const langBtn  = wrapper.querySelector('.lang-btn-player-video-uno-sguardo-in-anteprima-desktop');
-  const langMenu = wrapper.querySelector('.lang-menu-player-video-uno-sguardo-in-anteprima-desktop');
+  const langBtn  = document.querySelector('.lang-btn-player-video-uno-sguardo-in-anteprima-desktop');
+  const langMenu = document.querySelector('.lang-menu-player-video-uno-sguardo-in-anteprima-desktop');
   
     // crea gli span .check e seleziona Italiano
 langMenu.querySelectorAll('.lang-item-player-video-uno-sguardo-in-anteprima-desktop').forEach(item => {
