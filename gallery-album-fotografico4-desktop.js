@@ -848,13 +848,10 @@ document.addEventListener('keydown', function(event) {
 });
 
   // 2) IMPOSTO IMMEDIATAMENTE IL MENU LINGUA
-const shareMenu   = wrapper.querySelector('.share-menu-player-video-uno-sguardo-in-anteprima-desktop');
-const shareBtn    = wrapper.querySelector('.share-btn-player-video-uno-sguardo-in-anteprima-desktop');
-const copyLinkBtn = wrapper.querySelector('.copy-link-player-video-uno-sguardo-in-anteprima-desktop');
-const emailBtn    = wrapper.querySelector('.email-share-player-video-uno-sguardo-in-anteprima-desktop');
-const subsMenu    = wrapper.querySelector('.subs-menu-player-video-uno-sguardo-in-anteprima-desktop');
-const langBtn     = wrapper.querySelector('.lang-btn-player-video-uno-sguardo-in-anteprima-desktop');
-const langMenu    = wrapper.querySelector('.lang-menu-player-video-uno-sguardo-in-anteprima-desktop');
+const shareMenu = document.querySelector('.share-menu-player-video-uno-sguardo-in-anteprima-desktop');
+const subsMenu  = document.querySelector('.subs-menu-player-video-uno-sguardo-in-anteprima-desktop');
+const langBtn   = document.querySelector('.lang-btn-player-video-uno-sguardo-in-anteprima-desktop');
+const langMenu  = document.querySelector('.lang-menu-player-video-uno-sguardo-in-anteprima-desktop');
 
 // crea le spunte e seleziona Italiano di default
 langMenu
@@ -1152,6 +1149,9 @@ progress.addEventListener('mouseout', () => {
   // indica se lo stato muto è stato attivato cliccando l’icona
   let mutedByClick = false;
   const fsBtn = document.querySelector('.fullscreen-btn-player-video-uno-sguardo-in-anteprima-desktop');
+  const shareBtn = document.querySelector('.share-btn-player-video-uno-sguardo-in-anteprima-desktop');
+  // Share: apri menu con opzione “Copia link”
+  const shareMenu = document.querySelector('.share-menu-player-video-uno-sguardo-in-anteprima-desktop');
   // Language switcher
   const langBtn  = document.querySelector('.lang-btn-player-video-uno-sguardo-in-anteprima-desktop');
   const langMenu = document.querySelector('.lang-menu-player-video-uno-sguardo-in-anteprima-desktop');
@@ -1172,7 +1172,8 @@ langMenu.querySelectorAll('.lang-item-player-video-uno-sguardo-in-anteprima-desk
     document.documentElement.lang = 'it';
   }
 });
-const subsBtn  = wrapper.querySelector('.subs-btn-player-video-uno-sguardo-in-anteprima-desktop');
+const subsBtn  = document.querySelector('.subs-btn-player-video-uno-sguardo-in-anteprima-desktop');
+const subsMenu = document.querySelector('.subs-menu-player-video-uno-sguardo-in-anteprima-desktop');
 const subsItems = subsMenu.querySelectorAll('.subs-item-player-video-uno-sguardo-in-anteprima-desktop');
 
 // apri/chiudi menu sottotitoli
@@ -1250,6 +1251,8 @@ document.addEventListener('click', () => {
   subsMenu.style.display = 'none';
 });
 
+  const copyLinkBtn = document.querySelector('.copy-link-player-video-uno-sguardo-in-anteprima-desktop');
+  const emailBtn    = document.querySelector('.email-share-player-video-uno-sguardo-in-anteprima-desktop');
   const controls = document.querySelector('.controls-player-video-uno-sguardo-in-anteprima-desktop');
   const playPauseBtn = document.getElementById("play-pause-player-video-uno-sguardo-in-anteprima-desktop");
   let hideTimeout;
