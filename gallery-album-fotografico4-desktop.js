@@ -1,8 +1,8 @@
-// Player-Video-Il-silenzio-della-natura-desktop.js
+// Player-Video-Uno-sguardo-in-anteprima-desktop.js
 (function() {
   // 1) INIETTA IL CSS
   const css = `
-.apple-video-wrapper-player-video-il-silenzio-della-natura-desktop {
+.apple-video-wrapper-player-video-uno-sguardo-in-anteprima-desktop {
   visibility: hidden;          /* non cattura click quando nascosto */
   position: fixed;       /* fissa il wrapper al viewport */
   top: 0;
@@ -18,7 +18,7 @@
 }
 
 /* Player visibile */
-.visible-player-video-il-silenzio-della-natura-desktop {
+.visible-player-video-uno-sguardo-in-anteprima-desktop {
 visibility: visible;         /* rende nuovamente interactable */
 opacity: 1 !important;           /* entra in fade-in */
 transform: translateX(0) !important;
@@ -26,7 +26,7 @@ z-index: 9999; /* se serve “sovrapporre” tutti gli altri elementi */
 }
 
 /* classe temporanea per la chiusura: sposta fuori a destra */
-.closing-player-video-il-silenzio-della-natura-desktop {
+.closing-player-video-uno-sguardo-in-anteprima-desktop {
   visibility: visible !important;
   transform: translateX(100%) !important;
   opacity: 0 !important;
@@ -35,7 +35,7 @@ z-index: 9999; /* se serve “sovrapporre” tutti gli altri elementi */
 
 /* Elementi da nascondere: fade-out (disattivato)*/
 /*
-body > *:not(.apple-video-wrapper-player-video-il-silenzio-della-natura-desktop) {
+body > *:not(.apple-video-wrapper-player-video-uno-sguardo-in-anteprima-desktop) {
   transition: opacity 0.35s ease-in-out;
 }
 */
@@ -63,8 +63,8 @@ video {
 }
 
 /* GLOBAL: sia standard che WebKit fullscreen */
-.apple-video-wrapper-player-video-il-silenzio-della-natura-desktop:fullscreen video,
-.apple-video-wrapper-player-video-il-silenzio-della-natura-desktop:-webkit-full-screen video {
+.apple-video-wrapper-player-video-uno-sguardo-in-anteprima-desktop:fullscreen video,
+.apple-video-wrapper-player-video-uno-sguardo-in-anteprima-desktop:-webkit-full-screen video {
   width: 100%    !important;
   height: 100%   !important;
   object-fit: contain !important;  /* mantieni l’intero frame con bande nere */
@@ -72,14 +72,14 @@ video {
 }
 
 /* --- override per la preview quando il wrapper è in fullscreen --- */
-.apple-video-wrapper-player-video-il-silenzio-della-natura-desktop:fullscreen .preview-container-player-video-il-silenzio-della-natura-desktop video,
-.apple-video-wrapper-player-video-il-silenzio-della-natura-desktop:-webkit-full-screen .preview-container-player-video-il-silenzio-della-natura-desktop video {
+.apple-video-wrapper-player-video-uno-sguardo-in-anteprima-desktop:fullscreen .preview-container-player-video-uno-sguardo-in-anteprima-desktop video,
+.apple-video-wrapper-player-video-uno-sguardo-in-anteprima-desktop:-webkit-full-screen .preview-container-player-video-uno-sguardo-in-anteprima-desktop video {
   width: 100% !important;       /* piena larghezza del container di preview */
   height: 100% !important;      /* piena altezza del container di preview */
   object-fit: cover !important;/* mantieni l’aspetto, niente crop */
 }
 
-.preview-container-player-video-il-silenzio-della-natura-desktop {
+.preview-container-player-video-uno-sguardo-in-anteprima-desktop {
   position: absolute;
   bottom: 65px;               /* sopra la barra dei controlli */
   width: 402px;               /* dimensione anteprima */
@@ -90,14 +90,14 @@ video {
   pointer-events: none;       /* non cattura il mouse */
   border-radius: 10px;
 }
-#preview-video-player-video-il-silenzio-della-natura-desktop {
+#preview-video-player-video-uno-sguardo-in-anteprima-desktop {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
 /* 1) il pallino bianco che segue il mouse */
-.scrub-thumb-player-video-il-silenzio-della-natura-desktop {
+.scrub-thumb-player-video-uno-sguardo-in-anteprima-desktop {
   position: absolute;
   margin-top: -13px;               /* allinea verticalmente al centro della track */
   width: 11px;
@@ -109,7 +109,7 @@ video {
   z-index: 2;
 }
 
-.preview-time-player-video-il-silenzio-della-natura-desktop {
+.preview-time-player-video-uno-sguardo-in-anteprima-desktop {
   position: absolute;
   bottom: -1px;
   width: 100%;
@@ -121,7 +121,7 @@ video {
   pointer-events: none;
 }
 
-.center-controls-player-video-il-silenzio-della-natura-desktop {
+.center-controls-player-video-uno-sguardo-in-anteprima-desktop {
   position: absolute !important;
   top: 50%           !important;
   left: 50%          !important;
@@ -131,7 +131,7 @@ video {
   align-items: center    !important;
   gap: 2rem          !important;
 }
-.controls-player-video-il-silenzio-della-natura-desktop {
+.controls-player-video-uno-sguardo-in-anteprima-desktop {
   position:absolute;
   inset:0;
   display:flex;
@@ -142,21 +142,21 @@ video {
   pointer-events:none;
   transition:opacity .5s;
 }
-.controls-player-video-il-silenzio-della-natura-desktop.hide {
+.controls-player-video-uno-sguardo-in-anteprima-desktop.hide {
 opacity:0;
 }
-.controls-player-video-il-silenzio-della-natura-desktop button, .controls-player-video-il-silenzio-della-natura-desktop input, .controls-player-video-il-silenzio-della-natura-desktop select {
+.controls-player-video-uno-sguardo-in-anteprima-desktop button, .controls-player-video-uno-sguardo-in-anteprima-desktop input, .controls-player-video-uno-sguardo-in-anteprima-desktop select {
   pointer-events:all;
   font-family:inherit;
 }
 /* top e center unchanged */
-.top-bar-player-video-il-silenzio-della-natura-desktop {
+.top-bar-player-video-uno-sguardo-in-anteprima-desktop {
 display:flex;
 justify-content:space-between;
 }
 /* rendi il volume‐slider simile alla progress‐bar */
 /* ---- sostituisci interamente questa regola ---- */
-.volume-player-video-il-silenzio-della-natura-desktop {
+.volume-player-video-uno-sguardo-in-anteprima-desktop {
   -webkit-appearance: none;
   appearance: none;
   width: 100px;
@@ -167,33 +167,33 @@ justify-content:space-between;
 }
 
 /* track “riempita” e “vuota” nei diversi engine */
-.volume-player-video-il-silenzio-della-natura-desktop::-webkit-slider-runnable-track {
+.volume-player-video-uno-sguardo-in-anteprima-desktop::-webkit-slider-runnable-track {
   height: 4px;
   background: rgba(255,255,255,0.1);
   border-radius: 2px;
 }
-.volume-player-video-il-silenzio-della-natura-desktop::-moz-range-track {
+.volume-player-video-uno-sguardo-in-anteprima-desktop::-moz-range-track {
   height: 4px;
   background: rgba(255,255,255,0.1);
   border-radius: 2px;
 }
-.volume-player-video-il-silenzio-della-natura-desktop::-ms-track {
+.volume-player-video-uno-sguardo-in-anteprima-desktop::-ms-track {
   height: 4px;
   background: transparent;
   border-color: transparent;
   color: transparent;
 }
-.volume-player-video-il-silenzio-della-natura-desktop::-ms-fill-lower {
+.volume-player-video-uno-sguardo-in-anteprima-desktop::-ms-fill-lower {
   background: white;   /* parte “riempita” MS */
   border-radius: 2px;
 }
-.volume-player-video-il-silenzio-della-natura-desktop::-ms-fill-upper {
+.volume-player-video-uno-sguardo-in-anteprima-desktop::-ms-fill-upper {
   background: rgba(255,255,255,0.1);
   border-radius: 2px;
 }
 
 /* thumb tondo bianco */
-.volume-player-video-il-silenzio-della-natura-desktop::-webkit-slider-thumb {
+.volume-player-video-uno-sguardo-in-anteprima-desktop::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 11px;
   height: 11px;
@@ -202,7 +202,7 @@ justify-content:space-between;
   margin-top: -3px;    /* centra il thumb */
   cursor: pointer;
 }
-.volume-player-video-il-silenzio-della-natura-desktop::-moz-range-thumb {
+.volume-player-video-uno-sguardo-in-anteprima-desktop::-moz-range-thumb {
   width: 12px;
   height: 12px;
   border-radius: 50%;
@@ -210,27 +210,27 @@ justify-content:space-between;
   cursor: pointer;
 }
 
-.volume-control-player-video-il-silenzio-della-natura-desktop {
+.volume-control-player-video-uno-sguardo-in-anteprima-desktop {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
 }
 
-#volume-icon-player-video-il-silenzio-della-natura-desktop {
+#volume-icon-player-video-uno-sguardo-in-anteprima-desktop {
   width: 22px;
   height: 22px;
   margin-top: -10px;
   cursor: pointer;
   pointer-events: all;
 }
-.center-controls-player-video-il-silenzio-della-natura-desktop button {
+.center-controls-player-video-uno-sguardo-in-anteprima-desktop button {
   background:none;
   border:none;
   color:white;
   font-size:1.5rem;
 }
 /* aggiungi subito dopo .center-controls button { … } */
-.play-pause-player-video-il-silenzio-della-natura-desktop {
+.play-pause-player-video-uno-sguardo-in-anteprima-desktop {
   position: relative;      /* contenitore per le icone */
   width: 50px;             /* fissa la larghezza */
   height: 50px;            /* e l’altezza */
@@ -243,8 +243,8 @@ justify-content:space-between;
   margin: 0 0.8rem;;   /* ← opzionale: margine orizzontale attorno al play */
 }
 
-.play-pause-player-video-il-silenzio-della-natura-desktop .play-icon,
-.play-pause-player-video-il-silenzio-della-natura-desktop .pause-icon {
+.play-pause-player-video-uno-sguardo-in-anteprima-desktop .play-icon,
+.play-pause-player-video-uno-sguardo-in-anteprima-desktop .pause-icon {
   position: relative;
   top: 0;
   left: 0;
@@ -252,24 +252,24 @@ justify-content:space-between;
   height: 100%;
 }
 
-.skip-value-player-video-il-silenzio-della-natura-desktop {
+.skip-value-player-video-uno-sguardo-in-anteprima-desktop {
 font-size:.75rem;
 margin:0 .2rem; }
 
 /* ← Mouse hover on center controls */
 /* aggiungi da qui */
-.center-controls-player-video-il-silenzio-della-natura-desktop button img {
+.center-controls-player-video-uno-sguardo-in-anteprima-desktop button img {
   transition: filter 0.3s ease;
 }
 
 /* su hover rendi l’icona bianca e con un leggero bagliore */
-.center-controls-player-video-il-silenzio-della-natura-desktop .rewind-player-video-il-silenzio-della-natura-desktop:hover img,
-.center-controls-player-video-il-silenzio-della-natura-desktop .forward-player-video-il-silenzio-della-natura-desktop:hover img {
+.center-controls-player-video-uno-sguardo-in-anteprima-desktop .rewind-player-video-uno-sguardo-in-anteprima-desktop:hover img,
+.center-controls-player-video-uno-sguardo-in-anteprima-desktop .forward-player-video-uno-sguardo-in-anteprima-desktop:hover img {
   filter: brightness(1) drop-shadow(0 0 0.8px white);
 }
 
 /* bottom-bar: colonna, con riga superiore per titolo + controlli */
-.bottom-bar-player-video-il-silenzio-della-natura-desktop {
+.bottom-bar-player-video-uno-sguardo-in-anteprima-desktop {
   display:flex;
   flex-direction:column;
   gap:.5rem;
@@ -277,7 +277,7 @@ margin:0 .2rem; }
   color:white;
 }
 /* nuova riga superiore: titolo e right-controls affiancati */
-.bottom-top-row-player-video-il-silenzio-della-natura-desktop {
+.bottom-top-row-player-video-uno-sguardo-in-anteprima-desktop {
   position: relative;
   top: 10px;   /* metti qui quanti pixel vuoi spostarlo verso l’alto */
   display: flex;
@@ -286,7 +286,7 @@ margin:0 .2rem; }
   align-items: flex-start;   /* ← allinea in alto i figli */
 }
 /* titolo allineato a sinistra */
-.serie-title-player-video-il-silenzio-della-natura-desktop {
+.serie-title-player-video-uno-sguardo-in-anteprima-desktop {
   order: 1;           /* ← posa la serie dopo l’episodio */
   flex-basis: auto;   /* ← occupa tutta la riga disponibile */
   margin-right: auto; /* spinge i controlli verso destra */
@@ -295,7 +295,7 @@ margin:0 .2rem; }
   font-size:24px;
   color: white;
 }
-.ep-title-player-video-il-silenzio-della-natura-desktop {
+.ep-title-player-video-uno-sguardo-in-anteprima-desktop {
 order: 0;           /* prima riga */
 flex-basis: 100%;   /* occupa tutta la larghezza: “S1, E1…” su riga a sé */
 font-weight:400;
@@ -303,31 +303,31 @@ font-size:15px;
 margin-bottom: -6px;
 color: rgba(211, 211, 211, 0.90);
 }
-.time-player-video-il-silenzio-della-natura-desktop, .remaining-time-player-video-il-silenzio-della-natura-desktop {
+.time-player-video-uno-sguardo-in-anteprima-desktop, .remaining-time-player-video-uno-sguardo-in-anteprima-desktop {
 font-size:11px;
 color: rgba(211, 211, 211, 0.75);
 }
 /* i controlli restano a destra */
-.right-controls-player-video-il-silenzio-della-natura-desktop {
+.right-controls-player-video-uno-sguardo-in-anteprima-desktop {
 order: 2;           /* dopo serie-title */
-align-self: center; /* centra verticalmente i pulsanti rispetto al testo “Produzioni Cinematografiche” */
+align-self: center; /* centra verticalmente i pulsanti rispetto al testo “Album Fotografici” */
 display:flex;
 gap:.4rem;
 justify-content:flex-end;
 }
-.subs-select-player-video-il-silenzio-della-natura-desktop, .audio-select-player-video-il-silenzio-della-natura-desktop {
+.subs-select-player-video-uno-sguardo-in-anteprima-desktop, .audio-select-player-video-uno-sguardo-in-anteprima-desktop {
   background:rgba(255,255,255,.1);
   color:white;
   border:none;
   padding:.2rem;
 }
-.fullscreen-btn-player-video-il-silenzio-della-natura-desktop, .share-btn-player-video-il-silenzio-della-natura-desktop {
+.fullscreen-btn-player-video-uno-sguardo-in-anteprima-desktop, .share-btn-player-video-uno-sguardo-in-anteprima-desktop {
   background:none;
   border:none;
   color:white;
   font-size:1.2rem;
 }
-.progress-player-video-il-silenzio-della-natura-desktop {
+.progress-player-video-uno-sguardo-in-anteprima-desktop {
   -webkit-appearance: none;
   appearance: none;
   width: 100%;
@@ -346,24 +346,24 @@ justify-content:flex-end;
   background-size: 0% 100%, 0% 100%;
 }
 /* Firefox: riempimento nativo */
-.progress-player-video-il-silenzio-della-natura-desktop::-moz-range-progress {
+.progress-player-video-uno-sguardo-in-anteprima-desktop::-moz-range-progress {
   background: white;
   height: 5px;
   border-radius: 2px;
 }
 
 /* Track (la linea su cui scorre il thumb) */
-.progress-player-video-il-silenzio-della-natura-desktop::-webkit-slider-runnable-track {
+.progress-player-video-uno-sguardo-in-anteprima-desktop::-webkit-slider-runnable-track {
   height: 5px;
   background: rgba(255,255,255,0.1);
   border-radius: 2px;
 }
-.progress-player-video-il-silenzio-della-natura-desktop::-moz-range-track {
+.progress-player-video-uno-sguardo-in-anteprima-desktop::-moz-range-track {
   height: 5px;
   background: rgba(255,255,255,0.1);
   border-radius: 2px;
 }
-.progress-player-video-il-silenzio-della-natura-desktop::-ms-track {
+.progress-player-video-uno-sguardo-in-anteprima-desktop::-ms-track {
   height: 5px;
   background: rgba(255,255,255,0.1);
   border-radius: 2px;
@@ -372,7 +372,7 @@ justify-content:flex-end;
 }
 
 /* Thumb (il cerchio che si muove) */
-.progress-player-video-il-silenzio-della-natura-desktop::-webkit-slider-thumb {
+.progress-player-video-uno-sguardo-in-anteprima-desktop::-webkit-slider-thumb {
   width: 11px;
   height: 11px;
   margin-top: -3px; /* centra il thumb sulla track */
@@ -383,10 +383,10 @@ justify-content:flex-end;
   -webkit-appearance: none;
 }
  /* creare contesto di posizionamento per lo scrub-thumb */
- .progress-wrapper-player-video-il-silenzio-della-natura-desktop {
+ .progress-wrapper-player-video-uno-sguardo-in-anteprima-desktop {
    position: relative;
  }
-.progress-player-video-il-silenzio-della-natura-desktop::-moz-range-thumb {
+.progress-player-video-uno-sguardo-in-anteprima-desktop::-moz-range-thumb {
   width: 12px;
   height: 12px;
   background: white;
@@ -394,7 +394,7 @@ justify-content:flex-end;
   border-radius: 50%;
   cursor: pointer;
 }
-.progress-player-video-il-silenzio-della-natura-desktop::-ms-thumb {
+.progress-player-video-uno-sguardo-in-anteprima-desktop::-ms-thumb {
   width: 12px;
   height: 12px;
   background: white;
@@ -404,30 +404,30 @@ justify-content:flex-end;
 }
 
 /* Rimuovi lo stile di default in IE */
-.progress-player-video-il-silenzio-della-natura-desktop::-ms-fill-lower {
+.progress-player-video-uno-sguardo-in-anteprima-desktop::-ms-fill-lower {
   background: rgba(255,255,255,0.1);
 }
-.progress-player-video-il-silenzio-della-natura-desktop::-ms-fill-upper {
+.progress-player-video-uno-sguardo-in-anteprima-desktop::-ms-fill-upper {
   background: rgba(255,255,255,0.1);
 }
-.extras-player-video-il-silenzio-della-natura-desktop {
+.extras-player-video-uno-sguardo-in-anteprima-desktop {
   font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif !important;
   display:flex;
   justify-content:space-between;
   font-size:.9rem;
   margin-top: -6px;
 }
-.close-btn-player-video-il-silenzio-della-natura-desktop {
+.close-btn-player-video-uno-sguardo-in-anteprima-desktop {
   background:none;
   margin-top: 0px;
 }
 /* quando aggiungiamo .hide-cursor sulla wrapper, il cursore scompare */
-.apple-video-wrapper-player-video-il-silenzio-della-natura-desktop.hide-cursor {
+.apple-video-wrapper-player-video-uno-sguardo-in-anteprima-desktop.hide-cursor {
   cursor: none;
 }
 
 /* contenitore leggermente grigio */
-.share-menu-player-video-il-silenzio-della-natura-desktop {
+.share-menu-player-video-uno-sguardo-in-anteprima-desktop {
   position: absolute;
   right: 42px;
   top: auto !important;
@@ -443,26 +443,26 @@ justify-content:flex-end;
   box-shadow: 0 2px 6px rgba(0,0,0,0.2);
 }
 
-.lang-btn-player-video-il-silenzio-della-natura-desktop {
+.lang-btn-player-video-uno-sguardo-in-anteprima-desktop {
   background: none;
   border: none;
   padding: 5px;
   cursor: pointer;
 }
-.lang-btn-player-video-il-silenzio-della-natura-desktop {
+.lang-btn-player-video-uno-sguardo-in-anteprima-desktop {
   pointer-events: none;
   transition: filter 0.3s ease;
 }
-.lang-btn-player-video-il-silenzio-della-natura-desktop:hover {
+.lang-btn-player-video-uno-sguardo-in-anteprima-desktop:hover {
   filter: brightness(1) drop-shadow(0 0 0.5px white);
 }
 
-.fullscreen-btn-player-video-il-silenzio-della-natura-desktop:hover {
+.fullscreen-btn-player-video-uno-sguardo-in-anteprima-desktop:hover {
   filter: brightness(1) drop-shadow(0 0 0.5px white);
 }
 
 /* menu a comparsa sotto il bottone */
-.lang-menu-player-video-il-silenzio-della-natura-desktop {
+.lang-menu-player-video-uno-sguardo-in-anteprima-desktop {
   position: absolute;
   right: 80px;
   width: 180px;
@@ -474,7 +474,7 @@ justify-content:flex-end;
   overflow: hidden;
   z-index: 20;
 }
-.lang-item-player-video-il-silenzio-della-natura-desktop {
+.lang-item-player-video-uno-sguardo-in-anteprima-desktop {
   background: transparent;
   border: none;
   padding: 0.1rem 0.4rem;
@@ -489,15 +489,15 @@ justify-content:flex-end;
   position: relative;
 }
 
-.lang-item-player-video-il-silenzio-della-natura-desktop .check {
+.lang-item-player-video-uno-sguardo-in-anteprima-desktop .check {
   display: none;
   margin-left: auto;
 }
-.lang-item-player-video-il-silenzio-della-natura-desktop.selected .check {
+.lang-item-player-video-uno-sguardo-in-anteprima-desktop.selected .check {
   display: inline;
 }
 
-.title-lang-item-player-video-il-silenzio-della-natura-desktop {
+.title-lang-item-player-video-uno-sguardo-in-anteprima-desktop {
   background: transparent;
   border: none;
   padding-top: 0.2rem;   /* mantieni un po’ di spazio sopra */
@@ -508,15 +508,15 @@ justify-content:flex-end;
   font-weight: 600;
   color: black;
 }
-.lang-item-player-video-il-silenzio-della-natura-desktop:not(:last-child) {
+.lang-item-player-video-uno-sguardo-in-anteprima-desktop:not(:last-child) {
   border-bottom: 1px solid rgba(0,0,0,0.1);
 }
-.lang-item-player-video-il-silenzio-della-natura-desktop:hover {
+.lang-item-player-video-uno-sguardo-in-anteprima-desktop:hover {
   background: rgba(0, 122, 255, 0.80);
   color:white;
 }
 
-.share-item-player-video-il-silenzio-della-natura-desktop {
+.share-item-player-video-uno-sguardo-in-anteprima-desktop {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -531,31 +531,31 @@ justify-content:flex-end;
 }
 
 /* separatore sotto ogni voce tranne l’ultima */
-.share-item-player-video-il-silenzio-della-natura-desktop:not(:last-child) {
+.share-item-player-video-uno-sguardo-in-anteprima-desktop:not(:last-child) {
   border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
 /* hover chiaro */
-.share-item-player-video-il-silenzio-della-natura-desktop:hover {
+.share-item-player-video-uno-sguardo-in-anteprima-desktop:hover {
   background: rgba(211, 211, 211, 0.50);
   width: 100%;
 }
 
 /* --- sottotitoli dropdown --- */
-.subs-btn-player-video-il-silenzio-della-natura-desktop {
+.subs-btn-player-video-uno-sguardo-in-anteprima-desktop {
   background: none;
   border: none;
   padding: 6px;
   cursor: pointer;
 }
-.subs-btn-player-video-il-silenzio-della-natura-desktop img {
+.subs-btn-player-video-uno-sguardo-in-anteprima-desktop img {
   pointer-events: none;
   transition: filter 0.3s ease;
 }
-.subs-btn-player-video-il-silenzio-della-natura-desktop:hover img {
+.subs-btn-player-video-uno-sguardo-in-anteprima-desktop:hover img {
   filter: brightness(1) drop-shadow(0 0 0.5px white);
 }
-.subs-menu-player-video-il-silenzio-della-natura-desktop {
+.subs-menu-player-video-uno-sguardo-in-anteprima-desktop {
   position: absolute;
   right: 118px;    /* allinea rispetto al bottone; regola se serve */
   bottom: 70%;
@@ -568,7 +568,7 @@ justify-content:flex-end;
   width: 180px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.2);
 }
-.title-subs-item-player-video-il-silenzio-della-natura-desktop {
+.title-subs-item-player-video-uno-sguardo-in-anteprima-desktop {
   background: transparent;
   border: none;
   padding-top:    0.2rem;   /* mantieni un po’ di spazio sopra */
@@ -583,7 +583,7 @@ justify-content:flex-end;
   align-items: center;
 }
 
-.subs-item-player-video-il-silenzio-della-natura-desktop {
+.subs-item-player-video-uno-sguardo-in-anteprima-desktop {
   background: transparent;
   border: none;
   padding: 0.1rem 0.4rem;
@@ -596,12 +596,12 @@ justify-content:flex-end;
   justify-content: space-between;
   align-items: center;
 }
-.subs-item-player-video-il-silenzio-della-natura-desktop:not(:last-child) { border-bottom: 1px solid rgba(0,0,0,0.1); }
-.subs-item-player-video-il-silenzio-della-natura-desktop:hover { background: rgba(0,122,255,0.8); color: white; }
-.subs-item-player-video-il-silenzio-della-natura-desktop .check { display: none; margin-left: auto; }
-.subs-item-player-video-il-silenzio-della-natura-desktop.selected .check { display: inline; }
+.subs-item-player-video-uno-sguardo-in-anteprima-desktop:not(:last-child) { border-bottom: 1px solid rgba(0,0,0,0.1); }
+.subs-item-player-video-uno-sguardo-in-anteprima-desktop:hover { background: rgba(0,122,255,0.8); color: white; }
+.subs-item-player-video-uno-sguardo-in-anteprima-desktop .check { display: none; margin-left: auto; }
+.subs-item-player-video-uno-sguardo-in-anteprima-desktop.selected .check { display: inline; }
 
-.subtitle-container-player-video-il-silenzio-della-natura-desktop {
+.subtitle-container-player-video-uno-sguardo-in-anteprima-desktop {
   position: absolute;
   bottom: 13%;
   left: 50%;
@@ -616,12 +616,12 @@ justify-content:flex-end;
   transition: opacity 0.4s ease; /* transizione fluida */
   pointer-events: none;
 }
-.subtitle-container-player-video-il-silenzio-della-natura-desktop.show {
+.subtitle-container-player-video-uno-sguardo-in-anteprima-desktop.show {
   opacity: 1;
 }
 
 /* sottotitoli nella preview: scala un po’ più piccolo e in basso */
-.preview-container-player-video-il-silenzio-della-natura-desktop #preview-subtitles-player-video-il-silenzio-della-natura-desktop {
+.preview-container-player-video-uno-sguardo-in-anteprima-desktop #preview-subtitles-player-video-uno-sguardo-in-anteprima-desktop {
   position: absolute;
   bottom: 31px;       /* regola se vuoi più spazio dal bordo */
   left: 50%;
@@ -634,47 +634,47 @@ justify-content:flex-end;
 }
 
 /* posiziona l’avviso sopra il titolo e fallo animare come su Apple TV */
-.warning-icon-player-video-il-silenzio-della-natura-desktop {
+.warning-icon-player-video-uno-sguardo-in-anteprima-desktop {
   position: absolute;
   top: 50px;            /* sposta l’avviso in alto rispetto al suo normale flow */
   margin-left: 20px;               /* allineato al bordo sinistro di .bottom-top-row */
   width: 350px;          /* regola a piacere la larghezza */
   opacity: 0;
-  animation: warning-fade-player-video-il-silenzio-della-natura-desktop 8s ease-in-out forwards;
+  animation: warning-fade-player-video-uno-sguardo-in-anteprima-desktop 8s ease-in-out forwards;
   animation-delay: 8s;   /* ← qui metti “x” secondi di delay */
   pointer-events: none;  /* non intercetta click */
   z-index: 5;
 }
 
-@keyframes warning-fade-player-video-il-silenzio-della-natura-desktop {
+@keyframes warning-fade-player-video-uno-sguardo-in-anteprima-desktop {
   0%   { opacity: 0; transform: translateY(0px); }
   10%  { opacity: 1; transform: translateY(0); }   /* fade-in in 0.8s */
   80%  { opacity: 1; transform: translateY(0); }   /* resta visibile */
 }
 
 /* posiziona l’avviso sopra il titolo e fallo animare come su Apple TV */
-.warning-age-player-video-il-silenzio-della-natura-desktop {
+.warning-age-player-video-uno-sguardo-in-anteprima-desktop {
   position: absolute;
   top: 60px;            /* sposta l’avviso in alto rispetto al suo normale flow */
   margin-left: 10px;               /* allineato al bordo sinistro di .bottom-top-row */
   width: 100px;          /* regola a piacere la larghezza */
   opacity: 0;
-  animation: warning-fade-age-player-video-il-silenzio-della-natura-desktop 5s ease-in-out forwards;
+  animation: warning-fade-age-player-video-uno-sguardo-in-anteprima-desktop 5s ease-in-out forwards;
   animation-delay: 2s;   /* ← qui metti “x” secondi di delay */
   pointer-events: none;  /* non intercetta click */
   z-index: 5;
 }
 
-@keyframes warning-fade-age-player-video-il-silenzio-della-natura-desktop {
+@keyframes warning-fade-age-player-video-uno-sguardo-in-anteprima-desktop {
   0%   { opacity: 0; transform: translateY(0px); }
   10%  { opacity: 1; transform: translateY(0); }   /* fade-in in 0.5s */
   50%  { opacity: 1; transform: translateY(0); }   /* resta visibile */
 }
   /* reset border-radius per le icone tonde */
-  .play-pause-player-video-il-silenzio-della-natura-desktop img,
-  .fullscreen-btn-player-video-il-silenzio-della-natura-desktop img,
-  .share-menu-player-video-il-silenzio-della-natura-desktop img,
-  .subs-btn-player-video-il-silenzio-della-natura-desktop img {
+  .play-pause-player-video-uno-sguardo-in-anteprima-desktop img,
+  .fullscreen-btn-player-video-uno-sguardo-in-anteprima-desktop img,
+  .share-menu-player-video-uno-sguardo-in-anteprima-desktop img,
+  .subs-btn-player-video-uno-sguardo-in-anteprima-desktop img {
     border-radius: 0 !important;
   }
 `;
