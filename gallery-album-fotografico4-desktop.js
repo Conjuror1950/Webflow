@@ -751,6 +751,7 @@ justify-content:flex-end;
 
 // Javascript (JS)
 // ——— Lightbox → apri player con animazione ———
+const wrapper = document.querySelector('.apple-video-wrapper-player-video-uno-sguardo-in-anteprima-desktop');
 const lightbox = document.getElementById('Open-Player-Video-Uno-sguardo-in-anteprima-container-desktop');
 lightbox.addEventListener('click', e => {
   e.preventDefault();
@@ -1119,7 +1120,6 @@ progress.addEventListener('mousemove', e => {
   
 // — PREVIEW VIDEO — (posizione clamped entro il wrapper)
 const halfW = previewContainer.offsetWidth / 2;
-const wrapper = document.querySelector('.apple-video-wrapper-player-video-uno-sguardo-in-anteprima-desktop');
 const wrapRect = wrapper.getBoundingClientRect();
 const sideMargin = 24;  // <— qui decidi quanti px vuoi di spazio
 
@@ -1251,8 +1251,8 @@ document.addEventListener('click', () => {
   subsMenu.style.display = 'none';
 });
 
-  const copyLinkBtn = wrapper.querySelector('.copy-link-player-video-uno-sguardo-in-anteprima-desktop');
-  const emailBtn    = wrapper.querySelector('.email-share-player-video-uno-sguardo-in-anteprima-desktop');
+  const copyLinkBtn = document.querySelector('.copy-link-player-video-uno-sguardo-in-anteprima-desktop');
+  const emailBtn    = document.querySelector('.email-share-player-video-uno-sguardo-in-anteprima-desktop');
   const controls = document.querySelector('.controls-player-video-uno-sguardo-in-anteprima-desktop');
   const playPauseBtn = document.getElementById("play-pause-player-video-uno-sguardo-in-anteprima-desktop");
   let hideTimeout;
