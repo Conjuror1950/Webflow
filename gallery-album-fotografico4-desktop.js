@@ -684,65 +684,65 @@ justify-content:flex-end;
   
   // 2) INIETTA L’HTML
   const wrapper = document.createElement('div');
-  wrapper.className = 'apple-video-wrapper-player-video-il-silenzio-della-natura-desktop';
+  wrapper.className = 'apple-video-wrapper-player-video-uno-sguardo-in-anteprima-desktop';
   wrapper.innerHTML = `
     <!-- avvisi -->
-    <img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/68286f66a406b7094b5b2407_avviso%20sequenze%20con%20immagini%20e%20luci%20lampeggianti.png" alt="Avviso: sequenze con immagini e luci lampeggianti" class="warning-icon-player-video-il-silenzio-della-natura-desktop">
-    <img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/68288c23d64340a80e1a52e1_avviso%20et%C3%A0.png" alt="Avviso: età" class="warning-age-player-video-il-silenzio-della-natura-desktop">
-    <video id="apple-video-player-video-il-silenzio-della-natura-desktop" data-no-toggle preload="metadata" crossorigin="anonymous" playsinline>
+    <img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/68286f66a406b7094b5b2407_avviso%20sequenze%20con%20immagini%20e%20luci%20lampeggianti.png" alt="Avviso: sequenze con immagini e luci lampeggianti" class="warning-icon-player-video-uno-sguardo-in-anteprima-desktop">
+    <img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/68288c23d64340a80e1a52e1_avviso%20et%C3%A0.png" alt="Avviso: età" class="warning-age-player-video-uno-sguardo-in-anteprima-desktop">
+    <video id="apple-video-player-video-uno-sguardo-in-anteprima-desktop" data-no-toggle preload="metadata" crossorigin="anonymous" playsinline>
       <track kind="subtitles" label="Italiano (automatico)" srclang="it" src="https://andreaingrassia.netlify.app/assets/subtitles/captions-il-silenzio-della-natura.vtt">
     </video>
-    <div id="custom-subtitles-player-video-il-silenzio-della-natura-desktop" class="subtitle-container-player-video-il-silenzio-della-natura-desktop"></div>
-    <div class="controls-player-video-il-silenzio-della-natura-desktop">
-      <div class="top-bar-player-video-il-silenzio-della-natura-desktop">
-        <button class="close-btn-player-video-il-silenzio-della-natura-desktop"><img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a6e03d818ab9f59079de2_xmark.svg" alt="Close" style="width:24px;height:24px;"></button>
-        <div class="volume-control-player-video-il-silenzio-della-natura-desktop">
-          <input type="range" class="volume-player-video-il-silenzio-della-natura-desktop" min="0" max="1" step="0.01" value="1">
-          <img id="volume-icon-player-video-il-silenzio-della-natura-desktop" src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681d13cccb3122eb07cc40af_custom.speaker.wave.3.fill.2.2.svg" alt="Volume alto">
+    <div id="custom-subtitles-player-video-uno-sguardo-in-anteprima-desktop" class="subtitle-container-player-video-uno-sguardo-in-anteprima-desktop"></div>
+    <div class="controls-player-video-uno-sguardo-in-anteprima-desktop">
+      <div class="top-bar-player-video-uno-sguardo-in-anteprima-desktop">
+        <button class="close-btn-player-video-uno-sguardo-in-anteprima-desktop"><img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a6e03d818ab9f59079de2_xmark.svg" alt="Close" style="width:24px;height:24px;"></button>
+        <div class="volume-control-player-video-uno-sguardo-in-anteprima-desktop">
+          <input type="range" class="volume-player-video-uno-sguardo-in-anteprima-desktop" min="0" max="1" step="0.01" value="1">
+          <img id="volume-icon-player-video-uno-sguardo-in-anteprima-desktop" src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681d13cccb3122eb07cc40af_custom.speaker.wave.3.fill.2.2.svg" alt="Volume alto">
         </div>
       </div>
-      <div class="center-controls-player-video-il-silenzio-della-natura-desktop">
-        <button class="rewind-player-video-il-silenzio-della-natura-desktop"><img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a5fb8fe6435455d3d98da_10.arrow.trianglehead.counterclockwise.svg" alt="Rewind" style="height:35px;"></button>
-        <button class="play-pause-player-video-il-silenzio-della-natura-desktop">
+      <div class="center-controls-player-video-uno-sguardo-in-anteprima-desktop">
+        <button class="rewind-player-video-uno-sguardo-in-anteprima-desktop"><img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a5fb8fe6435455d3d98da_10.arrow.trianglehead.counterclockwise.svg" alt="Rewind" style="height:35px;"></button>
+        <button class="play-pause-player-video-uno-sguardo-in-anteprima-desktop">
           <img class="play-icon" src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a7228fdd5352747977676_play.fill.svg" alt="Play">
           <img class="pause-icon" src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a722870d098221ad93f47_pause.fill.svg" alt="Pausa" style="display:none;">
         </button>
-        <button class="forward-player-video-il-silenzio-della-natura-desktop"><img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a5fb8f7a09fb00f328afb_10.arrow.trianglehead.clockwise.svg" alt="Forward" style="height:35px;"></button>
+        <button class="forward-player-video-uno-sguardo-in-anteprima-desktop"><img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a5fb8f7a09fb00f328afb_10.arrow.trianglehead.clockwise.svg" alt="Forward" style="height:35px;"></button>
       </div>
-      <div class="bottom-bar-player-video-il-silenzio-della-natura-desktop">
-        <div class="bottom-top-row-player-video-il-silenzio-della-natura-desktop">
-          <div class="ep-title-player-video-il-silenzio-della-natura-desktop">S1, E1 · Il silenzio della natura</div>
-          <div class="serie-title-player-video-il-silenzio-della-natura-desktop">Produzioni Cinematografiche</div>
-          <div class="right-controls-player-video-il-silenzio-della-natura-desktop">
-            <button class="subs-btn-player-video-il-silenzio-della-natura-desktop"><img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681c881581975b4efc170207_captions.bubble.svg" alt="Sottotitoli" style="width:20px;height:20px;"></button>
-            <div class="subs-menu-player-video-il-silenzio-della-natura-desktop" style="display:none;">
-              <button class="title-subs-item-player-video-il-silenzio-della-natura-desktop">Sottotitoli</button>
-              <button class="subs-item-player-video-il-silenzio-della-natura-desktop" data-val="-1">Disattivati</button>
-              <button class="subs-item-player-video-il-silenzio-della-natura-desktop selected" data-val="0">Italiano (automatico)</button>
+      <div class="bottom-bar-player-video-uno-sguardo-in-anteprima-desktop">
+        <div class="bottom-top-row-player-video-uno-sguardo-in-anteprima-desktop">
+          <div class="ep-title-player-video-uno-sguardo-in-anteprima-desktop">E1 · Uno sguardo in anteprima</div>
+          <div class="serie-title-player-video-uno-sguardo-in-anteprima-desktop">Album Fotografici</div>
+          <div class="right-controls-player-video-uno-sguardo-in-anteprima-desktop">
+            <button class="subs-btn-player-video-uno-sguardo-in-anteprima-desktop"><img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681c881581975b4efc170207_captions.bubble.svg" alt="Sottotitoli" style="width:20px;height:20px;"></button>
+            <div class="subs-menu-player-video-uno-sguardo-in-anteprima-desktop" style="display:none;">
+              <button class="title-subs-item-player-video-uno-sguardo-in-anteprima-desktop">Sottotitoli</button>
+              <button class="subs-item-player-video-uno-sguardo-in-anteprima-desktop" data-val="-1">Disattivati</button>
+              <button class="subs-item-player-video-uno-sguardo-in-anteprima-desktop selected" data-val="0">Italiano (automatico)</button>
             </div>
-            <button class="lang-btn-player-video-il-silenzio-della-natura-desktop"><img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681bb7eb7c5e96fc0889f14c_waveform.circle.svg" alt="Lingua" style="width:20px;height:20px;"></button>
-            <div class="lang-menu-player-video-il-silenzio-della-natura-desktop" style="display:none;">
-              <button class="title-lang-item-player-video-il-silenzio-della-natura-desktop">Audio</button>
-              <button class="lang-item-player-video-il-silenzio-della-natura-desktop selected" data-lang="it">Originale: Italiano<span class="check">✓</span></button>
+            <button class="lang-btn-player-video-uno-sguardo-in-anteprima-desktop"><img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681bb7eb7c5e96fc0889f14c_waveform.circle.svg" alt="Lingua" style="width:20px;height:20px;"></button>
+            <div class="lang-menu-player-video-uno-sguardo-in-anteprima-desktop" style="display:none;">
+              <button class="title-lang-item-player-video-uno-sguardo-in-anteprima-desktop">Audio</button>
+              <button class="lang-item-player-video-uno-sguardo-in-anteprima-desktop selected" data-lang="it">Originale: Italiano<span class="check">✓</span></button>
             </div>
-            <button class="share-btn-player-video-il-silenzio-della-natura-desktop"><img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681c7cf63258616ead57cdf0_square.and.arrow.up.svg" alt="Condividi" style="width:18px;height:30px;"></button>
-            <div class="share-menu-player-video-il-silenzio-della-natura-desktop" style="display:none;">
-              <button class="share-item-player-video-il-silenzio-della-natura-desktop copy-link"><span class="item-text">Copia Link</span><img class="item-icon" src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681b6628e632be2dca7bfe8e_link.svg" width="18" height="18" alt="Link"></button>
-              <button class="share-item-player-video-il-silenzio-della-natura-desktop email-share"><span class="item-text">Email</span><img class="item-icon" src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681b6628ed25af24c9b87b32_envelope.fill.svg" width="18" height="18" alt="Email"></button>
+            <button class="share-btn-player-video-uno-sguardo-in-anteprima-desktop"><img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681c7cf63258616ead57cdf0_square.and.arrow.up.svg" alt="Condividi" style="width:18px;height:30px;"></button>
+            <div class="share-menu-player-video-uno-sguardo-in-anteprima-desktop" style="display:none;">
+              <button class="share-item-player-video-uno-sguardo-in-anteprima-desktop copy-link"><span class="item-text">Copia Link</span><img class="item-icon" src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681b6628e632be2dca7bfe8e_link.svg" width="18" height="18" alt="Link"></button>
+              <button class="share-item-player-video-uno-sguardo-in-anteprima-desktop email-share"><span class="item-text">Email</span><img class="item-icon" src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681b6628ed25af24c9b87b32_envelope.fill.svg" width="18" height="18" alt="Email"></button>
             </div>
-            <button class="fullscreen-btn-player-video-il-silenzio-della-natura-desktop"><img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a6105f7d436f1d44084d0_arrow.up.backward.and.arrow.down.forward.svg" alt="Fullscreen" style="width:18px;height:18px;"></button>
+            <button class="fullscreen-btn-player-video-uno-sguardo-in-anteprima-desktop"><img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681a6105f7d436f1d44084d0_arrow.up.backward.and.arrow.down.forward.svg" alt="Fullscreen" style="width:18px;height:18px;"></button>
           </div>
         </div>
-        <div class="progress-wrapper-player-video-il-silenzio-della-natura-desktop">
-          <input type="range" class="progress-player-video-il-silenzio-della-natura-desktop" value="0" step="0.1">
-          <div class="scrub-thumb-player-video-il-silenzio-della-natura-desktop"></div>
+        <div class="progress-wrapper-player-video-uno-sguardo-in-anteprima-desktop">
+          <input type="range" class="progress-player-video-uno-sguardo-in-anteprima-desktop" value="0" step="0.1">
+          <div class="scrub-thumb-player-video-uno-sguardo-in-anteprima-desktop"></div>
         </div>
-        <div class="preview-container-player-video-il-silenzio-della-natura-desktop" hidden>
-          <video id="preview-video-player-video-il-silenzio-della-natura-desktop" muted preload="metadata" crossorigin="anonymous"></video>
-          <div id="preview-subtitles-player-video-il-silenzio-della-natura-desktop" class="subtitle-container-player-video-il-silenzio-della-natura-desktop"></div>
-          <div class="preview-time-player-video-il-silenzio-della-natura-desktop">0:00</div>
+        <div class="preview-container-player-video-uno-sguardo-in-anteprima-desktop" hidden>
+          <video id="preview-video-player-video-uno-sguardo-in-anteprima-desktop" muted preload="metadata" crossorigin="anonymous"></video>
+          <div id="preview-subtitles-player-video-uno-sguardo-in-anteprima-desktop" class="subtitle-container-player-video-uno-sguardo-in-anteprima-desktop"></div>
+          <div class="preview-time-player-video-uno-sguardo-in-anteprima-desktop">0:00</div>
         </div>
-        <div class="extras-player-video-il-silenzio-della-natura-desktop"><span class="time-player-video-il-silenzio-della-natura-desktop">0:00</span><span class="remaining-time-player-video-il-silenzio-della-natura-desktop">-0:00</span></div>
+        <div class="extras-player-video-uno-sguardo-in-anteprima-desktop"><span class="time-player-video-uno-sguardo-in-anteprima-desktop">0:00</span><span class="remaining-time-player-video-uno-sguardo-in-anteprima-desktop">-0:00</span></div>
       </div>
     </div>
   `;
