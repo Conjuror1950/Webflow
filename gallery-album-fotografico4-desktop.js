@@ -852,7 +852,7 @@ const subsMenu  = document.querySelector('.subs-menu-player-video-uno-sguardo-in
 const langBtn   = document.querySelector('.lang-btn-player-video-uno-sguardo-in-anteprima-desktop');
 const langMenu  = document.querySelector('.lang-menu-player-video-uno-sguardo-in-anteprima-desktop');
 
-// crea le spunte e seleziona Disattivati di default
+// crea le spunte e seleziona Italiano di default
 langMenu
   .querySelectorAll('.lang-item-player-video-uno-sguardo-in-anteprima-desktop')
   .forEach(item => {
@@ -1185,16 +1185,16 @@ subsBtn.addEventListener('click', e => {
 
 // clic su voce sottotitoli
 subsItems.forEach(item => {
-// <<< aggiunto: appena caricate le tracce, attiva Italiano CC
+// <<< aggiunto: appena caricate le tracce, attiva Disattivati CC
 player.on(dashjs.MediaPlayer.events.TEXT_TRACKS_ADDED, () => {
-  // forza il track 0 (Italiano) e la UI
+  // forza il track 0 (Disattivati) e la UI
   player.setTextTrack(0);                  
-  const italianItem = subsMenu.querySelector('.subs-item[data-val="0"]');
-  if (italianItem) italianItem.classList.add('selected');
+  const disactivatedItem = subsMenu.querySelector('.subs-item[data-val="0"]');
+  if (disactivatedItem) disactivatedItem.classList.add('selected');
   });
   
   previewPlayer.on(dashjs.MediaPlayer.events.TEXT_TRACKS_ADDED, () => {
-  // forza il track 0 (Italiano) anche nel preview
+  // forza il track 0 (Disattivati) anche nel preview
   previewPlayer.setTextTrack(0);
 });
 
