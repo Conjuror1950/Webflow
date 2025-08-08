@@ -717,7 +717,7 @@ justify-content:flex-end;
             <button class="subs-btn-player-video-uno-sguardo-in-anteprima-desktop"><img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681c881581975b4efc170207_captions.bubble.svg" alt="Sottotitoli" style="width:20px;height:20px;"></button>
             <div class="subs-menu-player-video-uno-sguardo-in-anteprima-desktop" style="display:none;">
               <button class="title-subs-item-player-video-uno-sguardo-in-anteprima-desktop">Sottotitoli</button>
-              <button class="subs-item-player-video-il-silenzio-della-natura-desktop selected" data-val="0">Disattivati (automatico)</button>
+              <button class="subs-item-player-video-uno-sguardo-in-anteprima-desktop selected" data-val="0">Disattivati (automatico)</button>
             </div>
             <button class="lang-btn-player-video-uno-sguardo-in-anteprima-desktop"><img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681bb7eb7c5e96fc0889f14c_waveform.circle.svg" alt="Lingua" style="width:20px;height:20px;"></button>
             <div class="lang-menu-player-video-uno-sguardo-in-anteprima-desktop" style="display:none;">
@@ -1185,16 +1185,16 @@ subsBtn.addEventListener('click', e => {
 
 // clic su voce sottotitoli
 subsItems.forEach(item => {
-// <<< aggiunto: appena caricate le tracce, attiva Disattivati CC
+// <<< aggiunto: appena caricate le tracce, attiva Italiano CC
 player.on(dashjs.MediaPlayer.events.TEXT_TRACKS_ADDED, () => {
-  // forza il track 0 (Disattivati) e la UI
+  // forza il track 0 (Italiano) e la UI
   player.setTextTrack(0);                  
-  const disactivatedItem = subsMenu.querySelector('.subs-item[data-val="0"]');
-  if (disactivatedItem) disactivatedItem.classList.add('selected');
+  const italianItem = subsMenu.querySelector('.subs-item[data-val="0"]');
+  if (italianItem) italianItem.classList.add('selected');
   });
   
   previewPlayer.on(dashjs.MediaPlayer.events.TEXT_TRACKS_ADDED, () => {
-  // forza il track 0 (Disattivati) anche nel preview
+  // forza il track 0 (Italiano) anche nel preview
   previewPlayer.setTextTrack(0);
 });
 
