@@ -1252,7 +1252,7 @@ document.addEventListener('click', () => {
 });
 
   const copyLinkBtn = wrapper.querySelector('button.copy-link');
-  const emailBtn    = wrapper.querySelector('button.copy-link');
+  const emailBtn    = wrapper.querySelector('button.email-share');
   const controls = document.querySelector('.controls-player-video-il-silenzio-della-natura-desktop');
   const playPauseBtn = document.getElementById("play-pause-player-video-il-silenzio-della-natura-desktop");
   let hideTimeout;
