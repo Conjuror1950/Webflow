@@ -1251,8 +1251,8 @@ document.addEventListener('click', () => {
   subsMenu.style.display = 'none';
 });
 
-  const copyLinkBtn = document.querySelector('.copy-link-player-video-il-silenzio-della-natura-desktop');
-  const emailBtn    = document.querySelector('.email-share-player-video-il-silenzio-della-natura-desktop');
+  const copyLinkBtn = wrapper.querySelector('button.copy-link');
+  const emailBtn    = wrapper.querySelector('button.copy-link');
   const controls = document.querySelector('.controls-player-video-il-silenzio-della-natura-desktop');
   const playPauseBtn = document.getElementById("play-pause-player-video-il-silenzio-della-natura-desktop");
   let hideTimeout;
