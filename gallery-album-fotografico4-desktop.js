@@ -690,7 +690,7 @@ justify-content:flex-end;
     <img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/68286f66a406b7094b5b2407_avviso%20sequenze%20con%20immagini%20e%20luci%20lampeggianti.png" alt="Avviso: sequenze con immagini e luci lampeggianti" class="warning-icon-player-video-uno-sguardo-in-anteprima-desktop">
     <img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/68288c23d64340a80e1a52e1_avviso%20et%C3%A0.png" alt="Avviso: età" class="warning-age-player-video-uno-sguardo-in-anteprima-desktop">
     <video id="apple-video-player-video-uno-sguardo-in-anteprima-desktop" data-no-toggle preload="metadata" crossorigin="anonymous" playsinline>
-      <track kind="subtitles" label="Italiano (automatico)" srclang="it" src="https://andreaingrassia.netlify.app/assets/subtitles/captions-il-silenzio-della-natura.vtt">
+      <track kind="subtitles" label="Disattivati (automatico)" srclang="it" src="">
     </video>
     <div id="custom-subtitles-player-video-uno-sguardo-in-anteprima-desktop" class="subtitle-container-player-video-uno-sguardo-in-anteprima-desktop"></div>
     <div class="controls-player-video-uno-sguardo-in-anteprima-desktop">
@@ -717,8 +717,7 @@ justify-content:flex-end;
             <button class="subs-btn-player-video-uno-sguardo-in-anteprima-desktop"><img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681c881581975b4efc170207_captions.bubble.svg" alt="Sottotitoli" style="width:20px;height:20px;"></button>
             <div class="subs-menu-player-video-uno-sguardo-in-anteprima-desktop" style="display:none;">
               <button class="title-subs-item-player-video-uno-sguardo-in-anteprima-desktop">Sottotitoli</button>
-              <button class="subs-item-player-video-uno-sguardo-in-anteprima-desktop" data-val="-1">Disattivati</button>
-              <button class="subs-item-player-video-uno-sguardo-in-anteprima-desktop selected" data-val="0">Italiano (automatico)</button>
+              <button class="subs-item-player-video-uno-sguardo-in-anteprima-desktop selected" data-val="0">Disattivati (automatico)</button>
             </div>
             <button class="lang-btn-player-video-uno-sguardo-in-anteprima-desktop"><img src="https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/681bb7eb7c5e96fc0889f14c_waveform.circle.svg" alt="Lingua" style="width:20px;height:20px;"></button>
             <div class="lang-menu-player-video-uno-sguardo-in-anteprima-desktop" style="display:none;">
@@ -853,7 +852,7 @@ const subsMenu  = document.querySelector('.subs-menu-player-video-uno-sguardo-in
 const langBtn   = document.querySelector('.lang-btn-player-video-uno-sguardo-in-anteprima-desktop');
 const langMenu  = document.querySelector('.lang-menu-player-video-uno-sguardo-in-anteprima-desktop');
 
-// crea le spunte e seleziona Italiano di default
+// crea le spunte e seleziona Disattivati di default
 langMenu
   .querySelectorAll('.lang-item-player-video-uno-sguardo-in-anteprima-desktop')
   .forEach(item => {
