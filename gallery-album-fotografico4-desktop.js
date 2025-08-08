@@ -1251,8 +1251,8 @@ document.addEventListener('click', () => {
   subsMenu.style.display = 'none';
 });
 
-  const copyLinkBtn = document.querySelector('.copy-link-player-video-uno-sguardo-in-anteprima-desktop');
-  const emailBtn    = document.querySelector('.email-share-player-video-uno-sguardo-in-anteprima-desktop');
+  const copyLinkBtn = document.querySelector('button.copy-link');
+  const emailBtn    = document.querySelector('button.email-share');
   const controls = document.querySelector('.controls-player-video-uno-sguardo-in-anteprima-desktop');
   const playPauseBtn = document.getElementById("play-pause-player-video-uno-sguardo-in-anteprima-desktop");
   let hideTimeout;
