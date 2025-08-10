@@ -19,35 +19,34 @@
 /* In più, per sicurezza su Android/Chrome, definisci regole anche per il <video> in fullscreen diretto */
 video:fullscreen,
 video:-webkit-full-screen,
-video:-moz-full-screen,
 video:-ms-fullscreen {
   width:  100% !important;
   height: 100% !important;
   object-fit: contain !important;
   background: black !important;
   z-index: 9999 !important;        /* FORZA il video sopra tutto */
-  display: block !important;  /* Important per evitare che sparisca */
 }
 
-/* Evita che il video venga nascosto */
-.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile {
-  position: fixed !important;
-  top: 0;
-  left: 0;
-  width: 100vw !important;
-  height: 100vh !important;
-  background: black !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  transform: translateY(0) !important;
-  z-index: 9999 !important;
-}
-
-/* Assicurati che i controlli siano mostrati */
+/* costringi Chrome/Android a mostrare i suoi controlli */
 video::-webkit-media-controls,
 video::-webkit-media-controls-enclosure {
   display: block !important;
-  opacity: 1 !important;
+  opacity: 1       !important;
+}
+
+.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile {
+  visibility: hidden;          /* non cattura click quando nascosto */
+  position: fixed;       /* fissa il wrapper al viewport */
+  top: 0;
+  left: 0;
+  width:100vw;
+  height:100vh;
+  background:black;
+  font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif !important;
+  overflow:hidden;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out;
 }
 
 /* classe temporanea per la chiusura: sposta fuori a destra */
@@ -112,7 +111,7 @@ video {
   const wrapper = document.createElement('div');
   wrapper.className = 'apple-video-wrapper-player-video-il-silenzio-della-natura-mobile';
   wrapper.innerHTML = `
-    <video id="apple-video-player-video-il-silenzio-della-natura-mobile" controls allow="picture-in-picture" x-webkit-airplay="allow" data-no-toggle preload="metadata" crossorigin="anonymous" playsinline webkit-playsinline>
+    <video id="apple-video-player-video-il-silenzio-della-natura-mobile" controls controlsList="share" allow="picture-in-picture" x-webkit-airplay="allow" data-no-toggle preload="metadata" crossorigin="anonymous" playsinline webkit-playsinline>
     </video>
     <div id="custom-subtitles-player-video-il-silenzio-della-natura-mobile" class="subtitle-container-player-video-il-silenzio-della-natura-mobile"></div>
     <div class="controls-player-video-il-silenzio-della-natura-mobile">
@@ -151,14 +150,27 @@ if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
     vid.webkitEnterFullscreen();
   }
 } else {
-  // Android & altri, fullscreen sul video NON sul wrapper
-  if (vid.requestFullscreen) {
-    vid.requestFullscreen();
-  } else if (vid.webkitRequestFullscreen) {
-    vid.webkitRequestFullscreen();
-  } else if (vid.msRequestFullscreen) {
-    vid.msRequestFullscreen();
+  // Android & altri, fullscreen sul wrapper
+  if (wrapper.requestFullscreen) {
+    wrapper.requestFullscreen();
+  } else if (wrapper.webkitRequestFullscreen) {
+    wrapper.webkitRequestFullscreen();
+  } else if (wrapper.msRequestFullscreen) {
+    wrapper.msRequestFullscreen();
   }
+  
+  // forziamo visibilità e dimensioni al wrapper e video
+  wrapper.style.display = 'block';
+  wrapper.style.width = '100vw';
+  wrapper.style.height = '100vh';
+  wrapper.style.visibility = 'visible';
+  wrapper.style.opacity = '1';
+  wrapper.style.transform = 'translateY(0)';
+
+  vid.style.display = 'block';
+  vid.style.width = '100%';
+  vid.style.height = '100%';
+  vid.style.background = 'black';
 }
 
   // 5) Avvia la riproduzione
