@@ -124,97 +124,34 @@ video {
 // Javascript (JS) 
 // ——— Lightbox → apri player in fullscreen e play ———
 const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-container-mobile');
-const wrapper = document.getElementById('Player-Video-Il-silenzio-della-natura-container-mobile');
-
 lightbox.addEventListener('click', e => {
   e.preventDefault();
 
-  // 1) mostra il wrapper e forza visibilità
+  // 1) mostra il wrapper
   wrapper.style.display = 'block';
-  wrapper.style.visibility = 'visible';
-  wrapper.style.opacity = '1';
-  wrapper.style.transform = 'translateY(0)';
   wrapper.classList.add('visible-player-video-il-silenzio-della-natura-mobile');
 
-  // 2) prendi il video e assicura attributi corretti
+  // 2) prendi il video e assicurati degli attributi
   const vid = wrapper.querySelector('video');
   vid.controls = true;
   vid.setAttribute('playsinline', '');
   vid.setAttribute('webkit-playsinline', '');
+
+  // 3) Carica il video dall’inizio
   vid.pause();
   vid.currentTime = 0;
 
-  // 3) funzione per entrare in fullscreen
-const enterFullscreen = () => {
-  try {
-    if (vid.webkitEnterFullscreen) {
-      vid.webkitEnterFullscreen();
-    } else if (vid.requestFullscreen) {
-      vid.requestFullscreen().catch(err => console.warn('FS rejected:', err));
-    }
-    // Forzo repaint
-    document.body.style.display = 'none';
-    void document.body.offsetHeight;
-    document.body.style.display = '';
-
-    // Simulo orientationchange dopo breve delay
-    setTimeout(() => {
-      window.dispatchEvent(new Event('orientationchange'));
-    }, 100);
-  } catch (err) {
-    console.warn('Error enterFullscreen:', err);
-  }
-};
-
-  // Dopo la chiamata a fullscreen:
-document.body.style.display = 'none';
-void document.body.offsetHeight; // reflow
-document.body.style.display = '';
-
-  // 4) handler utili
-  const onPlaying = () => {
-    vid.removeEventListener('playing', onPlaying);
-    setTimeout(enterFullscreen, 60);
-  };
-
-  const onLoadedMetadata = () => {
-    vid.removeEventListener('loadedmetadata', onLoadedMetadata);
-    tryPlayAndEnter();
-  };
-
-  // 5) tenta di avviare il video e poi fullscreen
-  function tryPlayAndEnter() {
-    let p;
-    try {
-      p = vid.play();
-    } catch (err) {
-      console.warn('play() sync error:', err);
-      setTimeout(enterFullscreen, 100);
-      return;
-    }
-
-    if (p && typeof p.then === 'function') {
-      p.then(() => {
-        if (vid.readyState >= 3) {
-          setTimeout(enterFullscreen, 60);
-        } else {
-          vid.addEventListener('playing', onPlaying);
-        }
-      }).catch(err => {
-        console.warn('play() rejected:', err);
-        setTimeout(enterFullscreen, 100);
-        vid.addEventListener('playing', onPlaying);
-      });
-    } else {
-      setTimeout(enterFullscreen, 60);
-    }
+  // 4) Entra in fullscreen NATIVE iOS o standard
+  if (vid.webkitEnterFullscreen) {
+    vid.webkitEnterFullscreen();   // *** iOS Safari ***
+  } else if (vid.requestFullscreen) {
+    vid.requestFullscreen();       // desktop / Android / Chrome
+  } else if (vid.msRequestFullscreen) {
+    vid.msRequestFullscreen();     // IE11/Edge legacy
   }
 
-  // 6) ascolta caricamento metadati
-  vid.addEventListener('loadedmetadata', onLoadedMetadata);
-
-  // 7) tenta subito
-  tryPlayAndEnter();
+  // 5) Avvia la riproduzione
+  vid.play().catch(err => console.warn("Autoplay bloccato:", err));
 });
 
   // ——— Chiudi il player tornando allo stato iniziale ———
