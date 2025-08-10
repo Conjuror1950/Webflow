@@ -306,4 +306,17 @@ document.addEventListener('fullscreenchange', () => {
 });
   };  
   document.body.appendChild(dashScript);
+
+  
+  // Gestione fullscreenchange
+  document.addEventListener('fullscreenchange', () => {
+    const vid = wrapper.querySelector('video');
+    if (document.fullscreenElement) {
+      // Se in fullscreen, mostra i controlli
+      vid.controls = true;
+    } else {
+      // Se esci da fullscreen, nascondi i controlli (opzionale)
+      vid.controls = false;
+    }
+  });
 })();
