@@ -150,6 +150,16 @@ if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
 } else {
 
   // Android & altri, fullscreen sul wrapper
+  // Su Android fai fullscreen diretto sul video
+  if (vid.requestFullscreen) {
+    vid.requestFullscreen();
+  } else if (vid.webkitRequestFullscreen) {
+    vid.webkitRequestFullscreen();
+  } else if (vid.msRequestFullscreen) {
+    vid.msRequestFullscreen();
+  }
+} else {
+  // altri dispositivi: fullscreen sul wrapper
   if (wrapper.requestFullscreen) {
     wrapper.requestFullscreen();
   } else if (wrapper.webkitRequestFullscreen) {
@@ -157,6 +167,7 @@ if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
   } else if (wrapper.msRequestFullscreen) {
     wrapper.msRequestFullscreen();
   }
+}
   
   // forziamo visibilità e dimensioni al wrapper e video
   wrapper.style.display = 'block';
