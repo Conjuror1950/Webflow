@@ -124,17 +124,19 @@ video {
 // Javascript (JS) 
 // ——— Lightbox → apri player in fullscreen e play ———
 const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-container-mobile');
+const wrapper = document.getElementById('Player-Video-Il-silenzio-della-natura-container-mobile');
+
 lightbox.addEventListener('click', e => {
   e.preventDefault();
 
-  // 1) mostra il wrapper e forzi la visibilità
+  // 1) mostra il wrapper e forza visibilità
   wrapper.style.display = 'block';
   wrapper.style.visibility = 'visible';
   wrapper.style.opacity = '1';
   wrapper.style.transform = 'translateY(0)';
   wrapper.classList.add('visible-player-video-il-silenzio-della-natura-mobile');
 
-  // 2) prendi il video e assicurati degli attributi
+  // 2) prendi il video e assicura attributi corretti
   const vid = wrapper.querySelector('video');
   vid.controls = true;
   vid.setAttribute('playsinline', '');
@@ -142,7 +144,7 @@ lightbox.addEventListener('click', e => {
   vid.pause();
   vid.currentTime = 0;
 
-  // 3) helper per entrare in fullscreen (safe)
+  // 3) funzione per entrare in fullscreen
   const enterFullscreen = () => {
     try {
       if (vid.webkitEnterFullscreen) {
@@ -170,7 +172,7 @@ lightbox.addEventListener('click', e => {
     tryPlayAndEnter();
   };
 
-  // 5) tentativo di play e fullscreen
+  // 5) tenta di avviare il video e poi fullscreen
   function tryPlayAndEnter() {
     let p;
     try {
@@ -198,10 +200,10 @@ lightbox.addEventListener('click', e => {
     }
   }
 
-  // 6) attesa se il video non è ancora pronto
+  // 6) ascolta caricamento metadati
   vid.addEventListener('loadedmetadata', onLoadedMetadata);
 
-  // 7) tentativo immediato
+  // 7) tenta subito
   tryPlayAndEnter();
 });
 
