@@ -18,8 +18,8 @@
 video:fullscreen,
 video:-webkit-full-screen,
 video:-ms-fullscreen {
-  width:  100vw !important;
-  height: 100vh !important;
+  width:  100% !important;
+  height: 100% !important;
   object-fit: contain !important;
   background: black !important;
   z-index: 9999 !important;        /* FORZA il video sopra tutto */
@@ -149,17 +149,23 @@ if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
   }
 } else {
 
-// ---- Android & altri ----
-// ENTRA IN FULLSCREEN SUL VIDEO, NON SUL CONTAINER
-if (vid.requestFullscreen) {
-  vid.requestFullscreen();
-} else if (vid.webkitRequestFullscreen) {
-  vid.webkitRequestFullscreen();
-} else if (vid.msRequestFullscreen) {
-  vid.msRequestFullscreen();
-}
+  // Android & altri, fullscreen sul wrapper
+  if (wrapper.requestFullscreen) {
+    wrapper.requestFullscreen();
+  } else if (wrapper.webkitRequestFullscreen) {
+    wrapper.webkitRequestFullscreen();
+  } else if (wrapper.msRequestFullscreen) {
+    wrapper.msRequestFullscreen();
+  }
   
-  // forza visibilità e dimensioni del video
+  // forziamo visibilità e dimensioni al wrapper e video
+  wrapper.style.display = 'block';
+  wrapper.style.width = '100vw';
+  wrapper.style.height = '100vh';
+  wrapper.style.visibility = 'visible';
+  wrapper.style.opacity = '1';
+  wrapper.style.transform = 'translateY(0)';
+
   vid.style.display = 'block';
   vid.style.width = '100%';
   vid.style.height = '100%';
