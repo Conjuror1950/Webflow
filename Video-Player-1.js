@@ -159,7 +159,7 @@ if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
     wrapper.msRequestFullscreen();
   }
   
-  // Forza visibilità e dimensioni del wrapper e video
+  // forziamo visibilità e dimensioni al wrapper e video
   wrapper.style.display = 'block';
   wrapper.style.width = '100vw';
   wrapper.style.height = '100vh';
@@ -172,16 +172,13 @@ if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
   vid.style.height = '100%';
   vid.style.background = 'black';
 
-  // Forza visibilità dei controlli
+    // Forza visibilità dei controlli
   const videoControls = vid.querySelectorAll("::-webkit-media-controls, ::-webkit-media-controls-enclosure");
   videoControls.forEach(control => control.style.display = 'block');
 }
 
-// 5) Avvia la riproduzione, con un controllo per Android
-vid.play().catch(err => {
-  console.warn("Autoplay bloccato:", err);
-  vid.muted = true;  // Muta il video per permettere l'autoplay (soluzione temporanea)
-  vid.play();
+  // 5) Avvia la riproduzione
+  vid.play().catch(err => console.warn("Autoplay bloccato:", err));
 });
 
   // ——— Chiudi il player tornando allo stato iniziale ———
