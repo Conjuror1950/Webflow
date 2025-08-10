@@ -143,12 +143,20 @@ lightbox.addEventListener('click', e => {
 
 // 4) Entra in fullscreen
 if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
-  // iOS Safari: video.webkitEnterFullscreen()
+  // ---- iOS Safari ----
+  if (vid.webkitEnterFullscreen) {
+    vid.webkitEnterFullscreen();
+  }
+} else {
+
+  // Android & altri, fullscreen sul wrapper
+if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
+  // iOS Safari
   if (vid.webkitEnterFullscreen) {
     vid.webkitEnterFullscreen();
   }
 } else if (/Android/.test(navigator.userAgent)) {
-  // Su Android fai fullscreen diretto sul video
+  // Android: fullscreen DIRETTO sul video, non sul wrapper
   if (vid.requestFullscreen) {
     vid.requestFullscreen();
   } else if (vid.webkitRequestFullscreen) {
@@ -157,7 +165,7 @@ if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
     vid.msRequestFullscreen();
   }
 } else {
-  // altri dispositivi: fullscreen sul wrapper
+  // altri: fullscreen sul wrapper
   if (wrapper.requestFullscreen) {
     wrapper.requestFullscreen();
   } else if (wrapper.webkitRequestFullscreen) {
@@ -165,19 +173,6 @@ if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
   } else if (wrapper.msRequestFullscreen) {
     wrapper.msRequestFullscreen();
   }
-  
-  // forziamo visibilità e dimensioni al wrapper e video
-  wrapper.style.display = 'block';
-  wrapper.style.width = '100vw';
-  wrapper.style.height = '100vh';
-  wrapper.style.visibility = 'visible';
-  wrapper.style.opacity = '1';
-  wrapper.style.transform = 'translateY(0)';
-
-  vid.style.display = 'block';
-  vid.style.width = '100%';
-  vid.style.height = '100%';
-  vid.style.background = 'black';
 }
 
   // 5) Avvia la riproduzione
