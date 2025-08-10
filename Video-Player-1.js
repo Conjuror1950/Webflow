@@ -148,15 +148,16 @@ if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
     vid.webkitEnterFullscreen();
   }
 } else {
-  // ---- Android & altri ----
-  const wrap = wrapper; // fullscreen sul contenitore, NON sul video
-  if (wrap.requestFullscreen) {
-    wrap.requestFullscreen();
-  } else if (wrap.webkitRequestFullscreen) {
-    wrap.webkitRequestFullscreen();
-  } else if (wrap.msRequestFullscreen) {
-    wrap.msRequestFullscreen();
-  }
+
+// ---- Android & altri ----
+// ENTRA IN FULLSCREEN SUL VIDEO, NON SUL CONTAINER
+if (vid.requestFullscreen) {
+  vid.requestFullscreen();
+} else if (vid.webkitRequestFullscreen) {
+  vid.webkitRequestFullscreen();
+} else if (vid.msRequestFullscreen) {
+  vid.msRequestFullscreen();
+}
   
   // forza visibilità e dimensioni del video
   vid.style.display = 'block';
