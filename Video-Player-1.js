@@ -20,7 +20,7 @@ video:-webkit-full-screen,
 video:-ms-fullscreen {
   width:  100vw !important;
   height: 100vh !important;
-  object-fit: contain !important;
+  object-fit: fill !important;
   background: black !important;
   z-index: 9999 !important;        /* FORZA il video sopra tutto */
 }
@@ -149,21 +149,22 @@ if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
   }
 } else {
   
-// ---- Android & altri ----
-// fullscreen direttamente sul video (NON sul wrapper)
-if (vid.requestFullscreen) {
-  vid.requestFullscreen();
-} else if (vid.webkitRequestFullscreen) {
-  vid.webkitRequestFullscreen();
-} else if (vid.msRequestFullscreen) {
-  vid.msRequestFullscreen();
-}
+} else {
+  // ---- Android & altri ----
+  // forza fullscreen sul video (non sul wrapper)
+  if (vid.requestFullscreen) {
+    vid.requestFullscreen();
+  } else if (vid.webkitRequestFullscreen) {
+    vid.webkitRequestFullscreen();
+  } else if (vid.msRequestFullscreen) {
+    vid.msRequestFullscreen();
+  }
 
-// forza visibilità e dimensioni del video
-vid.style.display = 'block';
-vid.style.width = '100%';
-vid.style.height = '100%';
-vid.style.background = 'black';
+  vid.style.display = 'block';
+  vid.style.width = '100vw';    // usa viewport width
+  vid.style.height = '100vh';   // usa viewport height
+  vid.style.objectFit = 'fill'; // forziamo fill (alternativa: 'cover')
+  vid.style.background = 'black';
 }
 
   // 5) Avvia la riproduzione
