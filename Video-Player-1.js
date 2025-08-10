@@ -102,6 +102,11 @@ video {
   margin-top: 0px;
 }
 
+.force-portrait {
+  transform: rotate(0deg); /* Mantieni la rotazione in portrait */
+  height: 100vh; /* Imposta altezza piena per portrait */
+}
+
 `;
   const styleEl = document.createElement('style');
   styleEl.textContent = css;
@@ -150,31 +155,33 @@ if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
     vid.webkitEnterFullscreen();
   }
 } else {
-  // Android & altri, fullscreen sul wrapper
-  if (wrapper.requestFullscreen) {
-    wrapper.requestFullscreen();
-  } else if (wrapper.webkitRequestFullscreen) {
-    wrapper.webkitRequestFullscreen();
-  } else if (wrapper.msRequestFullscreen) {
-    wrapper.msRequestFullscreen();
-  }
   
-  // forziamo visibilità e dimensioni al wrapper e video
-  wrapper.style.display = 'block';
-  wrapper.style.width = '100vw';
-  wrapper.style.height = '100vh';
-  wrapper.style.visibility = 'visible';
-  wrapper.style.opacity = '1';
-  wrapper.style.transform = 'translateY(0)';
+// Fullscreen sul wrapper (per Android e altri)
+if (wrapper.requestFullscreen) {
+  wrapper.requestFullscreen();
+} else if (wrapper.webkitRequestFullscreen) {
+  wrapper.webkitRequestFullscreen();
+} else if (wrapper.msRequestFullscreen) {
+  wrapper.msRequestFullscreen();
+}
 
-  vid.style.display = 'block';
-  vid.style.width = '100%';
-  vid.style.height = '100%';
-  vid.style.background = 'black';
+// Forza visibilità e dimensioni al wrapper e video
+wrapper.style.display = 'block';
+wrapper.style.width = '100vw';
+wrapper.style.height = '100vh';
+wrapper.style.visibility = 'visible';
+wrapper.style.opacity = '1';
+wrapper.style.transform = 'translateY(0)';
 
-    // Forza visibilità dei controlli
-  const videoControls = vid.querySelectorAll("::-webkit-media-controls, ::-webkit-media-controls-enclosure");
-  videoControls.forEach(control => control.style.display = 'block');
+// Forza orientamento portrait per Android
+if (window.matchMedia("(orientation: landscape)").matches) {
+  wrapper.classList.add('force-portrait');
+}
+
+vid.style.display = 'block';
+vid.style.width = '100%';
+vid.style.height = '100%';
+vid.style.background = 'black';
 }
 
   // 5) Avvia la riproduzione
