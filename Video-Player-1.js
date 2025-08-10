@@ -20,7 +20,7 @@ video:-webkit-full-screen,
 video:-ms-fullscreen {
   width:  100vw !important;
   height: 100vh !important;
-  object-fit: fill !important;
+  object-fit: cover !important;
   background: black !important;
   z-index: 9999 !important;        /* FORZA il video sopra tutto */
 }
@@ -163,7 +163,7 @@ if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
   vid.style.display = 'block';
   vid.style.width = '100vw';    // usa viewport width
   vid.style.height = '100vh';   // usa viewport height
-  vid.style.objectFit = 'fill'; // forziamo fill (alternativa: 'cover')
+  vid.style.objectFit = 'cover'; // forziamo fill (alternativa: 'cover')
   vid.style.background = 'black';
 }
 
