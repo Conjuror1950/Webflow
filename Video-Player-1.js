@@ -127,8 +127,11 @@ const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-na
 lightbox.addEventListener('click', e => {
   e.preventDefault();
 
-  // 1) mostra il wrapper
+  // 1) mostra il wrapper e forzi la visibilità
   wrapper.style.display = 'block';
+  wrapper.style.visibility = 'visible';
+  wrapper.style.opacity = '1';
+  wrapper.style.transform = 'translateY(0)';
   wrapper.classList.add('visible-player-video-il-silenzio-della-natura-mobile');
 
   // 2) prendi il video e assicurati degli attributi
@@ -136,24 +139,71 @@ lightbox.addEventListener('click', e => {
   vid.controls = true;
   vid.setAttribute('playsinline', '');
   vid.setAttribute('webkit-playsinline', '');
-
-  // 3) Carica il video dall’inizio
   vid.pause();
   vid.currentTime = 0;
 
-// 4) Avvia la riproduzione PRIMA del fullscreen
-vid.play().then(() => {
-  // Usa un piccolo delay per dare tempo a Chrome di "vedere" il video
-  setTimeout(() => {
-    if (vid.webkitEnterFullscreen) {
-      vid.webkitEnterFullscreen();   // *** iOS Safari ***
-    } else if (vid.requestFullscreen) {
-      vid.requestFullscreen();       // desktop / Android / Chrome
-    } else if (vid.msRequestFullscreen) {
-      vid.msRequestFullscreen();     // IE11/Edge legacy
+  // 3) helper per entrare in fullscreen (safe)
+  const enterFullscreen = () => {
+    try {
+      if (vid.webkitEnterFullscreen) {
+        vid.webkitEnterFullscreen(); // iOS Safari
+      } else if (vid.requestFullscreen) {
+        vid.requestFullscreen().catch(err => {
+          console.warn('requestFullscreen rejected:', err);
+        });
+      } else if (vid.msRequestFullscreen) {
+        vid.msRequestFullscreen();
+      }
+    } catch (err) {
+      console.warn('enterFullscreen error:', err);
     }
-  }, 50); // anche 0 ms può funzionare, ma 50 è più sicuro
-}).catch(err => console.warn("Autoplay bloccato:", err));
+  };
+
+  // 4) handler utili
+  const onPlaying = () => {
+    vid.removeEventListener('playing', onPlaying);
+    setTimeout(enterFullscreen, 60);
+  };
+
+  const onLoadedMetadata = () => {
+    vid.removeEventListener('loadedmetadata', onLoadedMetadata);
+    tryPlayAndEnter();
+  };
+
+  // 5) tentativo di play e fullscreen
+  function tryPlayAndEnter() {
+    let p;
+    try {
+      p = vid.play();
+    } catch (err) {
+      console.warn('play() sync error:', err);
+      setTimeout(enterFullscreen, 100);
+      return;
+    }
+
+    if (p && typeof p.then === 'function') {
+      p.then(() => {
+        if (vid.readyState >= 3) {
+          setTimeout(enterFullscreen, 60);
+        } else {
+          vid.addEventListener('playing', onPlaying);
+        }
+      }).catch(err => {
+        console.warn('play() rejected:', err);
+        setTimeout(enterFullscreen, 100);
+        vid.addEventListener('playing', onPlaying);
+      });
+    } else {
+      setTimeout(enterFullscreen, 60);
+    }
+  }
+
+  // 6) attesa se il video non è ancora pronto
+  vid.addEventListener('loadedmetadata', onLoadedMetadata);
+
+  // 7) tentativo immediato
+  tryPlayAndEnter();
+});
 
   // ——— Chiudi il player tornando allo stato iniziale ———
 const closeBtn = wrapper.querySelector('.close-btn-player-video-il-silenzio-della-natura-mobile');
