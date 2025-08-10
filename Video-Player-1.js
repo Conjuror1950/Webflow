@@ -12,7 +12,6 @@
   transform:  translateY(0) !important;
   background: black    !important;
   z-index:    9999     !important;
-  overflow: visible !important; /* aggiungi */
 }
 
 /* In più, per sicurezza su Android/Chrome, definisci regole anche per il <video> in fullscreen diretto */
@@ -21,9 +20,16 @@ video:-webkit-full-screen,
 video:-ms-fullscreen {
   width:  100% !important;
   height: 100% !important;
-  object-fit: cover !important;
+  object-fit: contain !important;
   background: black !important;
   z-index: 9999 !important;        /* FORZA il video sopra tutto */
+}
+
+/* costringi Chrome/Android a mostrare i suoi controlli */
+video::-webkit-media-controls,
+video::-webkit-media-controls-enclosure {
+  display: block !important;
+  opacity: 1       !important;
 }
 
 .apple-video-wrapper-player-video-il-silenzio-della-natura-mobile {
@@ -137,18 +143,29 @@ lightbox.addEventListener('click', e => {
 
 // 4) Entra in fullscreen
 if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
+  // ---- iOS Safari ----
+  if (vid.webkitEnterFullscreen) {
+    vid.webkitEnterFullscreen();
+  }
+} else {
+
+  // Android & altri, fullscreen sul wrapper
+if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
+  // iOS Safari
   if (vid.webkitEnterFullscreen) {
     vid.webkitEnterFullscreen();
   }
 } else if (/Android/.test(navigator.userAgent)) {
+  // Android: fullscreen DIRETTO sul video, non sul wrapper
   if (vid.requestFullscreen) {
-    vid.requestFullscreen().catch(err => console.warn(err));
+    vid.requestFullscreen();
   } else if (vid.webkitRequestFullscreen) {
     vid.webkitRequestFullscreen();
   } else if (vid.msRequestFullscreen) {
     vid.msRequestFullscreen();
   }
 } else {
+  // altri: fullscreen sul wrapper
   if (wrapper.requestFullscreen) {
     wrapper.requestFullscreen();
   } else if (wrapper.webkitRequestFullscreen) {
