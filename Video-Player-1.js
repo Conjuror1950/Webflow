@@ -167,7 +167,6 @@ if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
   } else if (wrapper.msRequestFullscreen) {
     wrapper.msRequestFullscreen();
   }
-}
   
   // forziamo visibilità e dimensioni al wrapper e video
   wrapper.style.display = 'block';
