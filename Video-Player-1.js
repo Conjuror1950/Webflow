@@ -141,10 +141,10 @@ lightbox.addEventListener('click', e => {
   vid.pause();
   vid.currentTime = 0;
 
-// Avvia la riproduzione PRIMA di entrare in fullscreen (fix Android schermo nero)
+// 4) Avvia la riproduzione PRIMA del fullscreen
 vid.play().then(() => {
-  // aspetta che il video abbia renderizzato almeno il primo frame
-  const enterFs = () => {
+  // Usa un piccolo delay per dare tempo a Chrome di "vedere" il video
+  setTimeout(() => {
     if (vid.webkitEnterFullscreen) {
       vid.webkitEnterFullscreen();   // *** iOS Safari ***
     } else if (vid.requestFullscreen) {
@@ -152,16 +152,8 @@ vid.play().then(() => {
     } else if (vid.msRequestFullscreen) {
       vid.msRequestFullscreen();     // IE11/Edge legacy
     }
-  };
-
-  if (vid.readyState >= 2) { // readyState >= HAVE_CURRENT_DATA
-    enterFs();
-  } else {
-    vid.addEventListener('loadeddata', enterFs, { once: true });
-  }
-}).catch(err => {
-  console.warn("Autoplay bloccato:", err);
-});
+  }, 50); // anche 0 ms può funzionare, ma 50 è più sicuro
+}).catch(err => console.warn("Autoplay bloccato:", err));
 
   // ——— Chiudi il player tornando allo stato iniziale ———
 const closeBtn = wrapper.querySelector('.close-btn-player-video-il-silenzio-della-natura-mobile');
