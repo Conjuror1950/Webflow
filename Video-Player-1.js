@@ -20,7 +20,7 @@ video:-webkit-full-screen,
 video:-ms-fullscreen {
   width:  100vw !important;
   height: 100vh !important;
-  object-fit: cover !important;
+  object-fit: contain !important;
   background: black !important;
   z-index: 9999 !important;        /* FORZA il video sopra tutto */
 }
@@ -109,7 +109,7 @@ video {
   const wrapper = document.createElement('div');
   wrapper.className = 'apple-video-wrapper-player-video-il-silenzio-della-natura-mobile';
   wrapper.innerHTML = `
-    <video id="apple-video-player-video-il-silenzio-della-natura-mobile" controls controlsList="share" allow="picture-in-picture" x-webkit-airplay="allow" data-no-toggle preload="metadata" crossorigin="anonymous" playsinline webkit-playsinline>
+    <video id="apple-video-player-video-il-silenzio-della-natura-mobile" controls controlsList="share" allow="picture-in-picture" x-webkit-airplay="allow" data-no-toggle preload="auto" crossorigin="anonymous" playsinline webkit-playsinline>
     </video>
     <div id="custom-subtitles-player-video-il-silenzio-della-natura-mobile" class="subtitle-container-player-video-il-silenzio-della-natura-mobile"></div>
     <div class="controls-player-video-il-silenzio-della-natura-mobile">
@@ -141,31 +141,14 @@ lightbox.addEventListener('click', e => {
   vid.pause();
   vid.currentTime = 0;
 
-// 4) Entra in fullscreen
-if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
-  // ---- iOS Safari ----
+  // 4) Entra in fullscreen NATIVE iOS o standard
   if (vid.webkitEnterFullscreen) {
-    vid.webkitEnterFullscreen();
-  }
-} else {
-  
-} else {
-  // ---- Android & altri ----
-  // forza fullscreen sul video (non sul wrapper)
-  if (vid.requestFullscreen) {
-    vid.requestFullscreen();
-  } else if (vid.webkitRequestFullscreen) {
-    vid.webkitRequestFullscreen();
+    vid.webkitEnterFullscreen();   // *** iOS Safari ***
+  } else if (vid.requestFullscreen) {
+    vid.requestFullscreen();       // desktop / Android / Chrome
   } else if (vid.msRequestFullscreen) {
-    vid.msRequestFullscreen();
+    vid.msRequestFullscreen();     // IE11/Edge legacy
   }
-
-  vid.style.display = 'block';
-  vid.style.width = '100vw';    // usa viewport width
-  vid.style.height = '100vh';   // usa viewport height
-  vid.style.objectFit = 'cover'; // forziamo fill (alternativa: 'cover')
-  vid.style.background = 'black';
-}
 
   // 5) Avvia la riproduzione
   vid.play().catch(err => console.warn("Autoplay bloccato:", err));
