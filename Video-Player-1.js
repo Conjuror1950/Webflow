@@ -143,13 +143,11 @@ lightbox.addEventListener('click', e => {
 
 // 4) Entra in fullscreen
 if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
-  // ---- iOS Safari ----
+  // iOS Safari: video.webkitEnterFullscreen()
   if (vid.webkitEnterFullscreen) {
     vid.webkitEnterFullscreen();
   }
-} else {
-
-  // Android & altri, fullscreen sul wrapper
+} else if (/Android/.test(navigator.userAgent)) {
   // Su Android fai fullscreen diretto sul video
   if (vid.requestFullscreen) {
     vid.requestFullscreen();
