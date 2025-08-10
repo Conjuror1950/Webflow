@@ -109,7 +109,7 @@ video {
   const wrapper = document.createElement('div');
   wrapper.className = 'apple-video-wrapper-player-video-il-silenzio-della-natura-mobile';
   wrapper.innerHTML = `
-    <video id="apple-video-player-video-il-silenzio-della-natura-mobile" controls controlsList="share" allow="picture-in-picture" x-webkit-airplay="allow" data-no-toggle preload="auto" crossorigin="anonymous" playsinline webkit-playsinline>
+    <video id="apple-video-player-video-il-silenzio-della-natura-mobile" controls controlsList="share" allow="picture-in-picture" x-webkit-airplay="allow" data-no-toggle preload="metadata" crossorigin="anonymous" playsinline webkit-playsinline>
     </video>
     <div id="custom-subtitles-player-video-il-silenzio-della-natura-mobile" class="subtitle-container-player-video-il-silenzio-della-natura-mobile"></div>
     <div class="controls-player-video-il-silenzio-della-natura-mobile">
