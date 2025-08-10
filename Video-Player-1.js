@@ -102,11 +102,6 @@ video {
   margin-top: 0px;
 }
 
-.force-portrait {
-  transform: rotate(0deg); /* Mantieni la rotazione in portrait */
-  height: 100vh; /* Imposta altezza piena per portrait */
-}
-
 `;
   const styleEl = document.createElement('style');
   styleEl.textContent = css;
@@ -172,11 +167,6 @@ wrapper.style.height = '100vh';
 wrapper.style.visibility = 'visible';
 wrapper.style.opacity = '1';
 wrapper.style.transform = 'translateY(0)';
-
-// Forza orientamento portrait per Android
-if (window.matchMedia("(orientation: landscape)").matches) {
-  wrapper.classList.add('force-portrait');
-}
 
 vid.style.display = 'block';
 vid.style.width = '100%';
@@ -313,17 +303,4 @@ document.addEventListener('fullscreenchange', () => {
 });
   };  
   document.body.appendChild(dashScript);
-
-  
-  // Gestione fullscreenchange
-  document.addEventListener('fullscreenchange', () => {
-    const vid = wrapper.querySelector('video');
-    if (document.fullscreenElement) {
-      // Se in fullscreen, mostra i controlli
-      vid.controls = true;
-    } else {
-      // Se esci da fullscreen, nascondi i controlli (opzionale)
-      vid.controls = false;
-    }
-  });
 })();
