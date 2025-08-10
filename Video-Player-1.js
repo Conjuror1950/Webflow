@@ -145,21 +145,26 @@ lightbox.addEventListener('click', e => {
   vid.currentTime = 0;
 
   // 3) funzione per entrare in fullscreen
-  const enterFullscreen = () => {
-    try {
-      if (vid.webkitEnterFullscreen) {
-        vid.webkitEnterFullscreen(); // iOS Safari
-      } else if (vid.requestFullscreen) {
-        vid.requestFullscreen().catch(err => {
-          console.warn('requestFullscreen rejected:', err);
-        });
-      } else if (vid.msRequestFullscreen) {
-        vid.msRequestFullscreen();
-      }
-    } catch (err) {
-      console.warn('enterFullscreen error:', err);
+const enterFullscreen = () => {
+  try {
+    if (vid.webkitEnterFullscreen) {
+      vid.webkitEnterFullscreen();
+    } else if (vid.requestFullscreen) {
+      vid.requestFullscreen().catch(err => console.warn('FS rejected:', err));
     }
-  };
+    // Forzo repaint
+    document.body.style.display = 'none';
+    void document.body.offsetHeight;
+    document.body.style.display = '';
+
+    // Simulo orientationchange dopo breve delay
+    setTimeout(() => {
+      window.dispatchEvent(new Event('orientationchange'));
+    }, 100);
+  } catch (err) {
+    console.warn('Error enterFullscreen:', err);
+  }
+};
 
   // 4) handler utili
   const onPlaying = () => {
