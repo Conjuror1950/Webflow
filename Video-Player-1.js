@@ -166,6 +166,11 @@ const enterFullscreen = () => {
   }
 };
 
+  // Dopo la chiamata a fullscreen:
+document.body.style.display = 'none';
+void document.body.offsetHeight; // reflow
+document.body.style.display = '';
+
   // 4) handler utili
   const onPlaying = () => {
     vid.removeEventListener('playing', onPlaying);
