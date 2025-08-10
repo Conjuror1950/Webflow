@@ -141,14 +141,29 @@ lightbox.addEventListener('click', e => {
   vid.pause();
   vid.currentTime = 0;
 
-  // 4) Entra in fullscreen NATIVE iOS o standard
+// 4) Entra in fullscreen
+if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
+  // ---- iOS Safari ----
   if (vid.webkitEnterFullscreen) {
-    vid.webkitEnterFullscreen();   // *** iOS Safari ***
-  } else if (vid.requestFullscreen) {
-    vid.requestFullscreen();       // desktop / Android / Chrome
-  } else if (vid.msRequestFullscreen) {
-    vid.msRequestFullscreen();     // IE11/Edge legacy
+    vid.webkitEnterFullscreen();
   }
+} else {
+  // ---- Android & altri ----
+  const wrap = wrapper; // fullscreen sul contenitore, NON sul video
+  if (wrap.requestFullscreen) {
+    wrap.requestFullscreen();
+  } else if (wrap.webkitRequestFullscreen) {
+    wrap.webkitRequestFullscreen();
+  } else if (wrap.msRequestFullscreen) {
+    wrap.msRequestFullscreen();
+  }
+  
+  // forza visibilità e dimensioni del video
+  vid.style.display = 'block';
+  vid.style.width = '100%';
+  vid.style.height = '100%';
+  vid.style.background = 'black';
+}
 
   // 5) Avvia la riproduzione
   vid.play().catch(err => console.warn("Autoplay bloccato:", err));
