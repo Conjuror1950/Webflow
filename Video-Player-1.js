@@ -27,13 +27,6 @@ video:-ms-fullscreen {
   z-index: 9999 !important;        /* FORZA il video sopra tutto */
 }
 
-/* costringi Chrome/Android a mostrare i suoi controlli */
-video::-webkit-media-controls,
-video::-webkit-media-controls-enclosure {
-  display: block !important;
-  opacity: 1       !important;
-}
-
 .apple-video-wrapper-player-video-il-silenzio-della-natura-mobile {
   visibility: hidden;          /* non cattura click quando nascosto */
   position: fixed;       /* fissa il wrapper al viewport */
@@ -80,21 +73,25 @@ video {
   margin: 0 auto;    /* centra orizzontalmente */
 }
 
-/* GLOBAL: sia standard che WebKit fullscreen */
+/* Forza video fullscreen all’interno del wrapper fullscreen */
 .apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:fullscreen video,
 .apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:-webkit-full-screen video {
-  width: 100%    !important;
-  height: 100%   !important;
-  object-fit: contain !important;  /* mantieni l’intero frame con bande nere */
-  background: black !important;    /* fallback “letter-box” nero */
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  background: black !important;
+  z-index: 10000 !important; /* sopra tutto */
+  visibility: visible !important;
+  display: block !important;
 }
 
-/* --- override per la preview quando il wrapper è in fullscreen --- */
-.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:fullscreen .preview-container-player-video-il-silenzio-della-natura-mobile video,
-.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile:-webkit-full-screen .preview-container-player-video-il-silenzio-della-natura-mobile video {
-  width: 100% !important;       /* piena larghezza del container di preview */
-  height: 100% !important;      /* piena altezza del container di preview */
-  object-fit: cover !important;/* mantieni l’aspetto, niente crop */
+/* Controlli nativi */
+video::-webkit-media-controls,
+video::-webkit-media-controls-enclosure {
+  display: block !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  visibility: visible !important;
 }
 
 .close-btn-player-video-il-silenzio-della-natura-mobile {
@@ -151,26 +148,26 @@ if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
   }
 } else {
   // Android & altri, fullscreen sul wrapper
-  if (wrapper.requestFullscreen) {
-    wrapper.requestFullscreen();
-  } else if (wrapper.webkitRequestFullscreen) {
-    wrapper.webkitRequestFullscreen();
-  } else if (wrapper.msRequestFullscreen) {
-    wrapper.msRequestFullscreen();
+  if (wrapper.requestFullscreen) wrapper.requestFullscreen();
+  else if (wrapper.webkitRequestFullscreen) wrapper.webkitRequestFullscreen();
+  else if (wrapper.msRequestFullscreen) wrapper.msRequestFullscreen();
   }
   
-  // forziamo visibilità e dimensioni al wrapper e video
-  wrapper.style.display = 'block';
-  wrapper.style.width = '100vw';
-  wrapper.style.height = '100vh';
-  wrapper.style.visibility = 'visible';
-  wrapper.style.opacity = '1';
-  wrapper.style.transform = 'translateY(0)';
+// forziamo visibilità e dimensioni al wrapper e video
+wrapper.style.display = 'block';
+wrapper.style.width = '100vw';
+wrapper.style.height = '100vh';
+wrapper.style.visibility = 'visible';
+wrapper.style.opacity = '1';
+wrapper.style.transform = 'translateY(0)';
 
-  vid.style.display = 'block';
-  vid.style.width = '100%';
-  vid.style.height = '100%';
-  vid.style.background = 'black';
+vid.style.width = '100%';
+vid.style.height = '100%';
+vid.style.objectFit = 'contain';
+vid.style.background = 'black';
+vid.style.visibility = 'visible';
+vid.style.display = 'block';
+vid.style.zIndex = '10000';
 }
 
   // 5) Avvia la riproduzione
