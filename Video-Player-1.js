@@ -12,6 +12,8 @@
   transform:  translateY(0) !important;
   background: black    !important;
   z-index:    9999     !important;
+  width: 100% !important;
+  height: 100% !important;
 }
 
 /* In più, per sicurezza su Android/Chrome, definisci regole anche per il <video> in fullscreen diretto */
@@ -147,15 +149,28 @@ if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
   if (vid.webkitEnterFullscreen) {
     vid.webkitEnterFullscreen();
   }
-} else if (/Android/.test(navigator.userAgent)) {
-  // Android: fullscreen DIRETTO sul video, non sul wrapper
-  if (wrap.requestFullscreen) {
-    wrap.requestFullscreen();
-  } else if (wrap.webkitRequestFullscreen) {
-    vid.webkitRequestFullscreen();
-  } else if (wrap.msRequestFullscreen) {
-    wrap.msRequestFullscreen();
+} else {
+  // Android & altri, fullscreen sul wrapper
+  if (wrapper.requestFullscreen) {
+    wrapper.requestFullscreen();
+  } else if (wrapper.webkitRequestFullscreen) {
+    wrapper.webkitRequestFullscreen();
+  } else if (wrapper.msRequestFullscreen) {
+    wrapper.msRequestFullscreen();
   }
+  
+  // forziamo visibilità e dimensioni al wrapper e video
+  wrapper.style.display = 'block';
+  wrapper.style.width = '100vw';
+  wrapper.style.height = '100vh';
+  wrapper.style.visibility = 'visible';
+  wrapper.style.opacity = '1';
+  wrapper.style.transform = 'translateY(0)';
+
+  vid.style.display = 'block';
+  vid.style.width = '100%';
+  vid.style.height = '100%';
+  vid.style.background = 'black';
 }
 
   // 5) Avvia la riproduzione
