@@ -123,57 +123,63 @@ video::-webkit-media-controls-enclosure {
 // Javascript (JS) 
 // ——— Lightbox → apri player in fullscreen e play ———
 const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-container-mobile');
-lightbox.addEventListener('click', e => {
+lightbox.addEventListener('click', async e => {
   e.preventDefault();
 
-  // 1) mostra il wrapper
+  // 1) mostra il wrapper subito (display block + visibilità)
   wrapper.style.display = 'block';
-  wrapper.classList.add('visible-player-video-il-silenzio-della-natura-mobile');
+  wrapper.style.visibility = 'visible';
+  wrapper.style.opacity = '1';
+  wrapper.style.transform = 'translateY(0)';
 
-  // 2) prendi il video e assicurati degli attributi
+  // 2) prendi il video
   const vid = wrapper.querySelector('video');
+
+  // 3) Assicurati attributi video
   vid.controls = true;
   vid.setAttribute('playsinline', '');
   vid.setAttribute('webkit-playsinline', '');
 
-  // 3) Carica il video dall’inizio
+  // 4) Carica video dall'inizio
   vid.pause();
   vid.currentTime = 0;
 
-// 4) Entra in fullscreen
-if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
-  // iOS Safari
-  if (vid.webkitEnterFullscreen) {
-    vid.webkitEnterFullscreen();
+  // 5) Richiedi fullscreen sul VIDEO, NON sul wrapper
+  try {
+    if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
+      if (vid.webkitEnterFullscreen) {
+        vid.webkitEnterFullscreen();
+      }
+    } else {
+      if (vid.requestFullscreen) {
+        await vid.requestFullscreen();
+      } else if (vid.webkitRequestFullscreen) {
+        await vid.webkitRequestFullscreen();
+      } else if (vid.msRequestFullscreen) {
+        await vid.msRequestFullscreen();
+      }
+    }
+  } catch (err) {
+    console.warn('Fullscreen non riuscito:', err);
   }
-} else {
-  // Android & altri, fullscreen sul wrapper
-  if (wrapper.requestFullscreen) wrapper.requestFullscreen();
-  else if (wrapper.webkitRequestFullscreen) wrapper.webkitRequestFullscreen();
-  else if (wrapper.msRequestFullscreen) wrapper.msRequestFullscreen();
+
+  // 6) Forza dimensioni e visibilità
+  vid.style.width = '100%';
+  vid.style.height = '100%';
+  vid.style.objectFit = 'contain';
+  vid.style.background = 'black';
+  vid.style.visibility = 'visible';
+  vid.style.display = 'block';
+  vid.style.zIndex = '10000';
+
+  // 7) Play
+  try {
+    await vid.play();
+  } catch(err) {
+    console.warn("Autoplay bloccato:", err);
   }
-  
-// forziamo visibilità e dimensioni al wrapper e video
-wrapper.style.display = 'block';
-wrapper.style.width = '100vw';
-wrapper.style.height = '100vh';
-wrapper.style.visibility = 'visible';
-wrapper.style.opacity = '1';
-wrapper.style.transform = 'translateY(0)';
-
-vid.style.width = '100%';
-vid.style.height = '100%';
-vid.style.objectFit = 'contain';
-vid.style.background = 'black';
-vid.style.visibility = 'visible';
-vid.style.display = 'block';
-vid.style.zIndex = '10000';
-}
-
-  // 5) Avvia la riproduzione
-  vid.play().catch(err => console.warn("Autoplay bloccato:", err));
 });
-
+  
   // ——— Chiudi il player tornando allo stato iniziale ———
 const closeBtn = wrapper.querySelector('.close-btn-player-video-il-silenzio-della-natura-mobile');
 closeBtn.addEventListener('click', () => {
