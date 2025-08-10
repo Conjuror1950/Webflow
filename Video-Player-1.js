@@ -31,8 +31,7 @@ video:-ms-fullscreen {
 video::-webkit-media-controls,
 video::-webkit-media-controls-enclosure {
   display: block !important;
-  opacity: 1 !important;
-  visibility: visible !important;
+  opacity: 1       !important;
 }
 
 .apple-video-wrapper-player-video-il-silenzio-della-natura-mobile {
@@ -145,21 +144,13 @@ lightbox.addEventListener('click', e => {
   vid.currentTime = 0;
 
 // 4) Entra in fullscreen
-const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-const isAndroid = /Android/.test(navigator.userAgent);
-
-if (isIOS) {
+if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
   // iOS Safari
   if (vid.webkitEnterFullscreen) {
     vid.webkitEnterFullscreen();
   }
-} else if (isAndroid) {
-  // Android
-  if (vid.webkitRequestFullscreen) {
-    vid.webkitRequestFullscreen();
-  }
 } else {
-  // Altri browser (fallback per altri dispositivi)
+  // Android & altri, fullscreen sul wrapper
   if (wrapper.requestFullscreen) {
     wrapper.requestFullscreen();
   } else if (wrapper.webkitRequestFullscreen) {
@@ -167,24 +158,30 @@ if (isIOS) {
   } else if (wrapper.msRequestFullscreen) {
     wrapper.msRequestFullscreen();
   }
+  
+  // Forza visibilità e dimensioni del wrapper e video
+  wrapper.style.display = 'block';
+  wrapper.style.width = '100vw';
+  wrapper.style.height = '100vh';
+  wrapper.style.visibility = 'visible';
+  wrapper.style.opacity = '1';
+  wrapper.style.transform = 'translateY(0)';
+
+  vid.style.display = 'block';
+  vid.style.width = '100%';
+  vid.style.height = '100%';
+  vid.style.background = 'black';
+
+  // Forza visibilità dei controlli
+  const videoControls = vid.querySelectorAll("::-webkit-media-controls, ::-webkit-media-controls-enclosure");
+  videoControls.forEach(control => control.style.display = 'block');
 }
 
-// Forza visibilità e dimensioni al wrapper e video
-wrapper.style.display = 'block';
-wrapper.style.width = '100vw';
-wrapper.style.height = '100vh';
-wrapper.style.visibility = 'visible';
-wrapper.style.opacity = '1';
-wrapper.style.transform = 'translateY(0)';
-
-vid.style.display = 'block';
-vid.style.width = '100%';
-vid.style.height = '100%';
-vid.style.background = 'black';
-}
-
-  // 5) Avvia la riproduzione
-  vid.play().catch(err => console.warn("Autoplay bloccato:", err));
+// 5) Avvia la riproduzione, con un controllo per Android
+vid.play().catch(err => {
+  console.warn("Autoplay bloccato:", err);
+  vid.muted = true;  // Muta il video per permettere l'autoplay (soluzione temporanea)
+  vid.play();
 });
 
   // ——— Chiudi il player tornando allo stato iniziale ———
