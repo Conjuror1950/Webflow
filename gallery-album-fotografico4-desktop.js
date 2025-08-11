@@ -980,6 +980,45 @@ wrapper.classList.remove('visible-player-video-uno-sguardo-in-anteprima-desktop'
   player.on(dashjs.MediaPlayer.events.ERROR, e => {
     console.error('DASH error', e);
   });
+  
+ // ↓↓↓ personalizzo il buffer e le impostazioni HTTP di dash.js
+player.updateSettings({
+  streaming: {
+    // ★ BUFFERING ★
+    buffer: {
+      // Carica più “cuscinetto” prima di partire
+      initialBufferLevel: 20,        // da 15 → 20 s
+      // Mantieni un lungo buffer in qualità top
+      bufferTimeAtTopQuality: 90,    // da 60 → 90 s
+      // Mantieni un buffer generale consistente
+      bufferTimeDefault: 45,         // da 30 → 45 s
+      // Non scendere mai sotto
+      bufferToKeep: 30,              // da 20 → 30 s
+      // Quando il video è lungo, mantieni la logica “long form”
+      longFormContentDurationThreshold: 120
+    },
+
+    // ★ ADAPTIVE BITRATE (ABR) ★
+    abr: {
+      autoSwitchBitrate: { video: true, audio: true },
+      // usa la strategia basata sul buffer
+      useBufferOccupancyABRStrategy: true,
+      // più “comfort” tra i cambi di qualità
+      abrBola: { bitrateSafetyFactor: 0.90 },  // usa il 90% della banda stimata
+      // intervallo min. tra due switch
+      switchInterval: 10                    // da 8 → 10 s
+    },
+
+    // ★ HTTP / RETRY ★
+    http: {
+      timeout: 60000,
+      enableProgressive: true,
+      withCredentials: false,
+      retry: { maxAttempts: 4, baseDelay: 500, multiplier: 2 }  // un tentativo in più
+    }
+  },
+  debug: { logLevel: dashjs.Debug.LOG_LEVEL_NONE }
+});
 
   // Controls
   const playBtn = document.querySelector('.play-pause-player-video-uno-sguardo-in-anteprima-desktop');
@@ -1022,6 +1061,35 @@ previewPlayer.on(dashjs.MediaPlayer.events.TEXT_TRACKS_ADDED, () => {
       subEl.classList.remove('show');
     }
   });
+});
+  
+// impostazioni “ultra-light” per il preview
+previewPlayer.updateSettings({
+  streaming: {
+    // continua a scaricare anche quando il video sta in pausa
+    scheduleWhilePaused: true,
+    buffer: {
+      // da 10 s → 20 s di buffer per caricamento anticipato
+      bufferTimeDefault: 30,
+      // da 5 s → 10 s per la qualità massima
+      bufferTimeAtTopQuality: 15,
+      // tieni almeno 5 s di buffer già pronto
+      bufferToKeep: 10
+    },
+    // abilita il low-latency mode di dash.js
+    lowLatencyEnabled: true,
+       abr: {
+     autoSwitchBitrate: { video: false },
+     defaultRepresentation: { video: 0 }
+   },
+    http: {
+      timeout: 20000,          // timeout più breve se vuoi
+      enableProgressive: true
+    }
+  },
+  debug: {
+    logLevel: dashjs.Debug.LOG_LEVEL_NONE
+  }
 });
 
 // 2) quando muovi il mouse sulla barra, calcola il time, muovi il thumb, mostra preview & timecode
