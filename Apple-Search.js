@@ -345,6 +345,7 @@ showQuickLinks(); // Mostra subito i link rapidi al caricamento della pagina
     "interni": "/volume-3/interni-e-scenari",
     "fotografie di interni": "/volume-3/interni-e-scenari",
     "volume interni": "/volume-3/interni-e-scenari"
+    "volume interni e scenari": "/volume-3/interni-e-scenari"
   };
 
   function triggerFadeIn(element) {
