@@ -825,12 +825,16 @@ videoEl.addEventListener('dblclick', () => {
 
 // 2) Keyboard shortcuts: ←/→ skip 10s, Space toggle play/pause
 document.addEventListener('keydown', function(event) {
-  // prendi il video DENTRO il lightbox
-  const video = wrapper.querySelector('video');
+  // trova SOLO il wrapper attualmente visibile
+  const activeWrapper = document.querySelector('.apple-video-wrapper-player-video-il-silenzio-della-natura-desktop .visible-player-video-il-silenzio-della-natura-desktop');
+  if (!activeWrapper) return;
+
+  const video = activeWrapper.querySelector('video');
   if (!video) return;
-  
+
   switch (event.code) {
     case 'Space':
+    case 'Backspace': // aggiungi anche backspace se vuoi usato come play/pause
       event.preventDefault();
       if (video.paused) {
         video.play();
