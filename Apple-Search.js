@@ -18,10 +18,10 @@ const appleSearchHTML = `
     <ul class="results-list">
       <li><a href="/#faq">➜ FAQ</a></li>
       <li><a href="/contatti#modulo">➜ Modulo Contatti</a></li>
-      <li><a href="/#bio">➜ Biografia</a></li>
-      <li><a href="/portfolio#galleria">➜ Galleria</a></li>
+      <li><a href="/person/andrea-ingrassia">➜ Su Di Me</a></li>
+      <li><a href="/portfolio#galleria">➜ Esplora</a></li>
       <li><a href="/servizi#attrezzatura">➜ Attrezzatura</a></li>
-      <li><a href="/informazioni/aggiornamenti">➜ Aggiornamenti</a></li>
+      <li><a href="/informazioni/aggiornamenti">➜ Novità</a></li>
     </ul>
     <p class="results-title" id="suggestions-title" style="display: none;">Ricerche suggerite</p>
     <ul class="suggestions-list">
@@ -257,10 +257,10 @@ showQuickLinks(); // Mostra subito i link rapidi al caricamento della pagina
 
   const suggestions = [
     "home",
-    "biografia",
+    "su di me",
     "faq",
     "portfolio",
-    "galleria",
+    "esplora",
     "servizi",
     "attrezzatura",
     "cv",
@@ -268,14 +268,23 @@ showQuickLinks(); // Mostra subito i link rapidi al caricamento della pagina
     "modulo",
     "social",
     "contatti",
-    "informazioni sugli aggiornamenti"
+    "novità"
   ];
 
   const urlMap = {
     "home": "/",
-    "biografia": "/#bio",
+    "su di me": "/person/andrea-ingrassia",
+    "me": "/person/andrea-ingrassia",
+    "andrea ingrassia": "/person/andrea-ingrassia",
+    "andrea": "/person/andrea-ingrassia",
+    "chi sono": "/person/andrea-ingrassia",
+    "biografia": "/person/andrea-ingrassia",
+    "bio": "/person/andrea-ingrassia",
     "faq": "/#faq",
+    "domande frequenti": "/#faq",
+    "domande": "/#faq",
     "portfolio": "/portfolio",
+    "esplora": "/portfolio#galleria",
     "galleria": "/portfolio#galleria",
     "servizi": "/servizi",
     "attrezzatura": "/servizi#attrezzatura",
@@ -286,7 +295,46 @@ showQuickLinks(); // Mostra subito i link rapidi al caricamento della pagina
     "form": "/contatti#modulo",
     "social": "/contatti#social",
     "contatti": "/contatti",
-    "informazioni sugli aggiornamenti": "/informazioni/aggiornamenti"
+    "novità": "/informazioni/aggiornamenti",
+    "aggiornamenti": "/informazioni/aggiornamenti",
+    "novità sugli aggiornamenti": "/informazioni/aggiornamenti",
+    "informazioni sugli aggiornamenti": "/informazioni/aggiornamenti",
+    "produzioni cinematografiche": "/show/produzioni-cinematografiche",
+    "produzioni": "/show/produzioni-cinematografiche",
+    "cinema": "/show/produzioni-cinematografiche",
+    "video": "/show/produzioni-cinematografiche",
+    "video cinematografici": "/show/produzioni-cinematografiche",
+    "album fotografici": "/room/album-fotografici",
+    "album": "/room/album-fotografici",
+    "fotografie": "/room/album-fotografici",
+    "foto": "/room/album-fotografici",
+    "eventi": "/room/album-fotografici",
+    "raccolte": "/room/album-fotografici",
+    "halloween": "/collezione-1/halloween",
+    "foto halloween": "/collezione-1/halloween",
+    "collezione halloween": "/collezione-1/halloween",
+    "fotografie di halloween": "/collezione-1/halloween",
+    "foto di halloween": "/collezione-1/halloween",
+    "foto di città": "/volume-1/ambienti-urbani",
+    "città": "/volume-1/ambienti-urbani",
+    "fotografie di città": "/volume-1/ambienti-urbani",
+    "ambienti urbani": "/volume-1/ambienti-urbani",
+    "volume ambienti urbani": "/volume-1/ambienti-urbani",
+    "foto di paesaggi": "/volume-2/paesaggi-naturali",
+    "foto di natura": "/volume-2/paesaggi-naturali",
+    "fotografie di natura": "/volume-2/paesaggi-naturali",
+    "natura": "/volume-2/paesaggi-naturali",
+    "foto paesaggi": "/volume-2/paesaggi-naturali",
+    "fotografie di paesaggi": "/volume-2/paesaggi-naturali",
+    "fotografie paesaggi": "/volume-2/paesaggi-naturali",
+    "volume paesaggi": "/volume-2/paesaggi-naturali",
+    "paesaggi naturali": "/volume-2/paesaggi-naturali",
+    "foto interni": "/volume-3/interni-e-scenari",
+    "foto interni e scenari": "/volume-3/interni-e-scenari",
+    "foto di interni": "/volume-3/interni-e-scenari",
+    "interni": "/volume-3/interni-e-scenari",
+    "fotografie di interni": "/volume-3/interni-e-scenari",
+    "volume interni": "/volume-3/interni-e-scenari"
   };
 
   function triggerFadeIn(element) {
