@@ -823,27 +823,18 @@ videoEl.addEventListener('dblclick', () => {
   }
 });
 
-// --- keyboard handler SCOPED al wrapper (il-silenzio)
-function handleKeydownIlSilenzio(event) {
-  // evita interferenze quando l'utente sta scrivendo in un input/textarea/contenteditable
-  const tag = event.target && event.target.tagName;
-  if (tag === 'INPUT' || tag === 'TEXTAREA' || event.target.isContentEditable) return;
+// 2) Keyboard shortcuts: ←/→ skip 10s, Space toggle play/pause
+document.addEventListener('keydown', function(event) {
+  // Solo il wrapper attivo (ultimo con cui l'utente ha interagito) deve rispondere
+  if (window.__lastActiveVideoPlayerWrapper !== wrapper) return;
 
-  // reagisci SOLO se il wrapper è visibile OR l'evento è originato dentro il wrapper
-  const isVisible = wrapper.classList.contains('visible-player-video-il-silenzio-della-natura-desktop');
-  const originatedInside = wrapper.contains(event.target);
-  const focusedInside = wrapper.contains(document.activeElement);
-
-  if (!isVisible && !originatedInside && !focusedInside) return;
-
+  // prendi il video DENTRO il wrapper attivo
   const video = wrapper.querySelector('video');
   if (!video) return;
 
   switch (event.code) {
     case 'Space':
-      event.preventDefault(); // impedisce scroll/azioni di default
-      // evita che altri listener reagiscano come fallback (opzionale, ma utile)
-      event.stopPropagation();
+      event.preventDefault();
       if (video.paused) {
         video.play();
       } else {
@@ -851,15 +842,18 @@ function handleKeydownIlSilenzio(event) {
       }
       break;
     case 'ArrowRight':
-      event.stopPropagation();
-      video.currentTime = Math.min(video.duration, video.currentTime + 10);
+      video.currentTime += 10;
       break;
     case 'ArrowLeft':
-      event.stopPropagation();
-      video.currentTime = Math.max(0, video.currentTime - 10);
+      video.currentTime -= 10;
       break;
+      
+    case 'Backspace':
+     event.preventDefault();
+     if (video.paused) video.play(); else video.pause();
+    break;
   }
-}
+});
 
   // 2) IMPOSTO IMMEDIATAMENTE IL MENU LINGUA
 const shareMenu = document.querySelector('.share-menu-player-video-il-silenzio-della-natura-desktop');
