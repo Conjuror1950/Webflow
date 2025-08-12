@@ -825,13 +825,10 @@ videoEl.addEventListener('dblclick', () => {
 
 // 2) Keyboard shortcuts: ←/→ skip 10s, Space toggle play/pause
 document.addEventListener('keydown', function(event) {
-  // Solo il wrapper attivo (ultimo con cui l'utente ha interagito) deve rispondere
-  if (window.__lastActiveVideoPlayerWrapper !== wrapper) return;
-
-  // prendi il video DENTRO il wrapper attivo
+  // prendi il video DENTRO il lightbox
   const video = wrapper.querySelector('video');
   if (!video) return;
-
+  
   switch (event.code) {
     case 'Space':
       event.preventDefault();
@@ -847,11 +844,6 @@ document.addEventListener('keydown', function(event) {
     case 'ArrowLeft':
       video.currentTime -= 10;
       break;
-      
-    case 'Backspace':
-     event.preventDefault();
-     if (video.paused) video.play(); else video.pause();
-    break;
   }
 });
 
