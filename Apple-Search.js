@@ -338,6 +338,7 @@ showQuickLinks(); // Mostra subito i link rapidi al caricamento della pagina
     "fotografie di paesaggi": "/room/album-fotografici/volume-2/paesaggi-naturali",
     "fotografie paesaggi": "/room/album-fotografici/volume-2/paesaggi-naturali",
     "volume paesaggi": "/room/album-fotografici/volume-2/paesaggi-naturali",
+    "volume paesaggi naturali": "/room/album-fotografici/volume-2/paesaggi-naturali",
     "paesaggi naturali": "/room/album-fotografici/volume-2/paesaggi-naturali",
     "foto interni": "/room/album-fotografici/volume-3/interni-e-scenari",
     "foto interni e scenari": "/room/album-fotografici/volume-3/interni-e-scenari",
