@@ -263,7 +263,6 @@ showQuickLinks(); // Mostra subito i link rapidi al caricamento della pagina
     "domande frequenti",
     "portfolio",
     "esplora",
-    "galleria",
     "servizi",
     "attrezzatura",
     "cv",
@@ -276,13 +275,10 @@ showQuickLinks(); // Mostra subito i link rapidi al caricamento della pagina
     "aggiornamenti",
     "produzioni cinematografiche",
     "album fotografici",
-    "eventi",
-    "raccolte",
     "collezione halloween",
-    "fotografie di città",
     "volume ambienti urbani",
-    "volume paesaggi",
-    "volume interni"
+    "volume paesaggi naturali",
+    "volume interni e scenari"
   ];
 
   const urlMap = {
