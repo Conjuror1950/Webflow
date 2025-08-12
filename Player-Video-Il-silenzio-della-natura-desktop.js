@@ -823,15 +823,27 @@ videoEl.addEventListener('dblclick', () => {
   }
 });
 
-// 2) Keyboard shortcuts: ←/→ skip 10s, Space toggle play/pause
-document.addEventListener('keydown', function(event) {
-  // prendi il video DENTRO il lightbox
+// --- keyboard handler SCOPED al wrapper (il-silenzio)
+function handleKeydownIlSilenzio(event) {
+  // evita interferenze quando l'utente sta scrivendo in un input/textarea/contenteditable
+  const tag = event.target && event.target.tagName;
+  if (tag === 'INPUT' || tag === 'TEXTAREA' || event.target.isContentEditable) return;
+
+  // reagisci SOLO se il wrapper è visibile OR l'evento è originato dentro il wrapper
+  const isVisible = wrapper.classList.contains('visible-player-video-il-silenzio-della-natura-desktop');
+  const originatedInside = wrapper.contains(event.target);
+  const focusedInside = wrapper.contains(document.activeElement);
+
+  if (!isVisible && !originatedInside && !focusedInside) return;
+
   const video = wrapper.querySelector('video');
   if (!video) return;
-  
+
   switch (event.code) {
     case 'Space':
-      event.preventDefault();
+      event.preventDefault(); // impedisce scroll/azioni di default
+      // evita che altri listener reagiscano come fallback (opzionale, ma utile)
+      event.stopPropagation();
       if (video.paused) {
         video.play();
       } else {
@@ -839,13 +851,15 @@ document.addEventListener('keydown', function(event) {
       }
       break;
     case 'ArrowRight':
-      video.currentTime += 10;
+      event.stopPropagation();
+      video.currentTime = Math.min(video.duration, video.currentTime + 10);
       break;
     case 'ArrowLeft':
-      video.currentTime -= 10;
+      event.stopPropagation();
+      video.currentTime = Math.max(0, video.currentTime - 10);
       break;
   }
-});
+}
 
   // 2) IMPOSTO IMMEDIATAMENTE IL MENU LINGUA
 const shareMenu = document.querySelector('.share-menu-player-video-il-silenzio-della-natura-desktop');
