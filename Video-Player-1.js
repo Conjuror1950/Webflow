@@ -16,6 +16,17 @@
   height: 100% !important;
 }
 
+/* In più, per sicurezza su Android/Chrome, definisci regole anche per il <video> in fullscreen diretto */
+video:fullscreen,
+video:-webkit-full-screen,
+video:-ms-fullscreen {
+  width:  100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  background: black !important;
+  z-index: 9999 !important;        /* FORZA il video sopra tutto */
+}
+
 /* costringi Chrome/Android a mostrare i suoi controlli */
 video::-webkit-media-controls,
 video::-webkit-media-controls-enclosure {
@@ -140,11 +151,13 @@ if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
   }
 } else {
   
-// Fullscreen nativo sul video (Android Chrome, ecc.)
-if (vid.requestFullscreen) {
-  vid.requestFullscreen();
-} else if (vid.msRequestFullscreen) { // vecchio Edge/IE
-  vid.msRequestFullscreen();
+// Fullscreen sul wrapper (per Android e altri)
+if (wrapper.requestFullscreen) {
+  wrapper.requestFullscreen();
+} else if (wrapper.webkitRequestFullscreen) {
+  wrapper.webkitRequestFullscreen();
+} else if (wrapper.msRequestFullscreen) {
+  wrapper.msRequestFullscreen();
 }
 
 // Forza visibilità e dimensioni al wrapper e video
@@ -156,6 +169,8 @@ wrapper.style.opacity = '1';
 wrapper.style.transform = 'translateY(0)';
 
 vid.style.display = 'block';
+vid.style.width = '100%';
+vid.style.height = '100%';
 vid.style.background = 'black';
 }
 
