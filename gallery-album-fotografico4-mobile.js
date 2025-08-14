@@ -1,12 +1,6 @@
 /* Player di prova*/
 (() => {
   const init = () => {
-    // --- <head> essentials ---
-    const metaViewport = document.createElement('meta');
-    metaViewport.name = 'viewport';
-    metaViewport.content = 'width=device-width, initial-scale=1, viewport-fit=cover';
-    document.head.appendChild(metaViewport);
-
     // --- base styles ---
     const style = document.createElement('style');
     style.textContent = `
