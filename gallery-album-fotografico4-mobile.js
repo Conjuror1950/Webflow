@@ -20,11 +20,7 @@
       }
       
       .card {
-      background: var(--card);
-      border-radius: 18px;
       padding: 16px;
-      box-shadow: 0 6px 24px rgba(0,0,0,.3);
-      border: 1px solid rgba(255,255,255,.06);
       }
       
       .video-wrap {
