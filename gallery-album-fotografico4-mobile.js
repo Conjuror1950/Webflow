@@ -15,25 +15,33 @@
     // --- base styles ---
     const style = document.createElement('style');
     style.textContent = `
-      :root { --bg: #0b0b0c; --fg: #e8e8ea; --muted: #a6a6ad; --card: #141416; --accent: #4da3ff; }
-      html, body { height: 100%; }
-      body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; background: var(--bg); color: var(--fg); }
-      .page { min-height: 100dvh; display: grid; place-items: start center; padding: 28px 16px 48px; }
-      .container { width: min(960px, 100%); }
-      header h1 { margin: 0 0 8px; font-size: clamp(22px, 3.5vw, 32px); font-weight: 700; letter-spacing: -0.02em; }
-      header p { margin: 0 0 20px; color: var(--muted); line-height: 1.45; }
-      .card { background: var(--card); border-radius: 18px; padding: 16px; box-shadow: 0 6px 24px rgba(0,0,0,.3); border: 1px solid rgba(255,255,255,.06); }
-      .video-wrap { position: relative; border-radius: 12px; overflow: hidden; background: #000; }
-      video { display: block; width: 100%; height: auto; background: #000; outline: none; }
-      .controls { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
-      .controls button { appearance: none; border: 0; border-radius: 999px; padding: 10px 14px; font-weight: 600; background: #1a1b1e; color: var(--fg); cursor: pointer; transition: transform .08s ease, background .2s ease; border: 1px solid rgba(255,255,255,.08); }
-      .controls button:hover { transform: translateY(-1px); }
-      .controls button:active { transform: translateY(0); }
-      .controls button.primary { background: var(--accent); color: #0b0b0c; border-color: transparent; }
-      .note { margin-top: 10px; font-size: 13px; color: var(--muted); }
-      .hint { font-size: 12px; color: var(--muted); margin-top: 14px; }
-      .footer { margin-top: 22px; font-size: 12px; color: var(--muted); }
-      .kbd { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background: #1a1b1e; border: 1px solid rgba(255,255,255,.12); padding: 2px 6px; border-radius: 6px; }
+      .container {
+      width: min(960px, 100%);
+      }
+      
+      .card {
+      background: var(--card);
+      border-radius: 18px;
+      padding: 16px;
+      box-shadow: 0 6px 24px rgba(0,0,0,.3);
+      border: 1px solid rgba(255,255,255,.06);
+      }
+      
+      .video-wrap {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #000;
+      }
+      
+      video {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: #000;
+      outline: none;
+      }
+      
     `;
     document.head.appendChild(style);
 
