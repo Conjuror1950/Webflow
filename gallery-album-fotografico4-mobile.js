@@ -1,9 +1,4 @@
-/*
-  Single-file JS that renders an HTML page with a simple <video>,
-  W3Schools-style, plus a button to go Fullscreen + lock Landscape on Android.
-  Works when served directly by Netlify/GitHub Pages as a .js file referenced by an HTML loader,
-  OR when injected into a page (e.g., Webflow embed).
-*/
+/* Player di prova*/
 (() => {
   const init = () => {
     // --- <head> essentials ---
@@ -47,11 +42,6 @@
     root.className = 'page';
     root.innerHTML = `
       <div class="container">
-        <header>
-          <h1>Video HTML5 semplicissimo</h1>
-          <p>Ispirato all'esempio di W3Schools: un <code>&lt;video&gt;</code> con controlli, sorgente MP4 di esempio, e un tasto per entrare in fullscreen e bloccare il landscape su Android.</p>
-        </header>
-
         <section class="card">
           <div class="video-wrap" id="videoWrap">
             <video id="demoVideo" controls playsinline preload="metadata" poster="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.jpg">
@@ -60,18 +50,6 @@
               Il tuo browser non supporta il tag video. Puoi <a href="https://www.w3schools.com/html/mov_bbb.mp4">scaricare il file</a>.
             </video>
           </div>
-
-          <div class="controls">
-            <button id="playPauseBtn" class="primary">Play</button>
-            <button id="muteBtn">Mute</button>
-            <button id="fsBtn">Fullscreen + Landscape</button>
-          </div>
-
-          <div class="note">Suggerimento: su Android Chrome, il blocco dell'orientamento funziona al meglio quando il video è in fullscreen.</div>
-          <div class="hint">Sostituisci l'URL MP4 con il tuo file hostato su Netlify per test reali.</div>
-        </section>
-
-        <div class="footer">© Demo minimal — pronto per essere usato come file singolo .js</div>
       </div>
     `;
 
