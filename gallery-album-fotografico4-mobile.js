@@ -9,7 +9,6 @@
 
     const metaTheme = document.createElement('meta');
     metaTheme.name = 'theme-color';
-    metaTheme.content = '#0b0b0c';
     document.head.appendChild(metaTheme);
 
     // --- base styles ---
