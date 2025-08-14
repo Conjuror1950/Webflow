@@ -16,17 +16,6 @@
   height: 100% !important;
 }
 
-/* In più, per sicurezza su Android/Chrome, definisci regole anche per il <video> in fullscreen diretto */
-video:fullscreen,
-video:-webkit-full-screen,
-video:-ms-fullscreen {
-  width:  100% !important;
-  height: 100% !important;
-  object-fit: contain !important;
-  background: black !important;
-  z-index: 9999 !important;        /* FORZA il video sopra tutto */
-}
-
 /* costringi Chrome/Android a mostrare i suoi controlli */
 video::-webkit-media-controls,
 video::-webkit-media-controls-enclosure {
@@ -125,180 +114,101 @@ video {
 
 // Javascript (JS) 
 // ——— Lightbox → apri player in fullscreen e play ———
-lightbox.addEventListener('click', async e => {
+const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-container-mobile');
+lightbox.addEventListener('click', e => {
   e.preventDefault();
 
-  // 1) mostra il wrapper visivamente
+  // 1) mostra il wrapper
   wrapper.style.display = 'block';
   wrapper.classList.add('visible-player-video-il-silenzio-della-natura-mobile');
 
-  // 2) prendi il video e assicurati degli attributi di base
+  // 2) prendi il video e assicurati degli attributi
   const vid = wrapper.querySelector('video');
   vid.controls = true;
-
-  // keep playsinline for normal inline playback, but remove it temporarily
-  // when attempting native fullscreen on Android so browser can use native fullscreen.
-  const hadPlaysInline = vid.hasAttribute('playsinline') || vid.hasAttribute('webkit-playsinline');
-  if (hadPlaysInline) {
-    vid.removeAttribute('playsinline');
-    vid.removeAttribute('webkit-playsinline');
-  }
+  vid.setAttribute('playsinline', '');
+  vid.setAttribute('webkit-playsinline', '');
 
   // 3) Carica il video dall’inizio
-  try {
-    vid.pause();
-    vid.currentTime = 0;
-  } catch (err) {
-    console.warn('Non ho potuto resettare il video', err);
+  vid.pause();
+  vid.currentTime = 0;
+
+// 4) Entra in fullscreen
+if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
+  // iOS Safari
+  if (vid.webkitEnterFullscreen) {
+    vid.webkitEnterFullscreen();
   }
+} else {
+  
+// Fullscreen nativo sul video (Android Chrome, ecc.)
+if (vid.requestFullscreen) {
+  vid.requestFullscreen();
+} else if (vid.msRequestFullscreen) { // vecchio Edge/IE
+  vid.msRequestFullscreen();
+}
 
-  // helper: prova a mettere in fullscreen il video (nativo) e ritorna l'elemento fullscreen
-  async function tryVideoFullscreen() {
-    // preferisci la chiamata con opzioni se supportata (navigationUI possibile su Chrome)
-    const req = vid.requestFullscreen?.bind(vid) ||
-                vid.webkitRequestFullscreen?.bind(vid) ||
-                vid.msRequestFullscreen?.bind(vid);
+// Forza visibilità e dimensioni al wrapper e video
+wrapper.style.display = 'block';
+wrapper.style.width = '100vw';
+wrapper.style.height = '100vh';
+wrapper.style.visibility = 'visible';
+wrapper.style.opacity = '1';
+wrapper.style.transform = 'translateY(0)';
 
-    if (!req) throw new Error('No requestFullscreen sul video');
+vid.style.display = 'block';
+vid.style.background = 'black';
+}
 
-    // alcune implementazioni accettano options: { navigationUI: 'hide' }
-    try {
-      const maybePromise = req({ navigationUI: 'hide' });
-      if (maybePromise && typeof maybePromise.then === 'function') {
-        await maybePromise;
-      }
-      return;
-    } catch (err) {
-      // se il browser non accetta options, prova senza
-      try {
-        const req2 = vid.requestFullscreen?.bind(vid) ||
-                     vid.webkitRequestFullscreen?.bind(vid) ||
-                     vid.msRequestFullscreen?.bind(vid);
-        const mp = req2();
-        if (mp && typeof mp.then === 'function') await mp;
-        return;
-      } catch (err2) {
-        throw err2 || err;
-      }
-    }
-  }
-
-  // prova il fullscreen nativo del video, ma se dopo breve timeout non si vede
-  // fallback al wrapper fullscreen.
-  let usedWrapperFallback = false;
-  try {
-    // prova video.requestFullscreen
-    await Promise.race([
-      (async () => { await tryVideoFullscreen(); })(),
-      new Promise((_, rej) => setTimeout(() => rej(new Error('video fullscreen timeout')), 600) )
-    ]);
-    // ora aspetta un piccolo istante per verificare che il video stia effettivamente rendendo (non solo audio)
-    await new Promise(res => setTimeout(res, 140));
-    // check: se il video non ha dimensioni visibili, considera fallback
-    const vb = vid.videoWidth, vh = vid.videoHeight;
-    const rect = vid.getBoundingClientRect();
-    const visible = vb > 0 && vh > 0 && rect.width > 10 && rect.height > 10;
-    if (!visible) throw new Error('video non visibile dopo video.requestFullscreen');
-  } catch (err) {
-    // fallback: entra in fullscreen sul wrapper (approccio stabile)
-    usedWrapperFallback = true;
-    try {
-      const reqW = wrapper.requestFullscreen?.bind(wrapper) ||
-                   wrapper.webkitRequestFullscreen?.bind(wrapper) ||
-                   wrapper.msRequestFullscreen?.bind(wrapper);
-      if (reqW) {
-        const mp = reqW();
-        if (mp && typeof mp.then === 'function') await mp;
-      } else {
-        // se nemmeno wrapper ha request, forziamo visualmente
-        console.warn('Nessun requestFullscreen disponibile, forzando visuale CSS');
-      }
-      // assicurati che il wrapper prenda le dimensioni giuste
-      wrapper.style.display = 'block';
-      wrapper.style.width = '100vw';
-      wrapper.style.height = '100vh';
-      wrapper.style.visibility = 'visible';
-      wrapper.style.opacity = '1';
-      wrapper.style.transform = 'translateY(0)';
-
-      vid.style.display = 'block';
-      vid.style.width = '100%';
-      vid.style.height = '100%';
-      vid.style.background = 'black';
-    } catch (err2) {
-      console.warn('Fallback wrapper fullscreen fallito', err2);
-    }
-  }
-
-  // 5) Avvia la riproduzione (autoplay può fallire)
+  // 5) Avvia la riproduzione
   vid.play().catch(err => console.warn("Autoplay bloccato:", err));
-
-  // se siamo su Android e la lock è supportata, la gestiamo nel listener fullscreenchange
-  // (vedi listener sotto)
 });
 
-// --- AGGIORNA IL listener fullscreenchange per gestire orientation lock e playsinline restore ---
-document.addEventListener('fullscreenchange', async () => {
-  const wrapperEl = document.querySelector('.apple-video-wrapper-player-video-il-silenzio-della-natura-mobile');
-  const vid = wrapperEl.querySelector('video');
-
+  // ——— Chiudi il player tornando allo stato iniziale ———
+const closeBtn = wrapper.querySelector('.close-btn-player-video-il-silenzio-della-natura-mobile');
+closeBtn.addEventListener('click', () => {
+  
+  // 1) Se sei in fullscreen, esci prima
   if (document.fullscreenElement) {
-    wrapperEl.classList.add('fullscreen');
-
-    // Prova a lockare l'orientamento (solo se supportato)
-    if (screen.orientation && screen.orientation.lock) {
-      try {
-        // molte volte i player preferiscono landscape for video a schermo intero
-        await screen.orientation.lock('landscape');
-      } catch (err) {
-        console.warn('Orientation lock non riuscito:', err);
-      }
-    }
-
-    // Rimuovi eventuale attribute playsinline se ci troviamo in fullscreen nativo (già fatto prima),
-    // ma se siamo entrati in fullscreen sul wrapper vogliamo mantenere playsinline per il ritorno
-    // (non facciamo nulla qui).
-  } else {
-    // uscita dal fullscreen
-    wrapperEl.classList.remove('fullscreen');
-
-    // ripristina playsinline per il comportamento inline
-    try {
-      if (!vid.hasAttribute('playsinline')) {
-        vid.setAttribute('playsinline', '');
-      }
-      if (!vid.hasAttribute('webkit-playsinline')) {
-        vid.setAttribute('webkit-playsinline', '');
-      }
-    } catch (err) {
-      // noop
-    }
-
-    // sblocca l'orientamento se possibile
-    try {
-      if (screen.orientation && screen.orientation.unlock) {
-        screen.orientation.unlock();
-      } else if (screen.unlockOrientation) {
-        // vecchie API
-        screen.unlockOrientation();
-      }
-    } catch (err) {
-      console.warn('Orientation unlock non riuscito:', err);
-    }
+    document.exitFullscreen();
   }
-});
+  
+  // 1b) Ferma il video e resetta la posizione
+  const video = wrapper.querySelector('video');
+  video.pause();
+  video.currentTime = 0;
+  
+  // 2) Inizia lo slide‐out da sinistra-destra
+  wrapper.classList.remove('visible-player-video-il-silenzio-della-natura-mobile');
+ // 2.b) Forza il wrapper a rimanere "visible" e al punto di partenza
+ wrapper.style.visibility = 'visible';
+ wrapper.style.transform  = 'translateX(0)';
+ wrapper.style.opacity    = '1';
+ wrapper.offsetHeight; // forzo reflow
 
-// --- opzionale: ascolta errori di fullscreen e forza fallback se succede qualcosa ---
-document.addEventListener('fullscreenerror', () => {
-  console.warn('fullscreenerror fired — forzo il wrapper come fallback');
-  if (!document.fullscreenElement) {
-    try {
-      const reqW = wrapper.requestFullscreen?.bind(wrapper) ||
-                   wrapper.webkitRequestFullscreen?.bind(wrapper) ||
-                   wrapper.msRequestFullscreen?.bind(wrapper);
-      if (reqW) reqW();
-    } catch (err) { /* noop */ }
-  }
+ // 2.c) Ora aggiungi la classe che anima lo slide‐out verso destra
+ wrapper.classList.add('closing-player-video-il-silenzio-della-natura-mobile');
+
+  // 3) Dopo la transizione, ripristina la pagina
+  setTimeout(() => {
+    // 0) Rimuovi landscape-forzato
+     wrapper.classList.remove('force-landscape');
+    // 1) ripristina lightbox e tutti gli altri
+     [lightbox, ...Array.from(document.body.children)
+       .filter(el => el !== wrapper)
+     ].forEach(el => {
+      el.style.display = '';
+      el.classList.remove('fade-out');
+    });
+
+// 3b) Rimuovi ogni inline‐style e resetta la trasformazione
+wrapper.style.visibility = '';
+wrapper.style.display    = '';
+wrapper.style.transform  = '';
+wrapper.style.opacity    = '';
+
+// 3c) Rimuovi tutte le classi di show/hide
+wrapper.classList.remove('visible-player-video-il-silenzio-della-natura-mobile', 'closing-player-video-il-silenzio-della-natura-mobile');
+  }, 350);
 });
   
   // 3) CARICA DASH.JS E INIZIALIZZA IL PLAYER
