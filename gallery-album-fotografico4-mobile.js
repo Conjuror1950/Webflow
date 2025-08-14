@@ -25,16 +25,13 @@
       
       .video-wrap {
       position: relative;
-      border-radius: 12px;
       overflow: hidden;
-      background: #000;
       }
       
       video {
       display: block;
       width: 100%;
       height: auto;
-      background: #000;
       outline: none;
       }
       
