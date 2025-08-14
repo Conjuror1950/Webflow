@@ -7,10 +7,6 @@
     metaViewport.content = 'width=device-width, initial-scale=1, viewport-fit=cover';
     document.head.appendChild(metaViewport);
 
-    const metaTheme = document.createElement('meta');
-    metaTheme.name = 'theme-color';
-    document.head.appendChild(metaTheme);
-
     // --- base styles ---
     const style = document.createElement('style');
     style.textContent = `
