@@ -44,14 +44,6 @@
             <video id="demoVideo" controls controlsList="share" allow="picture-in-picture" x-webkit-airplay="allow" data-no-toggle preload="metadata" crossorigin="anonymous" playsinline webkit-playsinline>
             </video>
           </div>
-
-          <!-- piccoli controlli di esempio (puoi rimuoverli se non servono) -->
-          <div class="controls">
-            <button id="playPauseBtn">Play</button>
-            <button id="muteBtn">Mute</button>
-            <button id="fsBtn">Fullscreen</button>
-          </div>
-        </section>
       </div>
     `;
     document.body.appendChild(root);
