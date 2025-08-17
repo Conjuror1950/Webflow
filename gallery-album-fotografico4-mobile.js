@@ -35,9 +35,6 @@
         <section class="card">
           <div class="video-wrap" id="videoWrap">
             <video id="demoVideo" controls playsinline preload="metadata" poster="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.jpg">
-              <!-- Sostituisci l'SRC con il tuo file su GitHub/Netlify se vuoi -->
-              <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
-              Il tuo browser non supporta il tag video. Puoi <a href="https://www.w3schools.com/html/mov_bbb.mp4">scaricare il file</a>.
             </video>
           </div>
       </div>
@@ -51,24 +48,6 @@
     const muteBtn = document.getElementById('muteBtn');
     const fsBtn = document.getElementById('fsBtn');
     const videoWrap = document.getElementById('videoWrap');
-
-    // --- Fullscreen sulla prima gesture dell'utente ---
-const onFirstGesture = async () => {
-  try {
-    if (!isFullscreen()) {
-      await goFullscreenLandscape();      // entra in FS
-    }
-    if (video.paused) {
-      await video.play().catch(() => {}); // avvia se era in pausa
-    }
-  } catch (e) {
-    console.warn('FS su prima gesture non riuscito:', e?.message || e);
-  } finally {
-    document.removeEventListener('pointerup', onFirstGesture, true);
-  }
-};
-// Cattura la PRIMA interazione (anche se l’utente tocca i controlli nativi del video)
-document.addEventListener('pointerup', onFirstGesture, true);
 
     const isFullscreen = () => document.fullscreenElement != null || document.webkitFullscreenElement != null;
 
@@ -120,25 +99,42 @@ document.addEventListener('pointerup', onFirstGesture, true);
       muteBtn.textContent = video.muted ? 'Unmute' : 'Mute';
     };
 
-    if (playPauseBtn) {
-  playPauseBtn.addEventListener('click', () => {
-    if (video.paused) video.play(); else video.pause();
-  });
-}
-if (muteBtn) {
-  muteBtn.addEventListener('click', () => { video.muted = !video.muted; syncMuteState(); });
-}
-if (fsBtn) {
-  fsBtn.addEventListener('click', goFullscreenLandscape);
-}
+    playPauseBtn.addEventListener('click', () => {
+      if (video.paused) video.play(); else video.pause();
+    });
+    muteBtn.addEventListener('click', () => { video.muted = !video.muted; syncMuteState(); });
+    fsBtn.addEventListener('click', goFullscreenLandscape);
 
-video.addEventListener('pause', syncPlayState);
-video.addEventListener('volumechange', syncMuteState);
+    video.addEventListener('play', syncPlayState);
+    video.addEventListener('pause', syncPlayState);
+    video.addEventListener('volumechange', syncMuteState);
 
-// Initial labels (solo se i bottoni ci sono)
-if (playPauseBtn) syncPlayState();
-if (muteBtn) syncMuteState();
+    // Initial labels
+    syncPlayState();
+    syncMuteState();
   };
+
+  // 3) CARICA DASH.JS E INIZIALIZZA IL PLAYER
+  const dashScript = document.createElement('script');
+  dashScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/dashjs/5.0.0/legacy/umd/dash.all.min.js';
+  dashScript.onload = () => {
+    /* Video .mp4 in formato dash */
+    // ora il manifest contiene più Representation (4K,1080p,720p,...)
+    const manifest = 'https://il-silenzio-della-natura-video.netlify.app/manifest.mpd';
+    const video = document.getElementById('apple-video-player-video-il-silenzio-della-natura-mobile');
+    const player = dashjs.MediaPlayer().create();
+    // inizializza e carica il manifest
+    player.initialize(video, manifest, false);
+    player.enableText(true);
+
+  // player.attachSource(manifest);
+  window.addEventListener('unhandledrejection', ev => {
+  console.warn('Promise non gestita:', ev.reason);
+});
+
+  player.on(dashjs.MediaPlayer.events.ERROR, e => {
+    console.error('DASH error', e);
+  });
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
