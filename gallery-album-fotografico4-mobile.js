@@ -7,9 +7,7 @@
         width: min(960px, 100%);
         display: none; /* NASCONDI IL PLAYER INIZIALMENTE */
       }
-      .card {
-        padding: 16px;
-      }
+      
       .video-wrap {
         position: relative;
         overflow: hidden;
@@ -34,12 +32,10 @@
     root.className = 'page';
     root.innerHTML = `
       <div class="container" id="videoContainer">
-        <section class="card">
           <div class="video-wrap" id="videoWrap">
             <video id="demoVideo" controls controlsList="share" allow="picture-in-picture" x-webkit-airplay="allow" data-no-toggle preload="metadata" crossorigin="anonymous" playsinline webkit-playsinline>
             </video>
           </div>
-        </section>
       </div>
     `;
     document.body.appendChild(root);
