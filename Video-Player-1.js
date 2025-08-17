@@ -1,15 +1,16 @@
-// Player-Video-Il-silenzio-della-natura-mobile.js
 (() => {
   const init = () => {
-    // --- CSS ---
+    // --- base styles ---
     const style = document.createElement('style');
     style.textContent = `
-      .container-player-video-il-silenzio-della-natura-mobile {
+      .container {
         width: min(960px, 100%);
-        display: none !important; /* NASCONDI IL PLAYER INIZIALMENTE */
+        display: none; /* NASCONDI IL PLAYER INIZIALMENTE */
       }
-      
-      .video-wrap-player-video-il-silenzio-della-natura-mobile {
+      .card {
+        padding: 16px;
+      }
+      .video-wrap {
         position: relative;
         overflow: hidden;
       }
@@ -19,7 +20,7 @@
         height: auto;
         outline: none;
       }
-      .controls-player-video-il-silenzio-della-natura-mobile {
+      .controls {
         margin-top: 8px;
         display:flex;
         gap:8px;
@@ -28,42 +29,26 @@
     `;
     document.head.appendChild(style);
 
-    // --- HTML ---
+    // --- DOM ---
     const root = document.createElement('div');
     root.className = 'page';
     root.innerHTML = `
-      <div class="container-player-video-il-silenzio-della-natura-mobile" id="videoContainer-player-video-il-silenzio-della-natura-mobile">
-          <div class="video-wrap-player-video-il-silenzio-della-natura-mobile" id="videoWrap-player-video-il-silenzio-della-natura-mobile">
-            <video id="Player-video-il-silenzio-della-natura-mobile" controls controlsList="share" allow="picture-in-picture" x-webkit-airplay="allow" data-no-toggle preload="metadata" crossorigin="anonymous">
+      <div class="container" id="videoContainer">
+        <section class="card">
+          <div class="video-wrap" id="videoWrap">
+            <video id="demoVideo" controls controlsList="share" allow="picture-in-picture" x-webkit-airplay="allow" data-no-toggle preload="metadata" crossorigin="anonymous" playsinline webkit-playsinline>
             </video>
           </div>
+        </section>
       </div>
     `;
     document.body.appendChild(root);
 
-    // --- JS ---
-const showPlayer = () => {
-  const container = document.getElementById('videoContainer-player-video-il-silenzio-della-natura-mobile');
-  container.style.display = 'block';
-
-  const video = document.getElementById('Player-video-il-silenzio-della-natura-mobile');
-  if (video) {
-    // --- iOS: togli playsinline per fullscreen nativo ---
-    const isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-    if (isiOS) {
-      video.removeAttribute('playsinline');
-      video.removeAttribute('webkit-playsinline');
-    }
-
-    // Resetta sempre il video
-    video.currentTime = 0;
-
-    video.play().catch(err => console.warn('Autoplay fallito:', err));
-
-    // --- Android/Desktop: fullscreen normale ---
-    if (!isiOS) goFullscreenLandscape();
-  }
-};
+    // --- FUNZIONE PER MOSTRARE IL PLAYER ---
+    const showPlayer = () => {
+      const container = document.getElementById('videoContainer');
+      container.style.display = 'block';
+    };
 
     // --- COLLEGA IL CLICK DELLA LIGHTBOX ---
     const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-container-mobile');
@@ -72,11 +57,11 @@ const showPlayer = () => {
     }
 
     // --- JS behavior (fullscreen, play/pause, mute, ecc.) ---
-    const video = document.getElementById('Player-video-il-silenzio-della-natura-mobile');
+    const video = document.getElementById('demoVideo');
     const playPauseBtn = document.getElementById('playPauseBtn');
     const muteBtn = document.getElementById('muteBtn');
     const fsBtn = document.getElementById('fsBtn');
-    const videoWrap = document.getElementById('videoWrap-player-video-il-silenzio-della-natura-mobile');
+    const videoWrap = document.getElementById('videoWrap');
 
     const isFullscreen = () => document.fullscreenElement != null || document.webkitFullscreenElement != null;
 
@@ -102,48 +87,20 @@ const showPlayer = () => {
       }
     }
 
-async function goFullscreenLandscape() {
-  const video = document.getElementById('Player-video-il-silenzio-della-natura-mobile');
-  if (!video) return;
-  try {
-    await requestFS(video); // ✅ fullscreen sul video stesso
-    await lockLandscape();
-  } catch (e) {
-    console.warn('Impossibile entrare in fullscreen:', e?.message || e);
-  }
-}
-
-['fullscreenchange', 'webkitfullscreenchange', 'msfullscreenchange'].forEach(ev => {
-  document.addEventListener(ev, () => {
-    const container = document.getElementById('videoContainer-player-video-il-silenzio-della-natura-mobile');
-    if (isFullscreen()) {
-      lockLandscape();
-    } else {
-      // 👇 appena esci dal fullscreen, stoppa e nascondi subito il player
-      const video = document.getElementById('Player-video-il-silenzio-della-natura-mobile');
-      if (video) {
-        video.pause();
-      }
-      if (container) {
-        container.style.display = 'none';
+    async function goFullscreenLandscape() {
+      try {
+        await requestFS(videoWrap);
+        await lockLandscape();
+      } catch (e) {
+        console.warn('Impossibile entrare in fullscreen:', e?.message || e);
       }
     }
-  });
-});
 
-    // --- Gestione fullscreen nativo di iOS Safari ---
-const iosVideo = document.getElementById('Player-video-il-silenzio-della-natura-mobile');
-if (iosVideo) {
-  iosVideo.addEventListener('webkitendfullscreen', () => {
-    const container = document.getElementById('videoContainer-player-video-il-silenzio-della-natura-mobile');
-    iosVideo.pause();
-    // opzionale: reset all'inizio
-    // iosVideo.currentTime = 0;
-    if (container) {
-      container.style.display = 'none';
-    }
-  });
-}
+    ['fullscreenchange', 'webkitfullscreenchange', 'msfullscreenchange'].forEach(ev => {
+      document.addEventListener(ev, () => {
+        if (isFullscreen()) lockLandscape();
+      });
+    });
 
     // UI handlers
     const syncPlayState = () => {
@@ -180,13 +137,13 @@ if (iosVideo) {
     init();
   }
 
-  // Carica video DASH.JS
+  // CARICA DASH.JS
   const manifest = 'https://il-silenzio-della-natura-video.netlify.app/manifest.mpd';
   const dashScript = document.createElement('script');
   dashScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/dashjs/5.0.0/legacy/umd/dash.all.min.js';
 
   const initDashPlayer = () => {
-    const videoEl = document.getElementById('Player-video-il-silenzio-della-natura-mobile');
+    const videoEl = document.getElementById('demoVideo');
     if (!videoEl) {
       document.addEventListener('DOMContentLoaded', () => initDashPlayer(), { once: true });
       return;
