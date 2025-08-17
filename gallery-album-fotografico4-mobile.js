@@ -127,6 +127,20 @@ async function goFullscreenLandscape() {
   });
 });
 
+    // --- Gestione fullscreen nativo di iOS Safari ---
+const iosVideo = document.getElementById('demoVideo');
+if (iosVideo) {
+  iosVideo.addEventListener('webkitendfullscreen', () => {
+    const container = document.getElementById('videoContainer');
+    iosVideo.pause();
+    // opzionale: reset all'inizio
+    // iosVideo.currentTime = 0;
+    if (container) {
+      container.style.display = 'none';
+    }
+  });
+}
+
     // UI handlers
     const syncPlayState = () => {
       if (playPauseBtn) playPauseBtn.textContent = video.paused ? 'Play' : 'Pause';
