@@ -54,6 +54,20 @@
     const muteBtn = document.getElementById('muteBtn');
     const fsBtn = document.getElementById('fsBtn');
     const videoWrap = document.getElementById('videoWrap');
+    videoWrap.style.display = 'none';
+
+    const lightbox = document.getElementById('android');
+
+lightbox.addEventListener('click', () => {
+  // Mostra il video dentro la lightbox
+  videoWrap.style.display = 'block';
+
+  // opzionale: puoi spostare il video dentro la lightbox
+  lightbox.appendChild(videoWrap);
+
+  // Inizia il video (facoltativo)
+  video.play();
+});
 
     const isFullscreen = () => document.fullscreenElement != null || document.webkitFullscreenElement != null;
 
