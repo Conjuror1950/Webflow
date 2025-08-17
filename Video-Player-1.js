@@ -1,6 +1,7 @@
+// Player-Video-Il-silenzio-della-natura-mobile.js
 (() => {
   const init = () => {
-    // --- base styles ---
+    // --- CSS ---
     const style = document.createElement('style');
     style.textContent = `
       .container {
@@ -27,7 +28,7 @@
     `;
     document.head.appendChild(style);
 
-    // --- DOM ---
+    // --- HTML ---
     const root = document.createElement('div');
     root.className = 'page';
     root.innerHTML = `
@@ -40,7 +41,7 @@
     `;
     document.body.appendChild(root);
 
-    // --- FUNZIONE PER MOSTRARE IL PLAYER ---
+    // --- JS ---
 const showPlayer = () => {
   const container = document.getElementById('videoContainer');
   container.style.display = 'block';
