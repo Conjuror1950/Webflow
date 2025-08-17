@@ -163,3 +163,42 @@ const init = () => {
   syncPlayState();
   syncMuteState();
 };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+  // CARICA DASH.JS
+  const manifest = 'https://il-silenzio-della-natura-video.netlify.app/manifest.mpd';
+  const dashScript = document.createElement('script');
+  dashScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/dashjs/5.0.0/legacy/umd/dash.all.min.js';
+
+  const initDashPlayer = () => {
+    const videoEl = document.getElementById('demoVideo');
+    if (!videoEl) {
+      document.addEventListener('DOMContentLoaded', () => initDashPlayer(), { once: true });
+      return;
+    }
+    if (!window.dashjs) {
+      console.error('dashjs non trovato dopo il caricamento dello script.');
+      return;
+    }
+
+    try {
+      const player = dashjs.MediaPlayer().create();
+      player.initialize(videoEl, manifest, false);
+      try { player.enableText(true); } catch (e) { }
+      player.on(dashjs.MediaPlayer.events.ERROR, e => console.error('DASH error', e));
+      window.addEventListener('unhandledrejection', ev => console.warn('Promise non gestita:', ev.reason));
+    } catch (err) {
+      console.error('Errore inizializzazione dashjs:', err);
+    }
+  };
+
+  dashScript.onload = initDashPlayer;
+  dashScript.onerror = () => console.error('Errore caricamento dash.all.min.js');
+  document.head.appendChild(dashScript);
+
+})();
