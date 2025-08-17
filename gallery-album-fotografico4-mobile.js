@@ -180,7 +180,7 @@ if (iosVideo) {
   }
 
   // CARICA DASH.JS
-  const manifest = 'https://il-silenzio-della-natura-video.netlify.app/manifest.mpd';
+  const manifest = 'https://uno-sguardo-in-anteprima-video.netlify.app/manifest.mpd';
   const dashScript = document.createElement('script');
   dashScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/dashjs/5.0.0/legacy/umd/dash.all.min.js';
 
