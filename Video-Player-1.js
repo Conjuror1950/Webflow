@@ -7,9 +7,7 @@
         width: min(960px, 100%);
         display: none; /* NASCONDI IL PLAYER INIZIALMENTE */
       }
-      .card {
-        padding: 16px;
-      }
+      
       .video-wrap {
         position: relative;
         overflow: hidden;
@@ -34,21 +32,24 @@
     root.className = 'page';
     root.innerHTML = `
       <div class="container" id="videoContainer">
-        <section class="card">
           <div class="video-wrap" id="videoWrap">
             <video id="demoVideo" controls controlsList="share" allow="picture-in-picture" x-webkit-airplay="allow" data-no-toggle preload="metadata" crossorigin="anonymous" playsinline webkit-playsinline>
             </video>
           </div>
-        </section>
       </div>
     `;
     document.body.appendChild(root);
 
     // --- FUNZIONE PER MOSTRARE IL PLAYER ---
-    const showPlayer = () => {
-      const container = document.getElementById('videoContainer');
-      container.style.display = 'block';
-    };
+const showPlayer = () => {
+  const container = document.getElementById('videoContainer');
+  container.style.display = 'block';
+
+  const video = document.getElementById('demoVideo'); // prendi il video
+  if (video) {
+    video.play().catch(err => console.warn('Autoplay fallito:', err));
+  }
+};
 
     // --- COLLEGA IL CLICK DELLA LIGHTBOX ---
     const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-container-mobile');
