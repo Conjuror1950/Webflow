@@ -50,10 +50,18 @@ const showPlayer = () => {
     video.play().catch(err => console.warn('Autoplay fallito:', err));
 
     
-    // --- AGGIUNGI QUESTO --- 
+    // --- Android fullscreen --- 
     const videoWrap = document.getElementById('videoWrap'); // serve per fullscreen
     goFullscreenLandscape(videoWrap);
   }
+
+  // 4) Entra in fullscreen
+if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
+  // iOS Safari
+  if (vid.webkitEnterFullscreen) {
+    vid.webkitEnterFullscreen();
+  }
+ }
 };
 
     // --- COLLEGA IL CLICK DELLA LIGHTBOX ---
