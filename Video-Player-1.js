@@ -33,7 +33,7 @@
     root.className = 'page';
     root.innerHTML = `
       <div class="container-player-video-il-silenzio-della-natura-mobile" id="videoContainer-player-video-il-silenzio-della-natura-mobile">
-          <div class="video-wrap-player-video-il-silenzio-della-natura-mobile" id="videoWrap">
+          <div class="video-wrap-player-video-il-silenzio-della-natura-mobile" id="videoWrap-player-video-il-silenzio-della-natura-mobile">
             <video id="Player-video-il-silenzio-della-natura-mobile" controls controlsList="share" allow="picture-in-picture" x-webkit-airplay="allow" data-no-toggle preload="metadata" crossorigin="anonymous">
             </video>
           </div>
