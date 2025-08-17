@@ -112,6 +112,14 @@
   syncPlayState();
   goFullscreenLandscape(); // entra subito in fullscreen quando parte
 });
+    // entra in fullscreen al primo tap/click sul video
+video.addEventListener('click', async () => {
+  if (video.paused) {
+    await video.play();
+  }
+  goFullscreenLandscape();
+}, { once: true });
+    
     video.addEventListener('pause', syncPlayState);
     video.addEventListener('volumechange', syncMuteState);
 
