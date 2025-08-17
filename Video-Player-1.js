@@ -109,11 +109,37 @@ async function goFullscreenLandscape() {
   }
 }
 
-    ['fullscreenchange', 'webkitfullscreenchange', 'msfullscreenchange'].forEach(ev => {
-      document.addEventListener(ev, () => {
-        if (isFullscreen()) lockLandscape();
-      });
-    });
+['fullscreenchange', 'webkitfullscreenchange', 'msfullscreenchange'].forEach(ev => {
+  document.addEventListener(ev, () => {
+    const container = document.getElementById('videoContainer');
+    if (isFullscreen()) {
+      lockLandscape();
+    } else {
+      // 👇 appena esci dal fullscreen, stoppa e nascondi subito il player
+      const video = document.getElementById('demoVideo');
+      if (video) {
+        video.pause();
+      }
+      if (container) {
+        container.style.display = 'none';
+      }
+    }
+  });
+});
+
+    // --- Gestione fullscreen nativo di iOS Safari ---
+const iosVideo = document.getElementById('demoVideo');
+if (iosVideo) {
+  iosVideo.addEventListener('webkitendfullscreen', () => {
+    const container = document.getElementById('videoContainer');
+    iosVideo.pause();
+    // opzionale: reset all'inizio
+    // iosVideo.currentTime = 0;
+    if (container) {
+      container.style.display = 'none';
+    }
+  });
+}
 
     // UI handlers
     const syncPlayState = () => {
