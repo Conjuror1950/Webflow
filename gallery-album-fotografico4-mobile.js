@@ -1,4 +1,3 @@
-/* Player di prova con dash.js integrato in lightbox */
 (() => {
   const init = () => {
     // --- base styles ---
@@ -6,25 +5,21 @@
     style.textContent = `
       .container {
         width: min(960px, 100%);
+        display: none; /* NASCONDI IL PLAYER INIZIALMENTE */
       }
-      
       .card {
         padding: 16px;
       }
-      
       .video-wrap {
         position: relative;
         overflow: hidden;
-        display: none; /* Nasconde il video di default */
       }
-      
       video {
         display: block;
         width: 100%;
         height: auto;
         outline: none;
       }
-      
       .controls {
         margin-top: 8px;
         display:flex;
@@ -38,7 +33,7 @@
     const root = document.createElement('div');
     root.className = 'page';
     root.innerHTML = `
-      <div class="container">
+      <div class="container" id="videoContainer">
         <section class="card">
           <div class="video-wrap" id="videoWrap">
             <video id="demoVideo" controls controlsList="share" allow="picture-in-picture" x-webkit-airplay="allow" data-no-toggle preload="metadata" crossorigin="anonymous" playsinline webkit-playsinline>
@@ -49,8 +44,23 @@
     `;
     document.body.appendChild(root);
 
-    // --- JS behavior ---
+    // --- FUNZIONE PER MOSTRARE IL PLAYER ---
+    const showPlayer = () => {
+      const container = document.getElementById('videoContainer');
+      container.style.display = 'block';
+    };
+
+    // --- COLLEGA IL CLICK DELLA LIGHTBOX ---
+    const lightbox = document.getElementById('android');
+    if (lightbox) {
+      lightbox.addEventListener('click', showPlayer);
+    }
+
+    // --- JS behavior (fullscreen, play/pause, mute, ecc.) ---
     const video = document.getElementById('demoVideo');
+    const playPauseBtn = document.getElementById('playPauseBtn');
+    const muteBtn = document.getElementById('muteBtn');
+    const fsBtn = document.getElementById('fsBtn');
     const videoWrap = document.getElementById('videoWrap');
 
     const isFullscreen = () => document.fullscreenElement != null || document.webkitFullscreenElement != null;
@@ -92,64 +102,70 @@
       });
     });
 
-    // --- Lightbox click ---
-    const lightbox = document.getElementById('xx');
-    if (lightbox) {
-      lightbox.addEventListener('click', () => {
-        // Mostra il video
-        videoWrap.style.display = 'block';
-
-        // Sposta il video dentro la lightbox
-        lightbox.appendChild(videoWrap);
-
-        // Avvia il video
-        video.play();
-      });
-    }
-
-    // --- DASH.js setup ---
-    const manifest = 'https://il-silenzio-della-natura-video.netlify.app/manifest.mpd'; // sostituisci col tuo manifest
-    const dashScript = document.createElement('script');
-    dashScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/dashjs/5.0.0/legacy/umd/dash.all.min.js';
-
-    const initDashPlayer = () => {
-      const videoEl = document.getElementById('demoVideo');
-      if (!videoEl) {
-        document.addEventListener('DOMContentLoaded', () => initDashPlayer(), { once: true });
-        return;
-      }
-
-      if (!window.dashjs) {
-        console.error('dashjs non trovato dopo il caricamento dello script.');
-        return;
-      }
-
-      try {
-        const player = dashjs.MediaPlayer().create();
-        player.initialize(videoEl, manifest, false); // false = no autoplay
-        try { player.enableText(true); } catch (e) { /* ignore se non disponibile */ }
-
-        player.on(dashjs.MediaPlayer.events.ERROR, e => {
-          console.error('DASH error', e);
-        });
-
-        window.addEventListener('unhandledrejection', ev => {
-          console.warn('Promise non gestita:', ev.reason);
-        });
-      } catch (err) {
-        console.error('Errore inizializzazione dashjs:', err);
-      }
+    // UI handlers
+    const syncPlayState = () => {
+      if (playPauseBtn) playPauseBtn.textContent = video.paused ? 'Play' : 'Pause';
+    };
+    const syncMuteState = () => {
+      if (muteBtn) muteBtn.textContent = video.muted ? 'Unmute' : 'Mute';
     };
 
-    dashScript.onload = initDashPlayer;
-    dashScript.onerror = () => console.error('Errore caricamento dash.all.min.js');
-    document.head.appendChild(dashScript);
+    if (playPauseBtn) {
+      playPauseBtn.addEventListener('click', () => {
+        if (video.paused) video.play(); else video.pause();
+      });
+    }
+    if (muteBtn) {
+      muteBtn.addEventListener('click', () => { video.muted = !video.muted; syncMuteState(); });
+    }
+    if (fsBtn) {
+      fsBtn.addEventListener('click', goFullscreenLandscape);
+    }
+
+    video.addEventListener('play', syncPlayState);
+    video.addEventListener('pause', syncPlayState);
+    video.addEventListener('volumechange', syncMuteState);
+
+    // Initial labels
+    syncPlayState();
+    syncMuteState();
   };
 
-  // Chiama init
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {
     init();
   }
+
+  // CARICA DASH.JS
+  const manifest = 'https://il-silenzio-della-natura-video.netlify.app/manifest.mpd';
+  const dashScript = document.createElement('script');
+  dashScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/dashjs/5.0.0/legacy/umd/dash.all.min.js';
+
+  const initDashPlayer = () => {
+    const videoEl = document.getElementById('demoVideo');
+    if (!videoEl) {
+      document.addEventListener('DOMContentLoaded', () => initDashPlayer(), { once: true });
+      return;
+    }
+    if (!window.dashjs) {
+      console.error('dashjs non trovato dopo il caricamento dello script.');
+      return;
+    }
+
+    try {
+      const player = dashjs.MediaPlayer().create();
+      player.initialize(videoEl, manifest, false);
+      try { player.enableText(true); } catch (e) { }
+      player.on(dashjs.MediaPlayer.events.ERROR, e => console.error('DASH error', e));
+      window.addEventListener('unhandledrejection', ev => console.warn('Promise non gestita:', ev.reason));
+    } catch (err) {
+      console.error('Errore inizializzazione dashjs:', err);
+    }
+  };
+
+  dashScript.onload = initDashPlayer;
+  dashScript.onerror = () => console.error('Errore caricamento dash.all.min.js');
+  document.head.appendChild(dashScript);
+
 })();
