@@ -164,12 +164,6 @@ const init = () => {
   syncMuteState();
 };
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
-
   // CARICA DASH.JS
   const manifest = 'https://il-silenzio-della-natura-video.netlify.app/manifest.mpd';
   const dashScript = document.createElement('script');
