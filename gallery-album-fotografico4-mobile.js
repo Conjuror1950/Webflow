@@ -45,23 +45,25 @@ const showPlayer = () => {
   const container = document.getElementById('videoContainer');
   container.style.display = 'block';
 
-  const video = document.getElementById('demoVideo'); // prendi il video
+  const video = document.getElementById('demoVideo');
   if (video) {
     video.play().catch(err => console.warn('Autoplay fallito:', err));
 
-    
-    // --- Android fullscreen --- 
-    const videoWrap = document.getElementById('videoWrap'); // serve per fullscreen
-    goFullscreenLandscape(videoWrap);
-  }
+    // --- FULLSCREEN ANDROID / DESKTOP ---
+    goFullscreenLandscape();
 
-  // 4) Entra in fullscreen
-if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
-  // iOS Safari
-  if (vid.webkitEnterFullscreen) {
-    vid.webkitEnterFullscreen();
+    // --- FULLSCREEN SIMULATO iOS ---
+    const isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    if (isiOS) {
+      video.style.position = 'fixed';
+      video.style.top = 0;
+      video.style.left = 0;
+      video.style.width = '100vw';
+      video.style.height = '100vh';
+      video.style.zIndex = 9999;
+      video.style.background = 'black';
+    }
   }
- }
 };
 
     // --- COLLEGA IL CLICK DELLA LIGHTBOX ---
