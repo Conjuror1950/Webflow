@@ -4,10 +4,26 @@
     // --- base styles ---
     const style = document.createElement('style');
     style.textContent = `
-      .container { width: min(960px, 100%); }
-      .card { padding: 16px; }
-      .video-wrap { position: relative; overflow: hidden; }
-      video { display: block; width: 100%; height: auto; outline: none; }
+      .container {
+      width: min(960px, 100%);
+      }
+      
+      .card {
+      padding: 16px;
+      }
+      
+      .video-wrap {
+      position: relative;
+      overflow: hidden;
+      }
+      
+      video {
+      display: block;
+      width: 100%;
+      height: auto;
+      outline: none;
+      }
+      
     `;
     document.head.appendChild(style);
 
@@ -18,16 +34,7 @@
       <div class="container">
         <section class="card">
           <div class="video-wrap" id="videoWrap">
-            <video id="demoVideo"
-                   controls
-                   controlsList="nodownload"
-                   allow="picture-in-picture"
-                   x-webkit-airplay="allow"
-                   preload="metadata"
-                   crossorigin="anonymous"
-                   playsinline
-                   webkit-playsinline
-                   >
+            <video id="demoVideo" controls controlsList="nodownload" allow="picture-in-picture" x-webkit-airplay="allow" preload="metadata" crossorigin="anonymous" playsinline webkit-playsinline>
             </video>
           </div>
         </section>
