@@ -109,11 +109,23 @@ async function goFullscreenLandscape() {
   }
 }
 
-    ['fullscreenchange', 'webkitfullscreenchange', 'msfullscreenchange'].forEach(ev => {
-      document.addEventListener(ev, () => {
-        if (isFullscreen()) lockLandscape();
-      });
-    });
+['fullscreenchange', 'webkitfullscreenchange', 'msfullscreenchange'].forEach(ev => {
+  document.addEventListener(ev, () => {
+    const container = document.getElementById('videoContainer');
+    if (isFullscreen()) {
+      lockLandscape();
+    } else {
+      // 👇 appena esci dal fullscreen, stoppa e nascondi subito il player
+      const video = document.getElementById('demoVideo');
+      if (video) {
+        video.pause();
+      }
+      if (container) {
+        container.style.display = 'none';
+      }
+    }
+  });
+});
 
     // UI handlers
     const syncPlayState = () => {
