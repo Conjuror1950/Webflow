@@ -6,7 +6,7 @@
     style.textContent = `
       .container-player-video-il-silenzio-della-natura-mobile {
         width: min(960px, 100%);
-        display: none; /* NASCONDI IL PLAYER INIZIALMENTE */
+        display: none !important; /* NASCONDI IL PLAYER INIZIALMENTE */
       }
       
       .video-wrap-player-video-il-silenzio-della-natura-mobile {
