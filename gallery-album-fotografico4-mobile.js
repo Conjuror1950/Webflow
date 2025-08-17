@@ -45,6 +45,16 @@ const showPlayer = () => {
   const container = document.getElementById('videoContainer');
   container.style.display = 'block';
 
+  const hidePlayer = () => {
+  const container = document.getElementById('videoContainer');
+  const video = document.getElementById('demoVideo');
+  if (video) {
+    video.pause();
+    video.currentTime = 0; // opzionale, riporta a inizio
+  }
+  if (container) container.style.display = 'none';
+};
+
   const video = document.getElementById('demoVideo');
   if (video) {
     // --- iOS: togli playsinline per fullscreen nativo ---
@@ -109,11 +119,15 @@ async function goFullscreenLandscape() {
   }
 }
 
-    ['fullscreenchange', 'webkitfullscreenchange', 'msfullscreenchange'].forEach(ev => {
-      document.addEventListener(ev, () => {
-        if (isFullscreen()) lockLandscape();
-      });
-    });
+['fullscreenchange', 'webkitfullscreenchange', 'msfullscreenchange'].forEach(ev => {
+  document.addEventListener(ev, () => {
+    if (isFullscreen()) {
+      lockLandscape();
+    } else {
+      hidePlayer(); // esce dal fullscreen → nasconde il container
+    }
+  });
+});
 
     // UI handlers
     const syncPlayState = () => {
