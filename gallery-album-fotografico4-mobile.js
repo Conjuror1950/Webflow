@@ -4,11 +4,33 @@
     // --- base styles ---
     const style = document.createElement('style');
     style.textContent = `
-      .container { width: min(960px, 100%); }
-      .card { padding: 16px; }
-      .video-wrap { position: relative; overflow: hidden; }
-      video { display: block; width: 100%; height: auto; outline: none; }
-      .controls { margin-top: 8px; display:flex; gap:8px; align-items:center; }
+      .container {
+      width: min(960px, 100%);
+      }
+      
+      .card {
+      padding: 16px;
+      }
+      
+      .video-wrap {
+      position: relative;
+      overflow: hidden;
+      }
+      
+      video {
+      display: block;
+      width: 100%;
+      height: auto;
+      outline: none;
+      }
+      
+      .controls {
+      margin-top: 8px;
+      display:flex;
+      gap:8px;
+      align-items:center;
+      }
+      
     `;
     document.head.appendChild(style);
 
