@@ -108,7 +108,10 @@
     muteBtn.addEventListener('click', () => { video.muted = !video.muted; syncMuteState(); });
     fsBtn.addEventListener('click', goFullscreenLandscape);
 
-    video.addEventListener('play', syncPlayState);
+    video.addEventListener('play', () => {
+  syncPlayState();
+  goFullscreenLandscape(); // entra subito in fullscreen quando parte
+});
     video.addEventListener('pause', syncPlayState);
     video.addEventListener('volumechange', syncMuteState);
 
