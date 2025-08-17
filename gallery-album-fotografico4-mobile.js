@@ -41,13 +41,21 @@
     document.body.appendChild(root);
 
     // --- FUNZIONE PER MOSTRARE IL PLAYER ---
-const showPlayer = () => {
+const showPlayer = async () => {
   const container = document.getElementById('videoContainer');
   container.style.display = 'block';
 
   const video = document.getElementById('demoVideo'); // prendi il video
   if (video) {
-    video.play().catch(err => console.warn('Autoplay fallito:', err));
+    try {
+      await video.play().catch(err => console.warn('Autoplay fallito:', err));
+      const videoWrap = document.getElementById('videoWrap');
+      if (videoWrap) {
+        await goFullscreenLandscape(); // <-- qui entri subito in fullscreen
+      }
+    } catch (e) {
+      console.warn('Errore durante l\'avvio del video o fullscreen:', e);
+    }
   }
 };
 
