@@ -4,12 +4,12 @@
     // --- CSS ---
     const style = document.createElement('style');
     style.textContent = `
-      .container {
+      .container-player-video-il-silenzio-della-natura-mobile {
         width: min(960px, 100%);
         display: none; /* NASCONDI IL PLAYER INIZIALMENTE */
       }
       
-      .video-wrap {
+      .video-wrap-player-video-il-silenzio-della-natura-mobile {
         position: relative;
         overflow: hidden;
       }
@@ -19,7 +19,7 @@
         height: auto;
         outline: none;
       }
-      .controls {
+      .controls-player-video-il-silenzio-della-natura-mobile {
         margin-top: 8px;
         display:flex;
         gap:8px;
@@ -30,10 +30,10 @@
 
     // --- HTML ---
     const root = document.createElement('div');
-    root.className = 'page';
+    root.className = 'page-player-video-il-silenzio-della-natura-mobile';
     root.innerHTML = `
-      <div class="container" id="videoContainer">
-          <div class="video-wrap" id="videoWrap">
+      <div class="container-player-video-il-silenzio-della-natura-mobile" id="videoContainer">
+          <div class="video-wrap-player-video-il-silenzio-della-natura-mobile" id="videoWrap">
             <video id="demoVideo" controls controlsList="share" allow="picture-in-picture" x-webkit-airplay="allow" data-no-toggle preload="metadata" crossorigin="anonymous">
             </video>
           </div>
