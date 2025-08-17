@@ -27,7 +27,7 @@
                    crossorigin="anonymous"
                    playsinline
                    webkit-playsinline
-                   >
+                   poster="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.jpg">
             </video>
           </div>
         </section>
