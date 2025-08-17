@@ -54,6 +54,9 @@ const showPlayer = () => {
       video.removeAttribute('webkit-playsinline');
     }
 
+    // Resetta sempre il video
+    video.currentTime = 0;
+
     video.play().catch(err => console.warn('Autoplay fallito:', err));
 
     // --- Android/Desktop: fullscreen normale ---
