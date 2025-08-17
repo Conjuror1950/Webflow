@@ -33,7 +33,7 @@
     root.innerHTML = `
       <div class="container" id="videoContainer">
           <div class="video-wrap" id="videoWrap">
-            <video id="demoVideo" controls controlsList="share" allow="picture-in-picture" x-webkit-airplay="allow" data-no-toggle preload="metadata" crossorigin="anonymous" playsinline webkit-playsinline>
+            <video id="demoVideo" controls controlsList="share" allow="picture-in-picture" x-webkit-airplay="allow" data-no-toggle preload="metadata" crossorigin="anonymous">
             </video>
           </div>
       </div>
@@ -47,22 +47,17 @@ const showPlayer = () => {
 
   const video = document.getElementById('demoVideo');
   if (video) {
-    video.play().catch(err => console.warn('Autoplay fallito:', err));
-
-    // --- FULLSCREEN ANDROID / DESKTOP ---
-    goFullscreenLandscape();
-
-    // --- FULLSCREEN SIMULATO iOS ---
+    // --- iOS: togli playsinline per fullscreen nativo ---
     const isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
     if (isiOS) {
-      video.style.position = 'fixed';
-      video.style.top = 0;
-      video.style.left = 0;
-      video.style.width = '100vw';
-      video.style.height = '100vh';
-      video.style.zIndex = 9999;
-      video.style.background = 'black';
+      video.removeAttribute('playsinline');
+      video.removeAttribute('webkit-playsinline');
     }
+
+    video.play().catch(err => console.warn('Autoplay fallito:', err));
+
+    // --- Android/Desktop: fullscreen normale ---
+    if (!isiOS) goFullscreenLandscape();
   }
 };
 
