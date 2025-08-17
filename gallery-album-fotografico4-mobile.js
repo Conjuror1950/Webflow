@@ -41,10 +41,15 @@
     document.body.appendChild(root);
 
     // --- FUNZIONE PER MOSTRARE IL PLAYER ---
-    const showPlayer = () => {
-      const container = document.getElementById('videoContainer');
-      container.style.display = 'block';
-    };
+const showPlayer = () => {
+  const container = document.getElementById('videoContainer');
+  container.style.display = 'block';
+
+  const video = document.getElementById('demoVideo'); // prendi il video
+  if (video) {
+    video.play().catch(err => console.warn('Autoplay fallito:', err));
+  }
+};
 
     // --- COLLEGA IL CLICK DELLA LIGHTBOX ---
     const lightbox = document.getElementById('android');
