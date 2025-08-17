@@ -33,7 +33,7 @@
     root.innerHTML = `
       <div class="container" id="videoContainer">
           <div class="video-wrap" id="videoWrap">
-            <video id="demoVideo" controls controlsList="share" allow="picture-in-picture" x-webkit-airplay="allow" data-no-toggle preload="metadata" crossorigin="anonymous" playsinline webkit-playsinline>
+            <video id="demoVideo" controls controlsList="share" allow="picture-in-picture" x-webkit-airplay="allow" data-no-toggle preload="metadata" crossorigin="anonymous">
             </video>
           </div>
       </div>
@@ -45,9 +45,19 @@ const showPlayer = () => {
   const container = document.getElementById('videoContainer');
   container.style.display = 'block';
 
-  const video = document.getElementById('demoVideo'); // prendi il video
+  const video = document.getElementById('demoVideo');
   if (video) {
+    // --- iOS: togli playsinline per fullscreen nativo ---
+    const isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    if (isiOS) {
+      video.removeAttribute('playsinline');
+      video.removeAttribute('webkit-playsinline');
+    }
+
     video.play().catch(err => console.warn('Autoplay fallito:', err));
+
+    // --- Android/Desktop: fullscreen normale ---
+    if (!isiOS) goFullscreenLandscape();
   }
 };
 
@@ -88,14 +98,16 @@ const showPlayer = () => {
       }
     }
 
-    async function goFullscreenLandscape() {
-      try {
-        await requestFS(videoWrap);
-        await lockLandscape();
-      } catch (e) {
-        console.warn('Impossibile entrare in fullscreen:', e?.message || e);
-      }
-    }
+async function goFullscreenLandscape() {
+  const video = document.getElementById('demoVideo');
+  if (!video) return;
+  try {
+    await requestFS(video); // ✅ fullscreen sul video stesso
+    await lockLandscape();
+  } catch (e) {
+    console.warn('Impossibile entrare in fullscreen:', e?.message || e);
+  }
+}
 
     ['fullscreenchange', 'webkitfullscreenchange', 'msfullscreenchange'].forEach(ev => {
       document.addEventListener(ev, () => {
