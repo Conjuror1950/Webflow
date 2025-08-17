@@ -18,7 +18,16 @@
       <div class="container">
         <section class="card">
           <div class="video-wrap" id="videoWrap">
-            <video id="demoVideo" controls controlsList="nodownload" allow="picture-in-picture" x-webkit-airplay="allow" preload="metadata" crossorigin="anonymous" playsinline webkit-playsinline poster="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.jpg">
+            <video id="demoVideo"
+                   controls
+                   controlsList="nodownload"
+                   allow="picture-in-picture"
+                   x-webkit-airplay="allow"
+                   preload="metadata"
+                   crossorigin="anonymous"
+                   playsinline
+                   webkit-playsinline
+                   >
             </video>
           </div>
         </section>
