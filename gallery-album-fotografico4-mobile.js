@@ -93,14 +93,16 @@ const showPlayer = () => {
       }
     }
 
-    async function goFullscreenLandscape() {
-      try {
-        await requestFS(videoWrap);
-        await lockLandscape();
-      } catch (e) {
-        console.warn('Impossibile entrare in fullscreen:', e?.message || e);
-      }
-    }
+async function goFullscreenLandscape() {
+  const video = document.getElementById('demoVideo');
+  if (!video) return;
+  try {
+    await requestFS(video); // ✅ fullscreen sul video stesso
+    await lockLandscape();
+  } catch (e) {
+    console.warn('Impossibile entrare in fullscreen:', e?.message || e);
+  }
+}
 
     ['fullscreenchange', 'webkitfullscreenchange', 'msfullscreenchange'].forEach(ev => {
       document.addEventListener(ev, () => {
