@@ -41,17 +41,7 @@
       <div class="container">
         <section class="card">
           <div class="video-wrap" id="videoWrap">
-            <video id="demoVideo"
-                   controls
-                   controlsList="share"
-                   allow="picture-in-picture"
-                   x-webkit-airplay="allow"
-                   data-no-toggle
-                   preload="metadata"
-                   crossorigin="anonymous"
-                   playsinline
-                   webkit-playsinline
-                   >
+            <video id="demoVideo" controls controlsList="share" allow="picture-in-picture" x-webkit-airplay="allow" data-no-toggle preload="metadata" crossorigin="anonymous" playsinline webkit-playsinline>
             </video>
           </div>
 
