@@ -52,6 +52,24 @@
     const fsBtn = document.getElementById('fsBtn');
     const videoWrap = document.getElementById('videoWrap');
 
+    // --- Fullscreen sulla prima gesture dell'utente ---
+const onFirstGesture = async () => {
+  try {
+    if (!isFullscreen()) {
+      await goFullscreenLandscape();      // entra in FS
+    }
+    if (video.paused) {
+      await video.play().catch(() => {}); // avvia se era in pausa
+    }
+  } catch (e) {
+    console.warn('FS su prima gesture non riuscito:', e?.message || e);
+  } finally {
+    document.removeEventListener('pointerup', onFirstGesture, true);
+  }
+};
+// Cattura la PRIMA interazione (anche se l’utente tocca i controlli nativi del video)
+document.addEventListener('pointerup', onFirstGesture, true);
+
     const isFullscreen = () => document.fullscreenElement != null || document.webkitFullscreenElement != null;
 
     const requestFS = async (el) => {
@@ -102,30 +120,24 @@
       muteBtn.textContent = video.muted ? 'Unmute' : 'Mute';
     };
 
-    playPauseBtn.addEventListener('click', () => {
-      if (video.paused) video.play(); else video.pause();
-    });
-    muteBtn.addEventListener('click', () => { video.muted = !video.muted; syncMuteState(); });
-    fsBtn.addEventListener('click', goFullscreenLandscape);
+    if (playPauseBtn) {
+  playPauseBtn.addEventListener('click', () => {
+    if (video.paused) video.play(); else video.pause();
+  });
+}
+if (muteBtn) {
+  muteBtn.addEventListener('click', () => { video.muted = !video.muted; syncMuteState(); });
+}
+if (fsBtn) {
+  fsBtn.addEventListener('click', goFullscreenLandscape);
+}
 
-    video.addEventListener('play', () => {
-  syncPlayState();
-  goFullscreenLandscape(); // entra subito in fullscreen quando parte
-});
-    // entra in fullscreen al primo tap/click sul video
-video.addEventListener('click', async () => {
-  if (video.paused) {
-    await video.play();
-  }
-  goFullscreenLandscape();
-}, { once: true });
-    
-    video.addEventListener('pause', syncPlayState);
-    video.addEventListener('volumechange', syncMuteState);
+video.addEventListener('pause', syncPlayState);
+video.addEventListener('volumechange', syncMuteState);
 
-    // Initial labels
-    syncPlayState();
-    syncMuteState();
+// Initial labels (solo se i bottoni ci sono)
+if (playPauseBtn) syncPlayState();
+if (muteBtn) syncMuteState();
   };
 
   if (document.readyState === 'loading') {
