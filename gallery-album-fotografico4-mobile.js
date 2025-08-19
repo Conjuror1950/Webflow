@@ -13,12 +13,15 @@
         position: relative;
         overflow: hidden;
       }
-      video {
+      
+      /* SOLO per questo player (usa l'id del video) */
+      #Player-video-uno-sguardo-in-anteprima-mobile {
         display: block;
         width: 100%;
         height: auto;
         outline: none;
       }
+      
       .controls-player-video-uno-sguardo-in-anteprima-mobile {
         margin-top: 8px;
         display:flex;
