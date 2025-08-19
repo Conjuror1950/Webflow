@@ -13,6 +13,14 @@
         position: relative;
         overflow: hidden;
       }
+
+      /* SOLO per questo player (usa l'id del video) */
+      #Player-video-il-silenzio-della-natura-mobile {
+        display: block;
+        width: 100%;
+        height: auto;
+        outline: none;
+      }
       
       .controls-player-video-il-silenzio-della-natura-mobile {
         margin-top: 8px;
