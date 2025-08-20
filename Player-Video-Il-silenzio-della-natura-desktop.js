@@ -785,6 +785,17 @@ lightbox.addEventListener('click', e => {
   el.style.animation = '';
 });
 
+    // --- Apri il player anche da un altro bottone (sostituisci con il tuo id) ---
+const openBtn = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-button-desktop'); // <- metti qui l'id che hai aggiunto
+if (openBtn) {
+  openBtn.addEventListener('click', e => {
+    e.preventDefault();
+    // riusa l'handler del lightbox: simuliamo un click sul lightbox
+    // così non cambiamo la logica esistente
+    if (lightbox) lightbox.click();
+  });
+}
+
   // DISABILITA LO SCROLL DELLA PAGINA
   document.body.classList.add('no-scroll');
     
