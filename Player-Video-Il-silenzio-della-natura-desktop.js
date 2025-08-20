@@ -750,6 +750,18 @@ justify-content:flex-end;
    document.body.appendChild(wrapper);
   
 // Javascript (JS)
+
+  // --- inizio snippet da aggiungere (sostituisci ID con l'id reale) ---
+const extraBtn = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-button-desktop');
+if (extraBtn && lightbox) {
+  extraBtn.addEventListener('click', e => {
+    e.preventDefault();
+    // simula un click sul lightbox per riusare lo stesso handler
+    lightbox.click();
+  });
+}
+// --- fine snippet ---
+  
 // ——— Lightbox → apri player con animazione ———
 const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-container-desktop');
 lightbox.addEventListener('click', e => {
@@ -784,17 +796,6 @@ lightbox.addEventListener('click', e => {
   // riapplico l’animazione definita in CSS
   el.style.animation = '';
 });
-
-// --- inizio snippet da aggiungere (sostituisci ID con l'id reale) ---
-const extraBtn = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-button-desktop');
-if (extraBtn && lightbox) {
-  extraBtn.addEventListener('click', e => {
-    e.preventDefault();
-    // simula un click sul lightbox per riusare lo stesso handler
-    lightbox.click();
-  });
-}
-// --- fine snippet ---
     
   // DISABILITA LO SCROLL DELLA PAGINA
   document.body.classList.add('no-scroll');
