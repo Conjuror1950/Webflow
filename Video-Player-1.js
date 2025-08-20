@@ -44,7 +44,7 @@
     `;
     document.body.appendChild(root);
 
-    // --- JS ---
+// --- JS ---
 const showPlayer = () => {
   const container = document.getElementById('videoContainer-player-video-il-silenzio-della-natura-mobile');
   container.style.display = 'block';
@@ -72,6 +72,12 @@ const showPlayer = () => {
     const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-container-mobile');
     if (lightbox) {
       lightbox.addEventListener('click', showPlayer);
+    }
+
+    // --- ID extra ---
+    const extraBtn = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-button-mobile');
+    if (extraBtn) {
+    extraBtn.addEventListener('click', showPlayer);
     }
 
     // --- JS behavior (fullscreen, play/pause, mute, ecc.) ---
