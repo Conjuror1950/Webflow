@@ -751,6 +751,15 @@ justify-content:flex-end;
 // Javascript (JS)
 // ——— Lightbox → apri player con animazione ———
 const lightbox = document.getElementById('Open-Player-Video-Uno-sguardo-in-anteprima-container-desktop');
+// Aggancio anche il nuovo bottone (sostituisci con il tuo ID)
+const extraBtn = document.getElementById('Open-Player-Video-Uno-sguardo-in-anteprima-button-desktop');
+if (extraBtn) {
+  extraBtn.addEventListener('click', e => {
+    e.preventDefault();
+    lightbox.click(); // simula il click sulla lightbox
+  });
+}
+
 lightbox.addEventListener('click', e => {
   e.preventDefault();
 
