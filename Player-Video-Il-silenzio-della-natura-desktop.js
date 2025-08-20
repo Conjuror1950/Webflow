@@ -752,18 +752,8 @@ justify-content:flex-end;
 // Javascript (JS)
 // ——— Lightbox → apri player con animazione ———
 const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-container-desktop');
-lightbox.addEventListener('click', e => {
-  e.preventDefault();
-  openPlayer();
-});
-
-const openBtn = document.getElementById('ID_DEL_TUO_BOTTONE'); // sostituisci con il tuo id
-if (openBtn) {
-  openBtn.addEventListener('click', e => {
-    e.preventDefault();
-    openPlayer();
-  });
-}  
+function openPlayer(e) {
+  if (e) e.preventDefault(); 
 
   // 1) Fade-out lightbox e altri (disattivato, elimina doppia barra per attivare)
   // [lightbox, ...Array.from(document.body.children)
@@ -812,6 +802,13 @@ if (openBtn) {
     video.play();
   }, 350); // pari a transition-duration
 });
+lightbox.addEventListener('click', openPlayer);
+
+// --- Apri player anche da un altro bottone ---
+const openBtn = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-button-desktop');
+if (openBtn) {
+  openBtn.addEventListener('click', openPlayer);
+}
   
   // 3) Doppio‐click sul video → toggle fullscreen
 const videoEl = wrapper.querySelector('video');
