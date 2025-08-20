@@ -40,10 +40,21 @@
   onJQueryReady(function () {
     // Quando il DOM è pronto esegue il codice
     $(document).ready(function () {
-      // Funzione per alternare play/pause del video
+
+// Funzione per alternare play/pause del video (modificata per iOS)
 function togglePlayPause() {
   // prende tutti i <video> tranne quelli con data-no-toggle
   $("video").not("[data-no-toggle]").each(function () {
+    // Evita di toccare video che NON hanno box sul layout (es. container display:none)
+    // getClientRects() === 0 significa che l'elemento non è renderizzato/visibile
+    try {
+      if (this.getClientRects().length === 0) {
+        return; // salta questo video (es. il player mobile nascosto)
+      }
+    } catch (err) {
+      // fallback: se la verifica fallisce, continuiamo comunque
+    }
+
     if (this.paused) {
       this.play();
     } else {
