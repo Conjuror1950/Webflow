@@ -752,9 +752,8 @@ justify-content:flex-end;
 // Javascript (JS)
 // ——— Lightbox → apri player con animazione ———
 const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-container-desktop');
-// --- replace anonymous handler with named function ---
-function openPlayer(e) {
-  if (e) e.preventDefault();
+lightbox.addEventListener('click', e => {
+  e.preventDefault();
 
   // 1) Fade-out lightbox e altri (disattivato, elimina doppia barra per attivare)
   // [lightbox, ...Array.from(document.body.children)
@@ -767,41 +766,24 @@ function openPlayer(e) {
     // .filter(el => el !== wrapper && el !== lightbox)
     // ].forEach(el => el.style.display = 'none');
 
-    // 2.b) Imposta inline lo stato iniziale: fuori a destra e invisibile
-    wrapper.style.transform = 'translateX(100%)';
-    wrapper.style.opacity   = '0';
+  // 2.b) Imposta inline lo stato iniziale: fuori a destra e invisibile
+  wrapper.style.transform = 'translateX(100%)';
+  wrapper.style.opacity   = '0';
 
-    // 2.c) Forza il reflow affinché il browser riconosca i nuovi inline-styles
-    wrapper.offsetHeight;
-        
-    // Resetta le animazioni dei warning
-    ['warning-icon','warning-age'].forEach(name => {
-      const el = wrapper.querySelector(`.${name}-player-video-il-silenzio-della-natura-desktop`);
-      if (!el) return;
-      el.style.animation = 'none';
-      void el.offsetWidth;
-      el.style.animation = '';
-    });
-
-    document.body.classList.add('no-scroll');
-    wrapper.classList.add('visible-player-video-il-silenzio-della-natura-desktop');
-    wrapper.classList.remove('closing-player-video-il-silenzio-della-natura-desktop');
-
-    const video = wrapper.querySelector('video');
-    video.pause();
-    video.currentTime = 0;
-    video.focus();
-    video.play();
-  }, 350);
-}
-
-// riattacca sugli elementi: lightbox + nuovo bottone
-lightbox.addEventListener('click', openPlayer);
-
-const extraBtn = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-button-desktop');
-if (extraBtn) {
-  extraBtn.addEventListener('click', openPlayer);
-}
+  // 2.c) Forza il reflow affinché il browser riconosca i nuovi inline-styles
+  wrapper.offsetHeight;
+      
+  // Resetta le animazioni dei warning
+  ['warning-icon','warning-age'].forEach(name => {
+  const el = wrapper.querySelector(`.${name}-player-video-il-silenzio-della-natura-desktop`);
+  if (!el) return;
+  // azzera l’animazione
+  el.style.animation = 'none';
+  // forzo un reflow
+  void el.offsetWidth;
+  // riapplico l’animazione definita in CSS
+  el.style.animation = '';
+});
 
   // DISABILITA LO SCROLL DELLA PAGINA
   document.body.classList.add('no-scroll');
