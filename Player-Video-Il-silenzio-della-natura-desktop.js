@@ -750,10 +750,22 @@ justify-content:flex-end;
    document.body.appendChild(wrapper);
 
 // Javascript (JS)
-// ——— Lightbox → apri player con animazione ———
-const lightbox = document.getElementById('Open-Player-Video-Il-silenzio-della-natura-container-desktop');
-lightbox.addEventListener('click', e => {
-  e.preventDefault();
+// Elenco degli ID che vuoi usare
+const ids = [
+  'Open-Player-Video-Il-silenzio-della-natura-container-desktop',
+  'Open-Player-Video-Il-silenzio-della-natura-button-desktop',
+];
+
+ids.forEach(id => {
+  const element = document.getElementById(id);
+  if (element) {
+    element.addEventListener('click', e => {
+      e.preventDefault();
+      // qui apri il tuo player con animazione
+      console.log(`Player aperto da: ${id}`);
+    });
+  }
+});
 
   // 1) Fade-out lightbox e altri (disattivato, elimina doppia barra per attivare)
   // [lightbox, ...Array.from(document.body.children)
