@@ -64,18 +64,16 @@
     return !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement);
   }
 
-function updateOverlay() {
-  if (isLandscapeMobile() && !isFullscreen()) {
-    overlay.style.display = 'flex';
-    document.body.style.overflow = 'hidden'; // blocca lo scroll sotto l’overlay
-  } else {
-    overlay.style.display = 'none';
-    document.body.style.overflow = ''; // ripristina lo scroll
+  function updateOverlay() {
+    const active = isLandscapeMobile() && !isFullscreen();
+    overlay.style.display = active ? 'flex' : 'none';
+    document.documentElement.style.overflow = active ? 'hidden' : '';
+    document.body.style.overflow = active ? 'hidden' : '';
   }
-}
 
   // === Event listeners ===
   window.addEventListener('resize', updateOverlay);
+  window.addEventListener('orientationchange', updateOverlay);
   document.addEventListener('fullscreenchange', updateOverlay);
   document.addEventListener('webkitfullscreenchange', updateOverlay);
   document.addEventListener('mozfullscreenchange', updateOverlay);
