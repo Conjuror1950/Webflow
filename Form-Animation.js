@@ -80,17 +80,19 @@
     );
   }
 
-  function updateOverlay() {
-    if (!wrapper) return;
+function updateOverlay() {
+  if (!wrapper) return;
 
-    if (isLandscapeMobile() && !isFullscreen()) {
-      overlay.style.display = 'flex';
-      wrapper.style.display = 'none'; // nasconde tutto il contenuto
-    } else {
-      overlay.style.display = 'none';
-      wrapper.style.display = ''; // mostra di nuovo tutto
-    }
+  if (isLandscapeMobile() && !isFullscreen()) {
+    overlay.style.display = 'flex';
+    wrapper.style.visibility = 'hidden'; // nasconde ma mantiene le animazioni
+    wrapper.style.pointerEvents = 'none'; // impedisce interazioni
+  } else {
+    overlay.style.display = 'none';
+    wrapper.style.visibility = 'visible';
+    wrapper.style.pointerEvents = '';
   }
+}
 
   // === Event listeners ===
   window.addEventListener('resize', updateOverlay);
