@@ -1,18 +1,34 @@
-(function () {
-  // === Logica per animazioni del form ===
+document.addEventListener('DOMContentLoaded', function () {
+  // Crea un tag <style> dinamicamente
+  const style = document.createElement('style');
   
-  // Esempio: animazione di fade-in dei campi del form al caricamento
-  document.addEventListener('DOMContentLoaded', () => {
-    const formElements = document.querySelectorAll('.form-element'); // seleziona i campi del form
-    formElements.forEach((el, i) => {
-      el.style.opacity = 0;
-      el.style.transform = 'translateY(20px)';
-      setTimeout(() => {
-        el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-        el.style.opacity = 1;
-        el.style.transform = 'translateY(0)';
-      }, i * 100); // animazione sfalsata
-    });
-  });
+  // Aggiungi il tuo CSS al tag <style>
+  style.innerHTML = `
+    .form-input:focus + .form-label,
+    .form-input:not(:placeholder-shown) + .form-label {
+      top: 0px;
+      font-size: 0.8rem;
+      transform: translateY(0%);
+    }
 
-})();
+  /* Lock-orientation (mobile landscape) */
+  /* solo su schermi “stretti” (mobile) in landscape, ruota indietro tutto il body */
+@media only screen 
+  and (max-width: 767px) 
+  and (orientation: landscape) {
+
+  body {
+    /* ruota -90° per riportare l’orientamento portrait */
+    transform: rotate(-90deg);
+    transform-origin: top left;
+    /* scambio width/height per adattare viewport */
+    width: 100vh;
+    height: 100vw;
+    overflow: hidden;
+  }
+}
+  `;
+  
+  // Aggiungi il tag <style> al documento
+  document.head.appendChild(style);
+});
