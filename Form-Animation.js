@@ -43,7 +43,6 @@
   const overlay = document.createElement('div');
   overlay.id = 'mobile-landscape-lock';
   overlay.innerHTML = `
-  <div class="page-content">
     <div class="lock-message">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23.9668 19.5986">
         <g>
@@ -53,7 +52,6 @@
       </svg>
       <p>Ruotare il dispositivo</p>
     </div>
-   </div>
   `;
   document.body.appendChild(overlay);
 
@@ -69,10 +67,10 @@
   function updateOverlay() {
     if (isLandscapeMobile() && !isFullscreen()) {
       overlay.style.display = 'flex';
-      document.querySelectorAll('.page-content').forEach(el => el.style.display = 'none');
+      document.body.classList.add('mobile-landscape-locked');
     } else {
       overlay.style.display = 'none';
-      document.querySelectorAll('.page-content').forEach(el => el.style.display = '');
+      document.body.classList.remove('mobile-landscape-locked');
     }
   }
 
