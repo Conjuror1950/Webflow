@@ -2,6 +2,7 @@
   // === CSS ===
   const style = document.createElement('style');
   style.innerHTML = `
+    /* Overlay mobile landscape */
     #mobile-landscape-lock {
       position: fixed;
       inset: 0;
@@ -39,11 +40,10 @@
   `;
   document.head.appendChild(style);
 
-  // === HTML ===
+  // === HTML Overlay ===
   const overlay = document.createElement('div');
   overlay.id = 'mobile-landscape-lock';
   overlay.innerHTML = `
-  <div id="page-wrapper">
     <div class="lock-message">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23.9668 19.5986">
         <g>
@@ -52,7 +52,6 @@
         </g>
       </svg>
       <p>Ruotare il dispositivo</p>
-     </div>
     </div>
   `;
   document.body.appendChild(overlay);
@@ -63,19 +62,24 @@
   }
 
   function isFullscreen() {
-    return !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement);
+    return !!(
+      document.fullscreenElement ||
+      document.webkitFullscreenElement ||
+      document.mozFullScreenElement ||
+      document.msFullscreenElement
+    );
   }
 
   function updateOverlay() {
-    const wrapper = document.getElementById('page-wrapper');
+    const wrapper = document.getElementById('mobile-landscape-lock');
     if (!wrapper) return;
 
     if (isLandscapeMobile() && !isFullscreen()) {
       overlay.style.display = 'flex';
-      wrapper.style.display = 'none';
+      wrapper.style.display = 'none'; // nasconde tutto il contenuto principale
     } else {
       overlay.style.display = 'none';
-      wrapper.style.display = '';
+      wrapper.style.display = ''; // mostra di nuovo tutto
     }
   }
 
