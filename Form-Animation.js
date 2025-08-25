@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // === CSS statico pre-iniettato ===
   const style = document.createElement('style');
   style.textContent = `
     .form-input:focus + .form-label,
@@ -18,11 +17,17 @@ document.addEventListener('DOMContentLoaded', () => {
       z-index: 9999;
       padding-top: env(safe-area-inset-top);
       padding-bottom: env(safe-area-inset-bottom);
-      pointer-events: none; /* evita che l'overlay rallenti eventi touch */
+      pointer-events: none;
+      will-change: opacity, transform;
+      transition: opacity 0.1s ease;
     }
     #mobile-landscape-lock.flex {
       display: flex !important;
       pointer-events: all;
+      opacity: 1;
+    }
+    #mobile-landscape-lock:not(.flex) {
+      opacity: 0;
     }
     #mobile-landscape-lock .lock-message {
       display: flex;
@@ -47,7 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
   `;
   document.head.appendChild(style);
 
-  // === HTML Overlay pre-iniettato ===
   const overlay = document.createElement('div');
   overlay.id = 'mobile-landscape-lock';
   overlay.innerHTML = `
@@ -63,32 +67,26 @@ document.addEventListener('DOMContentLoaded', () => {
   `;
   document.body.appendChild(overlay);
 
-  // === Funzioni ===
   const isLandscapeMobile = () => window.innerWidth <= 767 && window.innerWidth > window.innerHeight;
   const isFullscreen = () => !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement);
 
   let overlayVisible = false;
-
   const updateOverlay = () => {
     const shouldShow = isLandscapeMobile() && !isFullscreen();
-    if (shouldShow !== overlayVisible) { // evita repaint inutili
+    if (shouldShow !== overlayVisible) {
       overlayVisible = shouldShow;
       overlay.classList.toggle('flex', shouldShow);
     }
   };
 
-  // === Event listeners throttled ===
-  let resizeTimeout;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(updateOverlay, 50); // throttling
-  });
-
+  // Event listener più immediato su mobile
+  window.addEventListener('orientationchange', updateOverlay);
+  window.addEventListener('resize', updateOverlay);
   document.addEventListener('fullscreenchange', updateOverlay);
   document.addEventListener('webkitfullscreenchange', updateOverlay);
   document.addEventListener('mozfullscreenchange', updateOverlay);
   document.addEventListener('msfullscreenchange', updateOverlay);
 
-  // === Controllo iniziale ===
+  // Controllo iniziale immediato
   updateOverlay();
 });
