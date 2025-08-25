@@ -36,6 +36,11 @@
       margin: 0;
       letter-spacing: 0.02em;
     }
+
+  .body-locked > *:not(#mobile-landscape-lock) {
+  display: none !important;
+}
+
   `;
   document.head.appendChild(style);
 
@@ -64,20 +69,14 @@
     return !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement);
   }
 
-function updateOverlay() {
-  if (isLandscapeMobile() && !isFullscreen()) {
-    overlay.style.display = 'flex';
-    document.body.querySelectorAll(':scope > *:not(#mobile-landscape-lock)').forEach(el => {
-      el.style.visibility = 'hidden';
-      el.style.pointerEvents = 'none';
-    });
-  } else {
-    overlay.style.display = 'none';
-    document.body.querySelectorAll(':scope > *:not(#mobile-landscape-lock)').forEach(el => {
-      el.style.visibility = '';
-      el.style.pointerEvents = '';
-    });
-  }
+  function updateOverlay() {
+if (isLandscapeMobile() && !isFullscreen()) {
+  overlay.style.display = 'flex';
+  document.body.classList.add('body-locked');
+} else {
+  overlay.style.display = 'none';
+  document.body.classList.remove('body-locked');
+ }
 }
 
   // === Event listeners ===
