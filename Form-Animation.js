@@ -36,6 +36,10 @@
       margin: 0;
       letter-spacing: 0.02em;
     }
+
+    body.landscape-locked > :not(#mobile-landscape-lock) {
+  display: none !important;
+}
   `;
   document.head.appendChild(style);
 
@@ -64,13 +68,15 @@
     return !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement);
   }
 
-  function updateOverlay() {
-    if (isLandscapeMobile() && !isFullscreen()) {
-      overlay.style.display = 'flex';
-    } else {
-      overlay.style.display = 'none';
-    }
+function updateOverlay() {
+  if (isLandscapeMobile() && !isFullscreen()) {
+    overlay.style.display = 'flex';
+    document.body.classList.add('landscape-locked');
+  } else {
+    overlay.style.display = 'none';
+    document.body.classList.remove('landscape-locked');
   }
+}
 
   // === Event listeners ===
   window.addEventListener('resize', updateOverlay);
