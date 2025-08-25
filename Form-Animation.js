@@ -56,19 +56,15 @@
   `;
 
   // === Avvolgi tutto il contenuto della pagina in #page-wrapper ===
-// 1. Crea wrapper e avvolgi solo gli elementi esistenti DEL BODY tranne overlay
-const wrapper = document.createElement('div');
-wrapper.id = 'page-wrapper';
+  const wrapper = document.createElement('div');
+  wrapper.id = 'page-wrapper';
+  while (document.body.firstChild) {
+    wrapper.appendChild(document.body.firstChild);
+  }
+  document.body.appendChild(wrapper);
 
-// Salva eventuali elementi già esistenti (prima che l’overlay venga aggiunto)
-const bodyChildren = Array.from(document.body.children);
-bodyChildren.forEach(el => wrapper.appendChild(el));
-
-// Aggiungi il wrapper al body
-document.body.appendChild(wrapper);
-
-// 2. Aggiungi overlay DOPO il wrapper (fuori dal wrapper)
-document.body.appendChild(overlay);
+  // === Aggiungi overlay sopra il wrapper ===
+  document.body.appendChild(overlay);
 
   // === Funzioni utili ===
   function isLandscapeMobile() {
@@ -84,19 +80,17 @@ document.body.appendChild(overlay);
     );
   }
 
-function updateOverlay() {
-  if (!wrapper) return;
+  function updateOverlay() {
+    if (!wrapper) return;
 
-  if (isLandscapeMobile() && !isFullscreen()) {
-    overlay.style.display = 'flex';
-    wrapper.style.visibility = 'hidden'; // nasconde ma mantiene le animazioni
-    wrapper.style.pointerEvents = 'none'; // impedisce interazioni
-  } else {
-    overlay.style.display = 'none';
-    wrapper.style.visibility = 'visible';
-    wrapper.style.pointerEvents = '';
+    if (isLandscapeMobile() && !isFullscreen()) {
+      overlay.style.display = 'flex';
+      wrapper.style.display = 'none'; // nasconde tutto il contenuto
+    } else {
+      overlay.style.display = 'none';
+      wrapper.style.display = ''; // mostra di nuovo tutto
+    }
   }
-}
 
   // === Event listeners ===
   window.addEventListener('resize', updateOverlay);
