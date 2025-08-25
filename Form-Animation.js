@@ -14,20 +14,12 @@
       position: fixed;
       inset: 0;
       background: white;
-      display: flex;
+      display: none;
       align-items: center;
       justify-content: center;
       z-index: 9999;
       padding-top: env(safe-area-inset-top);
       padding-bottom: env(safe-area-inset-bottom);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.25s ease;
-    }
-
-    #mobile-landscape-lock.visible {
-      opacity: 1;
-      pointer-events: auto;
     }
 
     #mobile-landscape-lock .lock-message {
@@ -51,11 +43,6 @@
       color: black;
       margin: 0;
       letter-spacing: 0.02em;
-    }
-
-    body.locked > *:not(#mobile-landscape-lock) {
-      visibility: hidden;
-      opacity: 0;
     }
   `;
   document.head.appendChild(style);
@@ -86,18 +73,17 @@
   }
 
   function updateOverlay() {
-    const locked = isLandscapeMobile() && !isFullscreen();
-    overlay.classList.toggle('visible', locked);
-    document.body.classList.toggle('locked', locked);
+    if (isLandscapeMobile() && !isFullscreen()) {
+      overlay.style.display = 'flex';
+      document.body.querySelectorAll(':scope > *:not(#mobile-landscape-lock)').forEach(el => el.style.display = 'none');
+    } else {
+      overlay.style.display = 'none';
+      document.body.querySelectorAll(':scope > *:not(#mobile-landscape-lock)').forEach(el => el.style.display = '');
+    }
   }
 
-  // === Event listeners (rapidi) ===
-  window.addEventListener('orientationchange', () => {
-    // su mobile è l’evento più veloce
-    setTimeout(updateOverlay, 10); // piccolo delay per dare tempo ai valori width/height di aggiornarsi
-  });
-
-  window.addEventListener('resize', updateOverlay); // fallback desktop
+  // === Event listeners ===
+  window.addEventListener('resize', updateOverlay);
   document.addEventListener('fullscreenchange', updateOverlay);
   document.addEventListener('webkitfullscreenchange', updateOverlay);
   document.addEventListener('mozfullscreenchange', updateOverlay);
