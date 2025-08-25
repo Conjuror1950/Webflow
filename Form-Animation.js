@@ -2,7 +2,6 @@
   // === CSS ===
   const style = document.createElement('style');
   style.innerHTML = `
-
     .form-input:focus + .form-label,
     .form-input:not(:placeholder-shown) + .form-label {
       top: 0;
@@ -72,10 +71,22 @@
     return !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement);
   }
 
+  function forceHideSafariUI() {
+    // solo su iOS
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    if (isIOS) {
+      setTimeout(() => {
+        window.scrollTo(0, 1);
+        setTimeout(() => window.scrollTo(0, 0), 50);
+      }, 50);
+    }
+  }
+
   function updateOverlay() {
     if (isLandscapeMobile() && !isFullscreen()) {
       overlay.style.display = 'flex';
       document.body.querySelectorAll(':scope > *:not(#mobile-landscape-lock)').forEach(el => el.style.display = 'none');
+      forceHideSafariUI();
     } else {
       overlay.style.display = 'none';
       document.body.querySelectorAll(':scope > *:not(#mobile-landscape-lock)').forEach(el => el.style.display = '');
@@ -84,10 +95,19 @@
 
   // === Event listeners ===
   window.addEventListener('resize', updateOverlay);
+  window.addEventListener('orientationchange', () => {
+    // piccola attesa perché iOS aggiorna viewport dopo rotazione
+    setTimeout(updateOverlay, 50);
+  });
+
   document.addEventListener('fullscreenchange', updateOverlay);
   document.addEventListener('webkitfullscreenchange', updateOverlay);
   document.addEventListener('mozfullscreenchange', updateOverlay);
   document.addEventListener('msfullscreenchange', updateOverlay);
+
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', updateOverlay);
+  }
 
   // === Initial check ===
   updateOverlay();
