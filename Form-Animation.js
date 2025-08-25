@@ -36,11 +36,6 @@
       margin: 0;
       letter-spacing: 0.02em;
     }
-
-    /* Classe per nascondere tutto tranne lo screen lock */
-    body.landscape-locked > :not(#mobile-landscape-lock) {
-      display: none !important;
-    }
   `;
   document.head.appendChild(style);
 
@@ -72,10 +67,10 @@
   function updateOverlay() {
     if (isLandscapeMobile() && !isFullscreen()) {
       overlay.style.display = 'flex';
-      document.body.classList.add('landscape-locked'); // usa classe invece di display:none inline
+      document.body.querySelectorAll(':scope > *:not(#mobile-landscape-lock)').forEach(el => el.style.display = 'none');
     } else {
       overlay.style.display = 'none';
-      document.body.classList.remove('landscape-locked');
+      document.body.querySelectorAll(':scope > *:not(#mobile-landscape-lock)').forEach(el => el.style.display = '');
     }
   }
 
