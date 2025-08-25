@@ -37,16 +37,18 @@
       letter-spacing: 0.02em;
     }
 
-/* Mantieni tutto nel DOM e sotto l’overlay, ma disabilita interazioni/scroll */
-.body-locked {
-  overflow: hidden;
-}
+    /* ===== FIX: non rimuovere dal DOM, disabilita solo le interazioni ===== */
+    .body-locked {
+      overflow: hidden !important;
+      touch-action: none !important;
+    }
 
-.body-locked > *:not(#mobile-landscape-lock) {
-  pointer-events: none !important;
-  user-select: none !important;
-}
-
+    .body-locked > *:not(#mobile-landscape-lock) {
+      pointer-events: none !important;
+      user-select: none !important;
+      -webkit-user-select: none !important;
+      -ms-user-select: none !important;
+    }
   `;
   document.head.appendChild(style);
 
@@ -76,14 +78,14 @@
   }
 
   function updateOverlay() {
-if (isLandscapeMobile() && !isFullscreen()) {
-  overlay.style.display = 'flex';
-  document.body.classList.add('body-locked');
-} else {
-  overlay.style.display = 'none';
-  document.body.classList.remove('body-locked');
- }
-}
+    if (isLandscapeMobile() && !isFullscreen()) {
+      overlay.style.display = 'flex';
+      document.body.classList.add('body-locked');
+    } else {
+      overlay.style.display = 'none';
+      document.body.classList.remove('body-locked');
+    }
+  }
 
   // === Event listeners ===
   window.addEventListener('resize', updateOverlay);
