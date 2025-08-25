@@ -43,7 +43,8 @@
   const overlay = document.createElement('div');
   overlay.id = 'mobile-landscape-lock';
   overlay.innerHTML = `
-    <div class="lock-message" id="page-wrapper">
+  <div id="page-wrapper">
+    <div class="lock-message">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23.9668 19.5986">
         <g>
           <rect height="19.5986" opacity="0" width="23.9668" x="0" y="0"/>
@@ -51,6 +52,7 @@
         </g>
       </svg>
       <p>Ruotare il dispositivo</p>
+     </div>
     </div>
   `;
   document.body.appendChild(overlay);
