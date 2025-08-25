@@ -2,13 +2,14 @@
   // === CSS ===
   const style = document.createElement('style');
   style.innerHTML = `
+
     .form-input:focus + .form-label,
     .form-input:not(:placeholder-shown) + .form-label {
       top: 0;
       font-size: 0.8rem;
       transform: translateY(0%);
     }
-
+    
     #mobile-landscape-lock {
       position: fixed;
       inset: 0;
@@ -21,6 +22,7 @@
       padding-bottom: env(safe-area-inset-bottom);
       opacity: 0;
       pointer-events: none;
+      transition: opacity 0.25s ease;
     }
 
     #mobile-landscape-lock.visible {
@@ -74,7 +76,7 @@
   `;
   document.body.appendChild(overlay);
 
-  // === Funzioni utili ===
+  // === JS ===
   function isLandscapeMobile() {
     return window.innerWidth <= 767 && window.innerWidth > window.innerHeight;
   }
@@ -89,21 +91,17 @@
     document.body.classList.toggle('locked', locked);
   }
 
-  function forceRepaint() {
-    document.body.offsetHeight; // trigger reflow for iOS
-  }
-
-  // === Event listeners ===
-  let resizeTimeout;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(() => { updateOverlay(); forceRepaint(); }, 100);
+  // === Event listeners (rapidi) ===
+  window.addEventListener('orientationchange', () => {
+    // su mobile è l’evento più veloce
+    setTimeout(updateOverlay, 10); // piccolo delay per dare tempo ai valori width/height di aggiornarsi
   });
 
-  document.addEventListener('fullscreenchange', () => { updateOverlay(); forceRepaint(); });
-  document.addEventListener('webkitfullscreenchange', () => { updateOverlay(); forceRepaint(); });
-  document.addEventListener('mozfullscreenchange', () => { updateOverlay(); forceRepaint(); });
-  document.addEventListener('msfullscreenchange', () => { updateOverlay(); forceRepaint(); });
+  window.addEventListener('resize', updateOverlay); // fallback desktop
+  document.addEventListener('fullscreenchange', updateOverlay);
+  document.addEventListener('webkitfullscreenchange', updateOverlay);
+  document.addEventListener('mozfullscreenchange', updateOverlay);
+  document.addEventListener('msfullscreenchange', updateOverlay);
 
   // === Initial check ===
   updateOverlay();
