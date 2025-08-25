@@ -2,7 +2,6 @@
   // === CSS ===
   const style = document.createElement('style');
   style.innerHTML = `
-    /* Overlay mobile landscape */
     #mobile-landscape-lock {
       position: fixed;
       inset: 0;
@@ -40,7 +39,7 @@
   `;
   document.head.appendChild(style);
 
-  // === Creazione overlay ===
+  // === HTML ===
   const overlay = document.createElement('div');
   overlay.id = 'mobile-landscape-lock';
   overlay.innerHTML = `
@@ -54,16 +53,6 @@
       <p>Ruotare il dispositivo</p>
     </div>
   `;
-
-  // === Avvolgi tutto il contenuto della pagina in #page-wrapper ===
-  const wrapper = document.createElement('div');
-  wrapper.id = 'page-wrapper';
-  while (document.body.firstChild) {
-    wrapper.appendChild(document.body.firstChild);
-  }
-  document.body.appendChild(wrapper);
-
-  // === Aggiungi overlay sopra il wrapper ===
   document.body.appendChild(overlay);
 
   // === Funzioni utili ===
@@ -72,23 +61,16 @@
   }
 
   function isFullscreen() {
-    return !!(
-      document.fullscreenElement ||
-      document.webkitFullscreenElement ||
-      document.mozFullScreenElement ||
-      document.msFullscreenElement
-    );
+    return !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement);
   }
 
   function updateOverlay() {
-    if (!wrapper) return;
-
     if (isLandscapeMobile() && !isFullscreen()) {
       overlay.style.display = 'flex';
-      wrapper.style.display = 'none'; // nasconde tutto il contenuto
+      document.body.querySelectorAll(':scope > *:not(#mobile-landscape-lock)').forEach(el => el.style.display = 'none');
     } else {
       overlay.style.display = 'none';
-      wrapper.style.display = ''; // mostra di nuovo tutto
+      document.body.querySelectorAll(':scope > *:not(#mobile-landscape-lock)').forEach(el => el.style.display = '');
     }
   }
 
