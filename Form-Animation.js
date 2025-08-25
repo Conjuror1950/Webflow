@@ -64,16 +64,24 @@
     return !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement);
   }
 
-  function updateOverlay() {
-    const active = isLandscapeMobile() && !isFullscreen();
-    overlay.style.display = active ? 'flex' : 'none';
-    document.documentElement.style.overflow = active ? 'hidden' : '';
-    document.body.style.overflow = active ? 'hidden' : '';
+function updateOverlay() {
+  if (isLandscapeMobile() && !isFullscreen()) {
+    overlay.style.display = 'flex';
+    document.body.querySelectorAll(':scope > *:not(#mobile-landscape-lock)').forEach(el => {
+      el.style.visibility = 'hidden';
+      el.style.pointerEvents = 'none';
+    });
+  } else {
+    overlay.style.display = 'none';
+    document.body.querySelectorAll(':scope > *:not(#mobile-landscape-lock)').forEach(el => {
+      el.style.visibility = '';
+      el.style.pointerEvents = '';
+    });
   }
+}
 
   // === Event listeners ===
   window.addEventListener('resize', updateOverlay);
-  window.addEventListener('orientationchange', updateOverlay);
   document.addEventListener('fullscreenchange', updateOverlay);
   document.addEventListener('webkitfullscreenchange', updateOverlay);
   document.addEventListener('mozfullscreenchange', updateOverlay);
