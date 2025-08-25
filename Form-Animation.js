@@ -67,10 +67,8 @@
   function updateOverlay() {
     if (isLandscapeMobile() && !isFullscreen()) {
       overlay.style.display = 'flex';
-      document.body.querySelectorAll(':scope > *:not(#mobile-landscape-lock)').forEach(el => el.style.display = 'none');
     } else {
       overlay.style.display = 'none';
-      document.body.querySelectorAll(':scope > *:not(#mobile-landscape-lock)').forEach(el => el.style.display = '');
     }
   }
 
