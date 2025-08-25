@@ -36,19 +36,6 @@
       margin: 0;
       letter-spacing: 0.02em;
     }
-
-    /* ===== FIX: non rimuovere dal DOM, disabilita solo le interazioni ===== */
-    .body-locked {
-      overflow: hidden !important;
-      touch-action: none !important;
-    }
-
-    .body-locked > *:not(#mobile-landscape-lock) {
-      pointer-events: none !important;
-      user-select: none !important;
-      -webkit-user-select: none !important;
-      -ms-user-select: none !important;
-    }
   `;
   document.head.appendChild(style);
 
@@ -80,10 +67,10 @@
   function updateOverlay() {
     if (isLandscapeMobile() && !isFullscreen()) {
       overlay.style.display = 'flex';
-      document.body.classList.add('body-locked');
+      document.body.querySelectorAll(':scope > *:not(#mobile-landscape-lock)').forEach(el => el.style.display = 'none');
     } else {
       overlay.style.display = 'none';
-      document.body.classList.remove('body-locked');
+      document.body.querySelectorAll(':scope > *:not(#mobile-landscape-lock)').forEach(el => el.style.display = '');
     }
   }
 
