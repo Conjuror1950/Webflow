@@ -56,15 +56,19 @@
   `;
 
   // === Avvolgi tutto il contenuto della pagina in #page-wrapper ===
-  const wrapper = document.createElement('div');
-  wrapper.id = 'page-wrapper';
-  while (document.body.firstChild) {
-    wrapper.appendChild(document.body.firstChild);
-  }
-  document.body.appendChild(wrapper);
+// 1. Crea wrapper e avvolgi solo gli elementi esistenti DEL BODY tranne overlay
+const wrapper = document.createElement('div');
+wrapper.id = 'page-wrapper';
 
-  // === Aggiungi overlay sopra il wrapper ===
-  document.body.appendChild(overlay);
+// Salva eventuali elementi già esistenti (prima che l’overlay venga aggiunto)
+const bodyChildren = Array.from(document.body.children);
+bodyChildren.forEach(el => wrapper.appendChild(el));
+
+// Aggiungi il wrapper al body
+document.body.appendChild(wrapper);
+
+// 2. Aggiungi overlay DOPO il wrapper (fuori dal wrapper)
+document.body.appendChild(overlay);
 
   // === Funzioni utili ===
   function isLandscapeMobile() {
