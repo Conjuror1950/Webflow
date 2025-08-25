@@ -65,12 +65,15 @@
   }
 
   function updateOverlay() {
+    const wrapper = document.getElementById('page-wrapper');
+    if (!wrapper) return;
+
     if (isLandscapeMobile() && !isFullscreen()) {
       overlay.style.display = 'flex';
-      document.body.querySelectorAll(':scope > *:not(#mobile-landscape-lock)').forEach(el => el.style.display = 'none');
+      wrapper.style.display = 'none';
     } else {
       overlay.style.display = 'none';
-      document.body.querySelectorAll(':scope > *:not(#mobile-landscape-lock)').forEach(el => el.style.display = '');
+      wrapper.style.display = '';
     }
   }
 
