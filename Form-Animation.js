@@ -40,7 +40,7 @@
   `;
   document.head.appendChild(style);
 
-  // === HTML Overlay ===
+  // === Creazione overlay ===
   const overlay = document.createElement('div');
   overlay.id = 'mobile-landscape-lock';
   overlay.innerHTML = `
@@ -54,6 +54,16 @@
       <p>Ruotare il dispositivo</p>
     </div>
   `;
+
+  // === Avvolgi tutto il contenuto della pagina in #page-wrapper ===
+  const wrapper = document.createElement('div');
+  wrapper.id = 'page-wrapper';
+  while (document.body.firstChild) {
+    wrapper.appendChild(document.body.firstChild);
+  }
+  document.body.appendChild(wrapper);
+
+  // === Aggiungi overlay sopra il wrapper ===
   document.body.appendChild(overlay);
 
   // === Funzioni utili ===
@@ -71,12 +81,11 @@
   }
 
   function updateOverlay() {
-    const wrapper = document.getElementById('mobile-landscape-lock');
     if (!wrapper) return;
 
     if (isLandscapeMobile() && !isFullscreen()) {
       overlay.style.display = 'flex';
-      wrapper.style.display = 'none'; // nasconde tutto il contenuto principale
+      wrapper.style.display = 'none'; // nasconde tutto il contenuto
     } else {
       overlay.style.display = 'none';
       wrapper.style.display = ''; // mostra di nuovo tutto
