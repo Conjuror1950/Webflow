@@ -1,16 +1,13 @@
-document.addEventListener('DOMContentLoaded', function () {
-  // === CSS dinamico ===
+document.addEventListener('DOMContentLoaded', () => {
+  // === CSS statico pre-iniettato ===
   const style = document.createElement('style');
-  style.innerHTML = `
-    /* === Form input floating label === */
+  style.textContent = `
     .form-input:focus + .form-label,
     .form-input:not(:placeholder-shown) + .form-label {
-      top: 0px;
+      top: 0;
       font-size: 0.8rem;
       transform: translateY(0%);
     }
-
-    /* === Overlay mobile landscape lock === */
     #mobile-landscape-lock {
       position: fixed;
       inset: 0;
@@ -21,22 +18,24 @@ document.addEventListener('DOMContentLoaded', function () {
       z-index: 9999;
       padding-top: env(safe-area-inset-top);
       padding-bottom: env(safe-area-inset-bottom);
+      pointer-events: none; /* evita che l'overlay rallenti eventi touch */
     }
-
+    #mobile-landscape-lock.flex {
+      display: flex !important;
+      pointer-events: all;
+    }
     #mobile-landscape-lock .lock-message {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 0.5rem;
     }
-
     #mobile-landscape-lock .lock-message svg {
       width: 2.5rem;
       height: 2.5rem;
       color: black;
       opacity: 0.95;
     }
-
     #mobile-landscape-lock .lock-message p {
       font-family: "SF Pro Display", -apple-system, sans-serif !important;
       font-size: 1rem;
@@ -48,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
   `;
   document.head.appendChild(style);
 
-  // === HTML Overlay ===
+  // === HTML Overlay pre-iniettato ===
   const overlay = document.createElement('div');
   overlay.id = 'mobile-landscape-lock';
   overlay.innerHTML = `
@@ -64,25 +63,27 @@ document.addEventListener('DOMContentLoaded', function () {
   `;
   document.body.appendChild(overlay);
 
-  // === Funzioni utili ===
-  function isLandscapeMobile() {
-    return window.innerWidth <= 767 && window.innerWidth > window.innerHeight;
-  }
+  // === Funzioni ===
+  const isLandscapeMobile = () => window.innerWidth <= 767 && window.innerWidth > window.innerHeight;
+  const isFullscreen = () => !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement);
 
-  function isFullscreen() {
-    return !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement);
-  }
+  let overlayVisible = false;
 
-  function updateOverlay() {
-    if (isLandscapeMobile() && !isFullscreen()) {
-      overlay.style.display = 'flex';
-    } else {
-      overlay.style.display = 'none';
+  const updateOverlay = () => {
+    const shouldShow = isLandscapeMobile() && !isFullscreen();
+    if (shouldShow !== overlayVisible) { // evita repaint inutili
+      overlayVisible = shouldShow;
+      overlay.classList.toggle('flex', shouldShow);
     }
-  }
+  };
 
-  // === Event listeners ===
-  window.addEventListener('resize', updateOverlay);
+  // === Event listeners throttled ===
+  let resizeTimeout;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(updateOverlay, 50); // throttling
+  });
+
   document.addEventListener('fullscreenchange', updateOverlay);
   document.addEventListener('webkitfullscreenchange', updateOverlay);
   document.addEventListener('mozfullscreenchange', updateOverlay);
