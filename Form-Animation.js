@@ -2,24 +2,31 @@
   // === CSS ===
   const style = document.createElement('style');
   style.innerHTML = `
-
     .form-input:focus + .form-label,
     .form-input:not(:placeholder-shown) + .form-label {
       top: 0;
       font-size: 0.8rem;
       transform: translateY(0%);
     }
-    
+
     #mobile-landscape-lock {
       position: fixed;
       inset: 0;
       background: white;
-      display: none;
+      display: flex;
       align-items: center;
       justify-content: center;
       z-index: 9999;
       padding-top: env(safe-area-inset-top);
       padding-bottom: env(safe-area-inset-bottom);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    #mobile-landscape-lock.visible {
+      opacity: 1;
+      pointer-events: auto;
     }
 
     #mobile-landscape-lock .lock-message {
@@ -43,6 +50,12 @@
       color: black;
       margin: 0;
       letter-spacing: 0.02em;
+    }
+
+    body.locked > *:not(#mobile-landscape-lock) {
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
     }
   `;
   document.head.appendChild(style);
@@ -73,21 +86,26 @@
   }
 
   function updateOverlay() {
-    if (isLandscapeMobile() && !isFullscreen()) {
-      overlay.style.display = 'flex';
-      document.body.querySelectorAll(':scope > *:not(#mobile-landscape-lock)').forEach(el => el.style.display = 'none');
-    } else {
-      overlay.style.display = 'none';
-      document.body.querySelectorAll(':scope > *:not(#mobile-landscape-lock)').forEach(el => el.style.display = '');
-    }
+    const locked = isLandscapeMobile() && !isFullscreen();
+    overlay.classList.toggle('visible', locked);
+    document.body.classList.toggle('locked', locked);
+  }
+
+  function forceRepaint() {
+    document.body.offsetHeight; // trigger reflow for iOS
   }
 
   // === Event listeners ===
-  window.addEventListener('resize', updateOverlay);
-  document.addEventListener('fullscreenchange', updateOverlay);
-  document.addEventListener('webkitfullscreenchange', updateOverlay);
-  document.addEventListener('mozfullscreenchange', updateOverlay);
-  document.addEventListener('msfullscreenchange', updateOverlay);
+  let resizeTimeout;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => { updateOverlay(); forceRepaint(); }, 100);
+  });
+
+  document.addEventListener('fullscreenchange', () => { updateOverlay(); forceRepaint(); });
+  document.addEventListener('webkitfullscreenchange', () => { updateOverlay(); forceRepaint(); });
+  document.addEventListener('mozfullscreenchange', () => { updateOverlay(); forceRepaint(); });
+  document.addEventListener('msfullscreenchange', () => { updateOverlay(); forceRepaint(); });
 
   // === Initial check ===
   updateOverlay();
