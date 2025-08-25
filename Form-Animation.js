@@ -45,17 +45,6 @@ document.addEventListener('DOMContentLoaded', function () {
       margin: 0;
       letter-spacing: 0.02em;
     }
-
-    /* Lock-orientation CSS solo per landscape mobile */
-    @media only screen and (max-width: 767px) and (orientation: landscape) {
-      body.rotate-portrait {
-        transform: rotate(-90deg);
-        transform-origin: top left;
-        width: 100vh;
-        height: 100vw;
-        overflow: hidden;
-      }
-    }
   `;
   document.head.appendChild(style);
 
@@ -87,12 +76,8 @@ document.addEventListener('DOMContentLoaded', function () {
   function updateOverlay() {
     if (isLandscapeMobile() && !isFullscreen()) {
       overlay.style.display = 'flex';
-      document.body.classList.add('rotate-portrait');
-      document.body.querySelectorAll(':scope > *:not(#mobile-landscape-lock)').forEach(el => el.style.display = 'none');
     } else {
       overlay.style.display = 'none';
-      document.body.classList.remove('rotate-portrait');
-      document.body.querySelectorAll(':scope > *:not(#mobile-landscape-lock)').forEach(el => el.style.display = '');
     }
   }
 
@@ -103,6 +88,6 @@ document.addEventListener('DOMContentLoaded', function () {
   document.addEventListener('mozfullscreenchange', updateOverlay);
   document.addEventListener('msfullscreenchange', updateOverlay);
 
-  // === Initial check ===
+  // === Controllo iniziale ===
   updateOverlay();
 });
