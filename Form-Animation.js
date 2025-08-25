@@ -37,8 +37,14 @@
       letter-spacing: 0.02em;
     }
 
-  .body-locked > *:not(#mobile-landscape-lock) {
-  display: none !important;
+/* Mantieni tutto nel DOM e sotto l’overlay, ma disabilita interazioni/scroll */
+.body-locked {
+  overflow: hidden;
+}
+
+.body-locked > *:not(#mobile-landscape-lock) {
+  pointer-events: none !important;
+  user-select: none !important;
 }
 
   `;
