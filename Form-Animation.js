@@ -21,7 +21,6 @@
       padding-bottom: env(safe-area-inset-bottom);
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.1s ease-in-out;
     }
 
     #mobile-landscape-lock.visible {
@@ -55,7 +54,6 @@
     body.locked > *:not(#mobile-landscape-lock) {
       visibility: hidden;
       opacity: 0;
-      transition: opacity 0.1s ease-in-out, visibility 0.1s ease-in-out;
     }
   `;
   document.head.appendChild(style);
