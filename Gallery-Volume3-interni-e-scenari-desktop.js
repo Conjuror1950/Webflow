@@ -307,7 +307,7 @@
       text-align: left;     
       color: black;
       margin-top: 60px;
-      margin-bottom: 20px;
+      margin-bottom: 80px;
     }
     .slider-title-top-Volume3-interni-e-scenari-desktop h2 {
       font-family: "SF Pro Display", sans-serif !important;
