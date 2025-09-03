@@ -355,8 +355,8 @@
   var galleryHTML = `
     <div class="wrapper-slider-Volume3-interni-e-scenari-desktop">
       <div class="slider-title-top-Volume3-interni-e-scenari-desktop">
-        <h2>Interni e Scenari</h2>
-        <p>Volume 3</p>
+        <h2>‎ </h2>
+        <p>‎ </p>
       </div>
       <div class="container-Volume3-interni-e-scenari-desktop">
         <div class="slider-Volume3-interni-e-scenari-desktop">
