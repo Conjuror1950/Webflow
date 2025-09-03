@@ -307,7 +307,7 @@
       text-align: left;     
       color: black;
       margin-top: 60px;
-      margin-bottom: 20px;
+      margin-bottom: 65px;
     }
     .slider-title-top-Volume1-ambienti-urbani-desktop h2 {
       font-family: "SF Pro Display", sans-serif !important;
@@ -355,8 +355,8 @@
   var galleryHTML = `
     <div class="wrapper-slider-Volume1-ambienti-urbani-desktop">
       <div class="slider-title-top-Volume1-ambienti-urbani-desktop">
-        <h2>Ambienti Urbani</h2>
-        <p>Volume 1</p>
+        <h2>‎ </h2>
+        <p>‎ </p>
       </div>
       <div class="container-Volume1-ambienti-urbani-desktop">
         <div class="slider-Volume1-ambienti-urbani-desktop">
