@@ -307,7 +307,7 @@
       text-align: left;     
       color: black;
       margin-top: 60px;
-      margin-bottom: 20px;
+      margin-bottom: 65px;
     }
     .slider-title-top-Volume2-paesaggi-naturali-desktop h2 {
       font-family: "SF Pro Display", sans-serif !important;
@@ -355,8 +355,8 @@
   var galleryHTML = `
     <div class="wrapper-slider-Volume2-paesaggi-naturali-desktop">
       <div class="slider-title-top-Volume2-paesaggi-naturali-desktop">
-        <h2>Paesaggi Naturali</h2>
-        <p>Volume 2</p>
+        <h2>‎ </h2>
+        <p>‎ </p>
       </div>
       <div class="container-Volume2-paesaggi-naturali-desktop">
         <div class="slider-Volume2-paesaggi-naturali-desktop">
