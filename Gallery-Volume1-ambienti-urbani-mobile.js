@@ -330,8 +330,8 @@
   var galleryHTML = `
 <div class="wrapper-slider-Volume1-ambienti-urbani-mobile">
   <div class="slider-title-top-Volume1-ambienti-urbani-mobile">
-    <h2>Ambienti Urbani</h2>
-    <p>Volume 1</p>
+    <h2>‎ </h2>
+    <p>‎ </p>
   </div>
   
   <!-- Container che contiene solo lo slider -->
