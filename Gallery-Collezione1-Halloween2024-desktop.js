@@ -307,7 +307,7 @@
       text-align: left;     
       color: black;
       margin-top: 60px;
-      margin-bottom: 20px;
+      margin-bottom: 65px;
     }
     .slider-title-top-Collezione1-halloween2024-desktop h2 {
       font-family: "SF Pro Display", sans-serif !important;
@@ -355,8 +355,8 @@
   var galleryHTML = `
     <div class="wrapper-slider-Collezione1-halloween2024-desktop">
       <div class="slider-title-top-Collezione1-halloween2024-desktop">
-        <h2>Halloween</h2>
-        <p>Collezione 1</p>
+        <h2>‎ </h2>
+        <p>‎ </p>
       </div>
       <div class="container-Collezione1-halloween2024-desktop">
         <div class="slider-Collezione1-halloween2024-desktop">
