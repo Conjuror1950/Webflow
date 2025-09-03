@@ -329,8 +329,8 @@
   var galleryHTML = `
 <div class="wrapper-slider-Volume3-interni-e-scenari-mobile">
   <div class="slider-title-top-Volume3-interni-e-scenari-mobile">
-    <h2>Interni e Scenari</h2>
-    <p>Volume 3</p>
+    <h2></h2> /* Eliminato il titolo 'Interni e Scenari' */
+    <p></p> /* Eliminato il titolo 'Volume 3' */
   </div>
   
   <!-- Container che contiene solo lo slider -->
