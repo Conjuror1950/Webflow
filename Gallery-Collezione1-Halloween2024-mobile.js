@@ -329,8 +329,8 @@
   var galleryHTML = `
 <div class="wrapper-slider-Collezione1-halloween2024-mobile">
   <div class="slider-title-top-Collezione1-halloween2024-mobile">
-    <h2>Halloween</h2>
-    <p>Collezione 1</p>
+    <h2>‎ </h2>
+    <p>‎ </p>
   </div>
   
   <!-- Container che contiene solo lo slider -->
