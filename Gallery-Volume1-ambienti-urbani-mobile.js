@@ -405,8 +405,8 @@
     <h2>Dettagli</h2>
     <p>· Scatti 1-8: Palermo, Sicilia, Italia · 01–03 gen 2025</p>
     <p>· Scatti 9-11: Viareggio, Toscana, Italia · 2024</p>
-    <p>· Scatti 12-66: Parigi, Francia, Europa · 27 lug – 1 ago 2023</p>
-    <p>· Scatti 67-73: Roma, Lazio, Italia · 25 set 2022</p>
+    <p>· Scatti 12-40: Parigi, Francia, Europa · 27 lug – 1 ago 2023</p>
+    <p>· Scatti 41-73: Roma, Lazio, Italia · 25 set 2022</p>
     <p>· Scatto 74: Firenze, Toscana, Italia · 2020</p>
     <p>· Scatto 75-76: Palermo, Sicilia, Italia · 18–29 ago 2019</p>
     <p>· Scatti 77-85: Varese, Lombardia, Italia · 02–04 ago 2019</p>
