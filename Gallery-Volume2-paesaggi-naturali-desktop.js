@@ -461,9 +461,6 @@
     var images = [
       { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/6762fe8c0f3530039c376f7d__MG_0070.jpg", name: "MG_0070.jpg" },
       { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/6762fe8d37578bf940c9e392__MG_0060.jpg", name: "MG_0060.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d9e54384f548f1fb478b0d__MG_9537.jpg", name: "MG_9537.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d9e61b84f548f1fb48389e_IMG_1498.jpg", name: "MG_1498.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d9e542007f4ca3f9d8a438_IMG_1517.jpg", name: "MG_1517.jpg" },
       { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d98e732be5e82ba896555c__MG_9430%20firm.jpg", name: "MG_9430.jpg" },
       { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d9dde44dfc73db7c4cfd5f__MG_9431.jpg", name: "MG_9431.jpg" },
       { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d9de68ba1825b6f068b73b__MG_9433.jpg", name: "MG_9433.jpg" },
