@@ -491,15 +491,11 @@
       { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc3a7cb777df17eebe44ab_Canon%20EOS%202000D%206000x4000_006138.jpg", name: "MG_6138.jpg" },
       { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d9f31d74fa30e5e0a55eaf__MG_9304.jpg", name: "MG_9304.jpg" },
       { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d9f31e46f76da1efe46790__MG_9224.jpg", name: "MG_9224.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dee639b54573be9f91cce5__MG_1973.jpg", name: "MG_1973.jpg" },
       { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dee638ce8ad747e194d8fc__MG_2325.jpg", name: "MG_2325.jpg" },
       { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dee636ca4eaee4ac23fdd4_IMG_2405.jpg", name: "MG_2405.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dee6380ac77a83f1cc701c__MG_2147.jpg", name: "MG_2147.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dee63a4a1834856623494e_IMG_1823.jpg", name: "MG_1823.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dee637f333d94fc1e65ab6__MG_2364.jpg", name: "MG_2364.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dee63a81278ffc7a074312__MG_2366.jpg", name: "MG_2366.jpg" },
       { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dee63789eade848ec425c7__MG_2213.jpg", name: "MG_2213.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dee638dfde9ab4282fda28__MG_2372.jpg", name: "MG_2372.jpg" }
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dee63a4a1834856623494e_IMG_1823.jpg", name: "MG_1823.jpg" },
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dee63a81278ffc7a074312__MG_2366.jpg", name: "MG_2366.jpg" }
     ];
     var slideIndex = 0;
     
