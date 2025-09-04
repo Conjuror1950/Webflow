@@ -402,7 +402,7 @@
                 <span class="option-side-Volume2-paesaggi-naturali-desktop">.zip²</span>
               </div>
               <div class="option-subtext-Volume2-paesaggi-naturali-desktop">Qualità originale, HD</div>
-              <div class="option-subtext-Volume2-paesaggi-naturali-desktop">22 elementi, ~50 MB</div>
+              <div class="option-subtext-Volume2-paesaggi-naturali-desktop">10 elementi, ~20 MB</div>
               <div class="spinner-Volume2-paesaggi-naturali-desktop">
                 <div class="progress-frame-Volume2-paesaggi-naturali-desktop"></div>
               </div>
@@ -420,7 +420,7 @@
       </div>
       <div class="slider-title-bottom-Volume2-paesaggi-naturali-desktop">
         <h2>Specifiche</h2>
-        <p>Realizzato con Canon EOS 2000D e obiettivo 18-55mm EF-S. Il formato RAW (.CR2) garantisce una libertà totale in post-produzione, gestita attraverso Adobe Lightroom Classic. La raccolta contiene 22 elementi, immagini in HD (High Definition) scattate in Italia, negli anni 2024-2019.</p>
+        <p>Realizzato con Canon EOS 2000D e obiettivo 18-55mm EF-S. Il formato RAW (.CR2) garantisce una libertà totale in post-produzione, gestita attraverso Adobe Lightroom Classic. La raccolta contiene 10 elementi, immagini in HD (High Definition) scattate in Italia, negli anni 2024-2019.</p>
         <h2>Dettagli</h2>
         <p>· Scatti 3-7: Viareggio, Toscana, Italia · 2024</p>
         <p>· Scatti 8-15: Lucca, Toscana, Italia · 2024</p>
