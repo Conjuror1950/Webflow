@@ -408,7 +408,7 @@
     <p>· Scatti 12-40: Parigi, Francia, Europa · 27 lug-1 ago 2023</p>
     <p>· Scatti 41-42: Palermo, Sicilia, Italia · 13 ago 2022</p>
     <p>· Scatti 43-48: Roma, Lazio, Italia · 25-27 set 2022</p>
-    <p>· Scatti 49-53: Varese, Lombardia, Italia · 02–04 ago 2019</p>
+    <p>· Scatti 49-53: Varese, Lombardia, Italia · 02-04 ago 2019</p>
   </div>
 </div>
   `;
