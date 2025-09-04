@@ -420,10 +420,11 @@
       </div>
       <div class="slider-title-bottom-Volume2-paesaggi-naturali-desktop">
         <h2>Specifiche</h2>
-        <p>Realizzato con Canon EOS 2000D e obiettivo 18-55mm EF-S. Il formato RAW (.CR2) garantisce una libertà totale in post-produzione, gestita attraverso Adobe Lightroom Classic. La raccolta contiene 10 elementi, immagini in HD (High Definition) scattate in Italia, negli anni 2024-2019.</p>
+        <p>Realizzato con Canon EOS 2000D e obiettivo 18-55mm EF-S. Il formato RAW (.CR2) garantisce una libertà totale in post-produzione, gestita attraverso Adobe Lightroom Classic. La raccolta contiene 10 elementi, immagini in HD (High Definition) scattate in Italia, negli anni 2024-2022.</p>
         <h2>Dettagli</h2>
-        <p>· Scatti 3-8: Lucca, Toscana, Italia · 2024</p>
-        <p>· Scatti 9-10: Palermo, Sicilia, Italia · 2019</p>
+        <p>· Scatti 1-2: Pisa, Toscana, Italia · 31 ott 2024</p>
+        <p>· Scatti 3-8: Lucca, Toscana, Italia · 19 ago 2024</p>
+        <p>· Scatti 9-10: Palermo, Sicilia, Italia · 14 ago 2022</p>
       </div>
     </div>
   `;
