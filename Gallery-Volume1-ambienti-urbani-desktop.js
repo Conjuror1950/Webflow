@@ -422,9 +422,9 @@
         <h2>Specifiche</h2>
         <p>Realizzato con Canon EOS 2000D e obiettivo 18-55mm EF-S. Il formato RAW (.CR2) garantisce una libertà totale in post-produzione, gestita attraverso Adobe Lightroom Classic. La raccolta contiene 80 elementi, immagini in HD (High Definition) scattate in Europa, negli anni 2025-2019.</p>
         <h2>Dettagli</h2>
-        <p>· Scatti 1-17: Palermo, Sicilia, Italia · 01–03 gen 2025</p>
-        <p>· Scatti 18-20: Viareggio, Toscana, Italia · 2024</p>
-        <p>· Scatti 21-66: Parigi, Francia, Europa · 27 lug – 1 ago 2023</p>
+        <p>· Scatti 1-8: Palermo, Sicilia, Italia · 01–03 gen 2025</p>
+        <p>· Scatti 9-11: Viareggio, Toscana, Italia · 2024</p>
+        <p>· Scatti 12-66: Parigi, Francia, Europa · 27 lug – 1 ago 2023</p>
         <p>· Scatti 67-73: Roma, Lazio, Italia · 25 set 2022</p>
         <p>· Scatto 74: Firenze, Toscana, Italia · 2020</p>
         <p>· Scatto 75-76: Palermo, Sicilia, Italia · 18–29 ago 2019</p>
