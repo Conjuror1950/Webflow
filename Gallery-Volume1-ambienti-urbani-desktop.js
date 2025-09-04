@@ -402,7 +402,7 @@
                 <span class="option-side-Volume1-ambienti-urbani-desktop">.zip²</span>
               </div>
               <div class="option-subtext-Volume1-ambienti-urbani-desktop">Qualità originale, HD</div>
-              <div class="option-subtext-Volume1-ambienti-urbani-desktop">80 elementi, ~180 MB</div>
+              <div class="option-subtext-Volume1-ambienti-urbani-desktop">53 elementi, ~120 MB</div>
               <div class="spinner-Volume1-ambienti-urbani-desktop">
                 <div class="progress-frame-Volume1-ambienti-urbani-desktop"></div>
               </div>
@@ -420,14 +420,14 @@
       </div>
       <div class="slider-title-bottom-Volume1-ambienti-urbani-desktop">
         <h2>Specifiche</h2>
-        <p>Realizzato con Canon EOS 2000D e obiettivo 18-55mm EF-S. Il formato RAW (.CR2) garantisce una libertà totale in post-produzione, gestita attraverso Adobe Lightroom Classic. La raccolta contiene 80 elementi, immagini in HD (High Definition) scattate in Europa, negli anni 2025-2019.</p>
+        <p>Realizzato con Canon EOS 2000D e obiettivo 18-55mm EF-S. Il formato RAW (.CR2) garantisce una libertà totale in post-produzione, gestita attraverso Adobe Lightroom Classic. La raccolta contiene 53 elementi, immagini in HD (High Definition) scattate in Europa, negli anni 2025-2019.</p>
         <h2>Dettagli</h2>
         <p>· Scatti 1–8: Palermo, Sicilia, Italia · 01–03 gen 2025</p>
         <p>· Scatti 9-11: Viareggio, Toscana, Italia · 2024</p>
         <p>· Scatti 12-40: Parigi, Francia, Europa · 27 lug – 1 ago 2023</p>
         <p>· Scatti 41-46: Roma, Lazio, Italia · 25 set 2022</p>
         <p>· Scatti 47-48: Palermo, Sicilia, Italia · 18–29 ago 2019</p>
-        <p>· Scatti 49-85: Varese, Lombardia, Italia · 02–04 ago 2019</p>
+        <p>· Scatti 49-53: Varese, Lombardia, Italia · 02–04 ago 2019</p>
       </div>
     </div>
   `;
