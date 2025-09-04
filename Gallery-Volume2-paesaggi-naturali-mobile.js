@@ -402,9 +402,8 @@
     <h2>Specifiche</h2>
     <p>Realizzato con Canon EOS 2000D e obiettivo 18-55mm EF-S. Il formato RAW (.CR2) garantisce una libertà totale in post-produzione, gestita attraverso Adobe Lightroom Classic. La raccolta contiene 10 elementi, immagini in HD (High Definition) scattate in Italia, negli anni 2024-2019.</p>
     <h2>Dettagli</h2>
-    <p>· Scatti 3-7: Viareggio, Toscana, Italia · 2024</p>
-    <p>· Scatti 8-15: Lucca, Toscana, Italia · 2024</p>
-    <p>· Scatti 16-22: Palermo, Sicilia, Italia · 2019</p>
+      <p>· Scatti 3-8: Lucca, Toscana, Italia · 2024</p>
+      <p>· Scatti 9-10: Palermo, Sicilia, Italia · 2019</p>
   </div>
 </div>
   `;
