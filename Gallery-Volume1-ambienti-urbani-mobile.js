@@ -295,27 +295,6 @@
       font-size: 13px;
       color: #86868b;
     }
-    .slider-title-bottom-Volume1-ambienti-urbani-mobile {
-      font-family: "SF Pro Display", sans-serif !important;
-      max-width: 970px;
-      text-align: left;
-      margin-top: -50px;
-      margin-bottom: -50px;
-      padding: 36px;
-      color: black;
-    }
-    .slider-title-bottom-Volume1-ambienti-urbani-mobile h2 {
-      font-family: "SF Pro Display", sans-serif !important;
-      font-weight: 600;
-      font-size: 14px;
-      margin-bottom: -2px;
-    }
-    .slider-title-bottom-Volume1-ambienti-urbani-mobile p {
-      font-family: "SF Pro Display", sans-serif !important;
-      font-weight: 400;
-      font-size: 13px;
-      color: #86868b;
-    }
 
     /* Media query: visualizza solo su mobile (<= 1280px) */
     @media screen and (min-width: 1280px) {
@@ -396,19 +375,6 @@
         <div class="info-regular-Volume1-ambienti-urbani-mobile">Scorri a destra o sinistra per esplorare le immagini.</div>
       </div>
     </div>
-  </div>
-  
-  <!-- Blocco Specifiche -->
-  <div class="slider-title-bottom-Volume1-ambienti-urbani-mobile">
-    <h2>Specifiche</h2>
-    <p>Realizzato con Canon EOS 2000D e obiettivo 18-55mm EF-S. Il formato RAW (.CR2) garantisce una libertà totale in post-produzione, gestita attraverso Adobe Lightroom Classic. La raccolta contiene 53 elementi, immagini in HD (High Definition) scattate in Europa, negli anni 2025-2019.</p>
-    <h2>Dettagli</h2>
-    <p>· Scatti 1-8: Palermo, Sicilia, Italia · 01-03 gen 2025</p>
-    <p>· Scatti 9-11: Viareggio, Toscana, Italia · 24 ago 2024</p>
-    <p>· Scatti 12-40: Parigi, Francia, Europa · 27 lug-1 ago 2023</p>
-    <p>· Scatti 41-42: Palermo, Sicilia, Italia · 13 ago 2022</p>
-    <p>· Scatti 43-48: Roma, Lazio, Italia · 25-27 set 2022</p>
-    <p>· Scatti 49-53: Varese, Lombardia, Italia · 02-04 ago 2019</p>
   </div>
 </div>
   `;
