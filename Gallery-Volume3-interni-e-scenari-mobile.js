@@ -294,27 +294,6 @@
       font-size: 13px;
       color: #86868b;
     }
-    .slider-title-bottom-Volume3-interni-e-scenari-mobile {
-      font-family: "SF Pro Display", sans-serif !important;
-      max-width: 970px;
-      text-align: left;
-      margin-top: -50px;
-      margin-bottom: -50px;
-      padding: 36px;
-      color: black;
-    }
-    .slider-title-bottom-Volume3-interni-e-scenari-mobile h2 {
-      font-family: "SF Pro Display", sans-serif !important;
-      font-weight: 600;
-      font-size: 14px;
-      margin-bottom: -2px;
-    }
-    .slider-title-bottom-Volume3-interni-e-scenari-mobile p {
-      font-family: "SF Pro Display", sans-serif !important;
-      font-weight: 400;
-      font-size: 13px;
-      color: #86868b;
-    }
 
     /* Media query: visualizza solo su mobile (<= 1280px) */
     @media screen and (min-width: 1280px) {
@@ -395,12 +374,6 @@
         <div class="info-regular-Volume3-interni-e-scenari-mobile">Scorri a destra o sinistra per esplorare le immagini.</div>
       </div>
     </div>
-  </div>
-  
-  <!-- Blocco Specifiche -->
-  <div class="slider-title-bottom-Volume3-interni-e-scenari-mobile">
-    <h2>Specifiche</h2>
-    <p>Realizzato con Canon EOS 2000D e obiettivo 18-55mm EF-S. Il formato RAW (.CR2) garantisce una libertà totale in post-produzione, gestita attraverso Adobe Lightroom Classic. La raccolta contiene 10 elementi, immagini in HD (High Definition) scattate nel cuore della Toscana, Italia, nell'anno 2024.</p>
   </div>
 </div>
   `;
