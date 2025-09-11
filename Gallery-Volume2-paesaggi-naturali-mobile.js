@@ -294,27 +294,6 @@
       font-size: 13px;
       color: #86868b;
     }
-    .slider-title-bottom-Volume2-paesaggi-naturali-mobile {
-      font-family: "SF Pro Display", sans-serif !important;
-      max-width: 970px;
-      text-align: left;
-      margin-top: -50px;
-      margin-bottom: -50px;
-      padding: 36px;
-      color: black;
-    }
-    .slider-title-bottom-Volume2-paesaggi-naturali-mobile h2 {
-      font-family: "SF Pro Display", sans-serif !important;
-      font-weight: 600;
-      font-size: 14px;
-      margin-bottom: -2px;
-    }
-    .slider-title-bottom-Volume2-paesaggi-naturali-mobile p {
-      font-family: "SF Pro Display", sans-serif !important;
-      font-weight: 400;
-      font-size: 13px;
-      color: #86868b;
-    }
 
     /* Media query: visualizza solo su mobile (<= 1280px) */
     @media screen and (min-width: 1280px) {
@@ -395,16 +374,6 @@
         <div class="info-regular-Volume2-paesaggi-naturali-mobile">Scorri a destra o sinistra per esplorare le immagini.</div>
       </div>
     </div>
-  </div>
-  
-  <!-- Blocco Specifiche -->
-  <div class="slider-title-bottom-Volume2-paesaggi-naturali-mobile">
-    <h2>Specifiche</h2>
-    <p>Realizzato con Canon EOS 2000D e obiettivo 18-55mm EF-S. Il formato RAW (.CR2) garantisce una libertà totale in post-produzione, gestita attraverso Adobe Lightroom Classic. La raccolta contiene 10 elementi, immagini in HD (High Definition) scattate in Italia, negli anni 2024-2022.</p>
-    <h2>Dettagli</h2>
-    <p>· Scatti 1-2: Pisa, Toscana, Italia · 31 ott 2024</p>
-    <p>· Scatti 3-8: Lucca, Toscana, Italia · 19 ago 2024</p>
-    <p>· Scatti 9-10: Palermo, Sicilia, Italia · 14 ago 2022</p>
   </div>
 </div>
   `;
