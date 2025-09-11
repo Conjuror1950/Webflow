@@ -321,26 +321,6 @@
       font-size: 13px;
       color: #86868b;
     }
-    .slider-title-bottom-Collezione1-halloween2024-desktop {
-      font-family: "SF Pro Display", sans-serif !important;
-      max-width: 970px;
-      text-align: left;     
-      color: black;
-      margin-top: 0px;
-      margin-bottom: 15px;
-    }
-    .slider-title-bottom-Collezione1-halloween2024-desktop h2 {
-      font-family: "SF Pro Display", sans-serif !important;
-      font-weight: 600;
-      font-size: 14px;
-      margin-bottom: -2px;
-    }
-    .slider-title-bottom-Collezione1-halloween2024-desktop p {
-      font-family: "SF Pro Display", sans-serif !important;
-      font-weight: 400;
-      font-size: 13px;
-      color: #86868b;
-    }
 
     /* Media query: visualizza solo su desktop (>= 1280px) */
     @media screen and (max-width: 1279px) {
@@ -417,10 +397,6 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="slider-title-bottom-Collezione1-halloween2024-desktop">
-        <h2>Specifiche</h2>
-        <p>Realizzato con Canon EOS 2000D e obiettivo 18-55mm EF-S. Il formato RAW (.CR2) garantisce una libertà totale in post-produzione, gestita attraverso Adobe Lightroom Classic. La raccolta contiene 33 elementi, immagini in HD (High Definition) scattate in Toscana, Italia, il 31 ottobre 2024.</p>
       </div>
     </div>
   `;
