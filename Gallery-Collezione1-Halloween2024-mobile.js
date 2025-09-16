@@ -562,9 +562,12 @@
           var blobUrl = URL.createObjectURL(blob);
           var a = document.createElement("a");
           a.href = blobUrl;
+          
           // Imposta il filename prendendolo dall'URL
-          var parts = imgEl.src.split("/");
-          var fileName = parts[parts.length - 1].split("__").pop();
+          var fileName = (images[slideIndex] && images[slideIndex].name) ?
+          images[slideIndex].name :
+          decodeURIComponent(imgEl.src.split("/").pop());
+          
           a.download = fileName;
           a.style.display = "none";
           document.body.appendChild(a);
