@@ -360,7 +360,7 @@
           <span class="option-side-Volume2-paesaggi-naturali-mobile">.zip²</span>
         </div>
         <div class="option-subtext-Volume2-paesaggi-naturali-mobile">Qualità originale, HD</div>
-        <div class="option-subtext-Volume2-paesaggi-naturali-mobile">10 elementi, ~20 MB</div>
+        <div class="option-subtext-Volume2-paesaggi-naturali-mobile">12 elementi, ~27 MB</div>
         <div class="spinner-Volume2-paesaggi-naturali-mobile">
           <div class="progress-frame-Volume2-paesaggi-naturali-mobile"></div>
         </div>
