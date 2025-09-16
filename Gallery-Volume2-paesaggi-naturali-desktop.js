@@ -382,7 +382,7 @@
                 <span class="option-side-Volume2-paesaggi-naturali-desktop">.zip²</span>
               </div>
               <div class="option-subtext-Volume2-paesaggi-naturali-desktop">Qualità originale, HD</div>
-              <div class="option-subtext-Volume2-paesaggi-naturali-desktop">10 elementi, ~20 MB</div>
+              <div class="option-subtext-Volume2-paesaggi-naturali-desktop">12 elementi, ~27 MB</div>
               <div class="spinner-Volume2-paesaggi-naturali-desktop">
                 <div class="progress-frame-Volume2-paesaggi-naturali-desktop"></div>
               </div>
