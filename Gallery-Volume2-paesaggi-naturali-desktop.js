@@ -431,6 +431,8 @@
   // Funzione di inizializzazione della Gallery (Immagini)
   function initGallery() {
     var images = [
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/68c9a0d34545c7b9cafb00ac_DSC04000.jpg", name: "DSC04000.jpg" },
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/68c9a0d037c77731bf87f3ec_DSC03972.jpg", name: "DSC03972.jpg" },
       { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/6762fe8c0f3530039c376f7d__MG_0070.jpg", name: "MG_0070.jpg" },
       { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/6762fe8d37578bf940c9e392__MG_0060.jpg", name: "MG_0060.jpg" },
       { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d98e732be5e82ba896555c__MG_9430%20firm.jpg", name: "MG_9430.jpg" },
