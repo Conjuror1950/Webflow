@@ -361,7 +361,7 @@
           <span class="option-side-Volume1-ambienti-urbani-mobile">.zip²</span>
         </div>
         <div class="option-subtext-Volume1-ambienti-urbani-mobile">Qualità originale, HD</div>
-        <div class="option-subtext-Volume1-ambienti-urbani-mobile">53 elementi, ~120 MB</div>
+        <div class="option-subtext-Volume1-ambienti-urbani-mobile">62 elementi, ~145 MB</div>
         <div class="spinner-Volume1-ambienti-urbani-mobile">
           <div class="progress-frame-Volume1-ambienti-urbani-mobile"></div>
         </div>
@@ -409,6 +409,15 @@
   // Funzione di inizializzazione della Gallery (Immagini)
   function initGallery() {
     var images = [
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/68cadea45a2a960410b8d0aa_DSC03991.jpg", name: "DSC03991.jpg" },
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/68cadea2853b334b4516f1d3_DSC03881.jpg", name: "DSC03881.jpg" },
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/68cadea5fd7db26cfd906064_DSC04008.jpg", name: "DSC04008.jpg" },
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/68cae9ae88b0e5755da97de8_DSC03914.jpg", name: "DSC03914.jpg" },
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/68cadea5c1d01041b7687697_DSC03952.jpg", name: "DSC03952.jpg" },
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/68cadea365bdc8092c2adbed_DSC03936.jpg", name: "DSC03936.jpg" },
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/68cae9ad06c3a429dafc8bb1_DSC03853.jpg", name: "DSC03853.jpg" },
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/68cadea4f40a202c65dc5aa9_DSC04022.jpg", name: "DSC04022.jpg" },
+      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/68cadea30e1c2178794fa9ad_DSC03882.jpg", name: "DSC03882.jpg" },
       { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/677e4f9c1938a95af999a355__MG_0323.jpg", name: "MG_0323.jpg" },
       { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/677e4f9c7cb4a47becebd5f8__MG_0337.jpg", name: "MG_0337.jpg" },
       { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/677e4f9b0d656804cb8c85bf__MG_0349.jpg", name: "MG_0349.jpg" },
