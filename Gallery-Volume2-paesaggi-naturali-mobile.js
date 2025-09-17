@@ -118,8 +118,8 @@
     }
     /* Indicatori delle slide */
     .slider-indicators-Volume2-paesaggi-naturali-mobile {
-      position: absolute;
-      bottom: 5px;
+      position: relative;
+      bottom: -20px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
@@ -278,7 +278,7 @@
       font-family: "SF Pro Display", sans-serif !important;
       text-align: left;     
       color: black;
-      margin-top: 10px;
+      margin-top: 25px;
       margin-bottom: 0px;
       margin-left: 18px;
     }
