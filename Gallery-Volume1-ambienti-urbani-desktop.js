@@ -382,7 +382,7 @@
                 <span class="option-side-Volume1-ambienti-urbani-desktop">.zip²</span>
               </div>
               <div class="option-subtext-Volume1-ambienti-urbani-desktop">Qualità originale, HD</div>
-              <div class="option-subtext-Volume1-ambienti-urbani-desktop">53 elementi, ~120 MB</div>
+              <div class="option-subtext-Volume1-ambienti-urbani-desktop">62 elementi, ~145 MB</div>
               <div class="spinner-Volume1-ambienti-urbani-desktop">
                 <div class="progress-frame-Volume1-ambienti-urbani-desktop"></div>
               </div>
