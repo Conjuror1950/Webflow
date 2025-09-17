@@ -119,7 +119,7 @@
     /* Indicatori delle slide */
     .slider-indicators-Volume3-interni-e-scenari-mobile {
       position: relative;
-      bottom: 20px;
+      bottom: 5px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
