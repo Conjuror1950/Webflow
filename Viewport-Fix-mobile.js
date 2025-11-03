@@ -1,189 +1,256 @@
-// viewport-fix-mobile.js
-// Versione: 1.1
-// Scopo: rimuovere bande laterali bianche, sistemare full-width e --vh per tutti i device
+// viewport-fix.js
+// Versione: 1.0
+// Inserire <script src=".../viewport-fix.js"></script> prima di </body>
 
 (function () {
   'use strict';
 
-  const DEBUG = false; // imposta true se vuoi vedere outlines e logs più dettagliati
+  const MOBILE_MAX_WIDTH = 1400; // soglia sotto la quale applichiamo alcune correzioni (evita modifiche inutili su desktop larghi)
 
-  // 1) Imposta variabile --vh corretta
+  /* -------------------------
+     Inserisce meta viewport (se non presente)
+     ------------------------- */
+  function ensureViewportMeta() {
+    try {
+      const head = document.head || document.getElementsByTagName('head')[0];
+      if (!head) return;
+      const existing = head.querySelector('meta[name="viewport"]');
+      const desiredContent = 'width=device-width, initial-scale=1, viewport-fit=cover';
+      if (existing) {
+        // se è diverso, aggiorniamo (non sempre cambia il rendering immediatamente ma è utile)
+        if (existing.getAttribute('content') !== desiredContent) {
+          existing.setAttribute('content', desiredContent);
+        }
+      } else {
+        const meta = document.createElement('meta');
+        meta.name = 'viewport';
+        meta.setAttribute('content', desiredContent);
+        head.appendChild(meta);
+      }
+    } catch (e) {
+      // non critico
+      console.warn('[viewport-fix] impossibile inserire meta viewport', e);
+    }
+  }
+
+  /* -------------------------
+     Aggiunge style globale necessario
+     ------------------------- */
+  function injectBaseStyles() {
+    const css = `
+/* ---------------- viewport-fix: base rules ---------------- */
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden !important; /* blocca scroll orizzontale */
+  -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
+}
+
+/* safe-area per iOS (fallback compat) */
+body {
+  /* old iOS Safari */
+  padding-left: constant(safe-area-inset-left);
+  padding-right: constant(safe-area-inset-right);
+  /* modern */
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
+}
+
+/* helper per fullscreen (usa --vh calcolato dal JS) */
+.vf-fullscreen {
+  height: calc(var(--vh, 1vh) * 100) !important;
+  min-height: calc(var(--vh, 1vh) * 100) !important;
+  box-sizing: border-box !important;
+}
+
+/* evita che elementi con 100vw forzino overflow */
+[vf-protect] {
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  left: 0 !important;
+  right: 0 !important;
+}
+
+/* classe applicabile manualmente se vuoi forzare nav a bordo schermo */
+.vf-edge-to-edge {
+  position: relative !important;
+  left: calc(0px - env(safe-area-inset-left, 0px)) !important;
+  right: calc(0px - env(safe-area-inset-right, 0px)) !important;
+  width: calc(100% + env(safe-area-inset-left, 0px) + env(safe-area-inset-right, 0px)) !important;
+  max-width: none !important;
+  box-sizing: border-box !important;
+  z-index: 9999 !important;
+}
+`;
+    const style = document.createElement('style');
+    style.id = 'viewport-fix-styles';
+    style.appendChild(document.createTextNode(css));
+    (document.head || document.documentElement).appendChild(style);
+  }
+
+  /* -------------------------
+     Calcola e imposta --vh
+     ------------------------- */
   function setVhUnit() {
     const vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty('--vh', `${vh}px`);
   }
 
-  // 2) Inietta regole CSS globali "safe"
-  function injectGlobalStyles() {
-    if (document.getElementById('vf-global-styles')) return;
+  /* -------------------------
+     Corregge elementi che "sbordano"
+     - cerca elementi più larghi del viewport e applica protezione
+     - corregge stili inline che usano 100vw
+     ------------------------- */
+  function fixOverflowingElements() {
+    try {
+      const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+      // Scansiona elementi visibili: limitiamo a quelli con bounding box maggiore del viewport
+      const all = document.querySelectorAll('body *');
+      for (let i = 0; i < all.length; i++) {
+        const el = all[i];
 
-    const css = `
-      /* Viewport-fix global rules */
-      html, body {
-        overflow-x: hidden !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        width: 100% !important;
-        height: 100% !important;
+        // Ignora elementi invisibili o script/style
+        if (!(el instanceof Element)) continue;
+        const cs = window.getComputedStyle ? window.getComputedStyle(el) : null;
+        if (!cs) continue;
+        if (cs.display === 'none' || cs.visibility === 'hidden') continue;
+
+        const rect = el.getBoundingClientRect();
+        // Se l'elemento è più largo del viewport anche per 1px: lo proteggiamo
+        if (rect.width > vw + 0.5) {
+          el.setAttribute('vf-protect', '1');
+          // se aveva width inline in vw -> settalo a 100%
+          const inlineW = (el.style && el.style.width) ? el.style.width : '';
+          if (inlineW && inlineW.indexOf('vw') !== -1) {
+            el.style.width = '100%';
+          }
+        } else {
+          // rimuovi attributo se presente e ora non serve
+          if (el.hasAttribute('vf-protect')) {
+            // lasciamo l'attributo per sicurezza: non rimuoviamo automaticamente
+          }
+        }
       }
-
-      *, *::before, *::after { box-sizing: border-box !important; }
-
-      /* Make media responsive by default */
-      img, picture, svg, video, iframe {
-        max-width: 100% !important;
-        height: auto !important;
-        display: block !important;
-      }
-
-      /* Ensure common nav wrappers span full width */
-      header, nav, .w-nav, .navbar, .site-nav, .site-navbar, .nav {
-        left: 0 !important;
-        right: 0 !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        box-sizing: border-box !important;
-      }
-
-      /* Helper class applied to fixed elements to keep them pinned to edges */
-      .vf-pin-fullwidth {
-        left: 0 !important;
-        right: 0 !important;
-        width: 100% !important;
-        max-width: 100% !important;
-      }
-
-      /* Debug outline (only if DEBUG true and the script toggles the class) */
-      .vf-debug-outline { outline: 2px dashed rgba(255,0,0,0.75) !important; }
-    `;
-
-    const style = document.createElement('style');
-    style.id = 'vf-global-styles';
-    style.appendChild(document.createTextNode(css));
-    document.head ? document.head.appendChild(style) : document.documentElement.appendChild(style);
+    } catch (e) {
+      console.warn('[viewport-fix] fixOverflowingElements error', e);
+    }
   }
 
-  // 3) Cerca elementi che overflowano la larghezza e prova a correggerli
-  function detectAndFixOverflow() {
-    const w = Math.round(window.innerWidth);
-    const eps = 0.5; // tolleranza
-    const overflows = [];
+  /* -------------------------
+     Forza elementi common-nav ad essere edge-to-edge
+     - riconosce tag e classi comuni (nav, header, .w-nav, .navbar, .site-header, etc.)
+     - applica la classe .vf-edge-to-edge per estenderli fino ai bordi della safe area
+     ------------------------- */
+  function extendCommonNavs() {
+    try {
+      const selectors = [
+        'nav', 'header', '.navbar', '.site-header', '.w-nav', '.nav', '.topbar', '.main-nav', '.menu', '.header'
+      ];
+      const found = new Set();
+      selectors.forEach(sel => {
+        const nodes = document.querySelectorAll(sel);
+        nodes.forEach(n => {
+          // applichiamo solo se l'elemento è visibile e si trova nella parte superiore della pagina (navbar tipica)
+          if (!(n instanceof Element)) return;
+          const rect = n.getBoundingClientRect();
+          if (rect.width < 10 || rect.height < 10) return;
+          // preferiamo applicare se si trova vicino al top o ha aria di nav
+          if (rect.top < window.innerHeight * 0.3 || /nav|menu|header/i.test(n.className || n.id || '')) {
+            n.classList.add('vf-edge-to-edge');
+            found.add(n);
+          }
+        });
+      });
 
-    // seleziona tutti gli elementi visibili tranne html/body
-    const all = Array.from(document.querySelectorAll('body *'));
-
-    all.forEach((el) => {
-      // skip elements that are not displayed
-      const cs = window.getComputedStyle(el);
-      if (cs.display === 'none' || cs.visibility === 'hidden' || cs.opacity === '0') return;
-
-      const rect = el.getBoundingClientRect();
-
-      // consideriamo overflow se parte del bounding supera la viewport orizzontalmente
-      if (rect.left < -eps || rect.right > (w + eps)) {
-        overflows.push({ el, rect, computedStyle: cs });
+      // Opportunità: se non abbiamo trovato nulla, tentiamo di estendere il primo header/nav visibile
+      if (found.size === 0) {
+        const fallback = document.querySelector('header, nav, .w-nav, .navbar');
+        if (fallback && fallback instanceof Element) {
+          fallback.classList.add('vf-edge-to-edge');
+        }
       }
-    });
+    } catch (e) {
+      console.warn('[viewport-fix] extendCommonNavs error', e);
+    }
+  }
 
-    if (overflows.length === 0) {
-      if (DEBUG) console.info('[vf] Nessun overflow orizzontale trovato.');
-      return [];
+  /* -------------------------
+     Applicazioni iniziali: eseguite al load e dopo resize/orientation change
+     ------------------------- */
+  function applyAllFixes() {
+    // Applichiamo solo se la larghezza è sensata (evitiamo interferenze su desktop molto larghi)
+    try {
+      const width = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+      // Applichiamo quasi sempre, ma alcune regole di "forzatura nav" sono più utili sotto MOBILE_MAX_WIDTH
+      setVhUnit();
+      fixOverflowingElements();
+      if (width <= MOBILE_MAX_WIDTH) {
+        extendCommonNavs();
+      } else {
+        // anche su desktop applichiamo overflow fix e vh
+      }
+    } catch (e) {
+      console.warn('[viewport-fix] applyAllFixes error', e);
+    }
+  }
+
+  /* -------------------------
+     Inizializzazione (esegui il prima possibile quando il file viene caricato)
+     ------------------------- */
+  function init() {
+    ensureViewportMeta();
+    injectBaseStyles();
+    // Imposta subito --vh e altre correzioni iniziali
+    setVhUnit();
+
+    // Se il DOM è già pronto, esegui le correzioni; altrimenti attendi DOMContentLoaded
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+      // piccola delay per permettere caricamento di alcuni stili inline
+      setTimeout(applyAllFixes, 50);
+    } else {
+      document.addEventListener('DOMContentLoaded', () => setTimeout(applyAllFixes, 50));
     }
 
-    // Applica correzioni conservative sugli elementi overflowanti
-    overflows.forEach((item, i) => {
-      const el = item.el;
-      const cs = item.computedStyle;
-
-      // preferiamo correggere impostando max-width e box-sizing
-      try {
-        // se l'elemento ha width impostata in inline style contenente "vw", la sovrascriviamo con 100%
-        const inlineStyle = (el.getAttribute && el.getAttribute('style')) || '';
-        if (/(\d+(\.\d+)?vw)/.test(inlineStyle) || /100vw/.test(inlineStyle) || /100\.?vw/.test(cs.width)) {
-          el.style.width = '100%';
-        }
-
-        // regole generali di fallback
-        el.style.maxWidth = '100%';
-        el.style.boxSizing = 'border-box';
-
-        // immagini/video/iframes: assicurati che siano responsivi
-        if (/img|picture|video|iframe/.test(el.tagName.toLowerCase())) {
-          el.style.maxWidth = '100%';
-          el.style.height = 'auto';
-          el.removeAttribute('width');
-          el.removeAttribute('height');
-        }
-
-        // Se l'elemento è posizionato fixed/stick e tende a creare gap, pinniamolo
-        if (cs.position === 'fixed' || cs.position === 'sticky') {
-          el.classList.add('vf-pin-fullwidth');
-        }
-
-        // se DEBUG, aggiungi outline temporaneo per individuare
-        if (DEBUG) {
-          el.classList.add('vf-debug-outline');
-          // togli l'outline dopo qualche secondo per non rovinare la UX
-          setTimeout(() => el.classList.remove('vf-debug-outline'), 4000);
-        }
-      } catch (e) {
-        console.warn('[vf] Errore nella correzione di un elemento', e, el);
-      }
-    });
-
-    // Log degli elementi in overflow (semplice)
-    console.group(`[vf] elementi overflow: ${overflows.length}`);
-    overflows.forEach((it, idx) => {
-      console.log(`#${idx + 1}`, it.el, 'rect:', it.rect, 'computedWidth:', it.computedStyle.width);
-    });
-    console.groupEnd();
-
-    return overflows;
-  }
-
-  // 4) Applicazioni globali una tantum / chiamate di update
-  function applyAll() {
-    setVhUnit();
-    injectGlobalStyles();
-
-    // Forza overflow-x hidden anche direttamente (ulteriore guardia)
-    document.documentElement.style.overflowX = 'hidden';
-    document.body.style.overflowX = 'hidden';
-
-    // se il body non ha background esplicito, non forziamo il colore; lascialo trasparente
-    // (ma se vuoi che la navbar si estenda visualmente, assicurati che il body abbia lo stesso bg del header)
-
-    // Correggi elementi che overflowano
-    detectAndFixOverflow();
-  }
-
-  // 5) Event listeners
-  window.addEventListener('load', () => {
-    applyAll();
-
-    // dopo load aspettiamo un piccolo timeout per catturare elementi caricati dinamicamente
-    setTimeout(() => {
-      applyAll();
-    }, 600);
-  });
-
-  // ridimensiona / rotate / orientation change
-  ['resize', 'orientationchange'].forEach((ev) => {
-    window.addEventListener(ev, () => {
+    // ricalcoli utili su eventi
+    window.addEventListener('resize', () => {
       setVhUnit();
-      // ritarda la ricerca degli overflow per far finire eventuali transizioni
-      clearTimeout(window.__vf_resize_to);
-      window.__vf_resize_to = setTimeout(() => {
-        detectAndFixOverflow();
-      }, 120);
-    }, { passive: true });
-  });
+      // leggero debounce
+      clearTimeout(window.__vf_resize_timer);
+      window.__vf_resize_timer = setTimeout(applyAllFixes, 120);
+    });
 
-  // espone funzione globale per debug manuale (opzionale)
-  window.vf_force_check = function () {
-    setVhUnit();
-    injectGlobalStyles();
-    return detectAndFixOverflow();
+    window.addEventListener('orientationchange', () => {
+      // il cambio orientamento su iOS può richiedere un piccolo delay
+      setTimeout(() => {
+        setVhUnit();
+        applyAllFixes();
+      }, 160);
+    });
+
+    // eventualmente ricalcola dopo load completo (immagini/caricamenti)
+    window.addEventListener('load', () => setTimeout(applyAllFixes, 60));
+  }
+
+  // Avvia
+  init();
+
+  /* -------------------------
+     API utili per debug / override manuale
+     - window.vfForceRecalc() -> richiama applyAllFixes() dal browser console
+     - window.vfAddEdgeToElement(el) -> aggiunge la classe edge-to-edge a un elemento DOM
+     ------------------------- */
+  window.vfForceRecalc = function () {
+    applyAllFixes();
   };
-
+  window.vfAddEdgeToElement = function (el) {
+    try {
+      if (typeof el === 'string') {
+        el = document.querySelector(el);
+      }
+      if (el && el.classList) el.classList.add('vf-edge-to-edge');
+    } catch (e) { /* ignore */ }
+  };
 })();
