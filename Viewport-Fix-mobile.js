@@ -21,7 +21,7 @@
 
     // Background di default, puoi cambiare colore se vuoi
     if (!document.body.style.backgroundColor) {
-      document.body.style.backgroundColor = '#000';
+      document.body.style.backgroundColor = 'transparent';
     }
 
     // Sezioni full-width sicure
