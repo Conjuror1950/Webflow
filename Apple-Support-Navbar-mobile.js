@@ -14,7 +14,7 @@
   if(!btn || !menu) return;
 
   // --- CONFIGURAZIONE ICONE ---
-  const hamburgerIcon = btn.querySelector('.menu.icon');
+  const hamburgerIcon = btn.querySelector('.menu-icon');
   const closeIcon = btn.querySelector('.close.icon');
 
   // Imposta lo stato iniziale (hamburger visibile, close nascosta)
