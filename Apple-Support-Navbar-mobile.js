@@ -1,4 +1,28 @@
 // menu-button-scroll.js (Mobile-only + transizione dolce)
+  // CSS della gallery (stile completo), con media query per desktop (>= 1280px)
+  var supportCSS = `
+/* --- Transizione fluida icone Apple-style --- */
+.support-menu-icon,
+.support-close-icon {
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  transform-origin: center;
+}
+
+.support-menu-icon {
+  display: block;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.support-close-icon {
+  display: none;
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+`;
+addStyle(supportCSS);
+
 (function(){
   // --- CONFIGURAZIONE: selettori tramite data-attributes (più affidabili)
   const menuButton = document.querySelector('[data-menu-button="true"]');
