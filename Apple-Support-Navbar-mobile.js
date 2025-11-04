@@ -53,12 +53,12 @@
       closeIcon.style.display = 'block';
       requestAnimationFrame(() => {
         closeIcon.style.opacity = '1';
-        closeIcon.style.transform = 'scale(1) translateY(20px)'; // sposta verso il basso
+        closeIcon.style.transform = 'scale(1) translateY(10px)'; // sposta verso il basso
       });
     } else {
       // Animazione X → hamburger
       closeIcon.style.opacity = '0';
-      closeIcon.style.transform = 'scale(0.8) translateY(20px)';
+      closeIcon.style.transform = 'scale(0.8) translateY(10px)';
       setTimeout(() => {
         closeIcon.style.display = 'none'
         menuIcon.style.opacity = '1';
