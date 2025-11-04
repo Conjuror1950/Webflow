@@ -44,30 +44,31 @@
     return false;
   }
 
-  function lockScroll() {
-    if (locked) return;
-    scrollPos = window.scrollY || document.documentElement.scrollTop || 0;
-    document.body.style.position = 'fixed';
-    document.body.style.top = `-${scrollPos}px`;
-    document.body.style.left = '0';
-    document.body.style.right = '0';
-    document.body.style.width = '100%';
-    locked = true;
-    // console.log('scroll locked at', scrollPos);
-  }
+function lockScroll() {
+  if (locked) return;
+  scrollPos = window.scrollY || document.documentElement.scrollTop || 0;
+  document.body.style.position = 'fixed';
+  document.body.style.left = '0';
+  document.body.style.right = '0';
+  document.body.style.width = '100%';
+  // aggiungi top per transizione dolce
+  document.body.style.top = `-${scrollPos}px`;
+  locked = true;
+}
 
-  function unlockScroll() {
-    if (!locked) return;
+function unlockScroll() {
+  if (!locked) return;
+  // transizione dolce: prima azzera top
+  document.body.style.top = '0';
+  // dopo la transizione (250ms) resetta position
+  setTimeout(() => {
     document.body.style.position = '';
-    document.body.style.top = '';
     document.body.style.left = '';
     document.body.style.right = '';
     document.body.style.width = '';
-    // ripristina la posizione salvata
-    window.scrollTo(0, scrollPos);
     locked = false;
-    // console.log('scroll unlocked, restored to', scrollPos);
-  }
+    window.scrollTo(0, scrollPos);
+  }, 500); // stesso tempo della transizione CSS
 
   // Funzione che legge lo stato DOPO l'aggiornamento del DOM usando RAF
   function handleAfterToggle() {
