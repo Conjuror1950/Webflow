@@ -53,14 +53,14 @@
       closeIcon.style.display = 'block';
       requestAnimationFrame(() => {
         closeIcon.style.opacity = '1';
-        closeIcon.style.transform = 'scale(1)';
+        closeIcon.style.transform = 'scale(1)' translateY(20px)'; // sposta verso il basso
       });
     } else {
       // Animazione X → hamburger
       closeIcon.style.opacity = '0';
-      closeIcon.style.transform = 'scale(0.8)';
+      closeIcon.style.transform = 'scale(0.8)' translateY(20px)';
       setTimeout(() => {
-        closeIcon.style.display = 'none';
+        closeIcon.style.display = 'none'
         menuIcon.style.opacity = '1';
         menuIcon.style.transform = 'scale(1)';
       }, 200); // durata transizione (match CSS)
@@ -135,7 +135,7 @@
 .support-menu-icon,
 .support-close-icon {
   transition: opacity 0.25s ease-out, transform 0.25s ease-in;
-  transform-origin: center center;
+  transform-origin: center;
 }
 
 .support-menu-icon {
