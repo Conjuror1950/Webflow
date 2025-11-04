@@ -1,12 +1,11 @@
-// menu-mobile.js
+// menu-scroll-lock.js
 (function(){
   // Seleziona il menu mobile Webflow
-  const navMenu = document.querySelector('.nav menu mobile');
+  const navMenu = document.querySelector('.Nav.Menu.mobile'); // usa i punti al posto degli spazi
   if(!navMenu) return;
 
   let scrollPos = 0;
 
-  // Funzione per bloccare lo scroll
   function lockScroll() {
     scrollPos = window.scrollY || document.documentElement.scrollTop;
     document.body.style.position = 'fixed';
@@ -16,7 +15,6 @@
     document.body.style.width = '100%';
   }
 
-  // Funzione per sbloccare lo scroll
   function unlockScroll() {
     document.body.style.position = '';
     document.body.style.top = '';
@@ -26,7 +24,7 @@
     window.scrollTo(0, scrollPos);
   }
 
-  // Osserva quando il menu aggiunge/toglie la classe 'w--open' (Webflow standard)
+  // Osserva quando Webflow aggiunge/rimuove la classe "w--open" al menu
   const observer = new MutationObserver(() => {
     if(navMenu.classList.contains('w--open')) {
       lockScroll();
