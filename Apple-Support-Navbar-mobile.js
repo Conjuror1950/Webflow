@@ -1,22 +1,4 @@
 // menu-button-scroll.js (Mobile-only + transizione dolce)
-.support-menu-icon,
-.support-close-icon {
-  transition: opacity 0.25s ease, transform 0.25s ease;
-  transform-origin: center;
-}
-
-.support-menu-icon {
-  display: block;
-  opacity: 1;
-  transform: scale(1);
-}
-
-.support-close-icon {
-  display: none;
-  opacity: 0;
-  transform: scale(0.8);
-}
-
 (function(){
   // --- CONFIGURAZIONE: selettori tramite data-attributes (più affidabili)
   const menuButton = document.querySelector('[data-menu-button="true"]');
@@ -28,10 +10,6 @@
 
   const btn = menuButton || fallbackButton;
   const menu = navMenu || fallbackMenu;
-
-  // --- NUOVE ICONE ---
-  const menuIcon = btn.querySelector('.support-menu-icon');
-  const closeIcon = btn.querySelector('.support-close-icon');
 
   if(!btn || !menu) return;
 
@@ -58,28 +36,6 @@
       }
     } catch(e){ /* ignore */ }
     return false;
-  }
-
-    // --- ANIMAZIONE ICONA MENU ---
-  function toggleMenuIcons(open) {
-    if (!menuIcon || !closeIcon) return;
-    if (open) {
-      menuIcon.style.opacity = '0';
-      menuIcon.style.transform = 'scale(0.8)';
-      closeIcon.style.display = 'block';
-      requestAnimationFrame(() => {
-        closeIcon.style.opacity = '1';
-        closeIcon.style.transform = 'scale(1)';
-      });
-    } else {
-      closeIcon.style.opacity = '0';
-      closeIcon.style.transform = 'scale(0.8)';
-      setTimeout(() => {
-        closeIcon.style.display = 'none';
-        menuIcon.style.opacity = '1';
-        menuIcon.style.transform = 'scale(1)';
-      }, 200); // tempo transizione (matcha CSS)
-    }
   }
 
   // Blocca scroll solo su mobile
@@ -119,7 +75,6 @@
           if (isMenuOpen()) lockScroll();
           else unlockScroll();
         }
-        toggleMenuIcons(isMenuOpen());
       });
     });
   }
