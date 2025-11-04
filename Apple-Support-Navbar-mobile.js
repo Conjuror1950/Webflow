@@ -129,13 +129,13 @@
   // All’avvio: sincronizza lo stato
   requestAnimationFrame(handleAfterToggle);
 
-    // CSS della gallery (stile completo), con media query per desktop (>= 1280px)
+// CSS
   var supportCSS = `
 /* --- Transizione fluida icone Apple-style --- */
 .support-menu-icon,
 .support-close-icon {
-  transition: opacity 0.25s ease, transform 0.25s ease;
-  transform-origin: center;
+  transition: opacity 0.25s ease-out, transform 0.25s ease-in;
+  transform-origin: center bottom;
 }
 
 .support-menu-icon {
