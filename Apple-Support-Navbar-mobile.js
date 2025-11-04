@@ -59,11 +59,10 @@
       // Animazione X → hamburger
       closeIcon.style.opacity = '0';
       closeIcon.style.transform = 'scale(0.8) translateY(10px)';
-      setTimeout(() => {
+      requestAnimationFrame(() => {
         closeIcon.style.display = 'none'
         menuIcon.style.opacity = '1';
         menuIcon.style.transform = 'scale(1)';
-      }, 0); // durata transizione
     }
   }
   
