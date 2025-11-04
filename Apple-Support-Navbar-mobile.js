@@ -134,7 +134,7 @@
 /* --- Transizione fluida icone Apple-style --- */
 .support-menu-icon,
 .support-close-icon {
-  transition: opacity 0.25s ease-out, transform 0.25s ease-in;
+  transition: opacity 0.25s ease, transform 0.25s ease;
   transform-origin: center;
 }
 
