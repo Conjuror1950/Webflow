@@ -6,11 +6,18 @@
   let scrollPos = 0;
   const duration = 300; // durata animazione in ms
 
-  // Imposta animazione iniziale del menu
+  // Imposta stato iniziale (chiuso o aperto se la classe è già presente)
   navMenu.style.transition = `transform ${duration}ms ease-out, opacity ${duration}ms ease-out`;
-  navMenu.style.transform = 'translateY(-100%)';
-  navMenu.style.opacity = '0';
   navMenu.style.willChange = 'transform, opacity';
+
+  if (navMenu.classList.contains('w--open') || navMenu.classList.contains('open')) {
+    // se per qualche motivo la classe di "open" è già presente al load
+    navMenu.style.transform = 'translateY(0)';
+    navMenu.style.opacity = '1';
+  } else {
+    navMenu.style.transform = 'translateY(-100%)';
+    navMenu.style.opacity = '0';
+  }
 
   function lockScroll() {
     scrollPos = window.scrollY || document.documentElement.scrollTop;
@@ -46,9 +53,9 @@
     }, duration);
   }
 
-  // Osserva quando Webflow aggiunge/toglie la classe 'nav-menu-mobile'
+  // Osserva quando Webflow aggiunge/toglie la classe 'w--open' (o 'open' come fallback)
   const observer = new MutationObserver(() => {
-    if(navMenu.classList.contains('nav-menu-mobile')) {
+    if (navMenu.classList.contains('w--open') || navMenu.classList.contains('open')) {
       openMenu();
     } else {
       closeMenu();
