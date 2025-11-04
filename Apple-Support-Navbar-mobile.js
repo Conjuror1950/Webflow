@@ -1,8 +1,8 @@
-// menu-scroll-lock.js
+// menu-button-scroll.js
 (function(){
-  // Seleziona il menu mobile Webflow
-  const navMenu = document.querySelector('.Nav.Menu.mobile'); // usa i punti al posto degli spazi
-  if(!navMenu) return;
+  const menuButton = document.querySelector('.Menu.Button.5'); // il bottone che apre/chiude il menu
+  const navMenu = document.querySelector('.Nav.Menu.mobile'); // il menu mobile
+  if(!menuButton || !navMenu) return;
 
   let scrollPos = 0;
 
@@ -24,15 +24,16 @@
     window.scrollTo(0, scrollPos);
   }
 
-  // Osserva quando Webflow aggiunge/rimuove la classe "w--open" al menu
-  const observer = new MutationObserver(() => {
-    if(navMenu.classList.contains('w--open')) {
+  // Gestione clic sul bottone
+  menuButton.addEventListener('click', () => {
+    const isOpen = navMenu.classList.contains('w--open'); // controlla se il menu è aperto
+    if(!isOpen) {
+      // il menu si aprirà → blocca scroll
       lockScroll();
     } else {
+      // il menu si chiuderà → sblocca scroll
       unlockScroll();
     }
   });
-
-  observer.observe(navMenu, { attributes: true, attributeFilter: ['class'] });
 
 })();
