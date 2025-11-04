@@ -11,6 +11,10 @@
   const btn = menuButton || fallbackButton;
   const menu = navMenu || fallbackMenu;
 
+  // --- NUOVE ICONE ---
+  const menuIcon = btn.querySelector('.support-menu-icon');
+  const closeIcon = btn.querySelector('.support-close-icon');
+
   if(!btn || !menu) return;
 
   let scrollPos = 0;
@@ -37,7 +41,32 @@
     } catch(e){ /* ignore */ }
     return false;
   }
+  
+  // --- ANIMAZIONE ICONA MENU ---
+  function toggleMenuIcons(open) {
+    if (!menuIcon || !closeIcon) return;
 
+    if (open) {
+      // Animazione hamburger → X
+      menuIcon.style.opacity = '0';
+      menuIcon.style.transform = 'scale(0.8)';
+      closeIcon.style.display = 'block';
+      requestAnimationFrame(() => {
+        closeIcon.style.opacity = '1';
+        closeIcon.style.transform = 'scale(1)';
+      });
+    } else {
+      // Animazione X → hamburger
+      closeIcon.style.opacity = '0';
+      closeIcon.style.transform = 'scale(0.8)';
+      setTimeout(() => {
+        closeIcon.style.display = 'none';
+        menuIcon.style.opacity = '1';
+        menuIcon.style.transform = 'scale(1)';
+      }, 200); // durata transizione (match CSS)
+    }
+  }
+  
   // Blocca scroll solo su mobile
   function lockScroll() {
     if (locked || !isMobile()) return;
@@ -75,6 +104,7 @@
           if (isMenuOpen()) lockScroll();
           else unlockScroll();
         }
+        toggleMenuIcons(isMenuOpen());
       });
     });
   }
