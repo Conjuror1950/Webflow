@@ -19,7 +19,7 @@
   // --- FUNZIONI UTILI ---
   // Determina se siamo su mobile (Webflow breakpoint)
   function isMobile() {
-    return window.innerWidth <= 991;
+    return window.innerWidth <= 449;
   }
 
   // Determina se il menu è aperto (classe, aria-expanded o visibilità)
@@ -64,7 +64,7 @@
       document.body.style.transition = '';
       window.scrollTo(0, scrollPos);
       locked = false;
-    }, 400); // stesso tempo della transizione CSS
+    }, 250); // stesso tempo della transizione CSS
   }
 
   // Funzione che legge lo stato DOPO l'aggiornamento del DOM
