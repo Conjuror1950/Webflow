@@ -93,7 +93,7 @@
       document.body.style.transition = '';
       window.scrollTo(0, scrollPos);
       locked = false;
-    }, 100); // tempo della transizione CSS
+    }, 50); // tempo della transizione CSS
   }
 
   // Funzione che legge lo stato DOPO l'aggiornamento del DOM
@@ -134,7 +134,7 @@
 /* --- Transizione fluida icone Apple-style --- */
 .support-menu-icon,
 .support-close-icon {
-  transition: opacity 0.25s ease, transform 0.25s ease;
+  transition: opacity 0.2s ease, transform 0.2s ease;
   transform-origin: center;
 }
 
