@@ -64,6 +64,8 @@
         menuIcon.style.opacity = '1';
         menuIcon.style.transform = 'scale(1)';
  });
+ }
+}
   
   // Blocca scroll solo su mobile
   function lockScroll() {
