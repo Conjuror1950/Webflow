@@ -13,6 +13,34 @@
 
   if(!btn || !menu) return;
 
+  // --- CONFIGURAZIONE ICONE ---
+  const hamburgerIcon = btn.querySelector('.menu.icon');
+  const closeIcon = btn.querySelector('.close.icon');
+
+  // Imposta lo stato iniziale (hamburger visibile, close nascosta)
+  if (hamburgerIcon && closeIcon) {
+    hamburgerIcon.style.opacity = '1';
+    hamburgerIcon.style.transition = 'opacity 0.3s ease';
+    closeIcon.style.opacity = '0';
+    closeIcon.style.transition = 'opacity 0.3s ease';
+    closeIcon.style.pointerEvents = 'none';
+  }
+
+  // Funzioni per mostrare/nascondere icone con transizione fluida
+  function showCloseIcon() {
+    if (!hamburgerIcon || !closeIcon) return;
+    hamburgerIcon.style.opacity = '0';
+    closeIcon.style.pointerEvents = 'auto';
+    closeIcon.style.opacity = '1';
+  }
+
+  function showHamburgerIcon() {
+    if (!hamburgerIcon || !closeIcon) return;
+    closeIcon.style.opacity = '0';
+    closeIcon.style.pointerEvents = 'none';
+    hamburgerIcon.style.opacity = '1';
+  }
+  
   let scrollPos = 0;
   let locked = false;
 
@@ -71,10 +99,16 @@
   function handleAfterToggle() {
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
-        if (isMobile()) {
-          if (isMenuOpen()) lockScroll();
-          else unlockScroll();
-        }
+if (isMobile()) {
+  if (isMenuOpen()) {
+    lockScroll();
+    showCloseIcon(); // Mostra la X con transizione
+  } else {
+    unlockScroll();
+    showHamburgerIcon(); // Ritorna all’hamburger
+  }
+}
+
       });
     });
   }
