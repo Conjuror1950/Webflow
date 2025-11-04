@@ -43,28 +43,27 @@
   }
   
   // --- ANIMAZIONE ICONA MENU ---
-  function toggleMenuIcons(open) {
-    if (!menuIcon || !closeIcon) return;
+function toggleMenuIcons(open) {
+  if (!menuIcon || !closeIcon) return;
 
-    if (open) {
-      // Animazione hamburger → X
-      menuIcon.style.opacity = '0';
-      menuIcon.style.transform = 'scale(0.8)';
-      closeIcon.style.display = 'block';
-      requestAnimationFrame(() => {
-        closeIcon.style.opacity = '1';
-        closeIcon.style.transform = 'scale(1) translateY(10px)'; // sposta verso il basso
-      });
-    } else {
-      // Animazione X → hamburger
-      closeIcon.style.opacity = '0';
-      closeIcon.style.transform = 'scale(0.8) translateY(10px)';
-      requestAnimationFrame(() => {
-        closeIcon.style.display = 'none'
-        menuIcon.style.opacity = '1';
-        menuIcon.style.transform = 'scale(1)';
- });
- }
+  if (open) {
+    // Animazione hamburger → X
+    menuIcon.style.opacity = '0';
+    menuIcon.style.transform = 'scale(0.8)';
+    closeIcon.style.display = 'block';
+    requestAnimationFrame(() => {
+      closeIcon.style.opacity = '1';
+      closeIcon.style.transform = 'scale(1) translateY(10px)';
+    });
+  } else {
+    // Animazione X → hamburger
+    closeIcon.style.opacity = '0';
+    closeIcon.style.transform = 'scale(0.8) translateY(10px)';
+    // Mostra subito hamburger senza delay
+    closeIcon.style.display = 'none';
+    menuIcon.style.opacity = '1';
+    menuIcon.style.transform = 'scale(1)';
+  }
 }
   
   // Blocca scroll solo su mobile
