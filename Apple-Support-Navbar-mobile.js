@@ -135,7 +135,7 @@
 .support-menu-icon,
 .support-close-icon {
   transition: opacity 0.25s ease-out, transform 0.25s ease-in;
-  transform-origin: center bottom;
+  transform-origin: center center;
 }
 
 .support-menu-icon {
