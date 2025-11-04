@@ -63,7 +63,7 @@
         closeIcon.style.display = 'none'
         menuIcon.style.opacity = '1';
         menuIcon.style.transform = 'scale(1)';
-      }, 50); // durata transizione (match CSS)
+      }, 0); // durata transizione
     }
   }
   
