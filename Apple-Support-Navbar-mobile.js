@@ -1,7 +1,7 @@
 // menu-button-scroll.js
 (function(){
-  const menuButton = document.querySelector('.Menu.Button.5'); // il bottone che apre/chiude il menu
-  const navMenu = document.querySelector('.Nav.Menu.mobile'); // il menu mobile
+  const menuButton = document.querySelector('[data-menu-button="true"]');
+  const navMenu = document.querySelector('[data-menu="true"]');
   if(!menuButton || !navMenu) return;
 
   let scrollPos = 0;
@@ -24,14 +24,11 @@
     window.scrollTo(0, scrollPos);
   }
 
-  // Gestione clic sul bottone
   menuButton.addEventListener('click', () => {
-    const isOpen = navMenu.classList.contains('w--open'); // controlla se il menu è aperto
+    const isOpen = navMenu.classList.contains('w--open');
     if(!isOpen) {
-      // il menu si aprirà → blocca scroll
       lockScroll();
     } else {
-      // il menu si chiuderà → sblocca scroll
       unlockScroll();
     }
   });
