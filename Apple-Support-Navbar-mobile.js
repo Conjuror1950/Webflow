@@ -1,4 +1,4 @@
-// menu-button-scroll.js (versione robusta)
+// menu-button-scroll.js (Mobile-only + transizione dolce)
 (function(){
   // --- CONFIGURAZIONE: selettori tramite data-attributes (più affidabili)
   const menuButton = document.querySelector('[data-menu-button="true"]');
@@ -11,101 +11,92 @@
   const btn = menuButton || fallbackButton;
   const menu = navMenu || fallbackMenu;
 
-  if(!btn || !menu) {
-    // Se vuoi debug, decommenta la riga sotto per vedere cosa manca
-    // console.warn('menu-button-scroll: missing button or menu (btn, menu):', !!btn, !!menu);
-    return;
-  }
+  if(!btn || !menu) return;
 
   let scrollPos = 0;
   let locked = false;
 
-  // Determina se il menu è aperto (più metodi di controllo)
+  // --- FUNZIONI UTILI ---
+  // Determina se siamo su mobile (Webflow breakpoint)
+  function isMobile() {
+    return window.innerWidth <= 991;
+  }
+
+  // Determina se il menu è aperto (classe, aria-expanded o visibilità)
   function isMenuOpen() {
     try {
-      // 1) Controllo classe Webflow
       if (menu.classList && menu.classList.contains('w--open')) return true;
-
-      // 2) Controllo aria-expanded sul bottone (molti toggle liscono questo attributo)
       const aria = btn.getAttribute && btn.getAttribute('aria-expanded');
       if (aria === 'true') return true;
-
-      // 3) Controllo stile computato (visibilità/altezza)
       const cs = window.getComputedStyle(menu);
-      if (cs && (cs.display !== 'none' && cs.visibility !== 'hidden')) {
-        // se ha un'altezza > 0 o opacity > 0 consideralo aperto
+      if (cs && cs.display !== 'none' && cs.visibility !== 'hidden') {
         const h = parseFloat(cs.height) || 0;
         const op = parseFloat(cs.opacity) || 0;
         if (h > 2 || op > 0.05) return true;
       }
-    } catch(e){
-      // ignore
-    }
+    } catch(e){ /* ignore */ }
     return false;
   }
 
+  // Blocca scroll solo su mobile
   function lockScroll() {
-    if (locked) return;
+    if (locked || !isMobile()) return;
     scrollPos = window.scrollY || document.documentElement.scrollTop || 0;
     document.body.style.position = 'fixed';
-    document.body.style.top = `-${scrollPos}px`;
     document.body.style.left = '0';
     document.body.style.right = '0';
     document.body.style.width = '100%';
+    // top con transizione dolce Apple-style
+    document.body.style.transition = 'top 0.25s ease-out';
+    document.body.style.top = `-${scrollPos}px`;
     locked = true;
-    // console.log('scroll locked at', scrollPos);
   }
 
+  // Sblocca scroll solo se era bloccato su mobile
   function unlockScroll() {
-    if (!locked) return;
-    document.body.style.position = '';
-    document.body.style.top = '';
-    document.body.style.left = '';
-    document.body.style.right = '';
-    document.body.style.width = '';
-    // ripristina la posizione salvata
-    window.scrollTo(0, scrollPos);
-    locked = false;
-    // console.log('scroll unlocked, restored to', scrollPos);
+    if (!locked || !isMobile()) return;
+    document.body.style.top = '0';
+    setTimeout(() => {
+      document.body.style.position = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      document.body.style.width = '';
+      document.body.style.transition = '';
+      window.scrollTo(0, scrollPos);
+      locked = false;
+    }, 500); // stesso tempo della transizione CSS
   }
 
-  // Funzione che legge lo stato DOPO l'aggiornamento del DOM usando RAF
+  // Funzione che legge lo stato DOPO l'aggiornamento del DOM
   function handleAfterToggle() {
-    // doppio rAF per essere molto sicuri che Webflow abbia applicato classi / aria
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
-        if (isMenuOpen()) {
-          lockScroll();
-        } else {
-          unlockScroll();
+        if (isMobile()) {
+          if (isMenuOpen()) lockScroll();
+          else unlockScroll();
         }
       });
     });
   }
 
-  // Listener sul bottone: chiama handleAfterToggle (non fa assunzioni sul timing)
+  // Listener sul bottone
   btn.addEventListener('click', handleAfterToggle, { passive: true });
 
-  // MutationObserver per intercettare cambi fatti da altri meccanismi (link interni, chiusure automatiche, ecc.)
+  // Observer per intercettare cambi fatti da altri meccanismi (link interni, overlay, ecc.)
   try {
-    const observerTarget = menu;
-    const observer = new MutationObserver(() => {
-      // quando cambia la classe/attributo del menu, aggiorna stato
-      handleAfterToggle();
-    });
-    observer.observe(observerTarget, { attributes: true, attributeFilter: ['class', 'style', 'aria-hidden'] });
-  } catch (e) {
-    // observer potrebbe fallire in ambienti stretti; non bloccare l'esecuzione
-  }
+    const observer = new MutationObserver(handleAfterToggle);
+    observer.observe(menu, { attributes: true, attributeFilter: ['class', 'style', 'aria-hidden'] });
+  } catch (e) { /* ignore */ }
 
-  // fallback: se l'utente chiude con ESC vogliamo sbloccare la pagina
+  // ESC chiude / sblocca scroll
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && locked) {
-      unlockScroll();
-    }
+    if (e.key === 'Escape' && locked) unlockScroll();
   });
 
-  // all'avvio: sincronizza lo stato (nel caso il menu fosse già aperto)
+  // Resize finestra: sincronizza stato mobile/non-mobile
+  window.addEventListener('resize', handleAfterToggle);
+
+  // All’avvio: sincronizza lo stato
   requestAnimationFrame(handleAfterToggle);
 
 })();
