@@ -64,7 +64,7 @@
       document.body.style.transition = '';
       window.scrollTo(0, scrollPos);
       locked = false;
-    }, 500); // stesso tempo della transizione CSS
+    }, 400); // stesso tempo della transizione CSS
   }
 
   // Funzione che legge lo stato DOPO l'aggiornamento del DOM
