@@ -63,7 +63,7 @@
         closeIcon.style.display = 'none'
         menuIcon.style.opacity = '1';
         menuIcon.style.transform = 'scale(1)';
-      }, 100); // durata transizione (match CSS)
+      }, 50); // durata transizione (match CSS)
     }
   }
   
@@ -93,7 +93,7 @@
       document.body.style.transition = '';
       window.scrollTo(0, scrollPos);
       locked = false;
-    }, 50); // tempo della transizione CSS
+    }, 80); // tempo della transizione CSS
   }
 
   // Funzione che legge lo stato DOPO l'aggiornamento del DOM
