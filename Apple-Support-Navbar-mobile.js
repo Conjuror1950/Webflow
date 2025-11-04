@@ -1,6 +1,6 @@
 // menu-mobile-apple.js
 (function(){
-  const navMenu = document.querySelector('.nav-menu-mobile'); // Classe menu Webflow
+  const navMenu = document.querySelector('.nav menu mobile'); // Classe menu Webflow
   if(!navMenu) return;
 
   let scrollPos = 0;
