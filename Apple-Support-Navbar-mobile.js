@@ -135,6 +135,10 @@ function toggleMenuIcons(open) {
 /* --- Transizione fluida icone Apple-style --- */
 .support-menu-icon,
 .support-close-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1000; /* sopra la navbar */
   transition: opacity 0.1s ease, transform 0.1s ease;
   transform-origin: center;
 }
