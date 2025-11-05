@@ -17,8 +17,8 @@
   const menuIcon = btn.querySelector('.support-menu-icon');
   const closeIcon = btn.querySelector('.support-close-icon');
   
-  const logo = document.querySelector('.logo-andrea');
-  if (!logo) console.warn('Logo non trovato: assicurati che esista .logo-andrea');
+const logo = document.querySelector('.support-logo-andrea');
+if (!logo) console.warn('Logo non trovato: assicurati che esista .support-logo-andrea');
 
   if (!menuIcon || !closeIcon) return;
 
@@ -161,7 +161,7 @@
   transform: scale(0.8);
   }
 
-  .logo-andrea {
+  .support-logo-andrea {
   transition: opacity 0.2s ease;
   opacity: 1;
 }
