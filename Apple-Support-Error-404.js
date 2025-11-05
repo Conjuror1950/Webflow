@@ -2,12 +2,12 @@
 const container = document.createElement('div');
 container.style.textAlign = 'center';
 container.style.padding = '50px';
-container.style.fontFamily = "'SF Pro Display', 'SF Pro Icons', 'Helvetica Neue', Helvetica, Arial, sans-serif";
+container.style.fontFamily = "'SF Pro Text', 'SF Pro Display', 'SF Pro Icons', 'Helvetica Neue', Helvetica, Arial, sans-serif";
 container.style.color = '#000000';
 
 // Aggiungi l'HTML come contenuto del div
 container.innerHTML = `
-  <h1 style="font-size: 48px; font-weight: 600; line-height: 52px; margin-bottom: 20px; font-family: inherit;">Pagina non trovata.</h1>
+  <h1 style="font-size: 48px; font-weight: 600; line-height: 52px; margin-bottom: 20px; font-family: inherit;">Impossibile trovare la pagina che stai cercando.</h1>
   <p style="font-size: 18px; line-height: 1.6; margin-bottom: 20px; font-family: inherit;">
   </p>
 
@@ -18,17 +18,17 @@ container.innerHTML = `
           for="searchInput" 
           id="searchLabel" 
           style="position: absolute; top: 50%; left: 15px; transform: translateY(-50%); font-size: 16px; color: #86868b; transition: 0.2s ease; font-family: inherit; pointer-events: none;">
-          Cerca su andreaingrassia.webflow.io
+          Cerca nel supporto
         </label>
         <input 
           type="text" 
           id="searchInput" 
-          style="padding: 15px; font-size: 16px; border: 1px solid #ccc; border-radius: 8px; width: 100%; outline: none; box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); font-family: 'SF Pro Display', 'SF Pro Icons', 'Helvetica Neue', Helvetica, Arial, sans-serif; transition: 0.2s ease;"
+          style="padding: 15px; font-size: 16px; border: 1px solid #ccc; border-radius: 8px; width: 100%; outline: none; box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); font-family: 'SF Pro Text', 'SF Pro Display', 'SF Pro Icons', 'Helvetica Neue', Helvetica, Arial, sans-serif; transition: 0.2s ease;"
         >
       </div>
       <button 
         type="submit" 
-        style="padding: 10px 20px; font-size: 16px; color: white; background-color: #0070c9; border: none; border-radius: 8px; cursor: pointer; font-family: 'SF Pro Display', 'SF Pro Icons', 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+        style="padding: 10px 20px; font-size: 16px; color: white; background-color: #0070c9; border: none; border-radius: 8px; cursor: pointer; font-family: 'SF Pro Text', 'SF Pro Display', 'SF Pro Icons', 'Helvetica Neue', Helvetica, Arial, sans-serif;">
         Cerca
       </button>
     </form>
