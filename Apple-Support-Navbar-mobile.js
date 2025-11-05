@@ -16,9 +16,6 @@
   // --- ICONE ---
   const menuIcon = btn.querySelector('.support-menu-icon');
   const closeIcon = btn.querySelector('.support-close-icon');
-  
-const logo = document.querySelector('.support-logo-andrea');
-if (!logo) console.warn('Logo non trovato: assicurati che esista .support-logo-andrea');
 
   if (!menuIcon || !closeIcon) return;
 
@@ -99,28 +96,34 @@ if (!logo) console.warn('Logo non trovato: assicurati che esista .support-logo-a
     }, 80);
   }
 
-    function toggleLogo(open) {
-  if (!logo) return;
+  // --- ANIMAZIONE LOGO (ricerca al volo per robustezza) ---
+  function toggleLogo(open) {
+    // ricerco l'elemento ogni volta (gestisce DOM ricreati da Webflow)
+    const logoEl = document.querySelector('.support-logo-andrea');
+    if (!logoEl) return;
 
-  if (open) {
-    // menu aperto → logo scompare
-    logo.style.opacity = '0';
-  } else {
-    // menu chiuso → logo riappare
-    logo.style.opacity = '1';
+    // assicurati che ci sia una transizione (se non c'è già)
+    if (!logoEl.style.transition) {
+      // imposta anche will-change per performance / compatibilità
+      logoEl.style.transition = 'opacity 0.2s ease';
+      logoEl.style.willChange = 'opacity';
+    }
+
+    // cambia solo opacity (da 1 a 0)
+    logoEl.style.opacity = open ? '0' : '1';
   }
-}
-  
+
   // --- SINCRONIZZA ICONE E SCROLL ---
   function handleAfterToggle() {
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
+        const open = isMenuOpen();
         if (isMobile()) {
-          if (isMenuOpen()) lockScroll();
+          if (open) lockScroll();
           else unlockScroll();
         }
-        toggleMenuIcons(isMenuOpen());
-        toggleLogo(isMenuOpen());
+        toggleMenuIcons(open);
+        toggleLogo(open);
       });
     });
   }
@@ -130,7 +133,9 @@ if (!logo) console.warn('Logo non trovato: assicurati che esista .support-logo-a
 
   try {
     const observer = new MutationObserver(handleAfterToggle);
+    // osserva il menu (class/style/aria-hidden) e anche il bottone (aria-expanded/class)
     observer.observe(menu, { attributes: true, attributeFilter: ['class', 'style', 'aria-hidden'] });
+    observer.observe(btn, { attributes: true, attributeFilter: ['aria-expanded', 'class'] });
   } catch (e) { /* ignore */ }
 
   document.addEventListener('keydown', e => {
@@ -141,7 +146,7 @@ if (!logo) console.warn('Logo non trovato: assicurati che esista .support-logo-a
 
   requestAnimationFrame(handleAfterToggle);
 
-  // --- CSS ICONE APPLE STYLE ---
+  // --- CSS ICONE APPLE STYLE + LOGO ---
   const supportCSS = `
 .support-menu-icon,
 .support-close-icon {
@@ -159,13 +164,14 @@ if (!logo) console.warn('Logo non trovato: assicurati che esista .support-logo-a
   display: none;
   opacity: 0;
   transform: scale(0.8);
-  }
-
-  .support-logo-andrea {
-  transition: opacity 0.2s ease;
-  opacity: 1;
 }
 
+/* logo wrapper (il div block) */
+.support-logo-andrea {
+  transition: opacity 0.2s ease;
+  opacity: 1;
+  will-change: opacity;
+}
 `;
 
   function addStyle(css) {
