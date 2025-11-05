@@ -29,6 +29,10 @@
   const shop = document.querySelector('[data-shop="true"]');
   if (!shop) console.warn('Logo non trovato: assicurati che esista [data-shop="true"]');
 
+  // --- Andrea links ---
+  const navLinks = document.querySelectorAll('.support-navbar-menu-mobile a');
+
+
   if (!menuIcon || !closeIcon) return;
 
   let scrollPos = 0;
@@ -140,6 +144,25 @@ function toggleShop(open) {
     shop.style.setProperty('opacity', '1', 'important');
   }
 }
+
+  // --- Andrea links ---
+  function toggleNavLinks(open) {
+  if (!navLinks) return;
+
+  navLinks.forEach((link, i) => {
+    // Delay crescente: 0ms, 50ms, 100ms ...
+    const delay = i * 50; // 50ms tra un link e l'altro
+    if (open) {
+      link.style.transition = `opacity 0.3s ease ${delay}ms, transform 0.3s ease ${delay}ms`;
+      link.style.opacity = '1';
+      link.style.transform = 'translateY(0)';
+    } else {
+      link.style.transition = `opacity 0.2s ease, transform 0.2s ease`;
+      link.style.opacity = '0';
+      link.style.transform = 'translateY(-10px)'; // o 10px verso l'alto
+    }
+  });
+}
   
   // --- SINCRONIZZA ICONE E SCROLL ---
   function handleAfterToggle() {
@@ -153,6 +176,7 @@ function toggleShop(open) {
         toggleLogo(isMenuOpen());
         toggleSearch(isMenuOpen());
         toggleShop(isMenuOpen());
+        toggleNavLinks(isMenuOpen());
       });
     });
   }
@@ -210,6 +234,13 @@ function toggleShop(open) {
   opacity: 1 !important;
   display: block !important;
 }
+
+.support-navbar-menu-mobile a {
+  opacity: 0;
+  transform: translateY(-10px); /* partono leggermente sopra */
+  display: block;
+}
+
 `;
 
   function addStyle(css) {
