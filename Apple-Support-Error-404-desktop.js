@@ -1,3 +1,4 @@
+if (window.innerWidth >= 1024) { // Applica solo se la larghezza >= 1024px
 // Crea un div che contiene tutto il contenuto HTML
 const container = document.createElement('div');
 container.style.textAlign = 'center';
@@ -55,7 +56,8 @@ container.innerHTML = `
 
 // Aggiungi il contenuto al body
 document.body.appendChild(container);
-
+}
+  
 // Mappa delle parole chiave ai relativi URL
 const urlMap = {
   "home": "/",
