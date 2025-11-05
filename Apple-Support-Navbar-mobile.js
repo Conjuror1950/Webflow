@@ -154,7 +154,7 @@ function toggleNavLinks(open) {
     let delay;
     if (open) {
       // apertura: delay crescente dall’alto verso il basso
-      delay = i * 50; // 50ms tra un link e l’altro
+      delay = i * 40; // 40ms tra un link e l’altro
     } else {
       // chiusura: delay crescente dal basso verso l’alto
       delay = (navLinks.length - 1 - i) * 30; // 30ms tra un link e l’altro
