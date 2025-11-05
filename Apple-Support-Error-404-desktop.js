@@ -158,15 +158,15 @@ if (!document.getElementById('customSearchContainer')) {
     if (width < 480) {
       // Mobile
       title.style.fontSize = '32px';
-      title.style.marginBottom = '30px';
+      title.style.marginBottom = '40px';
     } else if (width < 768) {
       // Mobile landscape / tablet piccolo
       title.style.fontSize = '40px';
-      title.style.marginBottom = '40px';
+      title.style.marginBottom = '50px';
     } else {
       // Desktop
       title.style.fontSize = '48px';
-      title.style.marginBottom = '50px';
+      title.style.marginBottom = '60px';
     }
   }
   applyResponsiveStyles();
