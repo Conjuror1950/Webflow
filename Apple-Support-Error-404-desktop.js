@@ -1,4 +1,4 @@
-if (window.innerWidth >= 568) { // Applica solo se la larghezza >= 568px
+if (window.innerWidth >= 768) { // Applica solo se la larghezza >= 768px
 // Crea un div che contiene tutto il contenuto HTML
 const container = document.createElement('div');
 container.style.textAlign = 'center';
