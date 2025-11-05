@@ -65,7 +65,7 @@ function toggleMenuIcons(open) {
       closeIcon.style.display = 'none';
       menuIcon.style.opacity = '1';
       menuIcon.style.transform = 'scale(1)';
-    }, 200); // coincide con la durata CSS
+    }, 100); // coincide con la durata CSS
   }
 }
   
@@ -136,7 +136,7 @@ function toggleMenuIcons(open) {
 /* --- Transizione fluida icone Apple-style --- */
 .support-menu-icon,
 .support-close-icon {
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition: opacity 0.1s ease, transform 0.1s ease;
   transform-origin: center;
 }
 
