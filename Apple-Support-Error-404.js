@@ -7,7 +7,7 @@ container.style.color = '#000000';
 
 // Aggiungi l'HTML come contenuto del div
 container.innerHTML = `
-  <h1 style="font-size: 48px; font-weight: 600; color: rgba(29, 29, 29, 0.92); line-height: 52px; margin-bottom: 40px; font-family: 'SF Pro Display', 'SF Pro Icons', 'Helvetica Neue', Helvetica, Arial, sans-serif;">Impossibile trovare la pagina che stai cercando.</h1>
+  <h1 style="font-size: 48px; font-weight: 600; color: rgba(29, 29, 29, 0.92); width: 50%; line-height: 52px; margin-bottom: 40px; font-family: 'SF Pro Display', 'SF Pro Icons', 'Helvetica Neue', Helvetica, Arial, sans-serif;">Impossibile trovare la pagina che stai cercando.</h1>
   <p style="font-size: 18px; line-height: 1.6; margin-bottom: 20px; font-family: inherit;">
   </p>
 
@@ -34,7 +34,7 @@ container.innerHTML = `
     </form>
   </div>
 
-  <a href="https://support-andreaingrassia.webflow.io/sitemap" style="font-size: 17px; font-weight: 400; color: #0267cc; text-decoration: none; font-family: inherit; transition: all 0.2s ease;"
+  <a href="https://support-andreaingrassia.webflow.io/sitemap" style="align-items: center; font-size: 17px; font-weight: 400; color: #0267cc; text-decoration: none; font-family: inherit; transition: all 0.2s ease;"
      onmouseover="this.style.textDecoration='underline'"
      onmouseout="this.style.textDecoration='none'">
     Oppure consulta la mappa del sito >
