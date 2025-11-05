@@ -43,42 +43,43 @@
     return false;
   }
 
-  // --- ANIMAZIONE ICONE + LOGO ---
-  function toggleMenuIcons(open) {
-    if (open) {
-      // Hamburger → X
-      menuIcon.style.opacity = '0';
-      menuIcon.style.transform = 'scale(0.8)';
-      closeIcon.style.display = 'block';
-      requestAnimationFrame(() => {
-        closeIcon.style.opacity = '1';
-        closeIcon.style.transform = 'scale(1)';
-      });
+function toggleMenuIcons(open) {
+  if (open) {
+    // Hamburger → X
+    menuIcon.style.opacity = '0';
+    menuIcon.style.transform = 'scale(0.8)';
+    closeIcon.style.display = 'block';
+    requestAnimationFrame(() => {
+      closeIcon.style.opacity = '1';
+      closeIcon.style.transform = 'scale(1)';
+    });
 
-      // 👇 Logo svanisce
-      if (logo) {
-        logo.style.opacity = '0';
-        logo.style.transform = 'scale(0.9)';
-      }
-
-    } else {
-      // X → Hamburger
-      closeIcon.style.opacity = '0';
-      closeIcon.style.transform = 'scale(0.8)';
-      menuIcon.style.opacity = '1';
-      menuIcon.style.transform = 'scale(1)';
-
-      setTimeout(() => {
-        closeIcon.style.display = 'none';
-      }, 200);
-
-      // 👇 Logo riappare
-      if (logo) {
-        logo.style.opacity = '1';
-        logo.style.transform = 'scale(1)';
-      }
+    // Nascondi logo con transizione fluida
+    if (logoAndrea) {
+      logoAndrea.style.opacity = '0';
     }
+
+  } else {
+    // X → Hamburger
+    closeIcon.style.opacity = '0';
+    closeIcon.style.transform = 'scale(0.8)';
+
+    // Hamburger appare subito
+    menuIcon.style.opacity = '1';
+    menuIcon.style.transform = 'scale(1)';
+
+    // Mostra di nuovo il logo
+    if (logoAndrea) {
+      logoAndrea.style.opacity = '1';
+    }
+
+    // Nascondi X solo dopo breve delay
+    setTimeout(() => {
+      closeIcon.style.display = 'none';
+    }, 200);
   }
+}
+
 
   // --- BLOCCO SCROLL MOBILE ---
   function lockScroll() {
@@ -161,8 +162,7 @@
 }
 
 .logo-andrea {
-  transition: opacity 0.2s ease, transform 0.2s ease;
-  transform-origin: center center;
+  transition: opacity 0.2s ease;
 }
 
 `;
