@@ -190,7 +190,32 @@ function toggleNavLinks(open) {
   }
 
   // --- EVENT LISTENERS ---
-  btn.addEventListener('click', handleAfterToggle, { passive: true });
+  // --- CLICK: attiva subito le animazioni previste (non aspettare la fine della transizione del menu) ---
+btn.addEventListener('click', (e) => {
+  // stato attuale e stato desiderato (toggle)
+  const currentlyOpen = isMenuOpen();
+  const intendedOpen = !currentlyOpen;
+
+  // ANIMAZIONI IMMEDIATE (visuals)
+  toggleMenuIcons(intendedOpen);
+  toggleLogo(intendedOpen);
+  toggleSearch(intendedOpen);
+  toggleShop(intendedOpen);
+  toggleNavLinks(intendedOpen);
+
+  // gestisci scroll subito quando si APRE
+  if (intendedOpen) {
+    lockScroll();
+  } else {
+    // opzionale: puoi chiamare unlock subito o ritardarlo se vuoi aspettare la chiusura effettiva
+    // unlockScroll();
+    // preferiamo NON sbloccare subito per evitare scorrimento prematuro durante l'animazione di chiusura:
+    // lasciamo al MutationObserver il compito di sbloccare quando il menu è effettivamente chiuso
+  }
+
+  // Lasciamo comunque handleAfterToggle sincronizzare tutto dopo che Webflow ha aggiornato il menu
+  // (non sostituiamo l'observer). Non impedire il comportamento nativo.
+}, { passive: true });
 
   try {
     const observer = new MutationObserver(handleAfterToggle);
