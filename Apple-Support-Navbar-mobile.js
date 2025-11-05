@@ -16,9 +16,14 @@
   // --- ICONE ---
   const menuIcon = btn.querySelector('.support-menu-icon');
   const closeIcon = btn.querySelector('.support-close-icon');
-  
+
+   // --- Andrea Icon ---
   const logo = document.querySelector('[data-logo="true"]');
   if (!logo) console.warn('Logo non trovato: assicurati che esista [data-logo="true"]');
+
+  // --- Andrea Search ---
+  const search = document.querySelector('[data-search="true"]');
+  if (!search) console.warn('Logo non trovato: assicurati che esista [data-search="true"]');
 
   if (!menuIcon || !closeIcon) return;
 
@@ -99,6 +104,7 @@
     }, 80);
   }
 
+// --- Andrea Logo ---
 function toggleLogo(open) {
   if (!logo) return;
 
@@ -106,6 +112,17 @@ function toggleLogo(open) {
     logo.style.setProperty('opacity', '0', 'important');
   } else {
     logo.style.setProperty('opacity', '1', 'important');
+  }
+}
+
+  // --- Andrea Search ---
+function toggleSearch(open) {
+  if (!search) return;
+
+  if (open) {
+    search.style.setProperty('opacity', '0', 'important');
+  } else {
+    search.style.setProperty('opacity', '1', 'important');
   }
 }
   
@@ -160,6 +177,12 @@ function toggleLogo(open) {
   }
 
 [data-logo="true"] {
+  transition: opacity 0.2s ease !important;
+  opacity: 1 !important;
+  display: block !important;
+}
+
+[data-search="true"] {
   transition: opacity 0.2s ease !important;
   opacity: 1 !important;
   display: block !important;
