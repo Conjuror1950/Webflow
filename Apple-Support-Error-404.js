@@ -12,7 +12,7 @@ container.innerHTML = `
     font-weight: 600; 
     color: rgba(29, 29, 29, 0.92); 
     line-height: 1.1; 
-    margin: 0 auto 40px auto; 
+    margin: 0 auto 35px auto; 
     font-family: 'SF Pro Display', 'SF Pro Icons', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     text-align: center;
     max-width: 650px;
@@ -21,7 +21,7 @@ container.innerHTML = `
     Impossibile trovare la pagina che stai cercando.
   </h1>
 
-  <div style="margin-bottom: 40px; position: relative; display: flex; flex-direction: column; align-items: center;">
+  <div style="margin-bottom: 50px; position: relative; display: flex; flex-direction: column; align-items: center;">
     <form id="searchForm" style="display: flex; justify-content: center; align-items: center; gap: 10px; width: 100%; max-width: 500px;">
       <div style="position: relative; width: 100%;">
         <label 
