@@ -157,11 +157,11 @@ function toggleNavLinks(open) {
       delay = i * 40; // 40ms tra un link e l’altro
     } else {
       // chiusura: delay crescente dal basso verso l’alto
-      delay = (navLinks.length - 1 - i) * 30; // 30ms tra un link e l’altro
+      delay = (navLinks.length - 1 - i) * 20; // 20ms tra un link e l’altro
     }
 
     if (open) {
-      link.style.transition = `opacity 0.3s ease ${delay}ms, transform 0.3s ease ${delay}ms`;
+      link.style.transition = `opacity 0.2s ease ${delay}ms, transform 0.3s ease ${delay}ms`;
       link.style.opacity = '1';
       link.style.transform = 'translateY(0)';
     } else {
