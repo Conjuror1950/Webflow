@@ -168,8 +168,8 @@
 
 /* logo wrapper (il div block) */
 .support-logo-andrea {
-  transition: opacity 0.2s ease;
-  opacity: 1;
+  transition: opacity 0.2s ease !important;
+  opacity: 1 !important;
   will-change: opacity;
 }
 `;
