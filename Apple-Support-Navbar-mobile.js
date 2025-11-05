@@ -159,13 +159,13 @@
   display: none;
   opacity: 0;
   transform: scale(0.8);
+  }
 
   .logo-andrea {
   transition: opacity 0.2s ease;
   opacity: 1;
 }
 
-}
 `;
 
   function addStyle(css) {
