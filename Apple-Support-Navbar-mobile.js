@@ -43,6 +43,8 @@
     return false;
   }
 
+
+// --- Animazione icone ---  
 function toggleMenuIcons(open) {
   if (open) {
     // Hamburger → X
@@ -55,8 +57,8 @@ function toggleMenuIcons(open) {
     });
 
     // Nascondi logo con transizione fluida
-    if (logoAndrea) {
-      logoAndrea.style.opacity = '0';
+    if (logo) {
+      logo.style.opacity = '0';
     }
 
   } else {
@@ -69,8 +71,8 @@ function toggleMenuIcons(open) {
     menuIcon.style.transform = 'scale(1)';
 
     // Mostra di nuovo il logo
-    if (logoAndrea) {
-      logoAndrea.style.opacity = '1';
+    if (logo) {
+      logo.style.opacity = '1';
     }
 
     // Nascondi X solo dopo breve delay
@@ -79,7 +81,6 @@ function toggleMenuIcons(open) {
     }, 200);
   }
 }
-
 
   // --- BLOCCO SCROLL MOBILE ---
   function lockScroll() {
@@ -162,7 +163,9 @@ function toggleMenuIcons(open) {
 }
 
 .logo-andrea {
+  opacity: 1;                 /* garantisce valore iniziale */
   transition: opacity 0.2s ease;
+  will-change: opacity;       /* piccolo hint per le performance */
 }
 
 `;
