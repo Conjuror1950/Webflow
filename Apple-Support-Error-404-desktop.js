@@ -1,4 +1,4 @@
-if (window.innerWidth >= 500) { // Applica solo se la larghezza >= 500px
+if (window.innerWidth >= 568) { // Applica solo se la larghezza >= 568px
 // Crea un div che contiene tutto il contenuto HTML
 const container = document.createElement('div');
 container.style.textAlign = 'center';
@@ -153,12 +153,16 @@ function checkInput() {
   const searchInput = document.getElementById('searchInput');
   const searchLabel = document.getElementById('searchLabel');
 
-  if (searchInput.value.trim() !== '') {
+  const isFocused = document.activeElement === searchInput; // true se il campo è in focus
+
+  if (isFocused || searchInput.value.trim() !== '') {
     searchLabel.style.top = '10px';
     searchLabel.style.fontSize = '12px';
+    searchInput.style.borderColor = '#0267cc';
   } else {
     searchLabel.style.top = '50%';
     searchLabel.style.fontSize = '16px';
+    searchInput.style.borderColor = '#ccc';
   }
 }
 
