@@ -47,22 +47,25 @@ function toggleMenuIcons(open) {
   if (!menuIcon || !closeIcon) return;
 
   if (open) {
-    // Animazione hamburger → X
+    // Hamburger → X
     menuIcon.style.opacity = '0';
     menuIcon.style.transform = 'scale(0.8)';
-    closeIcon.style.display = 'block';
+    closeIcon.style.display = 'block'; // rendi visibile la X
     requestAnimationFrame(() => {
       closeIcon.style.opacity = '1';
-      closeIcon.style.transform = 'scale(1) translateY(10px)';
+      closeIcon.style.transform = 'scale(1) translateY(10px)'; // sposta leggermente verso il basso
     });
   } else {
-    // Animazione X → hamburger
+    // X → Hamburger
     closeIcon.style.opacity = '0';
     closeIcon.style.transform = 'scale(0.8) translateY(10px)';
-    // Mostra subito hamburger senza delay
-    closeIcon.style.display = 'none';
-    menuIcon.style.opacity = '1';
-    menuIcon.style.transform = 'scale(1)';
+
+    // Mostra hamburger dopo la transizione della X
+    setTimeout(() => {
+      closeIcon.style.display = 'none';
+      menuIcon.style.opacity = '1';
+      menuIcon.style.transform = 'scale(1)';
+    }, 200); // coincide con la durata CSS
   }
 }
   
