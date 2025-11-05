@@ -190,18 +190,7 @@ function toggleNavLinks(open) {
   }
 
   // --- EVENT LISTENERS ---
-  let menuWillOpen = false;
-  btn.addEventListener('click', e => {
-  menuWillOpen = !isMenuOpen(); // anticipa lo stato
-  toggleMenuIcons(menuWillOpen);
-  toggleLogo(menuWillOpen);
-  toggleSearch(menuWillOpen);
-  toggleShop(menuWillOpen);
-  toggleNavLinks(menuWillOpen);
-
-  // lascia comunque handleAfterToggle per scroll + sync con Webflow
-  requestAnimationFrame(handleAfterToggle);
-}, { passive: true });
+  btn.addEventListener('click', handleAfterToggle, { passive: true });
 
   try {
     const observer = new MutationObserver(handleAfterToggle);
