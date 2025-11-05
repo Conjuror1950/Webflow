@@ -16,6 +16,7 @@
   // --- ICONE ---
   const menuIcon = btn.querySelector('.support-menu-icon');
   const closeIcon = btn.querySelector('.support-close-icon');
+  const logo = document.querySelector('.logo-andrea');
 
   if (!menuIcon || !closeIcon) return;
 
@@ -42,7 +43,7 @@
     return false;
   }
 
-  // --- ANIMAZIONE ICONE ---
+  // --- ANIMAZIONE ICONE + LOGO ---
   function toggleMenuIcons(open) {
     if (open) {
       // Hamburger → X
@@ -53,19 +54,29 @@
         closeIcon.style.opacity = '1';
         closeIcon.style.transform = 'scale(1)';
       });
+
+      // 👇 Logo svanisce
+      if (logo) {
+        logo.style.opacity = '0';
+        logo.style.transform = 'scale(0.9)';
+      }
+
     } else {
       // X → Hamburger
       closeIcon.style.opacity = '0';
       closeIcon.style.transform = 'scale(0.8)';
-
-      // Hamburger appare subito
       menuIcon.style.opacity = '1';
       menuIcon.style.transform = 'scale(1)';
 
-      // Nascondi X solo dopo breve delay
       setTimeout(() => {
         closeIcon.style.display = 'none';
-      }, 200); // corrisponde al CSS transition
+      }, 200);
+
+      // 👇 Logo riappare
+      if (logo) {
+        logo.style.opacity = '1';
+        logo.style.transform = 'scale(1)';
+      }
     }
   }
 
@@ -148,6 +159,12 @@
   opacity: 0;
   transform: scale(0.8);
 }
+
+.logo-andrea {
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  transform-origin: center center;
+}
+
 `;
 
   function addStyle(css) {
