@@ -47,7 +47,6 @@ function toggleMenuIcons(open) {
   if (!menuIcon || !closeIcon) return;
 
   if (open) {
-    // Hamburger → X
     menuIcon.style.opacity = '0';
     menuIcon.style.transform = 'scale(0.8)';
     closeIcon.style.display = 'block';
@@ -56,19 +55,16 @@ function toggleMenuIcons(open) {
       closeIcon.style.transform = 'scale(1) translateY(10px)';
     });
   } else {
-    // X → Hamburger
-    // Mostra subito l'hamburger
-    menuIcon.style.opacity = '1';
-    menuIcon.style.transform = 'scale(1)';
-
-    // Fai svanire la X con transizione
     closeIcon.style.opacity = '0';
     closeIcon.style.transform = 'scale(0.8) translateY(10px)';
 
-    // Nascondi la X dal DOM dopo la transizione
+    // Hamburger appare subito
+    menuIcon.style.opacity = '1';
+    menuIcon.style.transform = 'scale(1)';
+
     setTimeout(() => {
       closeIcon.style.display = 'none';
-    }, 100); // coincide con la durata della transizione CSS
+    }, 100); // opzionale, solo per rimuovere la X dal layout
   }
 }
   
