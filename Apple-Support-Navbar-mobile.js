@@ -129,10 +129,6 @@
   const supportCSS = `
 .support-menu-icon,
 .support-close-icon {
-  position: absolute; /* sopra la navbar */
-  bottom: 0px;
-  right: 0px;
-  z-index: 1000;
   transition: opacity 0.2s ease, transform 0.2s ease;
   transform-origin: center;
 }
