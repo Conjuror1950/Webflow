@@ -1,19 +1,29 @@
 // Crea un div che contiene tutto il contenuto HTML
 const container = document.createElement('div');
 container.style.textAlign = 'center';
-container.style.padding = '50px';
+container.style.padding = '50px 20px';
 container.style.fontFamily = "'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue', Helvetica, Arial, sans-serif";
 container.style.color = '#000000';
 
 // Aggiungi l'HTML come contenuto del div
 container.innerHTML = `
-  <h1 style="font-size: 48px; font-weight: 600; color: rgba(29, 29, 29, 0.92); width: 50%; line-height: 52px; margin-bottom: 40px; font-family: 'SF Pro Display', 'SF Pro Icons', 'Helvetica Neue', Helvetica, Arial, sans-serif;">Impossibile trovare la pagina che stai cercando.</h1>
-  <p style="font-size: 18px; line-height: 1.6; margin-bottom: 20px; font-family: inherit;">
-  </p>
+  <h1 style="
+    font-size: 48px; 
+    font-weight: 600; 
+    color: rgba(29, 29, 29, 0.92); 
+    line-height: 1.1; 
+    margin: 0 auto 40px auto; 
+    font-family: 'SF Pro Display', 'SF Pro Icons', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    text-align: center;
+    max-width: 700px;
+    word-wrap: break-word;
+  ">
+    Impossibile trovare la pagina che stai cercando.
+  </h1>
 
-  <div style="margin-bottom: 20px; position: relative;">
-    <form id="searchForm" style="display: flex; justify-content: center; align-items: center; gap: 10px;">
-      <div style="position: relative; max-width: 400px; width: 80%;">
+  <div style="margin-bottom: 40px; position: relative; display: flex; flex-direction: column; align-items: center;">
+    <form id="searchForm" style="display: flex; justify-content: center; align-items: center; gap: 10px; width: 100%; max-width: 500px;">
+      <div style="position: relative; width: 100%;">
         <label 
           for="searchInput" 
           id="searchLabel" 
@@ -23,25 +33,27 @@ container.innerHTML = `
         <input 
           type="text" 
           id="searchInput" 
-          style="padding: 15px; font-size: 16px; border: 1px solid #ccc; border-radius: 12px; width: 100%; outline: none; font-family: 'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue', Helvetica, Arial, sans-serif; transition: 0.2s ease;"
+          style="padding: 15px; font-size: 16px; border: 1px solid #ccc; border-radius: 12px; width: 100%; outline: none; font-family: inherit; transition: 0.2s ease;"
         >
       </div>
       <button 
         type="submit" 
-        style="padding: 10px 20px; font-size: 16px; color: white; background-color: #0267cc; border: none; border-radius: 8px; cursor: pointer; font-family: 'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+        style="padding: 10px 20px; font-size: 16px; color: white; background-color: #0267cc; border: none; border-radius: 8px; cursor: pointer; font-family: inherit;">
         Cerca
       </button>
     </form>
-  </div>
 
-  <a href="https://support-andreaingrassia.webflow.io/sitemap" style="font-size: 17px; font-weight: 400; color: #0267cc; right: 15px; text-decoration: none; font-family: inherit; transition: all 0.2s ease;"
-     onmouseover="this.style.textDecoration='underline'"
-     onmouseout="this.style.textDecoration='none'">
-    Oppure consulta la mappa del sito >
-  </a>
+    <!-- Link centrato sotto la barra di ricerca -->
+    <a href="https://support-andreaingrassia.webflow.io/sitemap" 
+      style="font-size: 17px; font-weight: 400; color: #0267cc; text-decoration: none; margin-top: 25px; font-family: inherit; transition: all 0.2s ease; text-align: center;"
+      onmouseover="this.style.textDecoration='underline'"
+      onmouseout="this.style.textDecoration='none'">
+      Oppure consulta la mappa del sito >
+    </a>
+  </div>
 `;
 
-// Aggiungi il contenuto al body o a un altro elemento
+// Aggiungi il contenuto al body
 document.body.appendChild(container);
 
 // Mappa delle parole chiave ai relativi URL
