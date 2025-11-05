@@ -136,6 +136,7 @@ function toggleSearch(open) {
         }
         toggleMenuIcons(isMenuOpen());
         toggleLogo(isMenuOpen());
+        toggleSearch(isMenuOpen());
       });
     });
   }
