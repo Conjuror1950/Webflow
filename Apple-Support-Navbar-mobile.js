@@ -16,8 +16,6 @@
   // --- ICONE ---
   const menuIcon = btn.querySelector('.support-menu-icon');
   const closeIcon = btn.querySelector('.support-close-icon');
-  // Logo
-  const logoAndrea = document.querySelector('.logo-andrea');
 
   if (!menuIcon || !closeIcon) return;
 
@@ -71,17 +69,6 @@
     }
   }
 
-  function toggleLogoVisibility(open) {
-  if (!logoAndrea) return;
-  if (open) {
-    // Quando il menu si apre → logo sparisce
-    logoAndrea.style.opacity = '0';
-  } else {
-    // Quando il menu si chiude → logo riappare
-    logoAndrea.style.opacity = '1';
-  }
-}
-
   // --- BLOCCO SCROLL MOBILE ---
   function lockScroll() {
     if (locked || !isMobile()) return;
@@ -118,7 +105,6 @@
           else unlockScroll();
         }
         toggleMenuIcons(isMenuOpen());
-        toggleLogoVisibility(isMenuOpen());
       });
     });
   }
@@ -144,8 +130,8 @@
 .support-menu-icon,
 .support-close-icon {
   position: absolute; /* sopra la navbar */
-  bottom: 15px;
-  right: 15px;
+  bottom: 0px;
+  right: 0px;
   z-index: 1000;
   transition: opacity 0.2s ease, transform 0.2s ease;
   transform-origin: center;
@@ -161,12 +147,6 @@
   display: none;
   opacity: 0;
   transform: scale(0.8);
-}
-
-/* --- LOGO ANIMAZIONE --- */
-.logo-andrea {
-  transition: opacity 0.3s ease;
-  opacity: 1;
 }
 `;
 
