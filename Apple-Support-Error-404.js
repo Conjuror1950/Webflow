@@ -8,11 +8,11 @@ container.style.color = '#000000';
 // Aggiungi l'HTML come contenuto del div
 container.innerHTML = `
   <h1 style="
-    font-size: 48px; 
+    font-size: 40px; 
     font-weight: 600; 
     color: rgba(29, 29, 29, 0.92); 
     line-height: 1.1; 
-    margin: 0 auto 20px auto; 
+    margin: 0 auto 30px auto; 
     font-family: 'SF Pro Display', 'SF Pro Icons', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     text-align: center;
     max-width: 700px;
