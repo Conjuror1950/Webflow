@@ -1,74 +1,75 @@
 // menu-button-scroll.js (Mobile-only + transizione dolce)
-(function(){
+(function() {
   // --- CONFIGURAZIONE: selettori tramite data-attributes (più affidabili)
   const menuButton = document.querySelector('[data-menu-button="true"]');
   const navMenu = document.querySelector('[data-menu="true"]');
 
-  // fallback: tenta selettori Webflow standard se non usi data-attributes
+  // fallback: selettori Webflow standard
   const fallbackButton = document.querySelector('.w-nav-button, .Menu-Button, .menu-button');
   const fallbackMenu = document.querySelector('.w-nav-menu, .nav-menu, .Nav.Menu.mobile');
 
   const btn = menuButton || fallbackButton;
   const menu = navMenu || fallbackMenu;
 
-  // --- NUOVE ICONE ---
+  if (!btn || !menu) return;
+
+  // --- ICONE ---
   const menuIcon = btn.querySelector('.support-menu-icon');
   const closeIcon = btn.querySelector('.support-close-icon');
 
-  if(!btn || !menu) return;
+  if (!menuIcon || !closeIcon) return;
 
   let scrollPos = 0;
   let locked = false;
 
-  // --- FUNZIONI UTILI ---
-  // Determina se siamo su mobile (Webflow breakpoint)
+  // --- FUNZIONI ---
   function isMobile() {
     return window.innerWidth <= 449;
   }
 
-  // Determina se il menu è aperto (classe, aria-expanded o visibilità)
   function isMenuOpen() {
     try {
-      if (menu.classList && menu.classList.contains('w--open')) return true;
-      const aria = btn.getAttribute && btn.getAttribute('aria-expanded');
+      if (menu.classList.contains('w--open')) return true;
+      const aria = btn.getAttribute('aria-expanded');
       if (aria === 'true') return true;
       const cs = window.getComputedStyle(menu);
-      if (cs && cs.display !== 'none' && cs.visibility !== 'hidden') {
+      if (cs.display !== 'none' && cs.visibility !== 'hidden') {
         const h = parseFloat(cs.height) || 0;
         const op = parseFloat(cs.opacity) || 0;
-        if (h > 2 || op > 0.05) return true;
+        return h > 2 || op > 0.05;
       }
-    } catch(e){ /* ignore */ }
+    } catch (e) { /* ignore */ }
     return false;
   }
-  
-  // --- ANIMAZIONE ICONA MENU ---
-function toggleMenuIcons(open) {
-  if (!menuIcon || !closeIcon) return;
 
-  if (open) {
-    menuIcon.style.opacity = '0';
-    menuIcon.style.transform = 'scale(0.8)';
-    closeIcon.style.display = 'block';
-    requestAnimationFrame(() => {
-      closeIcon.style.opacity = '1';
-      closeIcon.style.transform = 'scale(1) translateY(10px)';
-    });
-  } else {
-    closeIcon.style.opacity = '0';
-    closeIcon.style.transform = 'scale(0.8) translateY(10px)';
+  // --- ANIMAZIONE ICONE ---
+  function toggleMenuIcons(open) {
+    if (open) {
+      // Hamburger → X
+      menuIcon.style.opacity = '0';
+      menuIcon.style.transform = 'scale(0.8)';
+      closeIcon.style.display = 'block';
+      requestAnimationFrame(() => {
+        closeIcon.style.opacity = '1';
+        closeIcon.style.transform = 'scale(1) translateY(10px)';
+      });
+    } else {
+      // X → Hamburger
+      closeIcon.style.opacity = '0';
+      closeIcon.style.transform = 'scale(0.8) translateY(10px)';
 
-    // Hamburger appare subito
-    menuIcon.style.opacity = '1';
-    menuIcon.style.transform = 'scale(1)';
+      // Hamburger appare subito
+      menuIcon.style.opacity = '1';
+      menuIcon.style.transform = 'scale(1)';
 
-    setTimeout(() => {
-      closeIcon.style.display = 'none';
-    }, 100); // opzionale, solo per rimuovere la X dal layout
+      // Nascondi X solo dopo breve delay
+      setTimeout(() => {
+        closeIcon.style.display = 'none';
+      }, 200); // corrisponde al CSS transition
+    }
   }
-}
-  
-  // Blocca scroll solo su mobile
+
+  // --- BLOCCO SCROLL MOBILE ---
   function lockScroll() {
     if (locked || !isMobile()) return;
     scrollPos = window.scrollY || document.documentElement.scrollTop || 0;
@@ -76,13 +77,11 @@ function toggleMenuIcons(open) {
     document.body.style.left = '0';
     document.body.style.right = '0';
     document.body.style.width = '100%';
-    // top con transizione dolce Apple-style
     document.body.style.transition = 'top 0.25s ease-out';
     document.body.style.top = `-${scrollPos}px`;
     locked = true;
   }
 
-  // Sblocca scroll solo se era bloccato su mobile
   function unlockScroll() {
     if (!locked || !isMobile()) return;
     document.body.style.top = '0';
@@ -94,10 +93,10 @@ function toggleMenuIcons(open) {
       document.body.style.transition = '';
       window.scrollTo(0, scrollPos);
       locked = false;
-    }, 80); // tempo della transizione CSS
+    }, 80);
   }
 
-  // Funzione che legge lo stato DOPO l'aggiornamento del DOM
+  // --- SINCRONIZZA ICONE E SCROLL ---
   function handleAfterToggle() {
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
@@ -110,36 +109,31 @@ function toggleMenuIcons(open) {
     });
   }
 
-  // Listener sul bottone
+  // --- EVENT LISTENERS ---
   btn.addEventListener('click', handleAfterToggle, { passive: true });
 
-  // Observer per intercettare cambi fatti da altri meccanismi (link interni, overlay, ecc.)
   try {
     const observer = new MutationObserver(handleAfterToggle);
     observer.observe(menu, { attributes: true, attributeFilter: ['class', 'style', 'aria-hidden'] });
   } catch (e) { /* ignore */ }
 
-  // ESC chiude / sblocca scroll
-  document.addEventListener('keydown', (e) => {
+  document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && locked) unlockScroll();
   });
 
-  // Resize finestra: sincronizza stato mobile/non-mobile
   window.addEventListener('resize', handleAfterToggle);
 
-  // All’avvio: sincronizza lo stato
   requestAnimationFrame(handleAfterToggle);
 
-// CSS
-  var supportCSS = `
-/* --- Transizione fluida icone Apple-style --- */
+  // --- CSS ICONE APPLE STYLE ---
+  const supportCSS = `
 .support-menu-icon,
 .support-close-icon {
-  position: absolute;
+  position: absolute; /* sopra la navbar */
   top: 0;
   right: 0;
-  z-index: 1000; /* sopra la navbar */
-  transition: opacity 0.1s ease, transform 0.1s ease;
+  z-index: 1000;
+  transition: opacity 0.2s ease, transform 0.2s ease;
   transform-origin: center;
 }
 
@@ -154,8 +148,14 @@ function toggleMenuIcons(open) {
   opacity: 0;
   transform: scale(0.8);
 }
-
 `;
-addStyle(supportCSS);
+
+  function addStyle(css) {
+    const style = document.createElement('style');
+    style.textContent = css;
+    document.head.appendChild(style);
+  }
+
+  addStyle(supportCSS);
 
 })();
