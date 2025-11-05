@@ -39,7 +39,7 @@
 
   // --- FUNZIONI ---
   function isMobile() {
-    return window.innerWidth <= 440;
+    return window.innerWidth <= 479;
   }
 
   // --- Menu open ---
