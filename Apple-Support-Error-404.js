@@ -13,7 +13,7 @@ container.innerHTML = `
 
   <div style="margin-bottom: 20px; position: relative;">
     <form id="searchForm" style="display: flex; justify-content: center; align-items: center; gap: 10px;">
-      <div style="position: relative; max-width: 400px; width: 100%;">
+      <div style="position: relative; max-width: 400px; width: 80%;">
         <label 
           for="searchInput" 
           id="searchLabel" 
@@ -34,7 +34,7 @@ container.innerHTML = `
     </form>
   </div>
 
-  <a href="https://support-andreaingrassia.webflow.io/sitemap" style="align-items: center; font-size: 17px; font-weight: 400; color: #0267cc; text-decoration: none; font-family: inherit; transition: all 0.2s ease;"
+  <a href="https://support-andreaingrassia.webflow.io/sitemap" style="font-size: 17px; font-weight: 400; color: #0267cc; right: 15px; text-decoration: none; font-family: inherit; transition: all 0.2s ease;"
      onmouseover="this.style.textDecoration='underline'"
      onmouseout="this.style.textDecoration='none'">
     Oppure consulta la mappa del sito >
