@@ -25,6 +25,10 @@
   const search = document.querySelector('[data-search="true"]');
   if (!search) console.warn('Logo non trovato: assicurati che esista [data-search="true"]');
 
+  // --- Andrea Shop bag ---
+  const shop = document.querySelector('[data-shop="true"]');
+  if (!shop) console.warn('Logo non trovato: assicurati che esista [data-shop="true"]');
+
   if (!menuIcon || !closeIcon) return;
 
   let scrollPos = 0;
@@ -125,6 +129,17 @@ function toggleSearch(open) {
     search.style.setProperty('opacity', '1', 'important');
   }
 }
+
+    // --- Andrea Shop ---
+function toggleShop(open) {
+  if (!shop) return;
+
+  if (open) {
+    shop.style.setProperty('opacity', '0', 'important');
+  } else {
+    shop.style.setProperty('opacity', '1', 'important');
+  }
+}
   
   // --- SINCRONIZZA ICONE E SCROLL ---
   function handleAfterToggle() {
@@ -137,6 +152,7 @@ function toggleSearch(open) {
         toggleMenuIcons(isMenuOpen());
         toggleLogo(isMenuOpen());
         toggleSearch(isMenuOpen());
+        toggleShop(isMenuOpen());
       });
     });
   }
@@ -189,6 +205,11 @@ function toggleSearch(open) {
   display: block !important;
 }
 
+[data-shop="true"] {
+  transition: opacity 0.2s ease !important;
+  opacity: 1 !important;
+  display: block !important;
+}
 `;
 
   function addStyle(css) {
