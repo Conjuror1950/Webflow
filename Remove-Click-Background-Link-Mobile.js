@@ -4,11 +4,13 @@
 if (window.matchMedia("(pointer: coarse)").matches) {
   const style = document.createElement('style');
   style.innerHTML = `
-    a, button {
+    div[data-search="true"] a,
+    div[data-search="true"] button,
+    div[data-shop="true"] a,
+    div[data-shop="true"] button {
       -webkit-tap-highlight-color: transparent !important;
       -webkit-touch-callout: none !important;
     }
   `;
   document.head.appendChild(style);
 }
-
