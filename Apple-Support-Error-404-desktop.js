@@ -1,6 +1,4 @@
-// -------------------------
 // 1) Mappe e funzione Search (globali)
-// -------------------------
 const urlMap = {
   "home": "/",
   "biografia": "/person/andrea-ingrassia",
@@ -144,6 +142,12 @@ if (!document.getElementById('customSearchContainer')) {
     searchInput.addEventListener('focus', () => handleFocus(true));
     searchInput.addEventListener('blur', () => handleFocus(false));
     searchInput.addEventListener('input', checkInput);
+
+    // ---->> QUI: sincronizza subito e gestisci il ritorno con "back"
+    checkInput(); // sincronizza subito se il campo è già popolato
+    window.addEventListener('pageshow', function (e) {
+      setTimeout(checkInput, 0);
+    });
   }
 
   // responsive title (opzionale)
@@ -152,12 +156,15 @@ if (!document.getElementById('customSearchContainer')) {
     const width = window.innerWidth;
     if (!title) return;
     if (width < 480) {
+      // Mobile
       title.style.fontSize = '32px';
       title.style.marginBottom = '30px';
     } else if (width < 768) {
+      // Mobile landscape / tablet piccolo
       title.style.fontSize = '40px';
       title.style.marginBottom = '40px';
     } else {
+      // Desktop
       title.style.fontSize = '48px';
       title.style.marginBottom = '50px';
     }
