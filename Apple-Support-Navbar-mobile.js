@@ -30,8 +30,7 @@
   if (!shop) console.warn('Logo non trovato: assicurati che esista [data-shop="true"]');
 
   // --- Andrea links ---
-  const navLinks = document.querySelectorAll('.support-navbar-menu-mobile a');
-
+  const navLinks = document.querySelectorAll('.support-nav-menu-mobile .support-nav-link');
 
   if (!menuIcon || !closeIcon) return;
 
