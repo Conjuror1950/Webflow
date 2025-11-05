@@ -51,12 +51,12 @@
       closeIcon.style.display = 'block';
       requestAnimationFrame(() => {
         closeIcon.style.opacity = '1';
-        closeIcon.style.transform = 'scale(1) translateY(10px)';
+        closeIcon.style.transform = 'scale(1)';
       });
     } else {
       // X → Hamburger
       closeIcon.style.opacity = '0';
-      closeIcon.style.transform = 'scale(0.8) translateY(10px)';
+      closeIcon.style.transform = 'scale(0.8)';
 
       // Hamburger appare subito
       menuIcon.style.opacity = '1';
