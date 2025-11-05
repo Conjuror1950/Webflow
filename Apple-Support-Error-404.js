@@ -7,11 +7,11 @@ container.style.color = '#000000';
 
 // Aggiungi l'HTML come contenuto del div
 container.innerHTML = `
-  <h1 style="font-size: 48px; font-weight: 600; line-height: 52px; margin-bottom: 40px; font-family: 'SF Pro Display', 'SF Pro Icons', 'Helvetica Neue', Helvetica, Arial, sans-serif;">Impossibile trovare la pagina che stai cercando.</h1>
+  <h1 style="font-size: 48px; font-weight: 600; color: rgba(29, 29, 29, 0.92); line-height: 52px; margin-bottom: 40px; font-family: 'SF Pro Display', 'SF Pro Icons', 'Helvetica Neue', Helvetica, Arial, sans-serif;">Impossibile trovare la pagina che stai cercando.</h1>
   <p style="font-size: 18px; line-height: 1.6; margin-bottom: 20px; font-family: inherit;">
   </p>
 
-  <div style="margin-bottom: 40px; position: relative;">
+  <div style="margin-bottom: 20px; position: relative;">
     <form id="searchForm" style="display: flex; justify-content: center; align-items: center; gap: 10px;">
       <div style="position: relative; max-width: 400px; width: 100%;">
         <label 
@@ -23,12 +23,12 @@ container.innerHTML = `
         <input 
           type="text" 
           id="searchInput" 
-          style="padding: 15px; font-size: 16px; border: 1px solid #ccc; border-radius: 12px; width: 100%; outline: none; box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); font-family: 'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue', Helvetica, Arial, sans-serif; transition: 0.2s ease;"
+          style="padding: 15px; font-size: 16px; border: 1px solid #ccc; border-radius: 12px; width: 100%; outline: none; font-family: 'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue', Helvetica, Arial, sans-serif; transition: 0.2s ease;"
         >
       </div>
       <button 
         type="submit" 
-        style="padding: 10px 20px; font-size: 16px; color: white; background-color: #0070c9; border: none; border-radius: 8px; cursor: pointer; font-family: 'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+        style="padding: 10px 20px; font-size: 16px; color: white; background-color: #0267cc; border: none; border-radius: 8px; cursor: pointer; font-family: 'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue', Helvetica, Arial, sans-serif;">
         Cerca
       </button>
     </form>
@@ -132,7 +132,7 @@ function handleFocus(isFocused) {
     searchLabel.style.top = '50%';
     searchLabel.style.fontSize = '16px';
   }
-  searchInput.style.borderColor = isFocused ? '#0070c9' : '#ccc';
+  searchInput.style.borderColor = isFocused ? '#0267cc' : '#ccc';
 }
 
 function checkInput() {
