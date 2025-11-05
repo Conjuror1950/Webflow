@@ -16,7 +16,8 @@
   // --- ICONE ---
   const menuIcon = btn.querySelector('.support-menu-icon');
   const closeIcon = btn.querySelector('.support-close-icon');
-  const logo = document.querySelector('.logo-andrea');
+  // Logo
+  const logoAndrea = document.querySelector('.logo-andrea');
 
   if (!menuIcon || !closeIcon) return;
 
@@ -43,42 +44,41 @@
     return false;
   }
 
+  // --- ANIMAZIONE ICONE ---
+  function toggleMenuIcons(open) {
+    if (open) {
+      // Hamburger → X
+      menuIcon.style.opacity = '0';
+      menuIcon.style.transform = 'scale(0.8)';
+      closeIcon.style.display = 'block';
+      requestAnimationFrame(() => {
+        closeIcon.style.opacity = '1';
+        closeIcon.style.transform = 'scale(1)';
+      });
+    } else {
+      // X → Hamburger
+      closeIcon.style.opacity = '0';
+      closeIcon.style.transform = 'scale(0.8)';
 
-// --- Animazione icone ---  
-function toggleMenuIcons(open) {
+      // Hamburger appare subito
+      menuIcon.style.opacity = '1';
+      menuIcon.style.transform = 'scale(1)';
+
+      // Nascondi X solo dopo breve delay
+      setTimeout(() => {
+        closeIcon.style.display = 'none';
+      }, 200); // corrisponde al CSS transition
+    }
+  }
+
+  function toggleLogoVisibility(open) {
+  if (!logoAndrea) return;
   if (open) {
-    // Hamburger → X
-    menuIcon.style.opacity = '0';
-    menuIcon.style.transform = 'scale(0.8)';
-    closeIcon.style.display = 'block';
-    requestAnimationFrame(() => {
-      closeIcon.style.opacity = '1';
-      closeIcon.style.transform = 'scale(1)';
-    });
-
-    // Nascondi logo con transizione fluida
-    if (logo) {
-      logo.style.opacity = '0';
-    }
-
+    // Quando il menu si apre → logo sparisce
+    logoAndrea.style.opacity = '0';
   } else {
-    // X → Hamburger
-    closeIcon.style.opacity = '0';
-    closeIcon.style.transform = 'scale(0.8)';
-
-    // Hamburger appare subito
-    menuIcon.style.opacity = '1';
-    menuIcon.style.transform = 'scale(1)';
-
-    // Mostra di nuovo il logo
-    if (logo) {
-      logo.style.opacity = '1';
-    }
-
-    // Nascondi X solo dopo breve delay
-    setTimeout(() => {
-      closeIcon.style.display = 'none';
-    }, 200);
+    // Quando il menu si chiude → logo riappare
+    logoAndrea.style.opacity = '1';
   }
 }
 
@@ -118,6 +118,7 @@ function toggleMenuIcons(open) {
           else unlockScroll();
         }
         toggleMenuIcons(isMenuOpen());
+        toggleLogoVisibility(isMenuOpen());
       });
     });
   }
@@ -162,12 +163,11 @@ function toggleMenuIcons(open) {
   transform: scale(0.8);
 }
 
+/* --- LOGO ANIMAZIONE --- */
 .logo-andrea {
-  opacity: 1;                 /* garantisce valore iniziale */
-  transition: opacity 0.2s ease;
-  will-change: opacity;       /* piccolo hint per le performance */
+  transition: opacity 0.3s ease;
+  opacity: 1;
 }
-
 `;
 
   function addStyle(css) {
