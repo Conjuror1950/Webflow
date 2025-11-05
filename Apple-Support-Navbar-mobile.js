@@ -130,8 +130,8 @@
 .support-menu-icon,
 .support-close-icon {
   position: absolute; /* sopra la navbar */
-  top: 30;
-  right: 20;
+  top: 30px;
+  right: 20px;
   z-index: 1000;
   transition: opacity 0.2s ease, transform 0.2s ease;
   transform-origin: center center;
