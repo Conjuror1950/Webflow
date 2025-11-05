@@ -16,6 +16,9 @@
   // --- ICONE ---
   const menuIcon = btn.querySelector('.support-menu-icon');
   const closeIcon = btn.querySelector('.support-close-icon');
+  
+  const logo = document.querySelector('.logo-andrea');
+  if (!logo) console.warn('Logo non trovato: assicurati che esista .logo-andrea');
 
   if (!menuIcon || !closeIcon) return;
 
@@ -96,6 +99,18 @@
     }, 80);
   }
 
+    function toggleLogo(open) {
+  if (!logo) return;
+
+  if (open) {
+    // menu aperto → logo scompare
+    logo.style.opacity = '0';
+  } else {
+    // menu chiuso → logo riappare
+    logo.style.opacity = '1';
+  }
+}
+  
   // --- SINCRONIZZA ICONE E SCROLL ---
   function handleAfterToggle() {
     requestAnimationFrame(() => {
@@ -105,6 +120,7 @@
           else unlockScroll();
         }
         toggleMenuIcons(isMenuOpen());
+        toggleLogo(isMenuOpen());
       });
     });
   }
@@ -143,6 +159,12 @@
   display: none;
   opacity: 0;
   transform: scale(0.8);
+
+  .logo-andrea {
+  transition: opacity 0.2s ease;
+  opacity: 1;
+}
+
 }
 `;
 
