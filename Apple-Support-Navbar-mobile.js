@@ -99,15 +99,13 @@
     }, 80);
   }
 
-    function toggleLogo(open) {
+function toggleLogo(open) {
   if (!logo) return;
 
   if (open) {
-    // menu aperto → logo scompare
-    logo.style.opacity = '0';
+    logo.style.setProperty('opacity', '0', 'important');
   } else {
-    // menu chiuso → logo riappare
-    logo.style.opacity = '1';
+    logo.style.setProperty('opacity', '1', 'important');
   }
 }
   
@@ -164,6 +162,7 @@
 [data-logo="true"] {
   transition: opacity 0.2s ease !important;
   opacity: 1 !important;
+  display: block !important;
 }
 
 `;
