@@ -11,95 +11,40 @@ if (!document.getElementById('customSearchContainer')) {
 
   // Aggiungi l'HTML
   container.innerHTML = `
-    <h1 id="customSearchTitle" style="
-      font-size: 48px; 
-      font-weight: 600; 
-      color: rgba(29, 29, 29, 0.92); 
-      line-height: 1.1; 
-      margin: 0 auto 50px auto; 
-      font-family: 'SF Pro Display', 'SF Pro Icons', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      text-align: center;
-      max-width: 650px;
-      word-wrap: break-word;
-    ">
-      Impossibile trovare la pagina che stai cercando.
-    </h1>
-
+    <h1 id="customSearchTitle" style="...">Impossibile trovare la pagina che stai cercando.</h1>
     <div style="margin-bottom: 40px; position: relative; display: flex; flex-direction: column; align-items: center;">
-      <form id="searchForm" style="display: flex; justify-content: center; align-items: center; gap: 10px; width: 100%; max-width: 500px;">
+      <form id="searchForm" style="...">
         <div style="position: relative; width: 100%;">
-          <label 
-            for="searchInput" 
-            id="searchLabel" 
-            style="position: absolute; top: 50%; left: 15px; transform: translateY(-50%); font-size: 17px; font-weight: 400; color: #86868b; transition: 0.2s ease; font-family: inherit; pointer-events: none;">
-            Cerca nel supporto
-          </label>
-          <input 
-            type="text" 
-            id="searchInput" 
-            style="padding: 15px; font-size: 16px; border: 1px solid #ccc; border-radius: 12px; width: 100%; outline: none; font-family: inherit; transition: 0.2s ease;"
-          >
+          <label for="searchInput" id="searchLabel" style="...">Cerca nel supporto</label>
+          <input type="text" id="searchInput" style="...">
         </div>
-        <button 
-          type="submit" 
-          style="padding: 10px 20px; font-size: 16px; color: white; background-color: #0267cc; border: none; border-radius: 8px; cursor: pointer; font-family: inherit;">
-          Cerca
-        </button>
+        <button type="submit" style="...">Cerca</button>
       </form>
-
-      <a href="https://support-andreaingrassia.webflow.io/sitemap" 
-        style="font-size: 17px; font-weight: 400; color: #0267cc; text-decoration: none; margin-top: 25px; font-family: inherit; transition: all 0.2s ease; text-align: center;"
-        onmouseover="this.style.textDecoration='underline'"
-        onmouseout="this.style.textDecoration='none'">
-        Oppure consulta la mappa del sito >
-      </a>
+      <a href="https://support-andreaingrassia.webflow.io/sitemap" style="...">Oppure consulta la mappa del sito ></a>
     </div>
   `;
 
   document.body.appendChild(container);
 
-  // Funzione per applicare stili responsive
-  function applyResponsiveStyles() {
-    const title = document.getElementById('customSearchTitle');
-    const width = window.innerWidth;
-
-    if (width < 480) {
-      // Mobile piccolo
-      title.style.fontSize = '32px';
-      title.style.marginBottom = '30px';
-    } else if (width < 768) {
-      // Mobile landscape / tablet piccolo
-      title.style.fontSize = '40px';
-      title.style.marginBottom = '40px';
-    } else {
-      // Desktop
-      title.style.fontSize = '48px';
-      title.style.marginBottom = '50px';
-    }
-  }
+  // --- INIZIO: mappa URL ---
+  const urlMap = {
+    "home": "/",
+    "biografia": "/person/andrea-ingrassia",
+    "bio": "/person/andrea-ingrassia",
+    "su di me": "/person/andrea-ingrassia",
+    "chi sono": "/person/andrea-ingrassia",
+    "show": "/show/produzioni-cinematografiche",
+    "produzioni": "/show/produzioni-cinematografiche",
+    // ... tutto il resto delle parole chiave
+  };
+  // --- FINE: mappa URL ---
 
   // Funzioni input e label
-  function handleFocus(isFocused) {
-    const searchInput = document.getElementById('searchInput');
-    const searchLabel = document.getElementById('searchLabel');
+  function handleFocus(isFocused) { ... }
 
-    if (isFocused || searchInput.value.trim() !== '') {
-      searchLabel.style.top = '10px';
-      searchLabel.style.fontSize = '12px';
-      searchInput.style.borderColor = '#0267cc';
-    } else {
-      searchLabel.style.top = '50%';
-      searchLabel.style.fontSize = '16px';
-      searchInput.style.borderColor = '#ccc';
-    }
-  }
+  function checkInput() { ... }
 
-  function checkInput() {
-    const searchInput = document.getElementById('searchInput');
-    const isFocused = document.activeElement === searchInput;
-    handleFocus(isFocused);
-  }
-
+  // Funzione per gestire la ricerca
   function handleSearch(event) {
     event.preventDefault();
     const query = document.getElementById('searchInput').value.trim().toLowerCase();
