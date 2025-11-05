@@ -134,7 +134,7 @@
   right: 20;
   z-index: 1000;
   transition: opacity 0.2s ease, transform 0.2s ease;
-  transform-origin: center;
+  transform-origin: center center;
 }
 
 .support-menu-icon {
