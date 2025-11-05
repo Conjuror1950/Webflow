@@ -50,22 +50,25 @@ function toggleMenuIcons(open) {
     // Hamburger → X
     menuIcon.style.opacity = '0';
     menuIcon.style.transform = 'scale(0.8)';
-    closeIcon.style.display = 'block'; // rendi visibile la X
+    closeIcon.style.display = 'block';
     requestAnimationFrame(() => {
       closeIcon.style.opacity = '1';
-      closeIcon.style.transform = 'scale(1) translateY(10px)'; // sposta leggermente verso il basso
+      closeIcon.style.transform = 'scale(1) translateY(10px)';
     });
   } else {
     // X → Hamburger
+    // Mostra subito l'hamburger
+    menuIcon.style.opacity = '1';
+    menuIcon.style.transform = 'scale(1)';
+
+    // Fai svanire la X con transizione
     closeIcon.style.opacity = '0';
     closeIcon.style.transform = 'scale(0.8) translateY(10px)';
 
-    // Mostra hamburger dopo la transizione della X
+    // Nascondi la X dal DOM dopo la transizione
     setTimeout(() => {
       closeIcon.style.display = 'none';
-      menuIcon.style.opacity = '1';
-      menuIcon.style.transform = 'scale(1)';
-    }, 100); // coincide con la durata CSS
+    }, 100); // coincide con la durata della transizione CSS
   }
 }
   
