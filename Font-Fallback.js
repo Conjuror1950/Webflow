@@ -1,18 +1,17 @@
 // File: setFontsFallback.js
-
-// Funzione per applicare la famiglia di font globale
 (function() {
-    // Famiglia di font con fall-back
-    const fontFamily = `"SF Pro Text", "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif`;
+    // Associa selettori ai font specifici
+    const fonts = [
+        { selector: '.sf-pro-text', family: `"SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif` },
+        { selector: '.sf-pro-display', family: `"SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif` }
+    ];
 
-    // Applica il font a tutto il body
     document.addEventListener("DOMContentLoaded", function() {
-        document.body.style.fontFamily = fontFamily;
-
-        // In alternativa, puoi applicarlo a tutti gli elementi
-        const elements = document.querySelectorAll("*");
-        elements.forEach(el => {
-            el.style.fontFamily = fontFamily;
+        fonts.forEach(font => {
+            const elements = document.querySelectorAll(font.selector);
+            elements.forEach(el => {
+                el.style.fontFamily = font.family;
+            });
         });
     });
 })();
