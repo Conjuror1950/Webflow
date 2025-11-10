@@ -8,7 +8,6 @@
   const initialCSS = `
     .sf-pro-text, .sf-pro-display {
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
-      transition: none !important;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
