@@ -156,38 +156,29 @@ font-size:15px;
     var card = root.querySelector('.alc-card');
 
   // ORA EUROPEA e logica disponibilità
-  var statusEl = root.querySelector('#alc-status');
-  if(statusEl) {
-  
-    // Ottieni l'ora corrente in Europa/Roma (24h)
-  var hours = new Intl.DateTimeFormat('en-GB', { 
-  hour: 'numeric', 
-  hour12: false, 
-  timeZone: 'Europe/Rome' 
-  }).format(new Date());
-  hours = parseInt(hours, 10);
+function updateStatus() {
+  var now = new Date();
+  var hours = parseInt(new Intl.DateTimeFormat('en-GB', {hour: 'numeric', hour12: false, timeZone: 'Europe/Rome'}).format(now), 10);
+  var minutes = parseInt(new Intl.DateTimeFormat('en-GB', {minute: 'numeric', timeZone: 'Europe/Rome'}).format(now), 10);
 
-  // Imposta qui il tuo orario "online"
-var onlineStartHour = 9, onlineStartMinute = 0;   // 09:00
-var onlineEndHour   = 13, onlineEndMinute   = 5;  // 13:05
+  var nowMinutes = hours*60 + minutes;
+  var startMinutes = onlineStartHour*60 + onlineStartMinute;
+  var endMinutes   = onlineEndHour*60 + onlineEndMinute;
 
-// ora corrente in Europa/Roma
-var now = new Date();
-var hours = parseInt(new Intl.DateTimeFormat('en-GB', {hour: 'numeric', hour12: false, timeZone: 'Europe/Rome'}).format(now), 10);
-var minutes = parseInt(new Intl.DateTimeFormat('en-GB', {minute: 'numeric', timeZone: 'Europe/Rome'}).format(now), 10);
-
-// calcola minuti totali
-var nowMinutes = hours*60 + minutes;
-var startMinutes = onlineStartHour*60 + onlineStartMinute;
-var endMinutes   = onlineEndHour*60 + onlineEndMinute;
-
-if(nowMinutes >= startMinutes && nowMinutes < endMinutes){
-  statusEl.textContent = "Disponibile";
-  statusEl.classList.remove("offline");
-} else {
-  statusEl.textContent = "Offline";
-  statusEl.classList.add("offline");
+  if(nowMinutes >= startMinutes && nowMinutes < endMinutes){
+    statusEl.textContent = "Disponibile";
+    statusEl.classList.remove("offline");
+  } else {
+    statusEl.textContent = "Offline";
+    statusEl.classList.add("offline");
+  }
 }
+
+// Chiama subito
+updateStatus();
+
+// E poi ogni minuto
+setInterval(updateStatus, 60*1000); // 60.000ms = 1 minuto
 }
 
 
