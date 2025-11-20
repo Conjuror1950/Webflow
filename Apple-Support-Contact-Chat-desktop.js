@@ -41,7 +41,7 @@
     style.textContent = `
 ${idSelector} .alc-card-wrapper,
 .alc-card-wrapper {
-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; 
+font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif !important;
 }
 
 .alc-card {
@@ -91,20 +91,15 @@ margin:0;
 
 .alc-subtitle {
 font-size:14px;
+line-height:18px;
 font-weight: 400;
 margin:2px 0 8px 0;
 color:#3b3b3b;
 }
 
-.alc-description {
-font-size:13px;
-color:#545454;
-margin:0 0 8px 0;
-opacity:0.95;
-}
-
 .alc-status {
   font-size: 14px;
+  line-height:18px;
   font-weight: 400;
   color: #56a85e;  /* Verde per Disponibile */
   margin-bottom: 8px;
@@ -145,7 +140,6 @@ font-size:15px;
     <h3 class="alc-title">${escapeHtml(config.title)}</h3>
     <div class="alc-subtitle">${escapeHtml(config.subtitle)}</div>
     <div class="alc-status" id="alc-status">...</div>
-    <p class="alc-description">${escapeHtml(config.description)}</p>
   </div>
 </div>
 `;
