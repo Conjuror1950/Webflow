@@ -50,7 +50,7 @@ gap:16px;
 padding:18px;
 border-radius:14px;
 border: 1px solid rgba(0,0,0,0.4);
-width:320px;
+width:325px;
 cursor:pointer;
 }
 
