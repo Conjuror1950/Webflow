@@ -123,11 +123,11 @@ font-size:15px;
 .alc-status {
   font-size: 13px;
   font-weight: 500;
-  color: #0071e3; /* blu Apple */
+  color: #58a960; /* verde per Disponibile */
   margin-bottom: 8px;
 }
 .alc-status.offline {
-  color: #c00; /* rosso per offline */
+  color: #c00; /* rosso per Offline */
 }
 `;
 
@@ -179,9 +179,6 @@ updateStatus();
 
 // E poi ogni minuto
 setInterval(updateStatus, 60*1000); // 60.000ms = 1 minuto
-}
-
-
     
     if (card) {
       card.style.cursor = 'pointer';
