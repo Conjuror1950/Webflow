@@ -177,14 +177,14 @@ font-size:15px;
         var endMinutes = todaySchedule.endHour*60 + todaySchedule.endMinute;
 
         if(nowMinutes >= startMinutes && nowMinutes < endMinutes){
-          statusEl.textContent = "● Disponibile";
+          statusEl.textContent = "• Disponibile";
           statusEl.classList.remove("offline");
         } else {
-          statusEl.textContent = "● Offline";
+          statusEl.textContent = "• Offline";
           statusEl.classList.add("offline");
         }
       } else {
-        statusEl.textContent = "● Offline";
+        statusEl.textContent = "• Offline";
         statusEl.classList.add("offline");
       }
     }
