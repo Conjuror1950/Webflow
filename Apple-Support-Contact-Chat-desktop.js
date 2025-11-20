@@ -1,21 +1,3 @@
-/*
-  apple-live-chat-card.js
-  Injects an Apple-style "Live Chat" card into the element with ID
-  "chat-dal-vivo-container-desktop". Self-contained (styles injected
-  inside the component) so you don't need to edit the <head>.
-
-  Installation:
-  1) Host this file (GitHub Pages / Netlify).
-  2) In Webflow place an Embed element (inside your div with id
-     chat-dal-vivo-container-desktop) and add:
-       <script src="https://your-netlify-url.com/apple-live-chat-card.js" defer></script>
-  3) Save & publish.
-
-  Notes:
-  - Uses system font stack to approximate Apple's San Francisco.
-  - All strings are in Italian; change the texts below in the `config` object.
-  - Accessible: keyboard focusable, aria attributes, prefers-reduced-motion respected.
-*/
 (function () {
   'use strict';
 
