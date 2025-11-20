@@ -168,16 +168,26 @@ font-size:15px;
   hours = parseInt(hours, 10);
 
   // Imposta qui il tuo orario "online"
-  var onlineStart = 9;  // 09:00
-  var onlineEnd = 13;   // 13:00
+var onlineStartHour = 9, onlineStartMinute = 0;   // 09:00
+var onlineEndHour   = 13, onlineEndMinute   = 5;  // 13:05
 
-  if(hours >= onlineStart && hours < onlineEnd){
-    statusEl.textContent = "Disponibile";
-    statusEl.classList.remove("offline");
-  } else {
-    statusEl.textContent = "Offline";
-    statusEl.classList.add("offline");
-  }
+// ora corrente in Europa/Roma
+var now = new Date();
+var hours = parseInt(new Intl.DateTimeFormat('en-GB', {hour: 'numeric', hour12: false, timeZone: 'Europe/Rome'}).format(now), 10);
+var minutes = parseInt(new Intl.DateTimeFormat('en-GB', {minute: 'numeric', timeZone: 'Europe/Rome'}).format(now), 10);
+
+// calcola minuti totali
+var nowMinutes = hours*60 + minutes;
+var startMinutes = onlineStartHour*60 + onlineStartMinute;
+var endMinutes   = onlineEndHour*60 + onlineEndMinute;
+
+if(nowMinutes >= startMinutes && nowMinutes < endMinutes){
+  statusEl.textContent = "Disponibile";
+  statusEl.classList.remove("offline");
+} else {
+  statusEl.textContent = "Offline";
+  statusEl.classList.add("offline");
+}
 }
 
 
