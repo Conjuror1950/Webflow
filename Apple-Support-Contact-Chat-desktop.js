@@ -169,7 +169,7 @@ font-size:15px;
 
   // Imposta qui il tuo orario "online"
   var onlineStart = 9;  // 09:00
-  var onlineEnd = 18;   // 18:00
+  var onlineEnd = 13;   // 13:00
 
   if(hours >= onlineStart && hours < onlineEnd){
     statusEl.textContent = "Disponibile";
