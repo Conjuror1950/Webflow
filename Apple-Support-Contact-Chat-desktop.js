@@ -138,6 +138,11 @@ font-size:15px;
   background-color: rgb(181,181,181); /* grigio dot */
 }
 
+.alc-card.offline {
+  opacity: 0.5;       /* grigio */
+  pointer-events: none; /* disabilita click */
+  cursor: auto;
+}
 `;
     root.appendChild(style);
 
@@ -197,17 +202,18 @@ function updateStatus() {
 
   var subtitleEl = root.querySelector('#alc-subtitle');
 
-  if (isAvailableToday) {
-    // Disponibile ora
+if (isAvailableToday) {
     var textEl = statusEl.querySelector('.status-text') || statusEl;
     textEl.textContent = "Disponibile";
     statusEl.classList.remove("offline");
-    statusEl.setAttribute('aria-label', 'Disponibile');
 
-    // Ripristina il sottotitolo originale (config.subtitle)
+    // rimuovi grigio dalla card
+    card.classList.remove("offline");
+
+    statusEl.setAttribute('aria-label', 'Disponibile');
     if (subtitleEl) subtitleEl.textContent = config.subtitle || '';
     return;
-  }
+}
 
   // Non disponibile ora -> cerca la prossima finestra di disponibilità (incluso oggi, ma solo se start > now)
   var found = null;
@@ -241,21 +247,28 @@ function updateStatus() {
     function two(n){ return (n<10? '0':'') + n; }
     var timeStr = two(found.startHour) + ':' + two(found.startMinute);
 
-    textEl.textContent = "Offline";
-    statusEl.classList.add("offline");
-    statusEl.setAttribute('aria-label', 'Offline');
+textEl.textContent = "Offline";
+statusEl.classList.add("offline");
 
-    if (subtitleEl) {
-      // "Disponibile <Giorno>, alle ore <HH:MM>"
-      // Se preferisci "Disponibile domani, alle ore..." puoi sostituire giornoNome con 'domani' quando offsetDays === 1
-    subtitleEl.textContent = "Disponibile " + giornoNome + ", alle ore " + timeStr;
-    }
+// aggiungi grigio alla card
+card.classList.add("offline");
+
+statusEl.setAttribute('aria-label', 'Offline');
+
+if (subtitleEl) {
+  subtitleEl.textContent = "Disponibile " + giornoNome + ", alle ore " + timeStr;
+}
+
   } else {
     // nessuna disponibilità trovata nella settimana (tutti null)
-    textEl.textContent = "Offline";
-    statusEl.classList.add("offline");
-    statusEl.setAttribute('aria-label', 'Offline');
-    if (subtitleEl) subtitleEl.textContent = "Non ci sono orari di disponibilità programmati";
+textEl.textContent = "Offline";
+statusEl.classList.add("offline");
+
+// aggiungi grigio alla card
+card.classList.add("offline");
+
+statusEl.setAttribute('aria-label', 'Offline');
+if (subtitleEl) subtitleEl.textContent = "Non ci sono orari di disponibilità programmati";
   }
 }
 
