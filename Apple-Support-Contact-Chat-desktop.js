@@ -139,7 +139,6 @@ font-size:15px;
 }
 
 .alc-card.offline {
-  opacity: 0.8;       /* grigio */
   pointer-events: none; /* disabilita click */
   cursor: auto;
 }
@@ -191,7 +190,7 @@ font-size:15px;
       1: { startHour: 9, startMinute: 0, endHour: 20, endMinute: 0 }, // Lun
       2: { startHour: 9, startMinute: 0, endHour: 20, endMinute: 0 }, // Mar
       3: { startHour: 9, startMinute: 0, endHour: 20, endMinute: 0 }, // Mer
-      4: { startHour: 21, startMinute: 55, endHour: 22, endMinute: 26 }, // Gio
+      4: { startHour: 22, startMinute: 41, endHour: 22, endMinute: 43 }, // Gio
       5: { startHour: 9, startMinute: 0, endHour: 20, endMinute: 0 }, // Ven
       6: { startHour: 9, startMinute: 0, endHour: 18, endMinute: 0 }, // Sabato
       0: null // Domenica chiuso
