@@ -49,11 +49,7 @@ display:flex;
 align-items:center;
 gap:16px;
 padding:18px;
-border-radius:14px;
-backdrop-filter: blur(6px) saturate(120%);
--webkit-backdrop-filter: blur(6px) saturate(120%);
-background: linear-gradient(180deg, rgba(245,245,246,0.6), rgba(240,240,241,0.45));
-box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+border-radius:16px;
 border: 1px solid rgba(0,0,0,0.06);
 max-width:720px;
 cursor:pointer;
@@ -87,7 +83,7 @@ font-size:17px;
 line-height:25px;
 font-weight:600;
 letter-spacing: -0.5px;
-color:#0b0b0b;
+color: rgb(29,29,31);
 margin:0;
 }
 
@@ -96,8 +92,8 @@ font-size:14px;
 line-height:18px;
 font-weight: 400;
 letter-spacing: -0.5px;
-margin:2px 0 8px 0;
-color:#3b3b3b;
+margin: 2px 0 8px 0;
+color: rgb(29,29,31);
 }
 
 .alc-status {
@@ -176,14 +172,14 @@ font-size:15px;
         var endMinutes = todaySchedule.endHour*60 + todaySchedule.endMinute;
 
         if(nowMinutes >= startMinutes && nowMinutes < endMinutes){
-          statusEl.textContent = "• Disponibile";
+          statusEl.textContent = "● Disponibile";
           statusEl.classList.remove("offline");
         } else {
-          statusEl.textContent = "• Offline";
+          statusEl.textContent = "● Offline";
           statusEl.classList.add("offline");
         }
       } else {
-        statusEl.textContent = "• Offline";
+        statusEl.textContent = "● Offline";
         statusEl.classList.add("offline");
       }
     }
