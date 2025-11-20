@@ -82,6 +82,7 @@ min-width:0;
 }
 
 .alc-title {
+font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 font-size:17px;
 line-height:25px;
 font-weight:600;
