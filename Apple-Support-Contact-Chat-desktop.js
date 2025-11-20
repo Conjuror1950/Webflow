@@ -79,7 +79,7 @@ margin:0;
 font-size:14px;
 line-height:18px;
 font-weight: 400;
-letter-spacing: -0.5px;
+letter-spacing: -0.4px;
 color: rgb(29,29,31);
 }
 
