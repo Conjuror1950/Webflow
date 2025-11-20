@@ -114,7 +114,7 @@ font-size:15px;
 .alc-status {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
   font-size: 14px;
   line-height: 18px;
   font-weight: 400;
