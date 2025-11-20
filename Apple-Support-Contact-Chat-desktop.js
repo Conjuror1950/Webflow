@@ -50,7 +50,7 @@ gap:16px;
 padding:18px;
 border-radius:16px;
 border: 1px solid rgba(0,0,0,0.06);
-max-width:720px;
+max-width:auto;
 cursor:pointer;
 }
 
@@ -90,7 +90,6 @@ color: rgb(29,29,31);
   font-weight: 400;
   letter-spacing: -0.5px;
   color: rgb(0,128,9);  /* Verde per Disponibile */
-  margin-bottom: 8px;
 }
 .alc-status.offline {
   color: #c00;    /* Rosso per Offline */
