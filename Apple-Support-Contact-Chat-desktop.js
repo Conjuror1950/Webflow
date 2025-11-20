@@ -1,7 +1,4 @@
-/*!
-  apple-live-chat-card.js
-  Versione ottimizzata per Webflow + Netlify/GitHub
-*/
+/*! apple-live-chat-card.js*/
 (function () {
   'use strict';
 
@@ -54,7 +51,7 @@ var config = {
     // append style and wrapper to root (no head editing)
     root.appendChild(style);
 
-    // inner html
+    // HTML
     wrapper.innerHTML =
       '<div class="alc-card" tabindex="0">' +
         '<div class="alc-avatar" aria-hidden="true">' +
@@ -67,10 +64,6 @@ var config = {
           '<h3 class="alc-title">' + escapeHtml(config.title) + '</h3>' +
           '<div class="alc-subtitle">' + escapeHtml(config.subtitle) + '</div>' +
           '<p class="alc-description">' + escapeHtml(config.description) + '</p>' +
-          '<div class="alc-actions">' +
-            '<button class="alc-btn" type="button" aria-haspopup="dialog" id="alc-start-btn">' + escapeHtml(config.buttonText) + '</button>' +
-            '<button class="alc-link" type="button" id="alc-info-link">' + escapeHtml(config.linkText) + ' <span class="alc-chevron">›</span></button>' +
-          '</div>' +
         '</div>' +
       '</div>';
 
@@ -78,7 +71,6 @@ var config = {
 
     // events
     var btn = root.querySelector('#alc-start-btn');
-    var link = root.querySelector('#alc-info-link');
     var card = root.querySelector('.alc-card');
 
     if (btn) {
@@ -88,10 +80,6 @@ var config = {
       btn.addEventListener('keydown', function (e) {
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); config.onButtonClick(e); }
       });
-    }
-    if (link) {
-      link.addEventListener('click', function (e) { try { config.onLinkClick(e); } catch (err) { console.error(err); } });
-      link.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); config.onLinkClick(e); } });
     }
     if (card) {
       card.addEventListener('click', function (e) {
