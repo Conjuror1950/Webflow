@@ -54,17 +54,6 @@ max-width:720px;
 cursor:pointer;
 }
 
-.alc-avatar {
-flex:0 0 64px;
-width:64px;
-height:64px;
-border-radius:14px;
-display:grid;
-place-items:center;
-background: linear-gradient(180deg,#ffffff,#f2f2f4);
-box-shadow: inset 0 -1px 0 rgba(0,0,0,0.03);
-}
-
 .alc-icon {
 width:36px;
 height:36px;
