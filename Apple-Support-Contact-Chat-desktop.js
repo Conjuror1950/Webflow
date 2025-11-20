@@ -103,7 +103,7 @@ border-radius:12px;
 
 .alc-avatar{
 width:52px;
-height:52px;
+height:auto;
 } 
 
 .alc-title{
