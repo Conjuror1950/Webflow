@@ -149,7 +149,7 @@ font-size:15px;
 </div>
   <div class="alc-content">
     <h3 class="alc-title">${escapeHtml(config.title)}</h3>
-    <div class="alc-subtitle">${escapeHtml(config.subtitle)}</div>
+    <div class="alc-subtitle" id="alc-subtitle">${escapeHtml(config.subtitle)}</div>
     <div class="alc-status" id="alc-status" role="status" aria-live="polite">
   <span class="status-dot" aria-hidden="true"></span>
   <span class="status-text">...</span>
@@ -173,36 +173,92 @@ font-size:15px;
       0: null // Domenica chiuso
     };
 
-    function updateStatus() {
-      var now = new Date();
-      var day = now.getDay(); // 0=Dom, 1=Lun, ... 6=Sab
-      var hours = parseInt(new Intl.DateTimeFormat('en-GB', {hour:'numeric', hour12:false, timeZone:'Europe/Rome'}).format(now),10);
-      var minutes = parseInt(new Intl.DateTimeFormat('en-GB', {minute:'numeric', timeZone:'Europe/Rome'}).format(now),10);
+function updateStatus() {
+  var now = new Date();
+  // giorno corrente (0=Dom,1=Lun,...6=Sab)
+  var today = now.getDay();
 
-      var todaySchedule = schedule[day];
-      if(todaySchedule) {
-        var nowMinutes = hours*60 + minutes;
-        var startMinutes = todaySchedule.startHour*60 + todaySchedule.startMinute;
-        var endMinutes = todaySchedule.endHour*60 + todaySchedule.endMinute;
+  // ora e minuti in Europe/Rome
+  var hours = parseInt(new Intl.DateTimeFormat('en-GB', {hour:'numeric', hour12:false, timeZone:'Europe/Rome'}).format(now),10);
+  var minutes = parseInt(new Intl.DateTimeFormat('en-GB', {minute:'numeric', timeZone:'Europe/Rome'}).format(now),10);
 
-var textEl = statusEl.querySelector('.status-text');
-if (!textEl) textEl = statusEl; // fallback
+  var nowMinutes = hours*60 + minutes;
 
-if(nowMinutes >= startMinutes && nowMinutes < endMinutes){
-  textEl.textContent = "Disponibile";
-  statusEl.classList.remove("offline");
-  // assicurati che il dot esista — facoltativo: aggiungi titolo per accessibilità
-  statusEl.setAttribute('aria-label', 'Disponibile');
-} else {
-  textEl.textContent = "Offline";
-  statusEl.classList.add("offline");
-  statusEl.setAttribute('aria-label', 'Offline');
-}
-      } else {
-        statusEl.textContent = "Offline";
-        statusEl.classList.add("offline");
-      }
+  var todaySchedule = schedule[today];
+
+  var isAvailableToday = false;
+  if (todaySchedule) {
+    var startMinutesToday = todaySchedule.startHour*60 + todaySchedule.startMinute;
+    var endMinutesToday = todaySchedule.endHour*60 + todaySchedule.endMinute;
+    if (nowMinutes >= startMinutesToday && nowMinutes < endMinutesToday) {
+      isAvailableToday = true;
     }
+  }
+
+  var subtitleEl = root.querySelector('#alc-subtitle');
+
+  if (isAvailableToday) {
+    // Disponibile ora
+    var textEl = statusEl.querySelector('.status-text') || statusEl;
+    textEl.textContent = "Disponibile";
+    statusEl.classList.remove("offline");
+    statusEl.setAttribute('aria-label', 'Disponibile');
+
+    // Ripristina il sottotitolo originale (config.subtitle)
+    if (subtitleEl) subtitleEl.textContent = config.subtitle || '';
+    return;
+  }
+
+  // Non disponibile ora -> cerca la prossima finestra di disponibilità (incluso oggi, ma solo se start > now)
+  var found = null;
+  for (var i = 0; i < 7; i++) {
+    var dayIndex = (today + i) % 7;
+    var sch = schedule[dayIndex];
+    if (!sch) continue; // giorno chiuso
+    var startM = sch.startHour*60 + sch.startMinute;
+
+    if (i === 0) {
+      // oggi: consideralo solo se start è dopo adesso
+      if (startM > nowMinutes) {
+        found = { dayIndex: dayIndex, startHour: sch.startHour, startMinute: sch.startMinute, offsetDays: 0 };
+        break;
+      }
+    } else {
+      // giorno futuro: primo disponibile
+      found = { dayIndex: dayIndex, startHour: sch.startHour, startMinute: sch.startMinute, offsetDays: i };
+      break;
+    }
+  }
+
+  // Aggiorna stato e sottotitolo
+  var textEl = statusEl.querySelector('.status-text') || statusEl;
+  if (found) {
+    // formattazione giorno in italiano
+    var giorniIt = ['domenica','lunedì','martedì','mercoledì','giovedì','venerdì','sabato'];
+    var giornoNome = giorniIt[found.dayIndex] || '';
+
+    // format HH:MM con zeri
+    function two(n){ return (n<10? '0':'') + n; }
+    var timeStr = two(found.startHour) + ':' + two(found.startMinute);
+
+    textEl.textContent = "Offline";
+    statusEl.classList.add("offline");
+    statusEl.setAttribute('aria-label', 'Offline');
+
+    if (subtitleEl) {
+      // "Disponibile <Giorno>, alle ore <HH:MM>"
+      // Se preferisci "Disponibile domani, alle ore..." puoi sostituire giornoNome con 'domani' quando offsetDays === 1
+      var dayLabel = (found.offsetDays === 1) ? 'domani' : giornoNome;
+      subtitleEl.textContent = "Disponibile " + dayLabel + ", alle ore " + timeStr;
+    }
+  } else {
+    // nessuna disponibilità trovata nella settimana (tutti null)
+    textEl.textContent = "Offline";
+    statusEl.classList.add("offline");
+    statusEl.setAttribute('aria-label', 'Offline');
+    if (subtitleEl) subtitleEl.textContent = "Non ci sono orari di disponibilità programmati";
+  }
+}
 
     // aggiorna subito e poi ogni minuto
     updateStatus();
