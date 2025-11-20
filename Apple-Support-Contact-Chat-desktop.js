@@ -156,7 +156,7 @@ font-size:15px;
 
     // ORARIO DI DISPONIBILITÀ
     var onlineStartHour = 9, onlineStartMinute = 0;   // 09:00
-    var onlineEndHour   = 13, onlineEndMinute   = 25;  // 13:25
+    var onlineEndHour   = 13, onlineEndMinute   = 28;  // 13:28
 
     function updateStatus() {
       var now = new Date();
