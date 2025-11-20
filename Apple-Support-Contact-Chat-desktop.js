@@ -41,7 +41,7 @@
     style.textContent = `
 ${idSelector} .alc-card-wrapper,
 .alc-card-wrapper {
-font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif !important;
+font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 }
 
 .alc-card {
