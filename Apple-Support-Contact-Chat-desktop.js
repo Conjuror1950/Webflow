@@ -7,7 +7,6 @@
     containerId: 'chat-dal-vivo-container-desktop', // id del tuo div su Webflow
     title: 'Chat dal vivo',
     subtitle: 'Avvia una conversazione con Apple',
-    description: '', // opzionale
     onButtonClick: function (e) {
       window.location.href = 'https://support-andreaingrassia.webflow.io/contact/chat'; // link desiderato
     },
@@ -130,11 +129,9 @@ font-size:15px;
     // HTML
     wrapper.innerHTML = `
 <div class="alc-card" tabindex="0">
-  <div class="alc-avatar" aria-hidden="true">
-    <svg class="alc-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path d="M4 4h16v10H7.5L4 17V4z" stroke="#0B0B0B" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" fill="white"/>
-      <circle cx="8.5" cy="8.8" r="1.2" fill="#0071E3"/>
-    </svg>
+<div class="alc-avatar" aria-hidden="true">
+  <img class="alc-icon" src="https://cdn.prod.website-files.com/6900acd1c3e34a5adaf492fd/691f25bddb8a25199c4b2a7b_chat.svg" alt="Icona chat">
+</div>
   </div>
   <div class="alc-content">
     <h3 class="alc-title">${escapeHtml(config.title)}</h3>
