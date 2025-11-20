@@ -157,7 +157,7 @@ font-size:15px;
       1: { startHour: 9, startMinute: 0, endHour: 20, endMinute: 0 }, // Lun-Ven
       2: { startHour: 9, startMinute: 0, endHour: 20, endMinute: 0 },
       3: { startHour: 9, startMinute: 0, endHour: 20, endMinute: 0 },
-      4: { startHour: 13, startMinute: 46, endHour: 13, endMinute: 48 },
+      4: { startHour: 13, startMinute: 46, endHour: 20, endMinute: 48 },
       5: { startHour: 9, startMinute: 0, endHour: 20, endMinute: 0 },
       6: { startHour: 9, startMinute: 0, endHour: 18, endMinute: 0 }, // Sabato
       0: null // Domenica chiuso
@@ -176,14 +176,14 @@ font-size:15px;
         var endMinutes = todaySchedule.endHour*60 + todaySchedule.endMinute;
 
         if(nowMinutes >= startMinutes && nowMinutes < endMinutes){
-          statusEl.textContent = "● Disponibile";
+          statusEl.textContent = "• Disponibile";
           statusEl.classList.remove("offline");
         } else {
-          statusEl.textContent = "● Offline";
+          statusEl.textContent = "• Offline";
           statusEl.classList.add("offline");
         }
       } else {
-        statusEl.textContent = "● Offline";
+        statusEl.textContent = "• Offline";
         statusEl.classList.add("offline");
       }
     }
