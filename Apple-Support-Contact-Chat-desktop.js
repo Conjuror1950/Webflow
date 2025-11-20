@@ -82,15 +82,16 @@ min-width:0;
 }
 
 .alc-title {
-font-size:16px;
-line-height:1.1;
+font-size:17px;
+line-height:25px;
 font-weight:600;
 color:#0b0b0b;
 margin:0;
 }
 
 .alc-subtitle {
-font-size:13px;
+font-size:14px;
+font-weight: 400;
 margin:2px 0 8px 0;
 color:#3b3b3b;
 }
@@ -103,8 +104,8 @@ opacity:0.95;
 }
 
 .alc-status {
-  font-size: 13px;
-  font-weight: 500;
+  font-size: 14px;
+  font-weight: 400;
   color: #56a85e;  /* Verde per Disponibile */
   margin-bottom: 8px;
 }
