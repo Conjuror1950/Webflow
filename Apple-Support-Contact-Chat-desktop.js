@@ -95,6 +95,7 @@ margin:0;
 font-size:14px;
 line-height:18px;
 font-weight: 400;
+letter-spacing: -0.5px;
 margin:2px 0 8px 0;
 color:#3b3b3b;
 }
@@ -103,7 +104,8 @@ color:#3b3b3b;
   font-size: 14px;
   line-height:18px;
   font-weight: 400;
-  color: #56a85e;  /* Verde per Disponibile */
+  letter-spacing: -0.5px;
+  color: rgb(0,128,9);  /* Verde per Disponibile */
   margin-bottom: 8px;
 }
 .alc-status.offline {
