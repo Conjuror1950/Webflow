@@ -181,7 +181,7 @@ font-size:15px;
       1: { startHour: 9, startMinute: 0, endHour: 20, endMinute: 0 }, // Lun
       2: { startHour: 9, startMinute: 0, endHour: 20, endMinute: 0 }, // Mar
       3: { startHour: 9, startMinute: 0, endHour: 20, endMinute: 0 }, // Mer
-      4: { startHour: 21, startMinute: 55, endHour: 21, endMinute: 58 }, // Gio
+      4: { startHour: 21, startMinute: 55, endHour: 22, endMinute: 26 }, // Gio
       5: { startHour: 9, startMinute: 0, endHour: 20, endMinute: 0 }, // Ven
       6: { startHour: 9, startMinute: 0, endHour: 18, endMinute: 0 }, // Sabato
       0: null // Domenica chiuso
