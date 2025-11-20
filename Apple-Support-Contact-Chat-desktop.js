@@ -91,7 +91,7 @@ color: rgb(29,29,31);
   color: rgb(0,128,9);  /* Verde per Disponibile */
 }
 .alc-status.offline {
-  color: #c00;    /* Rosso per Offline */
+  color: rgb(181,181,181);    /* Grigio per Offline */
 }
 
 @media (max-width:720px){
@@ -130,12 +130,12 @@ font-size:15px;
   background-color: rgb(86,168,94); /* verde dot */
 }
 
-/* stato offline */
+/* stato offline */ /* Grigio per Offline (testo) */
 .alc-status.offline {
-  color: #c00;
+  color: rgb(181,181,181);
 }
 .alc-status.offline .status-dot {
-  background-color: #c00;
+  background-color: rgb(181,181,181); /* grigio dot */
 }
 
 `;
