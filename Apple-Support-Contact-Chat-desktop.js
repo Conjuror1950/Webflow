@@ -6,7 +6,7 @@
   var config = {
     containerId: 'chat-dal-vivo-container-desktop', // id del tuo div su Webflow
     title: 'Chat dal vivo',
-    subtitle: 'Avvia una conversazione con Apple',
+    subtitle: 'Avvia una conversazione con Andrea',
     onButtonClick: function (e) {
       window.location.href = 'https://support-andreaingrassia.webflow.io/contact/chat'; // link desiderato
     },
