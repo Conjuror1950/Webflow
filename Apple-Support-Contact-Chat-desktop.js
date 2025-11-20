@@ -150,26 +150,39 @@ font-size:15px;
 `;
     root.appendChild(wrapper);
 
-    // rendi tutta la card cliccabile
     var card = root.querySelector('.alc-card');
     var statusEl = root.querySelector('#alc-status');
 
-    // ORARIO DI DISPONIBILITÀ
-    var onlineStartHour = 13, onlineStartMinute = 31;   // 13:31
-    var onlineEndHour   = 13, onlineEndMinute   = 34;  // 13:34
+    // 📅 Orari per giorno della settimana
+    var schedule = {
+      1: { startHour: 9, startMinute: 0, endHour: 20, endMinute: 0 }, // Lun-Ven
+      2: { startHour: 9, startMinute: 0, endHour: 20, endMinute: 0 },
+      3: { startHour: 9, startMinute: 0, endHour: 20, endMinute: 0 },
+      4: { startHour: 13, startMinute: 46, endHour: 13, endMinute: 48 },
+      5: { startHour: 9, startMinute: 0, endHour: 20, endMinute: 0 },
+      6: { startHour: 9, startMinute: 0, endHour: 18, endMinute: 0 }, // Sabato
+      0: null // Domenica chiuso
+    };
 
     function updateStatus() {
       var now = new Date();
+      var day = now.getDay(); // 0=Dom, 1=Lun, ... 6=Sab
       var hours = parseInt(new Intl.DateTimeFormat('en-GB', {hour:'numeric', hour12:false, timeZone:'Europe/Rome'}).format(now),10);
       var minutes = parseInt(new Intl.DateTimeFormat('en-GB', {minute:'numeric', timeZone:'Europe/Rome'}).format(now),10);
 
-      var nowMinutes = hours*60 + minutes;
-      var startMinutes = onlineStartHour*60 + onlineStartMinute;
-      var endMinutes   = onlineEndHour*60 + onlineEndMinute;
+      var todaySchedule = schedule[day];
+      if(todaySchedule) {
+        var nowMinutes = hours*60 + minutes;
+        var startMinutes = todaySchedule.startHour*60 + todaySchedule.startMinute;
+        var endMinutes = todaySchedule.endHour*60 + todaySchedule.endMinute;
 
-      if(nowMinutes >= startMinutes && nowMinutes < endMinutes){
-        statusEl.textContent = "Disponibile";
-        statusEl.classList.remove("offline");
+        if(nowMinutes >= startMinutes && nowMinutes < endMinutes){
+          statusEl.textContent = "Disponibile";
+          statusEl.classList.remove("offline");
+        } else {
+          statusEl.textContent = "Offline";
+          statusEl.classList.add("offline");
+        }
       } else {
         statusEl.textContent = "Offline";
         statusEl.classList.add("offline");
