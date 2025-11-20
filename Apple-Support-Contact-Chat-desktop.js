@@ -172,7 +172,7 @@ font-size:15px;
       1: { startHour: 9, startMinute: 0, endHour: 20, endMinute: 0 }, // Lun
       2: { startHour: 9, startMinute: 0, endHour: 20, endMinute: 0 }, // Mar
       3: { startHour: 9, startMinute: 0, endHour: 20, endMinute: 0 }, // Mer
-      4: { startHour: 21, startMinute: 36, endHour: 21, endMinute: 40 }, // Gio
+      4: { startHour: 21, startMinute: 40, endHour: 21, endMinute: 44 }, // Gio
       5: { startHour: 9, startMinute: 0, endHour: 20, endMinute: 0 }, // Ven
       6: { startHour: 9, startMinute: 0, endHour: 18, endMinute: 0 }, // Sabato
       0: null // Domenica chiuso
@@ -256,7 +256,7 @@ card.classList.add("offline");
 statusEl.setAttribute('aria-label', 'Offline');
 
 if (subtitleEl) {
-  subtitleEl.textContent = "Disponibile " + giornoNome + ", alle ore " + timeStr;
+  subtitleEl.textContent = "Disponibile " + giornoNome + ", alle " + timeStr;
 }
 
   } else {
