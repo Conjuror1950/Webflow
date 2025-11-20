@@ -167,6 +167,15 @@ font-size:15px;
     var card = root.querySelector('.alc-card');
     var statusEl = root.querySelector('#alc-status');
 
+    var iconEl = root.querySelector('.alc-icon');
+
+    // icona disponibile
+    var iconOnline = "https://cdn.prod.website-files.com/6900acd1c3e34a5adaf492fd/691f25bddb8a25199c4b2a7b_chat.svg";
+
+    // icona offline (devi mettere il tuo link)
+    var iconOffline = "https://cdn.prod.website-files.com/6900acd1c3e34a5adaf492fd/691f7afbddc8230da24819fe_chat%20(1).svg";
+
+
     // 📅 Orari per giorno della settimana
     var schedule = {
       1: { startHour: 9, startMinute: 0, endHour: 20, endMinute: 0 }, // Lun
@@ -209,6 +218,8 @@ if (isAvailableToday) {
 
     // rimuovi grigio dalla card
     card.classList.remove("offline");
+
+    if (iconEl) iconEl.src = iconOnline;
 
     statusEl.setAttribute('aria-label', 'Disponibile');
     if (subtitleEl) subtitleEl.textContent = config.subtitle || '';
@@ -253,6 +264,8 @@ statusEl.classList.add("offline");
 // aggiungi grigio alla card
 card.classList.add("offline");
 
+if (iconEl) iconEl.src = iconOffline;
+
 statusEl.setAttribute('aria-label', 'Offline');
 
 if (subtitleEl) {
@@ -266,6 +279,8 @@ statusEl.classList.add("offline");
 
 // aggiungi grigio alla card
 card.classList.add("offline");
+
+if (iconEl) iconEl.src = iconOffline;
 
 statusEl.setAttribute('aria-label', 'Offline');
 if (subtitleEl) subtitleEl.textContent = "Non ci sono orari di disponibilità programmati";
