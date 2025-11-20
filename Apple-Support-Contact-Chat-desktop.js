@@ -121,7 +121,6 @@ font-size:15px;
 <div class="alc-avatar" aria-hidden="true">
   <img class="alc-icon" src="https://cdn.prod.website-files.com/6900acd1c3e34a5adaf492fd/691f25bddb8a25199c4b2a7b_chat.svg" alt="Icona chat">
 </div>
-  </div>
   <div class="alc-content">
     <h3 class="alc-title">${escapeHtml(config.title)}</h3>
     <div class="alc-subtitle">${escapeHtml(config.subtitle)}</div>
