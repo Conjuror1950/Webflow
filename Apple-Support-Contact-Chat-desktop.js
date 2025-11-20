@@ -158,11 +158,14 @@ font-size:15px;
   // ORA EUROPEA e logica disponibilità
   var statusEl = root.querySelector('#alc-status');
   if(statusEl) {
-  var now = new Date();
-  // Converte ora locale in UTC+1/+2 in base all'ora legale
-  var europeTime = now.toLocaleString("en-GB", {timeZone: "Europe/Rome"});
-  var eurDate = new Date(europeTime);
-  var hours = eurDate.getHours();
+  
+    // Ottieni l'ora corrente in Europa/Roma (24h)
+  var hours = new Intl.DateTimeFormat('en-GB', { 
+  hour: 'numeric', 
+  hour12: false, 
+  timeZone: 'Europe/Rome' 
+  }).format(new Date());
+  hours = parseInt(hours, 10);
 
   // Imposta qui il tuo orario "online"
   var onlineStart = 9;  // 09:00
