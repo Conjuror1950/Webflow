@@ -119,6 +119,16 @@ height:52px;
 font-size:15px;
 } 
 }
+
+.alc-status {
+  font-size: 13px;
+  font-weight: 500;
+  color: #0071e3; /* blu Apple */
+  margin-bottom: 8px;
+}
+.alc-status.offline {
+  color: #c00; /* rosso per offline */
+}
 `;
 
     root.appendChild(style);
@@ -132,17 +142,43 @@ font-size:15px;
       <circle cx="8.5" cy="8.8" r="1.2" fill="#0071E3"/>
     </svg>
   </div>
-  <div class="alc-content">
-    <h3 class="alc-title">${escapeHtml(config.title)}</h3>
-    <div class="alc-subtitle">${escapeHtml(config.subtitle)}</div>
-    <p class="alc-description">${escapeHtml(config.description)}</p>
-  </div>
+<div class="alc-content">
+  <h3 class="alc-title">${escapeHtml(config.title)}</h3>
+  <div class="alc-subtitle">${escapeHtml(config.subtitle)}</div>
+  <div class="alc-status" id="alc-status">...</div> <!-- status qui -->
+  <p class="alc-description">${escapeHtml(config.description)}</p>
+</div>
 </div>
 `;
     root.appendChild(wrapper);
 
     // rendi tutta la card cliccabile
     var card = root.querySelector('.alc-card');
+
+  // ORA EUROPEA e logica disponibilità
+  var statusEl = root.querySelector('#alc-status');
+  if(statusEl) {
+  var now = new Date();
+  // Converte ora locale in UTC+1/+2 in base all'ora legale
+  var europeTime = now.toLocaleString("en-GB", {timeZone: "Europe/Rome"});
+  var eurDate = new Date(europeTime);
+  var hours = eurDate.getHours();
+
+  // Imposta qui il tuo orario "online"
+  var onlineStart = 9;  // 09:00
+  var onlineEnd = 18;   // 18:00
+
+  if(hours >= onlineStart && hours < onlineEnd){
+    statusEl.textContent = "Disponibile";
+    statusEl.classList.remove("offline");
+  } else {
+    statusEl.textContent = "Offline";
+    statusEl.classList.add("offline");
+  }
+}
+
+
+    
     if (card) {
       card.style.cursor = 'pointer';
       card.addEventListener('click', function(e) {
