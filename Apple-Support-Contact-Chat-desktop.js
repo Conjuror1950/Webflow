@@ -105,11 +105,11 @@ opacity:0.95;
 .alc-status {
   font-size: 13px;
   font-weight: 500;
-  color: #0071e3;
+  color: #56a85e;  /* Verde per Disponibile */
   margin-bottom: 8px;
 }
 .alc-status.offline {
-  color: #c00;
+  color: #c00;    /* Rosso per Offline */
 }
 
 @media (max-width:720px){
@@ -156,7 +156,7 @@ font-size:15px;
 
     // ORARIO DI DISPONIBILITÀ
     var onlineStartHour = 9, onlineStartMinute = 0;   // 09:00
-    var onlineEndHour   = 13, onlineEndMinute   = 5;  // 13:05
+    var onlineEndHour   = 13, onlineEndMinute   = 25;  // 13:25
 
     function updateStatus() {
       var now = new Date();
