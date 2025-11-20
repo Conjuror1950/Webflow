@@ -86,6 +86,7 @@ font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, 
 font-size:17px;
 line-height:25px;
 font-weight:600;
+spacing: -0.5;
 color:#0b0b0b;
 margin:0;
 }
