@@ -155,8 +155,8 @@ font-size:15px;
     var statusEl = root.querySelector('#alc-status');
 
     // ORARIO DI DISPONIBILITÀ
-    var onlineStartHour = 9, onlineStartMinute = 0;   // 09:00
-    var onlineEndHour   = 13, onlineEndMinute   = 28;  // 13:28
+    var onlineStartHour = 13, onlineStartMinute = 31;   // 13:31
+    var onlineEndHour   = 13, onlineEndMinute   = 34;  // 13:34
 
     function updateStatus() {
       var now = new Date();
