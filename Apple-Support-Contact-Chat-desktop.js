@@ -234,7 +234,7 @@ function updateStatus() {
   var textEl = statusEl.querySelector('.status-text') || statusEl;
   if (found) {
     // formattazione giorno in italiano
-    var giorniIt = ['domenica','lunedì','martedì','mercoledì','giovedì','venerdì','sabato'];
+    var giorniIt = ['Domenica','Lunedì','Martedì','Mercoledì','Giovedì','Venerdì','Sabato'];
     var giornoNome = giorniIt[found.dayIndex] || '';
 
     // format HH:MM con zeri
