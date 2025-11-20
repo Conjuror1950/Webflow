@@ -1,8 +1,4 @@
-/*!
-  apple-live-chat-card.js
-  Versione ottimizzata per Webflow + Netlify/GitHub
-  Bottone e link rimossi, tutta la card cliccabile
-*/
+/*!apple-live-chat-card.js*/
 (function () {
   'use strict';
 
@@ -39,24 +35,95 @@
     wrapper.setAttribute('role', 'region');
     wrapper.setAttribute('aria-label', config.title + ' — ' + config.subtitle);
 
-    // styles
+    // CSS
     var style = document.createElement('style');
     var idSelector = '#' + config.containerId;
     style.textContent = `
-${idSelector} .alc-card-wrapper, .alc-card-wrapper { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; }
-.alc-card { display:flex; align-items:center; gap:16px; padding:18px; border-radius:14px; backdrop-filter: blur(6px) saturate(120%); -webkit-backdrop-filter: blur(6px) saturate(120%); background: linear-gradient(180deg, rgba(245,245,246,0.6), rgba(240,240,241,0.45)); box-shadow: 0 6px 20px rgba(0,0,0,0.08); border: 1px solid rgba(0,0,0,0.06); max-width:720px; cursor:pointer; }
-.alc-avatar { flex:0 0 64px; width:64px; height:64px; border-radius:14px; display:grid; place-items:center; background: linear-gradient(180deg,#ffffff,#f2f2f4); box-shadow: inset 0 -1px 0 rgba(0,0,0,0.03); }
-.alc-icon { width:36px; height:36px; display:inline-block; }
-.alc-content { flex:1 1 auto; min-width:0; }
-.alc-title { font-size:16px; line-height:1.1; font-weight:600; color:#0b0b0b; margin:0; }
-.alc-subtitle { font-size:13px; margin:2px 0 8px 0; color:#3b3b3b; }
-.alc-description { font-size:13px; color:#545454; margin:0 0 8px 0; opacity:0.95; }
-@media (max-width:720px){ .alc-card{ padding:12px; gap:12px; border-radius:12px;} .alc-avatar{width:52px;height:52px;} .alc-title{font-size:15px;} }
+${idSelector}
+.alc-card-wrapper,
+.alc-card-wrapper {
+font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; 
+}
+
+.alc-card {
+display:flex;
+align-items:center;
+gap:16px;
+padding:18px;
+border-radius:14px;
+backdrop-filter: blur(6px) saturate(120%);
+-webkit-backdrop-filter: blur(6px) saturate(120%);
+background: linear-gradient(180deg, rgba(245,245,246,0.6), rgba(240,240,241,0.45));
+box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+border: 1px solid rgba(0,0,0,0.06);
+max-width:720px;
+cursor:pointer;
+}
+
+.alc-avatar {
+flex:0 0 64px;
+width:64px;
+height:64px;
+border-radius:14px;
+display:grid;
+place-items:center;
+background: linear-gradient(180deg,#ffffff,#f2f2f4);
+box-shadow: inset 0 -1px 0 rgba(0,0,0,0.03);
+}
+
+.alc-icon {
+width:36px;
+height:36px;
+display:inline-block;
+}
+
+.alc-content {
+flex:1 1 auto;
+min-width:0;
+}
+
+.alc-title {
+font-size:16px;
+line-height:1.1;
+font-weight:600;
+color:#0b0b0b;
+margin:0;
+}
+
+.alc-subtitle {
+font-size:13px;
+margin:2px 0 8px 0;
+color:#3b3b3b;
+}
+
+.alc-description {
+font-size:13px;
+color:#545454;
+margin:0 0 8px 0;
+opacity:0.95;
+}
+
+@media (max-width:720px){
+.alc-card{
+padding:12px;
+gap:12px;
+border-radius:12px;
+}
+
+.alc-avatar{
+width:52px;
+height:52px;
+} 
+
+.alc-title{
+font-size:15px;
+} 
+}
 `;
 
     root.appendChild(style);
 
-    // inner HTML
+    // HTML
     wrapper.innerHTML = `
 <div class="alc-card" tabindex="0">
   <div class="alc-avatar" aria-hidden="true">
