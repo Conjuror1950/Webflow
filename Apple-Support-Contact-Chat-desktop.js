@@ -248,8 +248,7 @@ function updateStatus() {
     if (subtitleEl) {
       // "Disponibile <Giorno>, alle ore <HH:MM>"
       // Se preferisci "Disponibile domani, alle ore..." puoi sostituire giornoNome con 'domani' quando offsetDays === 1
-      var dayLabel = (found.offsetDays === 1) ? 'domani' : giornoNome;
-      subtitleEl.textContent = "Disponibile " + dayLabel + ", alle ore " + timeStr;
+    subtitleEl.textContent = "Disponibile " + giornoNome + ", alle ore " + timeStr;
     }
   } else {
     // nessuna disponibilità trovata nella settimana (tutti null)
