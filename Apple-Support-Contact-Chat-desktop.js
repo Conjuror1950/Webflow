@@ -5,25 +5,23 @@
 (function () {
   'use strict';
 
-  // CONFIG: edit if needed
-  var config = {
-    containerId: 'chat-dal-vivo-container-desktop', // id del tuo div su Webflow
-    title: 'Chat dal vivo',
-    subtitle: 'Parla con un esperto in diretta',
-    description: 'Ottieni aiuto immediato per prodotti, assistenza tecnica e molto altro. Disponibile ora.',
-    buttonText: 'Avvia chat',
-    linkText: 'Ulteriori informazioni',
-    // action handlers (sostituisci con il tuo handler reale)
-    onButtonClick: function (e) {
-      alert('Apertura della chat — sostituisci questa funzione con il tuo handler.');
-    },
-    onLinkClick: function (e) {
-      window.location.href = '/info-chat';
-    },
-    // retry / observer config
-    maxRetries: 30,         // numero di tentativi (polling) prima di usare observer
-    retryIntervalMs: 200    // intervallo tra tentativi
-  };
+// CONFIG: edit if needed
+var config = {
+  containerId: 'chat-dal-vivo-container-desktop', // id del tuo div su Webflow
+  title: 'Chat dal vivo',
+  subtitle: 'Avvia una conversazione con Apple',
+
+  // Azioni: sostituisci gli URL con quelli che vuoi usare
+  // Opzione A: apri nella stessa finestra
+  onButtonClick: function (e) {
+    window.location.href = 'https://support-andreaingrassia.webflow.io/contact/chat'; // metti qui il link che vuoi
+  },
+
+  // retry / observer config (lascia così)
+  maxRetries: 30,
+  retryIntervalMs: 200
+};
+
 
   // helper
   function $id(id) { return document.getElementById(id); }
