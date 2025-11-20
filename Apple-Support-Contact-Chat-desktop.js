@@ -7,9 +7,9 @@
     containerId: 'chat-dal-vivo-container-desktop', // id del tuo div su Webflow
     title: 'Chat dal vivo',
     subtitle: 'Avvia una conversazione con Apple',
-    description: '', // opzionale, puoi lasciare vuoto o inserire testo
+    description: '', // opzionale
     onButtonClick: function (e) {
-      window.location.href = 'https://support-andreaingrassia.webflow.io/contact/chat'; // il link desiderato
+      window.location.href = 'https://support-andreaingrassia.webflow.io/contact/chat'; // link desiderato
     },
     maxRetries: 30,
     retryIntervalMs: 200
@@ -27,7 +27,7 @@
   // create card inside root
   function createCardAt(root) {
     if (!root) return;
-    if (root.dataset.appleLiveChatInit === '1') return; // già inizializzato
+    if (root.dataset.appleLiveChatInit === '1') return;
     root.dataset.appleLiveChatInit = '1';
 
     var wrapper = document.createElement('div');
@@ -39,8 +39,7 @@
     var style = document.createElement('style');
     var idSelector = '#' + config.containerId;
     style.textContent = `
-${idSelector}
-.alc-card-wrapper,
+${idSelector} .alc-card-wrapper,
 .alc-card-wrapper {
 font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; 
 }
@@ -103,6 +102,16 @@ margin:0 0 8px 0;
 opacity:0.95;
 }
 
+.alc-status {
+  font-size: 13px;
+  font-weight: 500;
+  color: #0071e3;
+  margin-bottom: 8px;
+}
+.alc-status.offline {
+  color: #c00;
+}
+
 @media (max-width:720px){
 .alc-card{
 padding:12px;
@@ -119,18 +128,7 @@ height:52px;
 font-size:15px;
 } 
 }
-
-.alc-status {
-  font-size: 13px;
-  font-weight: 500;
-  color: #58a960; /* verde per Disponibile */
-  margin-bottom: 8px;
-}
-.alc-status.offline {
-  color: #c00; /* rosso per Offline */
-}
 `;
-
     root.appendChild(style);
 
     // HTML
@@ -142,44 +140,46 @@ font-size:15px;
       <circle cx="8.5" cy="8.8" r="1.2" fill="#0071E3"/>
     </svg>
   </div>
-<div class="alc-content">
-  <h3 class="alc-title">${escapeHtml(config.title)}</h3>
-  <div class="alc-subtitle">${escapeHtml(config.subtitle)}</div>
-  <div class="alc-status" id="alc-status">...</div> <!-- status qui -->
-  <p class="alc-description">${escapeHtml(config.description)}</p>
-</div>
+  <div class="alc-content">
+    <h3 class="alc-title">${escapeHtml(config.title)}</h3>
+    <div class="alc-subtitle">${escapeHtml(config.subtitle)}</div>
+    <div class="alc-status" id="alc-status">...</div>
+    <p class="alc-description">${escapeHtml(config.description)}</p>
+  </div>
 </div>
 `;
     root.appendChild(wrapper);
 
     // rendi tutta la card cliccabile
     var card = root.querySelector('.alc-card');
+    var statusEl = root.querySelector('#alc-status');
 
-  // ORA EUROPEA e logica disponibilità
-function updateStatus() {
-  var now = new Date();
-  var hours = parseInt(new Intl.DateTimeFormat('en-GB', {hour: 'numeric', hour12: false, timeZone: 'Europe/Rome'}).format(now), 10);
-  var minutes = parseInt(new Intl.DateTimeFormat('en-GB', {minute: 'numeric', timeZone: 'Europe/Rome'}).format(now), 10);
+    // ORARIO DI DISPONIBILITÀ
+    var onlineStartHour = 9, onlineStartMinute = 0;   // 09:00
+    var onlineEndHour   = 13, onlineEndMinute   = 5;  // 13:05
 
-  var nowMinutes = hours*60 + minutes;
-  var startMinutes = onlineStartHour*60 + onlineStartMinute;
-  var endMinutes   = onlineEndHour*60 + onlineEndMinute;
+    function updateStatus() {
+      var now = new Date();
+      var hours = parseInt(new Intl.DateTimeFormat('en-GB', {hour:'numeric', hour12:false, timeZone:'Europe/Rome'}).format(now),10);
+      var minutes = parseInt(new Intl.DateTimeFormat('en-GB', {minute:'numeric', timeZone:'Europe/Rome'}).format(now),10);
 
-  if(nowMinutes >= startMinutes && nowMinutes < endMinutes){
-    statusEl.textContent = "Disponibile";
-    statusEl.classList.remove("offline");
-  } else {
-    statusEl.textContent = "Offline";
-    statusEl.classList.add("offline");
-  }
-}
+      var nowMinutes = hours*60 + minutes;
+      var startMinutes = onlineStartHour*60 + onlineStartMinute;
+      var endMinutes   = onlineEndHour*60 + onlineEndMinute;
 
-// Chiama subito
-updateStatus();
+      if(nowMinutes >= startMinutes && nowMinutes < endMinutes){
+        statusEl.textContent = "Disponibile";
+        statusEl.classList.remove("offline");
+      } else {
+        statusEl.textContent = "Offline";
+        statusEl.classList.add("offline");
+      }
+    }
 
-// E poi ogni minuto
-setInterval(updateStatus, 60*1000); // 60.000ms = 1 minuto
-    
+    // aggiorna subito e poi ogni minuto
+    updateStatus();
+    setInterval(updateStatus, 60*1000);
+
     if (card) {
       card.style.cursor = 'pointer';
       card.addEventListener('click', function(e) {
@@ -198,10 +198,7 @@ setInterval(updateStatus, 60*1000); // 60.000ms = 1 minuto
     var attempts = 0;
     var tryFind = function () {
       var root = $id(config.containerId);
-      if (root) {
-        createCardAt(root);
-        return true;
-      }
+      if (root) { createCardAt(root); return true; }
       attempts++;
       if (attempts >= config.maxRetries) return false;
       setTimeout(tryFind, config.retryIntervalMs);
