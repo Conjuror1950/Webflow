@@ -49,7 +49,7 @@ align-items:center;
 gap:16px;
 padding:18px;
 border-radius:16px;
-border: 1px solid rgba(0,0,0,0.2);
+border: 1px solid rgba(0,0,0,0.4);
 max-width:auto;
 cursor:pointer;
 }
