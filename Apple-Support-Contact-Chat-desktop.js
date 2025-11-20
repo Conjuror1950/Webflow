@@ -56,7 +56,7 @@ cursor:pointer;
 
 .alc-icon {
 width:40px;
-height:40px;
+height:auto;
 display:inline-block;
 }
 
@@ -172,7 +172,7 @@ font-size:15px;
       1: { startHour: 9, startMinute: 0, endHour: 20, endMinute: 0 }, // Lun
       2: { startHour: 9, startMinute: 0, endHour: 20, endMinute: 0 }, // Mar
       3: { startHour: 9, startMinute: 0, endHour: 20, endMinute: 0 }, // Mer
-      4: { startHour: 21, startMinute: 40, endHour: 21, endMinute: 44 }, // Gio
+      4: { startHour: 21, startMinute: 55, endHour: 21, endMinute: 58 }, // Gio
       5: { startHour: 9, startMinute: 0, endHour: 20, endMinute: 0 }, // Ven
       6: { startHour: 9, startMinute: 0, endHour: 18, endMinute: 0 }, // Sabato
       0: null // Domenica chiuso
