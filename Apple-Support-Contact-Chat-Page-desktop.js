@@ -63,7 +63,7 @@
     color: #064b23;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 550px) {
   .apple-contact-field input {
     width: 100% !important;
   }
