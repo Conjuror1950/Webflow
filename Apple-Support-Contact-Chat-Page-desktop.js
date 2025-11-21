@@ -1,15 +1,7 @@
 (function(){
-  // contact-form-apple-style.js
-  // Drop this file in your GitHub Pages repository and include it with:
-  // <script src="/path/to/contact-form-apple-style.js"></script>
-  // The script will append the form to an element with id="apple-contact-form-root" if present,
-  // otherwise it will append it to document.body.
-  // Screenshot reference (local path provided by user): /mnt/data/Screenshot 2025-11-21 175022.png
-
   const rootId = 'avvia-una-conversazione-con-andrea-container';
 
   const css = `
-  /* Apple-style contact form (inline styles via injected stylesheet) */
   .apple-contact-wrap{max-width:680px;margin:48px auto;padding:0 20px;font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;color:#111}
   .apple-contact-title{font-size:20px;font-weight:600;margin-bottom:18px}
   .apple-contact-form{display:flex;flex-direction:column;gap:16px}
@@ -29,26 +21,29 @@
 
   function createStyles(){
     if(document.getElementById('apple-contact-styles')) return;
-    const s = document.createElement('style');
-    s.id = 'apple-contact-styles';
-    s.textContent = css;
-    document.head.appendChild(s);
+    try{
+      const s = document.createElement('style');
+      s.id = 'apple-contact-styles';
+      s.textContent = css;
+      (document.head || document.getElementsByTagName('head')[0] || document.documentElement).appendChild(s);
+      console.debug('[AppleContact] styles injected');
+    }catch(err){
+      console.error('[AppleContact] cannot inject styles', err);
+    }
   }
 
   function buildForm(){
-    // Create wrapper section and then set innerHTML with a clear semantic markup
     const wrap = document.createElement('section');
     wrap.className = 'apple-contact-wrap';
 
     const title = document.createElement('h2');
     title.className = 'apple-contact-title';
-    title.textContent = 'Avvia una conversazione con Apple';
+    title.textContent = 'Avvia una conversazione con Andrea';
     wrap.appendChild(title);
 
-    // Build the form markup as a single template string for clarity
     const form = document.createElement('form');
     form.className = 'apple-contact-form';
-    form.setAttribute('novalidate', 'true');
+    form.noValidate = true; // boolean property
     form.innerHTML = `
       <div class="apple-contact-row" role="group" aria-label="Nome e Cognome">
         <div class="apple-contact-field">
@@ -74,7 +69,6 @@
       <div class="apple-contact-note" id="acf-note"></div>
     `;
 
-    // Grab elements for logic
     const nome = form.querySelector('#acf-nome');
     const cognome = form.querySelector('#acf-cognome');
     const email = form.querySelector('#acf-email');
@@ -82,7 +76,6 @@
     const error = form.querySelector('#acf-error');
     const note = form.querySelector('#acf-note');
 
-    // Submit handler with simple validation
     form.addEventListener('submit', function(e){
       e.preventDefault();
       error.textContent = '';
@@ -109,69 +102,76 @@
         return;
       }
 
-      // Visual feedback: disable button and show sending state
       submit.disabled = true;
       submit.textContent = 'Invio...';
 
-      // Simulated async submission: replace with real endpoint (Netlify, Formspree, API) if needed
+      // Simulazione invio - sostituire con fetch() verso endpoint reale
       setTimeout(() => {
-        // Build success message markup clearly
         const successHtml = `
           <div class="apple-contact-success" role="status">
             <strong>Grazie!</strong>
             <div>Ti contatteremo presto.</div>
           </div>
         `;
+        // sostituisco il contenuto del wrapper con messaggio di successo
         wrap.innerHTML = successHtml;
       }, 700);
     });
 
-    return {wrap, form};
+    wrap.appendChild(form);
+    return wrap;
   }
 
-  function mount(){
+  function mountToTarget(target){
     createStyles();
-    const target = document.getElementById(rootId) || document.body;
-    const {wrap, form} = buildForm();
+    if(!target) {
+      console.warn('[AppleContact] target non trovato, appendo a body');
+      target = document.body;
+    }
+    // rimuovo eventuale vecchio form
+    const existing = target.querySelector('.apple-contact-wrap') || document.querySelector('.apple-contact-wrap');
+    if(existing) existing.remove();
 
-    // Append form element to wrapper (form already contains inputs)
-    wrap.appendChild(form);
+    const wrap = buildForm();
+    target.appendChild(wrap);
+    console.debug('[AppleContact] montato su', target);
+  }
 
-    // If target is body, wrap in a centered container to keep layout neat
-    if(target === document.body){
-      const container = document.createElement('div');
-      container.style.maxWidth = '980px';
-      container.style.margin = '0 auto';
-      container.appendChild(wrap);
-      document.body.appendChild(container);
+  function tryAutoMount(retries = 6, delay = 300){
+    // prova a trovare l'elemento più volte (utile su Webflow che modifica il DOM)
+    let attempts = 0;
+    const idSelector = '#' + CSS.escape(rootId);
+    function attempt(){
+      attempts++;
+      const el = document.querySelector(idSelector);
+      if(el){
+        mountToTarget(el);
+      } else if(attempts < retries){
+        console.debug(`[AppleContact] elemento ${rootId} non trovato, ritento (${attempts})`);
+        setTimeout(attempt, delay);
+      } else {
+        console.warn(`[AppleContact] elemento ${rootId} non trovato dopo ${attempts} tentativi — monto sul body come fallback`);
+        mountToTarget(document.body);
+      }
+    }
+    if(document.readyState === 'loading'){
+      document.addEventListener('DOMContentLoaded', attempt);
     } else {
-      target.appendChild(wrap);
+      attempt();
     }
   }
 
-  // Auto-mount when DOM is ready
-  if(document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', mount);
-  } else {
-    mount();
-  }
+  tryAutoMount();
 
-  // Expose API for manual mounting and future customization
+  // API pubblica
   window.AppleContactForm = {
-    /**
-     * mountTo(elementOrId)
-     * elementOrId: DOM element or string id of target container
-     */
     mountTo: function(elementOrId){
       let el = elementOrId;
-      if(typeof elementOrId === 'string') el = document.getElementById(elementOrId);
-      if(!el) throw new Error('Target element not found');
-      // remove default mount if present
-      const existing = document.querySelector('.apple-contact-wrap');
-      if(existing) existing.remove();
-      const {wrap, form} = buildForm();
-      wrap.appendChild(form);
-      el.appendChild(wrap);
+      if(typeof elementOrId === 'string'){
+        el = document.getElementById(elementOrId) || document.querySelector('#' + CSS.escape(elementOrId));
+      }
+      if(!el) throw new Error('Target element not found for mountTo: ' + elementOrId);
+      mountToTarget(el);
     }
   };
 
