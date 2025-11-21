@@ -9,7 +9,7 @@
   }
 
   .apple-contact-title {
-    font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
     font-size: 19px;
     font-weight: 600;
     margin-bottom: 18px;
@@ -27,6 +27,7 @@
     border-radius: 12px;
     border: 1px solid rgba(0,0,0,0.18);
     font-size: 17px;
+    letter-spacing: -0.2px;
     outline: none;
     transition: box-shadow .15s, border-color .15s;
   }
