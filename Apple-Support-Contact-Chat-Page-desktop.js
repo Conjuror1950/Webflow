@@ -6,8 +6,6 @@
     max-width: 680px;
     font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
     color: #111;
-    margin: 40px auto;
-    padding: 0 20px;
   }
 
   .apple-contact-title {
