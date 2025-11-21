@@ -9,7 +9,8 @@
   }
 
   .apple-contact-title {
-    font-size: 20px;
+    font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    font-size: 19px;
     font-weight: 600;
     margin-bottom: 18px;
   }
@@ -25,7 +26,7 @@
     padding: 18px 20px;
     border-radius: 12px;
     border: 1px solid rgba(0,0,0,0.18);
-    font-size: 15px;
+    font-size: 17px;
     outline: none;
     transition: box-shadow .15s, border-color .15s;
   }
@@ -105,10 +106,10 @@
       e.preventDefault();
       error.textContent = '';
 
-      if(!nome.value.trim()){ error.textContent='Inserisci il nome.'; nome.focus(); return; }
-      if(!cognome.value.trim()){ error.textContent='Inserisci il cognome.'; cognome.focus(); return; }
+      if(!nome.value.trim()){ error.textContent='Inserisci un nome valido'; nome.focus(); return; }
+      if(!cognome.value.trim()){ error.textContent='Inserisci un cognome valido'; cognome.focus(); return; }
       if(!email.value.trim()){ error.textContent='Inserisci l\'email.'; email.focus(); return; }
-      if(!/^\S+@\S+\.\S+$/.test(email.value)){ error.textContent='Inserisci un\'email valida.'; email.focus(); return; }
+      if(!/^\S+@\S+\.\S+$/.test(email.value)){ error.textContent='Inserisci un indirizzo email valido.'; email.focus(); return; }
 
       submit.disabled = true;
       submit.textContent = 'Invio...';
