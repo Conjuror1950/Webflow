@@ -46,7 +46,7 @@
     cursor: pointer;
     width: auto;          /* larghezza minima necessaria */
     align-self: flex-start; /* allinea il pulsante a sinistra invece di allargarsi */
-    margin-top: 20px; /* ← aumenta la distanza dagli input */
+    margin-top: 30px; /* ← aumenta la distanza dagli input */
   }
 
   .apple-contact-error {
