@@ -12,7 +12,6 @@
     font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
     font-size: 19px;
     font-weight: 600;
-    margin-bottom: 18px;
   }
 
   .apple-contact-form {
