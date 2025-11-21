@@ -18,14 +18,14 @@
   .apple-contact-form {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 14px;
   }
 
   .apple-contact-field input {
     width: 100%;
-    padding: 18px 20px;
-    border-radius: 12px;
-    border: 1px solid rgba(0,0,0,0.18);
+    padding: 18px 18px;
+    border-radius: 14px;
+    border: 1px solid rgba(0,0,0,0.4);
     font-size: 17px;
     letter-spacing: -0.2px;
     outline: none;
@@ -33,7 +33,6 @@
   }
 
   .apple-contact-field input:focus {
-    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
     border-color: rgba(0,0,0,0.28);
   }
 
