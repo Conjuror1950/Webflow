@@ -83,7 +83,7 @@
     wrap.className = 'apple-contact-wrap';
 
     wrap.innerHTML = `
-      <h2 class="apple-contact-title">Avvia una conversazione con Apple</h2>
+      <h2 class="apple-contact-title">Avvia una conversazione con Andrea</h2>
       <form class="apple-contact-form" novalidate>
         <div class="apple-contact-field">
           <input id="acf-nome" name="nome" type="text" placeholder="Nome" aria-required="true" />
