@@ -4,9 +4,7 @@
   const css = `
   .apple-contact-wrap{
   max-width:680px;
-  margin:48px auto;
-  padding:0 20px;
-  font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
   color:#111
   }
   
