@@ -122,17 +122,14 @@
       <form class="apple-contact-form" novalidate>
         <div class="apple-contact-row" role="group" aria-label="Nome e Cognome">
           <div class="apple-contact-field">
-            <label class="apple-contact-label" for="acf-nome">Nome</label>
             <input id="acf-nome" class="apple-contact-input" name="nome" type="text" placeholder="Nome" aria-required="true" />
           </div>
           <div class="apple-contact-field">
-            <label class="apple-contact-label" for="acf-cognome">Cognome</label>
             <input id="acf-cognome" class="apple-contact-input" name="cognome" type="text" placeholder="Cognome" aria-required="true" />
           </div>
         </div>
 
         <div class="apple-contact-field">
-          <label class="apple-contact-label" for="acf-email">Email</label>
           <input id="acf-email" class="apple-contact-input" name="email" type="email" placeholder="Email" aria-required="true" />
         </div>
 
