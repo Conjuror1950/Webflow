@@ -40,10 +40,9 @@
     padding: 12px 26px;
     border-radius: 999px;
     border: none;
-    background: linear-gradient(180deg,#9fd0ff,#8ec0f2);
     color: white;
-    font-weight: 600;
-    font-size: 15px;
+    font-weight: 400;
+    font-size: 17px;
     cursor: pointer;
     width: auto;          /* larghezza minima necessaria */
     align-self: flex-start; /* allinea il pulsante a sinistra invece di allargarsi */
