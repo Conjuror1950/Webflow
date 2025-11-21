@@ -67,39 +67,6 @@
   .apple-contact-field input {
     width: 100% !important;
   }
-
-  /* --- floating label styles (aggiungi dentro const css) --- */
-.apple-contact-field {
-  position: relative;
-}
-
-/* lascia più spazio in alto per la label quando è sopra l'input */
-.apple-contact-field input {
-  padding: 22px 18px 14px; /* top increased to make room for floating label */
-}
-
-/* la label che "galleggia" dentro il campo */
-.apple-contact-label-float {
-  position: absolute;
-  left: 18px;
-  top: 50%;
-  transform: translateY(-50%);
-  transition: transform .18s ease, top .18s ease, font-size .18s ease, color .18s ease;
-  pointer-events: none;
-  font-size: 17px;
-  color: rgba(0,0,0,0.6);
-  background: transparent;
-  padding: 0 4px;
-}
-
-/* stato "floating" mentre il campo ha la classe .floating (es. durante il focus) */
-.apple-contact-field.floating .apple-contact-label-float {
-  top: 8px;
-  transform: none;
-  font-size: 13px;
-  color: rgba(0,0,0,0.85);
-}
-
 }
   `;
 
@@ -111,86 +78,55 @@
     document.head.appendChild(s);
   }
 
-function buildForm(){
-  const wrap = document.createElement('section');
-  wrap.className = 'apple-contact-wrap';
+  function buildForm(){
+    const wrap = document.createElement('section');
+    wrap.className = 'apple-contact-wrap';
 
-  wrap.innerHTML = `
-    <h2 class="apple-contact-title">Avvia una conversazione con Andrea</h2>
-    <form class="apple-contact-form" novalidate>
-      <div class="apple-contact-field">
-        <label class="apple-contact-label-float" for="acf-nome">Nome</label>
-        <input id="acf-nome" name="nome" type="text" aria-required="true" />
-      </div>
+    wrap.innerHTML = `
+      <h2 class="apple-contact-title">Avvia una conversazione con Andrea</h2>
+      <form class="apple-contact-form" novalidate>
+        <div class="apple-contact-field">
+          <input id="acf-nome" name="nome" type="text" placeholder="Nome" aria-required="true" />
+        </div>
+        <div class="apple-contact-field">
+          <input id="acf-cognome" name="cognome" type="text" placeholder="Cognome" aria-required="true" />
+        </div>
+        <div class="apple-contact-field">
+          <input id="acf-email" name="email" type="email" placeholder="Email" aria-required="true" />
+        </div>
 
-      <div class="apple-contact-field">
-        <label class="apple-contact-label-float" for="acf-cognome">Cognome</label>
-        <input id="acf-cognome" name="cognome" type="text" aria-required="true" />
-      </div>
+        <button type="submit" class="apple-contact-button" id="acf-submit">Continua</button>
 
-      <div class="apple-contact-field">
-        <label class="apple-contact-label-float" for="acf-email">Email</label>
-        <input id="acf-email" name="email" type="email" aria-required="true" />
-      </div>
+        <div class="apple-contact-error" id="acf-error" aria-live="polite" role="alert"></div>
+      </form>
+    `;
 
-      <button type="submit" class="apple-contact-button" id="acf-submit">Continua</button>
+    const form = wrap.querySelector('form');
+    const nome = wrap.querySelector('#acf-nome');
+    const cognome = wrap.querySelector('#acf-cognome');
+    const email = wrap.querySelector('#acf-email');
+    const submit = wrap.querySelector('#acf-submit');
+    const error = wrap.querySelector('#acf-error');
 
-      <div class="apple-contact-error" id="acf-error" aria-live="polite" role="alert"></div>
-    </form>
-  `;
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      error.textContent = '';
 
-  const form = wrap.querySelector('form');
-  const nome = wrap.querySelector('#acf-nome');
-  const cognome = wrap.querySelector('#acf-cognome');
-  const email = wrap.querySelector('#acf-email');
-  const submit = wrap.querySelector('#acf-submit');
-  const error = wrap.querySelector('#acf-error');
+      if(!nome.value.trim()){ error.textContent='Inserisci un nome valido'; nome.focus(); return; }
+      if(!cognome.value.trim()){ error.textContent='Inserisci un cognome valido'; cognome.focus(); return; }
+      if(!email.value.trim()){ error.textContent='Inserisci l\'email.'; email.focus(); return; }
+      if(!/^\S+@\S+\.\S+$/.test(email.value)){ error.textContent='Inserisci un indirizzo email valido.'; email.focus(); return; }
 
-  // Floating label behavior:
-  // - focus -> aggiunge .floating (label si rimpicciolisce e sale)
-  // - durante la digitazione -> lasciamo lo stato (nessuna rimozione)
-  // - blur -> rimuove .floating (torna alla posizione originale)
-  function attachFloatingBehavior(input){
-    const field = input.closest('.apple-contact-field');
-    if(!field) return;
+      submit.disabled = true;
+      submit.textContent = 'Invio...';
 
-    input.addEventListener('focus', () => {
-      field.classList.add('floating');
+      setTimeout(()=>{
+        wrap.innerHTML = `<div class="apple-contact-success" role="status"><strong>Grazie!</strong><div>Ti contatteremo presto.</div></div>`;
+      }, 700);
     });
 
-    // Manteniamo floating durante la digitazione (no change needed here)
-    input.addEventListener('input', () => {
-      // intenzionalmente vuoto: behavior richiesto è che rimanga flottante mentre si scrive
-    });
-
-    // Al blur rimuoviamo la classe (così la label torna come prima)
-    input.addEventListener('blur', () => {
-      field.classList.remove('floating');
-    });
+    return wrap;
   }
-
-  [nome, cognome, email].forEach(attachFloatingBehavior);
-
-  // Submit handler (uguale a prima, con validazione)
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-    error.textContent = '';
-
-    if(!nome.value.trim()){ error.textContent='Inserisci un nome valido'; nome.focus(); return; }
-    if(!cognome.value.trim()){ error.textContent='Inserisci un cognome valido'; cognome.focus(); return; }
-    if(!email.value.trim()){ error.textContent='Inserisci l\\'email.'; email.focus(); return; }
-    if(!/^\S+@\S+\.\S+$/.test(email.value)){ error.textContent='Inserisci un indirizzo email valido.'; email.focus(); return; }
-
-    submit.disabled = true;
-    submit.textContent = 'Invio...';
-
-    setTimeout(()=>{
-      wrap.innerHTML = `<div class="apple-contact-success" role="status"><strong>Grazie!</strong><div>Ti contatteremo presto.</div></div>`;
-    }, 700);
-  });
-
-  return wrap;
-}
 
   function mount(target){
     createStyles();
