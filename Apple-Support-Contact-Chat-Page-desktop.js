@@ -37,7 +37,7 @@
   }
 
   .apple-contact-button {
-    padding: 12px 26px;
+    padding: 15px 28px;
     border-radius: 999px;
     border: none;
     color: white;
