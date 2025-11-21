@@ -3,7 +3,7 @@
 
   const css = `
   .apple-contact-wrap {
-    max-width: 680px;
+    max-width: auto;
     font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
     color: #111;
   }
