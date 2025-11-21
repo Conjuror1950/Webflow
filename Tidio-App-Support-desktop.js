@@ -3,10 +3,6 @@
 // Scopo: resettare Tidio ad ogni caricamento, poi caricare il widget e forzare l'apertura.
 // CONFIG: modifica TIDIO_ID e le opzioni in `DEFAULT_OPTIONS` se necessario.
 
-//
-
-
-
 (function(window, document) {
   'use strict';
 
@@ -186,12 +182,6 @@
     // evita esecuzione troppo precoce in head; lascia 50 ms per DOM
     resetAndLoad();
   }, 50);
-
-
-
-
-
-  //
 
 })(window, document);
 
