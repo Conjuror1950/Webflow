@@ -21,7 +21,7 @@
   }
 
   .apple-contact-field input {
-    width: 450px;
+    width: 480px;
     padding: 18px 18px;
     border-radius: 14px;
     border: 1px solid rgba(0,0,0,0.4);
