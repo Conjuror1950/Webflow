@@ -3,7 +3,7 @@
 
   const css = `
   .apple-contact-wrap {
-    max-width: 900px;
+    max-width: 680px;
     font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
     color: #111;
   }
@@ -21,7 +21,7 @@
   }
 
   .apple-contact-field input {
-    width: 100%;
+    width: 300px;
     padding: 18px 18px;
     border-radius: 14px;
     border: 1px solid rgba(0,0,0,0.4);
