@@ -44,6 +44,8 @@
     font-weight: 600;
     font-size: 15px;
     cursor: pointer;
+    width: auto;          /* larghezza minima necessaria */
+    align-self: flex-start; /* allinea il pulsante a sinistra invece di allargarsi */
   }
 
   .apple-contact-error {
