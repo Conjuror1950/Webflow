@@ -62,6 +62,12 @@
     border-radius: 10px;
     color: #064b23;
   }
+
+  @media (max-width: 768px) {
+  .apple-contact-field input {
+    width: 100% !important;
+  }
+}
   `;
 
   function createStyles(){
