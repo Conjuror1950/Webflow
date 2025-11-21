@@ -32,7 +32,7 @@
   }
 
   .apple-contact-field input:focus {
-    border-color: rgba(0,0,0,0.28);
+    border-color: rgba(0,122,255,0.9);
   }
 
   .apple-contact-button {
