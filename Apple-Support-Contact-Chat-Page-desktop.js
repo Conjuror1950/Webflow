@@ -41,6 +41,7 @@
     border-radius: 999px;
     border: none;
     color: white;
+    background: #007aff;
     font-weight: 400;
     font-size: 17px;
     cursor: pointer;
