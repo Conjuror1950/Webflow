@@ -33,7 +33,7 @@ const css = `
     box-shadow: inset 0 0 0 1px rgba(0,0,0,0.4);
     /* transizioni per bordi, ombra e colore testo */
     transition: border 0.18s ease, box-shadow 0.18s ease, color 0.18s ease;
-    background: transparent;
+    background: black;
     color: inherit;
     caret-color: #111; /* <-- aggiungi qui */
   }
@@ -46,7 +46,6 @@ const css = `
   /* stato di errore (campo rosso) */
   .apple-contact-field.has-error input {
     border: 1px solid rgb(227,0,0);   /* bordo rosso*/
-    background: rgb (255, 242, 244);
     box-shadow: none;
     color: rgb(227,0,0);              /* testo dentro l'input diventa rosso */
     caret-color: #111; /* <-- aggiungi qui */
