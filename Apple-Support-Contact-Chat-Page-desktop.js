@@ -22,18 +22,20 @@
 
   .apple-contact-field input {
     width: 490px;
-    padding: 25px 18px 10px auto; /* top 25px, right 18px, bottom 10px, left auto */
+    padding: 25px 18px 10px 18px; /* top 25px, right 18px, bottom 10px, left 18px */
     border-radius: 14px;
-    border: 1px solid rgba(0,0,0,0.4);
+    border: 2px solid transparent; /* bordo massimo già occupato */
     font-size: 17px;
     letter-spacing: -0.2px;
     outline: none;
     box-sizing: border-box;
     height: 55px; /* altezza fissa */
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.4); /* bordo iniziale 1px */
   }
 
   .apple-contact-field input:focus {
     border: 2px solid rgba(0,122,255,0.9);
+    box-shadow: none; /* rimuovi il bordo finto */
   }
 
   .apple-contact-button {
