@@ -28,11 +28,12 @@
     font-size: 17px;
     letter-spacing: -0.2px;
     outline: none;
+    box-sizing: border-box;
+    height: 60px; /* altezza fissa */
   }
 
   .apple-contact-field input:focus {
-  border: 1px solid rgba(0,0,0,0.4); /* sempre 1px */
-  outline: 2px solid rgba(0,122,255,0.9); /* bordo azzurro esterno */  
+    border: 2px solid rgba(0,122,255,0.9);
   }
 
   .apple-contact-button {
