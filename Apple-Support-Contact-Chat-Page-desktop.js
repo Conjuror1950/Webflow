@@ -17,7 +17,7 @@ const css = `
   .apple-contact-form {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 14px;
   }
 
   .apple-contact-field input {
@@ -155,9 +155,15 @@ const css = `
     }
   }
 
-  .apple-contact-field {
-    position: relative;
-  }
+.apple-contact-field {
+  position: relative;
+  margin-bottom: 0; /* ⬅️ distanza base minima */
+}
+
+/* quando c'è un errore → aumenta lo spazio per non comprimere */
+.apple-contact-field.has-error {
+  margin-bottom: 12px; /* ⬅️ puoi aumentarlo se vuoi più aria */
+}
 `;
 
   function createStyles(){
