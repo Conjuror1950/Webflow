@@ -17,7 +17,7 @@
   .apple-contact-form {
     display: flex;
     flex-direction: column;
-    gap: 14.2px;
+    gap: 14.5px;
   }
 
   .apple-contact-field input {
