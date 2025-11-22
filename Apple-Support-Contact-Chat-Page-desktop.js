@@ -215,7 +215,7 @@ function buildForm(){
         if(!val) showFieldError(input, container, input===nome?'Inserisci un nome valido.':'Inserisci un cognome valido.');
         else hideFieldError(input, container);
       } else if(input === email){
-        if(!val) showFieldError(input, container, `Inserisci l'email.`);
+        if(!val) showFieldError(input, container, `Inserisci un indirizzo email valido.`);
         else if(!isValidEmail(val)) showFieldError(input, container, 'Inserisci un indirizzo email valido.');
         else hideFieldError(input, container);
       }
