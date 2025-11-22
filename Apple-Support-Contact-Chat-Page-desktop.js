@@ -42,7 +42,7 @@ const css = `
 
   /* stato di errore (campo rosso) */
   .apple-contact-field.has-error input {
-    border: 2px solid rgb(227,0,0);   /* bordo rosso più definito */
+    border: 1px solid rgb(227,0,0);   /* bordo rosso più definito */
     box-shadow: none;
     color: rgb(227,0,0);              /* testo dentro l'input diventa rosso */
     caret-color: rgb(227,0,0);
