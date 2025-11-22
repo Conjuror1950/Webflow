@@ -78,6 +78,7 @@
   left: 18px;
   top: 18px;
   font-size: 17px;
+  font-weight: 400;
   color: rgba(0,0,0,0.5);
   pointer-events: none;
   transition: 0.2s ease all;
