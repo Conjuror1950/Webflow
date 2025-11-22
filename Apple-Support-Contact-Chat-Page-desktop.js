@@ -180,8 +180,13 @@ function buildForm(){
     if(!container) return;
     input.parentElement.classList.add('has-error');
     container.innerHTML = `
-<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-  <path fill="#b00020" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" width="16" height="16">
+  <!-- cerchio rosso con interno trasparente -->
+  <circle cx="12" cy="12" r="10" fill="transparent" stroke="rgb(227,0,0)" stroke-width="2"/>
+  
+  <!-- esclamativo rosso -->
+  <line x1="12" y1="7" x2="12" y2="13" stroke="rgb(227,0,0)" stroke-width="2"/>
+  <circle cx="12" cy="17" r="1.5" fill="rgb(227,0,0)"/>
 </svg>
       <span>${msg}</span>
     `;
