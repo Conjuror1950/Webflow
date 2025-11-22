@@ -45,7 +45,6 @@ const css = `
     border: 1px solid rgb(227,0,0);   /* bordo rosso più definito */
     box-shadow: none;
     color: rgb(227,0,0);              /* testo dentro l'input diventa rosso */
-    caret-color: rgb(227,0,0);
     transition: border 0.18s ease, box-shadow 0.18s ease, color 0.18s ease;
   }
 
