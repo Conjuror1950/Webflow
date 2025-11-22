@@ -99,7 +99,6 @@
   color: rgba(244,249,254);        /* testo più tenue */
   cursor: default;               /* cursore di default quando disabilitato */
   box-shadow: none;
-  opacity: 0.9;                    /* se vuoi, puoi abbassare l'opacità es. 0.9 */
 }
   `;
 
