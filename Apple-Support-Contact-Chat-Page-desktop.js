@@ -89,7 +89,6 @@
 .apple-contact-field input:not(:placeholder-shown) + label {
   top: 5px;
   font-size: 13px;
-  padding: 0 4px;
 }
   `;
 
