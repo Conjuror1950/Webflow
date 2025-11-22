@@ -68,6 +68,30 @@
     width: 100% !important;
   }
 }
+
+.apple-contact-field {
+  position: relative;
+}
+
+.apple-contact-field label {
+  position: absolute;
+  left: 18px;
+  top: 18px;
+  font-size: 17px;
+  color: rgba(0,0,0,0.5);
+  pointer-events: none;
+  transition: 0.2s ease all;
+}
+
+.apple-contact-field input:focus + label,
+.apple-contact-field input:not(:placeholder-shown) + label {
+  top: -8px;
+  left: 16px;
+  font-size: 13px;
+  color: #007aff;
+  background: white;
+  padding: 0 4px;
+}
   `;
 
   function createStyles(){
@@ -86,13 +110,16 @@
       <h2 class="apple-contact-title">Avvia una conversazione con Andrea</h2>
       <form class="apple-contact-form" novalidate>
         <div class="apple-contact-field">
-          <input id="acf-nome" name="nome" type="text" placeholder="Nome" aria-required="true" />
+          <input id="acf-nome" name="nome" type="text" aria-required="true" />
+          <label for="acf-nome">Nome</label>
         </div>
         <div class="apple-contact-field">
-          <input id="acf-cognome" name="cognome" type="text" placeholder="Cognome" aria-required="true" />
+          <input id="acf-cognome" name="cognome" type="text" aria-required="true" />
+          <label for="acf-cognome">Cognome</label>
         </div>
         <div class="apple-contact-field">
-          <input id="acf-email" name="email" type="email" placeholder="Email" aria-required="true" />
+          <input id="acf-email" name="email" type="email" aria-required="true" />
+          <label for="acf-email">Email</label>
         </div>
 
         <button type="submit" class="apple-contact-button" id="acf-submit">Continua</button>
