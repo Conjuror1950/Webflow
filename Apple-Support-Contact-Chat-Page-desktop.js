@@ -91,8 +91,8 @@
   }
 
   .field-error svg {
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
     flex: 0 0 16px;
   }
 
@@ -180,7 +180,7 @@ function buildForm(){
     if(!container) return;
     input.parentElement.classList.add('has-error');
     container.innerHTML = `
-<svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" width="16" height="16">
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" width="16" height="16">
   <!-- cerchio rosso con interno trasparente -->
   <circle cx="12" cy="12" r="10" fill="transparent" stroke="rgb(227,0,0)" stroke-width="2"/>
   
