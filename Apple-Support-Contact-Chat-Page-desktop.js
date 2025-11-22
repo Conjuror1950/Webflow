@@ -91,9 +91,9 @@
   }
 
   .field-error svg {
-    width: 12px;
-    height: 12px;
-    flex: 0 0 10px;
+    width: 13px;
+    height: 13px;
+    flex: 0 0 16px;
   }
 
   @media (max-width: 550px) {
