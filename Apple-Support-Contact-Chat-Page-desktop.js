@@ -93,6 +93,14 @@
   top: 8px;
   font-size: 13px;
 }
+
+.apple-contact-button:disabled {
+  background: #d6d6d6;           /* grigio chiaro */
+  color: rgba(0,0,0,0.6);        /* testo più tenue */
+  cursor: default;               /* cursore di default quando disabilitato */
+  box-shadow: none;
+  opacity: 1;                    /* se vuoi, puoi abbassare l'opacità es. 0.9 */
+}
   `;
 
   function createStyles(){
@@ -123,7 +131,7 @@ function buildForm(){
         <label for="acf-email">Email</label>
       </div>
 
-      <button type="submit" class="apple-contact-button" id="acf-submit">Continua</button>
+      <button type="submit" class="apple-contact-button" id="acf-submit" disabled>Continua</button>
 
       <div class="apple-contact-error" id="acf-error" aria-live="polite" role="alert"></div>
     </form>
@@ -151,6 +159,39 @@ function buildForm(){
     });
   });
 
+  // --- disabilita il pulsante di default (ridondante se hai già disabled in HTML)
+  submit.disabled = true;
+  submit.setAttribute('aria-disabled', 'true');
+
+  // funzione di validazione per la email
+  const isValidEmail = (v) => /^\S+@\S+\.\S+$/.test(v);
+
+  // aggiorna stato del bottone: abilitato solo se tutti i campi sono compilati correttamente
+  function updateButtonState() {
+    const nomeVal = nome.value.trim();
+    const cognomeVal = cognome.value.trim();
+    const emailVal = email.value.trim();
+
+    const allValid = nomeVal.length > 0 && cognomeVal.length > 0 && isValidEmail(emailVal);
+
+    submit.disabled = !allValid;
+    submit.setAttribute('aria-disabled', (!allValid).toString());
+  }
+
+  // ascolta gli input per validare in tempo reale
+  inputs.forEach(input => {
+    // già hai mouseenter/mouseleave; aggiungi event listener per input
+    input.addEventListener('input', () => {
+      // rimuovi titolo se compilato (comportamento già presente nel mouseenter)
+      if (input.value.trim()) input.removeAttribute('title');
+
+      updateButtonState();
+    });
+  });
+
+  // invoca una volta all'inizio per impostare lo stato corretto
+  updateButtonState();
+  
   form.addEventListener('submit', function(e){
     e.preventDefault();
     error.textContent = '';
