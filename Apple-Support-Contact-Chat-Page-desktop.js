@@ -1,7 +1,7 @@
 (function(){
   const rootId = 'avvia-una-conversazione-con-andrea-container';
 
-  const css = `
+const css = `
   .apple-contact-wrap {
     max-width: 600px;
     font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
@@ -31,7 +31,8 @@
     box-sizing: border-box;
     height: 60px;
     box-shadow: inset 0 0 0 1px rgba(0,0,0,0.4);
-    transition: border 0.18s ease, box-shadow 0.18s ease;
+    transition: border 0.18s ease, box-shadow 0.18s ease, color 0.18s ease;
+    caret-color: rgb(227,0,0);
   }
 
   .apple-contact-field input:focus {
@@ -39,25 +40,26 @@
     box-shadow: none;
   }
 
-.apple-contact-field.has-error input {
-  border: 1px solid rgb(227,0,0);   /* bordo rosso più definito */
-  box-shadow: none;
-  color: rgba(227,0,0,0.4);              /* testo dentro l'input diventa rosso */
-  transition: border 0.18s ease, box-shadow 0.18s ease, color 0.18s ease;
-}
+  /* stato di errore (campo rosso) */
+  .apple-contact-field.has-error input {
+    border: 2px solid rgb(227,0,0);   /* bordo rosso più definito */
+    box-shadow: none;
+    color: rgb(227,0,0);              /* testo dentro l'input diventa rosso */
+    caret-color: rgb(227,0,0);
+    transition: border 0.18s ease, box-shadow 0.18s ease, color 0.18s ease;
+  }
 
-/* etichetta diventa rossa quando il campo è in stato di errore */
-.apple-contact-field.has-error label {
-  color: rgb(227,0,0);
-  transition: color 0.18s ease;
-}
+  /* label diventa rossa quando il campo è in stato di errore */
+  .apple-contact-field.has-error label {
+    color: rgb(227,0,0);
+    transition: color 0.18s ease;
+  }
 
-/* opzionale: se usi placeholder visuale, rendi anche il placeholder rosso */
-.apple-contact-field.has-error input::placeholder {
-  color: rgb(227,0,0);
-  opacity: 0.9;
-}
-
+  /* placeholder (se visibile) diventa rosso nell'errore */
+  .apple-contact-field.has-error input::placeholder {
+    color: rgb(227,0,0);
+    opacity: 0.9;
+  }
 
   .apple-contact-button {
     padding: 18px 32px;
@@ -130,7 +132,8 @@
     letter-spacing: -0.2px;
     color: rgba(0,0,0,0.5);
     pointer-events: none;
-    transition: 0.2s ease all;
+    /* animiamo esplicitamente top, font-size e color per transizioni fluide */
+    transition: top 0.18s ease, font-size 0.18s ease, color 0.18s ease;
   }
 
   .apple-contact-field input:focus + label,
@@ -138,7 +141,7 @@
     top: 8px;
     font-size: 13px;
   }
-  `;
+`;
 
   function createStyles(){
     if(document.getElementById('apple-contact-styles')) return;
