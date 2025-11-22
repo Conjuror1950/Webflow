@@ -31,11 +31,18 @@
     box-sizing: border-box;
     height: 60px; /* altezza fissa */
     box-shadow: inset 0 0 0 1px rgba(0,0,0,0.4); /* bordo iniziale 1px */
+    transition: border 0.18s ease, box-shadow 0.18s ease;
   }
 
   .apple-contact-field input:focus {
     border: 2px solid rgba(0,122,255,0.9);
     box-shadow: none; /* rimuovi il bordo finto */
+  }
+
+  /* stato di errore (campo rosso) */
+  .apple-contact-field.has-error input {
+    border: 2px solid #b00020;
+    box-shadow: none;
   }
 
   .apple-contact-button {
@@ -52,6 +59,13 @@
     margin-top: 35px; /* ← aumenta la distanza dagli input */
   }
 
+  .apple-contact-button:disabled {
+    background: #94c4f4;           /* azzurro chiaro */
+    color: rgba(244,249,254);        /* testo più tenue */
+    cursor: default;               /* cursore di default quando disabilitato */
+    box-shadow: none;
+  }
+
   .apple-contact-error {
     color: #b00020;
     font-size: 13px;
@@ -64,6 +78,24 @@
     padding: 12px 14px;
     border-radius: 10px;
     color: #064b23;
+  }
+
+  /* messaggio di errore sotto il singolo campo */
+  .field-error {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+    font-size: 13px;
+    color: #b00020;
+    line-height: 1;
+    min-height: 18px;
+  }
+
+  .field-error svg {
+    width: 16px;
+    height: 16px;
+    flex: 0 0 16px;
   }
 
   @media (max-width: 550px) {
@@ -93,13 +125,6 @@
   top: 8px;
   font-size: 13px;
 }
-
-.apple-contact-button:disabled {
-  background: #94c4f4;           /* azzurro chiaro */
-  color: rgba(244,249,254);        /* testo più tenue */
-  cursor: default;               /* cursore di default quando disabilitato */
-  box-shadow: none;
-}
   `;
 
   function createStyles(){
@@ -114,20 +139,24 @@ function buildForm(){
   const wrap = document.createElement('section');
   wrap.className = 'apple-contact-wrap';
 
+  // Nota: aggiunte le div .field-error sotto ogni input
   wrap.innerHTML = `
     <h2 class="apple-contact-title">Avvia una conversazione con Andrea</h2>
     <form class="apple-contact-form" novalidate>
       <div class="apple-contact-field">
         <input id="acf-nome" name="nome" type="text" placeholder=" " aria-required="true" />
         <label for="acf-nome">Nome</label>
+        <div class="field-error" aria-live="polite"></div>
       </div>
       <div class="apple-contact-field">
         <input id="acf-cognome" name="cognome" type="text" placeholder=" " aria-required="true" />
         <label for="acf-cognome">Cognome</label>
+        <div class="field-error" aria-live="polite"></div>
       </div>
       <div class="apple-contact-field">
         <input id="acf-email" name="email" type="email" placeholder=" " aria-required="true" />
         <label for="acf-email">Email</label>
+        <div class="field-error" aria-live="polite"></div>
       </div>
 
       <button type="submit" class="apple-contact-button" id="acf-submit" disabled>Continua</button>
@@ -142,6 +171,11 @@ function buildForm(){
   const email = wrap.querySelector('#acf-email');
   const submit = wrap.querySelector('#acf-submit');
   const error = wrap.querySelector('#acf-error');
+
+  // trova i container di errore per ogni campo
+  const nomeErrorDiv = nome.parentElement.querySelector('.field-error');
+  const cognomeErrorDiv = cognome.parentElement.querySelector('.field-error');
+  const emailErrorDiv = email.parentElement.querySelector('.field-error');
 
   // TOOLTIP SUGLI INPUT VUOTI
   const inputs = [nome, cognome, email];
@@ -165,6 +199,24 @@ function buildForm(){
   // funzione di validazione per la email
   const isValidEmail = (v) => /^\S+@\S+\.\S+$/.test(v);
 
+  // mostra messaggio d'errore sotto il singolo campo con icona
+  function showFieldError(input, container, msg) {
+    if(!container) return;
+    input.parentElement.classList.add('has-error');
+    container.innerHTML = `
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <path fill="#b00020" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+      </svg>
+      <span>${msg}</span>
+    `;
+  }
+
+  function hideFieldError(input, container) {
+    if(!container) return;
+    input.parentElement.classList.remove('has-error');
+    container.innerHTML = '';
+  }
+
   // aggiorna stato del bottone: abilitato solo se tutti i campi sono compilati correttamente
   function updateButtonState() {
     const nomeVal = nome.value.trim();
@@ -177,12 +229,35 @@ function buildForm(){
     submit.setAttribute('aria-disabled', (!allValid).toString());
   }
 
-  // ascolta gli input per validare in tempo reale
+  // eventi per ogni input: input (rimuove errore) e blur (valida singolo campo)
   inputs.forEach(input => {
-    // già hai mouseenter/mouseleave; aggiungi event listener per input
+    const container = input.parentElement.querySelector('.field-error');
+
     input.addEventListener('input', () => {
-      // rimuovi titolo se compilato (comportamento già presente nel mouseenter)
+      // rimuovi titolo e messaggio di errore mentre l'utente scrive
       if (input.value.trim()) input.removeAttribute('title');
+      hideFieldError(input, container);
+      error.textContent = '';
+      updateButtonState();
+    });
+
+    input.addEventListener('blur', () => {
+      const val = input.value.trim();
+      if (input === nome || input === cognome) {
+        if (!val) {
+          showFieldError(input, container, input === nome ? 'Inserisci un nome valido.' : 'Inserisci un cognome valido.');
+        } else {
+          hideFieldError(input, container);
+        }
+      } else if (input === email) {
+        if (!val) {
+          showFieldError(input, container, 'Inserisci l\'email.');
+        } else if (!isValidEmail(val)) {
+          showFieldError(input, container, 'Inserisci un indirizzo email valido.');
+        } else {
+          hideFieldError(input, container);
+        }
+      }
 
       updateButtonState();
     });
@@ -195,10 +270,35 @@ function buildForm(){
     e.preventDefault();
     error.textContent = '';
 
-    if(!nome.value.trim()){ error.textContent='Inserisci un nome valido'; nome.focus(); return; }
-    if(!cognome.value.trim()){ error.textContent='Inserisci un cognome valido'; cognome.focus(); return; }
-    if(!email.value.trim()){ error.textContent='Inserisci l\'email.'; email.focus(); return; }
-    if(!/^\S+@\S+\.\S+$/.test(email.value)){ error.textContent='Inserisci un indirizzo email valido.'; email.focus(); return; }
+    // validazione singoli campi e showFieldError se necessario (così appare il messaggio sotto il singolo input)
+    if(!nome.value.trim()){ 
+      showFieldError(nome, nomeErrorDiv, 'Inserisci un nome valido.'); 
+      nome.focus(); 
+      return; 
+    } else {
+      hideFieldError(nome, nomeErrorDiv);
+    }
+
+    if(!cognome.value.trim()){ 
+      showFieldError(cognome, cognomeErrorDiv, 'Inserisci un cognome valido.'); 
+      cognome.focus(); 
+      return; 
+    } else {
+      hideFieldError(cognome, cognomeErrorDiv);
+    }
+
+    if(!email.value.trim()){ 
+      showFieldError(email, emailErrorDiv, 'Inserisci l\\'email.'); 
+      email.focus(); 
+      return; 
+    }
+    if(!/^\S+@\S+\.\S+$/.test(email.value)){ 
+      showFieldError(email, emailErrorDiv, 'Inserisci un indirizzo email valido.'); 
+      email.focus(); 
+      return; 
+    } else {
+      hideFieldError(email, emailErrorDiv);
+    }
 
     submit.disabled = true;
     submit.textContent = 'Invio...';
