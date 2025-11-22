@@ -87,7 +87,7 @@
     font-size: 12px;
     color: rgb(227,0,0);
     line-height: 1;
-    min-height: 25px;
+    min-height: 18px;
   }
 
   .field-error svg {
