@@ -82,7 +82,7 @@
   .field-error {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 2px;
     margin-top: 6px;
     font-size: 12px;
     color: rgb(227,0,0);
