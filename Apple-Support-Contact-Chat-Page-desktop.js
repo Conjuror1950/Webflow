@@ -22,13 +22,12 @@
 
   .apple-contact-field input {
     width: 490px;
-    padding: 18px 18px;
+    padding: 23px 18px;
     border-radius: 14px;
     border: 1px solid rgba(0,0,0,0.4);
     font-size: 17px;
     letter-spacing: -0.2px;
     outline: none;
-    transition: box-shadow .15s, border-color .15s;
   }
 
   .apple-contact-field input:focus {
