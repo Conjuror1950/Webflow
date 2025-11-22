@@ -29,7 +29,7 @@
     letter-spacing: -0.2px;
     outline: none;
     box-sizing: border-box;
-    height: 60px; /* altezza fissa */
+    height: 55px; /* altezza fissa */
   }
 
   .apple-contact-field input:focus {
