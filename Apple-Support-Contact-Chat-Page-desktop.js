@@ -48,7 +48,7 @@ const css = `
     border: 1px solid rgb(227,0,0);   /* bordo rosso*/
     box-shadow: none;
     color: rgb(227,0,0);              /* testo dentro l'input diventa rosso */
-    background: rgb (255, 242, 244);
+    background: rgb(227,0,0);
     caret-color: #111; /* <-- aggiungi qui */
     transition: border 0.18s ease, box-shadow 0.18s ease, color 0.18s ease;
   }
