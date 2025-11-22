@@ -85,8 +85,7 @@ const css = `
 
   /* placeholder (se visibile) diventa rosso nell'errore */
   .apple-contact-field.has-error input::placeholder {
-    color: rgb(227,0,0);
-    opacity: 0.9;
+    color: rgb (255, 242, 244);
   }
 
   .apple-contact-button {
