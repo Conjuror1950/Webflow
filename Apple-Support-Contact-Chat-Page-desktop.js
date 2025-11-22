@@ -31,7 +31,12 @@ const css = `
     box-sizing: border-box;
     height: 60px;
     box-shadow: inset 0 0 0 1px rgba(0,0,0,0.4);
+    /* transizioni per bordi, ombra e colore testo */
     transition: border 0.18s ease, box-shadow 0.18s ease, color 0.18s ease;
+    /* caret non forzato: lascia il colore di sistema di default */
+    caret-color: auto;
+    background: transparent;
+    color: inherit;
   }
 
   .apple-contact-field input:focus {
@@ -41,16 +46,41 @@ const css = `
 
   /* stato di errore (campo rosso) */
   .apple-contact-field.has-error input {
-    border: 1px solid rgb(227,0,0);   /* bordo rosso più definito */
+    border: 2px solid rgb(227,0,0);   /* bordo rosso definito */
     box-shadow: none;
     color: rgb(227,0,0);              /* testo dentro l'input diventa rosso */
     transition: border 0.18s ease, box-shadow 0.18s ease, color 0.18s ease;
   }
 
-  /* label diventa rossa quando il campo è in stato di errore */
+  /* label — spostamento tramite transform per transizioni GPU-accelerate e fluide */
+  .apple-contact-field label {
+    position: absolute;
+    left: 18px;
+    top: 18px;
+    font-size: 17px;
+    font-weight: 400;
+    letter-spacing: -0.2px;
+    color: rgba(0,0,0,0.5);
+    pointer-events: none;
+
+    /* usare transform per lo spostamento: più fluido */
+    transform: translateY(0);
+    transform-origin: left top;
+    transition: transform 0.18s ease, font-size 0.18s ease, color 0.18s ease;
+    will-change: transform, font-size, color;
+  }
+
+  /* stato "label ridotta" (focus o campo non vuoto) — spostiamo con transform */
+  .apple-contact-field input:focus + label,
+  .apple-contact-field input:not(:placeholder-shown) + label {
+    transform: translateY(-10px); /* regola il valore se vuoi più/meno spostamento */
+    font-size: 13px;
+  }
+
+  /* label diventa rossa quando il campo è in stato di errore (solo colore) */
   .apple-contact-field.has-error label {
     color: rgb(227,0,0);
-    transition: color 0.18s ease;
+    /* la transition su color è già dichiarata nella label */
   }
 
   /* placeholder (se visibile) diventa rosso nell'errore */
@@ -120,30 +150,6 @@ const css = `
   .apple-contact-field {
     position: relative;
   }
-
-.apple-contact-field label {
-  position: absolute;
-  left: 18px;
-  top: 18px;               /* mantiene il posizionamento di riferimento */
-  font-size: 17px;
-  font-weight: 400;
-  letter-spacing: -0.2px;
-  color: rgba(0,0,0,0.5);
-  pointer-events: none;
-
-  /* usare transform per lo spostamento (più fluido) e includere transform nella transition */
-  transform: translateY(0);
-  transform-origin: left top;
-  transition: transform 0.18s ease, font-size 0.18s ease, color 0.18s ease;
-  will-change: transform, font-size, color;
-  }
-
-/* stato "label ridotta" (focus o campo non vuoto) — spostiamo con transform */
-.apple-contact-field input:focus + label,
-.apple-contact-field input:not(:placeholder-shown) + label {
-  transform: translateY(-10px); /* aggiusta il valore se vuoi più/meno spostamento */
-  font-size: 13px;
-}
 `;
 
   function createStyles(){
