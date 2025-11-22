@@ -88,8 +88,6 @@
   top: -8px;
   left: 16px;
   font-size: 13px;
-  color: #007aff;
-  background: white;
   padding: 0 4px;
 }
   `;
