@@ -29,7 +29,7 @@
     letter-spacing: -0.2px;
     outline: none;
     box-sizing: border-box;
-    height: 55px; /* altezza fissa */
+    height: 60px; /* altezza fissa */
     box-shadow: inset 0 0 0 1px rgba(0,0,0,0.4); /* bordo iniziale 1px */
   }
 
