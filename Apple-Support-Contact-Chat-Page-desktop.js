@@ -63,50 +63,6 @@
     color: #064b23;
   }
 
-.apple-contact-field {
-  position: relative;
-}
-
-.apple-contact-field input {
-  width: 100%;
-  padding: 18px 18px;
-  border-radius: 14px;
-  border: 1px solid rgba(0,0,0,0.4);
-  font-size: 17px;
-  font-weight: 400;
-  font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
-  color: #111;
-  outline: none;
-  transition: box-shadow .15s, border-color .15s;
-}
-
-.apple-contact-field input:focus {
-  border: 1.9px solid rgba(0,122,255,0.9);
-}
-
-.apple-contact-field label {
-  position: absolute;
-  left: 18px;
-  top: 18px; /* parte dentro l'input */
-  font-size: 17px;
-  font-weight: 400;
-  font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
-  color: rgba(0,0,0,0.6);
-  pointer-events: none;
-  transition: all 0.2s ease;
-  background: white;
-  padding: 0 4px;
-}
-
-.apple-contact-field input:focus + label,
-.apple-contact-field input:not(:placeholder-shown) + label {
-  top: -8px; /* sopra l'input */
-  left: 14px;
-  font-size: 13px;
-  font-weight: 600;
-  color: #007aff;
-}
-
   @media (max-width: 550px) {
   .apple-contact-field input {
     width: 100% !important;
@@ -129,20 +85,15 @@
     wrap.innerHTML = `
       <h2 class="apple-contact-title">Avvia una conversazione con Andrea</h2>
       <form class="apple-contact-form" novalidate>
-<div class="apple-contact-field">
-  <input id="acf-nome" name="nome" type="text" placeholder=" " required />
-  <label for="acf-nome">Nome</label>
-</div>
-
-<div class="apple-contact-field">
-  <input id="acf-cognome" name="cognome" type="text" placeholder=" " required /> 
-  <label for="acf-cognome">Cognome</label> 
-</div>
-
-<div class="apple-contact-field">
-  <input id="acf-email" name="email" type="text" placeholder=" "required /> 
-  <label for="acf-email">Email</label> 
-</div>
+        <div class="apple-contact-field">
+          <input id="acf-nome" name="nome" type="text" placeholder="Nome" aria-required="true" />
+        </div>
+        <div class="apple-contact-field">
+          <input id="acf-cognome" name="cognome" type="text" placeholder="Cognome" aria-required="true" />
+        </div>
+        <div class="apple-contact-field">
+          <input id="acf-email" name="email" type="email" placeholder="Email" aria-required="true" />
+        </div>
 
         <button type="submit" class="apple-contact-button" id="acf-submit">Continua</button>
 
