@@ -3,7 +3,7 @@
 
   const css = `
   .apple-contact-wrap {
-    max-width: auto;
+    max-width: 600px;
     font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
     color: #111;
   }
@@ -22,24 +22,23 @@
 
   .apple-contact-field input {
     width: 490px;
-    padding: 25px 18px 10px 18px; /* top 25px, right 18px, bottom 10px, left 18px */
+    padding: 25px 18px 10px 18px;
     border-radius: 14px;
-    border: 2px solid transparent; /* bordo massimo già occupato */
+    border: 2px solid transparent;
     font-size: 17px;
     letter-spacing: -0.2px;
     outline: none;
     box-sizing: border-box;
-    height: 60px; /* altezza fissa */
-    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.4); /* bordo iniziale 1px */
+    height: 60px;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.4);
     transition: border 0.18s ease, box-shadow 0.18s ease;
   }
 
   .apple-contact-field input:focus {
     border: 2px solid rgba(0,122,255,0.9);
-    box-shadow: none; /* rimuovi il bordo finto */
+    box-shadow: none;
   }
 
-  /* stato di errore (campo rosso) */
   .apple-contact-field.has-error input {
     border: 2px solid #b00020;
     box-shadow: none;
@@ -54,15 +53,15 @@
     font-weight: 400;
     font-size: 17px;
     cursor: pointer;
-    width: auto;          /* larghezza minima necessaria */
-    align-self: flex-start; /* allinea il pulsante a sinistra invece di allargarsi */
-    margin-top: 35px; /* ← aumenta la distanza dagli input */
+    width: auto;
+    align-self: flex-start;
+    margin-top: 35px;
   }
 
   .apple-contact-button:disabled {
-    background: #94c4f4;           /* azzurro chiaro */
-    color: rgba(244,249,254);        /* testo più tenue */
-    cursor: default;               /* cursore di default quando disabilitato */
+    background: #94c4f4;
+    color: rgba(244,249,254);
+    cursor: default;
     box-shadow: none;
   }
 
@@ -80,7 +79,6 @@
     color: #064b23;
   }
 
-  /* messaggio di errore sotto il singolo campo */
   .field-error {
     display: flex;
     align-items: center;
@@ -99,32 +97,32 @@
   }
 
   @media (max-width: 550px) {
-  .apple-contact-field input {
-    width: 100% !important;
+    .apple-contact-field input {
+      width: 100% !important;
+    }
   }
-}
 
-.apple-contact-field {
-  position: relative;
-}
+  .apple-contact-field {
+    position: relative;
+  }
 
-.apple-contact-field label {
-  position: absolute;
-  left: 18px;
-  top: 18px;
-  font-size: 17px;
-  font-weight: 400;
-  letter-spacing: -0.2px;
-  color: rgba(0,0,0,0.5);
-  pointer-events: none;
-  transition: 0.2s ease all;
-}
+  .apple-contact-field label {
+    position: absolute;
+    left: 18px;
+    top: 18px;
+    font-size: 17px;
+    font-weight: 400;
+    letter-spacing: -0.2px;
+    color: rgba(0,0,0,0.5);
+    pointer-events: none;
+    transition: 0.2s ease all;
+  }
 
-.apple-contact-field input:focus + label,
-.apple-contact-field input:not(:placeholder-shown) + label {
-  top: 8px;
-  font-size: 13px;
-}
+  .apple-contact-field input:focus + label,
+  .apple-contact-field input:not(:placeholder-shown) + label {
+    top: 8px;
+    font-size: 13px;
+  }
   `;
 
   function createStyles(){
@@ -139,7 +137,6 @@ function buildForm(){
   const wrap = document.createElement('section');
   wrap.className = 'apple-contact-wrap';
 
-  // Nota: aggiunte le div .field-error sotto ogni input
   wrap.innerHTML = `
     <h2 class="apple-contact-title">Avvia una conversazione con Andrea</h2>
     <form class="apple-contact-form" novalidate>
@@ -160,7 +157,6 @@ function buildForm(){
       </div>
 
       <button type="submit" class="apple-contact-button" id="acf-submit" disabled>Continua</button>
-
       <div class="apple-contact-error" id="acf-error" aria-live="polite" role="alert"></div>
     </form>
   `;
@@ -172,34 +168,14 @@ function buildForm(){
   const submit = wrap.querySelector('#acf-submit');
   const error = wrap.querySelector('#acf-error');
 
-  // trova i container di errore per ogni campo
   const nomeErrorDiv = nome.parentElement.querySelector('.field-error');
   const cognomeErrorDiv = cognome.parentElement.querySelector('.field-error');
   const emailErrorDiv = email.parentElement.querySelector('.field-error');
 
-  // TOOLTIP SUGLI INPUT VUOTI
   const inputs = [nome, cognome, email];
-  inputs.forEach(input => {
-    input.addEventListener('mouseenter', () => {
-      if(!input.value.trim()) {
-        input.title = "Compila questo campo.";
-      } else {
-        input.removeAttribute('title');
-      }
-    });
-    input.addEventListener('mouseleave', () => {
-      input.removeAttribute('title');
-    });
-  });
 
-  // --- disabilita il pulsante di default (ridondante se hai già disabled in HTML)
-  submit.disabled = true;
-  submit.setAttribute('aria-disabled', 'true');
-
-  // funzione di validazione per la email
   const isValidEmail = (v) => /^\S+@\S+\.\S+$/.test(v);
 
-  // mostra messaggio d'errore sotto il singolo campo con icona
   function showFieldError(input, container, msg) {
     if(!container) return;
     input.parentElement.classList.add('has-error');
@@ -217,25 +193,17 @@ function buildForm(){
     container.innerHTML = '';
   }
 
-  // aggiorna stato del bottone: abilitato solo se tutti i campi sono compilati correttamente
   function updateButtonState() {
-    const nomeVal = nome.value.trim();
-    const cognomeVal = cognome.value.trim();
-    const emailVal = email.value.trim();
-
-    const allValid = nomeVal.length > 0 && cognomeVal.length > 0 && isValidEmail(emailVal);
-
+    const allValid = nome.value.trim() && cognome.value.trim() && isValidEmail(email.value.trim());
     submit.disabled = !allValid;
     submit.setAttribute('aria-disabled', (!allValid).toString());
   }
 
-  // eventi per ogni input: input (rimuove errore) e blur (valida singolo campo)
   inputs.forEach(input => {
     const container = input.parentElement.querySelector('.field-error');
 
     input.addEventListener('input', () => {
-      // rimuovi titolo e messaggio di errore mentre l'utente scrive
-      if (input.value.trim()) input.removeAttribute('title');
+      if(input.value.trim()) input.removeAttribute('title');
       hideFieldError(input, container);
       error.textContent = '';
       updateButtonState();
@@ -243,62 +211,28 @@ function buildForm(){
 
     input.addEventListener('blur', () => {
       const val = input.value.trim();
-      if (input === nome || input === cognome) {
-        if (!val) {
-          showFieldError(input, container, input === nome ? 'Inserisci un nome valido.' : 'Inserisci un cognome valido.');
-        } else {
-          hideFieldError(input, container);
-        }
-      } else if (input === email) {
-        if (!val) {
-          showFieldError(input, container, 'Inserisci l\'email.');
-        } else if (!isValidEmail(val)) {
-          showFieldError(input, container, 'Inserisci un indirizzo email valido.');
-        } else {
-          hideFieldError(input, container);
-        }
+      if(input === nome || input === cognome){
+        if(!val) showFieldError(input, container, input===nome?'Inserisci un nome valido.':'Inserisci un cognome valido.');
+        else hideFieldError(input, container);
+      } else if(input === email){
+        if(!val) showFieldError(input, container, `Inserisci l'email.`);
+        else if(!isValidEmail(val)) showFieldError(input, container, 'Inserisci un indirizzo email valido.');
+        else hideFieldError(input, container);
       }
-
       updateButtonState();
     });
   });
 
-  // invoca una volta all'inizio per impostare lo stato corretto
   updateButtonState();
-  
+
   form.addEventListener('submit', function(e){
     e.preventDefault();
     error.textContent = '';
 
-    // validazione singoli campi e showFieldError se necessario (così appare il messaggio sotto il singolo input)
-    if(!nome.value.trim()){ 
-      showFieldError(nome, nomeErrorDiv, 'Inserisci un nome valido.'); 
-      nome.focus(); 
-      return; 
-    } else {
-      hideFieldError(nome, nomeErrorDiv);
-    }
-
-    if(!cognome.value.trim()){ 
-      showFieldError(cognome, cognomeErrorDiv, 'Inserisci un cognome valido.'); 
-      cognome.focus(); 
-      return; 
-    } else {
-      hideFieldError(cognome, cognomeErrorDiv);
-    }
-
-    if(!email.value.trim()){ 
-      showFieldError(email, emailErrorDiv, 'Inserisci l\\'email.'); 
-      email.focus(); 
-      return; 
-    }
-    if(!/^\S+@\S+\.\S+$/.test(email.value)){ 
-      showFieldError(email, emailErrorDiv, 'Inserisci un indirizzo email valido.'); 
-      email.focus(); 
-      return; 
-    } else {
-      hideFieldError(email, emailErrorDiv);
-    }
+    if(!nome.value.trim()){ showFieldError(nome, nomeErrorDiv, 'Inserisci un nome valido.'); nome.focus(); return; }
+    if(!cognome.value.trim()){ showFieldError(cognome, cognomeErrorDiv, 'Inserisci un cognome valido.'); cognome.focus(); return; }
+    if(!email.value.trim()){ showFieldError(email, emailErrorDiv, `Inserisci l'email.`); email.focus(); return; }
+    if(!isValidEmail(email.value.trim())){ showFieldError(email, emailErrorDiv, 'Inserisci un indirizzo email valido.'); email.focus(); return; }
 
     submit.disabled = true;
     submit.textContent = 'Invio...';
@@ -314,9 +248,7 @@ function buildForm(){
   function mount(target){
     createStyles();
     const wrap = buildForm();
-
     if(!target) target = document.getElementById(rootId) || document.body;
-
     target.appendChild(wrap);
   }
 
@@ -328,7 +260,7 @@ function buildForm(){
 
   window.AppleContactForm = {
     mountTo(elOrId){
-      let el = typeof elOrId==='string' ? document.getElementById(elOrId) : elOrId;
+      let el = typeof elOrId==='string'?document.getElementById(elOrId):elOrId;
       if(!el) throw new Error('Target element not found');
       const existing = el.querySelector('.apple-contact-wrap');
       if(existing) existing.remove();
