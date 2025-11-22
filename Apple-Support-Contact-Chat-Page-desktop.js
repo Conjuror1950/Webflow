@@ -197,7 +197,9 @@
       const field = input.closest('.apple-contact-field');
 
       // stato iniziale: se ha valore (es. ritorno pagina) tieni la label in alto
-      if(input.value && input.value.trim() !== '') field.classList.add('active');
+      if (input.value && input.value.trim() !== '') {
+        field.classList.add('active');
+      }
 
       // quando prendi focus: la label sale sempre (anche se vuota)
       input.addEventListener('focus', () => {
@@ -206,29 +208,28 @@
 
       // mentre scrivi: se c'è contenuto mantieni active; se cancelli tutto resta active se sei in focus
       input.addEventListener('input', () => {
-        if(input.value && input.value.trim() !== '') {
+        if (input.value && input.value.trim() !== '') {
           field.classList.add('active');
         } else {
-          if(document.activeElement !== input){
+          if (document.activeElement !== input) {
             field.classList.remove('active');
           }
-          // se sei in focus e vuoto, mantieni active (Apple lascia la label in alto mentre l'utente è sul campo)
         }
       });
 
       // quando perdi il focus: se è vuoto la label torna giù; se ha contenuto la label rimane in alto
       input.addEventListener('blur', () => {
-        if(!input.value || input.value.trim() === '') {
+        if (!input.value || input.value.trim() === '') {
           field.classList.remove('active');
         } else {
           field.classList.add('active');
         }
       });
 
-      // per accessibilità: se valore impostato programmaticamente aggiorna stato
+      // se il valore viene impostato programmaticamente, tieni la label sincronizzata
       const observer = new MutationObserver(() => {
-        if(input.value && input.value.trim() !== '') field.classList.add('active');
-        else if(document.activeElement !== input) field.classList.remove('active');
+        if (input.value && input.value.trim() !== '') field.classList.add('active');
+        else if (document.activeElement !== input) field.classList.remove('active');
       });
       observer.observe(input, { attributes: true, attributeFilter: ['value'] });
     }
@@ -240,17 +241,17 @@
       e.preventDefault();
       error.textContent = '';
 
-      if(!nome.value.trim()){ error.textContent='Inserisci un nome valido'; nome.focus(); return; }
-      if(!cognome.value.trim()){ error.textContent='Inserisci un cognome valido'; cognome.focus(); return; }
-      if(!email.value.trim()){ error.textContent='Inserisci l\\'email.'; email.focus(); return; }
-      if(!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email.value)){ error.textContent='Inserisci un indirizzo email valido.'; email.focus(); return; }
+      if (!nome.value.trim()) { error.textContent = 'Inserisci un nome valido'; nome.focus(); return; }
+      if (!cognome.value.trim()) { error.textContent = 'Inserisci un cognome valido'; cognome.focus(); return; }
+      if (!email.value.trim()) { error.textContent = "Inserisci l'email."; email.focus(); return; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) { error.textContent = 'Inserisci un indirizzo email valido.'; email.focus(); return; }
 
       submit.disabled = true;
       submit.textContent = 'Invio...';
 
       // simulazione invio
-      setTimeout(()=>{
-        wrap.innerHTML = \`<div class="apple-contact-success" role="status"><strong>Grazie!</strong><div>Ti contatteremo presto.</div></div>\`;
+      setTimeout(() => {
+        wrap.innerHTML = '<div class="apple-contact-success" role="status"><strong>Grazie!</strong><div>Ti contatteremo presto.</div></div>';
       }, 700);
     });
 
@@ -264,15 +265,15 @@
     target.appendChild(wrap);
   }
 
-  if(document.readyState==='loading'){
-    document.addEventListener('DOMContentLoaded', ()=>mount());
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', () => mount());
   } else {
     mount();
   }
 
   window.AppleContactForm = {
     mountTo(elOrId){
-      let el = typeof elOrId==='string' ? document.getElementById(elOrId) : elOrId;
+      let el = typeof elOrId === 'string' ? document.getElementById(elOrId) : elOrId;
       if(!el) throw new Error('Target element not found');
       const existing = el.querySelector('.apple-contact-wrap');
       if(existing) existing.remove();
