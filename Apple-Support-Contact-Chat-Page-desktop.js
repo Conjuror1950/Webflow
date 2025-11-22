@@ -121,24 +121,29 @@ const css = `
     position: relative;
   }
 
-  .apple-contact-field label {
-    position: absolute;
-    left: 18px;
-    top: 18px;
-    font-size: 17px;
-    font-weight: 400;
-    letter-spacing: -0.2px;
-    color: rgba(0,0,0,0.5);
-    pointer-events: none;
-    /* animiamo esplicitamente top, font-size e color per transizioni fluide */
-    transition: top 0.18s ease, font-size 0.18s ease, color 0.18s ease;
+.apple-contact-field label {
+  position: absolute;
+  left: 18px;
+  top: 18px;               /* mantiene il posizionamento di riferimento */
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: -0.2px;
+  color: rgba(0,0,0,0.5);
+  pointer-events: none;
+
+  /* usare transform per lo spostamento (più fluido) e includere transform nella transition */
+  transform: translateY(0);
+  transform-origin: left top;
+  transition: transform 0.18s ease, font-size 0.18s ease, color 0.18s ease;
+  will-change: transform, font-size, color;
   }
 
-  .apple-contact-field input:focus + label,
-  .apple-contact-field input:not(:placeholder-shown) + label {
-    top: 8px;
-    font-size: 13px;
-  }
+/* stato "label ridotta" (focus o campo non vuoto) — spostiamo con transform */
+.apple-contact-field input:focus + label,
+.apple-contact-field input:not(:placeholder-shown) + label {
+  transform: translateY(-10px); /* aggiusta il valore se vuoi più/meno spostamento */
+  font-size: 13px;
+}
 `;
 
   function createStyles(){
