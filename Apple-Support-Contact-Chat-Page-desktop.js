@@ -63,30 +63,34 @@
     color: #064b23;
   }
 
-  @media (max-width: 550px) {
-  .apple-contact-field input {
-    width: 100% !important;
-  }
-
 .apple-contact-field {
   position: relative;
 }
 
 .apple-contact-field input {
-  font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  width: 100%;
+  padding: 18px 18px;
+  border-radius: 14px;
+  border: 1px solid rgba(0,0,0,0.4);
   font-size: 17px;
   font-weight: 400;
+  font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
   color: #111;
+  outline: none;
+  transition: box-shadow .15s, border-color .15s;
+}
+
+.apple-contact-field input:focus {
+  border: 1.9px solid rgba(0,122,255,0.9);
 }
 
 .apple-contact-field label {
   position: absolute;
   left: 18px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  top: 18px; /* parte dentro l'input */
   font-size: 17px;
   font-weight: 400;
+  font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
   color: rgba(0,0,0,0.6);
   pointer-events: none;
   transition: all 0.2s ease;
@@ -96,14 +100,17 @@
 
 .apple-contact-field input:focus + label,
 .apple-contact-field input:not(:placeholder-shown) + label {
-  top: -10px;
+  top: -8px; /* sopra l'input */
   left: 14px;
   font-size: 13px;
   font-weight: 600;
   color: #007aff;
-  transform: none;
 }
 
+  @media (max-width: 550px) {
+  .apple-contact-field input {
+    width: 100% !important;
+  }
 }
   `;
 
