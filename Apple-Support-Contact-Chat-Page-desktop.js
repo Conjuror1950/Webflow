@@ -39,10 +39,25 @@
     box-shadow: none;
   }
 
-  .apple-contact-field.has-error input {
-    border: 1px solid rgb(227,0,0);
-    box-shadow: none;
-  }
+.apple-contact-field.has-error input {
+  border: 1px solid rgb(227,0,0);   /* bordo rosso più definito */
+  box-shadow: none;
+  color: rgba(227,0,0,0.4);              /* testo dentro l'input diventa rosso */
+  transition: border 0.18s ease, box-shadow 0.18s ease, color 0.18s ease;
+}
+
+/* etichetta diventa rossa quando il campo è in stato di errore */
+.apple-contact-field.has-error label {
+  color: rgb(227,0,0);
+  transition: color 0.18s ease;
+}
+
+/* opzionale: se usi placeholder visuale, rendi anche il placeholder rosso */
+.apple-contact-field.has-error input::placeholder {
+  color: rgb(227,0,0);
+  opacity: 0.9;
+}
+
 
   .apple-contact-button {
     padding: 18px 32px;
