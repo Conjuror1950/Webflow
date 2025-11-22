@@ -79,6 +79,7 @@
   top: 18px;
   font-size: 17px;
   font-weight: 400;
+  letter-spacing: -0.2px;
   color: rgba(0,0,0,0.5);
   pointer-events: none;
   transition: 0.2s ease all;
@@ -86,7 +87,7 @@
 
 .apple-contact-field input:focus + label,
 .apple-contact-field input:not(:placeholder-shown) + label {
-  top: -8px;
+  top: -4px;
   left: 16px;
   font-size: 13px;
   padding: 0 4px;
