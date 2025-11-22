@@ -84,8 +84,8 @@
     align-items: center;
     gap: 8px;
     margin-top: 6px;
-    font-size: 13px;
-    color: #b00020;
+    font-size: 12px;
+    color: rgb(227,0,0);
     line-height: 1;
     min-height: 18px;
   }
