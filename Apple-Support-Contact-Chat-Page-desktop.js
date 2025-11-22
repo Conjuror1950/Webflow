@@ -35,7 +35,7 @@ const css = `
     transition: border 0.18s ease, box-shadow 0.18s ease, color 0.18s ease;
     background: transparent;
     color: inherit;
-    caret-color: default; /* <-- aggiungi qui */
+    caret-color: #111; /* <-- aggiungi qui */
   }
 
   .apple-contact-field input:focus {
@@ -48,7 +48,7 @@ const css = `
     border: 1px solid rgb(227,0,0);   /* bordo rosso*/
     box-shadow: none;
     color: rgb(227,0,0);              /* testo dentro l'input diventa rosso */
-    caret-color: default; /* <-- aggiungi qui */
+    caret-color: #111; /* <-- aggiungi qui */
     transition: border 0.18s ease, box-shadow 0.18s ease, color 0.18s ease;
   }
 
