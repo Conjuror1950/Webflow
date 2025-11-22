@@ -110,15 +110,15 @@
       <h2 class="apple-contact-title">Avvia una conversazione con Andrea</h2>
       <form class="apple-contact-form" novalidate>
         <div class="apple-contact-field">
-          <input id="acf-nome" name="nome" type="text" aria-required="true" />
+          <input id="acf-nome" name="nome" type="text" placeholder=" " aria-required="true" />
           <label for="acf-nome">Nome</label>
         </div>
         <div class="apple-contact-field">
-          <input id="acf-cognome" name="cognome" type="text" aria-required="true" />
+          <input id="acf-cognome" name="cognome" type="text" placeholder=" " aria-required="true" />
           <label for="acf-cognome">Cognome</label>
         </div>
         <div class="apple-contact-field">
-          <input id="acf-email" name="email" type="email" aria-required="true" />
+          <input id="acf-email" name="email" type="email" placeholder=" " aria-required="true" />
           <label for="acf-email">Email</label>
         </div>
 
