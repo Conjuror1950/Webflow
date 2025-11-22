@@ -96,10 +96,10 @@
 
 .apple-contact-button:disabled {
   background: #94c4f4;           /* azzurro chiaro */
-  color: rgba(244,249,254,0.8);        /* testo più tenue */
+  color: rgba(244,249,254);        /* testo più tenue */
   cursor: default;               /* cursore di default quando disabilitato */
   box-shadow: none;
-  opacity: 0.8;                    /* se vuoi, puoi abbassare l'opacità es. 0.9 */
+  opacity: 0.9;                    /* se vuoi, puoi abbassare l'opacità es. 0.9 */
 }
   `;
 
