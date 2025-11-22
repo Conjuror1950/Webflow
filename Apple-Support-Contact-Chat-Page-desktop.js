@@ -32,7 +32,6 @@ const css = `
     height: 60px;
     box-shadow: inset 0 0 0 1px rgba(0,0,0,0.4);
     transition: border 0.18s ease, box-shadow 0.18s ease, color 0.18s ease;
-    caret-color: rgb(227,0,0);
   }
 
   .apple-contact-field input:focus {
