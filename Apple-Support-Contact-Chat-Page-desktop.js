@@ -82,12 +82,12 @@
   .field-error {
     display: flex;
     align-items: center;
-    gap: 2px;
+    gap: 3px;
     margin-top: 6px;
     font-size: 12px;
     color: rgb(227,0,0);
     line-height: 1;
-    min-height: 18px;
+    min-height: 25px;
   }
 
   .field-error svg {
