@@ -58,6 +58,7 @@ const css = `
   border: 2px solid rgba(0,122,255,0.9) !important;
   box-shadow: none;
   background: transparent; /* opzionale: rimuove background rosato durante il focus */
+  transition: border 0.18s ease, background 0.18s ease;
 }
 
   /* label — spostamento tramite transform per transizioni GPU-accelerate e fluide */
