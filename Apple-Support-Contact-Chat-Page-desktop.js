@@ -88,7 +88,7 @@
 .apple-contact-field input:focus + label,
 .apple-contact-field input:not(:placeholder-shown) + label {
   top: 5px;
-  left: 16px;
+  left: 10px;
   font-size: 13px;
   padding: 0 4px;
 }
