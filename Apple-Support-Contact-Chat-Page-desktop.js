@@ -103,58 +103,73 @@
     document.head.appendChild(s);
   }
 
-  function buildForm(){
-    const wrap = document.createElement('section');
-    wrap.className = 'apple-contact-wrap';
+function buildForm(){
+  const wrap = document.createElement('section');
+  wrap.className = 'apple-contact-wrap';
 
-    wrap.innerHTML = `
-      <h2 class="apple-contact-title">Avvia una conversazione con Andrea</h2>
-      <form class="apple-contact-form" novalidate>
-        <div class="apple-contact-field">
-          <input id="acf-nome" name="nome" type="text" placeholder=" " aria-required="true" />
-          <label for="acf-nome">Nome</label>
-        </div>
-        <div class="apple-contact-field">
-          <input id="acf-cognome" name="cognome" type="text" placeholder=" " aria-required="true" />
-          <label for="acf-cognome">Cognome</label>
-        </div>
-        <div class="apple-contact-field">
-          <input id="acf-email" name="email" type="email" placeholder=" " aria-required="true" />
-          <label for="acf-email">Email</label>
-        </div>
+  wrap.innerHTML = `
+    <h2 class="apple-contact-title">Avvia una conversazione con Andrea</h2>
+    <form class="apple-contact-form" novalidate>
+      <div class="apple-contact-field">
+        <input id="acf-nome" name="nome" type="text" placeholder=" " aria-required="true" />
+        <label for="acf-nome">Nome</label>
+      </div>
+      <div class="apple-contact-field">
+        <input id="acf-cognome" name="cognome" type="text" placeholder=" " aria-required="true" />
+        <label for="acf-cognome">Cognome</label>
+      </div>
+      <div class="apple-contact-field">
+        <input id="acf-email" name="email" type="email" placeholder=" " aria-required="true" />
+        <label for="acf-email">Email</label>
+      </div>
 
-        <button type="submit" class="apple-contact-button" id="acf-submit">Continua</button>
+      <button type="submit" class="apple-contact-button" id="acf-submit">Continua</button>
 
-        <div class="apple-contact-error" id="acf-error" aria-live="polite" role="alert"></div>
-      </form>
-    `;
+      <div class="apple-contact-error" id="acf-error" aria-live="polite" role="alert"></div>
+    </form>
+  `;
 
-    const form = wrap.querySelector('form');
-    const nome = wrap.querySelector('#acf-nome');
-    const cognome = wrap.querySelector('#acf-cognome');
-    const email = wrap.querySelector('#acf-email');
-    const submit = wrap.querySelector('#acf-submit');
-    const error = wrap.querySelector('#acf-error');
+  const form = wrap.querySelector('form');
+  const nome = wrap.querySelector('#acf-nome');
+  const cognome = wrap.querySelector('#acf-cognome');
+  const email = wrap.querySelector('#acf-email');
+  const submit = wrap.querySelector('#acf-submit');
+  const error = wrap.querySelector('#acf-error');
 
-    form.addEventListener('submit', function(e){
-      e.preventDefault();
-      error.textContent = '';
-
-      if(!nome.value.trim()){ error.textContent='Inserisci un nome valido'; nome.focus(); return; }
-      if(!cognome.value.trim()){ error.textContent='Inserisci un cognome valido'; cognome.focus(); return; }
-      if(!email.value.trim()){ error.textContent='Inserisci l\'email.'; email.focus(); return; }
-      if(!/^\S+@\S+\.\S+$/.test(email.value)){ error.textContent='Inserisci un indirizzo email valido.'; email.focus(); return; }
-
-      submit.disabled = true;
-      submit.textContent = 'Invio...';
-
-      setTimeout(()=>{
-        wrap.innerHTML = `<div class="apple-contact-success" role="status"><strong>Grazie!</strong><div>Ti contatteremo presto.</div></div>`;
-      }, 700);
+  // TOOLTIP SUGLI INPUT VUOTI
+  const inputs = [nome, cognome, email];
+  inputs.forEach(input => {
+    input.addEventListener('mouseenter', () => {
+      if(!input.value.trim()) {
+        input.title = "Compila questo campo.";
+      } else {
+        input.removeAttribute('title');
+      }
     });
+    input.addEventListener('mouseleave', () => {
+      input.removeAttribute('title');
+    });
+  });
 
-    return wrap;
-  }
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    error.textContent = '';
+
+    if(!nome.value.trim()){ error.textContent='Inserisci un nome valido'; nome.focus(); return; }
+    if(!cognome.value.trim()){ error.textContent='Inserisci un cognome valido'; cognome.focus(); return; }
+    if(!email.value.trim()){ error.textContent='Inserisci l\'email.'; email.focus(); return; }
+    if(!/^\S+@\S+\.\S+$/.test(email.value)){ error.textContent='Inserisci un indirizzo email valido.'; email.focus(); return; }
+
+    submit.disabled = true;
+    submit.textContent = 'Invio...';
+
+    setTimeout(()=>{
+      wrap.innerHTML = `<div class="apple-contact-success" role="status"><strong>Grazie!</strong><div>Ti contatteremo presto.</div></div>`;
+    }, 700);
+  });
+
+  return wrap;
+}
 
   function mount(target){
     createStyles();
