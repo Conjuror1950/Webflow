@@ -67,6 +67,31 @@
   .apple-contact-field input {
     width: 100% !important;
   }
+
+.apple-contact-field {
+  position: relative;
+}
+
+.apple-contact-field label {
+  position: absolute;
+  left: 18px;
+  top: 18px;
+  font-size: 17px;
+  color: rgba(0,0,0,0.6);
+  pointer-events: none;
+  transition: all 0.2s ease;
+}
+
+.apple-contact-field input:focus + label,
+.apple-contact-field input:not(:placeholder-shown) + label {
+  top: -10px;
+  left: 14px;
+  font-size: 13px;
+  color: #007aff;
+  background: white;
+  padding: 0 4px;
+}
+
 }
   `;
 
