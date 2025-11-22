@@ -53,6 +53,13 @@ const css = `
     transition: border 0.18s ease, box-shadow 0.18s ease, color 0.18s ease; background 0.18s ease;
   }
 
+ /* quando il campo è in errore ma riceve focus, mostra il bordo focus azzurro */
+ .apple-contact-field.has-error input:focus {
+  border: 2px solid rgba(0,122,255,0.9) !important;
+  box-shadow: none;
+  background: transparent; /* opzionale: rimuove background rosato durante il focus */
+}
+
   /* label — spostamento tramite transform per transizioni GPU-accelerate e fluide */
   .apple-contact-field label {
     position: absolute;
