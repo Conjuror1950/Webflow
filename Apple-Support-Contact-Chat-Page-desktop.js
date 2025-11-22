@@ -234,6 +234,18 @@ function buildForm(){
   inputs.forEach(input => {
     const container = input.parentElement.querySelector('.field-error');
 
+    // mostra tooltip su hover se il campo è vuoto
+input.addEventListener('mouseenter', () => {
+  if (!input.value.trim()) {
+    input.title = 'Compila questo campo.';
+  } else {
+    input.removeAttribute('title');
+  }
+});
+input.addEventListener('mouseleave', () => {
+  input.removeAttribute('title');
+});
+
     input.addEventListener('input', () => {
       if(input.value.trim()) input.removeAttribute('title');
       hideFieldError(input, container);
