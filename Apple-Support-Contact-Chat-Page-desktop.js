@@ -157,7 +157,7 @@ const css = `
 
 .apple-contact-field {
   position: relative;
-  margin-bottom: 0; /* ⬅️ distanza base minima */
+  margin-bottom: -20px; /* ⬅️ distanza base minima */
 }
 
 /* quando c'è un errore → aumenta lo spazio per non comprimere */
