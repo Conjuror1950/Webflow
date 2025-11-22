@@ -33,9 +33,9 @@
   border-radius: 14px;
   border: 1px solid rgba(0,0,0,0.4);
   font-size: 17px;
+  font-weight: 400;
   letter-spacing: -0.2px;
   outline: none;
-  transition: box-shadow .15s, border-color .15s;
   background: transparent;
 }
 
