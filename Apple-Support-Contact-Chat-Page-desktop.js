@@ -40,7 +40,7 @@
   }
 
   .apple-contact-field.has-error input {
-    border: 2px solid #b00020;
+    border: 1px solid rgb(227,0,0);
     box-shadow: none;
   }
 
@@ -181,7 +181,7 @@ function buildForm(){
     input.parentElement.classList.add('has-error');
     container.innerHTML = `
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-        <path fill="#b00020" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+        <path fill="rgb(227,0,0)" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
       </svg>
       <span>${msg}</span>
     `;
