@@ -8,7 +8,7 @@ var INACTIVE_LINK = "https://support-andreaingrassia.webflow.io/contact"; // red
 var REMOTE_JS_URL = "https://andreaingrassia.netlify.app/apple-support-contact-chat-desktop.js";
 
 // Timeout per il fetch (ms) — breve per fallire velocemente in caso di CORS e usare fallback
-var FETCH_TIMEOUT = 2000;
+var FETCH_TIMEOUT = 1000;
 
 (function () {
   'use strict';
