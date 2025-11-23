@@ -2,7 +2,7 @@
 // Scarica il file JS remoto, estrae `var schedule = { ... }` e fa redirect IMMEDIATO
 // CONFIG: modifica questi link come preferisci
 var ACTIVE_LINK = "https://support-andreaingrassia.webflow.io/contact/chat";      // redirect quando disponibile
-var INACTIVE_LINK = "https://support-andreaingrassia.webflow.io/contact"; // redirect quando non disponibile
+var INACTIVE_LINK = "https://support-andreaingrassia.webflow.io/contact/chat"; // redirect quando non disponibile
 
 // URL del file che contiene lo schedule (quello che hai indicato)
 var REMOTE_JS_URL = "https://andreaingrassia.netlify.app/apple-support-contact-chat-desktop.js";
