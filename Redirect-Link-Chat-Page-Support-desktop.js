@@ -1,5 +1,5 @@
-// chat-redirect-from-remote-schedule.js
-// Scarica il file JS remoto, estrae `var schedule = { ... }` e fa redirect
+// chat-redirect-now.js
+// Scarica il file JS remoto, estrae `var schedule = { ... }` e fa redirect IMMEDIATO
 // CONFIG: modifica questi link come preferisci
 var ACTIVE_LINK = "https://support-andreaingrassia.webflow.io/contact/chat";      // redirect quando disponibile
 var INACTIVE_LINK = "https://support-andreaingrassia.webflow.io/contact"; // redirect quando non disponibile
@@ -7,22 +7,28 @@ var INACTIVE_LINK = "https://support-andreaingrassia.webflow.io/contact"; // red
 // URL del file che contiene lo schedule (quello che hai indicato)
 var REMOTE_JS_URL = "https://andreaingrassia.netlify.app/apple-support-contact-chat-desktop.js";
 
-// Timeout per il fetch (ms)
-var FETCH_TIMEOUT = 500;
+// Timeout per il fetch (ms) — breve per fallire velocemente in caso di CORS e usare fallback
+var FETCH_TIMEOUT = 3000;
 
 (function () {
   'use strict';
 
-  // helper: fetch con timeout
+  // fetch con timeout
   function fetchWithTimeout(url, options, timeout) {
+    timeout = typeof timeout === 'number' ? timeout : FETCH_TIMEOUT;
     return new Promise(function (resolve, reject) {
+      var didTimeOut = false;
       var timer = setTimeout(function () {
+        didTimeOut = true;
         reject(new Error('Fetch timeout'));
-      }, timeout || FETCH_TIMEOUT);
+      }, timeout);
+
       fetch(url, options).then(function (res) {
+        if (didTimeOut) return;
         clearTimeout(timer);
         resolve(res);
       }).catch(function (err) {
+        if (didTimeOut) return;
         clearTimeout(timer);
         reject(err);
       });
@@ -31,30 +37,24 @@ var FETCH_TIMEOUT = 500;
 
   // Estrae la stringa dell'oggetto schedule dal testo JS remoto
   function extractScheduleObjectText(jsText) {
-    // cerca "var schedule = { ... };"   (non greedy)
     var re = /var\s+schedule\s*=\s*({[\s\S]*?});/m;
     var m = re.exec(jsText);
     if (!m) return null;
-    return m[1]; // la parte { ... }
+    return m[1];
   }
 
-  // Valuta in modo mirato il literal dell'oggetto schedule
+  // Valuta il literal dell'oggetto schedule in modo mirato
   function evaluateScheduleLiteral(objText) {
-    // Per sicurezza: limitiamo l'esecuzione a solo una "return (<objText>)"
-    // Questo eviterà l'esecuzione di altre parti del file remoto.
     try {
-      // Trasformiamo la stringa in una funzione e la eseguiamo
-      // (nota: stiamo ancora eseguendo codice dinamico, ma solo della porzione estratta)
       var fn = new Function('return (' + objText + ');');
-      var evaluated = fn();
-      return evaluated;
+      return fn();
     } catch (err) {
       console.error('Errore valutando schedule literal:', err);
       return null;
     }
   }
 
-  // Normalizza schedule (chiavi numeriche -> int, valori null o oggetti con startHour,...)
+  // Normalizza schedule (chiavi numeriche -> int)
   function normalizeSchedule(raw) {
     if (!raw || typeof raw !== 'object') return null;
     var out = {};
@@ -65,12 +65,11 @@ var FETCH_TIMEOUT = 500;
       if (v === null) {
         out[keyInt] = null;
       } else if (typeof v === 'object') {
-        // assicurati di avere tutte le proprietà numeriche
         out[keyInt] = {
-          startHour: Number(v.startHour || v.startHour === 0 ? v.startHour : v.startHour),
-          startMinute: Number(v.startMinute || v.startMinute === 0 ? v.startMinute : v.startMinute) || 0,
-          endHour: Number(v.endHour || v.endHour === 0 ? v.endHour : v.endHour),
-          endMinute: Number(v.endMinute || v.endMinute === 0 ? v.endMinute : v.endMinute) || 0
+          startHour: Number(v.startHour || 0),
+          startMinute: Number(v.startMinute || 0),
+          endHour: Number(v.endHour || 0),
+          endMinute: Number(v.endMinute || 0)
         };
       } else {
         out[keyInt] = null;
@@ -79,48 +78,51 @@ var FETCH_TIMEOUT = 500;
     return out;
   }
 
-  // Ottieni ore/minuti in Europe/Rome come numeri (integer)
+  // Ottieni ora/minuti in Europe/Rome
   function getRomeHourMinute(date) {
-    // Usa Intl per ottenere ora/minuti nel fuso Europe/Rome
     var hours = parseInt(new Intl.DateTimeFormat('en-GB', { hour: 'numeric', hour12: false, timeZone: 'Europe/Rome' }).format(date), 10);
     var minutes = parseInt(new Intl.DateTimeFormat('en-GB', { minute: 'numeric', timeZone: 'Europe/Rome' }).format(date), 10);
     return { hours: hours, minutes: minutes };
   }
 
-  // Dato schedule normalizzato, determina se ora corrente è in una finestra attiva
+  // Verifica se "ora" è in orario disponibile
   function isNowAvailable(schedule) {
     if (!schedule) return false;
     var now = new Date();
     var dm = getRomeHourMinute(now);
-    var hours = dm.hours, minutes = dm.minutes;
-    var nowMinutes = hours * 60 + minutes;
-    var today = parseInt(new Intl.DateTimeFormat('en-GB', { weekday: 'numeric', timeZone: 'Europe/Rome' }).format(now), 10);
-    // NOTE: Intl weekday numeric with en-GB gives 1=Mon..7=Sun — but original schedule uses 0=Sun..6=Sat
-    // Convert to 0=Sun..6=Sat:
-    // If Intl gives 1..7 (Mon..Sun), map: (weekday % 7)
-    var todayIndex = (today % 7); // 1->1 ... 6->6, 7->0
+    var nowMinutes = dm.hours * 60 + dm.minutes;
+
+    // Intl weekday numeric (en-GB) => 1=Mon .. 7=Sun; mappiamo a 0=Sun..6=Sat
+    var weekdayNum = parseInt(new Intl.DateTimeFormat('en-GB', { weekday: 'numeric', timeZone: 'Europe/Rome' }).format(now), 10);
+    var todayIndex = (weekdayNum % 7);
 
     var todaySchedule = schedule[todayIndex];
-    if (todaySchedule) {
-      var startMinutes = todaySchedule.startHour * 60 + (todaySchedule.startMinute || 0);
-      var endMinutes = todaySchedule.endHour * 60 + (todaySchedule.endMinute || 0);
-      if (nowMinutes >= startMinutes && nowMinutes < endMinutes) return true;
-    }
-    return false;
+    if (!todaySchedule) return false;
+    var startMinutes = (Number(todaySchedule.startHour) || 0) * 60 + (Number(todaySchedule.startMinute) || 0);
+    var endMinutes = (Number(todaySchedule.endHour) || 0) * 60 + (Number(todaySchedule.endMinute) || 0);
+    return nowMinutes >= startMinutes && nowMinutes < endMinutes;
   }
 
-  // fallback: se non riusciamo a fetchare o parsare, cerca un object schedule definito globalmente
+  // fallback globale (se fetch fallisce per CORS, il dev può definire window.APP_CHAT_SCHEDULE)
   function getScheduleFromWindowFallback() {
-    // consenti al dev di popolare window.APP_CHAT_SCHEDULE = { ... } nel caso CORS fallisca
     if (typeof window.APP_CHAT_SCHEDULE !== 'undefined') {
       return normalizeSchedule(window.APP_CHAT_SCHEDULE);
     }
     return null;
   }
 
-  // ESECUZIONE PRINCIPALE
+  // Esegui redirect in modo sicuro (try/catch)
+  function safeRedirect(url) {
+    try {
+      window.location.href = url;
+    } catch (e) {
+      console.error('Redirect failed:', e);
+    }
+  }
+
+  // MAIN: esegui tutto subito al caricamento
   (function main() {
-    // 1) fetch del file remoto con timeout
+    // Prova fetch rapido del file remoto
     fetchWithTimeout(REMOTE_JS_URL, { method: 'GET', mode: 'cors' }, FETCH_TIMEOUT)
       .then(function (res) {
         if (!res.ok) throw new Error('HTTP ' + res.status);
@@ -129,12 +131,12 @@ var FETCH_TIMEOUT = 500;
       .then(function (text) {
         var objText = extractScheduleObjectText(text);
         if (!objText) {
-          console.warn('Impossibile trovare "var schedule = { ... }" nel file remoto.');
+          console.warn('Var schedule non trovata nel file remoto.');
           return Promise.reject(new Error('schedule.not.found'));
         }
         var raw = evaluateScheduleLiteral(objText);
         if (!raw) {
-          console.warn('Errore valutando lo schedule estratto.');
+          console.warn('Errore valutando schedule estratto.');
           return Promise.reject(new Error('schedule.eval.error'));
         }
         var schedule = normalizeSchedule(raw);
@@ -142,32 +144,22 @@ var FETCH_TIMEOUT = 500;
           console.warn('Schedule normalizzato non valido.');
           return Promise.reject(new Error('schedule.normalize.error'));
         }
-        return Promise.resolve(schedule);
+        // Redirect immediato basato sullo schedule estratto
+        if (isNowAvailable(schedule)) safeRedirect(ACTIVE_LINK);
+        else safeRedirect(INACTIVE_LINK);
+        return Promise.resolve();
       })
       .catch(function (err) {
-        console.warn('Fetch/parse schedule fallito:', err.message || err);
-        // prova fallback globale
+        console.warn('Fetch/parse schedule fallito:', err && err.message ? err.message : err);
+        // fallback immediato a window.APP_CHAT_SCHEDULE
         var fallback = getScheduleFromWindowFallback();
         if (fallback) {
-          return Promise.resolve(fallback);
+          if (isNowAvailable(fallback)) safeRedirect(ACTIVE_LINK);
+          else safeRedirect(INACTIVE_LINK);
+          return;
         }
-        return Promise.reject(err);
-      })
-      .then(function (schedule) {
-        // se siamo qui, schedule è valido (normalizzato). Decidi redirect:
-        var available = isNowAvailable(schedule);
-        if (available) {
-          // redirect immediato su link attivo
-          window.location.href = ACTIVE_LINK;
-        } else {
-          window.location.href = INACTIVE_LINK;
-        }
-      })
-      .catch(function (finalErr) {
-        // Errore definitivo: log e fallback al link INACTIVE_LINK (per evitare che utente rimanga fermo)
-        console.error('Errore nel processo di redirect basato su schedule:', finalErr);
-        // fallback: prova redirect su INACTIVE_LINK (o elimina per non reindirizzare)
-        try { window.location.href = INACTIVE_LINK; } catch (e) { /* ignore */ }
+        // fallback finale: redirect su INACTIVE_LINK per evitare che l'utente resti bloccato
+        safeRedirect(INACTIVE_LINK);
       });
   })();
 
