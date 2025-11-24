@@ -1,19 +1,14 @@
 // chat-redirect-now.js
-// Scarica il file JS remoto, estrae `var schedule = { ... }` e fa redirect IMMEDIATO
-// CONFIG: modifica questi link come preferisci
-var ACTIVE_LINK = "https://support-andreaingrassia.webflow.io/get-support/chat";      // redirect quando disponibile
-var INACTIVE_LINK = "https://support-andreaingrassia.webflow.io/get-support"; // redirect quando non disponibile
-
-// URL del file che contiene lo schedule (quello che hai indicato)
+var ACTIVE_LINK = "https://support-andreaingrassia.webflow.io/get-support/chat";    // redirect quando disponibile
+var INACTIVE_LINK = "https://support-andreaingrassia.webflow.io/get-support";       // redirect quando offline
 var REMOTE_JS_URL = "https://andreaingrassia.netlify.app/apple-support-contact-chat-desktop.js";
 
-// Timeout per il fetch (ms) — breve per fallire velocemente in caso di CORS e usare fallback
-var FETCH_TIMEOUT = 100;
+// Aumentato il timeout per evitare falsi fallimenti su reti normali
+var FETCH_TIMEOUT = 2000;
 
 (function () {
   'use strict';
 
-  // fetch con timeout
   function fetchWithTimeout(url, options, timeout) {
     timeout = typeof timeout === 'number' ? timeout : FETCH_TIMEOUT;
     return new Promise(function (resolve, reject) {
@@ -35,7 +30,6 @@ var FETCH_TIMEOUT = 100;
     });
   }
 
-  // Estrae la stringa dell'oggetto schedule dal testo JS remoto
   function extractScheduleObjectText(jsText) {
     var re = /var\s+schedule\s*=\s*({[\s\S]*?});/m;
     var m = re.exec(jsText);
@@ -43,7 +37,6 @@ var FETCH_TIMEOUT = 100;
     return m[1];
   }
 
-  // Valuta il literal dell'oggetto schedule in modo mirato
   function evaluateScheduleLiteral(objText) {
     try {
       var fn = new Function('return (' + objText + ');');
@@ -54,7 +47,6 @@ var FETCH_TIMEOUT = 100;
     }
   }
 
-  // Normalizza schedule (chiavi numeriche -> int)
   function normalizeSchedule(raw) {
     if (!raw || typeof raw !== 'object') return null;
     var out = {};
@@ -78,23 +70,20 @@ var FETCH_TIMEOUT = 100;
     return out;
   }
 
-  // Ottieni ora/minuti in Europe/Rome
   function getRomeHourMinute(date) {
     var hours = parseInt(new Intl.DateTimeFormat('en-GB', { hour: 'numeric', hour12: false, timeZone: 'Europe/Rome' }).format(date), 10);
     var minutes = parseInt(new Intl.DateTimeFormat('en-GB', { minute: 'numeric', timeZone: 'Europe/Rome' }).format(date), 10);
     return { hours: hours, minutes: minutes };
   }
 
-  // Verifica se "ora" è in orario disponibile
   function isNowAvailable(schedule) {
     if (!schedule) return false;
     var now = new Date();
     var dm = getRomeHourMinute(now);
     var nowMinutes = dm.hours * 60 + dm.minutes;
 
-    // Intl weekday numeric (en-GB) => 1=Mon .. 7=Sun; mappiamo a 0=Sun..6=Sat
     var weekdayNum = parseInt(new Intl.DateTimeFormat('en-GB', { weekday: 'numeric', timeZone: 'Europe/Rome' }).format(now), 10);
-    var todayIndex = (weekdayNum % 7);
+    var todayIndex = (weekdayNum % 7); // 1=Mon..7=Sun -> map 0=Sun..6=Sat
 
     var todaySchedule = schedule[todayIndex];
     if (!todaySchedule) return false;
@@ -103,7 +92,6 @@ var FETCH_TIMEOUT = 100;
     return nowMinutes >= startMinutes && nowMinutes < endMinutes;
   }
 
-  // fallback globale (se fetch fallisce per CORS, il dev può definire window.APP_CHAT_SCHEDULE)
   function getScheduleFromWindowFallback() {
     if (typeof window.APP_CHAT_SCHEDULE !== 'undefined') {
       return normalizeSchedule(window.APP_CHAT_SCHEDULE);
@@ -111,7 +99,6 @@ var FETCH_TIMEOUT = 100;
     return null;
   }
 
-  // Esegui redirect in modo sicuro (try/catch)
   function safeRedirect(url) {
     try {
       window.location.href = url;
@@ -120,51 +107,60 @@ var FETCH_TIMEOUT = 100;
     }
   }
 
-  // MAIN: esegui tutto subito al caricamento
   (function main() {
-    // Prova fetch rapido del file remoto
     fetchWithTimeout(REMOTE_JS_URL, { method: 'GET', mode: 'cors' }, FETCH_TIMEOUT)
       .then(function (res) {
         if (!res.ok) throw new Error('HTTP ' + res.status);
         return res.text();
       })
       .then(function (text) {
+        // Debug: log del testo ricevuto (rimuovi in produzione)
+        console.log('[chat-redirect] remote js length:', text && text.length);
+
         var objText = extractScheduleObjectText(text);
         if (!objText) {
           console.warn('Var schedule non trovata nel file remoto.');
           return Promise.reject(new Error('schedule.not.found'));
         }
+
         var raw = evaluateScheduleLiteral(objText);
         if (!raw) {
           console.warn('Errore valutando schedule estratto.');
           return Promise.reject(new Error('schedule.eval.error'));
         }
+
         var schedule = normalizeSchedule(raw);
         if (!schedule) {
           console.warn('Schedule normalizzato non valido.');
           return Promise.reject(new Error('schedule.normalize.error'));
         }
 
-        // Redirect SOLO quando NON è disponibile (se disponibile non redirectiamo)
+        console.log('[chat-redirect] schedule:', schedule);
+        // Redirect SOLO quando NON è disponibile
         if (!isNowAvailable(schedule)) {
-        safeRedirect(INACTIVE_LINK);
+          console.log('[chat-redirect] Non disponibile -> redirect a INACTIVE_LINK');
+          safeRedirect(INACTIVE_LINK);
+        } else {
+          console.log('[chat-redirect] Disponibile -> nessun redirect (resta sulla pagina)');
         }
-        // se disponibile -> non facciamo redirect (rimani sulla pagina corrente)
-  
+      })
       .catch(function (err) {
         console.warn('Fetch/parse schedule fallito:', err && err.message ? err.message : err);
-        // fallback immediato a window.APP_CHAT_SCHEDULE
         var fallback = getScheduleFromWindowFallback();
 
         if (fallback) {
-        if (!isNowAvailable(fallback)) {
-        safeRedirect(INACTIVE_LINK);
+          console.log('[chat-redirect] usando fallback window.APP_CHAT_SCHEDULE:', fallback);
+          if (!isNowAvailable(fallback)) {
+            safeRedirect(INACTIVE_LINK);
+          } else {
+            // disponibile -> non fare nulla
+          }
+          return;
         }
-        return;
-        }
-        // fallback finale: non siamo riusciti a determinare lo schedule -> redirect su INACTIVE per non lasciare l'utente bloccato
-        safeRedirect(INACTIVE_LINK);
 
+        // fallback finale: non siamo riusciti a determinare lo schedule -> redirect su INACTIVE per non lasciare l'utente bloccato
+        console.log('[chat-redirect] nessun fallback disponibile -> redirect INACTIVE_LINK');
+        safeRedirect(INACTIVE_LINK);
       });
   })();
 
