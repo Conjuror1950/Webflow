@@ -157,7 +157,7 @@ font-size:15px;
     wrapper.innerHTML = `
 <div class="email-card" tabindex="0">
 <div class="email-avatar" aria-hidden="true">
-  <img class="email-icon" src="https://cdn.prod.website-files.com/6900acd1c3e34a5adaf492fd/69248e4f5fe6cfdc1070e66e_email-online.png" alt="Icona chat">
+  <img class="email-icon" src="https://cdn.prod.website-files.com/6900acd1c3e34a5adaf492fd/69248e4f5fe6cfdc1070e66e_a88337c99df6367a4e9fa0dd35298f2a_email-online.png" alt="Icona chat">
 </div>
   <div class="email-content">
     <h3 class="email-title">${escapeHtml(config.title)}</h3>
@@ -177,7 +177,7 @@ font-size:15px;
     var iconEl = root.querySelector('.email-icon');
 
     // icona disponibile
-    var iconOnline = "https://cdn.prod.website-files.com/6900acd1c3e34a5adaf492fd/69248e4f5fe6cfdc1070e66e_email-online.png";
+    var iconOnline = "https://cdn.prod.website-files.com/6900acd1c3e34a5adaf492fd/69248e4f5fe6cfdc1070e66e_a88337c99df6367a4e9fa0dd35298f2a_email-online.png";
 
     // icona offline (devi mettere il tuo link)
     var iconOffline = "https://cdn.prod.website-files.com/6900acd1c3e34a5adaf492fd/691f7afbddc8230da24819fe_chat%20(1).svg";
