@@ -30,7 +30,7 @@
     root.dataset.appleLiveChatInit = '1';
 
     var wrapper = document.createElement('div');
-    wrapper.className = 'alc-card-wrapper';
+    wrapper.className = 'chat-card-wrapper';
     wrapper.setAttribute('role', 'region');
     wrapper.setAttribute('aria-label', config.title + ' — ' + config.subtitle);
 
@@ -38,12 +38,12 @@
     var style = document.createElement('style');
     var idSelector = '#' + config.containerId;
     style.textContent = `
-${idSelector} .alc-card-wrapper,
-.alc-card-wrapper {
+${idSelector} .chat-card-wrapper,
+.chat-card-wrapper {
 font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 }
 
-.alc-card {
+.chat-card {
 display:flex;
 align-items:center;
 gap:16px;
@@ -54,18 +54,18 @@ width:325px;
 cursor:pointer;
 }
 
-.alc-icon {
+.chat-icon {
 width:40px;
 height:auto;
 display:inline-block;
 }
 
-.alc-content {
+.chat-content {
 flex:1 1 auto;
 min-width:0;
 }
 
-.alc-title {
+.chat-title {
 font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 font-size:17px;
 line-height:25px;
@@ -75,7 +75,7 @@ color: rgb(29,29,31);
 margin:0;
 }
 
-.alc-subtitle {
+.chat-subtitle {
 font-size:14px;
 line-height:18px;
 font-weight: 400;
@@ -83,35 +83,35 @@ letter-spacing: -0.4px;
 color: rgb(29,29,31);
 }
 
-.alc-status {
+.chat-status {
   font-size: 14px;
   line-height:18px;
   font-weight: 400;
   letter-spacing: -0.5px;
   color: rgb(0,128,9);  /* Verde per Disponibile */
 }
-.alc-status.offline {
+.chat-status.offline {
   color: rgb(181,181,181);    /* Grigio per Offline */
 }
 
 @media (max-width:720px){
-.alc-card{
+.chat-card{
 padding:12px;
 gap:12px;
 border-radius:12px;
 }
 
-.alc-avatar{
+.chat-avatar{
 width:52px;
 height:auto;
 } 
 
-.alc-title{
+.chat-title{
 font-size:15px;
 } 
 }
 
-.alc-status {
+.chat-status {
   display: inline-flex;
   align-items: center;
   gap: 4px;
@@ -122,7 +122,7 @@ font-size:15px;
   color: rgb(0,128,9);  /* Verde per Disponibile (testo) */
 }
 
-.status-dot {
+.chat-status-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
@@ -131,23 +131,23 @@ font-size:15px;
 }
 
 /* stato offline */ /* Grigio per Offline (testo) */
-.alc-status.offline {
+.chat-status.offline {
   color: rgb(181,181,181);
 }
-.alc-status.offline .status-dot {
+.chat-status.offline .status-dot {
   background-color: rgb(181,181,181); /* grigio dot */
 }
 
-.alc-card.offline {
+.chat-card.offline {
   pointer-events: none; /* disabilita click */
   cursor: auto;
 }
 
-.alc-title.offline {
+.chat-title.offline {
   color: rgb(181,181,181); /* grigio like Apple */
 }
 
-.alc-subtitle.offline {
+.chat-subtitle.offline {
   color: rgb(181,181,181); /* grigio */
 }
 `;
@@ -155,26 +155,26 @@ font-size:15px;
 
     // HTML
     wrapper.innerHTML = `
-<div class="alc-card" tabindex="0">
-<div class="alc-avatar" aria-hidden="true">
-  <img class="alc-icon" src="https://cdn.prod.website-files.com/6900acd1c3e34a5adaf492fd/691f25bddb8a25199c4b2a7b_chat.svg" alt="Icona chat">
+<div class="chat-card" tabindex="0">
+<div class="chat-avatar" aria-hidden="true">
+  <img class="chat-icon" src="https://cdn.prod.website-files.com/6900acd1c3e34a5adaf492fd/691f25bddb8a25199c4b2a7b_chat.svg" alt="Icona chat">
 </div>
-  <div class="alc-content">
-    <h3 class="alc-title">${escapeHtml(config.title)}</h3>
-    <div class="alc-subtitle" id="alc-subtitle">${escapeHtml(config.subtitle)}</div>
-    <div class="alc-status" id="alc-status" role="status" aria-live="polite">
-  <span class="status-dot" aria-hidden="true"></span>
-  <span class="status-text">...</span>
+  <div class="chat-content">
+    <h3 class="chat-title">${escapeHtml(config.title)}</h3>
+    <div class="chat-subtitle" id="chat-subtitle">${escapeHtml(config.subtitle)}</div>
+    <div class="chat-status" id="chat-status" role="status" aria-live="polite">
+  <span class="chat-status-dot" aria-hidden="true"></span>
+  <span class="chat-status-text">...</span>
 </div>
   </div>
 </div>
 `;
     root.appendChild(wrapper);
 
-    var card = root.querySelector('.alc-card');
-    var statusEl = root.querySelector('#alc-status');
+    var card = root.querySelector('.chat-card');
+    var statusEl = root.querySelector('#chat-status');
 
-    var iconEl = root.querySelector('.alc-icon');
+    var iconEl = root.querySelector('.chat-icon');
 
     // icona disponibile
     var iconOnline = "https://cdn.prod.website-files.com/6900acd1c3e34a5adaf492fd/691f25bddb8a25199c4b2a7b_chat.svg";
@@ -182,8 +182,8 @@ font-size:15px;
     // icona offline (devi mettere il tuo link)
     var iconOffline = "https://cdn.prod.website-files.com/6900acd1c3e34a5adaf492fd/691f7afbddc8230da24819fe_chat%20(1).svg";
 
-    var titleEl = root.querySelector('.alc-title');
-    var subtitleEl = root.querySelector('.alc-subtitle');
+    var titleEl = root.querySelector('.chat-title');
+    var subtitleEl = root.querySelector('.chat-subtitle');
 
     // 📅 Orari per giorno della settimana
     var schedule = {
@@ -221,10 +221,10 @@ function updateStatus() {
     }
   }
 
-  var subtitleEl = root.querySelector('#alc-subtitle');
+  var subtitleEl = root.querySelector('#chat-subtitle');
 
 if (isAvailableToday) {
-    var textEl = statusEl.querySelector('.status-text') || statusEl;
+    var textEl = statusEl.querySelector('.chat-status-text') || statusEl;
     textEl.textContent = "Disponibile";
     statusEl.classList.remove("offline");
 
@@ -263,7 +263,7 @@ if (isAvailableToday) {
   }
 
   // Aggiorna stato e sottotitolo
-  var textEl = statusEl.querySelector('.status-text') || statusEl;
+  var textEl = statusEl.querySelector('.chat-status-text') || statusEl;
   if (found) {
     // formattazione giorno in italiano
     var giorniIt = ['Domenica','Lunedì','Martedì','Mercoledì','Giovedì','Venerdì','Sabato'];
