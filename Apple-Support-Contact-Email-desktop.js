@@ -134,7 +134,7 @@ font-size:15px;
 .email-status.offline {
   color: rgb(181,181,181);
 }
-.email-status.offline .status-dot {
+.email-status.offline .email-status-dot {
   background-color: rgb(181,181,181); /* grigio dot */
 }
 
