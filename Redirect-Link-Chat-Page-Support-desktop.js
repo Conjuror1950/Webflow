@@ -30,12 +30,12 @@ var FETCH_TIMEOUT = 2000;
     });
   }
 
-  function extractScheduleObjectText(jsText) {
-    var re = /var\s+schedule\s*=\s*({[\s\S]*?});/m;
-    var m = re.exec(jsText);
-    if (!m) return null;
-    return m[1];
-  }
+function extractScheduleObjectText(jsText) {
+  var re = /\b(schedule)\s*=\s*({[\s\S]*?});/m;
+  var m = re.exec(jsText);
+  if (!m) return null;
+  return m[2];
+}
 
   function evaluateScheduleLiteral(objText) {
     try {
