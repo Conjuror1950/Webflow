@@ -4,7 +4,7 @@ var INACTIVE_LINK = "https://support-andreaingrassia.webflow.io/get-support";
 
 // 📅 Orari chat per giorno (0=Dom, 1=Lun, ... 6=Sab)
 var SCHEDULE = {
-  1: { startHour: 13, startMinute: 8, endHour: 13, endMinute: 12 },
+  1: { startHour: 13, startMinute: 20, endHour: 13, endMinute: 24 },
   2: { startHour: 9, startMinute: 0, endHour: 20, endMinute: 0 },
   3: { startHour: 9, startMinute: 0, endHour: 20, endMinute: 0 },
   4: { startHour: 9, startMinute: 0, endHour: 20, endMinute: 0 },
