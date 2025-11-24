@@ -180,14 +180,14 @@ font-size:15px;
     var iconOnline = "https://cdn.prod.website-files.com/6900acd1c3e34a5adaf492fd/69248e4f5fe6cfdc1070e66e_a88337c99df6367a4e9fa0dd35298f2a_email-online.png";
 
     // icona offline (devi mettere il tuo link)
-    var iconOffline = "https://cdn.prod.website-files.com/6900acd1c3e34a5adaf492fd/691f7afbddc8230da24819fe_chat%20(1).svg";
+    var iconOffline = "https://cdn.prod.website-files.com/6900acd1c3e34a5adaf492fd/692497fb0b349b0fe14a6d83_email-offline.png";
 
     var titleEl = root.querySelector('.email-title');
     var subtitleEl = root.querySelector('.email-subtitle');
 
     // 📅 Orari per giorno della settimana
     var schedule = {
-      1: { startHour: 16, startMinute: 32, endHour: 20, endMinute: 0 }, // Lun
+      1: { startHour: 18, startMinute: 40, endHour: 18, endMinute: 42 }, // Lun
       2: { startHour: 9, startMinute: 0, endHour: 20, endMinute: 0 }, // Mar
       3: { startHour: 9, startMinute: 0, endHour: 20, endMinute: 0 }, // Mer
       4: { startHour: 9, startMinute: 0, endHour: 20, endMinute: 0 }, // Gio
