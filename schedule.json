@@ -1,9 +1,30 @@
 {
-  "0": null,
-  "1": {"startHour":11,"startMinute":15,"endHour":14,"endMinute":18},
-  "2": {"startHour":9,"startMinute":0,"endHour":20,"endMinute":0},
-  "3": {"startHour":9,"startMinute":0,"endHour":20,"endMinute":0},
-  "4": {"startHour":9,"startMinute":0,"endHour":20,"endMinute":0},
-  "5": {"startHour":9,"startMinute":0,"endHour":20,"endMinute":0},
-  "6": {"startHour":9,"startMinute":0,"endHour":18,"endMinute":0}
+  "timezone": "Europe/Rome",
+  "schedule": {
+    "Sunday": null,
+    "Monday": {
+      "start": "11:15",
+      "end": "14:18"
+    },
+    "Tuesday": {
+      "start": "09:00",
+      "end": "20:00"
+    },
+    "Wednesday": {
+      "start": "09:00",
+      "end": "20:00"
+    },
+    "Thursday": {
+      "start": "09:00",
+      "end": "20:00"
+    },
+    "Friday": {
+      "start": "09:00",
+      "end": "20:00"
+    },
+    "Saturday": {
+      "start": "09:00",
+      "end": "18:00"
+    }
+  }
 }
