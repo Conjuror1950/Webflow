@@ -187,12 +187,12 @@ font-size:15px;
 
     // 📅 Orari per giorno della settimana
     var schedule = {
-      1: { startHour: 18, startMinute: 40, endHour: 18, endMinute: 42 }, // Lun
-      2: { startHour: 9, startMinute: 0, endHour: 20, endMinute: 0 }, // Mar
-      3: { startHour: 9, startMinute: 0, endHour: 20, endMinute: 0 }, // Mer
-      4: { startHour: 9, startMinute: 0, endHour: 20, endMinute: 0 }, // Gio
-      5: { startHour: 9, startMinute: 0, endHour: 20, endMinute: 0 }, // Ven
-      6: { startHour: 9, startMinute: 0, endHour: 18, endMinute: 0 }, // Sabato
+      1: { startHour: 7, startMinute: 0, endHour: 21, endMinute: 0 }, // Lunedì
+      2: { startHour: 7, startMinute: 0, endHour: 21, endMinute: 0 }, // Martedì
+      3: { startHour: 7, startMinute: 0, endHour: 21, endMinute: 0 }, // Mercoledì
+      4: { startHour: 7, startMinute: 0, endHour: 21, endMinute: 0 }, // Giovedì
+      5: { startHour: 7, startMinute: 0, endHour: 21, endMinute: 0 }, // Venerdì
+      6: { startHour: 8, startMinute: 0, endHour: 16, endMinute: 0 }, // Sabato
       0: null // Domenica chiuso
     };
 
