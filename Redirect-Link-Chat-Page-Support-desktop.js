@@ -144,22 +144,27 @@ var FETCH_TIMEOUT = 100;
           console.warn('Schedule normalizzato non valido.');
           return Promise.reject(new Error('schedule.normalize.error'));
         }
-        // Redirect immediato basato sullo schedule estratto
-        if (isNowAvailable(schedule)) safeRedirect(ACTIVE_LINK);
-        else safeRedirect(INACTIVE_LINK);
-        return Promise.resolve();
-      })
+
+        // Redirect SOLO quando NON è disponibile (se disponibile non redirectiamo)
+        if (!isNowAvailable(schedule)) {
+        safeRedirect(INACTIVE_LINK);
+        }
+        // se disponibile -> non facciamo redirect (rimani sulla pagina corrente)
+  
       .catch(function (err) {
         console.warn('Fetch/parse schedule fallito:', err && err.message ? err.message : err);
         // fallback immediato a window.APP_CHAT_SCHEDULE
         var fallback = getScheduleFromWindowFallback();
+
         if (fallback) {
-          if (isNowAvailable(fallback)) safeRedirect(ACTIVE_LINK);
-          else safeRedirect(INACTIVE_LINK);
-          return;
-        }
-        // fallback finale: redirect su INACTIVE_LINK per evitare che l'utente resti bloccato
+        if (!isNowAvailable(fallback)) {
         safeRedirect(INACTIVE_LINK);
+        }
+        return;
+        }
+        // fallback finale: non siamo riusciti a determinare lo schedule -> redirect su INACTIVE per non lasciare l'utente bloccato
+        safeRedirect(INACTIVE_LINK);
+
       });
   })();
 
