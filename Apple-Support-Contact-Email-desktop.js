@@ -6,7 +6,7 @@
   var config = {
     containerId: 'scrivi-al-supporto-container-desktop', // id del tuo div su Webflow
     title: 'Scrivi al supporto',
-    subtitle: 'Avvia una conversazione con Andrea',
+    subtitle: 'Invia la richiesta',
     onButtonClick: function (e) {
       window.location.href = 'https://support-andreaingrassia.webflow.io/get-support/email'; // link desiderato
     },
