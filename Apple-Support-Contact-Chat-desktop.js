@@ -187,7 +187,7 @@ font-size:15px;
 
     // 📅 Orari per giorno della settimana
     var schedule = {
-      1: { startHour: 13, startMinute: 8, endHour: 13, endMinute: 12 }, // Lun
+      1: { startHour: 13, startMinute: 20, endHour: 13, endMinute: 24 }, // Lun
       2: { startHour: 9, startMinute: 0, endHour: 20, endMinute: 0 }, // Mar
       3: { startHour: 9, startMinute: 0, endHour: 20, endMinute: 0 }, // Mer
       4: { startHour: 9, startMinute: 0, endHour: 20, endMinute: 0 }, // Gio
