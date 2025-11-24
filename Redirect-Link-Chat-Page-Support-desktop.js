@@ -1,14 +1,13 @@
 // chat-redirect-now.js
-var ACTIVE_LINK = "https://support-andreaingrassia.webflow.io/get-support/chat";    // redirect quando disponibile
-var INACTIVE_LINK = "https://support-andreaingrassia.webflow.io/get-support";       // redirect quando offline
+var ACTIVE_LINK = "https://support-andreaingrassia.webflow.io/get-support/chat";    // link attivo
+var INACTIVE_LINK = "https://support-andreaingrassia.webflow.io/get-support";       // link offline
 var REMOTE_JS_URL = "https://andreaingrassia.netlify.app/apple-support-contact-chat-desktop.js";
-
-// Aumentato il timeout per evitare falsi fallimenti su reti normali
 var FETCH_TIMEOUT = 2000;
 
 (function () {
   'use strict';
 
+  // fetch con timeout
   function fetchWithTimeout(url, options, timeout) {
     timeout = typeof timeout === 'number' ? timeout : FETCH_TIMEOUT;
     return new Promise(function (resolve, reject) {
@@ -30,17 +29,17 @@ var FETCH_TIMEOUT = 2000;
     });
   }
 
-function extractScheduleObjectText(jsText) {
-  var re = /\b(schedule)\s*=\s*({[\s\S]*?});/m;
-  var m = re.exec(jsText);
-  if (!m) return null;
-  return m[2];
-}
+  // Estrai schedule da JS remoto, compatibile var/let/const
+  function extractScheduleObjectText(jsText) {
+    var re = /\b(schedule)\s*=\s*({[\s\S]*?});/m;
+    var m = re.exec(jsText);
+    if (!m) return null;
+    return m[2]; // restituisce solo il literal {...}
+  }
 
   function evaluateScheduleLiteral(objText) {
     try {
-      var fn = new Function('return (' + objText + ');');
-      return fn();
+      return (new Function('return (' + objText + ');'))();
     } catch (err) {
       console.error('Errore valutando schedule literal:', err);
       return null;
@@ -71,9 +70,10 @@ function extractScheduleObjectText(jsText) {
   }
 
   function getRomeHourMinute(date) {
-    var hours = parseInt(new Intl.DateTimeFormat('en-GB', { hour: 'numeric', hour12: false, timeZone: 'Europe/Rome' }).format(date), 10);
-    var minutes = parseInt(new Intl.DateTimeFormat('en-GB', { minute: 'numeric', timeZone: 'Europe/Rome' }).format(date), 10);
-    return { hours: hours, minutes: minutes };
+    return {
+      hours: parseInt(new Intl.DateTimeFormat('en-GB', { hour: 'numeric', hour12: false, timeZone: 'Europe/Rome' }).format(date), 10),
+      minutes: parseInt(new Intl.DateTimeFormat('en-GB', { minute: 'numeric', timeZone: 'Europe/Rome' }).format(date), 10)
+    };
   }
 
   function isNowAvailable(schedule) {
@@ -83,12 +83,18 @@ function extractScheduleObjectText(jsText) {
     var nowMinutes = dm.hours * 60 + dm.minutes;
 
     var weekdayNum = parseInt(new Intl.DateTimeFormat('en-GB', { weekday: 'numeric', timeZone: 'Europe/Rome' }).format(now), 10);
-    var todayIndex = (weekdayNum % 7); // 1=Mon..7=Sun -> map 0=Sun..6=Sat
+    var todayIndex = weekdayNum % 7; // 1=Mon..7=Sun -> 0=Sun..6=Sat
 
     var todaySchedule = schedule[todayIndex];
     if (!todaySchedule) return false;
+
     var startMinutes = (Number(todaySchedule.startHour) || 0) * 60 + (Number(todaySchedule.startMinute) || 0);
     var endMinutes = (Number(todaySchedule.endHour) || 0) * 60 + (Number(todaySchedule.endMinute) || 0);
+
+    console.log('[chat-redirect] ora Roma:', dm.hours, dm.minutes, 'nowMinutes:', nowMinutes);
+    console.log('[chat-redirect] todayIndex:', todayIndex, 'todaySchedule:', todaySchedule);
+    console.log('[chat-redirect] startMinutes:', startMinutes, 'endMinutes:', endMinutes);
+
     return nowMinutes >= startMinutes && nowMinutes < endMinutes;
   }
 
@@ -114,8 +120,7 @@ function extractScheduleObjectText(jsText) {
         return res.text();
       })
       .then(function (text) {
-        // Debug: log del testo ricevuto (rimuovi in produzione)
-        console.log('[chat-redirect] remote js length:', text && text.length);
+        console.log('[chat-redirect] remote JS length:', text && text.length);
 
         var objText = extractScheduleObjectText(text);
         if (!objText) {
@@ -135,13 +140,12 @@ function extractScheduleObjectText(jsText) {
           return Promise.reject(new Error('schedule.normalize.error'));
         }
 
-        console.log('[chat-redirect] schedule:', schedule);
-        // Redirect SOLO quando NON è disponibile
+        // Redirect SOLO se NON disponibile
         if (!isNowAvailable(schedule)) {
           console.log('[chat-redirect] Non disponibile -> redirect a INACTIVE_LINK');
           safeRedirect(INACTIVE_LINK);
         } else {
-          console.log('[chat-redirect] Disponibile -> nessun redirect (resta sulla pagina)');
+          console.log('[chat-redirect] Disponibile -> nessun redirect');
         }
       })
       .catch(function (err) {
@@ -151,17 +155,14 @@ function extractScheduleObjectText(jsText) {
         if (fallback) {
           console.log('[chat-redirect] usando fallback window.APP_CHAT_SCHEDULE:', fallback);
           if (!isNowAvailable(fallback)) {
+            console.log('[chat-redirect] fallback non disponibile -> redirect a INACTIVE_LINK');
             safeRedirect(INACTIVE_LINK);
-          } else {
-            // disponibile -> non fare nulla
           }
           return;
         }
 
-        // fallback finale: non siamo riusciti a determinare lo schedule -> redirect su INACTIVE per non lasciare l'utente bloccato
-        console.log('[chat-redirect] nessun fallback disponibile -> redirect INACTIVE_LINK');
+        console.log('[chat-redirect] nessun fallback -> redirect a INACTIVE_LINK');
         safeRedirect(INACTIVE_LINK);
       });
   })();
-
 })();
