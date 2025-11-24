@@ -134,7 +134,7 @@ font-size:15px;
 .chat-status.offline {
   color: rgb(181,181,181);
 }
-.chat-status.offline .status-dot {
+.chat-status.offline .chat-status-dot {
   background-color: rgb(181,181,181); /* grigio dot */
 }
 
