@@ -1,75 +1,69 @@
-// chat-redirect-now.js
+// chat-redirect-schedule.js
 var ACTIVE_LINK = "https://support-andreaingrassia.webflow.io/get-support/chat";
 var INACTIVE_LINK = "https://support-andreaingrassia.webflow.io/get-support";
-var SCHEDULE_JSON_URL = "https://andreaingrassia.netlify.app/schedule.json";
-var FETCH_TIMEOUT = 2000;
+
+// 📅 Orari chat per giorno (0=Dom, 1=Lun, ... 6=Sab)
+var SCHEDULE = {
+  1: { startHour: 11, startMinute: 15, endHour: 14, endMinute: 18 },
+  2: { startHour: 9, startMinute: 0, endHour: 20, endMinute: 0 },
+  3: { startHour: 9, startMinute: 0, endHour: 20, endMinute: 0 },
+  4: { startHour: 9, startMinute: 0, endHour: 20, endMinute: 0 },
+  5: { startHour: 9, startMinute: 0, endHour: 20, endMinute: 0 },
+  6: { startHour: 9, startMinute: 0, endHour: 18, endMinute: 0 },
+  0: null // Domenica chiuso
+};
 
 (function() {
   'use strict';
 
-  function fetchWithTimeout(url, options, timeout) {
-    return new Promise(function(resolve, reject) {
-      var didTimeOut = false;
-      var timer = setTimeout(function() {
-        didTimeOut = true;
-        reject(new Error('Fetch timeout'));
-      }, timeout);
+  function nowInMinutes() {
+    var now = new Date();
+    var hours = parseInt(new Intl.DateTimeFormat('en-GB', {hour:'numeric', hour12:false, timeZone:'Europe/Rome'}).format(now),10);
+    var minutes = parseInt(new Intl.DateTimeFormat('en-GB', {minute:'numeric', timeZone:'Europe/Rome'}).format(now),10);
+    return hours*60 + minutes;
+  }
 
-      fetch(url, options).then(function(res) {
-        if (didTimeOut) return;
-        clearTimeout(timer);
-        resolve(res);
-      }).catch(function(err) {
-        if (didTimeOut) return;
-        clearTimeout(timer);
-        reject(err);
-      });
-    });
+  function getTodayIndex() {
+    var now = new Date();
+    return now.getDay(); // 0=Dom, 1=Lun, ..., 6=Sab
   }
 
   function isNowAvailable(schedule) {
-    if (!schedule) return false;
-
-    var now = new Date();
-    // Giorno della settimana 0=Dom..6=Sab
-    var today = parseInt(new Intl.DateTimeFormat('en-GB', { weekday: 'numeric', timeZone: 'Europe/Rome' }).format(now), 10) % 7;
-
+    var today = getTodayIndex();
     var todaySchedule = schedule[today];
     if (!todaySchedule) return false;
 
-    var hours = parseInt(new Intl.DateTimeFormat('en-GB', { hour: 'numeric', hour12: false, timeZone: 'Europe/Rome' }).format(now), 10);
-    var minutes = parseInt(new Intl.DateTimeFormat('en-GB', { minute: 'numeric', timeZone: 'Europe/Rome' }).format(now), 10);
-    var nowMinutes = hours * 60 + minutes;
+    var nowM = nowInMinutes();
+    var startM = todaySchedule.startHour*60 + todaySchedule.startMinute;
+    var endM = todaySchedule.endHour*60 + todaySchedule.endMinute;
+    return nowM >= startM && nowM < endM;
+  }
 
-    var startMinutes = todaySchedule.startHour * 60 + todaySchedule.startMinute;
-    var endMinutes = todaySchedule.endHour * 60 + todaySchedule.endMinute;
+  function nextAvailable(schedule) {
+    var now = new Date();
+    var today = getTodayIndex();
+    var nowM = nowInMinutes();
 
-    return nowMinutes >= startMinutes && nowMinutes < endMinutes;
+    for (var i=0; i<7; i++) {
+      var idx = (today + i) % 7;
+      var sch = schedule[idx];
+      if (!sch) continue;
+      var startM = sch.startHour*60 + sch.startMinute;
+      if (i===0 && startM > nowM) return { day: idx, startHour: sch.startHour, startMinute: sch.startMinute };
+      if (i>0) return { day: idx, startHour: sch.startHour, startMinute: sch.startMinute };
+    }
+    return null;
   }
 
   function safeRedirect(url) {
-    try {
-      window.location.href = url;
-    } catch (e) {
-      console.error('Redirect failed:', e);
-    }
+    try { window.location.href = url; } catch(e) { console.error('Redirect failed', e); }
   }
 
-  // MAIN
-  fetchWithTimeout(SCHEDULE_JSON_URL, { method: 'GET', mode: 'cors' }, FETCH_TIMEOUT)
-    .then(res => {
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      return res.json();
-    })
-    .then(schedule => {
-      if (!isNowAvailable(schedule)) {
-        safeRedirect(INACTIVE_LINK);
-      }
-      // se disponibile -> rimani sulla pagina
-    })
-    .catch(err => {
-      console.warn('Errore fetch/parse schedule:', err);
-      // fallback: redirect su INACTIVE se non si riesce a leggere schedule
-      safeRedirect(INACTIVE_LINK);
-    });
+  // se la chat non è disponibile ora -> redirect
+  if (!isNowAvailable(SCHEDULE)) {
+    safeRedirect(INACTIVE_LINK);
+    return;
+  }
+
+  // disponibile -> rimani sulla pagina
 })();
