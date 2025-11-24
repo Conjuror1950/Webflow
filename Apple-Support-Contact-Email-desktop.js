@@ -157,7 +157,7 @@ font-size:15px;
     wrapper.innerHTML = `
 <div class="email-card" tabindex="0">
 <div class="email-avatar" aria-hidden="true">
-  <img class="email-icon" src="https://cdn.prod.website-files.com/6900acd1c3e34a5adaf492fd/691f25bddb8a25199c4b2a7b_chat.svg" alt="Icona chat">
+  <img class="email-icon" src="https://cdn.prod.website-files.com/6900acd1c3e34a5adaf492fd/69248e4f5fe6cfdc1070e66e_email-online.png" alt="Icona chat">
 </div>
   <div class="email-content">
     <h3 class="email-title">${escapeHtml(config.title)}</h3>
@@ -177,7 +177,7 @@ font-size:15px;
     var iconEl = root.querySelector('.email-icon');
 
     // icona disponibile
-    var iconOnline = "https://cdn.prod.website-files.com/6900acd1c3e34a5adaf492fd/691f25bddb8a25199c4b2a7b_chat.svg";
+    var iconOnline = "https://cdn.prod.website-files.com/6900acd1c3e34a5adaf492fd/69248e4f5fe6cfdc1070e66e_email-online.png";
 
     // icona offline (devi mettere il tuo link)
     var iconOffline = "https://cdn.prod.website-files.com/6900acd1c3e34a5adaf492fd/691f7afbddc8230da24819fe_chat%20(1).svg";
@@ -187,7 +187,7 @@ font-size:15px;
 
     // 📅 Orari per giorno della settimana
     var schedule = {
-      1: { startHour: 16, startMinute: 32, endHour: 16, endMinute: 34 }, // Lun
+      1: { startHour: 16, startMinute: 32, endHour: 20, endMinute: 0 }, // Lun
       2: { startHour: 9, startMinute: 0, endHour: 20, endMinute: 0 }, // Mar
       3: { startHour: 9, startMinute: 0, endHour: 20, endMinute: 0 }, // Mer
       4: { startHour: 9, startMinute: 0, endHour: 20, endMinute: 0 }, // Gio
