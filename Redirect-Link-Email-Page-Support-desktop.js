@@ -4,12 +4,12 @@ var INACTIVE_LINK = "https://support-andreaingrassia.webflow.io/get-support";
 
 // 📅 Orari chat per giorno (0=Dom, 1=Lun, ... 6=Sab)
 var SCHEDULE = {
-  1: { startHour: 9, startMinute: 0, endHour: 20, endMinute: 0 },
-  2: { startHour: 9, startMinute: 0, endHour: 20, endMinute: 0 },
-  3: { startHour: 9, startMinute: 0, endHour: 20, endMinute: 0 },
-  4: { startHour: 9, startMinute: 0, endHour: 20, endMinute: 0 },
-  5: { startHour: 9, startMinute: 0, endHour: 20, endMinute: 0 },
-  6: { startHour: 9, startMinute: 0, endHour: 18, endMinute: 0 },
+  1: { startHour: 7, startMinute: 0, endHour: 21, endMinute: 0 }, // Lunedì
+  2: { startHour: 7, startMinute: 0, endHour: 21, endMinute: 0 }, // Martedì
+  3: { startHour: 7, startMinute: 0, endHour: 21, endMinute: 0 }, // Mercoledì
+  4: { startHour: 7, startMinute: 0, endHour: 21, endMinute: 0 }, // Giovedì
+  5: { startHour: 7, startMinute: 0, endHour: 21, endMinute: 0 }, // Venerdì
+  6: { startHour: 8, startMinute: 0, endHour: 16, endMinute: 0 }, // Sabato
   0: null // Domenica chiuso
 };
 
