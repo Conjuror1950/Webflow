@@ -39,31 +39,22 @@ var SCHEDULE = {
     return nowM >= startM && nowM < endM;
   }
 
-  function nextAvailable(schedule) {
-    var now = new Date();
-    var today = getTodayIndex();
-    var nowM = nowInMinutes();
-
-    for (var i=0; i<7; i++) {
-      var idx = (today + i) % 7;
-      var sch = schedule[idx];
-      if (!sch) continue;
-      var startM = sch.startHour*60 + sch.startMinute;
-      if (i===0 && startM > nowM) return { day: idx, startHour: sch.startHour, startMinute: sch.startMinute };
-      if (i>0) return { day: idx, startHour: sch.startHour, startMinute: sch.startMinute };
-    }
-    return null;
-  }
-
   function safeRedirect(url) {
     try { window.location.href = url; } catch(e) { console.error('Redirect failed', e); }
   }
 
-  // se la chat non è disponibile ora -> redirect
-  if (!isNowAvailable(SCHEDULE)) {
-    safeRedirect(INACTIVE_LINK);
-    return;
+  // Funzione per controllare continuamente lo stato
+  function checkChat() {
+    if (!isNowAvailable(SCHEDULE)) {
+      safeRedirect(INACTIVE_LINK);
+    }
   }
 
-  // disponibile -> rimani sulla pagina
+  // controllo iniziale
+  checkChat();
+
+  // controllo ogni 10 secondi (10000 ms)
+  setInterval(checkChat, 10000);
+
 })();
+
