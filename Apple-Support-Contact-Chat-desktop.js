@@ -196,6 +196,9 @@ font-size:15px;
       0: null // Domenica chiuso
     };
 
+// All’interno della IIFE, subito dopo var schedule:
+window.APP_CHAT_SCHEDULE = schedule;
+
 function updateStatus() {
   var now = new Date();
   // giorno corrente (0=Dom,1=Lun,...6=Sab)
