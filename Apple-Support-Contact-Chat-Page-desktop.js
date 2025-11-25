@@ -164,6 +164,22 @@ const css = `
 .apple-contact-field.has-error {
   margin-bottom: 12px; /* ⬅️ puoi aumentarlo se vuoi più aria */
 }
+
+/* ---------- NASCONDI LANCIALE TIDIO ALL'INIZIO ---------- */
+/* regole multiple per aumentare la compatibilità con diverse versioni/markup */
+#tidio-chat-iframe,
+iframe[src*="tidio"],
+.tidio-floating-button,
+.tidio-chat-launcher,
+.tidio-widget,
+.tidio-wrapper {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* quando il widget viene mostrato via API rimuoveremo queste regole impostando direttamente lo style su elemento iframe/div */
 `;
 
   function createStyles(){
@@ -174,6 +190,46 @@ const css = `
     document.head.appendChild(s);
   }
 
+// ------------------ Nascondi Tidio fino all'attivazione ------------------
+// Chiamiamo questa funzione subito dopo il mount: prova ad usare l'API tidio per nascondere il launcher.
+// Se l'API non è pronta, facciamo polling per pochi millisecondi; se non esiste l'API, applichiamo fallback css sull'iframe.
+function hideTidioUntilActivated() {
+  let tries = 0;
+  function attemptHide() {
+    tries++;
+    if (window.tidioChatApi) {
+      try {
+        // preferiamo usare l'API ufficiale
+        if (typeof window.tidioChatApi.display === 'function') {
+          window.tidioChatApi.display(false);
+        } else if (typeof window.tidioChatApi.hide === 'function') {
+          window.tidioChatApi.hide();
+        }
+        // fine: non continuiamo il polling
+        return;
+      } catch (e) {
+        console.warn('tidio API hide failed', e);
+      }
+    }
+
+    // fallback: se esiste iframe di tidio, nascondilo via style
+    const iframe = document.getElementById('tidio-chat-iframe') || document.querySelector('iframe[src*="tidio"]');
+    if (iframe) {
+      iframe.style.display = 'none';
+      iframe.style.visibility = 'hidden';
+      iframe.style.opacity = '0';
+      iframe.style.pointerEvents = 'none';
+      return;
+    }
+
+    // retry per un breve periodo (max ~3s)
+    if (tries < 10) {
+      setTimeout(attemptHide, 300);
+    }
+  }
+  attemptHide();
+}
+  
 function buildForm(){
   const wrap = document.createElement('section');
   wrap.className = 'apple-contact-wrap';
@@ -337,11 +393,37 @@ function sendToTidio() {
     }
 
     try {
-      // Apri il widget
-      window.tidioChatApi.open();
+// Rendi visibile il launcher Tidio (se è stato nascosto) e apri il widget
+try {
+  if (window.tidioChatApi) {
+    if (typeof window.tidioChatApi.display === 'function') {
+      window.tidioChatApi.display(true); // mostra il launcher
+    } else if (typeof window.tidioChatApi.show === 'function') {
+      window.tidioChatApi.show(); // fallback API
+    }
+  }
+} catch (e) {
+  console.warn('tidio display/show failed', e);
+}
 
-      // Invia il primo messaggio (data/ora)
-      window.tidioChatApi.messageFromVisitor(message1);
+// rimuovi anche eventuale style inline sull'iframe (fallback CSS che abbiamo applicato)
+const tidioIframe = document.getElementById('tidio-chat-iframe') || document.querySelector('iframe[src*="tidio"]');
+if (tidioIframe) {
+  tidioIframe.style.display = '';
+  tidioIframe.style.visibility = '';
+  tidioIframe.style.opacity = '';
+  tidioIframe.style.pointerEvents = '';
+}
+
+// ora apri la chat come già facevi
+if (window.tidioChatApi && typeof window.tidioChatApi.open === 'function') {
+  window.tidioChatApi.open();
+} else if (window.tidioChatApi && typeof window.tidioChatApi.show === 'function') {
+  window.tidioChatApi.show();
+}
+
+// Invia il primo messaggio (data/ora)
+window.tidioChatApi.messageFromVisitor(message1);
 
       // Calcola delay casuale tra 700ms e 1200ms
       const delay = 700 + Math.random() * 500;
@@ -379,12 +461,15 @@ wrap.innerHTML = `
   return wrap;
 }
 
-  function mount(target){
-    createStyles();
-    const wrap = buildForm();
-    if(!target) target = document.getElementById(rootId) || document.body;
-    target.appendChild(wrap);
-  }
+function mount(target){
+  createStyles();
+  // nascondi il widget Tidio finché non viene attivato dal form
+  hideTidioUntilActivated();
+
+  const wrap = buildForm();
+  if(!target) target = document.getElementById(rootId) || document.body;
+  target.appendChild(wrap);
+}
 
   if(document.readyState==='loading'){
     document.addEventListener('DOMContentLoaded', ()=>mount());
