@@ -225,6 +225,7 @@ iframe[src*="tidio"],
   line-height: 25px;
   color: rgb(29,29,31);
   letter-spacing: -0.2px;
+  gap: 8px; /* aggiungi spazio tra "ID pratica:" e il numero */
 }
 
 /* icona (semplice cerchio check) */
