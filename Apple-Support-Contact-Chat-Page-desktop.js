@@ -425,8 +425,8 @@ if (window.tidioChatApi && typeof window.tidioChatApi.open === 'function') {
 // Invia il primo messaggio (data/ora)
 window.tidioChatApi.messageFromVisitor(message1);
 
-      // Calcola delay casuale tra 800ms e 1400ms
-      const delay = 800 + Math.random() * 600;
+      // Calcola delay casuale tra 1000ms e 1800ms
+      const delay = 1000 + Math.random() * 800;
 
       // Invia il secondo messaggio (numero di pratica)
       setTimeout(() => {
@@ -438,8 +438,8 @@ window.tidioChatApi.messageFromVisitor(message1);
     }
 
   } else {
-    // Se Tidio non è pronto, riprova dopo 3000ms
-    setTimeout(sendToTidio, 3000);
+    // Se Tidio non è pronto, riprova dopo 3600ms
+    setTimeout(sendToTidio, 3600);
   }
 }
 
