@@ -557,8 +557,8 @@ wrap.innerHTML = `
     <div class="success-icon" aria-hidden="true">
       <!-- semplice icona check -->
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="12" cy="12" r="11" fill="transparent"/>
-        <path d="M7.5 12.5l2.5 2.5L16.5 9.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="12" cy="12" r="11" stroke-width="1.2" fill="transparent"/>
+        <path d="M7.5 12.5l2.5 2.5L16.5 9.5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </div>
 
