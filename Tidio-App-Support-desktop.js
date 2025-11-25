@@ -1,5 +1,3 @@
-in base al seguente codice:
-
 // tidio-reset.js
 // Versione: 1.0
 // Scopo: resettare Tidio ad ogni caricamento, poi caricare il widget e forzare l'apertura.
@@ -186,6 +184,3 @@ in base al seguente codice:
   }, 50);
 
 })(window, document);
-
-
-voglio che quando clicco su assegna a me (o simile) su Tidio sulla chat selezionata, invii due messaggi automatici da parte mia. Come devo impostare e cosa devo mettere nel codice? Dimmi precisamente
