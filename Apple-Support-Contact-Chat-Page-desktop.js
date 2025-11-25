@@ -316,7 +316,9 @@ const visitorData = {
 
 // messaggio iniziale che comparirà agli operatori Tidio
 const initialMessage =
-  `Stai chattando con Andrea. Il tuo numero di pratica è ${ticketId}\n`.;
+  `Stai chattando con Andrea. Il tuo numero di pratica è ${ticketId}\n` +
+  `Nome: ${nome.value.trim()}\nCognome: ${cognome.value.trim()}\nEmail: ${email.value.trim()}\n` +
+  `Metodo: Form sito`;
 
 // funzione che prova a inviare a Tidio quando è pronto
 function sendToTidio() {
