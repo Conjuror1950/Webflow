@@ -323,8 +323,8 @@ const ampm = now.getHours() >= 12 ? 'PM' : 'AM';
 const formattedDate = `${now.getMonth()+1}/${now.getDate()}/${now.getFullYear()} ${hours12}:${minutes} ${ampm}`;
 
 // Messaggi inviati separatamente
-const message1 = `Data/Ora: ${formattedDate}`;
-const message2 = `Stai chattando con Andrea. Il tuo numero di pratica è ${ticketId}`;
+const message1 = `${formattedDate}`;
+const message2 = `Stai chattando con Andrea. Il tuo numero di pratica è ${ticketId}.`;
 
 // funzione che prova a inviare a Tidio quando è pronto
 function sendToTidio() {
@@ -341,7 +341,7 @@ function sendToTidio() {
       window.tidioChatApi.messageFromVisitor(message1);
       setTimeout(() => {
         window.tidioChatApi.messageFromVisitor(message2);
-      }, 200); // piccolo delay per far comparire i messaggi separati
+      }, 500); // piccolo delay per far comparire i messaggi separati
     } catch (e) {
       console.warn('messageFromVisitor / open failed', e);
     }
