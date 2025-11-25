@@ -214,7 +214,7 @@ iframe[src*="tidio"],
 }
 
 /* stile per l'ID pratica */
-.apple-contact-success .ticket {
+.apple-contact-success .ticket .ticket strong{
   font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
   display: inline-flex;
   align-items: center;
