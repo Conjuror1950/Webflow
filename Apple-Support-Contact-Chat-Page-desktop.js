@@ -196,11 +196,11 @@ iframe[src*="tidio"],
 /* titolo grande e centrato */
 .apple-contact-success .success-title {
   font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
-  font-size: 44px;
+  font-size: 40px;
+  line-height: 44px;
   font-weight: 600;
   margin: 0;
-  line-height: 44px;
-  color: rgba(29,29,31,0.9);
+  color: rgb(29,29,31);
 }
 
 /* testo descrittivo */
@@ -209,7 +209,7 @@ iframe[src*="tidio"],
   font-size: 21px;
   line-height: 29px;
   font-weight: 400;
-  color: rgba(29,29,31,0.95);
+  color: rgb(29,29,31);
   margin: 0;
 }
 
@@ -222,13 +222,14 @@ iframe[src*="tidio"],
   font-weight: 400;
   font-size: 17px;
   line-height: 25px;
-  color: rgba(29,29,31,0.95);
+  color: rgb(29,29,31);
+  letter-spacing: -0.2px;
 }
 
 /* icona (semplice cerchio check) */
 .apple-contact-success .success-icon {
-  width: 44px;
-  height: 44px;
+  width: 60px;
+  height: 60px;
   display: inline-grid;
   place-items: center;
 }
@@ -242,10 +243,6 @@ iframe[src*="tidio"],
   .apple-contact-success .ticket {
     font-size: 14px;
     padding: 6px 10px;
-  }
-  .apple-contact-success .success-btn {
-    padding: 9px 12px;
-    font-size: 13px;
   }
 }
 `;
