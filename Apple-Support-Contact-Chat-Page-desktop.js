@@ -220,7 +220,6 @@ iframe[src*="tidio"],
   font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
   font-weight: 400;
   font-size: 17px;
   line-height: 25px;
@@ -231,7 +230,7 @@ iframe[src*="tidio"],
 /* icona (semplice cerchio check) */
 .apple-contact-success .success-icon {
   width: auto;
-  height: 60px;
+  height: auto;
   display: inline-grid;
   place-items: center;
 }
