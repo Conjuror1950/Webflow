@@ -289,7 +289,7 @@ input.addEventListener('mouseleave', () => {
 
     if(!nome.value.trim()){ showFieldError(nome, nomeErrorDiv, 'Inserisci un nome valido.'); nome.focus(); return; }
     if(!cognome.value.trim()){ showFieldError(cognome, cognomeErrorDiv, 'Inserisci un cognome valido.'); cognome.focus(); return; }
-    if(!email.value.trim()){ showFieldError(email, emailErrorDiv, `Inserisci l'email.`); email.focus(); return; }
+    if(!email.value.trim()){ showFieldError(email, emailErrorDiv, `Inserisci un indirizzo email valido.`); email.focus(); return; }
     if(!isValidEmail(email.value.trim())){ showFieldError(email, emailErrorDiv, 'Inserisci un indirizzo email valido.'); email.focus(); return; }
 
     submit.disabled = true;
