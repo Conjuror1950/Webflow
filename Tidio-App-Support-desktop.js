@@ -1,22 +1,21 @@
 // tidio-reset.js
-// Versione: 1.1
-// Scopo: resettare Tidio ad ogni caricamento, poi caricare il widget, forzare l'apertura e inviare messaggi automatici quando si clicca "Assegna a me"
+// Versione: 1.2
+// Scopo: resettare Tidio, caricare il widget, forzare l'apertura e inviare messaggi automatici quando si clicca "Partecipa"
 
 (function(window, document) {
   'use strict';
 
   const DEFAULT_OPTIONS = {
-    tidioId: 'qu1nij9medehvkac7kwdfi4cszfd5quu', // sostituisci con il tuo ID se diverso
-    autoShow: true,             // mostra il widget appena pronto
-    welcomeMessage: null,       // stringa o null
-    autoMessages: ["Ciao! Sono qui per aiutarti.", "Come posso assisterti oggi?"], // messaggi automatici all'assegnazione
+    tidioId: 'qu1nij9medehvkac7kwdfi4cszfd5quu',
+    autoShow: true,
+    welcomeMessage: null,
+    autoMessages: ["Ciao! Sono qui per aiutarti.", "Come posso assisterti oggi?"],
     resetLocalStorageKeys: ['tidio', 'Tidio'],
     resetCookieNameTokens: ['tidio', 'tidio_ignore', 'tidio_chat'],
-    hoursActive: null,          // [startHour, endHour] o null
+    hoursActive: null,
     maxWaitMs: 8000
   };
 
-  // Utility: verifica orario
   function isInActiveHours(range) {
     if (!range || !Array.isArray(range) || range.length !== 2) return true;
     const h = (new Date()).getHours();
@@ -25,7 +24,6 @@
     return h >= start || h < end;
   }
 
-  // Rimuove cookie robustamente
   function deleteCookieByName(name) {
     const host = document.location.hostname;
     const domainParts = host.split('.');
@@ -109,7 +107,6 @@
     });
   }
 
-  // Invia più messaggi automatici con piccolo delay
   function sendAutoMessages(messages) {
     if (!window.tidioChatApi || !Array.isArray(messages)) return;
     window.tidioChatApi.push(function() {
@@ -121,10 +118,13 @@
     });
   }
 
-  // Osserva il pulsante "Assegna a me" e invia i messaggi automatici al click
+  // Osserva il pulsante "Partecipa alla conversazione" o "Partecipa"
   function watchAssignButton(messages) {
     const observer = new MutationObserver(() => {
-      const btn = Array.from(document.querySelectorAll('button, span')).find(b => b.textContent.includes("Assegna a me") && !b.dataset.autosent);
+      const btn = Array.from(document.querySelectorAll('button, span')).find(b => 
+        (b.textContent.includes("Partecipa alla conversazione") || b.textContent.includes("Partecipa")) 
+        && !b.dataset.autosent
+      );
       if (btn) {
         btn.dataset.autosent = "true";
         btn.addEventListener('click', () => {
@@ -154,7 +154,6 @@
               if (cfg.autoShow && typeof tidioChatApi.show === 'function') tidioChatApi.show();
               if (cfg.welcomeMessage) setTimeout(() => { tidioChatApi.sendMessage(cfg.welcomeMessage); }, 250);
 
-              // Nuovo: osserva pulsante "Assegna a me"
               if (cfg.autoMessages && cfg.autoMessages.length) {
                 watchAssignButton(cfg.autoMessages);
               }
@@ -171,7 +170,6 @@
     DEFAULT_OPTIONS: Object.assign({}, DEFAULT_OPTIONS)
   };
 
-  // Auto-run
   setTimeout(() => { resetAndLoad(); }, 50);
 
 })(window, document);
