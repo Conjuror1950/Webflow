@@ -222,52 +222,12 @@ iframe[src*="tidio"],
   border: 1px solid rgba(6,75,35,0.06);
 }
 
-/* row pulsanti (copy / open chat / close) */
-.apple-contact-success .success-controls {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 8px;
-}
-
-/* pulsanti */
-.apple-contact-success .success-btn {
-  padding: 10px 14px;
-  border-radius: 999px;
-  border: none;
-  font-size: 14px;
-  cursor: pointer;
-  background: #007aff;
-  color: #fff;
-  min-width: 36px;
-}
-
-/* pulsante secondario */
-.apple-contact-success .success-btn.secondary {
-  background: transparent;
-}
-
-/* pulsante "chiudi" più neutro */
-.apple-contact-success .success-btn.tertiary {
-  background: transparent;
-  color: rgba(6,75,35,0.7);
-  border: none;
-}
-
-/* stato disabilitato */
-.apple-contact-success .success-btn:disabled {
-  opacity: 0.6;
-  cursor: default;
-}
-
 /* icona (semplice cerchio check) */
 .apple-contact-success .success-icon {
   width: 44px;
   height: 44px;
   display: inline-grid;
   place-items: center;
-  background: linear-gradient(180deg, #e9fff0, #d6fce3);
 }
 
 /* responsive: togli padding se spazio stretto */
@@ -557,7 +517,7 @@ wrap.innerHTML = `
     <div class="success-icon" aria-hidden="true">
       <!-- semplice icona check -->
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="12" cy="12" r="11" stroke="#064b23" stroke-width="1.2" fill="transparent"/>
+        <circle cx="12" cy="12" r="11" stroke="#86868b" stroke-width="1.2" fill="transparent"/>
         <path d="M7.5 12.5l2.5 2.5L16.5 9.5" stroke="#0267cc" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </div>
