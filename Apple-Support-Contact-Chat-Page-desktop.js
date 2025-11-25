@@ -578,12 +578,6 @@ wrap.innerHTML = `
     <div class="ticket" aria-label="ID pratica">
       <span>ID: </span><strong id="acf-ticket-id">${ticketId}</strong>
     </div>
-
-    <div class="success-controls" role="group" aria-label="Controlli messaggio di successo">
-      <button type="button" class="success-btn" id="acf-copy-ticket">Copia ID pratica</button>
-      <button type="button" class="success-btn secondary" id="acf-open-chat">Apri chat</button>
-      <button type="button" class="success-btn tertiary" id="acf-close-success">Chiudi</button>
-    </div>
   </div>
 `;
 
