@@ -295,9 +295,65 @@ input.addEventListener('mouseleave', () => {
     submit.disabled = true;
     submit.textContent = 'Invio...';
 
-    setTimeout(()=>{
-      wrap.innerHTML = `<div class="apple-contact-success" role="status"><strong>Grazie!</strong><div>Ti contatteremo presto.</div></div>`;
-    }, 700);
+// ------------------ INIZIO LOGICA TIDIO ------------------
+
+// funzione per generare UUIDv4
+function uuidv4() {
+  return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+    (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+  );
+}
+
+// crea ID pratica univoco
+const ticketId = 'PR-' + new Date().toISOString().replace(/[:.]/g,'') + '-' + uuidv4().slice(0,8);
+
+// dati visitatore per Tidio
+const visitorData = {
+  email: email.value.trim(),
+  name: `${nome.value.trim()} ${cognome.value.trim()}`,
+  ticket_id: ticketId // proprietà custom
+};
+
+// messaggio iniziale che comparirà agli operatori Tidio
+const initialMessage =
+  `Nuova richiesta — ID Pratica: ${ticketId}\n` +
+  `Nome: ${nome.value.trim()}\nCognome: ${cognome.value.trim()}\nEmail: ${email.value.trim()}\n` +
+  `Metodo: Form sito`;
+
+// funzione che prova a inviare a Tidio quando è pronto
+function sendToTidio() {
+  if (window.tidioChatApi && typeof window.tidioChatApi.setVisitorData === 'function') {
+    try {
+      // aggiorna i dati visitatore
+      window.tidioChatApi.setVisitorData(visitorData);
+    } catch (e) {
+      console.warn('setVisitorData failed', e);
+    }
+    try {
+      // apri il widget e invia messaggio dal visitatore
+      window.tidioChatApi.open();
+      window.tidioChatApi.messageFromVisitor(initialMessage);
+    } catch (e) {
+      console.warn('messageFromVisitor / open failed', e);
+    }
+  } else {
+    // se il widget non è pronto, riprova dopo 300ms
+    setTimeout(sendToTidio, 300);
+  }
+}
+
+sendToTidio();
+
+// mostra feedback all'utente con ID pratica
+wrap.innerHTML = `
+  <div class="apple-contact-success" role="status">
+    <strong>Grazie!</strong>
+    <div>ID pratica: <strong>${ticketId}</strong></div>
+    <div>Ti contatteremo presto via email o tramite chat.</div>
+  </div>
+`;
+
+// ------------------ FINE LOGICA TIDIO ------------------
   });
 
   return wrap;
