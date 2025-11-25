@@ -304,8 +304,8 @@ function uuidv4() {
   );
 }
 
-// crea ID pratica univoco
-const ticketId = 'PR-' + new Date().toISOString().replace(/[:.]/g,'') + '-' + uuidv4().slice(0,8);
+// crea ID pratica codice univoco
+const ticketId = (Date.now() % 1e12).toString(); // ID pratica numerico di 12 cifre
 
 // dati visitatore per Tidio
 const visitorData = {
@@ -316,9 +316,7 @@ const visitorData = {
 
 // messaggio iniziale che comparirà agli operatori Tidio
 const initialMessage =
-  `Nuova richiesta — ID Pratica: ${ticketId}\n` +
-  `Nome: ${nome.value.trim()}\nCognome: ${cognome.value.trim()}\nEmail: ${email.value.trim()}\n` +
-  `Metodo: Form sito`;
+  `Stai chattando con Andrea. Il tuo numero di pratica è ${ticketId}\n`.;
 
 // funzione che prova a inviare a Tidio quando è pronto
 function sendToTidio() {
@@ -347,9 +345,9 @@ sendToTidio();
 // mostra feedback all'utente con ID pratica
 wrap.innerHTML = `
   <div class="apple-contact-success" role="status">
-    <strong>Grazie!</strong>
+    <strong>Apertura chat</strong>
+    <div>La finestra della chat dovrebbe aprirsi automaticamente.</div>
     <div>ID pratica: <strong>${ticketId}</strong></div>
-    <div>Ti contatteremo presto via email o tramite chat.</div>
   </div>
 `;
 
