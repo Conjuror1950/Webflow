@@ -444,7 +444,7 @@ window.tidioChatApi.messageFromVisitor(message1);
 }
 
 // Avvia l'invio dei messaggi
-sendToTidio();
+// sendToTidio(); // Aggiungi '//' prima di 'sendToTidio();' per disattivare temporaneamente l'invio.
 
 // mostra feedback all'utente con ID pratica
 wrap.innerHTML = `
