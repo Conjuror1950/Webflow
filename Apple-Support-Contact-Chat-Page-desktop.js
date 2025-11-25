@@ -190,8 +190,6 @@ iframe[src*="tidio"],
   background: #f3fff6;
   padding: 20px 18px;
   color: #064b23;
-  border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(4, 30, 9, 0.06);
   min-height: 100px;
   box-sizing: border-box;
 }
@@ -216,7 +214,6 @@ iframe[src*="tidio"],
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(6,75,35,0.06);
   padding: 8px 12px;
   border-radius: 999px;
   font-weight: 600;
@@ -249,8 +246,6 @@ iframe[src*="tidio"],
 /* pulsante secondario */
 .apple-contact-success .success-btn.secondary {
   background: transparent;
-  border: 1px solid rgba(0,0,0,0.08);
-  color: #064b23;
 }
 
 /* pulsante "chiudi" più neutro */
@@ -562,8 +557,8 @@ wrap.innerHTML = `
     <div class="success-icon" aria-hidden="true">
       <!-- semplice icona check -->
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="12" cy="12" r="11" stroke="#064b23" stroke-width="1.2" fill="transparent"/>
-        <path d="M7.5 12.5l2.5 2.5L16.5 9.5" stroke="#064b23" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="12" cy="12" r="11" fill="transparent"/>
+        <path d="M7.5 12.5l2.5 2.5L16.5 9.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </div>
 
