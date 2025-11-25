@@ -228,8 +228,8 @@ iframe[src*="tidio"],
 
 /* icona (semplice cerchio check) */
 .apple-contact-success .success-icon {
-  width: 60px;
-  height: 60px;
+  width: 100px;
+  height: 100px;
   display: inline-grid;
   place-items: center;
 }
