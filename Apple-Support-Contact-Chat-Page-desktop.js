@@ -195,27 +195,34 @@ iframe[src*="tidio"],
 
 /* titolo grande e centrato */
 .apple-contact-success .success-title {
-  font-size: 17px;
-  font-weight: 700;
+  font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  font-size: 44px;
+  font-weight: 600;
   margin: 0;
-  line-height: 1.1;
+  line-height: 44px;
+  color: rgba(29,29,31,0.9);
 }
 
 /* testo descrittivo */
 .apple-contact-success .success-desc {
-  font-size: 14px;
-  color: rgba(6,75,35,0.9);
+  font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  font-size: 21px;
+  line-height: 29px;
+  font-weight: 400;
+  color: rgba(29,29,31,0.95);
   margin: 0;
 }
 
 /* stile per l'ID pratica */
 .apple-contact-success .ticket {
+  font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-weight: 600;
-  font-size: 15px;
-  color: #064b23;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 25px;
+  color: rgba(29,29,31,0.95);
 }
 
 /* icona (semplice cerchio check) */
