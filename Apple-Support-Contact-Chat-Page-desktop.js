@@ -179,7 +179,7 @@ iframe[src*="tidio"],
 
 /* quando il widget viene mostrato via API rimuoveremo queste regole impostando direttamente lo style su elemento iframe/div */
 
-/* ===== Success message: centrato, leggibile e con controlli ===== */
+/* ===== Success message ===== */
 .apple-contact-success {
   display: flex;
   flex-direction: column;
@@ -188,7 +188,8 @@ iframe[src*="tidio"],
   text-align: center;       /* testo centrato */
   gap: 10px;
   background: #ecebf1;
-  padding: 20px 18px;
+  padding: 40px 18px;
+  left: 20px;
   min-height: 100px;
   box-sizing: border-box;
 }
