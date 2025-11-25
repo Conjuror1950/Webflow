@@ -231,7 +231,7 @@ iframe[src*="tidio"],
 .apple-contact-success .success-icon {
   width: auto;
   height: auto;
-  margin-bottom: -6px;
+  margin-bottom: -15px;
   display: inline-grid;
   place-items: center;
 }
