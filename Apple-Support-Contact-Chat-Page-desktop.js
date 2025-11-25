@@ -189,8 +189,8 @@ iframe[src*="tidio"],
   gap: 10px;
   background: #ecebf1;
   padding: 40px 18px;
-  left: 50px;
-  min-height: 100px;
+  margin-left: 40px;
+  min-height: 200px;
   box-sizing: border-box;
 }
 
