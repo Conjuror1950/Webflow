@@ -326,30 +326,42 @@ const formattedDate = `${now.getMonth()+1}/${now.getDate()}/${now.getFullYear()}
 const message1 = `${formattedDate}`;
 const message2 = `Stai chattando con Andrea. Il tuo numero di pratica è ${ticketId}.`;
 
-// funzione che prova a inviare a Tidio quando è pronto
+// Invio alla chat di Tidio con delay
 function sendToTidio() {
   if (window.tidioChatApi && typeof window.tidioChatApi.setVisitorData === 'function') {
     try {
-      // aggiorna i dati visitatore
+      // Aggiorna i dati del visitatore
       window.tidioChatApi.setVisitorData(visitorData);
     } catch (e) {
       console.warn('setVisitorData failed', e);
     }
+
     try {
-      // apri il widget e invia i messaggi
+      // Apri il widget
       window.tidioChatApi.open();
+
+      // Invia il primo messaggio (data/ora)
       window.tidioChatApi.messageFromVisitor(message1);
+
+      // Calcola delay casuale tra 700ms e 1200ms
+      const delay = 700 + Math.random() * 500;
+
+      // Invia il secondo messaggio (numero di pratica)
       setTimeout(() => {
         window.tidioChatApi.messageFromVisitor(message2);
-      }, 500); // piccolo delay per far comparire i messaggi separati
+      }, delay);
+
     } catch (e) {
       console.warn('messageFromVisitor / open failed', e);
     }
+
   } else {
+    // Se Tidio non è pronto, riprova dopo 300ms
     setTimeout(sendToTidio, 300);
   }
 }
 
+// Avvia l'invio dei messaggi
 sendToTidio();
 
 // mostra feedback all'utente con ID pratica
