@@ -211,6 +211,7 @@ iframe[src*="tidio"],
   font-weight: 400;
   color: rgb(29,29,31);
   margin: 0;
+  letter-spacing: 0.2px;
 }
 
 /* stile per l'ID pratica */
