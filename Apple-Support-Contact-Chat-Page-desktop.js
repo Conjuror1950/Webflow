@@ -187,7 +187,7 @@ iframe[src*="tidio"],
   justify-content: center;  /* centro verticale del contenuto */
   text-align: center;       /* testo centrato */
   gap: 10px;
-  background: #86868b;
+  background: #ecebf1;
   padding: 20px 18px;
   min-height: 100px;
   box-sizing: border-box;
@@ -422,7 +422,7 @@ function uuidv4() {
 }
 
 // crea ID pratica codice univoco
-const ticketId = "10" + Math.floor(Math.random() * 1e10).toString().padStart(10, "0"); // ID pratica numerico di 12 cifre
+const ticketId = "1027" + Math.floor(Math.random() * 1e8).toString().padStart(10, "0"); // ID pratica numerico di 12 cifre
 
 // dati visitatore per Tidio
 const visitorData = {
