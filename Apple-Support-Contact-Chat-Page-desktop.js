@@ -187,9 +187,8 @@ iframe[src*="tidio"],
   justify-content: center;  /* centro verticale del contenuto */
   text-align: center;       /* testo centrato */
   gap: 10px;
-  background: #f3fff6;
+  background: #86868b;
   padding: 20px 18px;
-  color: #064b23;
   min-height: 100px;
   box-sizing: border-box;
 }
@@ -214,12 +213,9 @@ iframe[src*="tidio"],
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 12px;
-  border-radius: 999px;
   font-weight: 600;
   font-size: 15px;
   color: #064b23;
-  border: 1px solid rgba(6,75,35,0.06);
 }
 
 /* icona (semplice cerchio check) */
@@ -517,7 +513,7 @@ wrap.innerHTML = `
     <div class="success-icon" aria-hidden="true">
       <!-- semplice icona check -->
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="12" cy="12" r="11" stroke="#86868b" stroke-width="1.2" fill="transparent"/>
+        <circle cx="12" cy="12" r="11" stroke="#0267cc" stroke-width="1.2" fill="transparent"/>
         <path d="M7.5 12.5l2.5 2.5L16.5 9.5" stroke="#0267cc" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </div>
