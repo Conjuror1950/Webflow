@@ -315,10 +315,16 @@ const visitorData = {
 };
 
 // messaggio iniziale che comparirà agli operatori Tidio
-const initialMessage =
-  `Stai chattando con Andrea. Il tuo numero di pratica è ${ticketId}\n` +
-  `Nome: ${nome.value.trim()}\nCognome: ${cognome.value.trim()}\nEmail: ${email.value.trim()}\n` +
-  `Metodo: Form sito`;
+// ottieni data e ora locale in formato MM/DD/YYYY HH:MM AM/PM
+const now = new Date();
+const hours12 = now.getHours() % 12 || 12;
+const minutes = now.getMinutes().toString().padStart(2, '0');
+const ampm = now.getHours() >= 12 ? 'PM' : 'AM';
+const formattedDate = `${now.getMonth()+1}/${now.getDate()}/${now.getFullYear()} ${hours12}:${minutes} ${ampm}`;
+
+// Messaggi inviati separatamente
+const message1 = `Data/Ora: ${formattedDate}`;
+const message2 = `Stai chattando con Andrea. Il tuo numero di pratica è ${ticketId}`;
 
 // funzione che prova a inviare a Tidio quando è pronto
 function sendToTidio() {
@@ -330,14 +336,16 @@ function sendToTidio() {
       console.warn('setVisitorData failed', e);
     }
     try {
-      // apri il widget e invia messaggio dal visitatore
+      // apri il widget e invia i messaggi
       window.tidioChatApi.open();
-      window.tidioChatApi.messageFromVisitor(initialMessage);
+      window.tidioChatApi.messageFromVisitor(message1);
+      setTimeout(() => {
+        window.tidioChatApi.messageFromVisitor(message2);
+      }, 200); // piccolo delay per far comparire i messaggi separati
     } catch (e) {
       console.warn('messageFromVisitor / open failed', e);
     }
   } else {
-    // se il widget non è pronto, riprova dopo 300ms
     setTimeout(sendToTidio, 300);
   }
 }
