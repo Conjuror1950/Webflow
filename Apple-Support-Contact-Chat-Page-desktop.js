@@ -126,9 +126,7 @@ const css = `
 
   .apple-contact-success {
     background: #f3fff6;
-    border: 1px solid #c7f0d1;
     padding: 12px 14px;
-    border-radius: 10px;
     color: #064b23;
   }
 
@@ -180,6 +178,120 @@ iframe[src*="tidio"],
 }
 
 /* quando il widget viene mostrato via API rimuoveremo queste regole impostando direttamente lo style su elemento iframe/div */
+
+/* ===== Success message: centrato, leggibile e con controlli ===== */
+.apple-contact-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;      /* centro orizzontale */
+  justify-content: center;  /* centro verticale del contenuto */
+  text-align: center;       /* testo centrato */
+  gap: 10px;
+  background: #f3fff6;
+  padding: 20px 18px;
+  color: #064b23;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(4, 30, 9, 0.06);
+  min-height: 100px;
+  box-sizing: border-box;
+}
+
+/* titolo grande e centrato */
+.apple-contact-success .success-title {
+  font-size: 17px;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.1;
+}
+
+/* testo descrittivo */
+.apple-contact-success .success-desc {
+  font-size: 14px;
+  color: rgba(6,75,35,0.9);
+  margin: 0;
+}
+
+/* stile per l'ID pratica */
+.apple-contact-success .ticket {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(6,75,35,0.06);
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 15px;
+  color: #064b23;
+  border: 1px solid rgba(6,75,35,0.06);
+}
+
+/* row pulsanti (copy / open chat / close) */
+.apple-contact-success .success-controls {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+/* pulsanti */
+.apple-contact-success .success-btn {
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  background: #007aff;
+  color: #fff;
+  min-width: 36px;
+}
+
+/* pulsante secondario */
+.apple-contact-success .success-btn.secondary {
+  background: transparent;
+  border: 1px solid rgba(0,0,0,0.08);
+  color: #064b23;
+}
+
+/* pulsante "chiudi" più neutro */
+.apple-contact-success .success-btn.tertiary {
+  background: transparent;
+  color: rgba(6,75,35,0.7);
+  border: none;
+}
+
+/* stato disabilitato */
+.apple-contact-success .success-btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+/* icona (semplice cerchio check) */
+.apple-contact-success .success-icon {
+  width: 44px;
+  height: 44px;
+  display: inline-grid;
+  place-items: center;
+  background: linear-gradient(180deg, #e9fff0, #d6fce3);
+  border-radius: 999px;
+  box-shadow: 0 4px 10px rgba(6,75,35,0.08);
+}
+
+/* responsive: togli padding se spazio stretto */
+@media (max-width: 420px) {
+  .apple-contact-success {
+    padding: 14px;
+    gap: 8px;
+  }
+  .apple-contact-success .ticket {
+    font-size: 14px;
+    padding: 6px 10px;
+  }
+  .apple-contact-success .success-btn {
+    padding: 9px 12px;
+    font-size: 13px;
+  }
+}
 `;
 
   function createStyles(){
@@ -447,11 +559,31 @@ window.tidioChatApi.messageFromVisitor(message1);
 // sendToTidio(); // Aggiungi '//' prima di 'sendToTidio();' per disattivare temporaneamente l'invio.
 
 // mostra feedback all'utente con ID pratica
+// ================= mostra feedback all'utente con ID pratica - markup migliorato =================
 wrap.innerHTML = `
-  <div class="apple-contact-success" role="status">
-    <strong>Apertura chat</strong>
-    <div>La finestra della chat dovrebbe aprirsi automaticamente.</div>
-    <div>ID pratica: <strong>${ticketId}</strong></div>
+  <div class="apple-contact-success" role="status" aria-live="polite" tabindex="-1">
+    <div class="success-icon" aria-hidden="true">
+      <!-- semplice icona check -->
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="11" stroke="#064b23" stroke-width="1.2" fill="transparent"/>
+        <path d="M7.5 12.5l2.5 2.5L16.5 9.5" stroke="#064b23" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <div>
+      <p class="success-title">Apertura chat</p>
+      <p class="success-desc">La finestra della chat dovrebbe aprirsi automaticamente.</p>
+    </div>
+
+    <div class="ticket" aria-label="ID pratica">
+      <span>ID: </span><strong id="acf-ticket-id">${ticketId}</strong>
+    </div>
+
+    <div class="success-controls" role="group" aria-label="Controlli messaggio di successo">
+      <button type="button" class="success-btn" id="acf-copy-ticket">Copia ID pratica</button>
+      <button type="button" class="success-btn secondary" id="acf-open-chat">Apri chat</button>
+      <button type="button" class="success-btn tertiary" id="acf-close-success">Chiudi</button>
+    </div>
   </div>
 `;
 
