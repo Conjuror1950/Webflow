@@ -430,7 +430,7 @@ function uuidv4() {
 }
 
 // crea ID pratica codice univoco
-const ticketId = "1027" + Math.floor(Math.random() * 1e8).toString().padStart(10, "0"); // ID pratica numerico di 12 cifre
+const ticketId = "1027" + Math.floor(Math.random() * 1e8).toString().padStart(8, "0"); // ID pratica numerico di 12 cifre
 
 // dati visitatore per Tidio
 const visitorData = {
