@@ -273,8 +273,6 @@ iframe[src*="tidio"],
   display: inline-grid;
   place-items: center;
   background: linear-gradient(180deg, #e9fff0, #d6fce3);
-  border-radius: 999px;
-  box-shadow: 0 4px 10px rgba(6,75,35,0.08);
 }
 
 /* responsive: togli padding se spazio stretto */
@@ -558,13 +556,14 @@ window.tidioChatApi.messageFromVisitor(message1);
 // Avvia l'invio dei messaggi
 // sendToTidio(); // Aggiungi '//' prima di 'sendToTidio();' per disattivare temporaneamente l'invio.
 
-// mostra feedback all'utente con ID pratica
 // ================= mostra feedback all'utente con ID pratica - markup migliorato =================
 wrap.innerHTML = `
   <div class="apple-contact-success" role="status" aria-live="polite" tabindex="-1">
     <div class="success-icon" aria-hidden="true">
       <!-- semplice icona check -->
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="white" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="11" stroke="#064b23" stroke-width="1.2" fill="transparent"/>
+        <path d="M7.5 12.5l2.5 2.5L16.5 9.5" stroke="#064b23" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </div>
 
