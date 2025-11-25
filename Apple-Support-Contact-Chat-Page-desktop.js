@@ -200,7 +200,7 @@ iframe[src*="tidio"],
   font-size: 40px;
   line-height: 44px;
   font-weight: 600;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   color: rgb(29,29,31);
 }
 
