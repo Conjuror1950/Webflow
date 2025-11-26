@@ -258,8 +258,8 @@ iframe[src*="tidio"],
 /* CSS mobile landscape e tablet */
 @media (min-width: 501px) and (max-width: 991px) {
   .apple-contact-success {
-    width: 100%;
-    margin-left: 10px;
+    width: 700px;
+    margin-left: 20px;
   }
 
   .apple-contact-success .ticket {
