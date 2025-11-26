@@ -189,7 +189,7 @@ iframe[src*="tidio"],
   justify-content: center;  /* centro verticale del contenuto */
   text-align: center;       /* testo centrato */
   gap: 10px;
-  background: #ecebf1;
+  background: transparent;
   padding: 40px 18px;
   margin-left: 55px;
   box-sizing: border-box;
