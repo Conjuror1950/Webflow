@@ -182,7 +182,7 @@ iframe[src*="tidio"],
 /* ===== Success message ===== */
 .apple-contact-success {
   width: 950px;
-  height: 300px;
+  height: 500px;
   display: flex;
   flex-direction: column;
   align-items: center;      /* centro orizzontale */
@@ -192,7 +192,6 @@ iframe[src*="tidio"],
   background: #ecebf1;
   padding: 40px 18px;
   margin-left: 55px;
-  min-height: 200px;
   box-sizing: border-box;
 }
 
