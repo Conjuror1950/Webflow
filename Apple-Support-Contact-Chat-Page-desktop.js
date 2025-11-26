@@ -238,7 +238,11 @@ iframe[src*="tidio"],
   place-items: center;
 }
 
-/* responsive: togli padding se spazio stretto */
+.apple-contact-success .ticket strong {
+  font-weight: 400;
+}
+
+/* CSS mobile portrait */
 @media (max-width: 500px) {
   .apple-contact-success {
     width: 100%;
@@ -251,9 +255,18 @@ iframe[src*="tidio"],
   }
 }
 
-.apple-contact-success .ticket strong {
-  font-weight: 400;
+/* CSS mobile landscape e tablet */
+@media (min-width: 501px) and (max-width: 991px) {
+  .apple-contact-success {
+    width: 100%;
+    margin-left: 10px;
+  }
+
+  .apple-contact-success .ticket {
+    font-size: 15px;
+  }
 }
+
 `;
 
   function createStyles(){
