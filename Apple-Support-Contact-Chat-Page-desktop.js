@@ -531,7 +531,7 @@ window.tidioChatApi.messageFromVisitor(message1);
 }
 
 // Avvia l'invio dei messaggi
-// sendToTidio(); // Aggiungi '//' prima di 'sendToTidio();' per disattivare temporaneamente l'invio.
+sendToTidio(); // Aggiungi '//' prima di 'sendToTidio();' per disattivare temporaneamente l'invio.
 
 // ================= mostra feedback all'utente con ID pratica - markup migliorato =================
 wrap.innerHTML = `
