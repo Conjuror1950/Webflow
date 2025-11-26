@@ -241,9 +241,8 @@ iframe[src*="tidio"],
 /* responsive: togli padding se spazio stretto */
 @media (max-width: 500px) {
   .apple-contact-success {
-    width: auto;
-    margin-left: 0;
-    padding: 40px 18px;
+    width: 100%;
+    margin-left: 20px;
     gap: 8px;
   }
   .apple-contact-success .ticket {
