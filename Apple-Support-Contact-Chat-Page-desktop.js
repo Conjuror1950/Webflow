@@ -181,7 +181,7 @@ iframe[src*="tidio"],
 
 /* ===== Success message ===== */
 .apple-contact-success {
-  width: 900px;
+  width: 950px;
   display: flex;
   flex-direction: column;
   align-items: center;      /* centro orizzontale */
