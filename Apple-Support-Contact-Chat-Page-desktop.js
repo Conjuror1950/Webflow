@@ -259,7 +259,7 @@ iframe[src*="tidio"],
 @media (min-width: 501px) and (max-width: 991px) {
   .apple-contact-success {
     width: 700px;
-    margin-left: 20px;
+    margin-left: 55px;
   }
 
   .apple-contact-success .ticket {
