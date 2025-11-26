@@ -243,7 +243,7 @@ iframe[src*="tidio"],
   .apple-contact-success {
     width: auto;
     margin-left: 0;
-    padding: auto;
+    padding: 40px 18px;
     gap: 8px;
   }
   .apple-contact-success .ticket {
