@@ -11,6 +11,7 @@ const urlMap = {
   "contatta il supporto": "/getsupport",
   "contatta": "/getsupport",
   "get": "/getsupport",
+  "getsupport": "/getsupport",
   "get support": "/getsupport",
   "chat": "/getsupport/chat",
   "chatta": "/getsupport/chat",
