@@ -8,7 +8,7 @@
     title: 'Chat dal vivo',
     subtitle: 'Avvia una conversazione con Andrea',
     onButtonClick: function (e) {
-      window.location.href = 'https://support-andreaingrassia.webflow.io/getsupport/chat'; // link desiderato
+      window.location.href = 'https://support-andreaingrassia.webflow.io/getsupport/solutions/chat'; // link desiderato
     },
     maxRetries: 30,
     retryIntervalMs: 200
