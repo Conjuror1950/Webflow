@@ -10,7 +10,7 @@ var SCHEDULE = {
   4: { startHour: 7, startMinute: 0, endHour: 21, endMinute: 0 }, // Giovedì
   5: { startHour: 7, startMinute: 0, endHour: 21, endMinute: 0 }, // Venerdì
   6: { startHour: 8, startMinute: 0, endHour: 16, endMinute: 0 }, // Sabato
-  0: null // Domenica chiuso
+  0: { startHour: 10, startMinute: 0, endHour: 16, endMinute: 0 }, // Domenica (sostituire orari con 'null' se chiuso)
 };
 
 (function() {
