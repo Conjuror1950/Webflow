@@ -1,6 +1,6 @@
 // chat-redirect-schedule.js
-var ACTIVE_LINK = "https://support-andreaingrassia.webflow.io/getsupport/solutions/email";
-var INACTIVE_LINK = "https://support-andreaingrassia.webflow.io/getsupport/products/all";
+var ACTIVE_LINK = "https://getsupport-andreaingrassia.webflow.io/solutions/email";
+var INACTIVE_LINK = "https://getsupport-andreaingrassia.webflow.io/products";
 
 // 📅 Orari chat per giorno (0=Dom, 1=Lun, ... 6=Sab)
 var SCHEDULE = {
