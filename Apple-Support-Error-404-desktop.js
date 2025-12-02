@@ -1,102 +1,77 @@
-// 1) Mappe e funzione Search (globali)
-const urlMap = {
+// -------------------------
+// 1) Mappe per due siti e funzione di risoluzione
+// -------------------------
+
+// Imposta qui i domini effettivi dei due siti (senza https://)
+const siteXDomain = "support-andreaingrassia.webflow.io"; // sito support
+const siteYDomain = "getsupport-andreaingrassia.webflow.io"; // sito getsupport
+
+// URL Map site support
+const urlMapX = {
   "home": "/",
   "supporto": "/",
   "supporto andrea": "/",
-  "supporto andrea ufficiale": "/",
-  "support": "/",
-  "contatti": "/contact",
-  "contattami": "/contact",
-  "contact": "/contact",
-  "ottieni supporto": "https://getsupport-andreaingrassia.webflow.io/",
-  "ottieni": "/getsupport",
-  "contatta il supporto": "/getsupport",
-  "contatta": "/getsupport",
-  "get": "/getsupport",
-  "getsupport": "/getsupport",
-  "get support": "/getsupport",
-  "chat": "/getsupport/solutions/chat",
-  "chatta": "/getsupport/solutions/chat",
-  "chatta con il supporto": "/getsupport/solutions/chat",
-  "chat con il supporto": "/getsupport/solutions/chat",
-  "chat supporto": "/getsupport/solutions/chat",
-  "email": "/getsupport/solutions/email",
-  "mail": "/getsupport/solutions/email",
-  "scrivi": "/getsupport/solutions/email",
-  "scrivi al supporto": "/getsupport/solutions/email",
-  "invia mail al supporto": "/getsupport/solutions/email",
-  "scrivi email": "/getsupport/solutions/email",
-  "scrivi email al supporto": "/getsupport/solutions/email",
-  "invia email": "/getsupport/solutions/email",
-  "invia mail": "/getsupport/solutions/email",
-  "invia email al supporto": "/getsupport/solutions/email",
-  "invia": "/getsupport/solutions/email",
-  "scelta del prodotto": "/getsupport/products/all",
-  "scelta": "/getsupport/products/all",
-  "prodotto": "/getsupport/products/all",
-  "tutti i prodotti": "/getsupport/products/all",
-  "products": "/getsupport/products/all",
-  "all": "/getsupport/products/all",
-  "topics supporto": "/getsupport/topics/supporto-andrea-ufficiale/overview",
-  "topics supporto andrea": "/getsupport/topics/supporto-andrea-ufficiale/overview",
-  "topics supporto andrea ufficiale": "/topics/solutions/supporto-andrea-ufficiale/overview",
-  "argomenti supporto andrea": "/getsupport/topics/supporto-andrea-ufficiale/overview",
-  "topics supporto andrea ufficiale": "/getsupport/topics/supporto-andrea-ufficiale/overview",
-  "argomenti andrea": "/getsupport/topics/andrea-ingrassia/overview",
-  "argomenti ingrassia andrea": "/getsupport/topics/andrea-ingrassia/overview",
-  "argomenti andrea ingrassia": "/getsupport/topics/andrea-ingrassia/overview",
-  "correzioni e modifiche": "/getsupport/solutions/help/andrea-ingrassia/requests/corrections",
-  "correzioni e modifiche andrea ingrassia": "/getsupport/solutions/help/andrea-ingrassia/requests/corrections",
-  "correzioni": "/getsupport/solutions/help/andrea-ingrassia/requests/corrections",
-  "modifiche": "/getsupport/solutions/help/andrea-ingrassia/requests/corrections",
-  "correzioni andrea": "/getsupport/solutions/help/andrea-ingrassia/requests/corrections",
-  "modifiche andrea": "/getsupport/solutions/help/andrea-ingrassia/requests/corrections",
-  "requests andrea": "/getsupport/solutions/help/andrea-ingrassia/requests/corrections",
-  "corrections andrea": "/getsupport/solutions/help/andrea-ingrassia/requests/corrections",
-  "requests": "/getsupport/solutions/help/andrea-ingrassia/requests/corrections",
-  "corrections": "/getsupport/solutions/help/andrea-ingrassia/requests/corrections",
-  "assistance andrea": "/getsupport/solutions/help/andrea-ingrassia/assistance/media",
-  "assistance": "/getsupport/solutions/help/andrea-ingrassia/assistance/media",
-  "media andrea": "/getsupport/solutions/help/andrea-ingrassia/assistance/media",
-  "media": "/getsupport/solutions/help/andrea-ingrassia/assistance/media",
-  "assistenza andrea": "/getsupport/solutions/help/andrea-ingrassia/assistance/media",
-  "social": "/contact/social",
-  "seguimi sui social": "/contact/social",
-  "seguimi": "/contact/social",
-  "instagram": "/contact/social",
-  "youtube": "/contact/social",
-  "linkedin": "/contact/social",
-  "insta": "/contact/social",
-  "spotify": "/contact/social",
-  "spoty": "/contact/social",
-  "linktree": "/contact/social",
-  "tiktok": "/contact/social",
-  "flickr": "/contact/social",
-  "docs": "/docs",
-  "documentazione": "/docs",
-  "documenti": "/docs",
-  "pdf": "/docs",
-  "manuali": "/docs",
-  "specifiche": "/docs",
-  "download": "/docs",
+  // ... copia qui tutte le entries originali del sito X ...
   "mappa": "/sitemap",
-  "sitemap": "/sitemap",
-  "mappa del sito": "/sitemap",
-  "mappa del supporto": "/sitemap",
-  "mappa del sito del supporto": "/sitemap",
-  "mappa supporto": "/sitemap",
-  "supporto mappa": "/sitemap",
-  // aggiungi altre parole chiave se serve
+  "sitemap": "/sitemap"
 };
 
+// URL Map site getsupport
+const urlMapY = {
+  "ciao": "/s",
+  "supporto": "/help",
+  "contatti": "/contact-us",
+  // ... aggiungi/adegua qui le entries per il sito Y ...
+  "mappa": "/sitemap",
+  "sitemap": "/sitemap"
+};
+
+// Utility per normalizzare la query
+function normalize(q) {
+  return String(q || "").trim().toLowerCase();
+}
+
+// Risolve dove redirectare dato il testo di ricerca
+function resolveRedirect(query) {
+  const q = normalize(query);
+  if (!q) return null;
+
+  const currentHost = window.location.hostname || "";
+
+  // preferisci la mappa del sito corrente se il dominio corrisponde
+  const isOnSiteX = currentHost.includes(siteXDomain);
+  const isOnSiteY = currentHost.includes(siteYDomain);
+
+  if (isOnSiteX && urlMapX[q]) {
+    return `https://${siteXDomain}${urlMapX[q]}`;
+  }
+  if (isOnSiteY && urlMapY[q]) {
+    return `https://${siteYDomain}${urlMapY[q]}`;
+  }
+
+  // altrimenti prova a trovare la query in entrambe le mappe (preferisci X prima ma puoi invertire)
+  if (urlMapX[q]) {
+    return `https://${siteXDomain}${urlMapX[q]}`;
+  }
+  if (urlMapY[q]) {
+    return `https://${siteYDomain}${urlMapY[q]}`;
+  }
+
+  // niente trovato
+  return null;
+}
+
+// Funzione handleSearch aggiornata (usa resolveRedirect)
 function handleSearch(event) {
   event.preventDefault();
   const input = document.getElementById('searchInput');
-  if (!input) return; // sicurezza se il form non esiste
-  const query = input.value.trim().toLowerCase();
+  if (!input) return;
+  const query = input.value;
 
-  if (urlMap[query]) {
-    window.location.href = `https://support-andreaingrassia.webflow.io${urlMap[query]}`;
+  const target = resolveRedirect(query);
+
+  if (target) {
+    window.location.href = target;
   } else {
     alert("Purtroppo non abbiamo trovato risultati. Fai una nuova ricerca.");
   }
