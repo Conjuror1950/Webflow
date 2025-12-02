@@ -8,7 +8,7 @@ const urlMap = {
   "contatti": "/contact",
   "contattami": "/contact",
   "contact": "/contact",
-  "ottieni supporto": "/getsupport",
+  "ottieni supporto": "https://getsupport-andreaingrassia.webflow.io/",
   "ottieni": "/getsupport",
   "contatta il supporto": "/getsupport",
   "contatta": "/getsupport",
