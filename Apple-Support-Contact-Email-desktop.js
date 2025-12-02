@@ -8,7 +8,7 @@
     title: 'Scrivi al supporto',
     subtitle: 'Invia la richiesta quando preferisci',
     onButtonClick: function (e) {
-      window.location.href = 'https://support-andreaingrassia.webflow.io/getsupport/solutions/email'; // link desiderato
+      window.location.href = 'https://getsupport-andreaingrassia.webflow.io/solutions/email'; // link desiderato
     },
     maxRetries: 30,
     retryIntervalMs: 200
