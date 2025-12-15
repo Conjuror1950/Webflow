@@ -11,20 +11,20 @@
   /* -------------------------------
      FUNZIONE ANTI-HREF WEBFLOW
   -------------------------------- */
-  function forceHref(tab) {
-    if (isForcingHref) return;
+function forceHref(tab) {
+  if (isForcingHref) return;
 
-    isForcingHref = true;
+  isForcingHref = true;
 
+  tab.removeAttribute("href");
+  tab.setAttribute("href", FIXED_HREF);
+
+  requestAnimationFrame(() => {
     tab.removeAttribute("href");
     tab.setAttribute("href", FIXED_HREF);
-
-    requestAnimationFrame(() => {
-      tab.removeAttribute("href");
-      tab.setAttribute("href", FIXED_HREF);
-      isForcingHref = false;
-    });
-  }
+    isForcingHref = false;
+  });
+}
 
   /* -------------------------------
      UNDERLINE DINAMICO (APPLE STYLE)
@@ -85,19 +85,19 @@
   /* --------------------------------
      MUTATION OBSERVER (ANTI-REINIEZIONE)
   ---------------------------------- */
-  const observer = new MutationObserver((mutations) => {
-    if (isForcingHref) return;
+const observer = new MutationObserver((mutations) => {
+  if (isForcingHref) return;
 
-    mutations.forEach((mutation) => {
-      if (
-        mutation.type === "attributes" &&
-        mutation.attributeName === "href" &&
-        mutation.target.classList.contains("w-tab-link")
-      ) {
-        forceHref(mutation.target);
-      }
-    });
+  mutations.forEach((mutation) => {
+    if (
+      mutation.type === "attributes" &&
+      mutation.attributeName === "href" &&
+      mutation.target.classList.contains("w-tab-link")
+    ) {
+      forceHref(mutation.target);
+    }
   });
+});
 
   observer.observe(document.body, {
     subtree: true,
