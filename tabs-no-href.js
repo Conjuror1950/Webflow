@@ -8,6 +8,23 @@
   const tabsMenu = tabs[0].parentElement;
 
   /* -------------------------------
+     INI CSS PER RESET BORDI
+  -------------------------------- */
+  const style = document.createElement("style");
+  style.innerHTML = `
+    .text-block-reset {
+      border-top: 2px solid transparent !important;
+      border-right: 2px solid transparent !important;
+      border-bottom: 2px solid transparent !important;
+      border-left: 2px solid transparent !important;
+    }
+    .tab-underline {
+      pointer-events: none;
+    }
+  `;
+  document.head.appendChild(style);
+
+  /* -------------------------------
      FUNZIONE ANTI-HREF (PER TAB)
   -------------------------------- */
   function forceHref(tab) {
@@ -15,7 +32,6 @@
 
     tab.dataset.forcing = "true";
 
-    // Rimuove e imposta sempre href fittizio
     tab.removeAttribute("href");
     tab.setAttribute("href", FIXED_HREF);
 
@@ -116,15 +132,21 @@
      CLICK FUORI TAB → RESET BORDI
   -------------------------------- */
   document.addEventListener("click", function(e) {
-    // Se il click NON è su un tab link
     if (!e.target.closest(".w-tab-link")) {
       const textBlocks = document.querySelectorAll(
         ".Text-Block-153, .Text-Block-155, .Text-Block-156"
       );
       textBlocks.forEach(block => {
-        block.classList.add("text-block-reset"); // aggiunge classe con !important
+        block.classList.add("text-block-reset"); // applica classe con !important
       });
     }
+  });
+
+  /* -------------------------------
+     OPTIONAL: Aggiorna underline al resize
+  -------------------------------- */
+  window.addEventListener("resize", () => {
+    positionUnderline(currentIndex);
   });
 
 })();
