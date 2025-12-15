@@ -15,6 +15,7 @@
 
     tab.dataset.forcing = "true";
 
+    // Rimuove e imposta sempre href fittizio
     tab.removeAttribute("href");
     tab.setAttribute("href", FIXED_HREF);
 
@@ -60,6 +61,7 @@
   /* -------------------------------
      INIT
   -------------------------------- */
+  // Rimuove subito href Webflow su tutte le tab (prima del caricamento completo)
   tabs.forEach(tab => forceHref(tab));
 
   window.addEventListener("load", function () {
@@ -75,7 +77,7 @@
         tabs.forEach(t => t.classList.remove("current"));
         tab.classList.add("current");
 
-        forceHref(tab);
+        forceHref(tab); // forza href subito dopo il click
       });
     });
   });
@@ -99,25 +101,5 @@
     subtree: true,
     attributes: true,
     attributeFilter: ["href"]
-  });
-
-  /* -------------------------------
-     CLICK FUORI TAB → AGGIUNGI BORDER
-  -------------------------------- */
-  document.addEventListener("click", function (e) {
-    // Se il click NON è su una tab
-    if (!e.target.classList.contains("w-tab-link")) {
-      const classesToBorder = [
-        "Text-Block-153",
-        "Text-Block-155",
-        "Text-Block-156"
-      ];
-
-      classesToBorder.forEach(cls => {
-        document.querySelectorAll(`.${cls}`).forEach(el => {
-          el.style.border = "2px solid transparent"; // imposta il bordo a tutti i lati
-        });
-      });
-    }
   });
 })();
