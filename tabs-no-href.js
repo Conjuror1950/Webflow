@@ -1,7 +1,6 @@
 (function () {
   const FIXED_HREF = window.location.pathname + "#";
   let currentIndex = 0;
-  let isForcingHref = false;
 
   const tabs = document.querySelectorAll(".w-tab-link");
   if (!tabs.length) return;
@@ -9,22 +8,22 @@
   const tabsMenu = tabs[0].parentElement;
 
   /* -------------------------------
-     FUNZIONE ANTI-HREF WEBFLOW
+     FUNZIONE ANTI-HREF (PER TAB)
   -------------------------------- */
-function forceHref(tab) {
-  if (isForcingHref) return;
+  function forceHref(tab) {
+    if (tab.dataset.forcing === "true") return;
 
-  isForcingHref = true;
+    tab.dataset.forcing = "true";
 
-  tab.removeAttribute("href");
-  tab.setAttribute("href", FIXED_HREF);
-
-  requestAnimationFrame(() => {
     tab.removeAttribute("href");
     tab.setAttribute("href", FIXED_HREF);
-    isForcingHref = false;
-  });
-}
+
+    requestAnimationFrame(() => {
+      tab.removeAttribute("href");
+      tab.setAttribute("href", FIXED_HREF);
+      delete tab.dataset.forcing;
+    });
+  }
 
   /* -------------------------------
      UNDERLINE DINAMICO (APPLE STYLE)
@@ -83,21 +82,19 @@ function forceHref(tab) {
   });
 
   /* --------------------------------
-     MUTATION OBSERVER (ANTI-REINIEZIONE)
+     MUTATION OBSERVER (STABILE)
   ---------------------------------- */
-const observer = new MutationObserver((mutations) => {
-  if (isForcingHref) return;
-
-  mutations.forEach((mutation) => {
-    if (
-      mutation.type === "attributes" &&
-      mutation.attributeName === "href" &&
-      mutation.target.classList.contains("w-tab-link")
-    ) {
-      forceHref(mutation.target);
-    }
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (
+        mutation.type === "attributes" &&
+        mutation.attributeName === "href" &&
+        mutation.target.classList.contains("w-tab-link")
+      ) {
+        forceHref(mutation.target);
+      }
+    });
   });
-});
 
   observer.observe(document.body, {
     subtree: true,
