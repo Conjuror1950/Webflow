@@ -78,6 +78,15 @@
         tab.classList.add("current");
 
         forceHref(tab); // forza href subito dopo il click
+
+        // Rimuove la classe di reset dei Text Block per permettere le interaction
+        const textBlocks = document.querySelectorAll(
+          ".Text-Block-153, .Text-Block-155, .Text-Block-156"
+        );
+        textBlocks.forEach(block => block.classList.remove("text-block-reset"));
+
+        // Blocca propagazione per evitare il click fuori
+        e.stopPropagation();
       });
     });
   });
@@ -103,32 +112,19 @@
     attributeFilter: ["href"]
   });
 
-/* -------------------------------
-   CLICK FUORI TAB → BORDI TRASPARENTI
--------------------------------- */
-document.addEventListener("click", function(e) {
-  // Se il click NON è su un tab link
-  if (!e.target.closest(".w-tab-link")) {
-    // Seleziona i tuoi Text Block
-    const textBlocks = document.querySelectorAll(
-      ".Text-Block-153, .Text-Block-155, .Text-Block-156"
-    );
-
-    textBlocks.forEach(block => {
-      block.style.borderTop = "2px solid transparent";
-      block.style.borderRight = "2px solid transparent";
-      block.style.borderBottom = "2px solid transparent";
-      block.style.borderLeft = "2px solid transparent";
-    });
-  }
-});
-
-// Blocca la propagazione dei click sui tab link
-document.querySelectorAll(".w-tab-link").forEach(tab => {
-  tab.addEventListener("click", function(e) {
-    e.stopPropagation(); // evita che il click bolla fino al document
+  /* -------------------------------
+     CLICK FUORI TAB → RESET BORDI
+  -------------------------------- */
+  document.addEventListener("click", function(e) {
+    // Se il click NON è su un tab link
+    if (!e.target.closest(".w-tab-link")) {
+      const textBlocks = document.querySelectorAll(
+        ".Text-Block-153, .Text-Block-155, .Text-Block-156"
+      );
+      textBlocks.forEach(block => {
+        block.classList.add("text-block-reset"); // aggiunge classe con !important
+      });
+    }
   });
-});
-
 
 })();
