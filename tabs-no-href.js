@@ -85,4 +85,25 @@
     });
   });
 
+  /* --------------------------------
+   OSSERVA E BLOCCA HREF WEBFLOW
+---------------------------------- */
+const observer = new MutationObserver((mutations) => {
+  mutations.forEach((mutation) => {
+    if (
+      mutation.type === "attributes" &&
+      mutation.attributeName === "href" &&
+      mutation.target.classList.contains("w-tab-link")
+    ) {
+      forceHref(mutation.target);
+    }
+  });
+});
+
+observer.observe(document.body, {
+  subtree: true,
+  attributes: true,
+  attributeFilter: ["href"]
+});
+
 })();
