@@ -103,8 +103,8 @@
     attributeFilter: ["href"]
   });
 
-  /* -------------------------------
-   CLICK FUORI TAB → BORDEER TRASPARENTE
+/* -------------------------------
+   CLICK FUORI TAB → BORDI TRASPARENTI
 -------------------------------- */
 document.addEventListener("click", function(e) {
   // Se il click NON è su un tab link
@@ -122,5 +122,13 @@ document.addEventListener("click", function(e) {
     });
   }
 });
+
+// Blocca la propagazione dei click sui tab link
+document.querySelectorAll(".w-tab-link").forEach(tab => {
+  tab.addEventListener("click", function(e) {
+    e.stopPropagation(); // evita che il click bolla fino al document
+  });
+});
+
 
 })();
