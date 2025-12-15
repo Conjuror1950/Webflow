@@ -1,34 +1,39 @@
 (function () {
-  function cleanTabs() {
+  // Imposta QUI l'href che vuoi
+  var FIXED_HREF = window.location.pathname + "#";
+
+  function forceTabHref() {
     document.querySelectorAll(".w-tab-link").forEach(function (tab) {
-      if (tab.hasAttribute("href")) {
-        tab.removeAttribute("href");
+      // Forza sempre lo stesso href
+      if (tab.getAttribute("href") !== FIXED_HREF) {
+        tab.setAttribute("href", FIXED_HREF);
       }
 
-      if (!tab.dataset.nohref) {
-        tab.dataset.nohref = "true";
+      // Evita di aggiungere più listener
+      if (!tab.dataset.fixedHref) {
+        tab.dataset.fixedHref = "true";
 
         tab.addEventListener("click", function (e) {
           e.preventDefault();
 
-          // Webflow reinietta l'href DOPO il click → lo rimuoviamo di nuovo
+          // Dopo il click Webflow reinietta w-tabs → lo sovrascriviamo
           setTimeout(function () {
-            tab.removeAttribute("href");
+            tab.setAttribute("href", FIXED_HREF);
           }, 0);
         });
       }
     });
   }
 
-  // Dopo caricamento completo Webflow
-  window.addEventListener("load", cleanTabs);
+  // Dopo inizializzazione Webflow
+  window.addEventListener("load", forceTabHref);
 
-  // Osserva CAMBI di attributi (classe w--current)
-  const observer = new MutationObserver(cleanTabs);
+  // Osserva QUALSIASI modifica agli attributi
+  const observer = new MutationObserver(forceTabHref);
 
   observer.observe(document.body, {
     subtree: true,
     attributes: true,
-    attributeFilter: ["class"]
+    attributeFilter: ["href", "class"]
   });
 })();
