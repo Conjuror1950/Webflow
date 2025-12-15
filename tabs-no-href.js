@@ -8,23 +8,6 @@
   const tabsMenu = tabs[0].parentElement;
 
   /* -------------------------------
-     INI CSS PER RESET BORDI
-  -------------------------------- */
-  const style = document.createElement("style");
-  style.innerHTML = `
-    .text-block-reset {
-      border-top: 2px solid transparent !important;
-      border-right: 2px solid transparent !important;
-      border-bottom: 2px solid transparent !important;
-      border-left: 2px solid transparent !important;
-    }
-    .tab-underline {
-      pointer-events: none;
-    }
-  `;
-  document.head.appendChild(style);
-
-  /* -------------------------------
      FUNZIONE ANTI-HREF (PER TAB)
   -------------------------------- */
   function forceHref(tab) {
@@ -39,6 +22,26 @@
       tab.removeAttribute("href");
       tab.setAttribute("href", FIXED_HREF);
       delete tab.dataset.forcing;
+    });
+  }
+
+  /* -------------------------------
+     FUNZIONE BORDI TEXT BLOCK
+  -------------------------------- */
+  const textBlocks = [
+    document.querySelector(".Text-Block-153"), // Tab 1
+    document.querySelector(".Text-Block-155"), // Tab 2
+    document.querySelector(".Text-Block-156")  // Tab 3
+  ];
+
+  function updateTextBorders(index) {
+    textBlocks.forEach((tb, i) => {
+      if (!tb) return;
+      if (i === index) {
+        tb.style.border = "2px solid #0071e3";
+      } else {
+        tb.style.border = "none";
+      }
     });
   }
 
@@ -58,10 +61,8 @@
     const tab = tabs[currentIndex];
     const rect = tab.getBoundingClientRect();
     const parentRect = tabsMenu.getBoundingClientRect();
-
     underline.style.left = rect.left - parentRect.left + "px";
     underline.style.width = rect.width + "px";
-
     tabsMenu.appendChild(underline);
   }
 
@@ -69,7 +70,6 @@
     const tab = tabs[index];
     const rect = tab.getBoundingClientRect();
     const parentRect = tabsMenu.getBoundingClientRect();
-
     underline.style.left = rect.left - parentRect.left + "px";
     underline.style.width = rect.width + "px";
   }
@@ -77,8 +77,7 @@
   /* -------------------------------
      INIT
   -------------------------------- */
-  // Rimuove subito href Webflow su tutte le tab (prima del caricamento completo)
-  tabs.forEach(tab => forceHref(tab));
+  tabs.forEach(tab => forceHref(tab)); // rimuove subito href Webflow
 
   window.addEventListener("load", function () {
     initUnderline();
@@ -90,21 +89,19 @@
         currentIndex = i;
         positionUnderline(currentIndex);
 
+        // Aggiorna classe current
         tabs.forEach(t => t.classList.remove("current"));
         tab.classList.add("current");
 
+        // Aggiorna bordi text block
+        updateTextBorders(i);
+
         forceHref(tab); // forza href subito dopo il click
-
-        // Rimuove la classe di reset dei Text Block per permettere le interaction
-        const textBlocks = document.querySelectorAll(
-          ".Text-Block-153, .Text-Block-155, .Text-Block-156"
-        );
-        textBlocks.forEach(block => block.classList.remove("text-block-reset"));
-
-        // Blocca propagazione per evitare il click fuori
-        e.stopPropagation();
       });
     });
+
+    // Al caricamento iniziale, imposta i bordi per la prima tab
+    updateTextBorders(currentIndex);
   });
 
   /* -------------------------------
@@ -127,26 +124,4 @@
     attributes: true,
     attributeFilter: ["href"]
   });
-
-  /* -------------------------------
-     CLICK FUORI TAB → RESET BORDI
-  -------------------------------- */
-  document.addEventListener("click", function(e) {
-    if (!e.target.closest(".w-tab-link")) {
-      const textBlocks = document.querySelectorAll(
-        ".Text-Block-153, .Text-Block-155, .Text-Block-156"
-      );
-      textBlocks.forEach(block => {
-        block.classList.add("text-block-reset"); // applica classe con !important
-      });
-    }
-  });
-
-  /* -------------------------------
-     OPTIONAL: Aggiorna underline al resize
-  -------------------------------- */
-  window.addEventListener("resize", () => {
-    positionUnderline(currentIndex);
-  });
-
 })();
