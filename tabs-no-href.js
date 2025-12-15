@@ -34,16 +34,18 @@
     document.querySelector(".Text-Block-156")  // Tab 3
   ];
 
-  function updateTextBorders(index) {
-    textBlocks.forEach((tb, i) => {
-      if (!tb) return;
-      if (i === index) {
-        tb.style.border = "2px solid #0071e3";
-      } else {
-        tb.style.border = "none";
-      }
-    });
-  }
+function updateTextBorders(index) {
+  textBlocks.forEach((tb, i) => {
+    if (!tb) return;
+    if (i === index) {
+      tb.style.border = "2px solid #0071e3";
+      tb.style.display = "inline-block";   // Assicurati che il bordo si veda
+      tb.style.boxSizing = "border-box";   // Include il bordo nella dimensione
+    } else {
+      tb.style.border = "none";
+    }
+  });
+}
 
   /* -------------------------------
      UNDERLINE DINAMICO (APPLE STYLE)
