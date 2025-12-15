@@ -16,6 +16,9 @@
   underline.style.backgroundColor = "black";
   underline.style.transition = "left 0.2s ease-out, width 0.2s ease-out";
 
+  // <<<<<<<<<<<<<< Aggiungi qui
+  underline.style.opacity = "0"; // nasconde fino a calcolo posizione
+
   function positionUnderline(index) {
     const tab = tabs[index];
     const rect = tab.getBoundingClientRect();
@@ -25,6 +28,9 @@
 
     underline.style.left = left + "px";
     underline.style.width = width + "px";
+
+    // <<<<<<<<<<<<<< Aggiungi qui
+    underline.style.opacity = "1"; // mostra solo dopo aver settato posizione e larghezza
   }
 
   // Posizione iniziale
