@@ -102,4 +102,25 @@
     attributes: true,
     attributeFilter: ["href"]
   });
+
+  /* -------------------------------
+   CLICK FUORI TAB → BORDEER TRASPARENTE
+-------------------------------- */
+document.addEventListener("click", function(e) {
+  // Se il click NON è su un tab link
+  if (!e.target.closest(".w-tab-link")) {
+    // Seleziona i tuoi Text Block
+    const textBlocks = document.querySelectorAll(
+      ".Text.Block.153, .Text.Block.155, .Text.Block.156"
+    );
+
+    textBlocks.forEach(block => {
+      block.style.borderTop = "2px solid transparent";
+      block.style.borderRight = "2px solid transparent";
+      block.style.borderBottom = "2px solid transparent";
+      block.style.borderLeft = "2px solid transparent";
+    });
+  }
+});
+
 })();
