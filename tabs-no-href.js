@@ -41,8 +41,16 @@
     initUnderline();
 
     tabs.forEach((tab, i) => {
-      // Forza href
-      tab.setAttribute("href", FIXED_HREF);
+
+      // Forza href fisso (anti Webflow)
+    tab.removeAttribute("href");
+    tab.setAttribute("href", FIXED_HREF);
+
+    // Re-forza subito dopo (Webflow reinietta)
+     requestAnimationFrame(() => {
+     tab.removeAttribute("href");
+     tab.setAttribute("href", FIXED_HREF);
+   });
 
       tab.addEventListener("click", function (e) {
         e.preventDefault();
