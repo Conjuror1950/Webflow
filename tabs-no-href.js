@@ -1,21 +1,34 @@
 (function () {
-  function removeTabHrefs() {
+  function cleanTabs() {
     document.querySelectorAll(".w-tab-link").forEach(function (tab) {
-      tab.removeAttribute("href");
-      tab.addEventListener("click", function (e) {
-        e.preventDefault();
-      });
+      if (tab.hasAttribute("href")) {
+        tab.removeAttribute("href");
+      }
+
+      if (!tab.dataset.nohref) {
+        tab.dataset.nohref = "true";
+
+        tab.addEventListener("click", function (e) {
+          e.preventDefault();
+
+          // Webflow reinietta l'href DOPO il click → lo rimuoviamo di nuovo
+          setTimeout(function () {
+            tab.removeAttribute("href");
+          }, 0);
+        });
+      }
     });
   }
 
-  // Prima esecuzione (dopo load completo)
-  window.addEventListener("load", removeTabHrefs);
+  // Dopo caricamento completo Webflow
+  window.addEventListener("load", cleanTabs);
 
-  // Osserva modifiche DOM (Webflow reinietta gli href)
-  const observer = new MutationObserver(removeTabHrefs);
+  // Osserva CAMBI di attributi (classe w--current)
+  const observer = new MutationObserver(cleanTabs);
 
   observer.observe(document.body, {
-    childList: true,
-    subtree: true
+    subtree: true,
+    attributes: true,
+    attributeFilter: ["class"]
   });
 })();
