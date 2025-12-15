@@ -1,65 +1,58 @@
 (function () {
-  // Imposta QUI l'href che vuoi
   var FIXED_HREF = window.location.pathname + "#";
+  var currentIndex = 0;
+  const tabs = document.querySelectorAll(".w-tab-link");
 
   function forceTabHref() {
-    document.querySelectorAll(".w-tab-link").forEach(function (tab) {
-      // Forza sempre lo stesso href
+    tabs.forEach((tab, i) => {
+      // Forza href
       if (tab.getAttribute("href") !== FIXED_HREF) {
         tab.setAttribute("href", FIXED_HREF);
       }
 
-      // Evita di aggiungere più listener
       if (!tab.dataset.fixedHref) {
         tab.dataset.fixedHref = "true";
 
-        // ======= CLICK HANDLER =======
         tab.addEventListener("click", function (e) {
           e.preventDefault();
 
-          // Reset underline su tutte le tab
-          document.querySelectorAll(".w-tab-link").forEach(function (t) {
+          tabs.forEach((t, j) => {
             const ul = t.querySelector(".tab-underline");
-            if (ul) ul.style.transform = "scaleX(0)";
+            if (ul) {
+              if (j === i) {
+                // Determina direzione
+                ul.style.transformOrigin = i > currentIndex ? "left center" : "right center";
+                ul.style.transform = "scaleX(1)";
+              } else {
+                ul.style.transformOrigin = j > i ? "left center" : "right center";
+                ul.style.transform = "scaleX(0)";
+              }
+            }
             t.classList.remove("current");
           });
 
-          // Attiva tab cliccata
           tab.classList.add("current");
-          const underline = tab.querySelector(".tab-underline");
-          if (underline) underline.style.transform = "scaleX(1)";
+          currentIndex = i;
 
-          // Dopo il click Webflow reinietta w-tabs → lo sovrascriviamo
-          setTimeout(function () {
+          // Forza href dopo click (Webflow reinietta)
+          setTimeout(() => {
             tab.setAttribute("href", FIXED_HREF);
           }, 0);
         });
       }
 
-      // ======= INIT UNDERLINE =======
-      const underline = tab.querySelector(".tab-underline");
-      if (underline) {
-        // Stato iniziale
-        if (tab.classList.contains("current")) {
-          underline.style.transform = "scaleX(1)";
-        } else {
-          underline.style.transform = "scaleX(0)";
-        }
-        underline.style.transformOrigin = "left center";
-        underline.style.transition = "transform 0.18s ease-out";
+      // Stato iniziale underline
+      const ul = tab.querySelector(".tab-underline");
+      if (ul) {
+        ul.style.transform = tab.classList.contains("current") ? "scaleX(1)" : "scaleX(0)";
+        ul.style.transformOrigin = "left center";
+        ul.style.transition = "transform 0.2s ease-out";
       }
     });
   }
 
-  // Dopo inizializzazione Webflow
   window.addEventListener("load", forceTabHref);
 
-  // Osserva QUALSIASI modifica agli attributi
   const observer = new MutationObserver(forceTabHref);
-
-  observer.observe(document.body, {
-    subtree: true,
-    attributes: true,
-    attributeFilter: ["href", "class"]
-  });
+  observer.observe(document.body, { subtree: true, attributes: true, attributeFilter: ["href", "class"] });
 })();
