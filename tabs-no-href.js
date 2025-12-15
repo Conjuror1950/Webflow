@@ -88,10 +88,6 @@
         // Animazione underline
         setUnderline(currentIndex);
 
-        // Gestione classe current
-        tabs.forEach(t => t.classList.remove("current"));
-        tab.classList.add("current");
-
         // Neutralizza di nuovo l'href (Webflow click reinjection)
         forceHref(tab);
       });
