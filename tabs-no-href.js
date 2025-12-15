@@ -111,7 +111,7 @@ document.addEventListener("click", function(e) {
   if (!e.target.closest(".w-tab-link")) {
     // Seleziona i tuoi Text Block
     const textBlocks = document.querySelectorAll(
-      ".Text.Block.153, .Text.Block.155, .Text.Block.156"
+      ".Text-Block-153, .Text-Block-155, .Text-Block-156"
     );
 
     textBlocks.forEach(block => {
