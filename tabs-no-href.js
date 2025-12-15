@@ -12,6 +12,7 @@
   -------------------------------- */
   function forceHref(tab) {
     if (tab.dataset.forcing === "true") return;
+
     tab.dataset.forcing = "true";
 
     tab.removeAttribute("href");
@@ -21,26 +22,6 @@
       tab.removeAttribute("href");
       tab.setAttribute("href", FIXED_HREF);
       delete tab.dataset.forcing;
-    });
-  }
-
-  /* -------------------------------
-     FUNZIONE BORDI TEXT BLOCK
-  -------------------------------- */
-  function updateTextBorders(index) {
-    const textBlocks = [
-      document.querySelector(".Text-Block-153"), // Tab 1
-      document.querySelector(".Text-Block-155"), // Tab 2
-      document.querySelector(".Text-Block-156")  // Tab 3
-    ];
-
-    textBlocks.forEach((tb, i) => {
-      if (!tb) return;
-      if (i === index) {
-        tb.style.border = "2px solid #0071e3";
-      } else {
-        tb.style.border = "none";
-      }
     });
   }
 
@@ -60,8 +41,10 @@
     const tab = tabs[currentIndex];
     const rect = tab.getBoundingClientRect();
     const parentRect = tabsMenu.getBoundingClientRect();
+
     underline.style.left = rect.left - parentRect.left + "px";
     underline.style.width = rect.width + "px";
+
     tabsMenu.appendChild(underline);
   }
 
@@ -69,6 +52,7 @@
     const tab = tabs[index];
     const rect = tab.getBoundingClientRect();
     const parentRect = tabsMenu.getBoundingClientRect();
+
     underline.style.left = rect.left - parentRect.left + "px";
     underline.style.width = rect.width + "px";
   }
@@ -76,7 +60,7 @@
   /* -------------------------------
      INIT
   -------------------------------- */
-  tabs.forEach(tab => forceHref(tab)); // rimuove subito href Webflow
+  tabs.forEach(tab => forceHref(tab));
 
   window.addEventListener("load", function () {
     initUnderline();
@@ -91,18 +75,8 @@
         tabs.forEach(t => t.classList.remove("current"));
         tab.classList.add("current");
 
-        forceHref(tab); // forza href subito dopo il click
-
-        // Aggiorna bordi dopo che Webflow ha re-renderizzato le tab
-        requestAnimationFrame(() => {
-          updateTextBorders(i);
-        });
+        forceHref(tab);
       });
-    });
-
-    // Al caricamento iniziale, imposta i bordi per la prima tab
-    requestAnimationFrame(() => {
-      updateTextBorders(currentIndex);
     });
   });
 
@@ -125,5 +99,25 @@
     subtree: true,
     attributes: true,
     attributeFilter: ["href"]
+  });
+
+  /* -------------------------------
+     CLICK FUORI TAB → AGGIUNGI BORDER
+  -------------------------------- */
+  document.addEventListener("click", function (e) {
+    // Se il click NON è su una tab
+    if (!e.target.classList.contains("w-tab-link")) {
+      const classesToBorder = [
+        "Text-Block-153",
+        "Text-Block-155",
+        "Text-Block-156"
+      ];
+
+      classesToBorder.forEach(cls => {
+        document.querySelectorAll(`.${cls}`).forEach(el => {
+          el.style.border = "2px solid transparent"; // imposta il bordo a tutti i lati
+        });
+      });
+    }
   });
 })();
