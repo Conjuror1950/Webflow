@@ -4,10 +4,9 @@
   const tabs = document.querySelectorAll(".w-tab-link");
   const tabsMenu = tabs[0].parentElement;
 
-  // Crea un singolo underline dinamico
+  // Crea un singolo underline dinamico ma NON aggiungerlo subito
   let underline = document.createElement("div");
   underline.classList.add("tab-underline");
-  tabsMenu.appendChild(underline);
 
   // Stile base
   underline.style.position = "absolute";
@@ -16,26 +15,30 @@
   underline.style.backgroundColor = "black";
   underline.style.transition = "left 0.2s ease-out, width 0.2s ease-out";
 
-  // <<<<<<<<<<<<<< Aggiungi qui
-  underline.style.opacity = "0"; // nasconde fino a calcolo posizione
+  // Posizione iniziale e aggiunta al DOM solo dopo il calcolo
+  function initUnderline() {
+    const tab = tabs[currentIndex];
+    const rect = tab.getBoundingClientRect();
+    const parentRect = tabsMenu.getBoundingClientRect();
+    underline.style.left = (rect.left - parentRect.left) + "px";
+    underline.style.width = rect.width + "px";
 
+    // Appendiamo solo dopo aver settato posizione e larghezza
+    tabsMenu.appendChild(underline);
+  }
+
+  // Posizione al click
   function positionUnderline(index) {
     const tab = tabs[index];
     const rect = tab.getBoundingClientRect();
     const parentRect = tabsMenu.getBoundingClientRect();
-    const left = rect.left - parentRect.left;
-    const width = rect.width;
-
-    underline.style.left = left + "px";
-    underline.style.width = width + "px";
-
-    // <<<<<<<<<<<<<< Aggiungi qui
-    underline.style.opacity = "1"; // mostra solo dopo aver settato posizione e larghezza
+    underline.style.left = (rect.left - parentRect.left) + "px";
+    underline.style.width = rect.width + "px";
   }
 
-  // Posizione iniziale
+  // Inizializzazione dopo che il DOM è pronto
   window.addEventListener("load", function () {
-    positionUnderline(currentIndex);
+    initUnderline();
 
     tabs.forEach((tab, i) => {
       // Forza href
