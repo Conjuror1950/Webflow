@@ -1,5 +1,5 @@
 (function () {
-  const FIXED_HREF = window.location.pathname + "#";
+  const FIXED_HREF = "#"; // mai usare URL reale
   let currentIndex = 0;
 
   const tabs = document.querySelectorAll(".w-tab-link");
@@ -11,6 +11,7 @@
      FUNZIONE ANTI-HREF (PER TAB)
   -------------------------------- */
   function forceHref(tab) {
+    // blocco per non creare loop
     if (tab.dataset.forcing === "true") return;
 
     tab.dataset.forcing = "true";
@@ -30,7 +31,6 @@
   -------------------------------- */
   const underline = document.createElement("div");
   underline.classList.add("tab-underline");
-
   underline.style.position = "absolute";
   underline.style.bottom = "0";
   underline.style.height = "1px";
@@ -42,10 +42,8 @@
     const tab = tabs[currentIndex];
     const rect = tab.getBoundingClientRect();
     const parentRect = tabsMenu.getBoundingClientRect();
-
     underline.style.left = rect.left - parentRect.left + "px";
     underline.style.width = rect.width + "px";
-
     tabsMenu.appendChild(underline);
   }
 
@@ -53,7 +51,6 @@
     const tab = tabs[index];
     const rect = tab.getBoundingClientRect();
     const parentRect = tabsMenu.getBoundingClientRect();
-
     underline.style.left = rect.left - parentRect.left + "px";
     underline.style.width = rect.width + "px";
   }
@@ -61,15 +58,15 @@
   /* -------------------------------
      INIT
   -------------------------------- */
+  // Prima di tutto, forza href subito
+  tabs.forEach(tab => forceHref(tab));
+
   window.addEventListener("load", function () {
     initUnderline();
 
     tabs.forEach((tab, i) => {
-      forceHref(tab);
-
       tab.addEventListener("click", function (e) {
         e.preventDefault();
-
         currentIndex = i;
         positionUnderline(currentIndex);
 
@@ -81,11 +78,11 @@
     });
   });
 
-  /* --------------------------------
-     MUTATION OBSERVER (STABILE)
-  ---------------------------------- */
-  const observer = new MutationObserver((mutations) => {
-    mutations.forEach((mutation) => {
+  /* -------------------------------
+     MUTATION OBSERVER (ANTI-FLASH)
+  -------------------------------- */
+  const observer = new MutationObserver(mutations => {
+    mutations.forEach(mutation => {
       if (
         mutation.type === "attributes" &&
         mutation.attributeName === "href" &&
