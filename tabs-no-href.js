@@ -12,7 +12,6 @@
   -------------------------------- */
   function forceHref(tab) {
     if (tab.dataset.forcing === "true") return;
-
     tab.dataset.forcing = "true";
 
     tab.removeAttribute("href");
@@ -28,24 +27,22 @@
   /* -------------------------------
      FUNZIONE BORDI TEXT BLOCK
   -------------------------------- */
-  const textBlocks = [
-    document.querySelector(".Text-Block-153"), // Tab 1
-    document.querySelector(".Text-Block-155"), // Tab 2
-    document.querySelector(".Text-Block-156")  // Tab 3
-  ];
+  function updateTextBorders(index) {
+    const textBlocks = [
+      document.querySelector(".Text-Block-153"), // Tab 1
+      document.querySelector(".Text-Block-155"), // Tab 2
+      document.querySelector(".Text-Block-156")  // Tab 3
+    ];
 
-function updateTextBorders(index) {
-  textBlocks.forEach((tb, i) => {
-    if (!tb) return;
-    if (i === index) {
-      tb.style.border = "2px solid #0071e3";
-      tb.style.display = "inline-block";   // Assicurati che il bordo si veda
-      tb.style.boxSizing = "border-box";   // Include il bordo nella dimensione
-    } else {
-      tb.style.border = "none";
-    }
-  });
-}
+    textBlocks.forEach((tb, i) => {
+      if (!tb) return;
+      if (i === index) {
+        tb.style.border = "2px solid #0071e3";
+      } else {
+        tb.style.border = "none";
+      }
+    });
+  }
 
   /* -------------------------------
      UNDERLINE DINAMICO (APPLE STYLE)
@@ -91,19 +88,22 @@ function updateTextBorders(index) {
         currentIndex = i;
         positionUnderline(currentIndex);
 
-        // Aggiorna classe current
         tabs.forEach(t => t.classList.remove("current"));
         tab.classList.add("current");
 
-        // Aggiorna bordi text block
-        updateTextBorders(i);
-
         forceHref(tab); // forza href subito dopo il click
+
+        // Aggiorna bordi dopo che Webflow ha re-renderizzato le tab
+        requestAnimationFrame(() => {
+          updateTextBorders(i);
+        });
       });
     });
 
     // Al caricamento iniziale, imposta i bordi per la prima tab
-    updateTextBorders(currentIndex);
+    requestAnimationFrame(() => {
+      updateTextBorders(currentIndex);
+    });
   });
 
   /* -------------------------------
