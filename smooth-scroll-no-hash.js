@@ -1,26 +1,24 @@
-document.addEventListener("DOMContentLoaded", function () {
-  document.addEventListener("click", function (e) {
-    var link = e.target.closest("a");
-    if (!link) return;
+document.addEventListener("click", function (e) {
+  var link = e.target.closest("a");
+  if (!link) return;
 
-    var href = link.getAttribute("href");
-    if (!href || href.indexOf("#") === -1) return;
+  var href = link.getAttribute("href");
+  if (!href) return;
 
-    var id = href.split("#")[1];
-    if (!id) return;
+  // intercetta SOLO link a sezione stessa pagina
+  if (href.charAt(0) !== "#" && href.indexOf(window.location.pathname + "#") === -1) {
+    return;
+  }
 
-    var target = document.getElementById(id);
-    if (!target) return;
+  var id = href.split("#")[1];
+  if (!id) return;
 
-    e.preventDefault();
+  var target = document.getElementById(id);
+  if (!target) return;
 
-    target.scrollIntoView({
-      behavior: "smooth",
-      block: "start"
-    });
+  e.preventDefault();
 
-    if (window.history && history.replaceState) {
-      history.replaceState(null, "", window.location.pathname);
-    }
-  });
+  target.scrollIntoView({ behavior: "smooth" });
+
+  history.replaceState(null, "", window.location.pathname);
 });
