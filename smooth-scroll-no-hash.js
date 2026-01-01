@@ -1,16 +1,8 @@
 document.addEventListener("click", function (e) {
-  var link = e.target.closest("a");
-  if (!link) return;
+  var trigger = e.target.closest("[data-scroll]");
+  if (!trigger) return;
 
-  var href = link.getAttribute("href");
-  if (!href) return;
-
-  // intercetta SOLO link a sezione stessa pagina
-  if (href.charAt(0) !== "#" && href.indexOf(window.location.pathname + "#") === -1) {
-    return;
-  }
-
-  var id = href.split("#")[1];
+  var id = trigger.getAttribute("data-scroll");
   if (!id) return;
 
   var target = document.getElementById(id);
@@ -18,7 +10,12 @@ document.addEventListener("click", function (e) {
 
   e.preventDefault();
 
-  target.scrollIntoView({ behavior: "smooth" });
+  target.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
 
-  history.replaceState(null, "", window.location.pathname);
+  if (history.replaceState) {
+    history.replaceState(null, "", window.location.pathname);
+  }
 });
