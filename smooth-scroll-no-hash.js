@@ -1,9 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
   document.addEventListener("click", function (e) {
-    var link = e.target.closest('a[href^="#"]');
+    var link = e.target.closest("a");
     if (!link) return;
 
-    var id = link.getAttribute("href").substring(1);
+    var href = link.getAttribute("href");
+    if (!href || href.indexOf("#") === -1) return;
+
+    var id = href.split("#")[1];
     if (!id) return;
 
     var target = document.getElementById(id);
