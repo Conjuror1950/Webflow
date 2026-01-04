@@ -17,9 +17,6 @@
     }
   }
 
-  // esegui subito
   handleManualView();
-
-  // ripeti per Webflow AJAX
-  setInterval(handleManualView, 500);
+  setInterval(handleManualView, 300);
 })();
