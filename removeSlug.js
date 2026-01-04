@@ -1,32 +1,27 @@
+// removeSlugMultiple.js
+// Rimuove gli slug specificati dalla fine dell'URL il prima possibile
+// Aggiorna la barra degli indirizzi prima del rendering
 (function() {
   try {
-    const slugMap = {
-      "/it-it/102555": "/it-it/102555/manual",
-      "/it-it/102556": "/it-it/102556/manual1",
-      "/it-it/102557": "/it-it/102557/manual2",
-      "/it-it/102558": "/it-it/102558/manual3"
-    };
-
-    const staticRedirect = {
-      "/it-it/102555": "/docs/desktop/301085"
-    };
-
-    const currentPath = window.location.pathname;
-
-    // Se siamo su URL senza slug che mappa ad una CMS page, redirect alla pagina CMS reale
-    if (slugMap[currentPath]) {
-      // Check se è un reload
-      const isRefresh = performance.getEntriesByType("navigation")[0]?.type === "reload";
-      if (isRefresh) {
-        // Redirect alla pagina statica desiderata
-        window.location.replace(staticRedirect[currentPath] || slugMap[currentPath]);
-      } else {
-        // Se non è reload, aggiorna l'URL visivamente aggiungendo lo slug
-        history.replaceState({}, "", slugMap[currentPath]);
+    let currentPath = window.location.pathname;
+    // Lista degli slug da rimuovere
+    const slugsToRemove = [
+      "/manual", // Manuale
+      "/manual1", // collezione 2
+      "/manual2", // collezione 3
+      "/manual3" // collezione 4
+    ];
+    // Controlla se l'URL termina con uno degli slug
+    slugsToRemove.forEach(slug => {
+      if (currentPath.endsWith(slug)) {
+        const newPath = currentPath.replace(new RegExp(slug + "$"), "");
+        history.replaceState({}, "", newPath);
+        console.log("[removeSlugMultiple.js] URL visivo modificato:", newPath);
+        // Aggiorna currentPath per eventuali ulteriori slug
+        currentPath = newPath;
       }
-    }
-
-  } catch(e) {
-    console.error("Redirect script error:", e);
+    });
+  } catch (e) {
+    console.error("[removeSlugMultiple.js] Errore:", e);
   }
 })();
