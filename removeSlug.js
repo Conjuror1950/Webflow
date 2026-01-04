@@ -1,18 +1,23 @@
-// forceManualOnRefresh.js
+// removeSlugEarly.js
+// Rimuove /manual e forza la navigazione verso un URL deciso
+
 (function () {
   try {
-    const path = window.location.pathname;
+    const currentPath = window.location.pathname;
+    const targetUrl = "/it-it/102555/manual"; // 👈 URL X che decidi tu
 
-    // Se l'URL NON termina con /manual
-    if (!path.endsWith("/manual")) {
-      const target = path + "/manual";
+    if (currentPath.endsWith("/manual")) {
+      const newPath = currentPath.replace(/\/manual$/, "");
 
-      // Evita loop
-      if (window.location.pathname !== target) {
-        window.location.replace(target);
-      }
+      // Aggiorna subito l'URL visivo
+      history.replaceState({}, "", newPath);
+
+      console.log("[removeSlugEarly.js] URL visivo modificato:", newPath);
+
+      // Forza navigazione reale (equivalente a un click)
+      window.location.replace(targetUrl);
     }
   } catch (e) {
-    console.error("[forceManualOnRefresh] Errore:", e);
+    console.error("[removeSlugEarly.js] Errore:", e);
   }
 })();
