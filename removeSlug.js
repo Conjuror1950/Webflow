@@ -7,7 +7,7 @@
     // Lista degli slug da rimuovere
     const slugsToRemove = [
       "/manual", // Manuale
-      "/manual1", // collezione 2
+      "/introduction", // Introduzione
       "/manual2", // collezione 3
       "/manual3" // collezione 4
     ];
