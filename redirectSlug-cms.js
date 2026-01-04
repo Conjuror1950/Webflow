@@ -4,8 +4,8 @@
     const currentPath = window.location.pathname;
 
     // Redirect solo per la pagina con ID 102555
-    if (currentPath === "/it-it/102555") {
-      window.location.replace("/it-it/102555/manual");
+    if (currentPath === "https://support-andreaingrassia.webflow.io//it-it/102555") {
+      window.location.replace("https://support-andreaingrassia.webflow.io//it-it/102555/manual");
     }
   });
 })();
