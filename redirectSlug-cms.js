@@ -1,17 +1,18 @@
-// redirect-single-cms-webflow.js
+// redirect-single-cms-webflow-fixed.js
 (function() {
-  const TARGET_PATH = "/it-it/102555";
-  const REDIRECT_URL = "/it-it/102555/manual";
+  const ORIG_PATH = "/it-it/102555";
+  const DEST_PATH = "/it-it/102555/manual";
 
-  function safeRedirect() {
-    if (window.location.pathname === TARGET_PATH) {
-      window.location.replace(REDIRECT_URL);
+  function redirectIfNeeded() {
+    if (window.location.pathname === ORIG_PATH) {
+      // Usa replace per non mantenere nella cronologia
+      window.location.replace(DEST_PATH);
     }
   }
 
   // redirect subito
-  safeRedirect();
+  redirectIfNeeded();
 
-  // ripeti ogni 500ms in caso di caricamenti dinamici
-  setInterval(safeRedirect, 500);
+  // controllo ogni 500ms per catturare caricamenti dinamici AJAX
+  setInterval(redirectIfNeeded, 500);
 })();
