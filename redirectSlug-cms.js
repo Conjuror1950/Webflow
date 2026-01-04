@@ -1,19 +1,22 @@
-// redirectOnRefresh.js
+// redirect-cms-global.js
 (function() {
-  try {
-    // URL visivo attuale
+  // Esegui il redirect solo dopo che la pagina è caricata
+  window.addEventListener("DOMContentLoaded", function() {
     const currentPath = window.location.pathname;
 
-    // Se l'URL non contiene "/manual" ma dovrebbe
-    if (!currentPath.endsWith("/manual")) {
-      // Costruisci il path reale
-      const realPath = currentPath + "/manual";
+    // Match per URL CMS del tipo /it-it/NUMERO (es. /it-it/102555)
+    const cmsRegex = /^\/it-it\/(\d+)\/?$/;
+    const match = currentPath.match(cmsRegex);
 
-      // Reindirizza subito alla pagina reale
-      window.location.replace(realPath);
+    if (match) {
+      const id = match[1]; // estrae il numero ID, es. 102555
+      const newUrl = `/it-it/${id}/manual`;
+
+      // Controlla che non stiamo già sulla destinazione
+      if (currentPath !== newUrl) {
+        // Redirect lato client
+        window.location.replace(newUrl);
+      }
     }
-  } catch (e) {
-    console.error("[redirectOnRefresh.js] Errore:", e);
-  }
+  });
 })();
-
