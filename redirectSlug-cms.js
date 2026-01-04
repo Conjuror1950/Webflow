@@ -1,16 +1,20 @@
 // redirect-cms.js
 (function() {
-  // Prendi l'URL corrente (solo pathname)
-  const currentPath = window.location.pathname;
+  // Assicurati che la pagina sia completamente caricata
+  window.addEventListener("DOMContentLoaded", function() {
+    const currentPath = window.location.pathname;
 
-  // Controlla se il path corrisponde a /it/numero
-  const cmsMatch = currentPath.match(/^\/it\/(\d+)$/);
+    // Match per slug numerico (es. /it/102632 o /102632)
+    const cmsRegex = /^\/(?:it\/)?(\d+)\/?$/;
+    const match = currentPath.match(cmsRegex);
 
-  if (cmsMatch) {
-    const id = cmsMatch[1]; // es. 102632
-    const newUrl = `/it-it/${id}/manual`;
-    
-    // Redirect lato client
-    window.location.replace(newUrl);
-  }
+    if (match) {
+      const id = match[1]; // es. 102632
+      const newUrl = `/it-it/${id}/manual`; // destinazione
+      if (newUrl !== currentPath) {
+        // Redirect lato client
+        window.location.replace(newUrl);
+      }
+    }
+  });
 })();
