@@ -1,19 +1,28 @@
-// autoClickManual.js
+// safeRedirectManual.js
 (function() {
   try {
-    const realUrl = "/it-it/102555/manual"; // la pagina reale CMS
+    const realSlug = "/manual";
+    const targetUrl = "/it-it/102555" + realSlug;
+    const path = window.location.pathname;
 
-    // Crea un link invisibile verso la pagina reale
-    const link = document.createElement("a");
-    link.href = realUrl;
-    link.style.display = "none";
-    document.body.appendChild(link);
+    // Se non siamo già sulla pagina reale, simuliamo il click
+    if (!path.endsWith(realSlug)) {
+      const link = document.createElement("a");
+      link.href = targetUrl;
+      link.style.display = "none";
+      document.body.appendChild(link);
 
-    // Simula un click su quel link ogni volta che la pagina viene caricata
-    window.addEventListener("load", function() {
+      // Usa replaceState per evitare che lo storico generi loop al refresh
+      window.history.replaceState({}, "", path);
+
+      // Simula il click
       link.click();
-    });
+    } else {
+      // Siamo già sulla pagina reale: qui puoi far sparire lo slug
+      const cleanPath = path.replace(new RegExp(realSlug + "$"), "");
+      window.history.replaceState({}, "", cleanPath);
+    }
   } catch (e) {
-    console.error("Errore autoClickManual.js:", e);
+    console.error("Errore safeRedirectManual.js:", e);
   }
 })();
