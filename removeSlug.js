@@ -1,12 +1,19 @@
+// autoClickManual.js
 (function() {
-  const realSlug = "/manual";
-  const path = window.location.pathname;
+  try {
+    const realUrl = "/it-it/102555/manual"; // la pagina reale CMS
 
-  // Se manca lo slug, vai alla pagina reale
-  if (!path.endsWith(realSlug)) {
-    window.location.replace(path + realSlug);
-  } else {
-    // Rimuovi lo slug dalla barra senza ricaricare
-    history.replaceState({}, "", path.replace(new RegExp(realSlug + "$"), ""));
+    // Crea un link invisibile verso la pagina reale
+    const link = document.createElement("a");
+    link.href = realUrl;
+    link.style.display = "none";
+    document.body.appendChild(link);
+
+    // Simula un click su quel link ogni volta che la pagina viene caricata
+    window.addEventListener("load", function() {
+      link.click();
+    });
+  } catch (e) {
+    console.error("Errore autoClickManual.js:", e);
   }
 })();
