@@ -1,5 +1,5 @@
 (function() {
-  const slugs = ["/manual", "/video", "/album", "/extra"];
+  const slugs = ["/manual", "/introduction", "/album", "/extra"];
 
   document.querySelectorAll("a[href]").forEach(a => {
     const originalHref = a.getAttribute("href");
