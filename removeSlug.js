@@ -1,21 +1,26 @@
-// cleanURL.js
-// Script per rimuovere visivamente "/manual" dall'URL
-// Funziona solo lato client dopo che la pagina è stata caricata
+// removeSlug.js
+// Script per rimuovere il secondo slug "/manual" dall'URL visivo
+// Funziona solo lato client (non cambia l'URL reale su server)
 
 (function() {
+  // Assicurati che la pagina sia completamente caricata
   window.addEventListener("DOMContentLoaded", function() {
     try {
-      const realSlug = "/manual"; // parte reale dello slug
-      const path = window.location.pathname;
+      // Prendi il percorso attuale, es. /it-it/102555/manual
+      let currentPath = window.location.pathname;
 
-      // Se l'URL contiene /manual, lo rimuovo visivamente
-      if (path.endsWith(realSlug)) {
-        const visualPath = path.replace(new RegExp(realSlug + "$"), "");
-        history.replaceState({}, "", visualPath);
-        console.log("[cleanURL.js] URL visivo modificato:", visualPath);
+      // Controlla se contiene "/manual" alla fine
+      if (currentPath.endsWith("/manual")) {
+        // Rimuovi la parte "/manual"
+        let newPath = currentPath.replace(/\/manual$/, "");
+
+        // Sostituisci l'URL visivo senza ricaricare la pagina
+        history.replaceState({}, "", newPath);
+
+        console.log("[removeSlug.js] URL visivo modificato:", newPath);
       }
     } catch (e) {
-      console.error("[cleanURL.js] Errore:", e);
+      console.error("[removeSlug.js] Errore:", e);
     }
   });
 })();
