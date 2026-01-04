@@ -1,31 +1,19 @@
-// redirectClient.js
-// Script lato client per visualizzare URL pulito e fare redirect su CMS reale
-
+// redirect.js
 (function() {
+  // Mappa dei redirect: chiave = URL corrente (relativo al dominio), valore = URL di destinazione
   const redirects = {
-    "/it-it/102555": "/it-it/102555/manual",
-    "/it-it/102556": "/it-it/102556/manual",
-    "/it-it/103000": "/it-it/103000/manual"
-    // aggiungi qui tutti gli altri redirect
+    "/vecchia-pagina": "/nuova-pagina",
+    "/it/102555/manual": "/it-it/102555/manual",
+    "/pagina-vecchia-2": "/pagina-nuova-2"
+    // aggiungi qui tutte le altre pagine da redirectare
   };
 
-  const realSlugToRemove = "/manual";
+  // Ottiene l'URL relativo della pagina corrente
+  const currentPath = window.location.pathname;
 
-  window.addEventListener("DOMContentLoaded", function() {
-    const path = window.location.pathname;
-
-    // 1️⃣ Redirect "vecchio URL" → reale
-    if (redirects[path]) {
-      window.location.replace(redirects[path]);
-      console.log(`[redirectClient.js] Redirect da ${path} a ${redirects[path]}`);
-      return;
-    }
-
-    // 2️⃣ Rimuovi /manual dalla barra URL visivamente
-    if (path.endsWith(realSlugToRemove)) {
-      const visualPath = path.replace(new RegExp(realSlugToRemove + "$"), "");
-      history.replaceState({}, "", visualPath);
-      console.log(`[redirectClient.js] URL visivo modificato: ${visualPath}`);
-    }
-  });
+  // Controlla se è presente un redirect
+  if (redirects[currentPath]) {
+    // Redirect permanente 301 via JS
+    window.location.replace(redirects[currentPath]);
+  }
 })();
