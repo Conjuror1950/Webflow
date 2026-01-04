@@ -9,7 +9,7 @@
       "/manual", // Manuale
       "/introduction", // Introduzione
       "/manual2", // collezione 3
-      "/manual3" // collezione 4
+      "/legal" // Legal
     ];
     // Controlla se l'URL termina con uno degli slug
     slugsToRemove.forEach(slug => {
