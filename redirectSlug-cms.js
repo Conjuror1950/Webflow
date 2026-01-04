@@ -1,39 +1,41 @@
-// removeSlugVisualHoverSafe.js
-// Mostra l'href senza lo slug finale solo visivamente
-// Non interferisce con click, nuova scheda, copia link ecc.
+// removeSlugVisualHoverFixed.js
+// Mostra URL pulito solo al click e lascia href reale per tutti gli altri eventi
 
 (function() {
   try {
-    // Slug da rimuovere visivamente
     const slugsToRemove = ["/manual", "/video", "/album", "/extra"];
-
-    // Seleziona tutti i link
     const links = document.querySelectorAll("a");
 
     links.forEach(link => {
       const realHref = link.getAttribute("href");
       if (!realHref) return;
 
-      // Genera l'href visivo senza cambiare href reale
-      let displayHref = realHref;
-      slugsToRemove.forEach(slug => {
-        if (displayHref.endsWith(slug)) {
-          displayHref = displayHref.replace(new RegExp(slug + "$"), "");
-        }
+      // Funzione per rimuovere slug finale
+      const cleanHref = () => {
+        let displayHref = realHref;
+        slugsToRemove.forEach(slug => {
+          if (displayHref.endsWith(slug)) {
+            displayHref = displayHref.replace(new RegExp(slug + "$"), "");
+          }
+        });
+        return displayHref;
+      };
+
+      // Sovrascrivi click per usare l'URL “pulito”
+      link.addEventListener("click", (e) => {
+        e.preventDefault(); // previene l'href temporaneo
+        const url = cleanHref();
+        window.location.href = url; // naviga all'URL pulito
       });
 
-      // Usa CSS per mostrare il link "pulito" in hover (in tooltip o simile)
-      // Non toccare mai l'href reale!
-      link.dataset.displayHref = displayHref;
-
-      // Evento mouseover per console o debug
+      // Eventi hover non cambiano l'href reale
       link.addEventListener("mouseover", () => {
-        console.log("[Hover] href visivo:", displayHref);
+        console.log("[Hover] URL visivo pulito:", cleanHref());
       });
     });
 
-    console.log("[removeSlugVisualHoverSafe.js] Attivo: href visivi senza modificare href reale");
+    console.log("[removeSlugVisualHoverFixed.js] Click pulito attivo, hover visivo log");
   } catch (e) {
-    console.error("[removeSlugVisualHoverSafe.js] Errore:", e);
+    console.error("[removeSlugVisualHoverFixed.js] Errore:", e);
   }
 })();
