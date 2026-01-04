@@ -1,4 +1,3 @@
-<script>
 (function () {
   function handleManualView() {
     const params = new URLSearchParams(window.location.search);
@@ -24,4 +23,3 @@
   // ripeti per Webflow AJAX
   setInterval(handleManualView, 500);
 })();
-</script>
