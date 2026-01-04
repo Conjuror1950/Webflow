@@ -1,19 +1,26 @@
-// redirect.js
+// removeSlug.js
+// Script per rimuovere il secondo slug "/manual" dall'URL visivo
+// Funziona solo lato client (non cambia l'URL reale su server)
+
 (function() {
-  // Mappa dei redirect: chiave = URL corrente (relativo al dominio), valore = URL di destinazione
-  const redirects = {
-    "/vecchia-pagina": "/nuova-pagina",
-    "/it/102555": "/it-it/102555/manual",
-    "/pagina-vecchia-2": "/pagina-nuova-2"
-    // aggiungi qui tutte le altre pagine da redirectare
-  };
+  // Assicurati che la pagina sia completamente caricata
+  window.addEventListener("DOMContentLoaded", function() {
+    try {
+      // Prendi il percorso attuale, es. /it-it/102555/manual
+      let currentPath = window.location.pathname;
 
-  // Ottiene l'URL relativo della pagina corrente
-  const currentPath = window.location.pathname;
+      // Controlla se contiene "/manual" alla fine
+      if (currentPath.endsWith("/manual")) {
+        // Rimuovi la parte "/manual"
+        let newPath = currentPath.replace(/\/manual$/, "");
 
-  // Controlla se è presente un redirect
-  if (redirects[currentPath]) {
-    // Redirect permanente 301 via JS
-    window.location.replace(redirects[currentPath]);
-  }
+        // Sostituisci l'URL visivo senza ricaricare la pagina
+        history.replaceState({}, "", newPath);
+
+        console.log("[removeSlug.js] URL visivo modificato:", newPath);
+      }
+    } catch (e) {
+      console.error("[removeSlug.js] Errore:", e);
+    }
+  });
 })();
