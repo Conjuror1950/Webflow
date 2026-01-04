@@ -1,21 +1,21 @@
-// removeSlugVisual.js
-// Rimuove uno slug dall'URL senza cambiare la pagina e senza causare 404 al refresh
+// cleanSlugWebflow.js
 (function() {
   try {
-    // Lo slug che vuoi rimuovere, ad esempio "/manual"
-    const slugToRemove = "/manual";
+    // Lo slug reale della pagina CMS
+    const realSlug = "/manual";
 
-    // Prendi il percorso attuale
+    // URL attuale
     const currentPath = window.location.pathname;
 
-    // Se l'URL finisce con lo slug, rimuovilo visivamente
-    if (currentPath.endsWith(slugToRemove)) {
-      const newPath = currentPath.replace(new RegExp(slugToRemove + "$"), "");
-      
-      // Modifica solo la barra degli indirizzi senza ricaricare la pagina
-      window.history.replaceState({}, "", newPath);
+    // Se l'URL termina con lo slug reale
+    if (currentPath.endsWith(realSlug)) {
+      // Nuovo path da mostrare nella barra
+      const cleanPath = currentPath.replace(new RegExp(realSlug + "$"), "");
+
+      // Cambia solo la barra dell'indirizzo, senza ricaricare
+      window.history.replaceState({}, "", cleanPath);
     }
   } catch (e) {
-    console.error("Errore removeSlugVisual.js:", e);
+    console.error("Errore cleanSlugWebflow.js:", e);
   }
 })();
