@@ -1,43 +1,45 @@
-// removeSlugMultiple.js - Redirect SOLO su refresh (Webflow friendly)
-(function () {
+// removeSlugMultiple.js
+(function() {
   try {
-    const currentPath = window.location.pathname;
-    const slugsToRemove = ["/manual", "/manual1", "/manual2", "/manual3"];
+    let currentPath = window.location.pathname;
+    const slugsToRemove = [
+      "/manual",
+      "/manual1",
+      "/manual2",
+      "/manual3"
+    ];
+    let slugFound = false;
 
-    // Controlliamo se siamo in uno degli URL "sporchi"
-    const hasBadSlug = slugsToRemove.some(slug => currentPath.endsWith(slug));
+    // Rimuove gli slug dalla fine
+    slugsToRemove.forEach(slug => {
+      if (currentPath.endsWith(slug)) {
+        currentPath = currentPath.replace(new RegExp(slug + "$"), "");
+        slugFound = true;
+        console.log("[removeSlugMultiple.js] Slug rimosso:", slug);
+      }
+    });
 
-    if (!hasBadSlug) return; // URL già pulito → esco subito
+    // Aggiorna la barra degli indirizzi senza ricaricare
+    if (slugFound) {
+      history.replaceState({}, "", currentPath);
+      console.log("[removeSlugMultiple.js] URL visivo modificato:", currentPath);
+    }
 
-    // 0 = primo caricamento / navigazione normale
-    // 1 = refresh (F5, ricarica, ricarica con Ctrl+R)
-    // 2 = navigazione con avanti/indietro (history)
-    const navType = window.performance?.navigation?.type ?? -1;
+    // Solo se la pagina è stata ricaricata, fai il redirect
+    if (slugFound) {
+      const navEntries = performance.getEntriesByType("navigation");
+      const navType = navEntries[0]?.type || "navigate";
 
-    console.log("[removeSlug] Navigation type:", navType);
-
-    // Puliamo sempre l'URL nella barra (comportamento visivo desiderato)
-    let newPath = currentPath;
-    for (const slug of slugsToRemove) {
-      if (newPath.endsWith(slug)) {
-        newPath = newPath.slice(0, -slug.length);
+      // navType può essere "navigate" (primo caricamento), "reload" (refresh), "back_forward"
+      if (navType === "reload") {
+        console.log("[removeSlugMultiple.js] Redirect per refresh");
+        window.location.href = "/docs/desktop/301085";
+      } else {
+        console.log("[removeSlugMultiple.js] Primo caricamento, nessun redirect");
       }
     }
 
-    if (newPath !== currentPath) {
-      history.replaceState(null, "", newPath);
-      console.log("[removeSlug] URL pulito nella barra:", newPath);
-    }
-
-    // REDIRECT solo su refresh
-    if (navType === 1) {
-      console.log("[removeSlug] Refresh rilevato → redirect a pagina pulita");
-      window.location.replace("/docs/desktop/301085");
-      // .replace() invece di .href per non aggiungere al back-history
-    }
-    // Nota: su primo caricamento (type 0) NON facciamo redirect
-
   } catch (e) {
-    console.error("[removeSlugMultiple]", e);
+    console.error("[removeSlugMultiple.js] Errore:", e);
   }
 })();
