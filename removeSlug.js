@@ -3,7 +3,7 @@
   // Mappa dei redirect: chiave = URL corrente (relativo al dominio), valore = URL di destinazione
   const redirects = {
     "/vecchia-pagina": "/nuova-pagina",
-    "/it/102555/manual": "/it-it/102555/manual",
+    "/it/102555": "/it-it/102555/manual",
     "/pagina-vecchia-2": "/pagina-nuova-2"
     // aggiungi qui tutte le altre pagine da redirectare
   };
