@@ -1,19 +1,31 @@
-// safeSlugWebflow.js
+// removeSlugMultiple.js
+// Rimuove gli slug specificati dalla fine dell'URL il prima possibile
+// Aggiorna la barra degli indirizzi prima del rendering
+
 (function() {
   try {
-    const realSlug = "/manual"; // lo slug reale da rimuovere
-    const path = window.location.pathname;
+    let currentPath = window.location.pathname;
 
-    // Se l'URL non termina con lo slug reale, redirect immediato
-    if (!path.endsWith(realSlug)) {
-      // Redirect immediato senza aggiungere alla cronologia (evita loop)
-      window.location.replace(path + realSlug);
-    } else {
-      // Siamo già sulla pagina reale: nascondi lo slug nella barra
-      const cleanPath = path.replace(new RegExp(realSlug + "$"), "");
-      window.history.replaceState({}, "", cleanPath);
-    }
+    // Lista degli slug da rimuovere
+    const slugsToRemove = [
+      "/manual",       // Manuale
+      "/manual1",        // collezione 2
+      "/manual2",        // collezione 3
+      "/manual3"         // collezione 4
+    ];
+
+    // Controlla se l'URL termina con uno degli slug
+    slugsToRemove.forEach(slug => {
+      if (currentPath.endsWith(slug)) {
+        const newPath = currentPath.replace(new RegExp(slug + "$"), "");
+        history.replaceState({}, "", newPath);
+        console.log("[removeSlugMultiple.js] URL visivo modificato:", newPath);
+
+        // Aggiorna currentPath per eventuali ulteriori slug
+        currentPath = newPath;
+      }
+    });
   } catch (e) {
-    console.error("Errore safeSlugWebflow.js:", e);
+    console.error("[removeSlugMultiple.js] Errore:", e);
   }
 })();
