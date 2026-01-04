@@ -1,65 +1,62 @@
 (function() {
-  const slugsToRemove = [
-    "/manual",
-    "/video",
-    "/album",
-    "/extra"
-  ];
+  const slugs = ["/manual", "/video", "/album", "/extra"];
 
-  document.querySelectorAll("a").forEach(link => {
-    const originalHref = link.getAttribute("href");
+  document.querySelectorAll("a[href]").forEach(a => {
+    const originalHref = a.getAttribute("href");
     if (!originalHref) return;
 
-    // Verifichiamo se dobbiamo effettivamente modificare qualcosa
-    let displayHref = originalHref;
-    let shouldModify = false;
+    let cleanHref = originalHref;
+    let modified = false;
 
-    for (const slug of slugsToRemove) {
-      if (displayHref.endsWith(slug)) {
-        displayHref = displayHref.slice(0, -slug.length);
-        shouldModify = true;
+    for (const slug of slugs) {
+      if (cleanHref.endsWith(slug)) {
+        cleanHref = cleanHref.slice(0, -slug.length);
+        modified = true;
         break;
       }
     }
 
-    if (!shouldModify) return;
+    if (!modified) return;
+
+    // Memorizziamo entrambi gli href
+    a.setAttribute("data-real-href", originalHref);
+    a.href = cleanHref;                     // href visibile (barra di stato + hover)
 
     // ───────────────────────────────────────────────────────────────
-    // Soluzione 1 - Span interno + pointer-events (più stabile)
+    // Gestione click intelligente
     // ───────────────────────────────────────────────────────────────
+    a.addEventListener("click", function(e) {
+      // Click sinistro normale (senza modificatori) → intercettiamo
+      if (e.button === 0 && !e.ctrlKey && !e.metaKey && !e.shiftKey && !e.altKey) {
+        e.preventDefault();
+        window.location.href = originalHref;
+        return;
+      }
 
-    // Creiamo lo span solo se necessario
-    const text = link.innerHTML;
-    link.innerHTML = '';
-    
-    const span = document.createElement("span");
-    span.innerHTML = text;
-    span.style.pointerEvents = "none";           // importante!
-    link.appendChild(span);
+      // Tutti gli altri casi (Ctrl+click, Cmd+click, middle-click, shift+click...)
+      // lasciamo che il browser faccia il suo lavoro normale usando l'attributo href attuale
+      // → aprirà il link "pulito" (= sbagliato!)
+      // Quindi dobbiamo temporaneamente ripristinare l'href originale
+      const currentHref = a.href;
+      a.href = originalHref;
 
-    // Teniamo l'href reale sempre
-    link.setAttribute("data-real-href", originalHref);
-    link.href = displayHref; // href "visivo"
-
-    // Impediamo che il browser mostri l'href sbagliato
-    link.addEventListener("mouseenter", () => {
-      link.href = displayHref;
+      // Piccolo trick per lasciare che il browser proceda con l'href corretto
+      // poi lo ripristiniamo subito dopo (molto veloce, quasi invisibile)
+      setTimeout(() => {
+        a.href = currentHref;
+      }, 0);
     });
 
-    link.addEventListener("mouseleave", () => {
-      link.href = displayHref; // lasciamo comunque quello corto
+    // Bonus: auxclick per gestire meglio middle-click in alcuni browser (soprattutto Firefox)
+    a.addEventListener("auxclick", function(e) {
+      if (e.button === 1) { // middle click
+        e.preventDefault();
+        // Ripristiniamo href reale per il middle-click
+        const real = a.getAttribute("data-real-href");
+        window.open(real, "_blank");
+      }
     });
-
-    // Click va sempre all'indirizzo vero
-    link.addEventListener("click", e => {
-      e.preventDefault();
-      const real = link.getAttribute("data-real-href") || originalHref;
-      window.location.href = real;
-    });
-
-    // Bonus: accessibilità + tastiera
-    link.setAttribute("data-accessible-href", displayHref);
   });
 
-  console.log("[removeSlugVisualHover] Attivo - versione span + data-real-href");
+  console.log("[removeSlugVisualHover] Versione corretta - Ctrl/middle-click funzionanti");
 })();
