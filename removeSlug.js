@@ -1,30 +1,21 @@
-// showLinkOnRefresh.js
+// clickOnRefresh.js
 (function() {
   try {
-    const realSlug = "/manual";
-    const targetUrl = "/it-it/102555" + realSlug;
-    const path = window.location.pathname;
+    // Trova il link con la classe specificata
+    const targetLink = document.querySelector(".Link-block-108");
 
-    // Controlla se l'utente non è già sulla pagina reale
-    if (!path.endsWith(realSlug)) {
-      // Crea un link visibile
-      const link = document.createElement("a");
-      link.href = targetUrl;
-      link.textContent = "Vai alla versione completa della pagina";
-      link.style.display = "block";      // visibile
-      link.style.margin = "20px 0";      // un po' di spazio
-      link.style.fontSize = "16px";      // dimensione leggibile
-      link.style.color = "#007aff";      // colore simile Apple/blue link
-      link.style.textDecoration = "underline";
-      document.body.insertBefore(link, document.body.firstChild);
+    if (targetLink) {
+      // Intercetta il refresh/close della pagina
+      window.addEventListener("beforeunload", function(e) {
+        // Simula il click sul link
+        targetLink.click();
 
-      // Non simuliamo il click: l'utente può cliccare manualmente
+        // Non necessario bloccare l'evento, solo simuliamo il click
+      });
     } else {
-      // Siamo già sulla pagina reale, possiamo nascondere lo slug
-      const cleanPath = path.replace(new RegExp(realSlug + "$"), "");
-      window.history.replaceState({}, "", cleanPath);
+      console.warn("clickOnRefresh.js: link con classe 'Link-block-108' non trovato.");
     }
   } catch (e) {
-    console.error("Errore showLinkOnRefresh.js:", e);
+    console.error("Errore clickOnRefresh.js:", e);
   }
 })();
