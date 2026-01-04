@@ -1,18 +1,19 @@
-// redirectOnRefresh.js
+// redirect.js
 (function() {
-  try {
-    // URL visivo attuale
-    const currentPath = window.location.pathname;
+  // Mappa dei redirect: chiave = URL corrente (relativo al dominio), valore = URL di destinazione
+  const redirects = {
+    "/vecchia-pagina": "/nuova-pagina",
+    "/it/102555": "/it-it/102555/manual",
+    "/pagina-vecchia-2": "/pagina-nuova-2"
+    // aggiungi qui tutte le altre pagine da redirectare
+  };
 
-    // Se l'URL non contiene "/manual" ma dovrebbe
-    if (!currentPath.endsWith("/manual")) {
-      // Costruisci il path reale
-      const realPath = currentPath + "/manual";
+  // Ottiene l'URL relativo della pagina corrente
+  const currentPath = window.location.pathname;
 
-      // Reindirizza subito alla pagina reale
-      window.location.replace(realPath);
-    }
-  } catch (e) {
-    console.error("[redirectOnRefresh.js] Errore:", e);
+  // Controlla se è presente un redirect
+  if (redirects[currentPath]) {
+    // Redirect permanente 301 via JS
+    window.location.replace(redirects[currentPath]);
   }
 })();
