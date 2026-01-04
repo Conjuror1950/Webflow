@@ -1,43 +1,32 @@
-// removeSlugVisualHoverFinal.js
-// Mostra l'href senza lo slug finale solo in hover (in basso a sinistra)
-// Il click rimane puntato al link reale
+// pseudoLinkHover.js
+// Mostra href pulito al mouse hover, naviga al link reale al click
 
 (function() {
   try {
-    const slugsToRemove = ["/manual", "/video", "/album", "/extra"];
-    const links = document.querySelectorAll("a");
+    const element = document.getElementById("link-108");
+    if (!element) return;
 
-    links.forEach(link => {
-      const realHref = link.getAttribute("href");
-      if (!realHref) return;
+    // URL reale dove navigare
+    const realUrl = "/it-it/122080/manual";
 
-      // Calcola l'URL "pulito" da mostrare
-      let displayHref = realHref;
-      slugsToRemove.forEach(slug => {
-        if (displayHref.endsWith(slug)) {
-          displayHref = displayHref.replace(new RegExp(slug + "$"), "");
-        }
-      });
+    // URL visivo da mostrare in basso a sinistra
+    const displayUrl = "/it-it/122080";
 
-      // Solo hover: mostra href pulito
-      link.addEventListener("mouseenter", () => {
-        link.setAttribute("data-original-href", realHref);
-        link.setAttribute("href", displayHref);
-      });
+    // Creiamo un <a> invisibile dentro l'elemento per il visual hover
+    const pseudoLink = document.createElement("a");
+    pseudoLink.href = displayUrl;   // questo è l'URL visivo
+    pseudoLink.style.position = "absolute";
+    pseudoLink.style.opacity = 0;
+    pseudoLink.style.pointerEvents = "none"; // non blocca il mouse
+    element.appendChild(pseudoLink);
 
-      // Quando il mouse lascia il link, ripristina href reale
-      link.addEventListener("mouseleave", () => {
-        link.setAttribute("href", link.getAttribute("data-original-href"));
-      });
-
-      // Click: assicurati che il link reale venga sempre usato
-      link.addEventListener("click", () => {
-        link.setAttribute("href", realHref);
-      });
+    // Quando l'elemento viene cliccato, vai al link reale
+    element.addEventListener("click", () => {
+      window.location.href = realUrl;
     });
 
-    console.log("[removeSlugVisualHoverFinal.js] Attivo: href visivi modificati solo in hover");
+    console.log("[pseudoLinkHover.js] Setup completato:", displayUrl, "->", realUrl);
   } catch (e) {
-    console.error("[removeSlugVisualHoverFinal.js] Errore:", e);
+    console.error("[pseudoLinkHover.js] Errore:", e);
   }
 })();
