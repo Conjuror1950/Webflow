@@ -1,20 +1,29 @@
 // removeSlugEarly.js
-// Rimuove /manual e forza la navigazione verso un URL deciso
+// Rimuove /manual visivamente ma evita loop infiniti
 
 (function () {
   try {
     const currentPath = window.location.pathname;
-    const targetUrl = "/it-it/102555/manual"; // 👈 URL X che decidi tu
+    const targetUrl = "/it-it/102555/manual";
+    const FLAG = "manual_redirect_done";
+
+    // Se il redirect è già avvenuto, non rifare nulla
+    if (sessionStorage.getItem(FLAG)) {
+      return;
+    }
 
     if (currentPath.endsWith("/manual")) {
       const newPath = currentPath.replace(/\/manual$/, "");
 
-      // Aggiorna subito l'URL visivo
+      // Segna che il redirect è già stato fatto
+      sessionStorage.setItem(FLAG, "true");
+
+      // Aggiorna solo l'URL visivo
       history.replaceState({}, "", newPath);
 
       console.log("[removeSlugEarly.js] URL visivo modificato:", newPath);
 
-      // Forza navigazione reale (equivalente a un click)
+      // Navigazione reale UNA SOLA VOLTA
       window.location.replace(targetUrl);
     }
   } catch (e) {
