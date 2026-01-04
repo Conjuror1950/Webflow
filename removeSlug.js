@@ -1,41 +1,28 @@
-// removeSlugMultiple.js
-// Rimuove gli slug specificati e, al refresh, reindirizza a /docs/desktop/301085
-(function() {
+(function () {
   try {
-    let currentPath = window.location.pathname;
+    const path = window.location.pathname;
+    const slugs = ["/manual", "/manual1", "/manual2", "/manual3"];
 
-    // Lista degli slug da rimuovere
-    const slugsToRemove = [
-      "/manual",
-      "/manual1",
-      "/manual2",
-      "/manual3"
-    ];
+    // Cerchiamo se finisce con uno qualsiasi degli slug
+    const matchedSlug = slugs.find(slug => path.endsWith(slug));
+    if (!matchedSlug) return;
 
-    let slugFound = false;
+    const cleanPath = path.slice(0, -matchedSlug.length);
 
-    // Rimuove tutti gli slug dalla fine (uno alla volta)
-    slugsToRemove.forEach(slug => {
-      if (currentPath.endsWith(slug)) {
-        currentPath = currentPath.replace(new RegExp(slug + "$"), "");
-        slugFound = true;
-        console.log("[removeSlugMultiple.js] Slug rimosso:", slug);
-      }
-    });
+    // Cambiamo url visibile
+    history.replaceState(null, "", cleanPath);
 
-    // Aggiorna la barra degli indirizzi (senza ricaricare)
-    if (slugFound) {
-      history.replaceState({}, "", currentPath);
-      console.log("[removeSlugMultiple.js] URL visivo modificato:", currentPath);
+    // È refresh?
+    if (sessionStorage.getItem("justRefreshed") === "1") {
+      sessionStorage.removeItem("justRefreshed");
+      window.location.replace("/docs/desktop/301085");
+      return;
     }
 
-    // === NOVITÀ: al refresh (o caricamento) con uno slug, reindirizza ===
-    if (slugFound) {
-      // Questo fa il refresh e porta all'URL desiderato
-      window.location.href = "/docs/desktop/301085";
-    }
+    // Primo caricamento → segniamo per il prossimo refresh
+    sessionStorage.setItem("justRefreshed", "1");
 
-  } catch (e) {
-    console.error("[removeSlugMultiple.js] Errore:", e);
+  } catch (err) {
+    console.error("[removeSlugMultiple]", err);
   }
 })();
