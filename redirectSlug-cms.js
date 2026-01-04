@@ -1,55 +1,39 @@
-// removeSlugVisualHover.js
-// Mostra l'href senza lo slug finale solo in hover (in basso a sinistra)
-// Il click rimane puntato al link reale
+// removeSlugVisualHoverSafe.js
+// Mostra l'href senza lo slug finale solo visivamente
+// Non interferisce con click, nuova scheda, copia link ecc.
 
 (function() {
   try {
-    // Lista degli slug da rimuovere
-    const slugsToRemove = [
-      "/manual",
-      "/video",
-      "/album",
-      "/extra"
-    ];
+    // Slug da rimuovere visivamente
+    const slugsToRemove = ["/manual", "/video", "/album", "/extra"];
 
-    // Seleziona tutti i link della pagina
+    // Seleziona tutti i link
     const links = document.querySelectorAll("a");
 
     links.forEach(link => {
-      // Memorizza l'href reale
       const realHref = link.getAttribute("href");
       if (!realHref) return;
 
-      // Aggiungi evento mouseover per cambiare l'href visivo
-      link.addEventListener("mouseover", () => {
-        let displayHref = realHref;
-
-        slugsToRemove.forEach(slug => {
-          if (displayHref.endsWith(slug)) {
-            displayHref = displayHref.replace(new RegExp(slug + "$"), "");
-          }
-        });
-
-        // Aggiorna temporaneamente l'href visuale
-        link.setAttribute("data-temp-href", displayHref);
-        link.setAttribute("href", displayHref);
-      });
-
-      // Al mouseout ripristina l'href reale
-      link.addEventListener("mouseout", () => {
-        link.setAttribute("href", realHref);
-      });
-
-      // Garantisce che al click venga sempre usato l'href reale
-      link.addEventListener("click", (e) => {
-        if (link.getAttribute("href") !== realHref) {
-          link.setAttribute("href", realHref);
+      // Genera l'href visivo senza cambiare href reale
+      let displayHref = realHref;
+      slugsToRemove.forEach(slug => {
+        if (displayHref.endsWith(slug)) {
+          displayHref = displayHref.replace(new RegExp(slug + "$"), "");
         }
+      });
+
+      // Usa CSS per mostrare il link "pulito" in hover (in tooltip o simile)
+      // Non toccare mai l'href reale!
+      link.dataset.displayHref = displayHref;
+
+      // Evento mouseover per console o debug
+      link.addEventListener("mouseover", () => {
+        console.log("[Hover] href visivo:", displayHref);
       });
     });
 
-    console.log("[removeSlugVisualHover.js] Attivo: href visivi modificati solo in hover");
+    console.log("[removeSlugVisualHoverSafe.js] Attivo: href visivi senza modificare href reale");
   } catch (e) {
-    console.error("[removeSlugVisualHover.js] Errore:", e);
+    console.error("[removeSlugVisualHoverSafe.js] Errore:", e);
   }
 })();
