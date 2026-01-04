@@ -8,7 +8,7 @@
       "/manual",
       "/introduction",
       "/album",
-      "/extra"
+      "/legal"
     ];
 
     document.querySelectorAll("a[href]").forEach(a => {
