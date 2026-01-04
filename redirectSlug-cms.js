@@ -1,62 +1,89 @@
-(function() {
-  const slugs = ["/manual", "/introduction", "/album", "/extra"];
+// removeSlugVisualHover.js
+// Rimuove slug solo visivamente, ma mantiene la navigazione reale
+// Supporta nuova scheda via custom attribute
 
-  document.querySelectorAll("a[href]").forEach(a => {
-    const originalHref = a.getAttribute("href");
-    if (!originalHref) return;
+(function () {
+  try {
+    const slugs = [
+      "/manual",
+      "/introduction",
+      "/album",
+      "/extra"
+    ];
 
-    let cleanHref = originalHref;
-    let modified = false;
+    document.querySelectorAll("a[href]").forEach(a => {
+      const originalHref = a.getAttribute("href");
+      if (!originalHref) return;
 
-    for (const slug of slugs) {
-      if (cleanHref.endsWith(slug)) {
-        cleanHref = cleanHref.slice(0, -slug.length);
-        modified = true;
-        break;
-      }
-    }
+      let cleanHref = originalHref;
+      let modified = false;
 
-    if (!modified) return;
-
-    // Memorizziamo entrambi gli href
-    a.setAttribute("data-real-href", originalHref);
-    a.href = cleanHref;                     // href visibile (barra di stato + hover)
-
-    // ───────────────────────────────────────────────────────────────
-    // Gestione click intelligente
-    // ───────────────────────────────────────────────────────────────
-    a.addEventListener("click", function(e) {
-      // Click sinistro normale (senza modificatori) → intercettiamo
-      if (e.button === 0 && !e.ctrlKey && !e.metaKey && !e.shiftKey && !e.altKey) {
-        e.preventDefault();
-        window.location.href = originalHref;
-        return;
+      for (const slug of slugs) {
+        if (cleanHref.endsWith(slug)) {
+          cleanHref = cleanHref.slice(0, -slug.length);
+          modified = true;
+          break;
+        }
       }
 
-      // Tutti gli altri casi (Ctrl+click, Cmd+click, middle-click, shift+click...)
-      // lasciamo che il browser faccia il suo lavoro normale usando l'attributo href attuale
-      // → aprirà il link "pulito" (= sbagliato!)
-      // Quindi dobbiamo temporaneamente ripristinare l'href originale
-      const currentHref = a.href;
-      a.href = originalHref;
+      if (!modified) return;
 
-      // Piccolo trick per lasciare che il browser proceda con l'href corretto
-      // poi lo ripristiniamo subito dopo (molto veloce, quasi invisibile)
-      setTimeout(() => {
-        a.href = currentHref;
-      }, 0);
+      // Salviamo href reale
+      a.setAttribute("data-real-href", originalHref);
+
+      // href pulito SOLO visivo (hover, status bar)
+      a.href = cleanHref;
+
+      // ───────────────────────────────────────
+      // CLICK HANDLER
+      // ───────────────────────────────────────
+      a.addEventListener("click", function (e) {
+        const realHref = a.getAttribute("data-real-href");
+
+        // 🔥 Custom attribute → nuova scheda forzata
+        if (a.getAttribute("data-open-new-tab") === "true") {
+          e.preventDefault();
+          window.open(realHref, "_blank");
+          return;
+        }
+
+        // Click sinistro normale → stessa scheda
+        if (
+          e.button === 0 &&
+          !e.ctrlKey &&
+          !e.metaKey &&
+          !e.shiftKey &&
+          !e.altKey
+        ) {
+          e.preventDefault();
+          window.location.href = realHref;
+          return;
+        }
+
+        // Tutti gli altri casi → ripristiniamo href reale temporaneamente
+        const visualHref = a.href;
+        a.href = realHref;
+
+        setTimeout(() => {
+          a.href = visualHref;
+        }, 0);
+      });
+
+      // ───────────────────────────────────────
+      // MIDDLE CLICK (Firefox-safe)
+      // ───────────────────────────────────────
+      a.addEventListener("auxclick", function (e) {
+        if (e.button === 1) {
+          e.preventDefault();
+          const realHref = a.getAttribute("data-real-href");
+          window.open(realHref, "_blank");
+        }
+      });
     });
 
-    // Bonus: auxclick per gestire meglio middle-click in alcuni browser (soprattutto Firefox)
-    a.addEventListener("auxclick", function(e) {
-      if (e.button === 1) { // middle click
-        e.preventDefault();
-        // Ripristiniamo href reale per il middle-click
-        const real = a.getAttribute("data-real-href");
-        window.open(real, "_blank");
-      }
-    });
-  });
+    console.log("[removeSlugVisualHover] ✔ Versione finale con nuova scheda custom");
 
-  console.log("[removeSlugVisualHover] Versione corretta - Ctrl/middle-click funzionanti");
+  } catch (err) {
+    console.error("[removeSlugVisualHover] Errore:", err);
+  }
 })();
