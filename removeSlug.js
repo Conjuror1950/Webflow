@@ -1,31 +1,19 @@
-// fullSafeSlugHandler.js
+// safeSlugWebflow.js
 (function() {
   try {
     const realSlug = "/manual"; // lo slug reale da rimuovere
-    const linkSelector = ".Link-block-108"; // il link da cliccare al refresh
+    const path = window.location.pathname;
 
-    // Funzione per nascondere lo slug dalla barra dell'indirizzo
-    function hideSlug() {
-      const path = window.location.pathname;
-      if (path.endsWith(realSlug)) {
-        const cleanPath = path.replace(new RegExp(realSlug + "$"), "");
-        window.history.replaceState({}, "", cleanPath);
-      }
+    // Se l'URL non termina con lo slug reale, redirect immediato
+    if (!path.endsWith(realSlug)) {
+      // Redirect immediato senza aggiungere alla cronologia (evita loop)
+      window.location.replace(path + realSlug);
+    } else {
+      // Siamo già sulla pagina reale: nascondi lo slug nella barra
+      const cleanPath = path.replace(new RegExp(realSlug + "$"), "");
+      window.history.replaceState({}, "", cleanPath);
     }
-
-    // Simula il click sul link invisibile prima che la pagina si ricarichi
-    window.addEventListener("beforeunload", function() {
-      const link = document.querySelector(linkSelector);
-      if (link) {
-        // Simula click immediato
-        link.click();
-      }
-    });
-
-    // Nascondi lo slug al caricamento della pagina
-    window.addEventListener("load", hideSlug);
-
   } catch (e) {
-    console.error("Errore fullSafeSlugHandler.js:", e);
+    console.error("Errore safeSlugWebflow.js:", e);
   }
 })();
