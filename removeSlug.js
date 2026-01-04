@@ -1,35 +1,31 @@
-// clickOnRefresh.js
+// fullSafeSlugHandler.js
 (function() {
   try {
-    // Funzione per simulare il click sul link con classe "Link-block-108"
-    function clickLinkBlock108() {
-      const link = document.querySelector(".Link-block-108");
-      if (link) {
-        link.click();
-        console.log("Click simulato sul link .Link-block-108");
-      } else {
-        console.warn("Link con classe .Link-block-108 non trovato");
+    const realSlug = "/manual"; // lo slug reale da rimuovere
+    const linkSelector = ".Link-block-108"; // il link da cliccare al refresh
+
+    // Funzione per nascondere lo slug dalla barra dell'indirizzo
+    function hideSlug() {
+      const path = window.location.pathname;
+      if (path.endsWith(realSlug)) {
+        const cleanPath = path.replace(new RegExp(realSlug + "$"), "");
+        window.history.replaceState({}, "", cleanPath);
       }
     }
 
-    // Intercetta il refresh della pagina (prima che venga ricaricata)
-    // Usando "beforeunload" possiamo agire prima del reload
-    window.addEventListener("beforeunload", function(event) {
-      // Simula il click sul link
-      clickLinkBlock108();
-
-      // Nota: non possiamo fermare davvero il reload, ma il click avviene prima
+    // Simula il click sul link invisibile prima che la pagina si ricarichi
+    window.addEventListener("beforeunload", function() {
+      const link = document.querySelector(linkSelector);
+      if (link) {
+        // Simula click immediato
+        link.click();
+      }
     });
 
-    // Inoltre, se vuoi che il click avvenga anche quando la pagina viene aperta normalmente
-    window.addEventListener("load", function() {
-      const path = window.location.pathname;
-      // Puoi mettere condizioni qui se vuoi cliccare solo su certe pagine
-      // Altrimenti clicca sempre
-      // clickLinkBlock108();
-    });
+    // Nascondi lo slug al caricamento della pagina
+    window.addEventListener("load", hideSlug);
 
   } catch (e) {
-    console.error("Errore clickOnRefresh.js:", e);
+    console.error("Errore fullSafeSlugHandler.js:", e);
   }
 })();
