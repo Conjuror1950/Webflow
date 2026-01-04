@@ -1,21 +1,18 @@
-// removeSlugEarly.js
-// Rimuove il secondo slug "/manual" il prima possibile
-// L'URL visivo viene aggiornato prima del rendering della pagina
-
-(function() {
+// forceManualOnRefresh.js
+(function () {
   try {
-    let currentPath = window.location.pathname;
+    const path = window.location.pathname;
 
-    if (currentPath.endsWith("/manual")) {
-      // Rimuovi "/manual"
-      let newPath = currentPath.replace(/\/manual$/, "");
+    // Se l'URL NON termina con /manual
+    if (!path.endsWith("/manual")) {
+      const target = path + "/manual";
 
-      // Aggiorna subito la barra degli indirizzi
-      history.replaceState({}, "", newPath);
-
-      console.log("[removeSlugEarly.js] URL visivo modificato:", newPath);
+      // Evita loop
+      if (window.location.pathname !== target) {
+        window.location.replace(target);
+      }
     }
   } catch (e) {
-    console.error("[removeSlugEarly.js] Errore:", e);
+    console.error("[forceManualOnRefresh] Errore:", e);
   }
 })();
