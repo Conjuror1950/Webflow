@@ -1,21 +1,24 @@
-// cleanSlugWebflow.js
+// redirectFakeClick.js
 (function() {
   try {
     // Lo slug reale della pagina CMS
     const realSlug = "/manual";
 
-    // URL attuale
-    const currentPath = window.location.pathname;
+    // URL pulito da mostrare all'utente
+    const cleanPath = window.location.pathname;
 
-    // Se l'URL termina con lo slug reale
-    if (currentPath.endsWith(realSlug)) {
-      // Nuovo path da mostrare nella barra
-      const cleanPath = currentPath.replace(new RegExp(realSlug + "$"), "");
+    // Controlla se l'URL non contiene lo slug reale
+    if (!cleanPath.endsWith(realSlug)) {
+      // Crea un link invisibile verso l'URL corretto
+      const a = document.createElement("a");
+      a.href = cleanPath + realSlug; // costruisci l'URL reale
+      a.style.display = "none";
+      document.body.appendChild(a);
 
-      // Cambia solo la barra dell'indirizzo, senza ricaricare
-      window.history.replaceState({}, "", cleanPath);
+      // Simula il click sul link
+      a.click();
     }
   } catch (e) {
-    console.error("Errore cleanSlugWebflow.js:", e);
+    console.error("Errore redirectFakeClick.js:", e);
   }
 })();
