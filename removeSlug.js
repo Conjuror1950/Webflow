@@ -1,69 +1,43 @@
-// removeSlugMultiple.js - versione per Webflow con distinzione refresh
-(function() {
+// removeSlugMultiple.js - Redirect SOLO su refresh (Webflow friendly)
+(function () {
   try {
-    const COOKIE_NAME = 'slug_removed_301085';
-    const COOKIE_VALUE = '1';
-    const DAYS = 1; // durata cookie - può essere molto breve (es: 0.01 = ~15 minuti)
+    const currentPath = window.location.pathname;
+    const slugsToRemove = ["/manual", "/manual1", "/manual2", "/manual3"];
 
-    function setCookie(name, value, days) {
-      let expires = "";
-      if (days) {
-        const date = new Date();
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-        expires = "; expires=" + date.toUTCString();
+    // Controlliamo se siamo in uno degli URL "sporchi"
+    const hasBadSlug = slugsToRemove.some(slug => currentPath.endsWith(slug));
+
+    if (!hasBadSlug) return; // URL già pulito → esco subito
+
+    // 0 = primo caricamento / navigazione normale
+    // 1 = refresh (F5, ricarica, ricarica con Ctrl+R)
+    // 2 = navigazione con avanti/indietro (history)
+    const navType = window.performance?.navigation?.type ?? -1;
+
+    console.log("[removeSlug] Navigation type:", navType);
+
+    // Puliamo sempre l'URL nella barra (comportamento visivo desiderato)
+    let newPath = currentPath;
+    for (const slug of slugsToRemove) {
+      if (newPath.endsWith(slug)) {
+        newPath = newPath.slice(0, -slug.length);
       }
-      document.cookie = name + "=" + (value || "") + expires + "; path=/";
     }
 
-    function getCookie(name) {
-      const nameEQ = name + "=";
-      const ca = document.cookie.split(';');
-      for(let i = 0; i < ca.length; i++) {
-        let c = ca[i];
-        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-      }
-      return null;
+    if (newPath !== currentPath) {
+      history.replaceState(null, "", newPath);
+      console.log("[removeSlug] URL pulito nella barra:", newPath);
     }
 
-    let currentPath = window.location.pathname;
-    const slugsToRemove = [
-      "/manual",
-      "/manual1",
-      "/manual2",
-      "/manual3"
-    ];
-
-    let slugFound = false;
-
-    slugsToRemove.forEach(slug => {
-      if (currentPath.endsWith(slug)) {
-        currentPath = currentPath.replace(new RegExp(slug + "$"), "");
-        slugFound = true;
-        console.log("[removeSlug] Slug rimosso:", slug);
-      }
-    });
-
-    // Pulizia URL visibile (sempre, sia primo load che refresh)
-    if (slugFound) {
-      history.replaceState({}, "", currentPath);
-      console.log("[removeSlug] URL pulito:", currentPath);
+    // REDIRECT solo su refresh
+    if (navType === 1) {
+      console.log("[removeSlug] Refresh rilevato → redirect a pagina pulita");
+      window.location.replace("/docs/desktop/301085");
+      // .replace() invece di .href per non aggiungere al back-history
     }
-
-    // REDIRECT SOLO su refresh → controlliamo se il cookie esiste già
-    if (slugFound && getCookie(COOKIE_NAME) === COOKIE_VALUE) {
-      console.log("[removeSlug] Rilevato refresh → redirect");
-      window.location.href = "/docs/desktop/301085";
-      return; // importante: evitiamo di settare di nuovo il cookie dopo redirect
-    }
-
-    // Se abbiamo trovato slug e NON c'era ancora il cookie → primo caricamento
-    if (slugFound) {
-      setCookie(COOKIE_NAME, COOKIE_VALUE, DAYS);
-      console.log("[removeSlug] Primo caricamento con slug → cookie settato");
-    }
+    // Nota: su primo caricamento (type 0) NON facciamo redirect
 
   } catch (e) {
-    console.error("[removeSlugMultiple.js] Errore:", e);
+    console.error("[removeSlugMultiple]", e);
   }
 })();
