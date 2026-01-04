@@ -1,18 +1,28 @@
-// redirect-single-cms-webflow-force.js
+// simulate-redirect-cms.js
 (function() {
-  const ORIG_PATH = "/it-it/102555";
-  const DEST_PATH = "/it-it/102555/manual";
+  const TARGET_ID = "102555"; // ID della pagina CMS
+  const PARAM_NAME = "manual";
 
-  function redirectIfNeeded() {
-    if (window.location.pathname === ORIG_PATH) {
-      // forza il redirect completo bypassando AJAX
-      window.location.href = DEST_PATH + "?redirect=true";
+  function showManualSection() {
+    // Controlla se siamo sulla pagina giusta
+    if (window.location.pathname.endsWith("/" + TARGET_ID)) {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get(PARAM_NAME) === "true") {
+        // Mostra la sezione "manual"
+        const manualSection = document.querySelector(".manual-section"); 
+        if (manualSection) {
+          manualSection.style.display = "block";
+        }
+        // Nascondi altre sezioni se serve
+        const mainContent = document.querySelector(".main-content");
+        if (mainContent) mainContent.style.display = "none";
+      }
     }
   }
 
-  // redirect subito
-  redirectIfNeeded();
+  // Esegui subito
+  showManualSection();
 
-  // ripeti ogni 500ms in caso di caricamenti AJAX
-  setInterval(redirectIfNeeded, 500);
+  // Controlla ogni 500ms in caso di caricamento AJAX
+  setInterval(showManualSection, 500);
 })();
