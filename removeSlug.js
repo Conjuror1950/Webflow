@@ -1,31 +1,25 @@
-// redirectSlug.js
-// Script per rimuovere il secondo slug "/manual" e redirect automatico se si visita l'URL originale
+// redirectVisualUrl.js
+// Redirect visivo lato client per rimuovere lo slug "/manual"
+// Funziona su qualsiasi pagina con /manual alla fine dell'URL
 
 (function() {
+  // Esegui quando la pagina è completamente caricata
   window.addEventListener("DOMContentLoaded", function() {
     try {
-      const currentPath = window.location.pathname;
-      const originalSlug = "/manual"; // lo slug CMS da rimuovere
-      const basePath = currentPath.replace(/\/manual$/, ""); // nuovo URL senza manual
+      let currentPath = window.location.pathname;
 
-      // Se l'URL contiene ancora "/manual", facciamo redirect
-      if (currentPath.endsWith(originalSlug)) {
-        // Usa replaceState per cambiare URL visivo senza ricaricare
-        history.replaceState({}, "", basePath);
-        console.log("[redirectSlug.js] URL visivo aggiornato:", basePath);
-      } 
-      // Se l'utente visita direttamente /it-it/102555 (senza /manual)
-      // facciamo redirect verso l'URL CMS reale
-      else {
-        // Controlliamo se esiste il CMS slug da aggiungere
-        const cmsSlug = "/manual";
-        const cmsPath = currentPath + cmsSlug;
+      // Se l'URL termina con "/manual"
+      if (currentPath.endsWith("/manual")) {
+        // Costruisci il nuovo URL visivo
+        let newPath = currentPath.replace(/\/manual$/, "/");
 
-        // Redirect lato client verso la pagina CMS reale
-        window.location.replace(cmsPath);
+        // Sostituisci l'URL nella barra degli indirizzi senza ricaricare la pagina
+        history.replaceState({}, "", newPath);
+
+        console.log("[redirectVisualUrl.js] URL visivo aggiornato a:", newPath);
       }
     } catch (e) {
-      console.error("[redirectSlug.js] Errore:", e);
+      console.error("[redirectVisualUrl.js] Errore:", e);
     }
   });
 })();
