@@ -1,26 +1,31 @@
-// removeSlug.js
-// Script per rimuovere il secondo slug "/manual" dall'URL visivo
-// Funziona solo lato client (non cambia l'URL reale su server)
+// redirect301Visual.js
+// Simula un redirect 301 lato client per Webflow CMS
+// Mostra URL pulito /it-it/102555 senza cambiare la pagina reale /manual
 
 (function() {
-  // Assicurati che la pagina sia completamente caricata
   window.addEventListener("DOMContentLoaded", function() {
     try {
-      // Prendi il percorso attuale, es. /it-it/102555/manual
-      let currentPath = window.location.pathname;
+      const realSlug = "/manual"; // slug reale CMS
+      const path = window.location.pathname;
 
-      // Controlla se contiene "/manual" alla fine
-      if (currentPath.endsWith("/manual")) {
-        // Rimuovi la parte "/manual"
-        let newPath = currentPath.replace(/\/manual$/, "");
-
-        // Sostituisci l'URL visivo senza ricaricare la pagina
-        history.replaceState({}, "", newPath);
-
-        console.log("[removeSlug.js] URL visivo modificato:", newPath);
+      // Caso 1: siamo sulla pagina reale /manual → rimuovo visivamente
+      if (path.endsWith(realSlug)) {
+        const visualPath = path.replace(new RegExp(realSlug + "$"), "");
+        history.replaceState({}, "", visualPath);
+        console.log("[redirect301Visual.js] URL visivo:", visualPath);
       }
+
+      // Caso 2: utente digita o fa refresh su /it-it/102555 → reindirizzo alla pagina reale
+      else if (!path.endsWith(realSlug)) {
+        const targetPath = path + realSlug;
+
+        // Simula redirect 301 lato client
+        // 'replace' non aggiunge voce in cronologia → come un vero 301
+        window.location.replace(targetPath);
+      }
+
     } catch (e) {
-      console.error("[removeSlug.js] Errore:", e);
+      console.error("[redirect301Visual.js] Errore:", e);
     }
   });
 })();
