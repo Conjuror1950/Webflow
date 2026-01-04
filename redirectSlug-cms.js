@@ -1,28 +1,27 @@
-// simulate-redirect-cms.js
-(function() {
-  const TARGET_ID = "102555"; // ID della pagina CMS
-  const PARAM_NAME = "manual";
+<script>
+(function () {
+  function handleManualView() {
+    const params = new URLSearchParams(window.location.search);
+    const isManual = params.get("manual") === "true";
 
-  function showManualSection() {
-    // Controlla se siamo sulla pagina giusta
-    if (window.location.pathname.endsWith("/" + TARGET_ID)) {
-      const urlParams = new URLSearchParams(window.location.search);
-      if (urlParams.get(PARAM_NAME) === "true") {
-        // Mostra la sezione "manual"
-        const manualSection = document.querySelector(".manual-section"); 
-        if (manualSection) {
-          manualSection.style.display = "block";
-        }
-        // Nascondi altre sezioni se serve
-        const mainContent = document.querySelector(".main-content");
-        if (mainContent) mainContent.style.display = "none";
-      }
+    const main = document.querySelector(".cms-main-content");
+    const manual = document.querySelector(".cms-manual-content");
+
+    if (!main || !manual) return;
+
+    if (isManual) {
+      main.style.display = "none";
+      manual.style.display = "block";
+    } else {
+      main.style.display = "block";
+      manual.style.display = "none";
     }
   }
 
-  // Esegui subito
-  showManualSection();
+  // esegui subito
+  handleManualView();
 
-  // Controlla ogni 500ms in caso di caricamento AJAX
-  setInterval(showManualSection, 500);
+  // ripeti per Webflow AJAX
+  setInterval(handleManualView, 500);
 })();
+</script>
