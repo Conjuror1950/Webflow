@@ -1,6 +1,6 @@
 // removeSlugVisualHover.js
-// Rimuove slug solo visivamente, ma mantiene la navigazione reale
-// Supporta nuova scheda via custom attribute
+// Rimuove slug SOLO visivamente (hover/status bar)
+// Supporta hash (#), nuova scheda e navigazione reale intatta
 
 (function () {
   try {
@@ -15,12 +15,24 @@
       const originalHref = a.getAttribute("href");
       if (!originalHref) return;
 
-      let cleanHref = originalHref;
+      // Separiamo path e hash
+      const hashIndex = originalHref.indexOf("#");
+      const hasHash = hashIndex !== -1;
+
+      const path = hasHash
+        ? originalHref.slice(0, hashIndex)
+        : originalHref;
+
+      const hash = hasHash
+        ? originalHref.slice(hashIndex)
+        : "";
+
+      let cleanPath = path;
       let modified = false;
 
       for (const slug of slugs) {
-        if (cleanHref.endsWith(slug)) {
-          cleanHref = cleanHref.slice(0, -slug.length);
+        if (cleanPath.endsWith(slug)) {
+          cleanPath = cleanPath.slice(0, -slug.length);
           modified = true;
           break;
         }
@@ -28,11 +40,13 @@
 
       if (!modified) return;
 
+      const visualHref = cleanPath + hash;
+
       // Salviamo href reale
       a.setAttribute("data-real-href", originalHref);
 
-      // href pulito SOLO visivo (hover, status bar)
-      a.href = cleanHref;
+      // href pulito SOLO visivo
+      a.href = visualHref;
 
       // ───────────────────────────────────────
       // CLICK HANDLER
@@ -40,7 +54,7 @@
       a.addEventListener("click", function (e) {
         const realHref = a.getAttribute("data-real-href");
 
-        // 🔥 Custom attribute → nuova scheda forzata
+        // 🔥 Nuova scheda forzata via attributo
         if (a.getAttribute("data-open-new-tab") === "true") {
           e.preventDefault();
           window.open(realHref, "_blank");
@@ -60,10 +74,8 @@
           return;
         }
 
-        // Tutti gli altri casi → ripristiniamo href reale temporaneamente
-        const visualHref = a.href;
+        // Tutti gli altri casi → ripristino temporaneo href reale
         a.href = realHref;
-
         setTimeout(() => {
           a.href = visualHref;
         }, 0);
@@ -81,7 +93,9 @@
       });
     });
 
-    console.log("[removeSlugVisualHover] ✔ Versione finale con nuova scheda custom");
+    console.log(
+      "[removeSlugVisualHover] ✔ Slug nascosto visivamente (hash supportato)"
+    );
 
   } catch (err) {
     console.error("[removeSlugVisualHover] Errore:", err);
