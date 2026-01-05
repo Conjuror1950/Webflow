@@ -7,10 +7,11 @@
     // Lista degli slug da rimuovere
     const slugsToRemove = [
       "/manual", // Manuale
-      "/introduction", // Introduzione
-      "/accessibility", // Accessibilità
-      "/support", // Supporto
-      "/legal" // Legal
+      "/introduction", 
+      "/settings",
+      "/accessibility",
+      "/support", 
+      "/legal" 
     ];
     // Controlla se l'URL termina con uno degli slug
     slugsToRemove.forEach(slug => {
