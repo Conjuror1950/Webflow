@@ -8,6 +8,7 @@
     const slugsToRemove = [
       "/manual", // Manuale
       "/introduction", 
+      "/access",
       "/settings",
       "/accessibility",
       "/support", 
