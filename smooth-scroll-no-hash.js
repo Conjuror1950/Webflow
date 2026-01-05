@@ -1,21 +1,25 @@
 document.addEventListener("click", function (e) {
-  var trigger = e.target.closest("[data-scroll]");
+  const trigger = e.target.closest("[data-scroll]");
   if (!trigger) return;
 
-  var id = trigger.getAttribute("data-scroll");
+  const id = trigger.getAttribute("data-scroll");
   if (!id) return;
 
-  var target = document.getElementById(id);
+  const target = document.getElementById(id);
   if (!target) return;
 
   e.preventDefault();
 
+  // 1. Scroll istantaneo (nessuna animazione)
   target.scrollIntoView({
-    behavior: "smooth",
+    behavior: "auto",
     block: "start"
   });
 
-  if (history.replaceState) {
-    history.replaceState(null, "", window.location.pathname);
+  // 2. Mostra l'hash nell'URL (come Apple)
+  if (history.pushState) {
+    history.pushState(null, "", `#${id}`);
+  } else {
+    window.location.hash = id;
   }
 });
