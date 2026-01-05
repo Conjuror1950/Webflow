@@ -7,8 +7,8 @@
     const slugs = [
       "/manual",
       "/introduction",
-      "/album",
-      "/legal"
+      "/accessibility",
+      "/support"
     ];
 
     document.querySelectorAll("a[href]").forEach(a => {
