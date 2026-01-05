@@ -1,29 +1,33 @@
 // removeSlugMultiple.js
-// Rimuove gli slug specificati dalla fine dell'URL il prima possibile
-// Aggiorna la barra degli indirizzi prima del rendering
-(function() {
+// Rimuove gli slug dalla fine dell'URL mantenendo hash e navigazione interna
+(function () {
   try {
-    let currentPath = window.location.pathname;
-    // Lista degli slug da rimuovere
+    let path = window.location.pathname;
+    const hash = window.location.hash || "";
+
     const slugsToRemove = [
-      "/manual", // Manuale
-      "/introduction", 
+      "/manual",
+      "/introduction",
       "/access",
       "/settings",
       "/accessibility",
-      "/support", 
-      "/legal" 
+      "/support",
+      "/legal"
     ];
-    // Controlla se l'URL termina con uno degli slug
+
     slugsToRemove.forEach(slug => {
-      if (currentPath.endsWith(slug)) {
-        const newPath = currentPath.replace(new RegExp(slug + "$"), "");
-        history.replaceState({}, "", newPath);
-        console.log("[removeSlugMultiple.js] URL visivo modificato:", newPath);
-        // Aggiorna currentPath per eventuali ulteriori slug
-        currentPath = newPath;
+      if (path.endsWith(slug)) {
+        path = path.replace(new RegExp(slug + "$"), "");
       }
     });
+
+    const newUrl = path + hash;
+
+    if (newUrl !== window.location.pathname + window.location.hash) {
+      history.replaceState({}, "", newUrl);
+      console.log("[removeSlugMultiple.js] URL visivo modificato:", newUrl);
+    }
+
   } catch (e) {
     console.error("[removeSlugMultiple.js] Errore:", e);
   }
