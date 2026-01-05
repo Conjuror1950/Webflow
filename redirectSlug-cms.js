@@ -89,47 +89,46 @@
       });
     });
 
-    // ───────────────────────────────────────
-    // DATA-SCROLL (anche senza href)
-    // ───────────────────────────────────────
-    document.querySelectorAll("[data-scroll]").forEach(el => {
-      const scrollId = el.getAttribute("data-scroll");
-      if (!scrollId) return;
+// ───────────────────────────────────────
+// DATA-SCROLL → SEMPRE <a href="#id">
+// ───────────────────────────────────────
+document.querySelectorAll("[data-scroll]").forEach(el => {
+  const scrollId = el.getAttribute("data-scroll");
+  if (!scrollId) return;
 
-      const visualHash = "#" + scrollId;
+  const visualHash = "#" + scrollId;
 
-      // Se NON è un <a>, lo rendiamo un link visivo
-      if (el.tagName.toLowerCase() !== "a") {
-        el.setAttribute("role", "link");
-        el.style.cursor = "pointer";
-        el.setAttribute("data-visual-href", visualHash);
+  let linkEl = el;
+
+  // Se NON è un <a>, lo convertiamo in <a>
+  if (el.tagName.toLowerCase() !== "a") {
+    linkEl = document.createElement("a");
+    linkEl.innerHTML = el.innerHTML;
+
+    // copia attributi
+    [...el.attributes].forEach(attr => {
+      if (attr.name !== "data-scroll") {
+        linkEl.setAttribute(attr.name, attr.value);
       }
-
-      // Se è <a> ma senza href → iniettiamo hash visivo
-      if (el.tagName.toLowerCase() === "a" && !el.getAttribute("href")) {
-        el.setAttribute("href", visualHash);
-        el.setAttribute("data-visual-only", "true");
-      }
-
-      // CLICK → scroll reale
-      el.addEventListener("click", e => {
-        e.preventDefault();
-
-        const target = document.getElementById(scrollId);
-        if (!target) return;
-
-        target.scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
-      });
     });
 
-    console.log(
-      "[removeSlugVisualHover] ✔ Hash letto da data-scroll e mostrato correttamente"
-    );
-
-  } catch (err) {
-    console.error("[removeSlugVisualHover] Errore:", err);
+    el.replaceWith(linkEl);
   }
-})();
+
+  // href VISIVO (obbligatorio per hover)
+  linkEl.setAttribute("href", visualHash);
+  linkEl.setAttribute("data-visual-only", "true");
+
+  // CLICK → scroll reale
+  linkEl.addEventListener("click", e => {
+    e.preventDefault();
+
+    const target = document.getElementById(scrollId);
+    if (!target) return;
+
+    target.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  });
+});
