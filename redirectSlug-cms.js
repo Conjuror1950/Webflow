@@ -1,7 +1,7 @@
 // removeSlugVisualHover + data-scroll unified
-// Rimuove slug SOLO visivamente (hover/status bar)
-// Supporta hash (#), nuova scheda, middle click
-// Supporta elementi senza href con data-scroll
+// Slug e hash SOLO visivi (hover / status bar)
+// Supporta hash, nuova scheda, middle click
+// Supporta data-scroll anche senza href
 // Navigazione reale sempre intatta
 
 (function () {
@@ -25,7 +25,6 @@
       const originalHref = a.getAttribute("href");
       if (!originalHref) return;
 
-      // separa path e hash
       const hashIndex = originalHref.indexOf("#");
       const hasHash = hashIndex !== -1;
 
@@ -52,26 +51,18 @@
 
       const visualHref = cleanPath + hash;
 
-      // salva href reale
       a.setAttribute("data-real-href", originalHref);
-
-      // href SOLO visivo
       a.href = visualHref;
 
-      // ───────────────────────────────────────
-      // CLICK HANDLER
-      // ───────────────────────────────────────
-      a.addEventListener("click", function (e) {
+      a.addEventListener("click", e => {
         const realHref = a.getAttribute("data-real-href");
 
-        // nuova scheda forzata via attributo
         if (a.getAttribute("data-open-new-tab") === "true") {
           e.preventDefault();
           window.open(realHref, "_blank");
           return;
         }
 
-        // click sinistro normale
         if (
           e.button === 0 &&
           !e.ctrlKey &&
@@ -84,44 +75,43 @@
           return;
         }
 
-        // altri casi → ripristino temporaneo
         a.href = realHref;
         setTimeout(() => {
           a.href = visualHref;
         }, 0);
       });
 
-      // ───────────────────────────────────────
-      // MIDDLE CLICK (Firefox-safe)
-      // ───────────────────────────────────────
-      a.addEventListener("auxclick", function (e) {
+      a.addEventListener("auxclick", e => {
         if (e.button === 1) {
           e.preventDefault();
-          const realHref = a.getAttribute("data-real-href");
-          window.open(realHref, "_blank");
+          window.open(a.getAttribute("data-real-href"), "_blank");
         }
       });
     });
 
     // ───────────────────────────────────────
-    // ELEMENTI SENZA HREF (data-scroll)
+    // DATA-SCROLL (anche senza href)
     // ───────────────────────────────────────
-    document.querySelectorAll("[data-scroll]:not(a)").forEach(el => {
+    document.querySelectorAll("[data-scroll]").forEach(el => {
       const scrollId = el.getAttribute("data-scroll");
       if (!scrollId) return;
 
       const visualHash = "#" + scrollId;
 
-      // hover → hash visivo
-      el.addEventListener("mouseenter", () => {
-        history.replaceState(null, "", visualHash);
-      });
+      // Se NON è un <a>, lo rendiamo un link visivo
+      if (el.tagName.toLowerCase() !== "a") {
+        el.setAttribute("role", "link");
+        el.style.cursor = "pointer";
+        el.setAttribute("data-visual-href", visualHash);
+      }
 
-      el.addEventListener("mouseleave", () => {
-        history.replaceState(null, "", window.location.pathname);
-      });
+      // Se è <a> ma senza href → iniettiamo hash visivo
+      if (el.tagName.toLowerCase() === "a" && !el.getAttribute("href")) {
+        el.setAttribute("href", visualHash);
+        el.setAttribute("data-visual-only", "true");
+      }
 
-      // click → scroll reale
+      // CLICK → scroll reale
       el.addEventListener("click", e => {
         e.preventDefault();
 
@@ -136,7 +126,7 @@
     });
 
     console.log(
-      "[removeSlugVisualHover] ✔ Slug e hash gestiti (link + data-scroll)"
+      "[removeSlugVisualHover] ✔ Hash letto da data-scroll e mostrato correttamente"
     );
 
   } catch (err) {
