@@ -7,6 +7,7 @@
     const slugs = [
       "/manual",
       "/introduction",
+      "/access",
       "/settings",
       "/accessibility",
       "/support"
