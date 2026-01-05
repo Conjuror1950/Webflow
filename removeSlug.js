@@ -8,7 +8,8 @@
     const slugsToRemove = [
       "/manual", // Manuale
       "/introduction", // Introduzione
-      "/manual2", // collezione 3
+      "/accessibility", // Accessibilità
+      "/support", // Supporto
       "/legal" // Legal
     ];
     // Controlla se l'URL termina con uno degli slug
