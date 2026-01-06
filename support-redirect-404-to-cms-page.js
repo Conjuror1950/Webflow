@@ -1,41 +1,39 @@
+// 404-smart-redirect.js
+// Redirect intelligente basato sullo slug reale salvato
+// Compatibile GitHub Pages / Webflow
+
 (function () {
   try {
     const path = window.location.pathname;
     const hash = window.location.hash || "";
 
-    // Slug reali esistenti
-    const validSlugs = [
-      "manual",
-      "introduction",
-      "access",
-      "settings",
-      "accessibility",
-      "support",
-      "legal"
-    ];
-
-    // Match: /it-it/122132  (senza slug finale)
+    // Match SOLO URL senza slug finale
+    // es: /it-it/122132
     const match = path.match(/^\/([a-z-]+)\/(\d+)\/?$/);
-
     if (!match) return;
 
     const locale = match[1];
     const id = match[2];
 
-    // Prova a ricostruire l'URL reale
-    // Priorità: access (o puoi cambiarla)
-    const fallbackSlug = "access";
+    // Recupera ultimo slug valido salvato
+    const storedSlug = sessionStorage.getItem("lastValidSlug");
+    const storedId = sessionStorage.getItem("lastValidId");
+    const storedLocale = sessionStorage.getItem("lastValidLocale");
 
-    if (!validSlugs.includes(fallbackSlug)) return;
+    // Se manca qualcosa → NON redirect
+    if (!storedSlug || !storedId || !storedLocale) return;
 
-    const redirectUrl = `/${locale}/${id}/${fallbackSlug}${hash}`;
+    // Protezione: redirect SOLO se la pagina combacia
+    if (storedId !== id || storedLocale !== locale) return;
 
-    console.log("[404 redirect] Redirect verso:", redirectUrl);
+    const redirectUrl = `/${locale}/${id}/${storedSlug}${hash}`;
 
-    // Redirect reale (sostituisce la history)
+    console.log("[404 smart redirect] →", redirectUrl);
+
+    // Redirect reale (niente back loop)
     window.location.replace(redirectUrl);
 
   } catch (e) {
-    console.error("[404 redirect] Errore:", e);
+    console.error("[404 smart redirect] Errore:", e);
   }
 })();
