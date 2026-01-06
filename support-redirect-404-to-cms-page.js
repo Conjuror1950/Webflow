@@ -1,12 +1,13 @@
 // 404-redirect.js
-// Ripristina lo slug corretto su refresh (GitHub Pages / Webflow)
-// Sicuro, no loop, multi-slug
-
+// GitHub Pages / Webflow: redirect instantaneo da URL senza slug
 (function () {
   try {
+    // Nasconde subito la pagina per evitare il flash della 404
+    document.documentElement.style.display = "none";
+    document.body.style.display = "none";
+
     const path = window.location.pathname;
     const hash = window.location.hash || "";
-    const referrer = document.referrer || "";
 
     const validSlugs = [
       "manual",
@@ -18,62 +19,39 @@
       "legal"
     ];
 
-    // Match SOLO URL senza slug finale
-    // es: /it-it/122132
+    // Match URL senza slug finale: /it-it/ID
     const match = path.match(/^\/([a-z-]+)\/(\d+)\/?$/);
-    if (!match) return;
+    if (!match) {
+      // NON redirect → mostra la pagina 404
+      document.documentElement.style.display = "";
+      document.body.style.display = "";
+      return;
+    }
 
     const locale = match[1];
     const id = match[2];
 
-    /* ─────────────────────────────
-       1️⃣ Tentativo: referrer
-    ───────────────────────────── */
-    if (referrer) {
-      try {
-        const refUrl = new URL(referrer);
-        const refMatch = refUrl.pathname.match(
-          new RegExp(`^/${locale}/${id}/([^/]+)$`)
-        );
+    // Fallback: primo slug valido
+    const fallbackSlug = "access";
 
-        if (refMatch) {
-          const refSlug = refMatch[1];
-
-          if (validSlugs.includes(refSlug)) {
-            const redirectUrl = `/${locale}/${id}/${refSlug}${hash}`;
-            console.log("[404 redirect] Da referrer:", redirectUrl);
-            window.location.replace(redirectUrl);
-            return;
-          }
-        }
-      } catch (_) {}
+    if (!validSlugs.includes(fallbackSlug)) {
+      // Mostra 404 se slug non valido
+      document.documentElement.style.display = "";
+      document.body.style.display = "";
+      return;
     }
 
-    /* ─────────────────────────────
-       2️⃣ Fallback: tentativi ordinati
-       (prima access, poi gli altri)
-    ───────────────────────────── */
-    const fallbackOrder = [
-      "access",
-      "manual",
-      "introduction",
-      "settings",
-      "accessibility",
-      "support",
-      "legal"
-    ];
+    const redirectUrl = `/${locale}/${id}/${fallbackSlug}${hash}`;
 
-    const slug = fallbackOrder.find(s =>
-      validSlugs.includes(s)
-    );
+    console.log("[404 redirect] Redirect verso:", redirectUrl);
 
-    if (!slug) return;
-
-    const fallbackUrl = `/${locale}/${id}/${slug}${hash}`;
-    console.log("[404 redirect] Fallback:", fallbackUrl);
-    window.location.replace(fallbackUrl);
+    // Redirect immediato
+    window.location.replace(redirectUrl);
 
   } catch (e) {
     console.error("[404 redirect] Errore:", e);
+    // Mostra pagina se c'è errore
+    document.documentElement.style.display = "";
+    document.body.style.display = "";
   }
 })();
