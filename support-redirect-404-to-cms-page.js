@@ -1,5 +1,5 @@
-// 404-redirect.js
-// GitHub Pages / Webflow: redirect instantaneo da URL senza slug
+// 404-redirect-map.js
+// GitHub Pages / Webflow: redirect instantaneo da URL senza slug con mappa
 (function () {
   try {
     // Nasconde subito la pagina per evitare il flash della 404
@@ -9,15 +9,15 @@
     const path = window.location.pathname;
     const hash = window.location.hash || "";
 
-    const validSlugs = [
-      "manual",
-      "introduction",
-      "access",
-      "settings",
-      "accessibility",
-      "support",
-      "legal"
-    ];
+    // Mappa ID → slug corretto
+    // Chiave = ID numerico, Valore = slug da aggiungere
+    const slugMap = {
+      "122132": "access",
+      "102555": "manual",
+      "135789": "settings",
+      "145678": "support"
+      // aggiungi qui altri ID e slug
+    };
 
     // Match URL senza slug finale: /it-it/ID
     const match = path.match(/^\/([a-z-]+)\/(\d+)\/?$/);
@@ -31,17 +31,16 @@
     const locale = match[1];
     const id = match[2];
 
-    // Fallback: primo slug valido
-    const fallbackSlug = "access";
-
-    if (!validSlugs.includes(fallbackSlug)) {
-      // Mostra 404 se slug non valido
+    // Controlla se l'ID esiste nella mappa
+    const slug = slugMap[id];
+    if (!slug) {
+      // Nessuna corrispondenza → mostra 404
       document.documentElement.style.display = "";
       document.body.style.display = "";
       return;
     }
 
-    const redirectUrl = `/${locale}/${id}/${fallbackSlug}${hash}`;
+    const redirectUrl = `/${locale}/${id}/${slug}${hash}`;
 
     console.log("[404 redirect] Redirect verso:", redirectUrl);
 
