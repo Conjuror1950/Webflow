@@ -12,10 +12,25 @@
     // Mappa ID → slug corretto
     // Chiave = ID numerico, Valore = slug da aggiungere
     const slugMap = {
-      "122132": "access",
       "102555": "manual",
-      "135789": "settings",
-      "145678": "support"
+      "100351": "introduction",
+      "122003": "manual",
+      "122080": "manual",
+      "121720": "manual",
+      "111892": "manual",
+      "122125": "access",
+      "122132": "access",
+      "122141": "access",
+      "121907": "settings",
+      "121918": "settings",
+      "121933": "settings",
+      "100306": "accessibility",
+      "100318": "accessibility",
+      "100330": "accessibility",
+      "102970": "support",
+      "102967": "support",
+      "102971": "support",
+      "103838": "legal"
       // aggiungi qui altri ID e slug
     };
 
