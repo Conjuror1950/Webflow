@@ -1,25 +1,47 @@
-document.addEventListener("click", function (e) {
-  const trigger = e.target.closest("[data-scroll]");
-  if (!trigger) return;
+// data-scroll unified
+// Scroll istantaneo SEMPRE (desktop + mobile)
+// Fix speciale per id="top" su iOS Safari
+// Hash aggiornato manualmente (Apple-style)
 
-  const id = trigger.getAttribute("data-scroll");
-  if (!id) return;
+(function () {
+  document.addEventListener("click", function (e) {
+    const trigger = e.target.closest("[data-scroll]");
+    if (!trigger) return;
 
-  const target = document.getElementById(id);
-  if (!target) return;
+    const id = trigger.getAttribute("data-scroll");
+    if (!id) return;
 
-  e.preventDefault();
+    const target = document.getElementById(id);
+    if (!target) return;
 
-  // 1. Scroll istantaneo (nessuna animazione)
-  target.scrollIntoView({
-    behavior: "auto",
-    block: "start"
-  });
+    // blocca SEMPRE il comportamento nativo
+    e.preventDefault();
+    e.stopPropagation();
 
-  // 2. Mostra l'hash nell'URL (come Apple)
-  if (history.pushState) {
-    history.pushState(null, "", `#${id}`);
-  } else {
-    window.location.hash = id;
-  }
-});
+    // ───────────────────────────────────────
+    // FIX MOBILE PER #top
+    // Safari tratta "top" come scroll nativo animato
+    // quindi forziamo window.scrollTo PRIMA
+    if (id === "top") {
+      // doppio frame per battere Safari iOS
+      requestAnimationFrame(() => {
+        window.scrollTo(0, 0);
+      });
+    } else {
+      // scroll normale per tutti gli altri target
+      target.scrollIntoView({
+        behavior: "auto",
+        block: "start"
+      });
+    }
+
+    // ───────────────────────────────────────
+    // aggiorna hash URL SENZA triggerare scroll
+    if (history.pushState) {
+      history.pushState(null, "", `#${id}`);
+    } else {
+      // fallback legacy
+      window.location.hash = id;
+    }
+  }, true); // <-- capture phase (fondamentale su mobile)
+})();
