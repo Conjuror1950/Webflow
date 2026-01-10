@@ -15,7 +15,8 @@
       "/access",
       "/settings",
       "/accessibility",
-      "/support"
+      "/support",
+      "/legal"
     ];
 
     // ───────────────────────────────────────
