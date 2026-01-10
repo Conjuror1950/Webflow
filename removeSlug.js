@@ -12,7 +12,7 @@
       "/settings",
       "/accessibility",
       "/support",
-      "/legal",
+      "/legal"
     ];
 
     slugsToRemove.forEach(slug => {
