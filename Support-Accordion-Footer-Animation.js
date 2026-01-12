@@ -16,8 +16,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     .accordion-icon {
-      width: 14px;
-      height: 14px;
+      width: 10px;
+      height: 10px;
       position: relative;
       flex-shrink: 0;
       transition: transform 0.45s cubic-bezier(.4,0,.2,1);
