@@ -1,36 +1,53 @@
 // FILE: accordion-footer.js
-document.addEventListener("DOMContentLoaded", function() {
-  // --- 1️⃣ Aggiungi stile CSS dinamicamente ---
+document.addEventListener("DOMContentLoaded", () => {
+
+  /* ===============================
+     1. CSS Apple-style
+  =============================== */
   const css = `
-    /* Nascondi l'icona di default di Webflow */
     .w-dropdown-toggle .w-icon-dropdown-toggle {
       display: none;
     }
 
-    /* Stile icona custom */
-    .accordion-icon {
-      display: inline-block;
-      width: 18px;
-      height: 18px;
-      font-size: 18px;
-      font-weight: bold;
-      line-height: 18px;
-      text-align: center;
-      transition: transform 0.3s ease;
-      cursor: pointer;
-      user-select: none;
-    }
-
-    /* Posizionamento a destra, come Apple */
     .w-dropdown-toggle {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
-    /* Rotazione dell'icona quando aperto */
+    .accordion-icon {
+      width: 14px;
+      height: 14px;
+      position: relative;
+      flex-shrink: 0;
+      transition: transform 0.45s cubic-bezier(.4,0,.2,1);
+    }
+
+    /* Linee della + */
+    .accordion-icon::before,
+    .accordion-icon::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 1.5px;
+      background: currentColor;
+      transform-origin: center;
+      transition: transform 0.45s cubic-bezier(.4,0,.2,1);
+    }
+
+    .accordion-icon::before {
+      transform: translate(-50%, -50%);
+    }
+
+    .accordion-icon::after {
+      transform: translate(-50%, -50%) rotate(90deg);
+    }
+
+    /* Stato aperto → diventa X */
     .w-dropdown.open .accordion-icon {
-      transform: rotate(45deg); /* + diventa × */
+      transform: rotate(45deg);
     }
   `;
 
@@ -38,36 +55,32 @@ document.addEventListener("DOMContentLoaded", function() {
   style.textContent = css;
   document.head.appendChild(style);
 
-  // --- 2️⃣ Gestione icona e click ---
+  /* ===============================
+     2. JS – Stato open sincronizzato
+  =============================== */
   const dropdowns = document.querySelectorAll(".w-dropdown");
 
   dropdowns.forEach(dropdown => {
     const toggle = dropdown.querySelector(".w-dropdown-toggle");
 
-    // Crea l'icona custom
-    const icon = document.createElement("span");
-    icon.classList.add("accordion-icon");
-    icon.textContent = "+";
+    if (!toggle) return;
 
-    // Inserisci l'icona nel toggle
+    // Evita duplicazioni
+    if (toggle.querySelector(".accordion-icon")) return;
+
+    const icon = document.createElement("span");
+    icon.className = "accordion-icon";
+
     toggle.appendChild(icon);
 
-    // Click toggle
-    toggle.addEventListener("click", function(e) {
-      // Chiudi tutti gli altri dropdown (opzionale stile Apple)
+    toggle.addEventListener("click", () => {
+      // Chiude gli altri (Apple behavior)
       dropdowns.forEach(d => {
         if (d !== dropdown) d.classList.remove("open");
       });
 
-      // Alterna stato open
+      // Toggle locale
       dropdown.classList.toggle("open");
-
-      // Cambia testo icona
-      if (dropdown.classList.contains("open")) {
-        icon.textContent = "×";
-      } else {
-        icon.textContent = "+";
-      }
     });
   });
 });
