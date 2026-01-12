@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
       top: 50%;
       left: 50%;
       width: 100%;
-      height: 1.5px;
+      height: 1.2px;
       background: currentColor;
       transform-origin: center;
       transition: transform 0.45s cubic-bezier(.4,0,.2,1);
