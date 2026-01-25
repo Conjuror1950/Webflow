@@ -157,7 +157,7 @@ font-size:15px;
     wrapper.innerHTML = `
 <div class="chat-card" tabindex="0">
 <div class="chat-avatar" aria-hidden="true">
-  <img class="chat-icon" src="https://cdn.prod.website-files.com/6900acd1c3e34a5adaf492fd/691f25bddb8a25199c4b2a7b_chat.svg" alt="Icona chat">
+  <img class="chat-icon" src="https://support-andreaingrassia.netlify.app/library/content/dam/edam/andreacare/images/it_IT/solutions/lightmode/enabled/chat.svg" alt="Icona chat">
 </div>
   <div class="chat-content">
     <h3 class="chat-title">${escapeHtml(config.title)}</h3>
@@ -177,10 +177,10 @@ font-size:15px;
     var iconEl = root.querySelector('.chat-icon');
 
     // icona disponibile
-    var iconOnline = "https://cdn.prod.website-files.com/6900acd1c3e34a5adaf492fd/691f25bddb8a25199c4b2a7b_chat.svg";
+    var iconOnline = "https://support-andreaingrassia.netlify.app/library/content/dam/edam/andreacare/images/it_IT/solutions/lightmode/enabled/chat.svg";
 
     // icona offline (devi mettere il tuo link)
-    var iconOffline = "https://cdn.prod.website-files.com/6900acd1c3e34a5adaf492fd/691f7afbddc8230da24819fe_chat%20(1).svg";
+    var iconOffline = "https://support-andreaingrassia.netlify.app/library/content/dam/edam/andreacare/images/it_IT/solutions/lightmode/disabled/chat.svg";
 
     var titleEl = root.querySelector('.chat-title');
     var subtitleEl = root.querySelector('.chat-subtitle');
