@@ -157,7 +157,7 @@ font-size:15px;
     wrapper.innerHTML = `
 <div class="email-card" tabindex="0">
 <div class="email-avatar" aria-hidden="true">
-  <img class="email-icon" src="https://cdn.prod.website-files.com/6900acd1c3e34a5adaf492fd/69248e4f5fe6cfdc1070e66e_a88337c99df6367a4e9fa0dd35298f2a_email-online.png" alt="Icona chat">
+  <img class="email-icon" src="https://support-andreaingrassia.netlify.app/library/content/dam/edam/andreacare/images/it_IT/solutions/lightmode/enabled/email.png" alt="Icona chat">
 </div>
   <div class="email-content">
     <h3 class="email-title">${escapeHtml(config.title)}</h3>
@@ -177,10 +177,10 @@ font-size:15px;
     var iconEl = root.querySelector('.email-icon');
 
     // icona disponibile
-    var iconOnline = "https://cdn.prod.website-files.com/6900acd1c3e34a5adaf492fd/69248e4f5fe6cfdc1070e66e_a88337c99df6367a4e9fa0dd35298f2a_email-online.png";
+    var iconOnline = "https://support-andreaingrassia.netlify.app/library/content/dam/edam/andreacare/images/it_IT/solutions/lightmode/enabled/email.png";
 
     // icona offline (devi mettere il tuo link)
-    var iconOffline = "https://cdn.prod.website-files.com/6900acd1c3e34a5adaf492fd/692497fb0b349b0fe14a6d83_email-offline.png";
+    var iconOffline = "https://support-andreaingrassia.netlify.app/library/content/dam/edam/andreacare/images/it_IT/solutions/lightmode/disabled/email.png";
 
     var titleEl = root.querySelector('.email-title');
     var subtitleEl = root.querySelector('.email-subtitle');
