@@ -45,7 +45,7 @@ container.innerHTML = `
 document.body.appendChild(container);
 
 // Mappa delle parole chiave ai relativi URL
-const urlMap = {
+const mainSiteUrlMap = {
   "home": "/",
   "biografia": "/person/andrea-ingrassia",
   "bio": "/person/andrea-ingrassia",
@@ -65,7 +65,6 @@ const urlMap = {
   "fotografie": "/room/album-fotografici",
   "raccolte": "/room/album-fotografici",
   "eventi": "/room/album-fotografici",
-  "supporto": "https://support-andreaingrassia.webflow.io/",
   "faq": "/#faq",
   "ask": "/#faq",
   "question": "/#faq",
@@ -95,47 +94,71 @@ const urlMap = {
   "attrezzatura": "/servizi#attrezzatura",
   "cv": "/servizi#cv",
   "curriculum": "/servizi#cv",
-  "social": "https://support-andreaingrassia.webflow.io/contact/social",
-  "modulo": "https://getsupport-andreaingrassia.webflow.io/solutions/chat",
-  "ottieni supporto": "https://getsupport-andreaingrassia.webflow.io",
-  "aiuto": "https://getsupport-andreaingrassia.webflow.io",
-  "modulo contatti": "https://getsupport-andreaingrassia.webflow.io/solutions/chat",
-  "chat": "https://getsupport-andreaingrassia.webflow.io/solutions/chat",
-  "form": "https://getsupport-andreaingrassia.webflow.io/solutions/chat",
-  "email": "https://getsupport-andreaingrassia.webflow.io/solutions/email",
-  "scrivi": "https://getsupport-andreaingrassia.webflow.io/solutions/email",
-  "collaborazioni": "https://getsupport-andreaingrassia.webflow.io/solutions/email",
-  "contatti": "https://support-andreaingrassia.webflow.io/contact",
   "informazioni": "/informazioni/aggiornamenti",
   "informazioni sugli aggiornamenti": "/informazioni/aggiornamenti",
   "aggiornamenti": "/informazioni/aggiornamenti",
-  "documentazione": "https://support-andreaingrassia.webflow.io/docs",
-  "documentazione desktop": "https://support-andreaingrassia.webflow.io/docs/desktop",
-  "documentazione tablet": "https://support-andreaingrassia.webflow.io/docs/tablet",
-  "documentazione mobile": "https://support-andreaingrassia.webflow.io/docs/mobile",
-  "documentazione tv": "https://support-andreaingrassia.webflow.io/docs/tv",
-  "supporto mobile": "https://support-andreaingrassia.webflow.io/it-it/mobile",
-  "supporto desktop": "https://support-andreaingrassia.webflow.io/it-it/desktop",
-  "supporto tablet": "https://support-andreaingrassia.webflow.io/it-it/tablet",
-  "supporto video": "https://support-andreaingrassia.webflow.io/it-it/video",
-  "supporto audio": "https://support-andreaingrassia.webflow.io/it-it/audio",
-  "supporto tv": "https://support-andreaingrassia.webflow.io/it-it/tv",
-  // Aggiungi altre parole chiave e URL qui
+};
+
+const supportSiteUrlMap = {
+  "supporto": "/",
+  "social": "/contact/social",
+  "contatti": "/contact",
+  "documentazione": "/docs",
+  "documentazione desktop": "/docs/desktop",
+  "documentazione tablet": "/docs/tablet",
+  "documentazione mobile": "/docs/mobile",
+  "documentazione tv": "/docs/tv",
+  "supporto mobile": "/it-it/mobile",
+  "supporto desktop": "/it-it/desktop",
+  "supporto tablet": "/it-it/tablet",
+  "supporto video": "/it-it/video",
+  "supporto audio": "/it-it/audio",
+  "supporto tv": "/it-it/tv",
+};
+
+const getSupportUrlMap = {
+  "ottieni supporto": "/",
+  "aiuto": "/",
+  "chat": "/solutions/chat",
+  "form": "/solutions/chat",
+  "email": "/solutions/email",
+  "scrivi": "/solutions/email",
+  "collaborazioni": "/solutions/email",
+  "modulo": "/solutions/chat",
+  "modulo contatti": "/solutions/chat",
 };
 
 // Funzione per gestire la ricerca
 function handleSearch(event) {
-  event.preventDefault(); // Impedisce il comportamento predefinito del form
-  const query = document.getElementById('searchInput').value.trim().toLowerCase(); // Ottieni e normalizza l'input
+  event.preventDefault();
 
-  if (urlMap[query]) {
-    // Reindirizza all'URL corrispondente
-    window.location.href = `https://andreaingrassia.webflow.io${urlMap[query]}`;
-  } else {
-    // Se la parola chiave non è trovata, mostra un avviso
-    alert("Purtroppo non abbiamo trovato risultati. Fai una nuova ricerca.");
+  const query = document
+    .getElementById('searchInput')
+    .value
+    .trim()
+    .toLowerCase();
+
+  if (mainSiteUrlMap[query]) {
+    window.location.href =
+      `https://andreaingrassia.webflow.io${mainSiteUrlMap[query]}`;
+    return;
   }
+
+  if (supportSiteUrlMap[query]) {
+    window.location.href =
+      `https://support-andreaingrassia.webflow.io${supportSiteUrlMap[query]}`;
+    return;
+  }
+
+  if (getSupportUrlMap[query]) {
+    window.location.href =
+      `https://getsupport-andreaingrassia.webflow.io${getSupportUrlMap[query]}`;
+    return;
+  }
+
+  alert("Purtroppo non abbiamo trovato risultati. Fai una nuova ricerca.");
 }
+
 
 // Gestione del focus e della label animata
 function handleFocus(isFocused) {
