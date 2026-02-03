@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
         </div>
         <div class="faq-item">
             <h3>Contatti<span class="icon"></span></h3>
-            <p>Per metterti in contatto, accedi alla pagina 'Contatti' e compila il <a href="https://andreaingrassia.webflow.io/contatti#modulo">modulo contatti</a> oppure invia una <a href="mailto:andrea.ingrassia@zohomail.eu">email.</a></p>
+            <p>Per metterti in contatto, accedi alla pagina 'Contatti' e compila il <a href="https://getsupport-andreaingrassia.webflow.io/solutions/chat">modulo contatti</a> oppure invia una <a href="https://getsupport-andreaingrassia.webflow.io/solutions/email">email.</a></p>
         </div>
     `;
 
