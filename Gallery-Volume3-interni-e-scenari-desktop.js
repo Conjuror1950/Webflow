@@ -598,7 +598,7 @@ downloadAllButton.addEventListener("click", function() {
   spinner.style.display = "flex"; // mostra il cerchietto
   progressFrame.style.background = "conic-gradient(#0071e3 0deg, #d3d3d3 0deg)";
 
-  var zipUrl = "https://secure-andrdnld-andreaingrassia.netlify.app/Documentation/Toolkit/060-2634.12026021.RE4BG/Documentation_Toolkit1.0.rar"; // .zip già pronto
+  var zipUrl = "https://samplesfile.com/api/download/sample-zip-27mb"; // .zip già pronto
   var fileName = "Volume-3.zip";
 
   fetch(zipUrl)
