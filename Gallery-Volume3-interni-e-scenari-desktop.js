@@ -598,7 +598,7 @@ fetch(fileUrl)
       spinner.style.display = "flex";
       progressFrame.style.background = "conic-gradient(#0071e3 0deg, #d3d3d3 0deg)";
 
-  var zipUrl = "https://file-examples.com/storage/fe1f7d2d6f7f5e6c7f/sample-zip-file.zip";
+  var zipUrl = "https://github.com/techsinit/sample-files/raw/main/test-images.zip";
 
   var a = document.createElement("a");
   a.href = zipUrl;
