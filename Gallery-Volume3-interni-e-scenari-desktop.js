@@ -590,10 +590,6 @@ document.getElementById("download-single-Volume3-interni-e-scenari-desktop")
     downloadAllButton.addEventListener("click", function() {
       spinner.style.display = "flex";
       progressFrame.style.background = "conic-gradient(#0071e3 0deg, #d3d3d3 0deg)";
-      
-var downloadAllButton = document.getElementById("download-all-Volume3-interni-e-scenari-desktop");
-
-downloadAllButton.addEventListener("click", function() {
 
   var zipUrl = "https://file-examples.com/storage/fe1f7d2d6f7f5e6c7f/sample-zip-file.zip";
 
@@ -604,24 +600,7 @@ downloadAllButton.addEventListener("click", function() {
   a.click();
   document.body.removeChild(a);
 });
-      
-      zip.generateAsync({ type: "blob" }, function updateProgress(metadata) {
-        var progress = metadata.percent;
-        var degree = progress * 3.6;
-        progressFrame.style.background = "conic-gradient(#0071e3 " + degree + "deg, #d3d3d3 " + degree + "deg)";
-      })
-      .then(function(content) {
-        var a = document.createElement("a");
-        a.href = URL.createObjectURL(content);
-        a.download = "Volume 3.zip";
-        a.click();
-        spinner.style.display = "none";
-      })
-      .catch(function(err) {
-        console.error("Errore nel download ZIP:", err);
-        spinner.style.display = "none";
-      });
-    });
+    
     
     // Rendi visibile la gallery (se necessario)
     document.querySelector(".slider-Volume3-interni-e-scenari-desktop").style.opacity = "1";
