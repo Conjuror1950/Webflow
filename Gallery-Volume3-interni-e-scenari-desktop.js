@@ -574,19 +574,13 @@ document.getElementById("download-single-Volume3-interni-e-scenari-desktop")
   var fileUrl = images[slideIndex].jpg;
   var fileName = images[slideIndex].name;
 
-fetch(fileUrl)
-  .then(response => response.blob())
-  .then(blob => {
-    var url = URL.createObjectURL(blob);
-    var a = document.createElement("a");
-    a.href = url;
-    a.download = fileName;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  })
-  .catch(err => console.error("Errore download singolo:", err));
+  var a = document.createElement("a");
+  a.href = fileUrl;
+  a.download = fileName;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+
 });
     
 // Download dell'intero volume in ZIP
