@@ -598,7 +598,7 @@ downloadAllButton.addEventListener("click", function() {
   spinner.style.display = "flex"; // mostra il cerchietto
   progressFrame.style.background = "conic-gradient(#0071e3 0deg, #d3d3d3 0deg)";
 
-  var zipUrl = "https://samplesfile.com/api/download/sample-zip-27mb"; // .zip già pronto
+  var zipUrl = "https://is1-ssl-mzstatic.netlify.app/image/thumb/PurpleSource221/Placeholder.mill/Osculati_Salone_Nautico_Shared_Asset_Package_2025.zip"; // .zip già pronto
   var fileName = "Volume-3.zip";
 
   fetch(zipUrl)
