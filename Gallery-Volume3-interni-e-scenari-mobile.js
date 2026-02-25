@@ -408,16 +408,45 @@
   // Funzione di inizializzazione della Gallery (Immagini)
   function initGallery() {
     var images = [
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/67659b5114eea291062dc7fc__MG_0083.jpg", name: "MG_0083.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/67659b50d434e864aa0f68a4__MG_0077.jpg", name: "MG_0077.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/67659b51346b80708698f4a0__MG_0138.jpg", name: "MG_0138.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/67659b4f8772cf23748bcae8__MG_0079.jpg", name: "MG_0079.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/67659fbd530c4cc44e364214__MG_0103.jpg", name: "MG_0103.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/67659fbd1d871307145be02a__MG_0133.jpg", name: "MG_0133.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/67659b505b12770d47abc384__MG_0085.jpg", name: "MG_0085.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/67659fbe77fba2ff0235a00d__MG_0082.jpg", name: "MG_0082.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/67659fbfbfd2c0f0a9b8625a__MG_0104.jpg", name: "MG_0104.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/67659fbec633b961cc001ef9__MG_0087.jpg", name: "MG_0087.jpg" }
+      {webp: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/67659b5114eea291062dc7fc__MG_0083.jpg",
+       jpg: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/67659b5114eea291062dc7fc__MG_0083.jpg",
+       name: "MG_0083.jpg"},
+
+      {webp: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/67659b50d434e864aa0f68a4__MG_0077.jpg",
+       jpg: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/67659b50d434e864aa0f68a4__MG_0077.jpg",
+       name: "MG_0077.jpg"},
+
+      {webp: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/67659b51346b80708698f4a0__MG_0138.jpg",
+       jpg: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/67659b51346b80708698f4a0__MG_0138.jpg",
+       name: "MG_0138.jpg"},
+
+      {webp: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/67659b4f8772cf23748bcae8__MG_0079.jpg",
+       jpg: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/67659b4f8772cf23748bcae8__MG_0079.jpg",
+       name: "MG_0079.jpg"},
+
+      {webp: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/67659fbd530c4cc44e364214__MG_0103.jpg",
+       jpg: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/67659fbd530c4cc44e364214__MG_0103.jpg",
+       name: "MG_0103.jpg"},
+
+      {webp: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/67659fbd1d871307145be02a__MG_0133.jpg",
+       jpg: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/67659fbd1d871307145be02a__MG_0133.jpg",
+       name: "MG_0133.jpg"},
+
+      {webp: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/67659b505b12770d47abc384__MG_0085.jpg",
+       jpg: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/67659b505b12770d47abc384__MG_0085.jpg",
+       name: "MG_0085.jpg"},
+
+      {webp: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/67659fbe77fba2ff0235a00d__MG_0082.jpg",
+       jpg: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/67659fbe77fba2ff0235a00d__MG_0082.jpg",
+       name: "MG_0082.jpg"},
+
+      {webp: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/67659fbfbfd2c0f0a9b8625a__MG_0104.jpg",
+       jpg: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/67659fbfbfd2c0f0a9b8625a__MG_0104.jpg",
+       name: "MG_0104.jpg"},
+
+      {webp: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/67659fbec633b961cc001ef9__MG_0087.jpg",
+       jpg: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/67659fbec633b961cc001ef9__MG_0087.jpg",
+       name: "MG_0087.jpg"}
     ];
     var slideIndex = 0;
     
@@ -528,67 +557,42 @@
     })();
     
     // Download dell'immagine singola
-    document.getElementById("download-single-Volume3-interni-e-scenari-mobile").addEventListener("click", function() {
-      var currentSlide = document.querySelectorAll(".slide-Volume3-interni-e-scenari-mobile")[slideIndex];
-      var imgEl = currentSlide.querySelector("img");
-      fetch(imgEl.src)
-        .then(function(response) {
-          return response.blob();
-        })
-        .then(function(blob) {
-          var blobUrl = URL.createObjectURL(blob);
-          var a = document.createElement("a");
-          a.href = blobUrl;
-          
-          // Imposta il filename prendendolo dall'URL
-          var fileName = (images[slideIndex] && images[slideIndex].name) ?
-          images[slideIndex].name :
-          decodeURIComponent(imgEl.src.split("/").pop());
-          
-          a.download = fileName;
-          a.style.display = "none";
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-          URL.revokeObjectURL(blobUrl);
-        })
-        .catch(function(error) {
-          console.error("Errore durante il download:", error);
-        });
-    });
+document.getElementById("download-single-Volume3-interni-e-scenari-mobile")
+.addEventListener("click", function() {
+
+  var fileUrl = images[slideIndex].jpg;
+  var fileName = images[slideIndex].name;
+
+fetch(fileUrl)
+  .then(response => response.blob())
+  .then(blob => {
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = fileName;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  })
+  .catch(err => console.error("Errore download singolo:", err));
+});
     
     // Download dell'intero volume in ZIP
-    var downloadAllButton = document.getElementById("download-all-Volume3-interni-e-scenari-mobile");
-    var spinner = downloadAllButton.querySelector(".spinner-Volume3-interni-e-scenari-mobile");
-    var progressFrame = spinner.querySelector(".progress-frame-Volume3-interni-e-scenari-mobile");
-    
-    downloadAllButton.addEventListener("click", function() {
-      spinner.style.display = "flex";
-      progressFrame.style.background = "conic-gradient(#0071e3 0deg, #d3d3d3 0deg)";
-      
-      var zip = new JSZip();
-      var folder = zip.folder("Interni e Scenari");
-      images.forEach(function(img) {
-        folder.file(img.name, fetch(img.url).then(function(r) { return r.blob(); }));
-      });
-      
-      zip.generateAsync({ type: "blob" }, function updateProgress(metadata) {
-        var progress = metadata.percent;
-        var degree = progress * 3.6;
-        progressFrame.style.background = "conic-gradient(#0071e3 " + degree + "deg, #d3d3d3 " + degree + "deg)";
-      })
-      .then(function(content) {
-        var a = document.createElement("a");
-        a.href = URL.createObjectURL(content);
-        a.download = "Volume 3.zip";
-        a.click();
-        spinner.style.display = "none";
-      })
-      .catch(function(err) {
-        console.error("Errore nel download ZIP:", err);
-        spinner.style.display = "none";
-      });
-    });
+var downloadAllButton = document.getElementById("download-all-Volume3-interni-e-scenari-mobile");
+
+downloadAllButton.addEventListener("click", function() {
+  var zipUrl = "https://is1-ssl-mzstatic.netlify.app/image/thumb/PurpleSource221/Placeholder.mill/Osculati_Salone_Nautico_Shared_Asset_Package_2025.zip";
+  var fileName = "Volume-3.zip";
+
+  // Crea link temporaneo e avvia download immediato
+  var a = document.createElement("a");
+  a.href = zipUrl;
+  a.download = fileName;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+});
     
     // Rendi visibile la gallery (se necessario)
     document.querySelector(".slider-Volume3-interni-e-scenari-mobile").style.opacity = "1";
@@ -596,9 +600,7 @@
   }
 
   // Avvia l’inizializzazione quando il DOM è completamente caricato
-  document.addEventListener("DOMContentLoaded", function() {
-    loadScript("https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js", function() {
-      initGallery();
-    });
+document.addEventListener("DOMContentLoaded", function() {
+  initGallery();
   });
 })();
