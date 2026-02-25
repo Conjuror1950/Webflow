@@ -435,7 +435,7 @@
        jpg: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/67659b5114eea291062dc7fc__MG_0083.jpg",
        name: "MG_0083.jpg"},
 
-      {webp: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/67659b50d434e864aa0f68a4__MG_0077.jpg",
+      {webp: "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/mac-macbook-pro-size-unselect-202601-gallery-1?wid=5120&hei=3280&fmt=webp&qlt=90&.v=aXlkdGF0T0RUUVdDckNLaUc0OEE0d2huNHI2YVc1MjYxWkRLa3k4U1gzZnMyWXE0MHdoZXVFRHRoTGRqNEREOHJUNGJWZ1llU1plZmhBekVhZm5NQnNqbWRhTGpRM2xxVWJRWUhSaDlCQ3A3cWhkazVFSkNaSzNwMHhJRnYza1FlODBad1VqYUZ3RW54YkRKL2hzbXVR&traceId=1",
        jpg: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/67659b50d434e864aa0f68a4__MG_0077.jpg",
        name: "MG_0077.jpg"},
 
