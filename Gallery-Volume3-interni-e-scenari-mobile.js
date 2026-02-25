@@ -457,7 +457,7 @@
         var slide = document.createElement("div");
         slide.className = "slide-Volume3-interni-e-scenari-mobile";
         var imageEl = document.createElement("img");
-        imageEl.src = img.url;
+        imageEl.src = img.webp;
         imageEl.alt = "Image " + (index + 1);
         imageEl.className = "product-image-Volume3-interni-e-scenari-mobile";
         slide.appendChild(imageEl);
