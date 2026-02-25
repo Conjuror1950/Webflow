@@ -595,7 +595,7 @@ var downloadAllButton = document.getElementById("download-all-Volume3-interni-e-
 
 downloadAllButton.addEventListener("click", function() {
 
-  var zipUrl = "https://tuo-cdn/download/Volume-3.zip";
+  var zipUrl = "https://file-examples.com/storage/fe1f7d2d6f7f5e6c7f/sample-zip-file.zip";
 
   var a = document.createElement("a");
   a.href = zipUrl;
@@ -629,9 +629,8 @@ downloadAllButton.addEventListener("click", function() {
   }
 
   // Avvia l’inizializzazione quando il DOM è completamente caricato
-  document.addEventListener("DOMContentLoaded", function() {
-    loadScript("https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js", function() {
-      initGallery();
+document.addEventListener("DOMContentLoaded", function() {
+  initGallery();
     });
   });
 })();
