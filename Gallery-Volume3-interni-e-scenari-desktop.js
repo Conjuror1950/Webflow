@@ -589,61 +589,28 @@ fetch(fileUrl)
   .catch(err => console.error("Errore download singolo:", err));
 });
     
-    // Download dell'intero volume in ZIP
+// Download dell'intero volume in ZIP
 var downloadAllButton = document.getElementById("download-all-Volume3-interni-e-scenari-desktop");
 var spinner = downloadAllButton.querySelector(".spinner-Volume3-interni-e-scenari-desktop");
-var progressFrame = spinner.querySelector(".progress-frame-Volume3-interni-e-scenari-desktop");
 
 downloadAllButton.addEventListener("click", function() {
-  spinner.style.display = "flex"; // mostra il cerchietto
-  progressFrame.style.background = "conic-gradient(#0071e3 0deg, #d3d3d3 0deg)";
+  spinner.style.display = "flex"; // mostra lo spinner
 
-  var zipUrl = "https://is1-ssl-mzstatic.netlify.app/image/thumb/PurpleSource221/Placeholder.mill/Osculati_Salone_Nautico_Shared_Asset_Package_2025.zip"; // .zip già pronto
+  var zipUrl = "https://is1-ssl-mzstatic.netlify.app/image/thumb/PurpleSource221/Placeholder.mill/Osculati_Salone_Nautico_Shared_Asset_Package_2025.zip";
   var fileName = "Volume-3.zip";
 
-  fetch(zipUrl)
-    .then(response => {
-      if (!response.ok) throw new Error("Errore nel download");
-      const contentLength = response.headers.get("content-length");
-      if (!contentLength) throw new Error("Content-Length non disponibile");
+  // Link diretto al download
+  var a = document.createElement("a");
+  a.href = zipUrl;
+  a.download = fileName;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
 
-      const total = parseInt(contentLength, 10);
-      let loaded = 0;
-      const reader = response.body.getReader();
-      const chunks = [];
-
-      function read() {
-        return reader.read().then(({done, value}) => {
-          if (done) return;
-          chunks.push(value);
-          loaded += value.length;
-
-          // Aggiorna il cerchietto
-          const progress = (loaded / total) * 360;
-          progressFrame.style.background = `conic-gradient(#0071e3 ${progress}deg, #d3d3d3 ${progress}deg)`;
-
-          return read();
-        });
-      }
-
-      return read().then(() => {
-        const blob = new Blob(chunks);
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = fileName;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-
-        spinner.style.display = "none"; // nasconde il cerchietto al termine
-      });
-    })
-    .catch(err => {
-      console.error("Errore download .zip:", err);
-      spinner.style.display = "none";
-    });
+  // Nasconde lo spinner dopo 2 secondi (illusione di progress)
+  setTimeout(function() {
+    spinner.style.display = "none";
+  }, 2000);
 });
     
     
