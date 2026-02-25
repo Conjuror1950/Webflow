@@ -631,6 +631,5 @@ downloadAllButton.addEventListener("click", function() {
   // Avvia l’inizializzazione quando il DOM è completamente caricato
 document.addEventListener("DOMContentLoaded", function() {
   initGallery();
-    });
   });
 })();
