@@ -594,38 +594,56 @@ var downloadAllButton = document.getElementById("download-all-Volume3-interni-e-
 var spinner = downloadAllButton.querySelector(".spinner-Volume3-interni-e-scenari-desktop");
 var progressFrame = spinner.querySelector(".progress-frame-Volume3-interni-e-scenari-desktop");
 
-// Funzione per far ruotare il cerchietto conico
-function startProgressAnimation() {
-  let rotation = 0;
-  spinner.style.display = "flex"; // mostra lo spinner
-  spinner._interval = setInterval(() => {
-    rotation += 6; // 6° per frame (~60fps)
-    progressFrame.style.transform = `rotate(${rotation}deg)`;
-  }, 16);
-}
-
-function stopProgressAnimation() {
-  clearInterval(spinner._interval);
-  spinner.style.display = "none";
-  progressFrame.style.transform = "rotate(0deg)";
-}
-
 downloadAllButton.addEventListener("click", function() {
-  startProgressAnimation();
+  spinner.style.display = "flex"; // mostra lo spinner
+  progressFrame.style.background = "conic-gradient(#0071e3 0deg, #d3d3d3 0deg)";
 
   var zipUrl = "https://is1-ssl-mzstatic.netlify.app/image/thumb/PurpleSource221/Placeholder.mill/Osculati_Salone_Nautico_Shared_Asset_Package_2025.zip";
   var fileName = "Volume-3.zip";
 
-  // Creiamo un link diretto al download
-  var a = document.createElement("a");
-  a.href = zipUrl;
-  a.download = fileName;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
+  fetch(zipUrl)
+    .then(response => {
+      if (!response.ok) throw new Error("Errore nel download");
+      const contentLength = response.headers.get("content-length");
+      if (!contentLength) throw new Error("Content-Length non disponibile");
 
-  // Stop animation dopo pochi secondi (browser inizia il download subito)
-  setTimeout(stopProgressAnimation, 2000);
+      const total = parseInt(contentLength, 10);
+      let loaded = 0;
+      const reader = response.body.getReader();
+      const chunks = [];
+
+      function read() {
+        return reader.read().then(({ done, value }) => {
+          if (done) return;
+          chunks.push(value);
+          loaded += value.length;
+
+          // Aggiorna il cerchietto conico
+          const progress = (loaded / total) * 360;
+          progressFrame.style.background = `conic-gradient(#0071e3 ${progress}deg, #d3d3d3 ${progress}deg)`;
+
+          return read();
+        });
+      }
+
+      return read().then(() => {
+        const blob = new Blob(chunks);
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = fileName;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+
+        spinner.style.display = "none"; // nasconde lo spinner
+      });
+    })
+    .catch(err => {
+      console.error("Errore download .zip:", err);
+      spinner.style.display = "none";
+    });
 });
     
     
