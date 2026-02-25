@@ -590,6 +590,10 @@ fetch(fileUrl)
 });
     
     // Download dell'intero volume in ZIP
+var downloadAllButton = document.getElementById("download-all-Volume3-interni-e-scenari-desktop");
+var spinner = downloadAllButton.querySelector(".spinner-Volume3-interni-e-scenari-desktop");
+var progressFrame = spinner.querySelector(".progress-frame-Volume3-interni-e-scenari-desktop");
+    
 downloadAllButton.addEventListener("click", function() {
   spinner.style.display = "flex";
   progressFrame.style.background = "conic-gradient(#0071e3 0deg, #d3d3d3 0deg)";
