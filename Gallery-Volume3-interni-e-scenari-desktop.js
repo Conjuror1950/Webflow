@@ -592,14 +592,31 @@ fetch(fileUrl)
 // Download dell'intero volume in ZIP
 var downloadAllButton = document.getElementById("download-all-Volume3-interni-e-scenari-desktop");
 var spinner = downloadAllButton.querySelector(".spinner-Volume3-interni-e-scenari-desktop");
+var progressFrame = spinner.querySelector(".progress-frame-Volume3-interni-e-scenari-desktop");
+
+// Funzione per far ruotare il cerchietto conico
+function startProgressAnimation() {
+  let rotation = 0;
+  spinner.style.display = "flex"; // mostra lo spinner
+  spinner._interval = setInterval(() => {
+    rotation += 6; // 6° per frame (~60fps)
+    progressFrame.style.transform = `rotate(${rotation}deg)`;
+  }, 16);
+}
+
+function stopProgressAnimation() {
+  clearInterval(spinner._interval);
+  spinner.style.display = "none";
+  progressFrame.style.transform = "rotate(0deg)";
+}
 
 downloadAllButton.addEventListener("click", function() {
-  spinner.style.display = "flex"; // mostra lo spinner
+  startProgressAnimation();
 
   var zipUrl = "https://is1-ssl-mzstatic.netlify.app/image/thumb/PurpleSource221/Placeholder.mill/Osculati_Salone_Nautico_Shared_Asset_Package_2025.zip";
   var fileName = "Volume-3.zip";
 
-  // Link diretto al download
+  // Creiamo un link diretto al download
   var a = document.createElement("a");
   a.href = zipUrl;
   a.download = fileName;
@@ -607,10 +624,8 @@ downloadAllButton.addEventListener("click", function() {
   a.click();
   document.body.removeChild(a);
 
-  // Nasconde lo spinner dopo 2 secondi (illusione di progress)
-  setTimeout(function() {
-    spinner.style.display = "none";
-  }, 2000);
+  // Stop animation dopo pochi secondi (browser inizia il download subito)
+  setTimeout(stopProgressAnimation, 2000);
 });
     
     
