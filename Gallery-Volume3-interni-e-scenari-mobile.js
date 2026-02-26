@@ -576,8 +576,8 @@ document.getElementById("download-single-Volume3-interni-e-scenari-mobile")
 var downloadAllButton = document.getElementById("download-all-Volume3-interni-e-scenari-mobile");
 
 downloadAllButton.addEventListener("click", function() {
-  var zipUrl = "https://is1-ssl-mzstatic.netlify.app/image/thumb/PurpleSource221/Placeholder.mill/Osculati_Salone_Nautico_Shared_Asset_Package_2025.zip";
-  var fileName = "Volume-3.zip";
+  var zipUrl = "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/zip-photos/item-01/Collection_Photos_0301.zip";
+  var fileName = "Collection_Photos_0301.zip";
 
   // Crea link temporaneo e avvia download immediato
   var a = document.createElement("a");
