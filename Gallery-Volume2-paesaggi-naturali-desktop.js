@@ -431,18 +431,53 @@
   // Funzione di inizializzazione della Gallery (Immagini)
   function initGallery() {
     var images = [
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/68c9a0d34545c7b9cafb00ac_DSC04000.jpg", name: "DSC04000.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/68c9a0d037c77731bf87f3ec_DSC03972.jpg", name: "DSC03972.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/6762fe8c0f3530039c376f7d__MG_0070.jpg", name: "MG_0070.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/6762fe8d37578bf940c9e392__MG_0060.jpg", name: "MG_0060.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d98e732be5e82ba896555c__MG_9430%20firm.jpg", name: "MG_9430.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d9dde44dfc73db7c4cfd5f__MG_9431.jpg", name: "MG_9431.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d9de68ba1825b6f068b73b__MG_9433.jpg", name: "MG_9433.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d9dde62650ddc481a55dd8__MG_9439.jpg", name: "MG_9439.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d991884a0d04bc2ffec24b__MG_9441.jpg", name: "MG_9441.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d9d92a347269f147c2141a__MG_9445.jpg", name: "MG_9445.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d9f31bf205974f300bff7d__MG_9583.jpg", name: "MG_9583.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d9f31c45e7797718988be7__MG_9673.jpg", name: "MG_9673.jpg" }
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-02/unit-photos/item-01/photo-020101/Collection_Photo_unselect_020101.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-02/download-photos/item-01/photo-020101/Collection_Photo_select_020101.jpg",
+       name: "Collection_Photo_select_020101.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-02/unit-photos/item-01/photo-020102/Collection_Photo_unselect_020102.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-02/download-photos/item-01/photo-020102/Collection_Photo_select_020102.jpg",
+       name: "Collection_Photo_select_020102.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-02/unit-photos/item-01/photo-020103/Collection_Photo_unselect_020103.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-02/download-photos/item-01/photo-020103/Collection_Photo_select_020103.jpg",
+       name: "Collection_Photo_select_020103.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-02/unit-photos/item-01/photo-020104/Collection_Photo_unselect_020104.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-02/download-photos/item-01/photo-020104/Collection_Photo_select_020104.jpg",
+       name: "Collection_Photo_select_020104.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-02/unit-photos/item-01/photo-020105/Collection_Photo_unselect_020105.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-02/download-photos/item-01/photo-020105/Collection_Photo_select_020105.jpg",
+       name: "Collection_Photo_select_020105.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-02/unit-photos/item-01/photo-020106/Collection_Photo_unselect_020106.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-02/download-photos/item-01/photo-020106/Collection_Photo_select_020106.jpg",
+       name: "Collection_Photo_select_020106.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-02/unit-photos/item-01/photo-020107/Collection_Photo_unselect_020107.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-02/download-photos/item-01/photo-020107/Collection_Photo_select_020107.jpg",
+       name: "Collection_Photo_select_020107.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-02/unit-photos/item-01/photo-020108/Collection_Photo_unselect_020108.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-02/download-photos/item-01/photo-020108/Collection_Photo_select_020108.jpg",
+       name: "Collection_Photo_select_020108.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-02/unit-photos/item-01/photo-020109/Collection_Photo_unselect_020109.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-02/download-photos/item-01/photo-020109/Collection_Photo_select_020109.jpg",
+       name: "Collection_Photo_select_020109.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-02/unit-photos/item-01/photo-020110/Collection_Photo_unselect_020110.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-02/download-photos/item-01/photo-020110/Collection_Photo_select_020110.jpg",
+       name: "Collection_Photo_select_020110.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-02/unit-photos/item-01/photo-020111/Collection_Photo_unselect_020111.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-02/download-photos/item-01/photo-020111/Collection_Photo_select_020111.jpg",
+       name: "Collection_Photo_select_020111.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-02/unit-photos/item-01/photo-020112/Collection_Photo_unselect_020112.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-02/download-photos/item-01/photo-020112/Collection_Photo_select_020112.jpg",
+       name: "Collection_Photo_select_020112.jpg"}
     ];
     var slideIndex = 0;
     
@@ -453,7 +488,7 @@
         var slide = document.createElement("div");
         slide.className = "slide-Volume2-paesaggi-naturali-desktop";
         var imageEl = document.createElement("img");
-        imageEl.src = img.url;
+        imageEl.src = img.webp;
         imageEl.alt = "Image " + (index + 1);
         imageEl.className = "product-image-Volume2-paesaggi-naturali-desktop";
         slide.appendChild(imageEl);
@@ -540,68 +575,37 @@
       });
     });
     
-    // Download dell'immagine singola
-    document.getElementById("download-single-Volume2-paesaggi-naturali-desktop").addEventListener("click", function() {
-      var currentSlide = document.querySelectorAll(".slide-Volume2-paesaggi-naturali-desktop")[slideIndex];
-      var imgEl = currentSlide.querySelector("img");
-      fetch(imgEl.src)
-        .then(function(response) {
-          return response.blob();
-        })
-        .then(function(blob) {
-          var blobUrl = URL.createObjectURL(blob);
-          var a = document.createElement("a");
-          a.href = blobUrl;
-          
-          // Imposta il filename prendendolo dall'URL
-          var fileName = (images[slideIndex] && images[slideIndex].name) ?
-          images[slideIndex].name :
-          decodeURIComponent(imgEl.src.split("/").pop());
-          
-          a.download = fileName;
-          a.style.display = "none";
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-          URL.revokeObjectURL(blobUrl);
-        })
-        .catch(function(error) {
-          console.error("Errore durante il download:", error);
-        });
-    });
+// Download dell'immagine singola
+document.getElementById("download-single-Volume2-paesaggi-naturali-desktop")
+.addEventListener("click", function() {
+
+  var fileUrl = images[slideIndex].jpg;
+  var fileName = images[slideIndex].name;
+
+  var a = document.createElement("a");
+  a.href = fileUrl;
+  a.download = fileName;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+
+});
     
-    // Download dell'intero volume in ZIP
-    var downloadAllButton = document.getElementById("download-all-Volume2-paesaggi-naturali-desktop");
-    var spinner = downloadAllButton.querySelector(".spinner-Volume2-paesaggi-naturali-desktop");
-    var progressFrame = spinner.querySelector(".progress-frame-Volume2-paesaggi-naturali-desktop");
-    
-    downloadAllButton.addEventListener("click", function() {
-      spinner.style.display = "flex";
-      progressFrame.style.background = "conic-gradient(#0071e3 0deg, #d3d3d3 0deg)";
-      
-      var zip = new JSZip();
-      var folder = zip.folder("Paesaggi Naturali");
-      images.forEach(function(img) {
-        folder.file(img.name, fetch(img.url).then(function(r) { return r.blob(); }));
-      });
-      
-      zip.generateAsync({ type: "blob" }, function updateProgress(metadata) {
-        var progress = metadata.percent;
-        var degree = progress * 3.6;
-        progressFrame.style.background = "conic-gradient(#0071e3 " + degree + "deg, #d3d3d3 " + degree + "deg)";
-      })
-      .then(function(content) {
-        var a = document.createElement("a");
-        a.href = URL.createObjectURL(content);
-        a.download = "Volume 2.zip";
-        a.click();
-        spinner.style.display = "none";
-      })
-      .catch(function(err) {
-        console.error("Errore nel download ZIP:", err);
-        spinner.style.display = "none";
-      });
-    });
+// Download dell'intero volume in ZIP
+var downloadAllButton = document.getElementById("download-all-Volume2-paesaggi-naturali-desktop");
+
+downloadAllButton.addEventListener("click", function() {
+  var zipUrl = "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-02/zip-photos/item-01/Collection_Photos_0201.zip";
+  var fileName = "Collection_Photos_0201.zip";
+
+  // Crea link temporaneo e avvia download immediato
+  var a = document.createElement("a");
+  a.href = zipUrl;
+  a.download = fileName;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+});
     
     // Rendi visibile la gallery (se necessario)
     document.querySelector(".slider-Volume2-paesaggi-naturali-desktop").style.opacity = "1";
@@ -609,9 +613,7 @@
   }
 
   // Avvia l’inizializzazione quando il DOM è completamente caricato
-  document.addEventListener("DOMContentLoaded", function() {
-    loadScript("https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js", function() {
-      initGallery();
-    });
+document.addEventListener("DOMContentLoaded", function() {
+  initGallery();
   });
 })();
