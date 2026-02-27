@@ -41,7 +41,7 @@
     .container-Volume3-interni-e-scenari-mobile {
       display: flex;
       width: 100%;
-      padding: 0px;
+      padding: 20px;
       align-items: flex-start;
       justify-content: space-between;
       position: relative;
@@ -65,7 +65,7 @@
       transition: transform 0.3s ease-in-out;
     }
     .slide-Volume3-interni-e-scenari-mobile {
-      flex: 0 0 calc(100% - 10px); /* 👈 stessa misura del gap */
+      flex: 0 0 100%;
       flex-shrink: 0;
       display: flex;
       justify-content: center;
@@ -499,7 +499,7 @@
     // Funzione per spostarsi verso una slide specifica
     function moveToSlide(index) {
       slideIndex = index;
-var slideWidth = document.querySelector(".slide-Volume3-interni-e-scenari-mobile").offsetWidth + 10;
+var slideWidth = document.querySelector(".slide-Volume3-interni-e-scenari-mobile").offsetWidth;
 
 document.querySelector(".slides-Volume3-interni-e-scenari-mobile")
 .style.transform = "translateX(-" + (slideIndex * slideWidth) + "px)";
