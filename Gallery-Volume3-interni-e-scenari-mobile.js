@@ -279,8 +279,8 @@
       font-family: "SF Pro Display", sans-serif !important;
       text-align: left;     
       color: black;
-      margin-top: 55px;
-      margin-bottom: -15px;
+      margin-top: 52px;
+      margin-bottom: -12px;
       margin-left: 18px;
     }
     .slider-title-top-Volume3-interni-e-scenari-mobile h2 {
