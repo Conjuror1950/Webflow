@@ -559,20 +559,23 @@ if (slideIndex <= lastStaticIndex) {
   }
 
   // ---------- MOVE SLIDE ----------
-  function moveToSlide(index) {
-    slideIndex = index;
-    var slides = document.querySelectorAll(".slide-Volume3-interni-e-scenari-mobile");
-    if (!slides.length) return;
+function moveToSlide(index) {
+  slideIndex = index;
+  var slides = document.querySelectorAll(".slide-Volume3-interni-e-scenari-mobile");
+  if (!slides.length) return;
 
-    var slideWidth = slides[0].offsetWidth;
-    var marginRight = parseInt(getComputedStyle(slides[0]).marginRight) || 0;
-    var totalShift = slideIndex * (slideWidth + marginRight);
-
-    document.querySelector(".slides-Volume3-interni-e-scenari-mobile").style.transform = "translateX(-" + totalShift + "px)";
-    updateIndicators();
-    updateSliderButtons();
-    updateSlideCounter();
+  var totalShift = 0;
+  for (var i = 0; i < slideIndex; i++) {
+    var slideWidth = slides[i].offsetWidth;
+    var marginRight = parseInt(getComputedStyle(slides[i]).marginRight) || 0;
+    totalShift += slideWidth + marginRight;
   }
+
+  document.querySelector(".slides-Volume3-interni-e-scenari-mobile").style.transform = "translateX(-" + totalShift + "px)";
+  updateIndicators();
+  updateSliderButtons();
+  updateSlideCounter();
+}
 
   // ---------- INIT ----------
   createSlides();
