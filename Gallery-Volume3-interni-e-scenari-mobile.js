@@ -58,17 +58,11 @@
       background: #f7f7f7;
       border-radius: 0px;
     }
-.slides-Volume3-interni-e-scenari-mobile {
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scroll-behavior: smooth;
-}
-
-.slides-Volume3-interni-e-scenari-mobile::-webkit-scrollbar {
-  display: none;
-}
+    .slides-Volume3-interni-e-scenari-mobile {
+      display: flex;
+      flex-wrap: nowrap; /* Impedisce il wrapping degli elementi */
+      transition: transform 0.3s ease-in-out;
+    }
     .slide-Volume3-interni-e-scenari-mobile {
       flex: 0 0 100%;
       flex-shrink: 0;
@@ -78,7 +72,7 @@
     }
     .slide-Volume3-interni-e-scenari-mobile {
       flex: 0 0 100%;
-      scroll-snap-align: start;
+      margin-right: 10px;
     }
 
     .slide-Volume3-interni-e-scenari-mobile:last-child {
@@ -312,7 +306,7 @@
 
     .slides-Volume3-interni-e-scenari-mobile {
       touch-action: pan-y;
-   }
+    }
 
     /* Media query: visualizza solo su mobile (<= 1280px) */
     @media screen and (min-width: 1280px) {
@@ -515,20 +509,20 @@
     }
     
     // Funzione per spostarsi verso una slide specifica
-function moveToSlide(index) {
-  slideIndex = index;
+    function moveToSlide(index) {
+      slideIndex = index;
+var slide = document.querySelector(".slide-Volume3-interni-e-scenari-mobile");
+var style = window.getComputedStyle(slide);
+var marginRight = parseFloat(style.marginRight);
 
-  var slider = document.querySelector(".slides-Volume3-interni-e-scenari-mobile");
-  var slides = document.querySelectorAll(".slide-Volume3-interni-e-scenari-mobile");
+var slideWidth = slide.offsetWidth + marginRight;
 
-  slides[index].scrollIntoView({
-    behavior: "smooth",
-    inline: "start"
-  });
-
-  updateIndicators();
-  updateSliderButtons();
-}
+document.querySelector(".slides-Volume3-interni-e-scenari-mobile")
+.style.transform = "translateX(-" + (slideIndex * slideWidth) + "px)";
+      updateIndicators();
+      updateSliderButtons();
+      updateSlideCounter();
+    }
     
     createSlides();
     createIndicators();
@@ -555,6 +549,46 @@ function moveToSlide(index) {
         moveToSlide(slideIndex - 1);
       }
     });
+    
+    // --------------------------
+    // Swipe touch per mobile (con aggiornamento contatore)
+    // --------------------------
+(function() {
+  var sliderElement = document.querySelector(".slides-Volume3-interni-e-scenari-mobile");
+  var startX = 0;
+  var startY = 0;
+  var isHorizontalSwipe = false;
+
+  sliderElement.addEventListener("touchstart", function(e) {
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+    isHorizontalSwipe = false;
+  }, { passive: true });
+
+  sliderElement.addEventListener("touchmove", function(e) {
+    var deltaX = e.touches[0].clientX - startX;
+    var deltaY = e.touches[0].clientY - startY;
+
+    // Se il movimento è più orizzontale che verticale
+    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+      isHorizontalSwipe = true;
+      e.preventDefault(); // blocca scroll verticale SOLO in questo caso
+    }
+  }, { passive: false });
+
+  sliderElement.addEventListener("touchend", function(e) {
+    if (!isHorizontalSwipe) return;
+
+    var endX = e.changedTouches[0].clientX;
+    var deltaX = endX - startX;
+
+    if (deltaX > 50 && slideIndex > 0) {
+      moveToSlide(slideIndex - 1);
+    } else if (deltaX < -50 && slideIndex < images.length - 1) {
+      moveToSlide(slideIndex + 1);
+    }
+  });
+})();
     
     // Download dell'immagine singola
 document.getElementById("download-single-Volume3-interni-e-scenari-mobile")
