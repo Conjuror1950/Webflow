@@ -516,60 +516,45 @@
     
     // Aggiorna gli indicatori attivi
 function updateIndicators() {
-
   var dots = document.querySelectorAll(".indicator-Volume3-interni-e-scenari-mobile");
   var total = dots.length;
 
-  var maxVisible = 9;        // numero massimo visibile
-  var lastStaticIndex = 8;   // fino alla slide 9 (indice 8) NON scorre
+  var maxVisible = 9;       // massimo visibile
+  var lastStaticIndex = 8;  // fino alla slide 9 NON scorre
 
-  dots.forEach(function(dot) {
-    dot.classList.remove("active", "small", "hidden");
-  });
+  dots.forEach(dot => dot.classList.remove("active", "small", "hidden"));
 
   var start = 0;
-  var end = maxVisible - 1;
+  var end = Math.min(total - 1, maxVisible - 1);
 
-  // 🔵 Inizia a scorrere SOLO dopo la 9ª slide
   if (slideIndex > lastStaticIndex && slideIndex < total - 1) {
+    // inizio scroll dinamico
     start = slideIndex - lastStaticIndex;
     end = start + maxVisible - 1;
+    if (end >= total) {
+      end = total - 1;
+      start = Math.max(0, end - maxVisible + 1);
+    }
   }
 
-  // 🔴 Fine slider (blocco finale)
-  if (slideIndex >= total - 1) {
-    end = total - 1;
-    start = total - maxVisible;
-  }
-
-  dots.forEach(function(dot, i) {
-
+  dots.forEach((dot, i) => {
     if (i < start || i > end) {
       dot.classList.add("hidden");
       return;
     }
+    if (i === slideIndex) dot.classList.add("active");
 
-    if (i === slideIndex) {
-      dot.classList.add("active");
-    }
-
-    // --- SMALL LOGIC ---
-
-    // Prima fase (statico): small solo a destra
+    // gestione small
     if (slideIndex <= lastStaticIndex) {
+      // statico: small solo a destra
       if (i === end) dot.classList.add("small");
-    }
-
-    // Fase scorrimento: small su entrambi i lati
-    else if (slideIndex < total - 1) {
+    } else if (slideIndex < total - 1) {
+      // scorrimento: small su entrambi i lati
       if (i === start || i === end) dot.classList.add("small");
-    }
-
-    // Fase finale: small solo a sinistra
-    else {
+    } else {
+      // ultima slide: small solo a sinistra
       if (i === start) dot.classList.add("small");
     }
-
   });
 }
     
