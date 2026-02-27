@@ -135,17 +135,31 @@
       gap: 10px;
       z-index: 2;
     }
-    .indicator-Volume3-interni-e-scenari-mobile {
-      width: 7.5px;
-      height: 7.5px;
-      background: #86868b;
-      border-radius: 50%;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    .indicator-Volume3-interni-e-scenari-mobile.active {
-      background: #1d1d1d;
-    }
+.indicator-Volume3-interni-e-scenari-mobile {
+  width: 8px;
+  height: 8px;
+  background: #86868b;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0.4;
+  transform: scale(1);
+}
+
+.indicator-Volume3-interni-e-scenari-mobile.active {
+  background: #1d1d1d;
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+.indicator-Volume3-interni-e-scenari-mobile.small {
+  transform: scale(0.6);
+  opacity: 0.3;
+}
+
+.indicator-Volume3-interni-e-scenari-mobile.hidden {
+  display: none;
+}
     /* Testo sopra gli indicatori */
     .slide-count-Volume3-interni-e-scenari-mobile {
       position: absolute;
@@ -501,12 +515,47 @@
     }
     
     // Aggiorna gli indicatori attivi
-    function updateIndicators() {
-      var dots = document.querySelectorAll(".indicator-Volume3-interni-e-scenari-mobile");
-      dots.forEach(function(dot, i) {
-        dot.classList.toggle("active", i === slideIndex);
-      });
+function updateIndicators() {
+  var dots = document.querySelectorAll(".indicator-Volume3-interni-e-scenari-mobile");
+  var total = dots.length;
+
+  var maxVisible = 9;
+  var half = Math.floor(maxVisible / 2);
+
+  dots.forEach(function(dot) {
+    dot.classList.remove("active", "small", "hidden");
+  });
+
+  var start = slideIndex - half;
+  var end = slideIndex + half;
+
+  if (start < 0) {
+    start = 0;
+    end = maxVisible - 1;
+  }
+
+  if (end >= total) {
+    end = total - 1;
+    start = total - maxVisible;
+  }
+
+  dots.forEach(function(dot, i) {
+
+    if (i < start || i > end) {
+      dot.classList.add("hidden");
+      return;
     }
+
+    if (i === slideIndex) {
+      dot.classList.add("active");
+    }
+
+    if (i === start || i === end) {
+      dot.classList.add("small");
+    }
+
+  });
+}
     
     // Funzione per spostarsi verso una slide specifica
     function moveToSlide(index) {
