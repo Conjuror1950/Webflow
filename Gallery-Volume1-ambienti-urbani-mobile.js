@@ -32,7 +32,6 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      max-width: 400px;
       margin: 0 auto;
       width: 100%;
     }
@@ -73,7 +72,7 @@
     .product-image-Volume1-ambienti-urbani-mobile {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* oppure "contain" se preferisci vedere l’immagine intera */
+    object-fit: cover; /* oppure "contain" se preferisci vedere l’immagine intera */
     border-radius: 2%;
     cursor: pointer;
     }
