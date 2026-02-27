@@ -479,196 +479,174 @@
     ];
     var slideIndex = 0;
     
-    // Crea le slide dinamicamente
-    function createSlides() {
-      var slidesContainer = document.querySelector(".slides-Volume3-interni-e-scenari-mobile");
-      images.forEach(function(img, index) {
-        var slide = document.createElement("div");
-        slide.className = "slide-Volume3-interni-e-scenari-mobile";
-        var imageEl = document.createElement("img");
-        imageEl.src = img.webp;
-        imageEl.alt = "Image " + (index + 1);
-        imageEl.className = "product-image-Volume3-interni-e-scenari-mobile";
-        slide.appendChild(imageEl);
-        slidesContainer.appendChild(slide);
-      });
-    }
-    
-    // Crea gli indicatori
-    function createIndicators() {
-      var indicatorContainer = document.querySelector(".slider-indicators-Volume3-interni-e-scenari-mobile");
-      images.forEach(function(_, idx) {
-        var dot = document.createElement("div");
-        dot.className = "indicator-Volume3-interni-e-scenari-mobile" + (idx === 0 ? " active" : "");
-        dot.addEventListener("click", function() {
-          moveToSlide(idx);
-        });
-        indicatorContainer.appendChild(dot);
-      });
-    }
-    
-    // Aggiorna il contatore della slide
-function updateIndicators() {
-  var dots = document.querySelectorAll(".indicator-Volume3-interni-e-scenari-mobile");
-  var total = dots.length;
-  var maxVisible = 9;
-  var lastStaticIndex = 8;
-
-  dots.forEach(dot => dot.classList.remove("active", "small", "hidden"));
-
-  var start = 0;
-  var end = maxVisible - 1;
-
-  if (slideIndex <= lastStaticIndex) {
-    // fase iniziale: primi 9 indicatori
-    end = maxVisible - 1;
-  } else if (slideIndex >= total - 1) {
-    // fase finale: ultimi 9 indicatori
-    start = total - maxVisible;
-    end = total - 1;
-  } else {
-    // fase scorrimento
-    start = slideIndex - lastStaticIndex;
-    end = start + maxVisible - 1;
+  // ---------- CREA SLIDE ----------
+  function createSlides() {
+    var container = document.querySelector(".slides-Volume3-interni-e-scenari-mobile");
+    images.forEach((img, i) => {
+      var slide = document.createElement("div");
+      slide.className = "slide-Volume3-interni-e-scenari-mobile";
+      var imageEl = document.createElement("img");
+      imageEl.src = img.webp;
+      imageEl.alt = img.name;
+      imageEl.className = "product-image-Volume3-interni-e-scenari-mobile";
+      slide.appendChild(imageEl);
+      container.appendChild(slide);
+    });
   }
 
-  dots.forEach((dot, i) => {
-    if (i < start || i > end) {
-      dot.classList.add("hidden");
-      return;
-    }
-    if (i === slideIndex) dot.classList.add("active");
+  // ---------- CREA INDICATORI ----------
+  function createIndicators() {
+    var container = document.querySelector(".slider-indicators-Volume3-interni-e-scenari-mobile");
+    images.forEach((_, i) => {
+      var dot = document.createElement("div");
+      dot.className = "indicator-Volume3-interni-e-scenari-mobile" + (i === 0 ? " active" : "");
+      dot.addEventListener("click", () => moveToSlide(i));
+      container.appendChild(dot);
+    });
+  }
 
-    // SMALL LOGIC
+  // ---------- AGGIORNA INDICATORI ----------
+  function updateIndicators() {
+    var dots = document.querySelectorAll(".indicator-Volume3-interni-e-scenari-mobile");
+    dots.forEach(dot => dot.classList.remove("active", "small", "hidden"));
+
+    var total = dots.length;
+    var maxVisible = 9;
+    var lastStaticIndex = 8;
+
+    var start = 0;
+    var end = maxVisible - 1;
+
     if (slideIndex <= lastStaticIndex) {
-      if (i === end) dot.classList.add("small"); // piccolo a destra
+      end = maxVisible - 1;
     } else if (slideIndex >= total - 1) {
-      if (i === start) dot.classList.add("small"); // piccolo a sinistra
+      start = total - maxVisible;
+      end = total - 1;
     } else {
-      if (i === start || i === end) dot.classList.add("small"); // piccolo a entrambi i lati
+      start = slideIndex - lastStaticIndex;
+      end = start + maxVisible - 1;
     }
-  });
-}
-    
-    // Funzione per spostarsi verso una slide specifica
-    function moveToSlide(index) {
-      slideIndex = index;
-var slide = document.querySelector(".slide-Volume3-interni-e-scenari-mobile");
-var style = window.getComputedStyle(slide);
-var marginRight = parseFloat(style.marginRight);
 
-var slideWidth = slide.offsetWidth + marginRight;
+    dots.forEach((dot, i) => {
+      if (i < start || i > end) {
+        dot.classList.add("hidden");
+        return;
+      }
+      if (i === slideIndex) dot.classList.add("active");
 
-document.querySelector(".slides-Volume3-interni-e-scenari-mobile")
-.style.transform = "translateX(-" + (slideIndex * slideWidth) + "px)";
-      updateIndicators();
-      updateSliderButtons();
-      updateSlideCounter();
-    }
-    
-    createSlides();
-    createIndicators();
-    updateIndicators(); // ✅ Aggiorna subito l'indicatore iniziale
-    updateSlideCounter();
-    updateSliderButtons();
-    
-    // Event listener per i pulsanti next e prev
-    document.querySelector(".slider-button-Volume3-interni-e-scenari-mobile.next").addEventListener("click", function() {
-      if (slideIndex < images.length - 1) {
-        moveToSlide(slideIndex + 1);
+      if (slideIndex <= lastStaticIndex) {
+        if (i === end) dot.classList.add("small");
+      } else if (slideIndex >= total - 1) {
+        if (i === start) dot.classList.add("small");
+      } else {
+        if (i === start || i === end) dot.classList.add("small");
       }
     });
-    document.querySelector(".slider-button-Volume3-interni-e-scenari-mobile.prev").addEventListener("click", function() {
-      if (slideIndex > 0) {
-        moveToSlide(slideIndex - 1);
-      }
-    });
-    
-    // Navigazione con le frecce della tastiera
-    document.addEventListener("keydown", function(e) {
-      if (e.key === "ArrowRight" && slideIndex < images.length - 1) {
-        moveToSlide(slideIndex + 1);
-      } else if (e.key === "ArrowLeft" && slideIndex > 0) {
-        moveToSlide(slideIndex - 1);
-      }
-    });
-    
-    // --------------------------
-    // Swipe touch per mobile (con aggiornamento contatore)
-    // --------------------------
-(function() {
-  var sliderElement = document.querySelector(".slides-Volume3-interni-e-scenari-mobile");
-  var startX = 0;
-  var startY = 0;
-  var isHorizontalSwipe = false;
-
-  sliderElement.addEventListener("touchstart", function(e) {
-    startX = e.touches[0].clientX;
-    startY = e.touches[0].clientY;
-    isHorizontalSwipe = false;
-  }, { passive: true });
-
-  sliderElement.addEventListener("touchmove", function(e) {
-    var deltaX = e.touches[0].clientX - startX;
-    var deltaY = e.touches[0].clientY - startY;
-
-    // Se il movimento è più orizzontale che verticale
-    if (Math.abs(deltaX) > Math.abs(deltaY)) {
-      isHorizontalSwipe = true;
-      e.preventDefault(); // blocca scroll verticale SOLO in questo caso
-    }
-  }, { passive: false });
-
-  sliderElement.addEventListener("touchend", function(e) {
-    if (!isHorizontalSwipe) return;
-
-    var endX = e.changedTouches[0].clientX;
-    var deltaX = endX - startX;
-
-    if (deltaX > 50 && slideIndex > 0) {
-      moveToSlide(slideIndex - 1);
-    } else if (deltaX < -50 && slideIndex < images.length - 1) {
-      moveToSlide(slideIndex + 1);
-    }
-  });
-})();
-    
-    // Download dell'immagine singola
-document.getElementById("download-single-Volume3-interni-e-scenari-mobile")
-.addEventListener("click", function() {
-
-  var fileUrl = images[slideIndex].jpg;
-  var fileName = images[slideIndex].name;
-
-  var a = document.createElement("a");
-  a.href = fileUrl;
-  a.download = fileName;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-
-});
-    
-    // Download dell'intero volume in ZIP
-var downloadAllButton = document.getElementById("download-all-Volume3-interni-e-scenari-mobile");
-
-downloadAllButton.addEventListener("click", function() {
-  var zipUrl = "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/zip-photos/item-01/Collection_Photos_0301.zip";
-  var fileName = "Collection_Photos_0301.zip";
-
-  // Crea link temporaneo e avvia download immediato
-  var a = document.createElement("a");
-  a.href = zipUrl;
-  a.download = fileName;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-});
-    
-    // Rendi visibile la gallery (se necessario)
-    document.querySelector(".slider-Volume3-interni-e-scenari-mobile").style.opacity = "1";
-    document.querySelector(".details-Volume3-interni-e-scenari-mobile").style.opacity = "1";
   }
+
+  // ---------- AGGIORNA CONTATORE ----------
+  function updateSlideCounter() {
+    var counter = document.getElementById("slide-counter-Volume3-interni-e-scenari-mobile");
+    if (!counter) return;
+    counter.textContent = (slideIndex + 1) + " / " + images.length;
+  }
+
+  // ---------- AGGIORNA PULSANTI ----------
+  function updateSliderButtons() {
+    document.querySelector(".slider-button-Volume3-interni-e-scenari-mobile.prev").style.display = slideIndex === 0 ? "none" : "flex";
+    document.querySelector(".slider-button-Volume3-interni-e-scenari-mobile.next").style.display = slideIndex === images.length - 1 ? "none" : "flex";
+  }
+
+  // ---------- MOVE SLIDE ----------
+  function moveToSlide(index) {
+    slideIndex = index;
+    var slides = document.querySelectorAll(".slide-Volume3-interni-e-scenari-mobile");
+    if (!slides.length) return;
+
+    var slideWidth = slides[0].offsetWidth;
+    var marginRight = parseInt(getComputedStyle(slides[0]).marginRight) || 0;
+    var totalShift = slideIndex * (slideWidth + marginRight);
+
+    document.querySelector(".slides-Volume3-interni-e-scenari-mobile").style.transform = "translateX(-" + totalShift + "px)";
+    updateIndicators();
+    updateSliderButtons();
+    updateSlideCounter();
+  }
+
+  // ---------- INIT ----------
+  createSlides();
+  createIndicators();
+
+  setTimeout(() => moveToSlide(0), 50);
+
+  // ---------- PULSANTI ----------
+  document.querySelector(".slider-button-Volume3-interni-e-scenari-mobile.next").addEventListener("click", () => {
+    if (slideIndex < images.length - 1) moveToSlide(slideIndex + 1);
+  });
+  document.querySelector(".slider-button-Volume3-interni-e-scenari-mobile.prev").addEventListener("click", () => {
+    if (slideIndex > 0) moveToSlide(slideIndex - 1);
+  });
+
+  // ---------- TASTIERA ----------
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight" && slideIndex < images.length - 1) moveToSlide(slideIndex + 1);
+    if (e.key === "ArrowLeft" && slideIndex > 0) moveToSlide(slideIndex - 1);
+  });
+
+  // ---------- SWIPE MOBILE ----------
+  (function() {
+    var sliderEl = document.querySelector(".slides-Volume3-interni-e-scenari-mobile");
+    var startX = 0, startY = 0, isHorizontalSwipe = false;
+
+    sliderEl.addEventListener("touchstart", function(e) {
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+      isHorizontalSwipe = false;
+    }, {passive:true});
+
+    sliderEl.addEventListener("touchmove", function(e) {
+      var deltaX = e.touches[0].clientX - startX;
+      var deltaY = e.touches[0].clientY - startY;
+      if (Math.abs(deltaX) > Math.abs(deltaY)) {
+        isHorizontalSwipe = true;
+        e.preventDefault();
+      }
+    }, {passive:false});
+
+    sliderEl.addEventListener("touchend", function(e) {
+      if (!isHorizontalSwipe) return;
+      var deltaX = e.changedTouches[0].clientX - startX;
+      if (deltaX > 50 && slideIndex > 0) moveToSlide(slideIndex - 1);
+      if (deltaX < -50 && slideIndex < images.length - 1) moveToSlide(slideIndex + 1);
+    });
+  })();
+
+  // ---------- DOWNLOAD SINGOLA ----------
+  document.getElementById("download-single-Volume3-interni-e-scenari-mobile").addEventListener("click", () => {
+    var file = images[slideIndex];
+    var a = document.createElement("a");
+    a.href = file.jpg;
+    a.download = file.name;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  });
+
+  // ---------- DOWNLOAD INTERO VOLUME ----------
+  document.getElementById("download-all-Volume3-interni-e-scenari-mobile").addEventListener("click", () => {
+    var zipUrl = "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/zip-photos/item-01/Collection_Photos_0301.zip";
+    var a = document.createElement("a");
+    a.href = zipUrl;
+    a.download = "Collection_Photos_0301.zip";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  });
+
+  // ---------- MOSTRA GALLERY ----------
+  document.querySelector(".slider-Volume3-interni-e-scenari-mobile").style.opacity = "1";
+  document.querySelector(".details-Volume3-interni-e-scenari-mobile").style.opacity = "1";
+}
 
   // Avvia l’inizializzazione quando il DOM è completamente caricato
 document.addEventListener("DOMContentLoaded", function() {
