@@ -73,7 +73,7 @@
     .product-image-Volume3-interni-e-scenari-mobile {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* oppure "contain" se preferisci vedere l’immagine intera */
+    object-fit: contain; /* oppure "contain" se preferisci vedere l’immagine intera */
     border-radius: 2%;
     cursor: pointer;
     }
