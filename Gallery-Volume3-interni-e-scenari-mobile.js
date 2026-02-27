@@ -121,6 +121,7 @@
     .slider-indicators-Volume3-interni-e-scenari-mobile {
       position: relative;
       bottom: -5px;
+      top: -25px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
