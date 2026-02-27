@@ -41,7 +41,7 @@
     .container-Volume3-interni-e-scenari-mobile {
       display: flex;
       width: 100%;
-      padding: 18px;
+      padding: 20px;
       align-items: flex-start;
       justify-content: space-between;
       position: relative;
@@ -124,12 +124,12 @@
       left: 50%;
       transform: translateX(-50%);
       display: flex;
-      gap: 14px;
+      gap: 10px;
       z-index: 2;
     }
     .indicator-Volume3-interni-e-scenari-mobile {
-      width: 7px;
-      height: 7px;
+      width: 7.5px;
+      height: 7.5px;
       background: #86868b;
       border-radius: 50%;
       cursor: pointer;
@@ -280,7 +280,7 @@
       text-align: left;     
       color: black;
       margin-top: 25px;
-      margin-bottom: 0px;
+      margin-bottom: 25px;
       margin-left: 18px;
     }
     .slider-title-top-Volume3-interni-e-scenari-mobile h2 {
@@ -344,10 +344,6 @@
   <!-- Blocco dei dettagli spostato fuori dal container -->
   <div class="slider-indicators-Volume3-interni-e-scenari-mobile"></div>
   <div class="details-Volume3-interni-e-scenari-mobile">
-    <div class="title-wrapper-Volume3-interni-e-scenari-mobile">
-      <h1>Download.</h1>
-      <span class="subtitle-Volume3-interni-e-scenari-mobile">Quale scegli?</span>
-    </div>
     <div class="option-button-Volume3-interni-e-scenari-mobile">
       <div class="option-Volume3-interni-e-scenari-mobile" id="download-single-Volume3-interni-e-scenari-mobile">
         <div class="option-main-Volume3-interni-e-scenari-mobile">
