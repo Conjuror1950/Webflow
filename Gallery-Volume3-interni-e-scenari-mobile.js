@@ -506,44 +506,27 @@
   }
 
   // ---------- AGGIORNA INDICATORI ----------
-  function updateIndicators() {
-    var dots = document.querySelectorAll(".indicator-Volume3-interni-e-scenari-mobile");
-    dots.forEach(dot => dot.classList.remove("active", "small", "hidden"));
+function updateIndicators() {
+  var dots = document.querySelectorAll(".indicator-Volume3-interni-e-scenari-mobile");
+  var total = dots.length;
+  var maxVisible = 9;
 
-    var total = dots.length;
-    var maxVisible = 9;
-    var lastStaticIndex = 8;
+  var start = Math.max(0, slideIndex - Math.floor(maxVisible / 2));
+  var end = Math.min(total - 1, start + maxVisible - 1);
+  start = Math.max(0, end - maxVisible + 1); // assicura che ci siano sempre maxVisible indicatori
 
-    var start = 0;
-    var end = maxVisible - 1;
+  dots.forEach((dot, i) => {
+    dot.classList.remove("active", "small", "hidden");
 
-    if (slideIndex <= lastStaticIndex) {
-      end = maxVisible - 1;
-} else if (slideIndex >= total - 1) {
-  // L’ultima slide deve essere visibile e attiva
-  start = Math.max(total - maxVisible, 0);
-  end = total - 1;
-} else {
-  start = Math.max(slideIndex - lastStaticIndex, 0);
-  end = Math.min(start + maxVisible - 1, total - 1);
+    if (i < start || i > end) {
+      dot.classList.add("hidden");
+      return;
+    }
+
+    if (i === slideIndex) dot.classList.add("active");
+    if (i === start || i === end) dot.classList.add("small");
+  });
 }
-
-    dots.forEach((dot, i) => {
-      if (i < start || i > end) {
-        dot.classList.add("hidden");
-        return;
-      }
-      if (i === slideIndex) dot.classList.add("active");
-
-if (slideIndex <= lastStaticIndex) {
-  if (i === end) dot.classList.add("small");
-} else if (slideIndex >= total - 1) {
-  if (i === start) dot.classList.add("small");
-} else {
-  if (i === start || i === end) dot.classList.add("small");
-}
-    });
-  }
 
   // ---------- AGGIORNA CONTATORE ----------
   function updateSlideCounter() {
