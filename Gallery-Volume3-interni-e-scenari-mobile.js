@@ -322,6 +322,10 @@
       touch-action: pan-y;
     }
 
+    .slides-Volume3-interni-e-scenari-mobile {
+     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
     /* Media query: visualizza solo su mobile (<= 1280px) */
     @media screen and (min-width: 1280px) {
       .wrapper-slider-Volume3-interni-e-scenari-mobile {
