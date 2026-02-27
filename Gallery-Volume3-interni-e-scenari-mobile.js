@@ -508,37 +508,28 @@
     }
     
     // Aggiorna il contatore della slide
-   function updateSlideCounter() {
-    //  document.getElementById("slide-counter-Volume3-interni-e-scenari-mobile").textContent = (slideIndex + 1) + " di " + images.length;
-   }
-    
-    // Aggiorna la visibilità dei pulsanti
-    function updateSliderButtons() {
-      document.querySelector(".slider-button-Volume3-interni-e-scenari-mobile.prev").style.display = slideIndex === 0 ? "none" : "flex";
-      document.querySelector(".slider-button-Volume3-interni-e-scenari-mobile.next").style.display = slideIndex === images.length - 1 ? "none" : "flex";
-    }
-    
-    // Aggiorna gli indicatori attivi
 function updateIndicators() {
   var dots = document.querySelectorAll(".indicator-Volume3-interni-e-scenari-mobile");
   var total = dots.length;
-
-  var maxVisible = 9;       // massimo visibile
-  var lastStaticIndex = 8;  // fino alla slide 9 NON scorre
+  var maxVisible = 9;
+  var lastStaticIndex = 8;
 
   dots.forEach(dot => dot.classList.remove("active", "small", "hidden"));
 
   var start = 0;
-  var end = Math.min(total - 1, maxVisible - 1);
+  var end = maxVisible - 1;
 
-  if (slideIndex > lastStaticIndex && slideIndex < total - 1) {
-    // inizio scroll dinamico
+  if (slideIndex <= lastStaticIndex) {
+    // fase iniziale: primi 9 indicatori
+    end = maxVisible - 1;
+  } else if (slideIndex >= total - 1) {
+    // fase finale: ultimi 9 indicatori
+    start = total - maxVisible;
+    end = total - 1;
+  } else {
+    // fase scorrimento
     start = slideIndex - lastStaticIndex;
     end = start + maxVisible - 1;
-    if (end >= total) {
-      end = total - 1;
-      start = Math.max(0, end - maxVisible + 1);
-    }
   }
 
   dots.forEach((dot, i) => {
@@ -548,16 +539,13 @@ function updateIndicators() {
     }
     if (i === slideIndex) dot.classList.add("active");
 
-    // gestione small
+    // SMALL LOGIC
     if (slideIndex <= lastStaticIndex) {
-      // statico: small solo a destra
-      if (i === end) dot.classList.add("small");
-    } else if (slideIndex < total - 1) {
-      // scorrimento: small su entrambi i lati
-      if (i === start || i === end) dot.classList.add("small");
+      if (i === end) dot.classList.add("small"); // piccolo a destra
+    } else if (slideIndex >= total - 1) {
+      if (i === start) dot.classList.add("small"); // piccolo a sinistra
     } else {
-      // ultima slide: small solo a sinistra
-      if (i === start) dot.classList.add("small");
+      if (i === start || i === end) dot.classList.add("small"); // piccolo a entrambi i lati
     }
   });
 }
@@ -580,6 +568,7 @@ document.querySelector(".slides-Volume3-interni-e-scenari-mobile")
     
     createSlides();
     createIndicators();
+    updateIndicators(); // ✅ Aggiorna subito l'indicatore iniziale
     updateSlideCounter();
     updateSliderButtons();
     
