@@ -61,6 +61,7 @@
     .slides-Volume3-interni-e-scenari-mobile {
       display: flex;
       flex-wrap: nowrap; /* Impedisce il wrapping degli elementi */
+      gap: 10px; /* 👈 spazio tra le immagini */
       transition: transform 0.3s ease-in-out;
     }
     .slide-Volume3-interni-e-scenari-mobile {
@@ -119,7 +120,7 @@
     /* Indicatori delle slide */
     .slider-indicators-Volume3-interni-e-scenari-mobile {
       position: relative;
-      bottom: -20px;
+      bottom: -10px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
