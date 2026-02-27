@@ -61,7 +61,6 @@
     .slides-Volume3-interni-e-scenari-mobile {
       display: flex;
       flex-wrap: nowrap; /* Impedisce il wrapping degli elementi */
-      gap: 10px; /* 👈 spazio tra le immagini */
       transition: transform 0.3s ease-in-out;
     }
     .slide-Volume3-interni-e-scenari-mobile {
@@ -71,6 +70,15 @@
       justify-content: center;
       align-items: center;
     }
+    .slide-Volume3-interni-e-scenari-mobile {
+      flex: 0 0 100%;
+      margin-right: 10px;
+    }
+
+    .slide-Volume3-interni-e-scenari-mobile:last-child {
+      margin-right: 0;
+    }
+    
     .product-image-Volume3-interni-e-scenari-mobile {
     width: 100%;
     height: 100%;
@@ -499,7 +507,11 @@
     // Funzione per spostarsi verso una slide specifica
     function moveToSlide(index) {
       slideIndex = index;
-var slideWidth = document.querySelector(".slide-Volume3-interni-e-scenari-mobile").offsetWidth;
+var slide = document.querySelector(".slide-Volume3-interni-e-scenari-mobile");
+var style = window.getComputedStyle(slide);
+var marginRight = parseFloat(style.marginRight);
+
+var slideWidth = slide.offsetWidth + marginRight;
 
 document.querySelector(".slides-Volume3-interni-e-scenari-mobile")
 .style.transform = "translateX(-" + (slideIndex * slideWidth) + "px)";
