@@ -344,7 +344,7 @@
             </button>
       </div>
       <div class="slide-count-Volume3-interni-e-scenari-mobile">
-        <span id="slide-counter-Volume3-interni-e-scenari-mobile"> </span>
+        <span id="slide-counter-Volume3-interni-e-scenari-mobile">1 di 10</span>
       </div>
     </div>   
   </div>
@@ -486,9 +486,9 @@
     }
     
     // Aggiorna il contatore della slide
-    function updateSlideCounter() {
-      document.getElementById("slide-counter-Volume3-interni-e-scenari-mobile").textContent = (slideIndex + 1) + " di " + images.length;
-    }
+    //function updateSlideCounter() {
+    //  document.getElementById("slide-counter-Volume3-interni-e-scenari-mobile").textContent = (slideIndex + 1) + " di " + images.length;
+    //}
     
     // Aggiorna la visibilità dei pulsanti
     function updateSliderButtons() {
