@@ -486,9 +486,9 @@
     }
     
     // Aggiorna il contatore della slide
-    //function updateSlideCounter() {
+   function updateSlideCounter() {
     //  document.getElementById("slide-counter-Volume3-interni-e-scenari-mobile").textContent = (slideIndex + 1) + " di " + images.length;
-    //}
+   }
     
     // Aggiorna la visibilità dei pulsanti
     function updateSliderButtons() {
