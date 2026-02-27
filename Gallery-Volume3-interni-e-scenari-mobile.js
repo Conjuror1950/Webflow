@@ -124,12 +124,12 @@
       left: 50%;
       transform: translateX(-50%);
       display: flex;
-      gap: 6px;
+      gap: 12px;
       z-index: 2;
     }
     .indicator-Volume3-interni-e-scenari-mobile {
-      width: 8px;
-      height: 8px;
+      width: 7px;
+      height: 7px;
       background: #86868b;
       border-radius: 50%;
       cursor: pointer;
