@@ -58,11 +58,17 @@
       background: #f7f7f7;
       border-radius: 0px;
     }
-    .slides-Volume3-interni-e-scenari-mobile {
-      display: flex;
-      flex-wrap: nowrap; /* Impedisce il wrapping degli elementi */
-      transition: transform 0.3s ease-in-out;
-    }
+.slides-Volume3-interni-e-scenari-mobile {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+.slides-Volume3-interni-e-scenari-mobile::-webkit-scrollbar {
+  display: none;
+}
     .slide-Volume3-interni-e-scenari-mobile {
       flex: 0 0 100%;
       flex-shrink: 0;
@@ -72,7 +78,7 @@
     }
     .slide-Volume3-interni-e-scenari-mobile {
       flex: 0 0 100%;
-      margin-right: 10px;
+      scroll-snap-align: start;
     }
 
     .slide-Volume3-interni-e-scenari-mobile:last-child {
@@ -304,6 +310,10 @@
       color: #86868b;
     }
 
+    .slides-Volume3-interni-e-scenari-mobile {
+      touch-action: pan-y;
+   }
+
     /* Media query: visualizza solo su mobile (<= 1280px) */
     @media screen and (min-width: 1280px) {
       .wrapper-slider-Volume3-interni-e-scenari-mobile {
@@ -505,20 +515,20 @@
     }
     
     // Funzione per spostarsi verso una slide specifica
-    function moveToSlide(index) {
-      slideIndex = index;
-var slide = document.querySelector(".slide-Volume3-interni-e-scenari-mobile");
-var style = window.getComputedStyle(slide);
-var marginRight = parseFloat(style.marginRight);
+function moveToSlide(index) {
+  slideIndex = index;
 
-var slideWidth = slide.offsetWidth + marginRight;
+  var slider = document.querySelector(".slides-Volume3-interni-e-scenari-mobile");
+  var slides = document.querySelectorAll(".slide-Volume3-interni-e-scenari-mobile");
 
-document.querySelector(".slides-Volume3-interni-e-scenari-mobile")
-.style.transform = "translateX(-" + (slideIndex * slideWidth) + "px)";
-      updateIndicators();
-      updateSliderButtons();
-      updateSlideCounter();
-    }
+  slides[index].scrollIntoView({
+    behavior: "smooth",
+    inline: "start"
+  });
+
+  updateIndicators();
+  updateSliderButtons();
+}
     
     createSlides();
     createIndicators();
@@ -545,30 +555,6 @@ document.querySelector(".slides-Volume3-interni-e-scenari-mobile")
         moveToSlide(slideIndex - 1);
       }
     });
-    
-    // --------------------------
-    // Swipe touch per mobile (con aggiornamento contatore)
-    // --------------------------
-    (function() {
-      var sliderElement = document.querySelector(".slides-Volume3-interni-e-scenari-mobile");
-      var startX = 0;
-      
-      sliderElement.addEventListener("touchstart", function(e) {
-        startX = e.touches[0].clientX;
-      });
-      
-      sliderElement.addEventListener("touchend", function(e) {
-        var endX = e.changedTouches[0].clientX;
-        var deltaX = endX - startX;
-        
-        // Imposta la soglia di swipe a 50px
-        if (deltaX > 50 && slideIndex > 0) {
-          moveToSlide(slideIndex - 1);
-        } else if (deltaX < -50 && slideIndex < images.length - 1) {
-          moveToSlide(slideIndex + 1);
-        }
-      });
-    })();
     
     // Download dell'immagine singola
 document.getElementById("download-single-Volume3-interni-e-scenari-mobile")
