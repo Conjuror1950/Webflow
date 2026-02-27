@@ -516,33 +516,28 @@
     
     // Aggiorna gli indicatori attivi
 function updateIndicators() {
+
   var dots = document.querySelectorAll(".indicator-Volume3-interni-e-scenari-mobile");
   var total = dots.length;
 
-  var maxVisible = 9;
-  var centerIndex = 4; // posizione centrale visiva (0–8)
+  var maxVisible = 9;        // numero massimo visibile
+  var lastStaticIndex = 8;   // fino alla slide 9 (indice 8) NON scorre
 
   dots.forEach(function(dot) {
     dot.classList.remove("active", "small", "hidden");
   });
 
-  var start;
-  var end;
+  var start = 0;
+  var end = maxVisible - 1;
 
-  // 🟢 FASE 1 — Inizio (non ancora centrato)
-  if (slideIndex <= centerIndex) {
-    start = 0;
-    end = maxVisible - 1;
+  // 🔵 Inizia a scorrere SOLO dopo la 9ª slide
+  if (slideIndex > lastStaticIndex && slideIndex < total - 1) {
+    start = slideIndex - lastStaticIndex;
+    end = start + maxVisible - 1;
   }
 
-  // 🔵 FASE 2 — Centro (scorrimento reale)
-  else if (slideIndex > centerIndex && slideIndex < total - centerIndex - 1) {
-    start = slideIndex - centerIndex;
-    end = slideIndex + centerIndex;
-  }
-
-  // 🔴 FASE 3 — Fine
-  else {
+  // 🔴 Fine slider (blocco finale)
+  if (slideIndex >= total - 1) {
     end = total - 1;
     start = total - maxVisible;
   }
@@ -558,18 +553,19 @@ function updateIndicators() {
       dot.classList.add("active");
     }
 
-    // --- LOGICA SMALL DINAMICA ---
-    // Inizio: small solo a destra
-    if (slideIndex <= centerIndex) {
+    // --- SMALL LOGIC ---
+
+    // Prima fase (statico): small solo a destra
+    if (slideIndex <= lastStaticIndex) {
       if (i === end) dot.classList.add("small");
     }
 
-    // Centro: small su entrambi i lati
-    else if (slideIndex > centerIndex && slideIndex < total - centerIndex - 1) {
+    // Fase scorrimento: small su entrambi i lati
+    else if (slideIndex < total - 1) {
       if (i === start || i === end) dot.classList.add("small");
     }
 
-    // Fine: small solo a sinistra
+    // Fase finale: small solo a sinistra
     else {
       if (i === start) dot.classList.add("small");
     }
