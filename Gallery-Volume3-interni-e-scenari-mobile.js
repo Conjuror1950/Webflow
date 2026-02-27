@@ -120,16 +120,16 @@
     /* Indicatori delle slide */
     .slider-indicators-Volume3-interni-e-scenari-mobile {
       position: relative;
-      bottom: -10px;
+      bottom: -5px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
-      gap: 5px;
+      gap: 6px;
       z-index: 2;
     }
     .indicator-Volume3-interni-e-scenari-mobile {
-      width: 5px;
-      height: 5px;
+      width: 8px;
+      height: 8px;
       background: #86868b;
       border-radius: 50%;
       cursor: pointer;
