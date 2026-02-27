@@ -520,21 +520,29 @@ function updateIndicators() {
   var total = dots.length;
 
   var maxVisible = 9;
-  var half = Math.floor(maxVisible / 2);
+  var centerIndex = 4; // posizione centrale visiva (0–8)
 
   dots.forEach(function(dot) {
     dot.classList.remove("active", "small", "hidden");
   });
 
-  var start = slideIndex - half;
-  var end = slideIndex + half;
+  var start;
+  var end;
 
-  if (start < 0) {
+  // 🟢 FASE 1 — Inizio (non ancora centrato)
+  if (slideIndex <= centerIndex) {
     start = 0;
     end = maxVisible - 1;
   }
 
-  if (end >= total) {
+  // 🔵 FASE 2 — Centro (scorrimento reale)
+  else if (slideIndex > centerIndex && slideIndex < total - centerIndex - 1) {
+    start = slideIndex - centerIndex;
+    end = slideIndex + centerIndex;
+  }
+
+  // 🔴 FASE 3 — Fine
+  else {
     end = total - 1;
     start = total - maxVisible;
   }
@@ -550,8 +558,20 @@ function updateIndicators() {
       dot.classList.add("active");
     }
 
-    if (i === start || i === end) {
-      dot.classList.add("small");
+    // --- LOGICA SMALL DINAMICA ---
+    // Inizio: small solo a destra
+    if (slideIndex <= centerIndex) {
+      if (i === end) dot.classList.add("small");
+    }
+
+    // Centro: small su entrambi i lati
+    else if (slideIndex > centerIndex && slideIndex < total - centerIndex - 1) {
+      if (i === start || i === end) dot.classList.add("small");
+    }
+
+    // Fine: small solo a sinistra
+    else {
+      if (i === start) dot.classList.add("small");
     }
 
   });
