@@ -344,7 +344,7 @@
             </button>
       </div>
       <div class="slide-count-Volume3-interni-e-scenari-mobile">
-        <span id="slide-counter-Volume3-interni-e-scenari-mobile">1 di 10</span>
+        <span id="slide-counter-Volume3-interni-e-scenari-mobile"> </span>
       </div>
     </div>   
   </div>
