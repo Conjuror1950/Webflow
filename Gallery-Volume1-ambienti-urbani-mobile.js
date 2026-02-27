@@ -409,68 +409,253 @@
   // Funzione di inizializzazione della Gallery (Immagini)
   function initGallery() {
     var images = [
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/68cadea45a2a960410b8d0aa_DSC03991.jpg", name: "DSC03991.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/68cadea2853b334b4516f1d3_DSC03881.jpg", name: "DSC03881.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/68cadea5fd7db26cfd906064_DSC04008.jpg", name: "DSC04008.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/68cae9ae88b0e5755da97de8_DSC03914.jpg", name: "DSC03914.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/68cadea5c1d01041b7687697_DSC03952.jpg", name: "DSC03952.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/68cadea365bdc8092c2adbed_DSC03936.jpg", name: "DSC03936.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/68cae9ad06c3a429dafc8bb1_DSC03853.jpg", name: "DSC03853.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/68cadea4f40a202c65dc5aa9_DSC04022.jpg", name: "DSC04022.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/68cadea30e1c2178794fa9ad_DSC03882.jpg", name: "DSC03882.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/677e4f9c1938a95af999a355__MG_0323.jpg", name: "MG_0323.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/677e4f9c7cb4a47becebd5f8__MG_0337.jpg", name: "MG_0337.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/677e4f9b0d656804cb8c85bf__MG_0349.jpg", name: "MG_0349.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/677e4f9ce48ddcd5917c203d__MG_0360.jpg", name: "MG_0360.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/677e4f9ce48ddcd5917c2067__MG_0367.jpg", name: "MG_0367.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/677e4f9abd9ccd45f5aba505__MG_0370.jpg", name: "MG_0370.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/677e4f9bfd771fed48ac1804__MG_0408.jpg", name: "MG_0408.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/677e4f9cb1b768124be7a94d__MG_0427.jpg", name: "MG_0427.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d9e54384f548f1fb478b0d__MG_9537.jpg", name: "MG_9537.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d9e61b84f548f1fb48389e_IMG_1498.jpg", name: "MG_1498.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d9e542007f4ca3f9d8a438_IMG_1517.jpg", name: "MG_1517.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc665c76d9846673993f74__MG_7442.jpg", name: "MG_7442.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/6807f27918342111b789e227_MG_7488.jpg", name: "MG_7488.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc665219b924db4dbbac69__MG_7382.jpg", name: "MG_7382.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc664e39706fc65eb40b29__MG_7398.jpg", name: "MG_7398.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc665529e15a21ed88c269__MG_7404.jpg", name: "MG_7404.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc665118ffc46b3d1bec06__MG_7406.jpg", name: "MG_7406.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc6657c2f99b295b94801c__MG_7417.jpg", name: "MG_7417.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc665cd8e5c09607102bf3__MG_7531.jpg", name: "MG_7531.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc665e15daa3fe6ce7e51f__MG_7695.jpg", name: "MG_7695.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc665efc927bc34f06aa89__MG_7717.jpg", name: "MG_7717.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc664e02429c73b84b6043__MG_7767.jpg", name: "MG_7767.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc665fcfc48ed5e3d68857__MG_7784.jpg", name: "MG_7784.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc665f8e6e09e9b2876ae4__MG_7935.jpg", name: "MG_7935.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc666019b924db4dbbc151__MG_7937.jpg", name: "MG_7937.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc6653e1e99fbb3924a4f9__MG_7994.jpg", name: "MG_7994.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc66608f8fd5ebe19a5bce__MG_8035.jpg", name: "MG_8035.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc66583361c83dddf77268__MG_8183.jpg", name: "MG_8183.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc664f81bf97e670ad30dc__MG_8208.jpg", name: "MG_8208.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc66558b7957d39346f928__MG_8221.jpg", name: "MG_8221.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc665118ffc46b3d1beb95__MG_8311.jpg", name: "MG_8311.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc6653dd607b08df066a97__MG_8365.jpg", name: "MG_8365.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc664f40390f84ccef7fa3__MG_8430.jpg", name: "MG_8430.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc664fe38da854fef608ea__MG_8478.jpg", name: "MG_8478.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc6660e38da854fef61520__MG_8552.jpg", name: "MG_8552.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc6656c5e6c9bbd146dc85__MG_8659.jpg", name: "MG_8659.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc665be1e46bad9e70259f__MG_8713.jpg", name: "MG_8713.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc66634915fa802e67344e__MG_8736.jpg", name: "MG_8736.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc66698e6e09e9b28777b1__MG_8939.jpg", name: "MG_8939.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc6669e1e46bad9e703697__MG_8945.jpg", name: "MG_8945.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d9f31d74fa30e5e0a55eaf__MG_9304.jpg", name: "MG_9304.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66d9f31e46f76da1efe46790__MG_9224.jpg", name: "MG_9224.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc3a7d306c6fce7c74a95f_Canon%20EOS%202000D%206000x4000_006173.jpg", name: "MG_6173.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc3a7cd30ca26fb5e1418b_Canon%20EOS%202000D%206000x4000_006062.jpg", name: "MG_6062.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc3a7ba8ce8aec557e8fc1_Canon%20EOS%202000D%206000x4000_006040.jpg", name: "MG_6040.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc3a7add607b08dfdd9a6f_Canon%20EOS%202000D%206000x4000_006034.jpg", name: "MG_6034.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc3a7aa92a956620fa9d5c_Canon%20EOS%202000D%206000x4000_006045.jpg", name: "MG_6045.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dc3a7cb777df17eebe44ab_Canon%20EOS%202000D%206000x4000_006138.jpg", name: "MG_6138.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dee638ce8ad747e194d8fc__MG_2325.jpg", name: "MG_2325.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dee636ca4eaee4ac23fdd4_IMG_2405.jpg", name: "MG_2405.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dee63789eade848ec425c7__MG_2213.jpg", name: "MG_2213.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dee63a4a1834856623494e_IMG_1823.jpg", name: "MG_1823.jpg" },
-      { url: "https://cdn.prod.website-files.com/6612d92ea994c2c00b892543/66dee63a81278ffc7a074312__MG_2366.jpg", name: "MG_2366.jpg" }
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010101/Collection_Photo_unselect_010101.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010101/Collection_Photo_select_010101.jpg",
+       name: "Collection_Photo_select_010101.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010102/Collection_Photo_unselect_010102.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010102/Collection_Photo_select_010102.jpg",
+       name: "Collection_Photo_select_010102.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010103/Collection_Photo_unselect_010103.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010103/Collection_Photo_select_010103.jpg",
+       name: "Collection_Photo_select_010103.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010104/Collection_Photo_unselect_010104.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010104/Collection_Photo_select_010104.jpg",
+       name: "Collection_Photo_select_010104.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010105/Collection_Photo_unselect_010105.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010105/Collection_Photo_select_010105.jpg",
+       name: "Collection_Photo_select_010105.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010106/Collection_Photo_unselect_010106.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010106/Collection_Photo_select_010106.jpg",
+       name: "Collection_Photo_select_010106.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010107/Collection_Photo_unselect_010107.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010107/Collection_Photo_select_010107.jpg",
+       name: "Collection_Photo_select_010107.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010108/Collection_Photo_unselect_010108.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010108/Collection_Photo_select_010108.jpg",
+       name: "Collection_Photo_select_010108.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010109/Collection_Photo_unselect_010109.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010109/Collection_Photo_select_010109.jpg",
+       name: "Collection_Photo_select_010109.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010110/Collection_Photo_unselect_010110.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010110/Collection_Photo_select_010110.jpg",
+       name: "Collection_Photo_select_010110.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010111/Collection_Photo_unselect_010111.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010111/Collection_Photo_select_010111.jpg",
+       name: "Collection_Photo_select_010111.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010112/Collection_Photo_unselect_010112.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010112/Collection_Photo_select_010112.jpg",
+       name: "Collection_Photo_select_010112.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010113/Collection_Photo_unselect_010113.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010113/Collection_Photo_select_010113.jpg",
+       name: "Collection_Photo_select_010113.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010114/Collection_Photo_unselect_010114.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010114/Collection_Photo_select_010114.jpg",
+       name: "Collection_Photo_select_010114.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010115/Collection_Photo_unselect_010115.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010115/Collection_Photo_select_010115.jpg",
+       name: "Collection_Photo_select_010115.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010116/Collection_Photo_unselect_010116.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010116/Collection_Photo_select_010116.jpg",
+       name: "Collection_Photo_select_010116.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010117/Collection_Photo_unselect_010117.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010117/Collection_Photo_select_010117.jpg",
+       name: "Collection_Photo_select_010117.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010118/Collection_Photo_unselect_010118.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010118/Collection_Photo_select_010118.jpg",
+       name: "Collection_Photo_select_010118.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010119/Collection_Photo_unselect_010119.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010119/Collection_Photo_select_010119.jpg",
+       name: "Collection_Photo_select_010119.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010120/Collection_Photo_unselect_010120.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010120/Collection_Photo_select_010120.jpg",
+       name: "Collection_Photo_select_010120.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010121/Collection_Photo_unselect_010121.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010121/Collection_Photo_select_010121.jpg",
+       name: "Collection_Photo_select_010121.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010122/Collection_Photo_unselect_010122.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010122/Collection_Photo_select_010122.jpg",
+       name: "Collection_Photo_select_010122.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010123/Collection_Photo_unselect_010123.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010123/Collection_Photo_select_010123.jpg",
+       name: "Collection_Photo_select_010123.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010124/Collection_Photo_unselect_010124.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010124/Collection_Photo_select_010124.jpg",
+       name: "Collection_Photo_select_010124.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010125/Collection_Photo_unselect_010125.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010125/Collection_Photo_select_010125.jpg",
+       name: "Collection_Photo_select_010125.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010126/Collection_Photo_unselect_010126.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010126/Collection_Photo_select_010126.jpg",
+       name: "Collection_Photo_select_010126.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010127/Collection_Photo_unselect_010127.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010127/Collection_Photo_select_010127.jpg",
+       name: "Collection_Photo_select_010127.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010128/Collection_Photo_unselect_010128.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010128/Collection_Photo_select_010128.jpg",
+       name: "Collection_Photo_select_010128.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010129/Collection_Photo_unselect_010129.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010129/Collection_Photo_select_010129.jpg",
+       name: "Collection_Photo_select_010129.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010130/Collection_Photo_unselect_010130.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010130/Collection_Photo_select_010130.jpg",
+       name: "Collection_Photo_select_010130.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010131/Collection_Photo_unselect_010131.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010131/Collection_Photo_select_010131.jpg",
+       name: "Collection_Photo_select_010131.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010132/Collection_Photo_unselect_010132.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010132/Collection_Photo_select_010132.jpg",
+       name: "Collection_Photo_select_010132.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010133/Collection_Photo_unselect_010133.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010133/Collection_Photo_select_010133.jpg",
+       name: "Collection_Photo_select_010133.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010134/Collection_Photo_unselect_010134.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010134/Collection_Photo_select_010134.jpg",
+       name: "Collection_Photo_select_010134.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010135/Collection_Photo_unselect_010135.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010135/Collection_Photo_select_010135.jpg",
+       name: "Collection_Photo_select_010135.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010136/Collection_Photo_unselect_010136.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010136/Collection_Photo_select_010136.jpg",
+       name: "Collection_Photo_select_010136.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010137/Collection_Photo_unselect_010137.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010137/Collection_Photo_select_010137.jpg",
+       name: "Collection_Photo_select_010137.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010138/Collection_Photo_unselect_010138.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010138/Collection_Photo_select_010138.jpg",
+       name: "Collection_Photo_select_010138.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010139/Collection_Photo_unselect_010139.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010139/Collection_Photo_select_010139.jpg",
+       name: "Collection_Photo_select_010139.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010140/Collection_Photo_unselect_010140.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010140/Collection_Photo_select_010140.jpg",
+       name: "Collection_Photo_select_010140.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010141/Collection_Photo_unselect_010141.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010141/Collection_Photo_select_010141.jpg",
+       name: "Collection_Photo_select_010141.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010142/Collection_Photo_unselect_010142.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010142/Collection_Photo_select_010142.jpg",
+       name: "Collection_Photo_select_010142.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010143/Collection_Photo_unselect_010143.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010143/Collection_Photo_select_010143.jpg",
+       name: "Collection_Photo_select_010143.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010144/Collection_Photo_unselect_010144.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010144/Collection_Photo_select_010144.jpg",
+       name: "Collection_Photo_select_010144.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010145/Collection_Photo_unselect_010145.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010145/Collection_Photo_select_010145.jpg",
+       name: "Collection_Photo_select_010145.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010146/Collection_Photo_unselect_010146.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010146/Collection_Photo_select_010146.jpg",
+       name: "Collection_Photo_select_010146.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010147/Collection_Photo_unselect_010147.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010147/Collection_Photo_select_010147.jpg",
+       name: "Collection_Photo_select_010147.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010148/Collection_Photo_unselect_010148.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010148/Collection_Photo_select_010148.jpg",
+       name: "Collection_Photo_select_010148.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010149/Collection_Photo_unselect_010149.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010149/Collection_Photo_select_010149.jpg",
+       name: "Collection_Photo_select_010149.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010150/Collection_Photo_unselect_010150.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010150/Collection_Photo_select_010150.jpg",
+       name: "Collection_Photo_select_010150.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010151/Collection_Photo_unselect_010151.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010151/Collection_Photo_select_010151.jpg",
+       name: "Collection_Photo_select_010151.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010152/Collection_Photo_unselect_010152.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010152/Collection_Photo_select_010152.jpg",
+       name: "Collection_Photo_select_010152.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010153/Collection_Photo_unselect_010153.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010153/Collection_Photo_select_010153.jpg",
+       name: "Collection_Photo_select_010153.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010154/Collection_Photo_unselect_010154.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010154/Collection_Photo_select_010154.jpg",
+       name: "Collection_Photo_select_010154.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010155/Collection_Photo_unselect_010155.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010155/Collection_Photo_select_010155.jpg",
+       name: "Collection_Photo_select_010155.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010156/Collection_Photo_unselect_010156.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010156/Collection_Photo_select_010156.jpg",
+       name: "Collection_Photo_select_010156.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010157/Collection_Photo_unselect_010157.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010157/Collection_Photo_select_010157.jpg",
+       name: "Collection_Photo_select_010157.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010158/Collection_Photo_unselect_010158.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010158/Collection_Photo_select_010158.jpg",
+       name: "Collection_Photo_select_010158.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010159/Collection_Photo_unselect_010159.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010159/Collection_Photo_select_010159.jpg",
+       name: "Collection_Photo_select_010159.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010160/Collection_Photo_unselect_010160.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010160/Collection_Photo_select_010160.jpg",
+       name: "Collection_Photo_select_010160.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010161/Collection_Photo_unselect_010161.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010161/Collection_Photo_select_010161.jpg",
+       name: "Collection_Photo_select_010161.jpg"},
+
+      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/unit-photos/item-01/photo-010162/Collection_Photo_unselect_010162.webp",
+       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/download-photos/item-01/photo-010162/Collection_Photo_select_010162.jpg",
+       name: "Collection_Photo_select_010162.jpg"}
     ];
     var slideIndex = 0;
     
@@ -481,7 +666,7 @@
         var slide = document.createElement("div");
         slide.className = "slide-Volume1-ambienti-urbani-mobile";
         var imageEl = document.createElement("img");
-        imageEl.src = img.url;
+        imageEl.src = img.webp;
         imageEl.alt = "Image " + (index + 1);
         imageEl.className = "product-image-Volume1-ambienti-urbani-mobile";
         slide.appendChild(imageEl);
@@ -580,78 +765,45 @@
       });
     })();
     
-    // Download dell'immagine singola
-    document.getElementById("download-single-Volume1-ambienti-urbani-mobile").addEventListener("click", function() {
-      var currentSlide = document.querySelectorAll(".slide-Volume1-ambienti-urbani-mobile")[slideIndex];
-      var imgEl = currentSlide.querySelector("img");
-      fetch(imgEl.src)
-        .then(function(response) {
-          return response.blob();
-        })
-        .then(function(blob) {
-          var blobUrl = URL.createObjectURL(blob);
-          var a = document.createElement("a");
-          a.href = blobUrl;
-          
-          // Imposta il filename prendendolo dall'URL
-          var fileName = (images[slideIndex] && images[slideIndex].name) ?
-          images[slideIndex].name :
-          decodeURIComponent(imgEl.src.split("/").pop());
-          
-          a.download = fileName;
-          a.style.display = "none";
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-          URL.revokeObjectURL(blobUrl);
-        })
-        .catch(function(error) {
-          console.error("Errore durante il download:", error);
-        });
-    });
+// Download dell'immagine singola
+document.getElementById("download-single-Volume1-ambienti-urbani-mobile")
+.addEventListener("click", function() {
+
+  var fileUrl = images[slideIndex].jpg;
+  var fileName = images[slideIndex].name;
+
+  var a = document.createElement("a");
+  a.href = fileUrl;
+  a.download = fileName;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+
+});
     
-    // Download dell'intero volume in ZIP
-    var downloadAllButton = document.getElementById("download-all-Volume1-ambienti-urbani-mobile");
-    var spinner = downloadAllButton.querySelector(".spinner-Volume1-ambienti-urbani-mobile");
-    var progressFrame = spinner.querySelector(".progress-frame-Volume1-ambienti-urbani-mobile");
-    
-    downloadAllButton.addEventListener("click", function() {
-      spinner.style.display = "flex";
-      progressFrame.style.background = "conic-gradient(#0071e3 0deg, #d3d3d3 0deg)";
-      
-      var zip = new JSZip();
-      var folder = zip.folder("Ambienti Urbani");
-      images.forEach(function(img) {
-        folder.file(img.name, fetch(img.url).then(function(r) { return r.blob(); }));
-      });
-      
-      zip.generateAsync({ type: "blob" }, function updateProgress(metadata) {
-        var progress = metadata.percent;
-        var degree = progress * 3.6;
-        progressFrame.style.background = "conic-gradient(#0071e3 " + degree + "deg, #d3d3d3 " + degree + "deg)";
-      })
-      .then(function(content) {
-        var a = document.createElement("a");
-        a.href = URL.createObjectURL(content);
-        a.download = "Volume 1.zip";
-        a.click();
-        spinner.style.display = "none";
-      })
-      .catch(function(err) {
-        console.error("Errore nel download ZIP:", err);
-        spinner.style.display = "none";
-      });
-    });
+// Download dell'intero volume in ZIP
+var downloadAllButton = document.getElementById("download-all-Volume1-ambienti-urbani-mobile");
+
+downloadAllButton.addEventListener("click", function() {
+  var zipUrl = "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-01/zip-photos/item-01/Collection_Photos_0101.zip";
+  var fileName = "Collection_Photos_0101.zip";
+
+  // Crea link temporaneo e avvia download immediato
+  var a = document.createElement("a");
+  a.href = zipUrl;
+  a.download = fileName;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+});
     
     // Rendi visibile la gallery (se necessario)
     document.querySelector(".slider-Volume1-ambienti-urbani-mobile").style.opacity = "1";
     document.querySelector(".details-Volume1-ambienti-urbani-mobile").style.opacity = "1";
   }
 
-  // Avvia l’inizializzazione quando il DOM è completamente caricato
-  document.addEventListener("DOMContentLoaded", function() {
-    loadScript("https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js", function() {
-      initGallery();
-    });
+// Avvia l’inizializzazione quando il DOM è completamente caricato
+document.addEventListener("DOMContentLoaded", function() {
+  initGallery();
   });
 })();
