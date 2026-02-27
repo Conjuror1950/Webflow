@@ -124,7 +124,7 @@
       left: 50%;
       transform: translateX(-50%);
       display: flex;
-      gap: 12px;
+      gap: 14px;
       z-index: 2;
     }
     .indicator-Volume3-interni-e-scenari-mobile {
@@ -309,8 +309,10 @@
   var galleryHTML = `
 <div class="wrapper-slider-Volume3-interni-e-scenari-mobile">
   <div class="slider-title-top-Volume3-interni-e-scenari-mobile">
-    <h2>‎ </h2>
-    <p>‎ </p>
+    <div class="title-wrapper-Volume3-interni-e-scenari-mobile">
+      <h1>Download.</h1>
+      <span class="subtitle-Volume3-interni-e-scenari-mobile">Quale scegli?</span>
+    </div>
   </div>
   
   <!-- Container che contiene solo lo slider -->
