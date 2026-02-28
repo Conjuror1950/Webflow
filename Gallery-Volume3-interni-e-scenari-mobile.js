@@ -50,7 +50,7 @@
     /* --- SLIDER --- */
 .slider-Volume3-interni-e-scenari-mobile {
   position: relative;
-  width: 100%;
+  width: 90%;
   height: auto;
   overflow: hidden;
   display: flex;
@@ -79,7 +79,7 @@
     }
     
 .product-image-Volume3-interni-e-scenari-mobile {
-  max-width: 95%;
+  max-width: 100%;
   height: auto;
   display: block;
   object-fit: contain;
