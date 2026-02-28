@@ -62,13 +62,13 @@
 }
 .slides-Volume3-interni-e-scenari-mobile {
   display: flex;
-  gap: 16px; /* 👈 spazio tra slide */
-  padding-left: 20px; /* 👈 spazio laterale stile Apple */
-  padding-right: 20px;
+  gap: 16px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
+  padding-left: 20px;
+  padding-right: 0; /* 🔥 niente spazio finale */
 }
 
 .slides-Volume3-interni-e-scenari-mobile::-webkit-scrollbar {
@@ -81,11 +81,15 @@
 }
 
 .slide-Volume3-interni-e-scenari-mobile {
-  flex: 0 0 90%; /* 👈 NON più 100% */
-  scroll-snap-align: center;
+  flex: 0 0 85%;
+  scroll-snap-align: start; /* 🔥 NON center */
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.slide-Volume3-interni-e-scenari-mobile:last-child {
+  margin-right: 20px;
 }
     
 .product-image-Volume3-interni-e-scenari-mobile {
@@ -566,37 +570,28 @@ document.querySelector(".slider-button-Volume3-interni-e-scenari-mobile.prev").a
   var sliderElement = document.querySelector(".slides-Volume3-interni-e-scenari-mobile");
   var startX = 0;
   var startY = 0;
-  var isHorizontalSwipe = false;
+  var isDragging = false;
 
   sliderElement.addEventListener("touchstart", function(e) {
     startX = e.touches[0].clientX;
     startY = e.touches[0].clientY;
-    isHorizontalSwipe = false;
+    isDragging = true;
   }, { passive: true });
 
   sliderElement.addEventListener("touchmove", function(e) {
-    var deltaX = e.touches[0].clientX - startX;
-    var deltaY = e.touches[0].clientY - startY;
+    if (!isDragging) return;
 
-    // Se il movimento è più orizzontale che verticale
-    if (Math.abs(deltaX) > Math.abs(deltaY)) {
-      isHorizontalSwipe = true;
-      e.preventDefault(); // blocca scroll verticale SOLO in questo caso
+    var deltaX = Math.abs(e.touches[0].clientX - startX);
+    var deltaY = Math.abs(e.touches[0].clientY - startY);
+
+    if (deltaX > deltaY) {
+      e.preventDefault(); // 🔥 blocca scroll verticale
     }
   }, { passive: false });
 
-sliderElement.addEventListener("touchend", function(e) {
-  if (!isHorizontalSwipe) return;
-
-  var endX = e.changedTouches[0].clientX;
-  var deltaX = endX - startX;
-
-  if (deltaX > 50) { // swipe a destra
-    moveToSlide((slideIndex - 1 + images.length) % images.length);
-  } else if (deltaX < -50) { // swipe a sinistra
-    moveToSlide((slideIndex + 1) % images.length);
-  }
-});
+  sliderElement.addEventListener("touchend", function() {
+    isDragging = false;
+  });
 })();
     
     // Download dell'immagine singola
