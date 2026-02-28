@@ -69,10 +69,31 @@
       justify-content: center;
       align-items: center;
     }
-    .slide-Volume3-interni-e-scenari-mobile {
-      flex: 0 0 100%;
-      margin-right: 10px;
-    }
+.slides-Volume3-interni-e-scenari-mobile {
+  display: flex;
+  flex-wrap: nowrap;
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  padding-left: 10px; /* piccolo offset per la prima slide */
+  overflow: visible;   /* necessario per vedere le slide sovrapposte */
+}
+
+.slide-Volume3-interni-e-scenari-mobile {
+  flex: 0 0 85%;        /* larghezza inferiore al 100% per lasciare spazio alle slide successive */
+  margin-right: -20%;   /* sovrapposizione negativa */
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), scale 0.5s;
+}
+
+.slide-Volume3-interni-e-scenari-mobile img {
+  border-radius: 2%;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.slide-Volume3-interni-e-scenari-mobile.active img {
+  transform: scale(1.0); /* zoom principale */
+}
 
     .slide-Volume3-interni-e-scenari-mobile:last-child {
       margin-right: 0;
@@ -512,20 +533,25 @@
     }
     
     // Funzione per spostarsi verso una slide specifica
-    function moveToSlide(index) {
-      slideIndex = index;
-var slide = document.querySelector(".slide-Volume3-interni-e-scenari-mobile");
-var style = window.getComputedStyle(slide);
-var marginRight = parseFloat(style.marginRight);
+function moveToSlide(index) {
+  slideIndex = index;
+  var slides = document.querySelectorAll(".slide-Volume3-interni-e-scenari-mobile");
+  slides.forEach((slide, i) => {
+    slide.classList.toggle("active", i === slideIndex);
+  });
 
-var slideWidth = slide.offsetWidth + marginRight;
+  var slide = slides[0]; // misura il primo slide
+  var style = window.getComputedStyle(slide);
+  var marginRight = parseFloat(style.marginRight);
+  var slideWidth = slide.offsetWidth + marginRight;
 
-document.querySelector(".slides-Volume3-interni-e-scenari-mobile")
-.style.transform = "translateX(-" + (slideIndex * slideWidth) + "px)";
-      updateIndicators();
-      updateSliderButtons();
-      updateSlideCounter();
-    }
+  document.querySelector(".slides-Volume3-interni-e-scenari-mobile")
+    .style.transform = "translateX(-" + (slideIndex * slideWidth) + "px)";
+
+  updateIndicators();
+  updateSliderButtons();
+  updateSlideCounter();
+}
     
     createSlides();
     createIndicators();
@@ -569,10 +595,9 @@ sliderElement.addEventListener("touchmove", function(e) {
   var deltaX = e.touches[0].clientX - startX;
   var deltaY = e.touches[0].clientY - startY;
 
-  // blocca lo scroll SOLO se lo swipe è decisamente orizzontale
   if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 10) {
     isHorizontalSwipe = true;
-    e.preventDefault(); 
+    e.preventDefault(); // solo per swipe orizzontale
   }
 }, { passive: false });
 
