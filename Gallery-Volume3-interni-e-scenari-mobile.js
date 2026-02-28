@@ -48,11 +48,10 @@
     }
 
     /* --- SLIDER --- */
-    .slider-Volume3-interni-e-scenari-mobile {
+.slider-Volume3-interni-e-scenari-mobile {
   position: relative;
-  width: 100%;
-  aspect-ratio: 4 / 5; /* 👈 rapporto elegante */
-  max-height: 80vh;
+  height: 340px; /* 👈 più compatto */
+  padding: 0;
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -81,13 +80,15 @@
       margin-right: 0;
     }
     
-    .product-image-Volume3-interni-e-scenari-mobile {
-    width: 100%;
-    height: 100%;
-    object-fit: contain; /* oppure "contain" se preferisci vedere l’immagine intera */
-    border-radius: 2%;
-    cursor: pointer;
-    }
+.product-image-Volume3-interni-e-scenari-mobile {
+  max-width: 92%;
+  max-height: 92%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 12px;
+  cursor: pointer;
+}
     .product-image-Volume3-interni-e-scenari-mobile:hover {
       transform: scale(1.0);
     }
