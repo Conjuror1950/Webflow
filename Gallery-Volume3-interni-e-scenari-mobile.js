@@ -74,7 +74,7 @@
     .slide-Volume3-interni-e-scenari-mobilee img {
       width: 100%;
       height: auto;
-      border-radius: 2%;
+      border-radius: 6px;
       object-fit: contain;
       transition: none;
     }
@@ -123,7 +123,7 @@
       background: #e0e0e0;
     }
 
-        /* Titoli sopra e sotto lo slider */
+    /* Titoli sopra e sotto lo slider */
     .slider-title-top-Volume3-interni-e-scenari-mobile {
       font-family: "SF Pro Display", sans-serif !important;
       text-align: left;     
