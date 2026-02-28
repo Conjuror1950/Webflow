@@ -61,17 +61,11 @@
   padding: 0;
 }
 .slides-Volume3-interni-e-scenari-mobile {
-  display: flex;
-  gap: 16px;
   overflow-x: auto;
-  overflow-y: hidden; 
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
+  overflow-y: hidden;       /* blocca lo scroll verticale */
+  touch-action: pan-x;      /* forza swipe orizzontale */
   overscroll-behavior: contain; /* blocca il rimbalzo verticale */
-  -webkit-overflow-scrolling: auto; /* disabilita il momentum verticale su iOS */
-  padding-left: 20px;
-  padding-right: 0;
-  touch-action: pan-x; /* obbliga swipe orizzontale, blocca verticale */
+  -webkit-overflow-scrolling: auto; /* disabilita rimbalzo momentum iOS */
 }
 
 .slides-Volume3-interni-e-scenari-mobile::-webkit-scrollbar {
@@ -584,11 +578,13 @@ document.querySelector(".slider-button-Volume3-interni-e-scenari-mobile.prev").a
   var isDragging = false;
   var threshold = 50;
 
-  slider.addEventListener("touchstart", function(e) {
-    startX = e.touches[0].clientX;
-    startY = e.touches[0].clientY;
-    isDragging = true;
-  }, { passive: true });
+slider.addEventListener("touchstart", function(e) {
+  startX = e.touches[0].clientX;
+  startY = e.touches[0].clientY;
+  isDragging = true;
+  
+  slider.scrollTop = 0; // FORZA la posizione Y a 0
+}, { passive: true });
 
 slider.addEventListener("touchmove", function(e) {
   if (!isDragging) return;
@@ -597,7 +593,7 @@ slider.addEventListener("touchmove", function(e) {
 
   if (Math.abs(deltaX) > Math.abs(deltaY)) {
     e.preventDefault(); // swipe orizzontale
-    slider.scrollTop = 0; // forza Y = 0
+    slider.scrollTop = 0; // blocca sempre Y
   } else {
     e.stopPropagation();
   }
