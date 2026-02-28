@@ -68,15 +68,23 @@
       align-items: center;
       position: relative;
       cursor: default; /* nessun effetto click */
-      transition: none;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      opacity: 0.5;
+      transform: scale(0.96);
     }
+
+    .slide-Volume3-interni-e-scenari-mobile.active {
+    opacity: 1;
+    transform: scale(1);
+   }
 
     .slide-Volume3-interni-e-scenari-mobile img {
       width: 100%;
       height: auto;
       border-radius: 18px;
       object-fit: contain;
-      transition: none;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     /* Indicatori delle slide */
@@ -371,11 +379,18 @@ dot.addEventListener("click", () => {
       indicatorsContainer.appendChild(dot);
     });
 
-    function updateIndicators() {
-      document.querySelectorAll(".indicator-Volume3-interni-e-scenari-mobile").forEach((dot, idx) => {
-        dot.classList.toggle("active", idx === slideIndex);
-      });
-    }
+    document.querySelectorAll(".slide-Volume3-interni-e-scenari-mobile")[0].classList.add("active");
+
+function updateIndicators() {
+
+  document.querySelectorAll(".indicator-Volume3-interni-e-scenari-mobile").forEach((dot, idx) => {
+    dot.classList.toggle("active", idx === slideIndex);
+  });
+
+  document.querySelectorAll(".slide-Volume3-interni-e-scenari-mobile").forEach((slide, idx) => {
+    slide.classList.toggle("active", idx === slideIndex);
+  });
+}
 
 let isScrolling = false;
 let startScrollLeft = 0;
