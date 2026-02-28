@@ -67,7 +67,8 @@
   overflow-y: hidden; 
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain; /* blocca il rimbalzo verticale */
+  -webkit-overflow-scrolling: auto; /* disabilita il momentum verticale su iOS */
   padding-left: 20px;
   padding-right: 0;
   touch-action: pan-x; /* obbliga swipe orizzontale, blocca verticale */
@@ -589,19 +590,18 @@ document.querySelector(".slider-button-Volume3-interni-e-scenari-mobile.prev").a
     isDragging = true;
   }, { passive: true });
 
-  slider.addEventListener("touchmove", function(e) {
-    if (!isDragging) return;
-    var deltaX = e.touches[0].clientX - startX;
-    var deltaY = e.touches[0].clientY - startY;
+slider.addEventListener("touchmove", function(e) {
+  if (!isDragging) return;
+  var deltaX = e.touches[0].clientX - startX;
+  var deltaY = e.touches[0].clientY - startY;
 
-    // Blocca sempre lo scroll verticale
-    if (Math.abs(deltaX) > Math.abs(deltaY)) {
-      e.preventDefault(); // swipe orizzontale
-    } else {
-      // Piccoli scroll verticali vengono ignorati
-      e.stopPropagation();
-    }
-  }, { passive: false });
+  if (Math.abs(deltaX) > Math.abs(deltaY)) {
+    e.preventDefault(); // swipe orizzontale
+    slider.scrollTop = 0; // forza Y = 0
+  } else {
+    e.stopPropagation();
+  }
+}, { passive: false });
 
   slider.addEventListener("touchend", function(e) {
     if (!isDragging) return;
