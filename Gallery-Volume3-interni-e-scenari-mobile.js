@@ -240,23 +240,21 @@ dot.addEventListener("click", () => {
 let isScrolling = false;
 let startScrollLeft = 0;
 
-slidesContainer.addEventListener("touchstart", () => {
-  startScrollLeft = slidesContainer.scrollLeft;
+slidesContainer.addEventListener("touchstart", (e) => {
+  startTouchX = e.touches[0].clientX;
 });
 
-slidesContainer.addEventListener("touchend", () => {
+slidesContainer.addEventListener("touchend", (e) => {
   if (isScrolling) return;
 
-  let endScrollLeft = slidesContainer.scrollLeft;
-  let diff = endScrollLeft - startScrollLeft;
+  // differenza tra inizio e fine touch
+  let diffX = e.changedTouches[0].clientX - startTouchX;
 
-  // Forza sempre +1 o -1, ignorando l'intensità dello swipe
-  if (diff > 20) {  // swipe verso destra
+  if (diffX < -10) { // swipe verso sinistra → slide successiva
     slideIndex = Math.min(slideIndex + 1, images.length - 1);
-  } else if (diff < -20) {  // swipe verso sinistra
+  } else if (diffX > 10) { // swipe verso destra → slide precedente
     slideIndex = Math.max(slideIndex - 1, 0);
   }
-  // se diff tra -20 e 20 → non cambia slide
 
   goToSlide(slideIndex);
 });
