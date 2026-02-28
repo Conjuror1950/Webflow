@@ -72,8 +72,6 @@
   transition: 
     transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1),
     opacity 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
-
-  opacity: 0.82;
 }
 
     .slide-Volume3-interni-e-scenari-mobile.active {
