@@ -23,14 +23,15 @@
       overflow-y: auto;
     }
 
-.wrapper-slider-apple-style {
-  width: 100%;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  position: relative;
-}
+    .wrapper-slider-apple-style {
+      width: 100%;
+      max-width: 1024px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      position: relative;
+    }
 
     .slider-apple-style {
       position: relative;
@@ -38,7 +39,6 @@
       overflow: hidden;
       display: flex;
       align-items: center;
-      padding-left: 20px; /* solo padding a sinistra */
     }
 
 .slides-apple-style {
@@ -48,6 +48,11 @@
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
+  padding-left: 0;
+}
+
+.slides-apple-style .slide-apple-style:last-child {
+  margin-right: 20px; /* padding a destra solo per l’ultima slide */
 }
 
     .slides-apple-style::-webkit-scrollbar {
@@ -63,13 +68,7 @@
       position: relative;
       cursor: default; /* nessun effetto click */
       transition: none;
-      padding-left: 20px; /* padding di default */
     }
-
-    .slide-apple-style:last-child {
-  padding-left: 0;     /* rimuove padding sinistra */
-  padding-right: 20px; /* aggiunge padding solo a destra */
-}
 
     .slide-apple-style img {
       width: 100%;
@@ -264,13 +263,20 @@ slidesContainer.addEventListener("touchend", () => {
 function goToSlide(index) {
   isScrolling = true;
 
-  const slideWidth = slidesContainer.children[0].offsetWidth + 16; // 16 = gap
+  const slideWidth = slidesContainer.children[0].offsetWidth + 16;
   const targetScroll = slideWidth * index;
 
   slidesContainer.scrollTo({
     left: targetScroll,
     behavior: "smooth"
   });
+
+  // 👉 gestione padding dinamico
+  if (index === images.length - 1) {
+    slidesContainer.style.paddingLeft = "0px";
+  } else {
+    slidesContainer.style.paddingLeft = "20px";
+  }
 
   updateIndicators();
 
