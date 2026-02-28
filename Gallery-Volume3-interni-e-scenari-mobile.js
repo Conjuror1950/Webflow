@@ -51,7 +51,7 @@
 .slider-Volume3-interni-e-scenari-mobile {
   position: relative;
   width: 100%;
-  aspect-ratio: 4 / 5; /* 👈 proporzione elegante verticale */
+  aspect-ratio: 3 / 4; /* 👈 proporzione elegante verticale */
   max-height: 80vh;
   overflow: hidden;
   display: flex;
