@@ -51,10 +51,6 @@
   -webkit-overflow-scrolling: touch;
 }
 
-.slides-apple-style .slide-apple-style:last-child {
-  margin-right: 20px; /* padding a destra solo per l’ultima slide */
-}
-
     .slides-apple-style::-webkit-scrollbar {
       display: none;
     }
