@@ -49,11 +49,14 @@
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  padding-left: 20px; /* solo padding a sinistra per default */
 }
 
-.slides-apple-style .slide-apple-style:last-child {
-  margin-right: 20px; /* padding a destra solo per l’ultima slide */
+.slide-apple-style:first-child {
+  margin-left: 20px;
+}
+
+.slide-apple-style:last-child {
+  margin-right: 20px;
 }
 
     .slides-apple-style::-webkit-scrollbar {
