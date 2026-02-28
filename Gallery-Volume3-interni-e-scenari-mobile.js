@@ -51,8 +51,7 @@
 .slider-Volume3-interni-e-scenari-mobile {
   position: relative;
   width: 100%;
-  aspect-ratio: 3 / 4; /* 👈 proporzione elegante verticale */
-  max-height: 80vh;
+  height: auto;
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -63,6 +62,7 @@
     .slides-Volume3-interni-e-scenari-mobile {
       display: flex;
       flex-wrap: nowrap; /* Impedisce il wrapping degli elementi */
+      align-items: center;
       transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
     }
     .slide-Volume3-interni-e-scenari-mobile {
@@ -79,8 +79,9 @@
     }
     
 .product-image-Volume3-interni-e-scenari-mobile {
-  width: 100%;
-  height: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
   object-fit: contain;
   border-radius: 2%;
   cursor: pointer;
