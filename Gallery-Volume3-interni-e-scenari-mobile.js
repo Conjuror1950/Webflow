@@ -71,10 +71,10 @@
       transition: none;
     }
 
-    .slide-Volume3-interni-e-scenari-mobilee img {
+    .slide-Volume3-interni-e-scenari-mobile img {
       width: 100%;
       height: auto;
-      border-radius: 0px;
+      border-radius: 12px;
       object-fit: contain;
       transition: none;
     }
