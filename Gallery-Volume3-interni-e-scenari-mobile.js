@@ -579,14 +579,13 @@ document.querySelector(".slider-button-Volume3-interni-e-scenari-mobile.prev").a
     isDragging = true;
   }, { passive: true });
 
-  sliderElement.addEventListener("touchmove", function(e) {
-    if (!isDragging) return;
-    var deltaX = e.touches[0].clientX - startX;
-
-    sliderElement.scrollLeft -= deltaX; // scrolla sull'asse X
-    startX = e.touches[0].clientX;
-    e.preventDefault(); // blocca scroll verticale
-  }, { passive: false });
+sliderElement.addEventListener("touchmove", function(e) {
+  if (!isDragging) return;
+  var deltaX = e.touches[0].clientX - startX;
+  sliderElement.scrollLeft -= deltaX;
+  startX = e.touches[0].clientX;
+  e.preventDefault(); // 🔥 blocca scroll verticale durante il drag
+}, { passive: false });
 
   sliderElement.addEventListener("touchend", function() {
     isDragging = false;
