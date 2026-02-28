@@ -572,22 +572,31 @@ document.querySelector(".slider-button-Volume3-interni-e-scenari-mobile.prev").a
 (function() {
   var sliderElement = document.querySelector(".slides-Volume3-interni-e-scenari-mobile");
   var startX = 0;
+  var scrollStart = 0;
   var isDragging = false;
 
   sliderElement.addEventListener("touchstart", function(e) {
     startX = e.touches[0].clientX;
+    scrollStart = sliderElement.scrollLeft;
     isDragging = true;
   }, { passive: true });
 
-sliderElement.addEventListener("touchmove", function(e) {
-  if (!isDragging) return;
-  var deltaX = e.touches[0].clientX - startX;
-  sliderElement.scrollLeft -= deltaX;
-  startX = e.touches[0].clientX;
-  e.preventDefault(); // 🔥 blocca scroll verticale durante il drag
-}, { passive: false });
+  sliderElement.addEventListener("touchmove", function(e) {
+    if (!isDragging) return;
+    var deltaX = startX - e.touches[0].clientX;
+    sliderElement.scrollLeft = scrollStart + deltaX;
+  }, { passive: true });
 
   sliderElement.addEventListener("touchend", function() {
+    // Calcola l'indice della slide più vicina
+    var slides = Array.from(sliderElement.children);
+    var closestIndex = slides.reduce((closest, slide, i) => {
+      var offset = Math.abs(slide.offsetLeft - sliderElement.scrollLeft);
+      return offset < closest.offset ? { index: i, offset: offset } : closest;
+    }, { index: 0, offset: Infinity }).index;
+
+    slideIndex = closestIndex;
+    moveToSlide(slideIndex);
     isDragging = false;
   });
 })();
