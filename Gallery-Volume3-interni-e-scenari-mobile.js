@@ -61,7 +61,6 @@
     .slides-Volume3-interni-e-scenari-mobile {
       display: flex;
       flex-wrap: nowrap; /* Impedisce il wrapping degli elementi */
-      transition: transform 0.3s ease-in-out;
     }
     .slide-Volume3-interni-e-scenari-mobile {
       flex: 0 0 100%;
@@ -307,6 +306,10 @@
     .slides-Volume3-interni-e-scenari-mobile {
     touch-action: pan-y;
   }
+
+  .slides-Volume3-interni-e-scenari-mobile {
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
 
     /* Media query: visualizza solo su mobile (<= 1280px) */
     @media screen and (min-width: 1280px) {
@@ -562,16 +565,16 @@ document.querySelector(".slider-button-Volume3-interni-e-scenari-mobile.prev").a
     isHorizontalSwipe = false;
   }, { passive: true });
 
-  sliderElement.addEventListener("touchmove", function(e) {
-    var deltaX = e.touches[0].clientX - startX;
-    var deltaY = e.touches[0].clientY - startY;
+sliderElement.addEventListener("touchmove", function(e) {
+  var deltaX = e.touches[0].clientX - startX;
+  var deltaY = e.touches[0].clientY - startY;
 
-    // Se il movimento è più orizzontale che verticale
-    if (Math.abs(deltaX) > Math.abs(deltaY)) {
-      isHorizontalSwipe = true;
-      e.preventDefault(); // blocca scroll verticale SOLO in questo caso
-    }
-  }, { passive: false });
+  // blocca lo scroll SOLO se lo swipe è decisamente orizzontale
+  if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 10) {
+    isHorizontalSwipe = true;
+    e.preventDefault(); 
+  }
+}, { passive: false });
 
 sliderElement.addEventListener("touchend", function(e) {
   if (!isHorizontalSwipe) return;
