@@ -70,9 +70,6 @@
       display: flex;
       justify-content: center;
       align-items: center;
-    }
-    .slide-Volume3-interni-e-scenari-mobile {
-      flex: 0 0 100%;
       margin-right: 10px;
     }
 
@@ -88,9 +85,10 @@
   object-fit: contain;
   border-radius: 2%;
   cursor: pointer;
+  transition: transform 0.6s cubic-bezier(0.25,1,0.5,1);
 }
     .product-image-Volume3-interni-e-scenari-mobile:hover {
-      transform: scale(1.0);
+      transform: scale(1.02);
     }
     /* Pulsanti per lo slider */
     .slider-buttons-Volume3-interni-e-scenari-mobile {
