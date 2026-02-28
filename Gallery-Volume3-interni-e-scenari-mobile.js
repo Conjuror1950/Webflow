@@ -81,7 +81,7 @@
 }
 
 .slide-Volume3-interni-e-scenari-mobile {
-  flex: 0 0 85%; /* 👈 NON più 100% */
+  flex: 0 0 90%; /* 👈 NON più 100% */
   scroll-snap-align: center;
   display: flex;
   justify-content: center;
