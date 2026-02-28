@@ -32,7 +32,8 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      max-width: 300px;
+      max-width: 400px;
+      max-height: 400px;
       margin: 0 auto;
       width: 100%;
     }
