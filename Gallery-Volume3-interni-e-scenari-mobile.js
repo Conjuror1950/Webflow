@@ -242,28 +242,46 @@ let startScrollLeft = 0;
 
 let startTouchX = 0;
 
+let isScrolling = false;
+let startTouchX = 0;
+
+// Blocca aggiornamenti automatici durante il touch
 slidesContainer.addEventListener("touchstart", (e) => {
   startTouchX = e.touches[0].clientX;
+  isScrolling = true; // blocca temporaneamente scroll automatico
 });
 
 slidesContainer.addEventListener("touchend", (e) => {
-  if (isScrolling) return;
+  let diffX = e.changedTouches[0].clientX - startTouchX;
 
-  const endTouchX = e.changedTouches[0].clientX;
-  const diff = endTouchX - startTouchX;
-
-  // se lo swipe supera 20px consideralo valido
-  if (diff < -20) {
+  if (diffX < -10) {
     // swipe verso sinistra → slide successiva
     slideIndex = Math.min(slideIndex + 1, images.length - 1);
-    goToSlide(slideIndex);
-  } else if (diff > 20) {
+  } else if (diffX > 10) {
     // swipe verso destra → slide precedente
     slideIndex = Math.max(slideIndex - 1, 0);
-    goToSlide(slideIndex);
   }
+
+  goToSlide(slideIndex);
+
+  // sblocca dopo che l'animazione è finita
+  setTimeout(() => {
+    isScrolling = false;
+  }, 400);
 });
 
+// Listener scroll per aggiornare indicatori solo quando non in swipe
+slidesContainer.addEventListener("scroll", () => {
+  if (isScrolling) return; // ignora scroll durante swipe
+
+  const slideWidth = slidesContainer.children[0].offsetWidth + 16; // gap
+  const newIndex = Math.round(slidesContainer.scrollLeft / slideWidth);
+
+  if (newIndex !== slideIndex) {
+    slideIndex = newIndex;
+    updateIndicators();
+  }
+});
 function goToSlide(index) {
   isScrolling = true;
 
