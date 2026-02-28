@@ -279,6 +279,18 @@ function goToSlide(index) {
   }, 400);
 }
 
+    slidesContainer.addEventListener("scroll", () => {
+  if (isScrolling) return;
+
+  const slideWidth = slidesContainer.children[0].offsetWidth + 16;
+  const newIndex = Math.round(slidesContainer.scrollLeft / slideWidth);
+
+  if (newIndex !== slideIndex) {
+    slideIndex = newIndex;
+    updateIndicators();
+  }
+});
+
     // Download singolo
     document.getElementById("download-single-apple").addEventListener("click", ()=>{
       var a=document.createElement("a");
