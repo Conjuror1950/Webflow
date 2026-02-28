@@ -74,7 +74,7 @@
     .slide-Volume3-interni-e-scenari-mobilee img {
       width: 100%;
       height: auto;
-      border-radius: 6px;
+      border-radius: 0px;
       object-fit: contain;
       transition: none;
     }
