@@ -570,33 +570,39 @@ document.querySelector(".slider-button-Volume3-interni-e-scenari-mobile.prev").a
     // Swipe touch per mobile (con aggiornamento contatore)
     // --------------------------
 (function() {
-  var sliderElement = document.querySelector(".slides-Volume3-interni-e-scenari-mobile");
+  var slider = document.querySelector(".slides-Volume3-interni-e-scenari-mobile");
   var startX = 0;
-  var scrollStart = 0;
+  var startY = 0;
   var isDragging = false;
+  var threshold = 50; // distanza minima per cambiare slide
 
-  sliderElement.addEventListener("touchstart", function(e) {
+  slider.addEventListener("touchstart", function(e) {
     startX = e.touches[0].clientX;
-    scrollStart = sliderElement.scrollLeft;
+    startY = e.touches[0].clientY;
     isDragging = true;
   }, { passive: true });
 
-  sliderElement.addEventListener("touchmove", function(e) {
+  slider.addEventListener("touchmove", function(e) {
     if (!isDragging) return;
-    var deltaX = startX - e.touches[0].clientX;
-    sliderElement.scrollLeft = scrollStart + deltaX;
-  }, { passive: true });
+    var deltaX = e.touches[0].clientX - startX;
+    var deltaY = e.touches[0].clientY - startY;
 
-  sliderElement.addEventListener("touchend", function() {
-    // Calcola l'indice della slide più vicina
-    var slides = Array.from(sliderElement.children);
-    var closestIndex = slides.reduce((closest, slide, i) => {
-      var offset = Math.abs(slide.offsetLeft - sliderElement.scrollLeft);
-      return offset < closest.offset ? { index: i, offset: offset } : closest;
-    }, { index: 0, offset: Infinity }).index;
+    // Blocca il movimento verticale se il deltaX è maggiore
+    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+      e.preventDefault();
+    }
+  }, { passive: false });
 
-    slideIndex = closestIndex;
-    moveToSlide(slideIndex);
+  slider.addEventListener("touchend", function(e) {
+    if (!isDragging) return;
+    var endX = e.changedTouches[0].clientX;
+    var deltaX = endX - startX;
+
+    if (deltaX < -threshold && slideIndex < images.length - 1) {
+      moveToSlide(slideIndex + 1);
+    } else if (deltaX > threshold && slideIndex > 0) {
+      moveToSlide(slideIndex - 1);
+    }
     isDragging = false;
   });
 })();
