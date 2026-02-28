@@ -23,15 +23,14 @@
       overflow-y: auto;
     }
 
-    .wrapper-slider-apple-style {
-      width: 100%;
-      max-width: 1024px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      position: relative;
-    }
+.wrapper-slider-apple-style {
+  width: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+}
 
     .slider-apple-style {
       position: relative;
