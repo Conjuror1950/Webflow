@@ -58,46 +58,38 @@
       background: #f7f7f7;
       border-radius: 0px;
     }
-    .slides-Volume3-interni-e-scenari-mobile {
-      display: flex;
-      flex-wrap: nowrap; /* Impedisce il wrapping degli elementi */
-    }
-    .slide-Volume3-interni-e-scenari-mobile {
-      flex: 0 0 100%;
-      flex-shrink: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+
 .slides-Volume3-interni-e-scenari-mobile {
   display: flex;
   flex-wrap: nowrap;
-  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-  padding-left: 10px; /* piccolo offset per la prima slide */
   overflow: visible;   /* necessario per vedere le slide sovrapposte */
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  padding-left: 10px;  /* piccolo offset per la prima slide */
 }
 
 .slide-Volume3-interni-e-scenari-mobile {
-  flex: 0 0 85%;        /* larghezza inferiore al 100% per lasciare spazio alle slide successive */
-  margin-right: -20%;   /* sovrapposizione negativa */
+  flex: 0 0 85%;        /* larghezza inferiore al 100% */
+  margin-right: -20%;   /* sovrapposizione */
   transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), scale 0.5s;
+  z-index: 1;           /* tutte le slide dietro */
+  position: relative;
+}
+
+.slide-Volume3-interni-e-scenari-mobile.active {
+  z-index: 2;           /* slide attiva davanti */
 }
 
 .slide-Volume3-interni-e-scenari-mobile img {
-  border-radius: 2%;
   width: 100%;
   height: auto;
   object-fit: cover;
+  border-radius: 2%;
   transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .slide-Volume3-interni-e-scenari-mobile.active img {
-  transform: scale(1.0); /* zoom principale */
+  transform: scale(1.0);
 }
-
-    .slide-Volume3-interni-e-scenari-mobile:last-child {
-      margin-right: 0;
-    }
     
     .product-image-Volume3-interni-e-scenari-mobile {
     width: 100%;
@@ -486,19 +478,19 @@
     var slideIndex = 0;
     
     // Crea le slide dinamicamente
-    function createSlides() {
-      var slidesContainer = document.querySelector(".slides-Volume3-interni-e-scenari-mobile");
-      images.forEach(function(img, index) {
-        var slide = document.createElement("div");
-        slide.className = "slide-Volume3-interni-e-scenari-mobile";
-        var imageEl = document.createElement("img");
-        imageEl.src = img.webp;
-        imageEl.alt = "Image " + (index + 1);
-        imageEl.className = "product-image-Volume3-interni-e-scenari-mobile";
-        slide.appendChild(imageEl);
-        slidesContainer.appendChild(slide);
-      });
-    }
+function createSlides() {
+  var slidesContainer = document.querySelector(".slides-Volume3-interni-e-scenari-mobile");
+  images.forEach(function(img, index) {
+    var slide = document.createElement("div");
+    slide.className = "slide-Volume3-interni-e-scenari-mobile" + (index === 0 ? " active" : "");
+    var imageEl = document.createElement("img");
+    imageEl.src = img.webp;
+    imageEl.alt = "Image " + (index + 1);
+    imageEl.className = "product-image-Volume3-interni-e-scenari-mobile";
+    slide.appendChild(imageEl);
+    slidesContainer.appendChild(slide);
+  });
+}
     
     // Crea gli indicatori
     function createIndicators() {
@@ -536,17 +528,18 @@
 function moveToSlide(index) {
   slideIndex = index;
   var slides = document.querySelectorAll(".slide-Volume3-interni-e-scenari-mobile");
+
   slides.forEach((slide, i) => {
     slide.classList.toggle("active", i === slideIndex);
   });
 
-  var slide = slides[0]; // misura il primo slide
-  var style = window.getComputedStyle(slide);
-  var marginRight = parseFloat(style.marginRight);
-  var slideWidth = slide.offsetWidth + marginRight;
+  var slidesContainer = document.querySelector(".slides-Volume3-interni-e-scenari-mobile");
 
-  document.querySelector(".slides-Volume3-interni-e-scenari-mobile")
-    .style.transform = "translateX(-" + (slideIndex * slideWidth) + "px)";
+  // Calcola la larghezza reale della slide (solo offsetWidth)
+  var slideWidth = slides[0].offsetWidth;
+
+  // Trasforma usando solo la larghezza della slide, margin negativo incluso nel CSS
+  slidesContainer.style.transform = "translateX(-" + (slideIndex * slideWidth) + "px)";
 
   updateIndicators();
   updateSliderButtons();
