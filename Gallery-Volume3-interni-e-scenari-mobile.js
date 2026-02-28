@@ -513,19 +513,42 @@ function updateIndicators() {
 
   var start = Math.max(0, slideIndex - Math.floor(maxVisible / 2));
   var end = Math.min(total - 1, start + maxVisible - 1);
-  start = Math.max(0, end - maxVisible + 1); // assicura che ci siano sempre maxVisible indicatori
+  start = Math.max(0, end - maxVisible + 1);
 
   dots.forEach((dot, i) => {
     dot.classList.remove("active", "small", "hidden");
 
-    if (i < start || i > end) {
+    // Prima e ultima slide sempre visibili
+    if ((i === 0 || i === total - 1) || (i >= start && i <= end)) {
+      if (i === slideIndex) dot.classList.add("active");
+      if (i === start || i === end) dot.classList.add("small");
+    } else {
       dot.classList.add("hidden");
-      return;
     }
-
-    if (i === slideIndex) dot.classList.add("active");
-    if (i === start || i === end) dot.classList.add("small");
   });
+}
+
+function moveToSlide(index) {
+  slideIndex = index;
+  var slides = document.querySelectorAll(".slide-Volume3-interni-e-scenari-mobile");
+  if (!slides.length) return;
+
+  var totalShift = 0;
+  for (var i = 0; i < slideIndex; i++) {
+    var slideWidth = slides[i].offsetWidth;
+    var marginRight = parseInt(getComputedStyle(slides[i]).marginRight) || 0;
+    totalShift += slideWidth + marginRight;
+  }
+
+  // Correzione ultima slide: se siamo all'ultima, assicura che non si fermi a metà
+  if (slideIndex === slides.length - 1) {
+    totalShift = slides[0].parentElement.scrollWidth - slides[slideIndex].offsetWidth;
+  }
+
+  document.querySelector(".slides-Volume3-interni-e-scenari-mobile").style.transform = "translateX(-" + totalShift + "px)";
+  updateIndicators();
+  updateSliderButtons();
+  updateSlideCounter();
 }
 
   // ---------- AGGIORNA CONTATORE ----------
