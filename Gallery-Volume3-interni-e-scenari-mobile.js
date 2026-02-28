@@ -85,7 +85,7 @@
       bottom: 0px;
       justify-content: center;
       gap: 8px;
-      padding: 12px 0;
+      padding: 6px 0 2px 0;
     }
 
     .indicator-Volume3-interni-e-scenari-mobile {
