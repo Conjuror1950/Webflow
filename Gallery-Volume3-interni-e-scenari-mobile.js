@@ -81,25 +81,23 @@
 
     /* Indicatori delle slide */
     .slider-indicators-Volume3-interni-e-scenari-mobile {
-      position: relative;
-      bottom: 0px;
-      left: 50%;
-      transform: translateX(-50%);
       display: flex;
-      gap: 10px;
-      z-index: 2;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 0;
     }
 
     .indicator-Volume3-interni-e-scenari-mobile {
-      width: 7.5px;
-      height: 7.5px;
-      background: #86868b;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
-      cursor: pointer;
+      background: #ccc;
       transition: background 0.3s;
+      cursor: pointer;
     }
+
     .indicator-Volume3-interni-e-scenari-mobile.active {
-      background: #1d1d1d;
+      background: #000;
     }
 
     /* Dettagli download */
