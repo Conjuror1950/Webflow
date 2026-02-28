@@ -64,13 +64,13 @@
   display: flex;
   gap: 16px;
   overflow-x: auto;
-  overflow-y: hidden; /* 🔥 blocca scroll verticale */
+  overflow-y: hidden; 
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   padding-left: 20px;
   padding-right: 0;
-  touch-action: pan-x; /* 🔥 prefer pan X per swipe */
+  touch-action: pan-x; /* obbliga swipe orizzontale, blocca verticale */
 }
 
 .slides-Volume3-interni-e-scenari-mobile::-webkit-scrollbar {
@@ -574,7 +574,7 @@ document.querySelector(".slider-button-Volume3-interni-e-scenari-mobile.prev").a
   var startX = 0;
   var startY = 0;
   var isDragging = false;
-  var threshold = 50; // distanza minima per cambiare slide
+  var threshold = 50;
 
   slider.addEventListener("touchstart", function(e) {
     startX = e.touches[0].clientX;
@@ -587,9 +587,12 @@ document.querySelector(".slider-button-Volume3-interni-e-scenari-mobile.prev").a
     var deltaX = e.touches[0].clientX - startX;
     var deltaY = e.touches[0].clientY - startY;
 
-    // Blocca il movimento verticale se il deltaX è maggiore
+    // Blocca sempre lo scroll verticale
     if (Math.abs(deltaX) > Math.abs(deltaY)) {
-      e.preventDefault();
+      e.preventDefault(); // swipe orizzontale
+    } else {
+      // Piccoli scroll verticali vengono ignorati
+      e.stopPropagation();
     }
   }, { passive: false });
 
