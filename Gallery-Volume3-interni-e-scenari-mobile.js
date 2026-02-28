@@ -42,15 +42,19 @@
       padding-left: 20px; /* solo padding a sinistra */
     }
 
-    .slides-apple-style {
-      display: flex;
-      gap: 16px;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      -webkit-overflow-scrolling: touch;
-      padding: 0;
-    }
+.slides-apple-style {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  padding-left: 20px; /* solo padding a sinistra per default */
+}
+
+.slides-apple-style .slide-apple-style:last-child {
+  margin-right: 20px; /* padding a destra solo per l’ultima slide */
+}
 
     .slides-apple-style::-webkit-scrollbar {
       display: none;
@@ -78,9 +82,9 @@
     /* Indicatori puntini */
     .slider-indicators-apple-style {
       display: flex;
-      justify-content: flex-start;
+      justify-content: center;
       gap: 8px;
-      padding-left: 20px; /* allineati al padding delle slide */
+      padding: 12px 0;
     }
 
     .indicator-apple-style {
@@ -233,6 +237,20 @@
         dot.classList.toggle("active", idx === slideIndex);
       });
     }
+
+    var slidesContainer = document.querySelector(".slides-apple-style");
+var indicators = document.querySelectorAll(".indicator-apple-style");
+
+slidesContainer.addEventListener("scroll", () => {
+  // trova la slide più vicina allo scroll attuale
+  let scrollLeft = slidesContainer.scrollLeft;
+  let slideWidth = slidesContainer.children[0].offsetWidth + 16; // slide + gap
+  let currentIndex = Math.round(scrollLeft / slideWidth);
+  
+  indicators.forEach((dot, idx) => {
+    dot.classList.toggle("active", idx === currentIndex);
+  });
+});
 
     // Download singolo
     document.getElementById("download-single-apple").addEventListener("click", ()=>{
