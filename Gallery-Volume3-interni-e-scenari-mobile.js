@@ -81,7 +81,8 @@
 
     /* Indicatori delle slide */
     .slider-indicators-Volume3-interni-e-scenari-mobile {
-      display: flex;
+      display: relative;
+      bottom: 0px;
       justify-content: center;
       gap: 8px;
       padding: 12px 0;
@@ -91,13 +92,13 @@
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: #ccc;
+      background: #86868b;
       transition: background 0.3s;
       cursor: pointer;
     }
 
     .indicator-Volume3-interni-e-scenari-mobile.active {
-      background: #000;
+      background: #1d1d1d;
     }
 
     /* Dettagli download */
