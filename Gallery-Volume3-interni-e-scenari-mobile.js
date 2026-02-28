@@ -1,7 +1,9 @@
+// slider-apple-style.js
 (function() {
+  // ===== Funzione per aggiungere CSS =====
   function addStyle(cssText) {
-    var head = document.head || document.getElementsByTagName("head")[0];
-    var style = document.createElement("style");
+    const head = document.head || document.getElementsByTagName("head")[0];
+    const style = document.createElement("style");
     style.type = "text/css";
     if (style.styleSheet) {
       style.styleSheet.cssText = cssText;
@@ -11,8 +13,8 @@
     head.appendChild(style);
   }
 
-  // CSS aggiornato
-  var galleryCSS = `
+  // ===== CSS Apple Style =====
+  const galleryCSS = `
     @import url("https://cdn.apple.com/sf-pro/SF-Pro-Display-Regular.woff2") format("woff2");
 
     body {
@@ -41,38 +43,41 @@
       align-items: center;
     }
 
-.slides-apple-style {
-  display: flex;
-  gap: 16px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-padding-left: 20px;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-}
+    .slides-apple-style {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-padding-left: 20px;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+    }
 
-.slides-apple-style::-webkit-scrollbar {
-  display: none;
-}
+    .slides-apple-style::-webkit-scrollbar {
+      display: none;
+    }
 
-.slides-apple-style .slide-apple-style:last-child {
-  margin-right: 20px;
-}
+    .slide-apple-style {
+      flex: 0 0 80%;
+      scroll-snap-align: start;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+    }
 
-.slide-apple-style {
-  flex: 0 0 80%;
-  scroll-snap-align: start;
-  border-radius: 16px;
-  overflow: hidden;
-}
+    .slide-apple-style img {
+      width: 100%;
+      display: block;
+      border-radius: 12px;
+    }
 
-.slide-apple-style img {
-  width: 100%;
-  display: block;
-  border-radius: 16px;
-}
+    .slides-apple-style .slide-apple-style:last-child {
+      margin-right: 20px;
+    }
 
-    /* Indicatori puntini */
     .slider-indicators-apple-style {
       display: flex;
       justify-content: center;
@@ -93,7 +98,6 @@
       background: #000;
     }
 
-    /* Dettagli download */
     .details-apple-style {
       display: flex;
       flex-direction: column;
@@ -106,10 +110,10 @@
       border-radius: 12px;
       padding: 14px 20px;
       cursor: pointer;
-      transition: background 0.2s, box-shadow 0.2s;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      transition: background 0.2s, box-shadow 0.2s;
     }
 
     .option-apple-style:hover {
@@ -124,8 +128,8 @@
   `;
   addStyle(galleryCSS);
 
-  // HTML aggiornato (senza pulsanti)
-  var galleryHTML = `
+  // ===== HTML gallery =====
+  const galleryHTML = `
 <div class="wrapper-slider-apple-style">
   <div class="slider-apple-style">
     <div class="slides-apple-style"></div>
@@ -145,11 +149,11 @@
 `;
 
   function injectGallery() {
-    var container = document.getElementById("Volume3-interni-e-scenari-container-mobile");
+    const container = document.getElementById("Volume3-interni-e-scenari-container-mobile");
     if (container) {
       container.innerHTML = galleryHTML;
     } else {
-      var fallback = document.createElement("div");
+      const fallback = document.createElement("div");
       fallback.innerHTML = galleryHTML;
       document.body.appendChild(fallback);
       console.warn("Elemento non trovato, gallery iniettata in body.");
@@ -157,154 +161,118 @@
   }
   injectGallery();
 
+  // ===== Funzione principale gallery =====
   function initGallery() {
-    var images = [
-      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/unit-photos/item-01/photo-030101/Collection_Photo_unselect_030101.webp",
-       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/download-photos/item-01/photo-030101/Collection_Photo_select_030101.jpg",
-       name: "Collection_Photo_select_030101.jpg"},
-
-      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/unit-photos/item-01/photo-030102/Collection_Photo_unselect_030102.webp",
-       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/download-photos/item-01/photo-030102/Collection_Photo_select_030102.jpg",
-       name: "Collection_Photo_select_030102.jpg"},
-
-      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/unit-photos/item-01/photo-030103/Collection_Photo_unselect_030103.webp",
-       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/download-photos/item-01/photo-030103/Collection_Photo_select_030103.jpg",
-       name: "Collection_Photo_select_030103.jpg"},
-
-      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/unit-photos/item-01/photo-030104/Collection_Photo_unselect_030104.webp",
-       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/download-photos/item-01/photo-030104/Collection_Photo_select_030104.jpg",
-       name: "Collection_Photo_select_030104.jpg"},
-
-      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/unit-photos/item-01/photo-030105/Collection_Photo_unselect_030105.webp",
-       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/download-photos/item-01/photo-030105/Collection_Photo_select_030105.jpg",
-       name: "Collection_Photo_select_030105.jpg"},
-
-      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/unit-photos/item-01/photo-030106/Collection_Photo_unselect_030106.webp",
-       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/download-photos/item-01/photo-030106/Collection_Photo_select_030106.jpg",
-       name: "Collection_Photo_select_030106.jpg"},
-
-      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/unit-photos/item-01/photo-030107/Collection_Photo_unselect_030107.webp",
-       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/download-photos/item-01/photo-030107/Collection_Photo_select_030107.jpg",
-       name: "Collection_Photo_select_030107.jpg"},
-
-      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/unit-photos/item-01/photo-030108/Collection_Photo_unselect_030108.webp",
-       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/download-photos/item-01/photo-030108/Collection_Photo_select_030108.jpg",
-       name: "Collection_Photo_select_030108.jpg"},
-
-      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/unit-photos/item-01/photo-030109/Collection_Photo_unselect_030109.webp",
-       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/download-photos/item-01/photo-030109/Collection_Photo_select_030109.jpg",
-       name: "Collection_Photo_select_030109.jpg"},
-
-      {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/unit-photos/item-01/photo-030110/Collection_Photo_unselect_030110.webp",
-       jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/download-photos/item-01/photo-030110/Collection_Photo_select_030110.jpg",
-       name: "Collection_Photo_select_030110.jpg"}
+    const images = [
+      {webp:"https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/unit-photos/item-01/photo-030101/Collection_Photo_unselect_030101.webp", jpg:"https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/download-photos/item-01/photo-030101/Collection_Photo_select_030101.jpg", name:"Collection_Photo_select_030101.jpg"},
+      {webp:"https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/unit-photos/item-01/photo-030102/Collection_Photo_unselect_030102.webp", jpg:"https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/download-photos/item-01/photo-030102/Collection_Photo_select_030102.jpg", name:"Collection_Photo_select_030102.jpg"},
+      {webp:"https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/unit-photos/item-01/photo-030103/Collection_Photo_unselect_030103.webp", jpg:"https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/download-photos/item-01/photo-030103/Collection_Photo_select_030103.jpg", name:"Collection_Photo_select_030103.jpg"},
+      {webp:"https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/unit-photos/item-01/photo-030104/Collection_Photo_unselect_030104.webp", jpg:"https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/download-photos/item-01/photo-030104/Collection_Photo_select_030104.jpg", name:"Collection_Photo_select_030104.jpg"},
+      {webp:"https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/unit-photos/item-01/photo-030105/Collection_Photo_unselect_030105.webp", jpg:"https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/download-photos/item-01/photo-030105/Collection_Photo_select_030105.jpg", name:"Collection_Photo_select_030105.jpg"},
+      {webp:"https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/unit-photos/item-01/photo-030106/Collection_Photo_unselect_030106.webp", jpg:"https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/download-photos/item-01/photo-030106/Collection_Photo_select_030106.jpg", name:"Collection_Photo_select_030106.jpg"},
+      {webp:"https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/unit-photos/item-01/photo-030107/Collection_Photo_unselect_030107.webp", jpg:"https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/download-photos/item-01/photo-030107/Collection_Photo_select_030107.jpg", name:"Collection_Photo_select_030107.jpg"},
+      {webp:"https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/unit-photos/item-01/photo-030108/Collection_Photo_unselect_030108.webp", jpg:"https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/download-photos/item-01/photo-030108/Collection_Photo_select_030108.jpg", name:"Collection_Photo_select_030108.jpg"},
+      {webp:"https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/unit-photos/item-01/photo-030109/Collection_Photo_unselect_030109.webp", jpg:"https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/download-photos/item-01/photo-030109/Collection_Photo_select_030109.jpg", name:"Collection_Photo_select_030109.jpg"},
+      {webp:"https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/unit-photos/item-01/photo-030110/Collection_Photo_unselect_030110.webp", jpg:"https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/download-photos/item-01/photo-030110/Collection_Photo_select_030110.jpg", name:"Collection_Photo_select_030110.jpg"}
     ];
 
-    var slidesContainer = document.querySelector(".slides-apple-style");
-    var indicatorsContainer = document.querySelector(".slider-indicators-apple-style");
-    var slideIndex = 0;
+    const slidesContainer = document.querySelector(".slides-apple-style");
+    const indicatorsContainer = document.querySelector(".slider-indicators-apple-style");
 
+    let slideIndex = 0;
+    let isScrolling = false;
+
+    // Inserimento slides e indicatori
     images.forEach((img, idx) => {
-      // slide
-      var slide = document.createElement("div");
+      const slide = document.createElement("div");
       slide.className = "slide-apple-style";
-      var imageEl = document.createElement("img");
+      const imageEl = document.createElement("img");
       imageEl.src = img.webp;
       imageEl.alt = img.name;
       slide.appendChild(imageEl);
       slidesContainer.appendChild(slide);
 
-      // indicator
-      var dot = document.createElement("div");
+      const dot = document.createElement("div");
       dot.className = "indicator-apple-style" + (idx === 0 ? " active" : "");
-dot.addEventListener("click", () => {
-  slideIndex = idx;
-  goToSlide(slideIndex);
-});
+      dot.addEventListener("click", () => {
+        goToSlide(idx);
+      });
       indicatorsContainer.appendChild(dot);
     });
 
+    // ===== Funzioni =====
     function updateIndicators() {
       document.querySelectorAll(".indicator-apple-style").forEach((dot, idx) => {
         dot.classList.toggle("active", idx === slideIndex);
       });
     }
 
-let isScrolling = false;
-let startScrollLeft = 0;
-
-let slideIndex = 0;
-let isScrolling = false;
-
-function getSlideWidth() {
-  return slidesContainer.children[0].offsetWidth + 16;
-}
-
-function goToSlide(index) {
-  const slideWidth = getSlideWidth();
-
-  slideIndex = Math.max(0, Math.min(index, images.length - 1));
-
-  slidesContainer.scrollTo({
-    left: slideWidth * slideIndex,
-    behavior: "smooth"
-  });
-
-  updateIndicators();
-}
-
-// 🔥 Sync automatico con scroll reale
-slidesContainer.addEventListener("scroll", () => {
-  if (isScrolling) return;
-
-  const slideWidth = getSlideWidth();
-  const newIndex = Math.round(slidesContainer.scrollLeft / slideWidth);
-
-  if (newIndex !== slideIndex) {
-    slideIndex = newIndex;
-    updateIndicators();
-  }
-});
-
-    let startX = 0;
-let isDragging = false;
-
-slidesContainer.addEventListener("touchstart", (e) => {
-  startX = e.touches[0].clientX;
-  isDragging = true;
-});
-
-slidesContainer.addEventListener("touchend", (e) => {
-  if (!isDragging) return;
-
-  const endX = e.changedTouches[0].clientX;
-  const diff = startX - endX;
-
-  if (Math.abs(diff) > 40) {
-    if (diff > 0) {
-      goToSlide(slideIndex + 1);
-    } else {
-      goToSlide(slideIndex - 1);
+    function getSlideWidth() {
+      return slidesContainer.children[0].offsetWidth + 16;
     }
-  }
 
-  isDragging = false;
-});
+    function goToSlide(index) {
+      slideIndex = Math.max(0, Math.min(index, images.length - 1));
+      const slideWidth = getSlideWidth();
+      isScrolling = true;
 
-    // Download singolo
-    document.getElementById("download-single-apple").addEventListener("click", ()=>{
-      var a=document.createElement("a");
-      a.href=images[slideIndex].jpg;
-      a.download=images[slideIndex].name;
-      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      slidesContainer.scrollTo({
+        left: slideWidth * slideIndex,
+        behavior: "smooth"
+      });
+
+      updateIndicators();
+      setTimeout(() => { isScrolling = false; }, 400);
+    }
+
+    // Swipe touch
+    let startX = 0;
+    let isDragging = false;
+
+    slidesContainer.addEventListener("touchstart", (e) => {
+      startX = e.touches[0].clientX;
+      isDragging = true;
     });
 
-    // Download ZIP
+    slidesContainer.addEventListener("touchend", (e) => {
+      if (!isDragging) return;
+      const endX = e.changedTouches[0].clientX;
+      const diff = startX - endX;
+      if (Math.abs(diff) > 40) {
+        if (diff > 0) goToSlide(slideIndex + 1);
+        else goToSlide(slideIndex - 1);
+      }
+      isDragging = false;
+    });
+
+    // Sync scroll reale con indicatori
+    slidesContainer.addEventListener("scroll", () => {
+      if (isScrolling) return;
+      const slideWidth = getSlideWidth();
+      const newIndex = Math.round(slidesContainer.scrollLeft / slideWidth);
+      if (newIndex !== slideIndex) {
+        slideIndex = newIndex;
+        updateIndicators();
+      }
+    });
+
+    // ===== Download =====
+    document.getElementById("download-single-apple").addEventListener("click", ()=>{
+      const a = document.createElement("a");
+      a.href = images[slideIndex].jpg;
+      a.download = images[slideIndex].name;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    });
+
     document.getElementById("download-all-apple").addEventListener("click", ()=>{
-      var a=document.createElement("a");
-      a.href="https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/zip-photos/item-01/Collection_Photos_0301.zip";
-      a.download="Collection_Photos_0301.zip";
-      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      const a = document.createElement("a");
+      a.href = "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/zip-photos/item-01/Collection_Photos_0301.zip";
+      a.download = "Collection_Photos_0301.zip";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
     });
   }
 
