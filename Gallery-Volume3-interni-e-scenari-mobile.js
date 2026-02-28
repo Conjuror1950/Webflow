@@ -250,12 +250,13 @@ slidesContainer.addEventListener("touchend", () => {
   let endScrollLeft = slidesContainer.scrollLeft;
   let diff = endScrollLeft - startScrollLeft;
 
-  if (Math.abs(diff) > 30) { // soglia minima swipe
-    if (diff > 0 && slideIndex < images.length - 1) {
-      slideIndex += 1;
-    } else if (diff < 0 && slideIndex > 0) {
-      slideIndex -= 1;
-    }
+  // Swipe a destra -> successiva, swipe a sinistra -> precedente
+  if (diff > 0) {
+    // Destra, ma non superare ultima slide
+    slideIndex = Math.min(slideIndex + 1, images.length - 1);
+  } else if (diff < 0) {
+    // Sinistra, ma non superare prima slide
+    slideIndex = Math.max(slideIndex - 1, 0);
   }
 
   goToSlide(slideIndex);
