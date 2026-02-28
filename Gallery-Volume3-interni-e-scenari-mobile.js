@@ -50,8 +50,8 @@
     /* --- SLIDER --- */
 .slider-Volume3-interni-e-scenari-mobile {
   position: relative;
-  width: 90%;
-  height: auto;
+  width: 100%;
+  max-height: 420px; /* 👈 regola qui */
   overflow: hidden;
   display: flex;
   justify-content: center;
