@@ -23,7 +23,7 @@
       overflow-y: auto;
     }
 
-    .wrapper-slider-apple-style {
+    .wrapper-slider-Volume3-interni-e-scenari-mobile {
       width: 100%;
       max-width: 1024px;
       margin: 0 auto;
@@ -33,7 +33,7 @@
       position: relative;
     }
 
-    .slider-apple-style {
+    .slider-Volume3-interni-e-scenari-mobile {
       position: relative;
       width: 100%;
       overflow: hidden;
@@ -42,7 +42,7 @@
       padding-left: 20px; /* solo padding a sinistra */
     }
 
-.slides-apple-style {
+.slides-Volume3-interni-e-scenari-mobile {
   display: flex;
   gap: 16px;
   overflow-x: auto;
@@ -52,15 +52,15 @@
   padding-left: 20px; /* solo padding a sinistra per default */
 }
 
-.slides-apple-style .slide-apple-style:last-child {
+.slides-Volume3-interni-e-scenari-mobile .slide-Volume3-interni-e-scenari-mobile:last-child {
   margin-right: 20px; /* padding a destra solo per l’ultima slide */
 }
 
-    .slides-apple-style::-webkit-scrollbar {
+    .slides-Volume3-interni-e-scenari-mobile::-webkit-scrollbar {
       display: none;
     }
 
-    .slide-apple-style {
+    .slide-Volume3-interni-e-scenari-mobile {
       flex: 0 0 70%;
       scroll-snap-align: start;
       display: flex;
@@ -71,7 +71,7 @@
       transition: none;
     }
 
-    .slide-apple-style img {
+    .slide-Volume3-interni-e-scenari-mobilee img {
       width: 100%;
       height: auto;
       border-radius: 12px;
@@ -80,14 +80,14 @@
     }
 
     /* Indicatori puntini */
-    .slider-indicators-apple-style {
+    .slider-indicators-Volume3-interni-e-scenari-mobile {
       display: flex;
       justify-content: center;
       gap: 8px;
       padding: 12px 0;
     }
 
-    .indicator-apple-style {
+    .indicator-Volume3-interni-e-scenari-mobile {
       width: 8px;
       height: 8px;
       border-radius: 50%;
@@ -96,19 +96,19 @@
       cursor: pointer;
     }
 
-    .indicator-apple-style.active {
+    .indicator-Volume3-interni-e-scenari-mobile.active {
       background: #000;
     }
 
     /* Dettagli download */
-    .details-apple-style {
+    .details-Volume3-interni-e-scenari-mobile {
       display: flex;
       flex-direction: column;
       gap: 12px;
       padding: 0 40px;
     }
 
-    .option-apple-style {
+    .option-Volume3-interni-e-scenari-mobile {
       background: #f7f7f7;
       border-radius: 12px;
       padding: 14px 20px;
@@ -119,12 +119,12 @@
       align-items: center;
     }
 
-    .option-apple-style:hover {
+    .option-Volume3-interni-e-scenari-mobile:hover {
       background: #e0e0e0;
     }
 
     @media screen and (max-width: 768px) {
-      .slide-apple-style {
+      .slide-Volume3-interni-e-scenari-mobile {
         flex: 0 0 85%;
       }
     }
@@ -133,17 +133,17 @@
 
   // HTML aggiornato (senza pulsanti)
   var galleryHTML = `
-<div class="wrapper-slider-apple-style">
-  <div class="slider-apple-style">
-    <div class="slides-apple-style"></div>
+<div class="wrapper-slider-Volume3-interni-e-scenari-mobile">
+  <div class="slider-Volume3-interni-e-scenari-mobile">
+    <div class="slides-Volume3-interni-e-scenari-mobile"></div>
   </div>
-  <div class="slider-indicators-apple-style"></div>
-  <div class="details-apple-style">
-    <div class="option-apple-style" id="download-single-apple">
+  <div class="slider-indicators-Volume3-interni-e-scenari-mobile"></div>
+  <div class="details-Volume3-interni-e-scenari-mobile">
+    <div class="option-Volume3-interni-e-scenari-mobile" id="download-single-Volume3-interni-e-scenari-mobile">
       <span>Scarica immagine</span>
       <span>.jpg</span>
     </div>
-    <div class="option-apple-style" id="download-all-apple">
+    <div class="option-Volume3-interni-e-scenari-mobile" id="download-all-Volume3-interni-e-scenari-mobile">
       <span>Scarica tutto</span>
       <span>.zip</span>
     </div>
@@ -207,14 +207,14 @@
        name: "Collection_Photo_select_030110.jpg"}
     ];
 
-    var slidesContainer = document.querySelector(".slides-apple-style");
-    var indicatorsContainer = document.querySelector(".slider-indicators-apple-style");
+    var slidesContainer = document.querySelector(".slides-Volume3-interni-e-scenari-mobile");
+    var indicatorsContainer = document.querySelector(".slider-indicators-Volume3-interni-e-scenari-mobile");
     var slideIndex = 0;
 
     images.forEach((img, idx) => {
       // slide
       var slide = document.createElement("div");
-      slide.className = "slide-apple-style";
+      slide.className = "slide-Volume3-interni-e-scenari-mobile";
       var imageEl = document.createElement("img");
       imageEl.src = img.webp;
       imageEl.alt = img.name;
@@ -223,7 +223,7 @@
 
       // indicator
       var dot = document.createElement("div");
-      dot.className = "indicator-apple-style" + (idx === 0 ? " active" : "");
+      dot.className = "indicator-Volume3-interni-e-scenari-mobile" + (idx === 0 ? " active" : "");
 dot.addEventListener("click", () => {
   slideIndex = idx;
   goToSlide(slideIndex);
@@ -232,7 +232,7 @@ dot.addEventListener("click", () => {
     });
 
     function updateIndicators() {
-      document.querySelectorAll(".indicator-apple-style").forEach((dot, idx) => {
+      document.querySelectorAll(".indicator-Volume3-interni-e-scenari-mobile").forEach((dot, idx) => {
         dot.classList.toggle("active", idx === slideIndex);
       });
     }
@@ -289,7 +289,7 @@ function goToSlide(index) {
 });
 
     // Download singolo
-    document.getElementById("download-single-apple").addEventListener("click", ()=>{
+    document.getElementById("download-single-Volume3-interni-e-scenari-mobile").addEventListener("click", ()=>{
       var a=document.createElement("a");
       a.href=images[slideIndex].jpg;
       a.download=images[slideIndex].name;
@@ -297,7 +297,7 @@ function goToSlide(index) {
     });
 
     // Download ZIP
-    document.getElementById("download-all-apple").addEventListener("click", ()=>{
+    document.getElementById("download-all-Volume3-interni-e-scenari-mobile").addEventListener("click", ()=>{
       var a=document.createElement("a");
       a.href="https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/zip-photos/item-01/Collection_Photos_0301.zip";
       a.download="Collection_Photos_0301.zip";
