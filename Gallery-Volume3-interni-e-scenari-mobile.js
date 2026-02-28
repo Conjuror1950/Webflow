@@ -50,7 +50,7 @@
     /* --- SLIDER --- */
 .slider-Volume3-interni-e-scenari-mobile {
   position: relative;
-  height: 340px; /* 👈 più compatto */
+  height: 450px;
   padding: 0;
   overflow: hidden;
   display: flex;
@@ -81,12 +81,12 @@
     }
     
 .product-image-Volume3-interni-e-scenari-mobile {
-  max-width: 92%;
-  max-height: 92%;
+  max-width: 100%;
+  max-height: 100%;
   width: auto;
   height: auto;
   object-fit: contain;
-  border-radius: 12px;
+  border-radius: 2%;
   cursor: pointer;
 }
     .product-image-Volume3-interni-e-scenari-mobile:hover {
