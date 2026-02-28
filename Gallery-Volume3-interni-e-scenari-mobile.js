@@ -79,48 +79,123 @@
       transition: none;
     }
 
-    /* Indicatori puntini */
+    /* Indicatori delle slide */
     .slider-indicators-Volume3-interni-e-scenari-mobile {
+      position: relative;
+      bottom: 0px;
+      left: 50%;
+      transform: translateX(-50%);
       display: flex;
-      justify-content: center;
-      gap: 8px;
-      padding: 12px 0;
+      gap: 10px;
+      z-index: 2;
     }
 
     .indicator-Volume3-interni-e-scenari-mobile {
-      width: 8px;
-      height: 8px;
+      width: 7.5px;
+      height: 7.5px;
+      background: #86868b;
       border-radius: 50%;
-      background: #ccc;
-      transition: background 0.3s;
       cursor: pointer;
+      transition: background 0.3s;
     }
-
     .indicator-Volume3-interni-e-scenari-mobile.active {
-      background: #000;
+      background: #1d1d1d;
     }
 
     /* Dettagli download */
     .details-Volume3-interni-e-scenari-mobile {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      padding: 0 40px;
+      width: 45.5%;
+      text-align: left;
+      padding: 18px;
+      box-sizing: border-box;
     }
 
+    h1 {
+      font-family: "SF Pro Display", sans-serif !important;
+      font-size: 24px;
+      font-weight: 600;
+      color: black;
+    }
+    .option-button-Volume3-interni-e-scenari-mobile {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
     .option-Volume3-interni-e-scenari-mobile {
-      background: #f7f7f7;
+      background: white;
+      border: 0.8px solid #1d1d1d;
       border-radius: 12px;
       padding: 14px 20px;
       cursor: pointer;
-      transition: background 0.2s, box-shadow 0.2s;
+      transition: border 0.2s, box-shadow 0.2s;
+      text-align: left;
+      width: 250%;
+      position: relative;
+    }
+    .option-Volume3-interni-e-scenari-mobile:hover,
+    .option-Volume3-interni-e-scenari-mobile.selected {
+      border-color: #0071e3;
+    }
+    .option-main-Volume3-interni-e-scenari-mobile {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-
-    .option-Volume3-interni-e-scenari-mobile:hover {
-      background: #e0e0e0;
+    .option-title-Volume3-interni-e-scenari-mobile {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1d1d1f;
+    }
+    .option-side-Volume3-interni-e-scenari-mobile {
+      font-size: 13px;
+      color: #86868b;
+      margin-left: 10px;
+      white-space: nowrap;
+    }
+    .option-subtext-Volume3-interni-e-scenari-mobile {
+      font-size: 13px;
+      color: #86868b;
+      margin-top: 6px;
+    }
+    .info-box-Volume3-interni-e-scenari-mobile {
+      width: 250%;
+      background: #f7f7f7;
+      border-radius: 12px;
+      padding: 16px;
+      margin-top: 20px;
+      color: black;
+      box-sizing: border-box;
+    }
+    .additional-info-Volume3-interni-e-scenari-mobile {
+      width: 250%;
+      background: transparent;
+      border-radius: 12px;
+      padding: 16px;
+      margin-top: 20px;
+      color: black;
+      box-sizing: border-box;
+    }
+    .info-bold-Volume3-interni-e-scenari-mobile {
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+    .info-regular-Volume3-interni-e-scenari-mobile {
+      font-size: 13px;
+      line-height: 1.4;
+    }
+    .title-wrapper-Volume3-interni-e-scenari-mobile {
+      display: flex;
+      align-items: baseline;
+      gap: 5px;
+      flex-wrap: nowrap;
+      white-space: nowrap;
+    }
+    .subtitle-Volume3-interni-e-scenari-mobile {
+      font-family: "SF Pro Display", sans-serif !important;
+      font-size: 24px;
+      font-weight: 600;
+      color: #6e6e73;
     }
 
     /* Titoli sopra e sotto lo slider */
@@ -170,6 +245,7 @@
 
   // HTML aggiornato (senza pulsanti)
   var galleryHTML = `
+<!-- Title -->
 <div class="wrapper-slider-Volume3-interni-e-scenari-mobile">
   <div class="slider-title-top-Volume3-interni-e-scenari-mobile">
     <div class="title-wrapper-Volume3-interni-e-scenari-mobile">
@@ -177,18 +253,40 @@
       <span class="subtitle-Volume3-interni-e-scenari-mobile">Quale scegli?</span>
     </div>
   </div>
+
+  <!-- Slider -->
   <div class="slider-Volume3-interni-e-scenari-mobile">
     <div class="slides-Volume3-interni-e-scenari-mobile"></div>
   </div>
+
+  <!-- Details -->
   <div class="slider-indicators-Volume3-interni-e-scenari-mobile"></div>
   <div class="details-Volume3-interni-e-scenari-mobile">
-    <div class="option-Volume3-interni-e-scenari-mobile" id="download-single-Volume3-interni-e-scenari-mobile">
-      <span>Scarica immagine</span>
-      <span>.jpg</span>
-    </div>
-    <div class="option-Volume3-interni-e-scenari-mobile" id="download-all-Volume3-interni-e-scenari-mobile">
-      <span>Scarica tutto</span>
-      <span>.zip</span>
+    <div class="option-button-Volume3-interni-e-scenari-mobile">
+      <div class="option-Volume3-interni-e-scenari-mobile" id="download-single-Volume3-interni-e-scenari-mobile">
+        <div class="option-main-Volume3-interni-e-scenari-mobile">
+          <span class="option-title-Volume3-interni-e-scenari-mobile">Immagine selezionata</span>
+          <span class="option-side-Volume3-interni-e-scenari-mobile">.jpg¹</span>
+        </div>
+        <div class="option-subtext-Volume3-interni-e-scenari-mobile">Qualità originale, HD</div>
+        <div class="option-subtext-Volume3-interni-e-scenari-mobile">1 elemento, ~3 MB</div>
+      </div>
+      <div class="option-Volume3-interni-e-scenari-mobile" id="download-all-Volume3-interni-e-scenari-mobile">
+        <div class="option-main-Volume3-interni-e-scenari-mobile">
+          <span class="option-title-Volume3-interni-e-scenari-mobile">Intero volume</span>
+          <span class="option-side-Volume3-interni-e-scenari-mobile">.zip²</span>
+        </div>
+        <div class="option-subtext-Volume3-interni-e-scenari-mobile">Qualità originale, HD</div>
+        <div class="option-subtext-Volume3-interni-e-scenari-mobile">10 elementi, ~20 MB</div>
+      </div>
+      <div class="info-box-Volume3-interni-e-scenari-mobile">
+        <div class="info-bold-Volume3-interni-e-scenari-mobile">Panoramica del contenuto</div>
+        <div class="info-regular-Volume3-interni-e-scenari-mobile">Un album che esplora ambienti affascinanti e suggestivi, catturando l’essenza degli spazi interni e della ristorazione. Ogni immagine racconta un viaggio visivo attraverso ambienti che parlano di stile, comfort e accoglienza.</div>
+      </div>
+      <div class="additional-info-Volume3-interni-e-scenari-mobile">
+        <div class="info-bold-Volume3-interni-e-scenari-mobile">Naviga</div>
+        <div class="info-regular-Volume3-interni-e-scenari-mobile">Scorri a destra o sinistra per esplorare le immagini.</div>
+      </div>
     </div>
   </div>
 </div>
