@@ -58,9 +58,13 @@
   align-items: center;
   background: #f7f7f7;
   border-radius: 2%;
+  padding: 0;
 }
 .slides-Volume3-interni-e-scenari-mobile {
   display: flex;
+  gap: 16px; /* 👈 spazio tra slide */
+  padding-left: 20px; /* 👈 spazio laterale stile Apple */
+  padding-right: 20px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
@@ -71,9 +75,14 @@
   display: none;
 }
 
+.slides-Volume3-interni-e-scenari-mobile::after {
+  content: "";
+  flex: 0 0 20px; /* spazio finale per allineamento perfetto */
+}
+
 .slide-Volume3-interni-e-scenari-mobile {
-  flex: 0 0 100%;
-  scroll-snap-align: start;
+  flex: 0 0 85%; /* 👈 NON più 100% */
+  scroll-snap-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -86,7 +95,7 @@
   object-fit: contain;
   border-radius: 2%;
   cursor: pointer;
-  transition: transform 0.6s cubic-bezier(0.25,1,0.5,1);
+  transition: transform 0.6s cubic-bezier(0.25,1,0.5,1), opacity 0.4s ease;
 }
     .product-image-Volume3-interni-e-scenari-mobile:hover {
       transform: scale(1.0);
