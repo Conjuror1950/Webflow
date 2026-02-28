@@ -74,7 +74,7 @@
     .slide-Volume3-interni-e-scenari-mobile img {
       width: 100%;
       height: auto;
-      border-radius: 20px;
+      border-radius: 18px;
       object-fit: contain;
       transition: none;
     }
@@ -128,8 +128,8 @@
       font-family: "SF Pro Display", sans-serif !important;
       text-align: left;     
       color: black;
-      margin-top: 25px;
-      margin-bottom: 0px;
+      margin-top: 52px;
+      margin-bottom: -18px;
       margin-left: 18px;
     }
     .slider-title-top-Volume3-interni-e-scenari-mobile h2 {
