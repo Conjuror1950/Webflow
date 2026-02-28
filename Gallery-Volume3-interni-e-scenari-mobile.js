@@ -45,11 +45,10 @@
 .slides-apple-style {
   display: flex;
   gap: 16px;
-  overflow-x: hidden; /* blocca scroll nativo orizzontale libero */
+  overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  touch-action: pan-x; /* blocca lo scroll verticale su swipe orizzontale */
-  -webkit-overflow-scrolling: auto; /* disabilita momentum nativo */
+  -webkit-overflow-scrolling: touch;
   padding-left: 20px; /* solo padding a sinistra per default */
 }
 
@@ -208,81 +207,90 @@
        name: "Collection_Photo_select_030110.jpg"}
     ];
 
-  var slidesContainer = document.querySelector(".slides-apple-style");
-  var indicatorsContainer = document.querySelector(".slider-indicators-apple-style");
-  var slideIndex = 0;
+    var slidesContainer = document.querySelector(".slides-apple-style");
+    var indicatorsContainer = document.querySelector(".slider-indicators-apple-style");
+    var slideIndex = 0;
 
-  // Creazione slide e indicatori
-  images.forEach((img, idx) => {
-    var slide = document.createElement("div");
-    slide.className = "slide-apple-style";
-    if(idx === images.length-1) slide.style.marginRight = "20px"; // padding ultima slide
+    images.forEach((img, idx) => {
+      // slide
+      var slide = document.createElement("div");
+      slide.className = "slide-apple-style";
+      var imageEl = document.createElement("img");
+      imageEl.src = img.webp;
+      imageEl.alt = img.name;
+      slide.appendChild(imageEl);
+      slidesContainer.appendChild(slide);
 
-    var imageEl = document.createElement("img");
-    imageEl.src = img.webp;
-    imageEl.alt = img.name;
-    slide.appendChild(imageEl);
-    slidesContainer.appendChild(slide);
-
-    var dot = document.createElement("div");
-    dot.className = "indicator-apple-style" + (idx===0 ? " active" : "");
-    dot.addEventListener("click", () => {
-      slideIndex = idx;
-      slidesContainer.children[idx].scrollIntoView({behavior:"smooth", inline:"start"});
-      updateIndicators();
+      // indicator
+      var dot = document.createElement("div");
+      dot.className = "indicator-apple-style" + (idx === 0 ? " active" : "");
+dot.addEventListener("click", () => {
+  slideIndex = idx;
+  goToSlide(slideIndex);
+});
+      indicatorsContainer.appendChild(dot);
     });
-    indicatorsContainer.appendChild(dot);
-  });
 
-  function updateIndicators() {
-    document.querySelectorAll(".indicator-apple-style").forEach((dot, idx) => {
-      dot.classList.toggle("active", idx === slideIndex);
-    });
+    function updateIndicators() {
+      document.querySelectorAll(".indicator-apple-style").forEach((dot, idx) => {
+        dot.classList.toggle("active", idx === slideIndex);
+      });
+    }
+
+let isScrolling = false;
+let startScrollLeft = 0;
+
+slidesContainer.addEventListener("touchstart", () => {
+  startScrollLeft = slidesContainer.scrollLeft;
+});
+
+slidesContainer.addEventListener("touchend", () => {
+  if (isScrolling) return;
+
+  let endScrollLeft = slidesContainer.scrollLeft;
+  let diff = endScrollLeft - startScrollLeft;
+
+  if (Math.abs(diff) > 30) { // soglia minima swipe
+    if (diff > 0 && slideIndex < images.length - 1) {
+      slideIndex += 1;
+    } else if (diff < 0 && slideIndex > 0) {
+      slideIndex -= 1;
+    }
   }
 
-  // Swipe / touch controllato
-  let startX = 0;
-  let isDragging = false;
+  goToSlide(slideIndex);
+});
 
-  slidesContainer.addEventListener("touchstart", (e) => {
-    startX = e.touches[0].clientX;
-    isDragging = true;
+function goToSlide(index) {
+  isScrolling = true;
+  slidesContainer.children[index].scrollIntoView({
+    behavior: "smooth",
+    inline: "start"
   });
 
-  slidesContainer.addEventListener("touchmove", (e) => {
-    if (!isDragging) return;
-    e.preventDefault(); // blocca scroll verticale
-  }, {passive:false});
+  updateIndicators();
 
-  slidesContainer.addEventListener("touchend", (e) => {
-    if (!isDragging) return;
-    let endX = e.changedTouches[0].clientX;
-    let diff = endX - startX;
-
-    if(diff > 30) slideIndex = Math.max(slideIndex - 1, 0); // destra
-    else if(diff < -30) slideIndex = Math.min(slideIndex + 1, images.length-1); // sinistra
-
-    slidesContainer.children[slideIndex].scrollIntoView({behavior:"smooth", inline:"start"});
-    updateIndicators();
-    isDragging = false;
-  });
-
-  // Download singolo
-  document.getElementById("download-single-apple").addEventListener("click", ()=>{
-    var a=document.createElement("a");
-    a.href=images[slideIndex].jpg;
-    a.download=images[slideIndex].name;
-    document.body.appendChild(a); a.click(); document.body.removeChild(a);
-  });
-
-  // Download ZIP
-  document.getElementById("download-all-apple").addEventListener("click", ()=>{
-    var a=document.createElement("a");
-    a.href="https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/zip-photos/item-01/Collection_Photos_0301.zip";
-    a.download="Collection_Photos_0301.zip";
-    document.body.appendChild(a); a.click(); document.body.removeChild(a);
-  });
+  setTimeout(() => {
+    isScrolling = false;
+  }, 400);
 }
+
+    // Download singolo
+    document.getElementById("download-single-apple").addEventListener("click", ()=>{
+      var a=document.createElement("a");
+      a.href=images[slideIndex].jpg;
+      a.download=images[slideIndex].name;
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    });
+
+    // Download ZIP
+    document.getElementById("download-all-apple").addEventListener("click", ()=>{
+      var a=document.createElement("a");
+      a.href="https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/zip-photos/item-01/Collection_Photos_0301.zip";
+      a.download="Collection_Photos_0301.zip";
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    });
+  }
 
   document.addEventListener("DOMContentLoaded", initGallery);
 })();
