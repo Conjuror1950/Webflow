@@ -263,9 +263,13 @@ slidesContainer.addEventListener("touchend", () => {
 
 function goToSlide(index) {
   isScrolling = true;
-  slidesContainer.children[index].scrollIntoView({
-    behavior: "smooth",
-    inline: "start"
+
+  const slideWidth = slidesContainer.children[0].offsetWidth + 16; // 16 = gap
+  const targetScroll = slideWidth * index;
+
+  slidesContainer.scrollTo({
+    left: targetScroll,
+    behavior: "smooth"
   });
 
   updateIndicators();
