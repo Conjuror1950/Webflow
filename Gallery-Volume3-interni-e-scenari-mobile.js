@@ -46,37 +46,31 @@
   gap: 16px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
+  scroll-padding-left: 20px;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  padding-left: 0;
+}
+
+.slides-apple-style::-webkit-scrollbar {
+  display: none;
 }
 
 .slides-apple-style .slide-apple-style:last-child {
-  margin-right: 20px; /* padding a destra solo per l’ultima slide */
+  margin-right: 20px;
 }
 
-    .slides-apple-style::-webkit-scrollbar {
-      display: none;
-    }
+.slide-apple-style {
+  flex: 0 0 80%;
+  scroll-snap-align: start;
+  border-radius: 16px;
+  overflow: hidden;
+}
 
-    .slide-apple-style {
-      flex: 0 0 70%;
-      scroll-snap-align: start;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      cursor: default; /* nessun effetto click */
-      transition: none;
-    }
-
-    .slide-apple-style img {
-      width: 100%;
-      height: auto;
-      border-radius: 12px;
-      object-fit: contain;
-      transition: none;
-    }
+.slide-apple-style img {
+  width: 100%;
+  display: block;
+  border-radius: 16px;
+}
 
     /* Indicatori puntini */
     .slider-indicators-apple-style {
@@ -239,62 +233,62 @@ dot.addEventListener("click", () => {
 let isScrolling = false;
 let startScrollLeft = 0;
 
-slidesContainer.addEventListener("touchstart", () => {
-  startScrollLeft = slidesContainer.scrollLeft;
-});
+let slideIndex = 0;
+let isScrolling = false;
 
-slidesContainer.addEventListener("touchend", () => {
-  if (isScrolling) return;
-
-  let endScrollLeft = slidesContainer.scrollLeft;
-  let diff = endScrollLeft - startScrollLeft;
-
-  if (Math.abs(diff) > 30) { // soglia minima swipe
-    if (diff > 0 && slideIndex < images.length - 1) {
-      slideIndex += 1;
-    } else if (diff < 0 && slideIndex > 0) {
-      slideIndex -= 1;
-    }
-  }
-
-  goToSlide(slideIndex);
-});
+function getSlideWidth() {
+  return slidesContainer.children[0].offsetWidth + 16;
+}
 
 function goToSlide(index) {
-  isScrolling = true;
+  const slideWidth = getSlideWidth();
 
-  const slideWidth = slidesContainer.children[0].offsetWidth + 16;
-  const targetScroll = slideWidth * index;
+  slideIndex = Math.max(0, Math.min(index, images.length - 1));
 
   slidesContainer.scrollTo({
-    left: targetScroll,
+    left: slideWidth * slideIndex,
     behavior: "smooth"
   });
 
-  // 👉 gestione padding dinamico
-  if (index === images.length - 1) {
-    slidesContainer.style.paddingLeft = "0px";
-  } else {
-    slidesContainer.style.paddingLeft = "20px";
-  }
-
   updateIndicators();
-
-  setTimeout(() => {
-    isScrolling = false;
-  }, 400);
 }
 
-    slidesContainer.addEventListener("scroll", () => {
+// 🔥 Sync automatico con scroll reale
+slidesContainer.addEventListener("scroll", () => {
   if (isScrolling) return;
 
-  const slideWidth = slidesContainer.children[0].offsetWidth + 16;
+  const slideWidth = getSlideWidth();
   const newIndex = Math.round(slidesContainer.scrollLeft / slideWidth);
 
   if (newIndex !== slideIndex) {
     slideIndex = newIndex;
     updateIndicators();
   }
+});
+
+    let startX = 0;
+let isDragging = false;
+
+slidesContainer.addEventListener("touchstart", (e) => {
+  startX = e.touches[0].clientX;
+  isDragging = true;
+});
+
+slidesContainer.addEventListener("touchend", (e) => {
+  if (!isDragging) return;
+
+  const endX = e.changedTouches[0].clientX;
+  const diff = startX - endX;
+
+  if (Math.abs(diff) > 40) {
+    if (diff > 0) {
+      goToSlide(slideIndex + 1);
+    } else {
+      goToSlide(slideIndex - 1);
+    }
+  }
+
+  isDragging = false;
 });
 
     // Download singolo
