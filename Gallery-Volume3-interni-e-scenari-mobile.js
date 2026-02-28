@@ -52,6 +52,11 @@
   padding-left: 20px; /* solo padding a sinistra per default */
 }
 
+.slides-apple-style .slide-apple-style:last-child {
+  margin-right: 20px; /* padding a destra solo per l’ultima slide */
+  margin-left: 0px !important;
+}
+
     .slides-apple-style::-webkit-scrollbar {
       display: none;
     }
