@@ -43,30 +43,31 @@
       align-items: center;
     }
 
-    .slides-apple-style {
-      display: flex;
-      gap: 16px;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scroll-padding-left: 20px;
-      scroll-behavior: smooth;
-      -webkit-overflow-scrolling: touch;
-    }
+.slides-apple-style {
+  display: flex;
+  gap: 0; /* rimuovi gap visibile */
+  overflow: hidden; /* non mostrare slide precedenti/successive */
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
 
     .slides-apple-style::-webkit-scrollbar {
       display: none;
     }
 
-    .slide-apple-style {
-      flex: 0 0 80%;
-      scroll-snap-align: start;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      border-radius: 12px;
-      overflow: hidden;
-    }
+
+.slide-apple-style {
+  flex: 0 0 100%; /* ogni slide occupa 100% del container */
+  scroll-snap-align: start;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  padding-left: 20px; /* aggiungi padding solo se non ultima slide */
+}
 
     .slide-apple-style img {
       width: 100%;
@@ -74,9 +75,10 @@
       border-radius: 12px;
     }
 
-    .slides-apple-style .slide-apple-style:last-child {
-      margin-right: 20px;
-    }
+.slides-apple-style .slide-apple-style:last-child {
+  padding-left: 0;
+  padding-right: 20px; /* padding solo a destra */
+}
 
     .slider-indicators-apple-style {
       display: flex;
@@ -207,23 +209,24 @@
       });
     }
 
-    function getSlideWidth() {
-      return slidesContainer.children[0].offsetWidth + 16;
-    }
+function getSlideWidth() {
+  // slideWidth = larghezza container slider
+  return slidesContainer.offsetWidth;
+}
 
-    function goToSlide(index) {
-      slideIndex = Math.max(0, Math.min(index, images.length - 1));
-      const slideWidth = getSlideWidth();
-      isScrolling = true;
+function goToSlide(index) {
+  slideIndex = Math.max(0, Math.min(index, images.length - 1));
+  const slideWidth = getSlideWidth();
+  isScrolling = true;
 
-      slidesContainer.scrollTo({
-        left: slideWidth * slideIndex,
-        behavior: "smooth"
-      });
+  slidesContainer.scrollTo({
+    left: slideWidth * slideIndex,
+    behavior: "smooth"
+  });
 
-      updateIndicators();
-      setTimeout(() => { isScrolling = false; }, 400);
-    }
+  updateIndicators();
+  setTimeout(() => { isScrolling = false; }, 400);
+}
 
     // Swipe touch
     let startX = 0;
