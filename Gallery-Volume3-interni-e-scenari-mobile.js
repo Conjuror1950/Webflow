@@ -39,7 +39,7 @@
       overflow: hidden;
       display: flex;
       align-items: center;
-      padding: 0 20px; /* spazio a sinistra/destra */
+      padding-left: 20px; /* solo padding a sinistra */
     }
 
     .slides-apple-style {
@@ -49,7 +49,7 @@
       scroll-snap-type: x mandatory;
       scroll-behavior: smooth;
       -webkit-overflow-scrolling: touch;
-      padding: 0 0; /* niente padding extra */
+      padding: 0;
     }
 
     .slides-apple-style::-webkit-scrollbar {
@@ -72,7 +72,28 @@
       height: auto;
       border-radius: 12px;
       object-fit: contain;
-      transition: none; /* elimina hover */
+      transition: none;
+    }
+
+    /* Indicatori puntini */
+    .slider-indicators-apple-style {
+      display: flex;
+      justify-content: flex-start;
+      gap: 8px;
+      padding-left: 20px; /* allineati al padding delle slide */
+    }
+
+    .indicator-apple-style {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #ccc;
+      transition: background 0.3s;
+      cursor: pointer;
+    }
+
+    .indicator-apple-style.active {
+      background: #000;
     }
 
     /* Dettagli download */
@@ -106,12 +127,13 @@
   `;
   addStyle(galleryCSS);
 
-  // HTML aggiornato (senza pulsanti e indicatori)
+  // HTML aggiornato (senza pulsanti)
   var galleryHTML = `
 <div class="wrapper-slider-apple-style">
   <div class="slider-apple-style">
     <div class="slides-apple-style"></div>
   </div>
+  <div class="slider-indicators-apple-style"></div>
   <div class="details-apple-style">
     <div class="option-apple-style" id="download-single-apple">
       <span>Scarica immagine</span>
@@ -182,8 +204,11 @@
     ];
 
     var slidesContainer = document.querySelector(".slides-apple-style");
+    var indicatorsContainer = document.querySelector(".slider-indicators-apple-style");
+    var slideIndex = 0;
 
-    images.forEach((img) => {
+    images.forEach((img, idx) => {
+      // slide
       var slide = document.createElement("div");
       slide.className = "slide-apple-style";
       var imageEl = document.createElement("img");
@@ -191,11 +216,26 @@
       imageEl.alt = img.name;
       slide.appendChild(imageEl);
       slidesContainer.appendChild(slide);
+
+      // indicator
+      var dot = document.createElement("div");
+      dot.className = "indicator-apple-style" + (idx === 0 ? " active" : "");
+      dot.addEventListener("click", () => {
+        slideIndex = idx;
+        slidesContainer.children[idx].scrollIntoView({behavior:"smooth", inline:"start"});
+        updateIndicators();
+      });
+      indicatorsContainer.appendChild(dot);
     });
+
+    function updateIndicators() {
+      document.querySelectorAll(".indicator-apple-style").forEach((dot, idx) => {
+        dot.classList.toggle("active", idx === slideIndex);
+      });
+    }
 
     // Download singolo
     document.getElementById("download-single-apple").addEventListener("click", ()=>{
-      var slideIndex = 0; // prima immagine visibile
       var a=document.createElement("a");
       a.href=images[slideIndex].jpg;
       a.download=images[slideIndex].name;
