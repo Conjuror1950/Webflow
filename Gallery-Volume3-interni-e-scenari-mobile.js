@@ -62,7 +62,7 @@
 
 .slide-Volume3-interni-e-scenari-mobile {
   flex: 0 0 70%;
-  scroll-snap-align: center;
+  scroll-snap-align: start;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -74,7 +74,7 @@
     opacity 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
 
   opacity: 0.82;
-  transform: scale(0.985);
+  transform: scale(0.96);
 }
 
     .slide-Volume3-interni-e-scenari-mobile.active {
