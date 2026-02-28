@@ -50,6 +50,7 @@
     /* --- SLIDER --- */
     .slider-Volume3-interni-e-scenari-mobile {
       position: relative;
+      height: 420px;
       padding: 0px 0;
       overflow: hidden;
       display: flex;
