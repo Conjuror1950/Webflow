@@ -240,6 +240,8 @@ dot.addEventListener("click", () => {
 let isScrolling = false;
 let startScrollLeft = 0;
 
+let startTouchX = 0;
+
 slidesContainer.addEventListener("touchstart", (e) => {
   startTouchX = e.touches[0].clientX;
 });
@@ -247,16 +249,19 @@ slidesContainer.addEventListener("touchstart", (e) => {
 slidesContainer.addEventListener("touchend", (e) => {
   if (isScrolling) return;
 
-  // differenza tra inizio e fine touch
-  let diffX = e.changedTouches[0].clientX - startTouchX;
+  const endTouchX = e.changedTouches[0].clientX;
+  const diff = endTouchX - startTouchX;
 
-  if (diffX < -10) { // swipe verso sinistra → slide successiva
+  // se lo swipe supera 20px consideralo valido
+  if (diff < -20) {
+    // swipe verso sinistra → slide successiva
     slideIndex = Math.min(slideIndex + 1, images.length - 1);
-  } else if (diffX > 10) { // swipe verso destra → slide precedente
+    goToSlide(slideIndex);
+  } else if (diff > 20) {
+    // swipe verso destra → slide precedente
     slideIndex = Math.max(slideIndex - 1, 0);
+    goToSlide(slideIndex);
   }
-
-  goToSlide(slideIndex);
 });
 
 function goToSlide(index) {
