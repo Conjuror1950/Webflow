@@ -319,10 +319,6 @@
       color: #86868b;
     }
 
-    .slides-Volume3-interni-e-scenari-mobile {
-    touch-action: pan-y;
-  }
-
     /* Media query: visualizza solo su mobile (<= 1280px) */
     @media screen and (min-width: 1280px) {
       .wrapper-slider-Volume3-interni-e-scenari-mobile {
