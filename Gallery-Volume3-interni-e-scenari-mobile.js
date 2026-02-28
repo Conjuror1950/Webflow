@@ -59,24 +59,25 @@
   background: #f7f7f7;
   border-radius: 2%;
 }
-    .slides-Volume3-interni-e-scenari-mobile {
-      display: flex;
-      flex-wrap: nowrap; /* Impedisce il wrapping degli elementi */
-      align-items: center;
-      transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-    }
-    .slide-Volume3-interni-e-scenari-mobile {
-      flex: 0 0 100%;
-      flex-shrink: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-right: 10px;
-    }
+.slides-Volume3-interni-e-scenari-mobile {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
 
-    .slide-Volume3-interni-e-scenari-mobile:last-child {
-      margin-right: 0;
-    }
+.slides-Volume3-interni-e-scenari-mobile::-webkit-scrollbar {
+  display: none;
+}
+
+.slide-Volume3-interni-e-scenari-mobile {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
     
 .product-image-Volume3-interni-e-scenari-mobile {
   max-width: 100%;
@@ -510,20 +511,21 @@
     }
     
     // Funzione per spostarsi verso una slide specifica
-    function moveToSlide(index) {
-      slideIndex = index;
-var slide = document.querySelector(".slide-Volume3-interni-e-scenari-mobile");
-var style = window.getComputedStyle(slide);
-var marginRight = parseFloat(style.marginRight);
+function moveToSlide(index) {
+  slideIndex = index;
 
-var slideWidth = slide.offsetWidth + marginRight;
+  var slidesContainer = document.querySelector(".slides-Volume3-interni-e-scenari-mobile");
+  var slide = slidesContainer.children[index];
 
-document.querySelector(".slides-Volume3-interni-e-scenari-mobile")
-.style.transform = "translateX(-" + (slideIndex * slideWidth) + "px)";
-      updateIndicators();
-      updateSliderButtons();
-      updateSlideCounter();
-    }
+  slide.scrollIntoView({
+    behavior: "smooth",
+    inline: "start"
+  });
+
+  updateIndicators();
+  updateSliderButtons();
+  updateSlideCounter();
+}
     
     createSlides();
     createIndicators();
