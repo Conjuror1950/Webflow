@@ -51,12 +51,8 @@
   -webkit-overflow-scrolling: touch;
 }
 
-.slide-apple-style:first-child {
-  margin-left: 20px;
-}
-
-.slide-apple-style:last-child {
-  margin-right: 20px;
+.slides-apple-style .slide-apple-style:last-child {
+  margin-right: 20px; /* padding a destra solo per l’ultima slide */
 }
 
     .slides-apple-style::-webkit-scrollbar {
@@ -72,7 +68,13 @@
       position: relative;
       cursor: default; /* nessun effetto click */
       transition: none;
+      padding-left: 20px; /* padding di default */
     }
+
+    .slide-apple-style:last-child {
+  padding-left: 0;     /* rimuove padding sinistra */
+  padding-right: 20px; /* aggiunge padding solo a destra */
+}
 
     .slide-apple-style img {
       width: 100%;
