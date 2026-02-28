@@ -50,8 +50,9 @@
     /* --- SLIDER --- */
 .slider-Volume3-interni-e-scenari-mobile {
   position: relative;
-  height: 450px;
-  padding: 0;
+  width: 100%;
+  aspect-ratio: 4 / 5; /* 👈 proporzione elegante verticale */
+  max-height: 80vh;
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -88,7 +89,7 @@
   transition: transform 0.6s cubic-bezier(0.25,1,0.5,1);
 }
     .product-image-Volume3-interni-e-scenari-mobile:hover {
-      transform: scale(1.02);
+      transform: scale(1.0);
     }
     /* Pulsanti per lo slider */
     .slider-buttons-Volume3-interni-e-scenari-mobile {
