@@ -241,15 +241,33 @@
     var slidesContainer = document.querySelector(".slides-apple-style");
 var indicators = document.querySelectorAll(".indicator-apple-style");
 
+let isScrolling = false;
+
 slidesContainer.addEventListener("scroll", () => {
-  // trova la slide più vicina allo scroll attuale
-  let scrollLeft = slidesContainer.scrollLeft;
-  let slideWidth = slidesContainer.children[0].offsetWidth + 16; // slide + gap
-  let currentIndex = Math.round(scrollLeft / slideWidth);
-  
-  indicators.forEach((dot, idx) => {
-    dot.classList.toggle("active", idx === currentIndex);
-  });
+  if (!isScrolling) {
+    window.requestAnimationFrame(() => {
+      const slideWidth = slidesContainer.children[0].offsetWidth + 16; // slide + gap
+      const scrollLeft = slidesContainer.scrollLeft;
+      let newIndex = slideIndex;
+
+      if (scrollLeft > slideIndex * slideWidth + slideWidth / 2) {
+        // swipe verso destra
+        newIndex = Math.min(slideIndex + 1, images.length - 1);
+      } else if (scrollLeft < slideIndex * slideWidth - slideWidth / 2) {
+        // swipe verso sinistra
+        newIndex = Math.max(slideIndex - 1, 0);
+      }
+
+      if (newIndex !== slideIndex) {
+        slideIndex = newIndex;
+        slidesContainer.children[slideIndex].scrollIntoView({behavior:"smooth", inline:"start"});
+        updateIndicators();
+      }
+
+      isScrolling = false;
+    });
+    isScrolling = true;
+  }
 });
 
     // Download singolo
