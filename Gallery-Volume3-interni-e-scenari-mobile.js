@@ -79,7 +79,7 @@
     }
     
 .product-image-Volume3-interni-e-scenari-mobile {
-  max-width: 100%;
+  max-width: 95%;
   height: auto;
   display: block;
   object-fit: contain;
