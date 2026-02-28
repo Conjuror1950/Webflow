@@ -112,6 +112,8 @@
       transform: scale(1.0);
     }
     /* Pulsanti per lo slider */
+    
+    /*
     .slider-buttons-Volume3-interni-e-scenari-mobile {
       position: absolute;
       top: 50%;
@@ -147,6 +149,8 @@
       background: rgba(211, 211, 211, 0.75);
       color: rgba(29, 29, 29, 0.90);
     }
+    */
+    
     /* Indicatori delle slide */
     .slider-indicators-Volume3-interni-e-scenari-mobile {
       position: relative;
@@ -549,6 +553,8 @@ function moveToSlide(index) {
     updateSliderButtons();
     
     // Event listener per i pulsanti next e prev
+
+/*   
 document.querySelector(".slider-button-Volume3-interni-e-scenari-mobile.next").addEventListener("click", function() {
   moveToSlide((slideIndex + 1) % images.length); // torna a 0 dopo l'ultima
 });
@@ -556,6 +562,7 @@ document.querySelector(".slider-button-Volume3-interni-e-scenari-mobile.next").a
 document.querySelector(".slider-button-Volume3-interni-e-scenari-mobile.prev").addEventListener("click", function() {
   moveToSlide((slideIndex - 1 + images.length) % images.length); // va all'ultima se sei a 0
 });
+*/
     
     // Navigazione con le frecce della tastiera
     document.addEventListener("keydown", function(e) {
