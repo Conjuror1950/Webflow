@@ -123,6 +123,43 @@
       background: #e0e0e0;
     }
 
+        /* Titoli sopra e sotto lo slider */
+    .slider-title-top-Volume3-interni-e-scenari-mobile {
+      font-family: "SF Pro Display", sans-serif !important;
+      text-align: left;     
+      color: black;
+      margin-top: 25px;
+      margin-bottom: 0px;
+      margin-left: 18px;
+    }
+    .slider-title-top-Volume3-interni-e-scenari-mobile h2 {
+      font-family: "SF Pro Display", sans-serif !important;
+      font-weight: 600;
+      margin: 0;
+      font-size: 24px;
+    }
+    .slider-title-top-Volume3-interni-e-scenari-mobile p {
+      font-family: "SF Pro Display", sans-serif !important;
+      font-weight: 500;
+      font-size: 13px;
+      color: #86868b;
+    }
+
+      .title-wrapper-Volume3-interni-e-scenari-mobile {
+      display: flex;
+      align-items: baseline;
+      gap: 5px;
+      flex-wrap: nowrap;
+      white-space: nowrap;
+    }
+
+      .subtitle-Volume3-interni-e-scenari-mobile {
+      font-family: "SF Pro Display", sans-serif !important;
+      font-size: 24px;
+      font-weight: 600;
+      color: #6e6e73;
+    }
+
     @media screen and (max-width: 768px) {
       .slide-Volume3-interni-e-scenari-mobile {
         flex: 0 0 85%;
@@ -134,6 +171,12 @@
   // HTML aggiornato (senza pulsanti)
   var galleryHTML = `
 <div class="wrapper-slider-Volume3-interni-e-scenari-mobile">
+  <div class="slider-title-top-Volume3-interni-e-scenari-mobile">
+    <div class="title-wrapper-Volume3-interni-e-scenari-mobile">
+      <h1>Download.</h1>
+      <span class="subtitle-Volume3-interni-e-scenari-mobile">Quale scegli?</span>
+    </div>
+  </div>
   <div class="slider-Volume3-interni-e-scenari-mobile">
     <div class="slides-Volume3-interni-e-scenari-mobile"></div>
   </div>
