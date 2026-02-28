@@ -81,7 +81,7 @@
 
     /* Indicatori delle slide */
     .slider-indicators-Volume3-interni-e-scenari-mobile {
-      display: relative;
+      display: flex;
       bottom: 0px;
       justify-content: center;
       gap: 8px;
