@@ -45,10 +45,11 @@
 .slides-apple-style {
   display: flex;
   gap: 16px;
-  overflow-x: auto;
+  overflow-x: hidden; /* blocca scroll nativo orizzontale libero */
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x; /* blocca lo scroll verticale su swipe orizzontale */
+  -webkit-overflow-scrolling: auto; /* disabilita momentum nativo */
   padding-left: 20px; /* solo padding a sinistra per default */
 }
 
@@ -207,85 +208,78 @@
        name: "Collection_Photo_select_030110.jpg"}
     ];
 
-    var slidesContainer = document.querySelector(".slides-apple-style");
-    var indicatorsContainer = document.querySelector(".slider-indicators-apple-style");
-    var slideIndex = 0;
+  var slidesContainer = document.querySelector(".slides-apple-style");
+  var indicatorsContainer = document.querySelector(".slider-indicators-apple-style");
+  var slideIndex = 0;
 
-    images.forEach((img, idx) => {
-      // slide
-      var slide = document.createElement("div");
-      slide.className = "slide-apple-style";
-      var imageEl = document.createElement("img");
-      imageEl.src = img.webp;
-      imageEl.alt = img.name;
-      slide.appendChild(imageEl);
-      slidesContainer.appendChild(slide);
+  // Creazione slide e indicatori
+  images.forEach((img, idx) => {
+    var slide = document.createElement("div");
+    slide.className = "slide-apple-style";
+    if(idx === images.length-1) slide.style.marginRight = "20px"; // padding ultima slide
 
-      // indicator
-      var dot = document.createElement("div");
-      dot.className = "indicator-apple-style" + (idx === 0 ? " active" : "");
-      dot.addEventListener("click", () => {
-        slideIndex = idx;
-        slidesContainer.children[idx].scrollIntoView({behavior:"smooth", inline:"start"});
-        updateIndicators();
-      });
-      indicatorsContainer.appendChild(dot);
+    var imageEl = document.createElement("img");
+    imageEl.src = img.webp;
+    imageEl.alt = img.name;
+    slide.appendChild(imageEl);
+    slidesContainer.appendChild(slide);
+
+    var dot = document.createElement("div");
+    dot.className = "indicator-apple-style" + (idx===0 ? " active" : "");
+    dot.addEventListener("click", () => {
+      slideIndex = idx;
+      slidesContainer.children[idx].scrollIntoView({behavior:"smooth", inline:"start"});
+      updateIndicators();
     });
+    indicatorsContainer.appendChild(dot);
+  });
 
-    function updateIndicators() {
-      document.querySelectorAll(".indicator-apple-style").forEach((dot, idx) => {
-        dot.classList.toggle("active", idx === slideIndex);
-      });
-    }
-
-    var slidesContainer = document.querySelector(".slides-apple-style");
-var indicators = document.querySelectorAll(".indicator-apple-style");
-
-let isScrolling = false;
-
-slidesContainer.addEventListener("scroll", () => {
-  if (!isScrolling) {
-    window.requestAnimationFrame(() => {
-      const slideWidth = slidesContainer.children[0].offsetWidth + 16; // slide + gap
-      const scrollLeft = slidesContainer.scrollLeft;
-      let newIndex = slideIndex;
-
-      if (scrollLeft > slideIndex * slideWidth + slideWidth / 2) {
-        // swipe verso destra
-        newIndex = Math.min(slideIndex + 1, images.length - 1);
-      } else if (scrollLeft < slideIndex * slideWidth - slideWidth / 2) {
-        // swipe verso sinistra
-        newIndex = Math.max(slideIndex - 1, 0);
-      }
-
-      if (newIndex !== slideIndex) {
-        slideIndex = newIndex;
-        slidesContainer.children[slideIndex].scrollIntoView({behavior:"smooth", inline:"start"});
-        updateIndicators();
-      }
-
-      isScrolling = false;
-    });
-    isScrolling = true;
-  }
-});
-
-    // Download singolo
-    document.getElementById("download-single-apple").addEventListener("click", ()=>{
-      var a=document.createElement("a");
-      a.href=images[slideIndex].jpg;
-      a.download=images[slideIndex].name;
-      document.body.appendChild(a); a.click(); document.body.removeChild(a);
-    });
-
-    // Download ZIP
-    document.getElementById("download-all-apple").addEventListener("click", ()=>{
-      var a=document.createElement("a");
-      a.href="https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/zip-photos/item-01/Collection_Photos_0301.zip";
-      a.download="Collection_Photos_0301.zip";
-      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  function updateIndicators() {
+    document.querySelectorAll(".indicator-apple-style").forEach((dot, idx) => {
+      dot.classList.toggle("active", idx === slideIndex);
     });
   }
 
-  document.addEventListener("DOMContentLoaded", initGallery);
-})();
+  // Swipe / touch controllato
+  let startX = 0;
+  let isDragging = false;
+
+  slidesContainer.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+    isDragging = true;
+  });
+
+  slidesContainer.addEventListener("touchmove", (e) => {
+    if (!isDragging) return;
+    e.preventDefault(); // blocca scroll verticale
+  }, {passive:false});
+
+  slidesContainer.addEventListener("touchend", (e) => {
+    if (!isDragging) return;
+    let endX = e.changedTouches[0].clientX;
+    let diff = endX - startX;
+
+    if(diff > 30) slideIndex = Math.max(slideIndex - 1, 0); // destra
+    else if(diff < -30) slideIndex = Math.min(slideIndex + 1, images.length-1); // sinistra
+
+    slidesContainer.children[slideIndex].scrollIntoView({behavior:"smooth", inline:"start"});
+    updateIndicators();
+    isDragging = false;
+  });
+
+  // Download singolo
+  document.getElementById("download-single-apple").addEventListener("click", ()=>{
+    var a=document.createElement("a");
+    a.href=images[slideIndex].jpg;
+    a.download=images[slideIndex].name;
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  });
+
+  // Download ZIP
+  document.getElementById("download-all-apple").addEventListener("click", ()=>{
+    var a=document.createElement("a");
+    a.href="https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/zip-photos/item-01/Collection_Photos_0301.zip";
+    a.download="Collection_Photos_0301.zip";
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  });
+}
