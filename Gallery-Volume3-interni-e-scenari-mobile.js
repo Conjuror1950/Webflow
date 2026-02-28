@@ -49,16 +49,17 @@
 
     /* --- SLIDER --- */
     .slider-Volume3-interni-e-scenari-mobile {
-      position: relative;
-      height: 420px;
-      padding: 0px 0;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      background: #f7f7f7;
-      border-radius: 0px;
-    }
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5; /* 👈 rapporto elegante */
+  max-height: 80vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f7f7f7;
+  border-radius: 2%;
+}
     .slides-Volume3-interni-e-scenari-mobile {
       display: flex;
       flex-wrap: nowrap; /* Impedisce il wrapping degli elementi */
