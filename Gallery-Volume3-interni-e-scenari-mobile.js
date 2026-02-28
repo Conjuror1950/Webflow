@@ -530,16 +530,13 @@ document.querySelector(".slides-Volume3-interni-e-scenari-mobile")
     updateSliderButtons();
     
     // Event listener per i pulsanti next e prev
-    document.querySelector(".slider-button-Volume3-interni-e-scenari-mobile.next").addEventListener("click", function() {
-      if (slideIndex < images.length - 1) {
-        moveToSlide(slideIndex + 1);
-      }
-    });
-    document.querySelector(".slider-button-Volume3-interni-e-scenari-mobile.prev").addEventListener("click", function() {
-      if (slideIndex > 0) {
-        moveToSlide(slideIndex - 1);
-      }
-    });
+document.querySelector(".slider-button-Volume3-interni-e-scenari-mobile.next").addEventListener("click", function() {
+  moveToSlide((slideIndex + 1) % images.length); // torna a 0 dopo l'ultima
+});
+
+document.querySelector(".slider-button-Volume3-interni-e-scenari-mobile.prev").addEventListener("click", function() {
+  moveToSlide((slideIndex - 1 + images.length) % images.length); // va all'ultima se sei a 0
+});
     
     // Navigazione con le frecce della tastiera
     document.addEventListener("keydown", function(e) {
@@ -576,18 +573,18 @@ document.querySelector(".slides-Volume3-interni-e-scenari-mobile")
     }
   }, { passive: false });
 
-  sliderElement.addEventListener("touchend", function(e) {
-    if (!isHorizontalSwipe) return;
+sliderElement.addEventListener("touchend", function(e) {
+  if (!isHorizontalSwipe) return;
 
-    var endX = e.changedTouches[0].clientX;
-    var deltaX = endX - startX;
+  var endX = e.changedTouches[0].clientX;
+  var deltaX = endX - startX;
 
-    if (deltaX > 50 && slideIndex > 0) {
-      moveToSlide(slideIndex - 1);
-    } else if (deltaX < -50 && slideIndex < images.length - 1) {
-      moveToSlide(slideIndex + 1);
-    }
-  });
+  if (deltaX > 50) { // swipe a destra
+    moveToSlide((slideIndex - 1 + images.length) % images.length);
+  } else if (deltaX < -50) { // swipe a sinistra
+    moveToSlide((slideIndex + 1) % images.length);
+  }
+});
 })();
     
     // Download dell'immagine singola
