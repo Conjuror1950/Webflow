@@ -251,13 +251,14 @@ slidesContainer.addEventListener("touchend", () => {
   let diff = endScrollLeft - startScrollLeft;
 
   // Swipe a destra -> successiva, swipe a sinistra -> precedente
-  if (diff > 0) {
-    // Destra, ma non superare ultima slide
+  if (diff > 20) {
+    // qualsiasi swipe a destra = +1
     slideIndex = Math.min(slideIndex + 1, images.length - 1);
-  } else if (diff < 0) {
-    // Sinistra, ma non superare prima slide
+  } else if (diff < -20) {
+    // qualsiasi swipe a sinistra = -1
     slideIndex = Math.max(slideIndex - 1, 0);
-  }
+  } 
+  // Se swipe troppo corto, rimani sulla stessa slide
 
   goToSlide(slideIndex);
 });
