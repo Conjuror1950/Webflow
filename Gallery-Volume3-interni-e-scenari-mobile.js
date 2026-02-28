@@ -64,11 +64,13 @@
   display: flex;
   gap: 16px;
   overflow-x: auto;
+  overflow-y: hidden; /* 🔥 blocca scroll verticale */
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   padding-left: 20px;
-  padding-right: 0; /* 🔥 niente spazio finale */
+  padding-right: 0;
+  touch-action: pan-x; /* 🔥 prefer pan X per swipe */
 }
 
 .slides-Volume3-interni-e-scenari-mobile::-webkit-scrollbar {
@@ -82,14 +84,19 @@
 
 .slide-Volume3-interni-e-scenari-mobile {
   flex: 0 0 85%;
-  scroll-snap-align: start; /* 🔥 NON center */
+  scroll-snap-align: start;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: 16px; /* 🔥 anteprima a sinistra */
+}
+
+.slide-Volume3-interni-e-scenari-mobile:first-child {
+  margin-left: 0; /* la prima slide non ha gap iniziale */
 }
 
 .slide-Volume3-interni-e-scenari-mobile:last-child {
-  margin-right: 20px;
+  margin-right: 20px; /* mantiene spazio finale */
 }
     
 .product-image-Volume3-interni-e-scenari-mobile {
@@ -565,24 +572,20 @@ document.querySelector(".slider-button-Volume3-interni-e-scenari-mobile.prev").a
 (function() {
   var sliderElement = document.querySelector(".slides-Volume3-interni-e-scenari-mobile");
   var startX = 0;
-  var startY = 0;
   var isDragging = false;
 
   sliderElement.addEventListener("touchstart", function(e) {
     startX = e.touches[0].clientX;
-    startY = e.touches[0].clientY;
     isDragging = true;
   }, { passive: true });
 
   sliderElement.addEventListener("touchmove", function(e) {
     if (!isDragging) return;
+    var deltaX = e.touches[0].clientX - startX;
 
-    var deltaX = Math.abs(e.touches[0].clientX - startX);
-    var deltaY = Math.abs(e.touches[0].clientY - startY);
-
-    if (deltaX > deltaY) {
-      e.preventDefault(); // 🔥 blocca scroll verticale
-    }
+    sliderElement.scrollLeft -= deltaX; // scrolla sull'asse X
+    startX = e.touches[0].clientX;
+    e.preventDefault(); // blocca scroll verticale
   }, { passive: false });
 
   sliderElement.addEventListener("touchend", function() {
