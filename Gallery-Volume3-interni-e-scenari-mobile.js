@@ -378,6 +378,8 @@ dot.addEventListener("click", () => {
     });
 
     document.querySelectorAll(".slide-Volume3-interni-e-scenari-mobile")[0].classList.add("active");
+    // 🔹 Aggiungi questa riga subito dopo per impostare correttamente padding e indicatori
+updateIndicators();
 
 function updateIndicators() {
 
@@ -397,7 +399,6 @@ function updateIndicators() {
     slidesContainer.style.paddingLeft = "0px";
     slidesContainer.style.paddingRight = "20px";
   }
-}
 
 let isScrolling = false;
 let startScrollLeft = 0;
