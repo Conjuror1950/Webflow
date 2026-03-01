@@ -11,9 +11,14 @@
     head.appendChild(style);
   }
 
-  // CSS aggiornato
+  // CSS aggiornato con @font-face
   var galleryCSS = `
-    @import url("https://cdn.apple.com/sf-pro/SF-Pro-Display-Regular.woff2") format("woff2");
+    @font-face {
+      font-family: "SF Pro Display";
+      src: url("https://cdn.apple.com/sf-pro/SF-Pro-Display-Regular.woff2") format("woff2");
+      font-weight: 400;
+      font-style: normal;
+    }
 
     body {
       font-family: "SF Pro Display", sans-serif !important;
@@ -39,48 +44,41 @@
       overflow: hidden;
       display: flex;
       align-items: center;
-      padding-left: 20px; /* solo padding a sinistra */
+      padding-left: 20px;
     }
 
-.slides-Volume3-interni-e-scenari-mobile {
-  display: flex;
-  gap: 16px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  padding-left: 20px; /* solo padding a sinistra per default */
-  padding-right: 0;
-  transition: padding 0.4s ease;
-}
-
-.slide-Volume3-interni-e-scenari-mobile.last-slide {
-  padding-left: 0 !important;
-  padding-right: 20px !important;
-}
+    .slides-Volume3-interni-e-scenari-mobile {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      padding-left: 20px;
+      padding-right: 0px;
+      transition: padding 0.4s ease;
+    }
 
     .slides-Volume3-interni-e-scenari-mobile::-webkit-scrollbar {
       display: none;
     }
 
-.slide-Volume3-interni-e-scenari-mobile {
-  flex: 0 0 70%;
-  scroll-snap-align: start;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  cursor: default;
-
-  transition: 
-    transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1),
-    opacity 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
-}
+    .slide-Volume3-interni-e-scenari-mobile {
+      flex: 0 0 70%;
+      scroll-snap-align: start;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      cursor: default;
+      transition: transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1),
+                  opacity 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
 
     .slide-Volume3-interni-e-scenari-mobile.active {
-    opacity: 1;
-    transform: scale(1);
-   }
+      opacity: 1;
+      transform: scale(1);
+    }
 
     .slide-Volume3-interni-e-scenari-mobile img {
       width: 100%;
@@ -90,7 +88,6 @@
       transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* Indicatori delle slide */
     .slider-indicators-Volume3-interni-e-scenari-mobile {
       display: flex;
       bottom: 0px;
@@ -112,7 +109,6 @@
       background: #1d1d1d;
     }
 
-    /* Dettagli download */
     .details-Volume3-interni-e-scenari-mobile {
       width: 45.5%;
       text-align: left;
@@ -126,11 +122,8 @@
       font-weight: 600;
       color: black;
     }
-    .option-button-Volume3-interni-e-scenari-mobile {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
+
+    .option-button-Volume3-interni-e-scenari-mobile { display: flex; flex-direction: column; gap: 10px; }
     .option-Volume3-interni-e-scenari-mobile {
       background: white;
       border: 0.8px solid #1d1d1d;
@@ -146,116 +139,38 @@
     .option-Volume3-interni-e-scenari-mobile.selected {
       border-color: #0071e3;
     }
-    .option-main-Volume3-interni-e-scenari-mobile {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .option-title-Volume3-interni-e-scenari-mobile {
-      font-size: 16px;
-      font-weight: 600;
-      color: #1d1d1f;
-    }
-    .option-side-Volume3-interni-e-scenari-mobile {
-      font-size: 13px;
-      color: #86868b;
-      margin-left: 10px;
-      white-space: nowrap;
-    }
-    .option-subtext-Volume3-interni-e-scenari-mobile {
-      font-size: 13px;
-      color: #86868b;
-      margin-top: 6px;
-    }
+
+    .option-main-Volume3-interni-e-scenari-mobile { display: flex; justify-content: space-between; align-items: center; }
+    .option-title-Volume3-interni-e-scenari-mobile { font-size: 16px; font-weight: 600; color: #1d1d1f; }
+    .option-side-Volume3-interni-e-scenari-mobile { font-size: 13px; color: #86868b; margin-left: 10px; white-space: nowrap; }
+    .option-subtext-Volume3-interni-e-scenari-mobile { font-size: 13px; color: #86868b; margin-top: 6px; }
+
     .info-box-Volume3-interni-e-scenari-mobile {
-      width: 250%;
-      background: #f7f7f7;
-      border-radius: 12px;
-      padding: 16px;
-      margin-top: 20px;
-      color: black;
-      box-sizing: border-box;
+      width: 250%; background: #f7f7f7; border-radius: 12px; padding: 16px; margin-top: 20px; color: black; box-sizing: border-box;
     }
+
     .additional-info-Volume3-interni-e-scenari-mobile {
-      width: 250%;
-      background: transparent;
-      border-radius: 12px;
-      padding: 16px;
-      margin-top: 20px;
-      color: black;
-      box-sizing: border-box;
-    }
-    .info-bold-Volume3-interni-e-scenari-mobile {
-      font-weight: 600;
-      font-size: 14px;
-      margin-bottom: 4px;
-    }
-    .info-regular-Volume3-interni-e-scenari-mobile {
-      font-size: 13px;
-      line-height: 1.4;
-    }
-    .title-wrapper-Volume3-interni-e-scenari-mobile {
-      display: flex;
-      align-items: baseline;
-      gap: 5px;
-      flex-wrap: nowrap;
-      white-space: nowrap;
-    }
-    .subtitle-Volume3-interni-e-scenari-mobile {
-      font-family: "SF Pro Display", sans-serif !important;
-      font-size: 24px;
-      font-weight: 600;
-      color: #6e6e73;
+      width: 250%; background: transparent; border-radius: 12px; padding: 16px; margin-top: 20px; color: black; box-sizing: border-box;
     }
 
-    /* Titoli sopra e sotto lo slider */
-    .slider-title-top-Volume3-interni-e-scenari-mobile {
-      font-family: "SF Pro Display", sans-serif !important;
-      text-align: left;     
-      color: black;
-      margin-top: 52px;
-      margin-bottom: -18px;
-      margin-left: 18px;
-    }
-    .slider-title-top-Volume3-interni-e-scenari-mobile h2 {
-      font-family: "SF Pro Display", sans-serif !important;
-      font-weight: 600;
-      margin: 0;
-      font-size: 24px;
-    }
-    .slider-title-top-Volume3-interni-e-scenari-mobile p {
-      font-family: "SF Pro Display", sans-serif !important;
-      font-weight: 500;
-      font-size: 13px;
-      color: #86868b;
-    }
+    .info-bold-Volume3-interni-e-scenari-mobile { font-weight: 600; font-size: 14px; margin-bottom: 4px; }
+    .info-regular-Volume3-interni-e-scenari-mobile { font-size: 13px; line-height: 1.4; }
 
-      .title-wrapper-Volume3-interni-e-scenari-mobile {
-      display: flex;
-      align-items: baseline;
-      gap: 5px;
-      flex-wrap: nowrap;
-      white-space: nowrap;
-    }
+    .title-wrapper-Volume3-interni-e-scenari-mobile { display: flex; align-items: baseline; gap: 5px; flex-wrap: nowrap; white-space: nowrap; }
+    .subtitle-Volume3-interni-e-scenari-mobile { font-family: "SF Pro Display", sans-serif !important; font-size: 24px; font-weight: 600; color: #6e6e73; }
 
-      .subtitle-Volume3-interni-e-scenari-mobile {
-      font-family: "SF Pro Display", sans-serif !important;
-      font-size: 24px;
-      font-weight: 600;
-      color: #6e6e73;
-    }
+    .slider-title-top-Volume3-interni-e-scenari-mobile { font-family: "SF Pro Display", sans-serif !important; text-align: left; color: black; margin-top: 52px; margin-bottom: -18px; margin-left: 18px; }
+    .slider-title-top-Volume3-interni-e-scenari-mobile h2 { font-weight: 600; margin: 0; font-size: 24px; }
+    .slider-title-top-Volume3-interni-e-scenari-mobile p { font-weight: 500; font-size: 13px; color: #86868b; }
 
     @media screen and (max-width: 768px) {
-      .slide-Volume3-interni-e-scenari-mobile {
-        flex: 0 0 85%;
-      }
+      .slide-Volume3-interni-e-scenari-mobile { flex: 0 0 85%; }
     }
   `;
   addStyle(galleryCSS);
 
-  // HTML aggiornato (senza pulsanti)
+  // HTML
   var galleryHTML = `
-<!-- Title -->
 <div class="wrapper-slider-Volume3-interni-e-scenari-mobile">
   <div class="slider-title-top-Volume3-interni-e-scenari-mobile">
     <div class="title-wrapper-Volume3-interni-e-scenari-mobile">
@@ -264,12 +179,10 @@
     </div>
   </div>
 
-  <!-- Slider -->
   <div class="slider-Volume3-interni-e-scenari-mobile">
     <div class="slides-Volume3-interni-e-scenari-mobile"></div>
   </div>
 
-  <!-- Details -->
   <div class="slider-indicators-Volume3-interni-e-scenari-mobile"></div>
   <div class="details-Volume3-interni-e-scenari-mobile">
     <div class="option-button-Volume3-interni-e-scenari-mobile">
@@ -316,6 +229,7 @@
   injectGallery();
 
   function initGallery() {
+    let startTouchX = 0; // ✅ dichiarazione corretta
     var images = [
       {webp: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/unit-photos/item-01/photo-030101/Collection_Photo_unselect_030101.webp",
        jpg: "https://andrea-ingrassia.netlify.app/ph-rm/collections-and-events/c/collections/images/set-03/download-photos/item-01/photo-030101/Collection_Photo_select_030101.jpg",
@@ -362,108 +276,83 @@
     var indicatorsContainer = document.querySelector(".slider-indicators-Volume3-interni-e-scenari-mobile");
     var slideIndex = 0;
 
-images.forEach((img, idx) => {
-  var slide = document.createElement("div");
-  slide.className = "slide-Volume3-interni-e-scenari-mobile";
-  
-  // 🔹 ultima slide
-  if(idx === images.length - 1) slide.classList.add("last-slide");
+    images.forEach((img, idx) => {
+      var slide = document.createElement("div");
+      slide.className = "slide-Volume3-interni-e-scenari-mobile";
+      var imageEl = document.createElement("img");
+      imageEl.src = img.webp;
+      imageEl.alt = img.name;
+      slide.appendChild(imageEl);
+      slidesContainer.appendChild(slide);
 
-  var imageEl = document.createElement("img");
-  imageEl.src = img.webp;
-  imageEl.alt = img.name;
-  slide.appendChild(imageEl);
-  slidesContainer.appendChild(slide);
-
-  // indicator
-  var dot = document.createElement("div");
-  dot.className = "indicator-Volume3-interni-e-scenari-mobile" + (idx === 0 ? " active" : "");
-  dot.addEventListener("click", () => {
-    slideIndex = idx;
-    goToSlide(slideIndex);
-  });
-  indicatorsContainer.appendChild(dot);
-});
+      var dot = document.createElement("div");
+      dot.className = "indicator-Volume3-interni-e-scenari-mobile" + (idx === 0 ? " active" : "");
+      dot.addEventListener("click", () => {
+        slideIndex = idx;
+        goToSlide(slideIndex);
+      });
+      indicatorsContainer.appendChild(dot);
+    });
 
     document.querySelectorAll(".slide-Volume3-interni-e-scenari-mobile")[0].classList.add("active");
 
-function updateIndicators() {
-  const slidesContainer = document.querySelector(".slides-Volume3-interni-e-scenari-mobile");
-  
-  // Aggiorna indicatori e slide attive
-  document.querySelectorAll(".indicator-Volume3-interni-e-scenari-mobile").forEach((dot, idx) => {
-    dot.classList.toggle("active", idx === slideIndex);
-  });
+    function updateIndicators() {
+      document.querySelectorAll(".indicator-Volume3-interni-e-scenari-mobile").forEach((dot, idx) => {
+        dot.classList.toggle("active", idx === slideIndex);
+      });
+      document.querySelectorAll(".slide-Volume3-interni-e-scenari-mobile").forEach((slide, idx) => {
+        slide.classList.toggle("active", idx === slideIndex);
+      });
 
-  document.querySelectorAll(".slide-Volume3-interni-e-scenari-mobile").forEach((slide, idx) => {
-    slide.classList.toggle("active", idx === slideIndex);
-  });
-
-let isScrolling = false;
-let startScrollLeft = 0;
-
-slidesContainer.addEventListener("touchstart", (e) => {
-  startTouchX = e.touches[0].clientX;
-});
-
-slidesContainer.addEventListener("touchend", (e) => {
-  if (isScrolling) return;
-
-  let diffX = e.changedTouches[0].clientX - startTouchX;
-
-  if (diffX < -10) { // swipe verso sinistra → sempre +1
-    slideIndex = Math.min(slideIndex + 1, images.length - 1);
-  } else if (diffX > 10) { // swipe verso destra → sempre -1
-    slideIndex = Math.max(slideIndex - 1, 0);
-  }
-
-  goToSlide(slideIndex);
-});
-
-function goToSlide(index) {
-  isScrolling = true;
-
-  const slideWidth = slidesContainer.children[0].offsetWidth + 16;
-  const maxScroll = slidesContainer.scrollWidth - slidesContainer.clientWidth;
-
-  let targetScroll = slideWidth * index;
-
-  // 🔒 blocco massimo scroll
-  if (targetScroll > maxScroll) {
-    targetScroll = maxScroll;
-  }
-
-  slidesContainer.scrollTo({
-    left: targetScroll,
-    behavior: "smooth"
-  });
-
-  updateIndicators();
-
-  setTimeout(() => {
-    isScrolling = false;
-  }, 400);
-}
-
-slidesContainer.addEventListener("scroll", () => {
-  if (isScrolling) return;
-
-  const slideWidth = slidesContainer.children[0].offsetWidth + 16;
-  const currentScroll = slidesContainer.scrollLeft;
-  const expectedScroll = slideWidth * slideIndex;
-
-  const diff = currentScroll - expectedScroll;
-
-  if (Math.abs(diff) > slideWidth / 2) {
-    if (diff > 0 && slideIndex < images.length - 1) {
-      slideIndex += 1;
-    } else if (diff < 0 && slideIndex > 0) {
-      slideIndex -= 1;
+      if (slideIndex === images.length - 1) {
+        slidesContainer.style.paddingLeft = "0px";
+        slidesContainer.style.paddingRight = "20px";
+      } else {
+        slidesContainer.style.paddingLeft = "20px";
+        slidesContainer.style.paddingRight = "0px";
+      }
     }
 
-    goToSlide(slideIndex);
-  }
-});
+    let isScrolling = false;
+
+    slidesContainer.addEventListener("touchstart", (e) => {
+      startTouchX = e.touches[0].clientX;
+    });
+
+    slidesContainer.addEventListener("touchend", (e) => {
+      if (isScrolling) return;
+      let diffX = e.changedTouches[0].clientX - startTouchX;
+      if (diffX < -10) slideIndex = Math.min(slideIndex + 1, images.length - 1);
+      else if (diffX > 10) slideIndex = Math.max(slideIndex - 1, 0);
+      goToSlide(slideIndex);
+    });
+
+    function goToSlide(index) {
+      isScrolling = true;
+      const slideWidth = slidesContainer.children[0].offsetWidth + 16;
+      const maxScroll = slidesContainer.scrollWidth - slidesContainer.clientWidth;
+      let targetScroll = slideWidth * index;
+      if (targetScroll > maxScroll) targetScroll = maxScroll;
+
+      slidesContainer.scrollTo({ left: targetScroll, behavior: "smooth" });
+      updateIndicators();
+
+      setTimeout(() => { isScrolling = false; }, 400);
+    }
+
+    slidesContainer.addEventListener("scroll", () => {
+      if (isScrolling) return;
+      const slideWidth = slidesContainer.children[0].offsetWidth + 16;
+      const currentScroll = slidesContainer.scrollLeft;
+      const expectedScroll = slideWidth * slideIndex;
+      const diff = currentScroll - expectedScroll;
+
+      if (Math.abs(diff) > slideWidth / 2) {
+        if (diff > 0 && slideIndex < images.length - 1) slideIndex += 1;
+        else if (diff < 0 && slideIndex > 0) slideIndex -= 1;
+        goToSlide(slideIndex);
+      }
+    });
 
     // Download singolo
     document.getElementById("download-single-Volume3-interni-e-scenari-mobile").addEventListener("click", ()=>{
