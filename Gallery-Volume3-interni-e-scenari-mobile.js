@@ -308,26 +308,22 @@ function updateIndicators() {
 
 function goToSlide(index) {
   isScrolling = true;
-  const slideWidth = slidesContainer.children[0].offsetWidth + 16;
-  const maxScroll = slidesContainer.scrollWidth - slidesContainer.clientWidth;
-  let targetScroll = slideWidth * index;
 
-  if (targetScroll > maxScroll) targetScroll = maxScroll;
-
-  slidesContainer.scrollTo({ left: targetScroll, behavior: "smooth" });
-
-  // Aggiornamento dinamico padding in base alla slide target
+  // Aggiorna padding dinamicamente PRIMA dello scroll
   if (index === images.length - 1) {
     slidesContainer.style.paddingLeft = "0px";
     slidesContainer.style.paddingRight = "20px";
-  } else if (index === 0) {
-    slidesContainer.style.paddingLeft = "20px";
-    slidesContainer.style.paddingRight = "0px";
   } else {
     slidesContainer.style.paddingLeft = "20px";
     slidesContainer.style.paddingRight = "0px";
   }
 
+  const slideWidth = slidesContainer.children[0].offsetWidth + 16;
+  const maxScroll = slidesContainer.scrollWidth - slidesContainer.clientWidth;
+  let targetScroll = slideWidth * index;
+  if (targetScroll > maxScroll) targetScroll = maxScroll;
+
+  slidesContainer.scrollTo({ left: targetScroll, behavior: "smooth" });
   updateIndicators();
 
   setTimeout(() => { isScrolling = false; }, 400);
@@ -345,33 +341,6 @@ function goToSlide(index) {
       if (diffX < -10) slideIndex = Math.min(slideIndex + 1, images.length - 1);
       else if (diffX > 10) slideIndex = Math.max(slideIndex - 1, 0);
       goToSlide(slideIndex);
-    });
-
-    function goToSlide(index) {
-      isScrolling = true;
-      const slideWidth = slidesContainer.children[0].offsetWidth + 16;
-      const maxScroll = slidesContainer.scrollWidth - slidesContainer.clientWidth;
-      let targetScroll = slideWidth * index;
-      if (targetScroll > maxScroll) targetScroll = maxScroll;
-
-      slidesContainer.scrollTo({ left: targetScroll, behavior: "smooth" });
-      updateIndicators();
-
-      setTimeout(() => { isScrolling = false; }, 400);
-    }
-
-    slidesContainer.addEventListener("scroll", () => {
-      if (isScrolling) return;
-      const slideWidth = slidesContainer.children[0].offsetWidth + 16;
-      const currentScroll = slidesContainer.scrollLeft;
-      const expectedScroll = slideWidth * slideIndex;
-      const diff = currentScroll - expectedScroll;
-
-      if (Math.abs(diff) > slideWidth / 2) {
-        if (diff > 0 && slideIndex < images.length - 1) slideIndex += 1;
-        else if (diff < 0 && slideIndex > 0) slideIndex -= 1;
-        goToSlide(slideIndex);
-      }
     });
 
     // Download singolo
