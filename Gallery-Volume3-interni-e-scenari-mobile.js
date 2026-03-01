@@ -393,11 +393,8 @@ function updateIndicators() {
   if (slideIndex === 0) {
     slidesContainer.style.paddingLeft = "20px";
     slidesContainer.style.paddingRight = "0px";
-  } else if (slideIndex === images.length - 1) {
+  } else (slideIndex === images.length - 1) {
     slidesContainer.style.paddingLeft = "0px";
-    slidesContainer.style.paddingRight = "20px";
-  } else {
-    slidesContainer.style.paddingLeft = "20px";
     slidesContainer.style.paddingRight = "20px";
   }
 }
