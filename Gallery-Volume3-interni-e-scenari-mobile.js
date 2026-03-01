@@ -347,35 +347,32 @@ function goToSlide(index) {
       goToSlide(slideIndex);
     });
 
-function goToSlide(index) {
-  isScrolling = true;
-  const slideWidth = slidesContainer.children[0].offsetWidth + 16;
-  const maxScroll = slidesContainer.scrollWidth - slidesContainer.clientWidth;
-  let targetScroll = slideWidth * index;
+    function goToSlide(index) {
+      isScrolling = true;
+      const slideWidth = slidesContainer.children[0].offsetWidth + 16;
+      const maxScroll = slidesContainer.scrollWidth - slidesContainer.clientWidth;
+      let targetScroll = slideWidth * index;
+      if (targetScroll > maxScroll) targetScroll = maxScroll;
 
-  // Correzione per ultima slide
-  if (index === images.length - 1) {
-    targetScroll = maxScroll;
-  }
+      slidesContainer.scrollTo({ left: targetScroll, behavior: "smooth" });
+      updateIndicators();
 
-  slidesContainer.scrollTo({ left: targetScroll, behavior: "smooth" });
+      setTimeout(() => { isScrolling = false; }, 400);
+    }
 
-  // Gestione padding dinamico
-  if (index === 0) {
-    slidesContainer.style.paddingLeft = "20px";
-    slidesContainer.style.paddingRight = "0px";
-  } else if (index === images.length - 1) {
-    slidesContainer.style.paddingLeft = "0px";
-    slidesContainer.style.paddingRight = "20px";
-  } else {
-    slidesContainer.style.paddingLeft = "20px";
-    slidesContainer.style.paddingRight = "0px";
-  }
+    slidesContainer.addEventListener("scroll", () => {
+      if (isScrolling) return;
+      const slideWidth = slidesContainer.children[0].offsetWidth + 16;
+      const currentScroll = slidesContainer.scrollLeft;
+      const expectedScroll = slideWidth * slideIndex;
+      const diff = currentScroll - expectedScroll;
 
-  updateIndicators();
-
-  setTimeout(() => { isScrolling = false; }, 400);
-}
+      if (Math.abs(diff) > slideWidth / 2) {
+        if (diff > 0 && slideIndex < images.length - 1) slideIndex += 1;
+        else if (diff < 0 && slideIndex > 0) slideIndex -= 1;
+        goToSlide(slideIndex);
+      }
+    });
 
     // Download singolo
     document.getElementById("download-single-Volume3-interni-e-scenari-mobile").addEventListener("click", ()=>{
