@@ -50,10 +50,8 @@
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   padding-left: 20px; /* solo padding a sinistra per default */
-}
-
-.slides-Volume3-interni-e-scenari-mobile .slide-Volume3-interni-e-scenari-mobile:last-child {
-  margin-right: 20px; /* padding a destra solo per l’ultima slide */
+  padding-right: 0px;
+  transition: padding 0.4s ease;
 }
 
     .slides-Volume3-interni-e-scenari-mobile::-webkit-scrollbar {
@@ -390,6 +388,15 @@ function updateIndicators() {
   document.querySelectorAll(".slide-Volume3-interni-e-scenari-mobile").forEach((slide, idx) => {
     slide.classList.toggle("active", idx === slideIndex);
   });
+
+  // 🔁 padding dinamico
+  if (slideIndex === images.length - 1) {
+    slidesContainer.style.paddingLeft = "0px";
+    slidesContainer.style.paddingRight = "20px";
+  } else {
+    slidesContainer.style.paddingLeft = "20px";
+    slidesContainer.style.paddingRight = "0px";
+  }
 }
 
 let isScrolling = false;
