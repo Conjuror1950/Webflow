@@ -59,6 +59,12 @@
       transition: padding 0.4s ease;
     }
 
+    .slides-Volume3-interni-e-scenari-mobile.last-slide {
+  padding-left: 0;
+  padding-right: 20px; /* o 0 se vuoi no spazio */
+  gap: 0;
+}
+
     .slides-Volume3-interni-e-scenari-mobile::-webkit-scrollbar {
       display: none;
     }
@@ -308,32 +314,30 @@ function updateIndicators() {
 
 function goToSlide(index) {
   isScrolling = true;
-  const slideWidth = slidesContainer.children[0].offsetWidth + 16;
+  const slideWidth = slidesContainer.children[0].offsetWidth + 16; // gap = 16px
   const maxScroll = slidesContainer.scrollWidth - slidesContainer.clientWidth;
   let targetScroll = slideWidth * index;
 
   // Correzione per ultima slide
   if (index === images.length - 1) {
     targetScroll = maxScroll;
+    slidesContainer.children[index].style.flex = "0 0 100%"; // ultima slide piena larghezza
+  } else {
+    slidesContainer.children[index].style.flex = "0 0 70%"; // slide normali
   }
 
   slidesContainer.scrollTo({ left: targetScroll, behavior: "smooth" });
 
-  // Reset padding e margini
-  slidesContainer.style.paddingLeft = "20px";
-  slidesContainer.style.paddingRight = "0px";
-
-  const slides = slidesContainer.querySelectorAll(".slide-Volume3-interni-e-scenari-mobile");
-  slides.forEach(slide => slide.style.marginLeft = "0"); // reset margine
-
+  // Gestione padding dinamico
   if (index === 0) {
     slidesContainer.style.paddingLeft = "20px";
     slidesContainer.style.paddingRight = "0px";
   } else if (index === images.length - 1) {
     slidesContainer.style.paddingLeft = "0px";
     slidesContainer.style.paddingRight = "20px";
-    // penultima slide senza margine-left
-    if (slides.length >= 2) slides[slides.length - 2].style.marginLeft = "0px";
+  } else {
+    slidesContainer.style.paddingLeft = "20px";
+    slidesContainer.style.paddingRight = "0px";
   }
 
   updateIndicators();
