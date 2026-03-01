@@ -39,6 +39,7 @@
       overflow: hidden;
       display: flex;
       align-items: center;
+      padding-left: 20px; /* solo padding a sinistra */
     }
 
 .slides-Volume3-interni-e-scenari-mobile {
@@ -48,7 +49,7 @@
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  padding-left: 20px;
+  padding-left: 20px; /* solo padding a sinistra per default */
   padding-right: 0px;
   transition: padding 0.4s ease;
 }
@@ -377,8 +378,6 @@ dot.addEventListener("click", () => {
     });
 
     document.querySelectorAll(".slide-Volume3-interni-e-scenari-mobile")[0].classList.add("active");
-    updateIndicators();
-goToSlide(0);
 
 function updateIndicators() {
 
@@ -390,13 +389,16 @@ function updateIndicators() {
     slide.classList.toggle("active", idx === slideIndex);
   });
 
-  // 🔁 padding dinamico
-  if (slideIndex === images.length - 1) {
+  // 🔁 padding dinamico corretto
+  if (slideIndex === 0) {
+    slidesContainer.style.paddingLeft = "20px";
+    slidesContainer.style.paddingRight = "0px";
+  } else if (slideIndex === images.length - 1) {
     slidesContainer.style.paddingLeft = "0px";
     slidesContainer.style.paddingRight = "20px";
   } else {
     slidesContainer.style.paddingLeft = "20px";
-    slidesContainer.style.paddingRight = "0px";
+    slidesContainer.style.paddingRight = "20px";
   }
 }
 
@@ -484,4 +486,4 @@ slidesContainer.addEventListener("scroll", () => {
   }
 
   document.addEventListener("DOMContentLoaded", initGallery);
-})();
+})(); 
