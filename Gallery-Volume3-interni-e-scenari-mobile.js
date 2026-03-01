@@ -431,15 +431,23 @@ function goToSlide(index) {
   }, 400);
 }
 
-    slidesContainer.addEventListener("scroll", () => {
+slidesContainer.addEventListener("scroll", () => {
   if (isScrolling) return;
 
   const slideWidth = slidesContainer.children[0].offsetWidth + 16;
-  const newIndex = Math.round(slidesContainer.scrollLeft / slideWidth);
+  const currentScroll = slidesContainer.scrollLeft;
+  const expectedScroll = slideWidth * slideIndex;
 
-  if (newIndex !== slideIndex) {
-    slideIndex = newIndex;
-    updateIndicators();
+  const diff = currentScroll - expectedScroll;
+
+  if (Math.abs(diff) > slideWidth / 2) {
+    if (diff > 0 && slideIndex < images.length - 1) {
+      slideIndex += 1;
+    } else if (diff < 0 && slideIndex > 0) {
+      slideIndex -= 1;
+    }
+
+    goToSlide(slideIndex);
   }
 });
 
