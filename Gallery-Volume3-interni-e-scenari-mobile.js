@@ -54,16 +54,7 @@
       scroll-snap-type: x mandatory;
       scroll-behavior: smooth;
       -webkit-overflow-scrolling: touch;
-      padding-left: 20px;
-      padding-right: 0px;
-      transition: padding 0.4s ease;
     }
-
-    .slides-Volume3-interni-e-scenari-mobile.last-slide {
-  padding-left: 0;
-  padding-right: 20px; /* o 0 se vuoi no spazio */
-  gap: 0;
-}
 
     .slides-Volume3-interni-e-scenari-mobile::-webkit-scrollbar {
       display: none;
@@ -314,32 +305,20 @@ function updateIndicators() {
 
 function goToSlide(index) {
   isScrolling = true;
-  const slideWidth = slidesContainer.children[0].offsetWidth + 16; // gap = 16px
-  const maxScroll = slidesContainer.scrollWidth - slidesContainer.clientWidth;
+
+  const slides = slidesContainer.children;
+  const slideWidth = slides[0].offsetWidth + 16; // + gap
+  const totalSlides = slides.length;
+  const containerWidth = slidesContainer.clientWidth;
+
   let targetScroll = slideWidth * index;
 
-  // Correzione per ultima slide
-  if (index === images.length - 1) {
-    targetScroll = maxScroll;
-    slidesContainer.children[index].style.flex = "0 0 100%"; // ultima slide piena larghezza
-  } else {
-    slidesContainer.children[index].style.flex = "0 0 70%"; // slide normali
+  // se è l'ultima slide, scroll fino a fine container
+  if (index === totalSlides - 1) {
+    targetScroll = slidesContainer.scrollWidth - containerWidth;
   }
 
   slidesContainer.scrollTo({ left: targetScroll, behavior: "smooth" });
-
-  // Gestione padding dinamico
-  if (index === 0) {
-    slidesContainer.style.paddingLeft = "20px";
-    slidesContainer.style.paddingRight = "0px";
-  } else if (index === images.length - 1) {
-    slidesContainer.style.paddingLeft = "0px";
-    slidesContainer.style.paddingRight = "20px";
-  } else {
-    slidesContainer.style.paddingLeft = "20px";
-    slidesContainer.style.paddingRight = "0px";
-  }
-
   updateIndicators();
 
   setTimeout(() => { isScrolling = false; }, 400);
