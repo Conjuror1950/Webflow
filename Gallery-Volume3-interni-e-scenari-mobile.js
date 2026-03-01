@@ -55,7 +55,7 @@
       scroll-behavior: smooth;
       -webkit-overflow-scrolling: touch;
       padding-left: 20px;
-      padding-right: 0px;
+      padding-right: 20px;
       transition: padding 0.4s ease;
     }
 
@@ -308,22 +308,23 @@ function updateIndicators() {
 
 function goToSlide(index) {
   isScrolling = true;
+  const slideWidth = slidesContainer.children[0].offsetWidth + 16; 
+  const maxScroll = slidesContainer.scrollWidth - slidesContainer.clientWidth;
+  let targetScroll = slideWidth * index;
 
-  // Aggiorna padding dinamicamente PRIMA dello scroll
+  if (targetScroll > maxScroll) targetScroll = maxScroll;
+
+  slidesContainer.scrollTo({ left: targetScroll, behavior: "smooth" });
+
+  // Aggiornamento dinamico padding solo per l'ultima slide
   if (index === images.length - 1) {
     slidesContainer.style.paddingLeft = "0px";
     slidesContainer.style.paddingRight = "20px";
   } else {
-    slidesContainer.style.paddingLeft = "20px";
+    slidesContainer.style.paddingLeft = "0px";  // mantiene la stessa logica per penultima slide
     slidesContainer.style.paddingRight = "0px";
   }
 
-  const slideWidth = slidesContainer.children[0].offsetWidth + 16;
-  const maxScroll = slidesContainer.scrollWidth - slidesContainer.clientWidth;
-  let targetScroll = slideWidth * index;
-  if (targetScroll > maxScroll) targetScroll = maxScroll;
-
-  slidesContainer.scrollTo({ left: targetScroll, behavior: "smooth" });
   updateIndicators();
 
   setTimeout(() => { isScrolling = false; }, 400);
