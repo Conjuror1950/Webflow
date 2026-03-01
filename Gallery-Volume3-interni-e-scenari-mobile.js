@@ -312,20 +312,28 @@ function goToSlide(index) {
   const maxScroll = slidesContainer.scrollWidth - slidesContainer.clientWidth;
   let targetScroll = slideWidth * index;
 
-  if (targetScroll > maxScroll) targetScroll = maxScroll;
+  // Correzione per ultima slide
+  if (index === images.length - 1) {
+    targetScroll = maxScroll;
+  }
 
   slidesContainer.scrollTo({ left: targetScroll, behavior: "smooth" });
 
-  // Aggiornamento dinamico padding in base alla slide target
-  if (index === images.length - 1) {
+  // Reset padding e margini
+  slidesContainer.style.paddingLeft = "20px";
+  slidesContainer.style.paddingRight = "0px";
+
+  const slides = slidesContainer.querySelectorAll(".slide-Volume3-interni-e-scenari-mobile");
+  slides.forEach(slide => slide.style.marginLeft = "0"); // reset margine
+
+  if (index === 0) {
+    slidesContainer.style.paddingLeft = "20px";
+    slidesContainer.style.paddingRight = "0px";
+  } else if (index === images.length - 1) {
     slidesContainer.style.paddingLeft = "0px";
     slidesContainer.style.paddingRight = "20px";
-  } else if (index === 0) {
-    slidesContainer.style.paddingLeft = "20px";
-    slidesContainer.style.paddingRight = "0px";
-  } else {
-    slidesContainer.style.paddingLeft = "20px";
-    slidesContainer.style.paddingRight = "0px";
+    // penultima slide senza margine-left
+    if (slides.length >= 2) slides[slides.length - 2].style.marginLeft = "0px";
   }
 
   updateIndicators();
