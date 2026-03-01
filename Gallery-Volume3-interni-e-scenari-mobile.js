@@ -296,22 +296,42 @@
 
     document.querySelectorAll(".slide-Volume3-interni-e-scenari-mobile")[0].classList.add("active");
 
-    function updateIndicators() {
-      document.querySelectorAll(".indicator-Volume3-interni-e-scenari-mobile").forEach((dot, idx) => {
-        dot.classList.toggle("active", idx === slideIndex);
-      });
-      document.querySelectorAll(".slide-Volume3-interni-e-scenari-mobile").forEach((slide, idx) => {
-        slide.classList.toggle("active", idx === slideIndex);
-      });
+function updateIndicators() {
+  const slides = document.querySelectorAll(".slide-Volume3-interni-e-scenari-mobile");
+  const dots = document.querySelectorAll(".indicator-Volume3-interni-e-scenari-mobile");
 
-      if (slideIndex === images.length - 1) {
-        slidesContainer.style.paddingLeft = "0px";
-        slidesContainer.style.paddingRight = "20px";
-      } else {
-        slidesContainer.style.paddingLeft = "20px";
-        slidesContainer.style.paddingRight = "0px";
-      }
-    }
+  slides.forEach((slide, idx) => slide.classList.toggle("active", idx === slideIndex));
+  dots.forEach((dot, idx) => dot.classList.toggle("active", idx === slideIndex));
+
+  // Non cambiare padding qui, fallo in goToSlide()
+}
+
+function goToSlide(index) {
+  isScrolling = true;
+  const slideWidth = slidesContainer.children[0].offsetWidth + 16;
+  const maxScroll = slidesContainer.scrollWidth - slidesContainer.clientWidth;
+  let targetScroll = slideWidth * index;
+
+  if (targetScroll > maxScroll) targetScroll = maxScroll;
+
+  slidesContainer.scrollTo({ left: targetScroll, behavior: "smooth" });
+
+  // Aggiornamento dinamico padding in base alla slide target
+  if (index === images.length - 1) {
+    slidesContainer.style.paddingLeft = "0px";
+    slidesContainer.style.paddingRight = "20px";
+  } else if (index === 0) {
+    slidesContainer.style.paddingLeft = "20px";
+    slidesContainer.style.paddingRight = "0px";
+  } else {
+    slidesContainer.style.paddingLeft = "20px";
+    slidesContainer.style.paddingRight = "0px";
+  }
+
+  updateIndicators();
+
+  setTimeout(() => { isScrolling = false; }, 400);
+}
 
     let isScrolling = false;
 
