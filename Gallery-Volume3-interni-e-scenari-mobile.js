@@ -380,7 +380,9 @@ dot.addEventListener("click", () => {
     document.querySelectorAll(".slide-Volume3-interni-e-scenari-mobile")[0].classList.add("active");
 
 function updateIndicators() {
-
+  const slidesContainer = document.querySelector(".slides-Volume3-interni-e-scenari-mobile");
+  
+  // Aggiorna indicatori e slide attive
   document.querySelectorAll(".indicator-Volume3-interni-e-scenari-mobile").forEach((dot, idx) => {
     dot.classList.toggle("active", idx === slideIndex);
   });
@@ -389,12 +391,15 @@ function updateIndicators() {
     slide.classList.toggle("active", idx === slideIndex);
   });
 
-  // 🔁 padding dinamico
-  if (slideIndex === images.length - 1) {
-    slidesContainer.style.paddingLeft = "0px";
-    slidesContainer.style.paddingRight = "20px";
+  // 🔁 Padding dinamico corretto
+  if (slideIndex === 0) {
+    slidesContainer.style.paddingLeft = "20px";   // Prima slide: margine a sinistra
+    slidesContainer.style.paddingRight = "0px";
+  } else if (slideIndex === images.length - 1) {
+    slidesContainer.style.paddingLeft = "0px";    // Ultima slide: margine sinistra 0
+    slidesContainer.style.paddingRight = "0px";   // Ultima slide: margine destra 0
   } else {
-    slidesContainer.style.paddingLeft = "20px";
+    slidesContainer.style.paddingLeft = "20px";   // Slide intermedie
     slidesContainer.style.paddingRight = "0px";
   }
 }
