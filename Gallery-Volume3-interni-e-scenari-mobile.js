@@ -49,8 +49,6 @@
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  padding-left: 20px;
-  padding-right: 20px;
   transition: padding 0.4s ease;
 }
 
