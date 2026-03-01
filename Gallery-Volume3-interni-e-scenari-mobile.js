@@ -55,7 +55,7 @@
       scroll-behavior: smooth;
       -webkit-overflow-scrolling: touch;
       padding-left: 20px;
-      padding-right: 20px;
+      padding-right: 0px;
       transition: padding 0.4s ease;
     }
 
@@ -308,7 +308,7 @@ function updateIndicators() {
 
 function goToSlide(index) {
   isScrolling = true;
-  const slideWidth = slidesContainer.children[0].offsetWidth + 16; 
+  const slideWidth = slidesContainer.children[0].offsetWidth + 16;
   const maxScroll = slidesContainer.scrollWidth - slidesContainer.clientWidth;
   let targetScroll = slideWidth * index;
 
@@ -316,12 +316,15 @@ function goToSlide(index) {
 
   slidesContainer.scrollTo({ left: targetScroll, behavior: "smooth" });
 
-  // Aggiornamento dinamico padding solo per l'ultima slide
+  // Aggiornamento dinamico padding in base alla slide target
   if (index === images.length - 1) {
     slidesContainer.style.paddingLeft = "0px";
     slidesContainer.style.paddingRight = "20px";
+  } else if (index === 0) {
+    slidesContainer.style.paddingLeft = "20px";
+    slidesContainer.style.paddingRight = "0px";
   } else {
-    slidesContainer.style.paddingLeft = "0px";  // mantiene la stessa logica per penultima slide
+    slidesContainer.style.paddingLeft = "20px";
     slidesContainer.style.paddingRight = "0px";
   }
 
@@ -343,6 +346,36 @@ function goToSlide(index) {
       else if (diffX > 10) slideIndex = Math.max(slideIndex - 1, 0);
       goToSlide(slideIndex);
     });
+
+function goToSlide(index) {
+  isScrolling = true;
+  const slideWidth = slidesContainer.children[0].offsetWidth + 16;
+  const maxScroll = slidesContainer.scrollWidth - slidesContainer.clientWidth;
+  let targetScroll = slideWidth * index;
+
+  // Correzione per ultima slide
+  if (index === images.length - 1) {
+    targetScroll = maxScroll;
+  }
+
+  slidesContainer.scrollTo({ left: targetScroll, behavior: "smooth" });
+
+  // Gestione padding dinamico
+  if (index === 0) {
+    slidesContainer.style.paddingLeft = "20px";
+    slidesContainer.style.paddingRight = "0px";
+  } else if (index === images.length - 1) {
+    slidesContainer.style.paddingLeft = "0px";
+    slidesContainer.style.paddingRight = "20px";
+  } else {
+    slidesContainer.style.paddingLeft = "20px";
+    slidesContainer.style.paddingRight = "0px";
+  }
+
+  updateIndicators();
+
+  setTimeout(() => { isScrolling = false; }, 400);
+}
 
     // Download singolo
     document.getElementById("download-single-Volume3-interni-e-scenari-mobile").addEventListener("click", ()=>{
