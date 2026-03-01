@@ -392,14 +392,13 @@ function updateIndicators() {
   });
 
   // 🔁 Padding dinamico corretto
-  if (slideIndex === 0) {
-    slidesContainer.style.paddingLeft = "20px";   // Prima slide: margine a sinistra
-    slidesContainer.style.paddingRight = "0px";
-  } else if (slideIndex === images.length - 1) {
-    slidesContainer.style.paddingLeft = "0px";    // Ultima slide: margine sinistra 0
-    slidesContainer.style.paddingRight = "0px";   // Ultima slide: margine destra 0
+  if (slideIndex === images.length - 1) {
+    // Ultima slide: sinistra 0, destra 20px
+    slidesContainer.style.paddingLeft = "0px";
+    slidesContainer.style.paddingRight = "20px";
   } else {
-    slidesContainer.style.paddingLeft = "20px";   // Slide intermedie
+    // Tutte le altre slide: sinistra 20px, destra 0
+    slidesContainer.style.paddingLeft = "20px";
     slidesContainer.style.paddingRight = "0px";
   }
 }
