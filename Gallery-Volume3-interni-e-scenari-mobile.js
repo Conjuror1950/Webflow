@@ -49,8 +49,8 @@
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  padding-left: 20px; /* solo padding a sinistra per default */
-  padding-right: 0px;
+  padding-left: 20px;
+  padding-right: 20px;
   transition: padding 0.4s ease;
 }
 
@@ -378,8 +378,6 @@ dot.addEventListener("click", () => {
     });
 
     document.querySelectorAll(".slide-Volume3-interni-e-scenari-mobile")[0].classList.add("active");
-    // 🔹 Aggiungi questa riga subito dopo per impostare correttamente padding e indicatori
-updateIndicators();
 
 function updateIndicators() {
 
@@ -391,14 +389,15 @@ function updateIndicators() {
     slide.classList.toggle("active", idx === slideIndex);
   });
 
-  // 🔁 padding dinamico corretto
-  if (slideIndex === 0) {
-    slidesContainer.style.paddingLeft = "20px";
-    slidesContainer.style.paddingRight = "0px";
-  } else (slideIndex === images.length - 1) {
+  // 🔁 padding dinamico
+  if (slideIndex === images.length - 1) {
     slidesContainer.style.paddingLeft = "0px";
     slidesContainer.style.paddingRight = "20px";
+  } else {
+    slidesContainer.style.paddingLeft = "20px";
+    slidesContainer.style.paddingRight = "0px";
   }
+}
 
 let isScrolling = false;
 let startScrollLeft = 0;
@@ -422,28 +421,37 @@ slidesContainer.addEventListener("touchend", (e) => {
 });
 
 function goToSlide(index) {
-  isScrolling = true;
+    isScrolling = true;
 
-  const slideWidth = slidesContainer.children[0].offsetWidth + 16;
-  const maxScroll = slidesContainer.scrollWidth - slidesContainer.clientWidth;
+    const slideWidth = slidesContainer.children[0].offsetWidth + 16; // gap 16px
+    const maxScroll = slidesContainer.scrollWidth - slidesContainer.clientWidth;
 
-  let targetScroll = slideWidth * index;
+    let targetScroll = slideWidth * index;
 
-  // 🔒 blocco massimo scroll
-  if (targetScroll > maxScroll) {
-    targetScroll = maxScroll;
-  }
+    if (targetScroll > maxScroll) {
+        targetScroll = maxScroll;
+    }
 
-  slidesContainer.scrollTo({
-    left: targetScroll,
-    behavior: "smooth"
-  });
+    slidesContainer.scrollTo({
+        left: targetScroll,
+        behavior: "smooth"
+    });
 
-  updateIndicators();
+    // ──→ QUI: aggiorna sempre il padding in base alla slide target
+    if (index === images.length - 1) {
+        slidesContainer.style.paddingLeft  = "0px";
+        slidesContainer.style.paddingRight = "20px";
+    } else {
+        slidesContainer.style.paddingLeft  = "20px";
+        slidesContainer.style.paddingRight = "0px";
+    }
 
-  setTimeout(() => {
-    isScrolling = false;
-  }, 400);
+    slideIndex = index;           // assicurati che slideIndex sia aggiornata
+    updateIndicators();           // aggiorna pallini e classi active
+
+    setTimeout(() => {
+        isScrolling = false;
+    }, 450);   // leggermente più lungo per sicurezza con animazioni
 }
 
 slidesContainer.addEventListener("scroll", () => {
@@ -484,4 +492,4 @@ slidesContainer.addEventListener("scroll", () => {
   }
 
   document.addEventListener("DOMContentLoaded", initGallery);
-})(); 
+})();
