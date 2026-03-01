@@ -377,7 +377,8 @@ dot.addEventListener("click", () => {
     });
 
     document.querySelectorAll(".slide-Volume3-interni-e-scenari-mobile")[0].classList.add("active");
-    goToSlide(0);
+    updateIndicators();
+goToSlide(0);
 
 function updateIndicators() {
 
