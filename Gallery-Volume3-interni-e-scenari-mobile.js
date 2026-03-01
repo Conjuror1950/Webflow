@@ -335,15 +335,11 @@ if (index === 0) {
   slidesContainer.style.paddingLeft = "20px";
   slidesContainer.style.paddingRight = "0px";
 } else if (index === images.length - 1) {
-  // ultima slide: 20px a destra, 0 a sinistra
+  // ultima slide: niente padding extra, allineata al bordo
   slidesContainer.style.paddingLeft = "0px";
-  slidesContainer.style.paddingRight = "20px";
-} else if (index === images.length - 2) {
-  // penultima slide, quando l'ultima non è attiva: 20px a sinistra, 0 a destra
-  slidesContainer.style.paddingLeft = "20px";
   slidesContainer.style.paddingRight = "0px";
 } else {
-  // tutte le altre slide
+  // tutte le altre slide (inclusa la penultima)
   slidesContainer.style.paddingLeft = "20px";
   slidesContainer.style.paddingRight = "0px";
 }
