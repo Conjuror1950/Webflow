@@ -50,8 +50,13 @@
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   padding-left: 20px; /* solo padding a sinistra per default */
-  padding-right: 0px;
+  padding-right: 0;
   transition: padding 0.4s ease;
+}
+
+.slide-Volume3-interni-e-scenari-mobile.last-slide {
+  padding-left: 0 !important;
+  padding-right: 20px !important;
 }
 
     .slides-Volume3-interni-e-scenari-mobile::-webkit-scrollbar {
@@ -357,25 +362,28 @@
     var indicatorsContainer = document.querySelector(".slider-indicators-Volume3-interni-e-scenari-mobile");
     var slideIndex = 0;
 
-    images.forEach((img, idx) => {
-      // slide
-      var slide = document.createElement("div");
-      slide.className = "slide-Volume3-interni-e-scenari-mobile";
-      var imageEl = document.createElement("img");
-      imageEl.src = img.webp;
-      imageEl.alt = img.name;
-      slide.appendChild(imageEl);
-      slidesContainer.appendChild(slide);
+images.forEach((img, idx) => {
+  var slide = document.createElement("div");
+  slide.className = "slide-Volume3-interni-e-scenari-mobile";
+  
+  // 🔹 ultima slide
+  if(idx === images.length - 1) slide.classList.add("last-slide");
 
-      // indicator
-      var dot = document.createElement("div");
-      dot.className = "indicator-Volume3-interni-e-scenari-mobile" + (idx === 0 ? " active" : "");
-dot.addEventListener("click", () => {
-  slideIndex = idx;
-  goToSlide(slideIndex);
+  var imageEl = document.createElement("img");
+  imageEl.src = img.webp;
+  imageEl.alt = img.name;
+  slide.appendChild(imageEl);
+  slidesContainer.appendChild(slide);
+
+  // indicator
+  var dot = document.createElement("div");
+  dot.className = "indicator-Volume3-interni-e-scenari-mobile" + (idx === 0 ? " active" : "");
+  dot.addEventListener("click", () => {
+    slideIndex = idx;
+    goToSlide(slideIndex);
+  });
+  indicatorsContainer.appendChild(dot);
 });
-      indicatorsContainer.appendChild(dot);
-    });
 
     document.querySelectorAll(".slide-Volume3-interni-e-scenari-mobile")[0].classList.add("active");
 
@@ -390,18 +398,6 @@ function updateIndicators() {
   document.querySelectorAll(".slide-Volume3-interni-e-scenari-mobile").forEach((slide, idx) => {
     slide.classList.toggle("active", idx === slideIndex);
   });
-
-  // 🔁 Padding dinamico corretto
-  if (slideIndex === images.length - 1) {
-    // Ultima slide: sinistra 0, destra 20px
-    slidesContainer.style.paddingLeft = "0px";
-    slidesContainer.style.paddingRight = "20px";
-  } else {
-    // Tutte le altre slide: sinistra 20px, destra 0
-    slidesContainer.style.paddingLeft = "20px";
-    slidesContainer.style.paddingRight = "0px";
-  }
-}
 
 let isScrolling = false;
 let startScrollLeft = 0;
