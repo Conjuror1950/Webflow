@@ -416,8 +416,15 @@ slidesContainer.addEventListener("touchend", (e) => {
 function goToSlide(index) {
   isScrolling = true;
 
-  const slideWidth = slidesContainer.children[0].offsetWidth + 16; // 16 = gap
-  const targetScroll = slideWidth * index;
+  const slideWidth = slidesContainer.children[0].offsetWidth + 16;
+  const maxScroll = slidesContainer.scrollWidth - slidesContainer.clientWidth;
+
+  let targetScroll = slideWidth * index;
+
+  // 🔒 blocco massimo scroll
+  if (targetScroll > maxScroll) {
+    targetScroll = maxScroll;
+  }
 
   slidesContainer.scrollTo({
     left: targetScroll,
