@@ -39,7 +39,6 @@
       overflow: hidden;
       display: flex;
       align-items: center;
-      padding-left: 20px; /* solo padding a sinistra */
     }
 
 .slides-Volume3-interni-e-scenari-mobile {
@@ -49,6 +48,7 @@
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
+  padding-left: 20px;
   padding-right: 0px;
   transition: padding 0.4s ease;
 }
