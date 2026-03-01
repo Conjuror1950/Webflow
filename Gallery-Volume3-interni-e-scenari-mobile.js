@@ -54,6 +54,9 @@
       scroll-snap-type: x mandatory;
       scroll-behavior: smooth;
       -webkit-overflow-scrolling: touch;
+      padding-left: 20px;
+      padding-right: 0px;
+      transition: padding 0.4s ease;
     }
 
     .slides-Volume3-interni-e-scenari-mobile::-webkit-scrollbar {
@@ -303,6 +306,33 @@ function updateIndicators() {
   // Non cambiare padding qui, fallo in goToSlide()
 }
 
+function goToSlide(index) {
+  isScrolling = true;
+  const slideWidth = slidesContainer.children[0].offsetWidth + 16;
+  const maxScroll = slidesContainer.scrollWidth - slidesContainer.clientWidth;
+  let targetScroll = slideWidth * index;
+
+  if (targetScroll > maxScroll) targetScroll = maxScroll;
+
+  slidesContainer.scrollTo({ left: targetScroll, behavior: "smooth" });
+
+  // Aggiornamento dinamico padding in base alla slide target
+  if (index === images.length - 1) {
+    slidesContainer.style.paddingLeft = "0px";
+    slidesContainer.style.paddingRight = "20px";
+  } else if (index === 0) {
+    slidesContainer.style.paddingLeft = "20px";
+    slidesContainer.style.paddingRight = "0px";
+  } else {
+    slidesContainer.style.paddingLeft = "20px";
+    slidesContainer.style.paddingRight = "0px";
+  }
+
+  updateIndicators();
+
+  setTimeout(() => { isScrolling = false; }, 400);
+}
+
     let isScrolling = false;
 
     slidesContainer.addEventListener("touchstart", (e) => {
@@ -330,19 +360,17 @@ function goToSlide(index) {
 
   slidesContainer.scrollTo({ left: targetScroll, behavior: "smooth" });
 
-// Gestione padding dinamico corretto
-if (index === 0) {
-  slidesContainer.style.paddingLeft = "20px";
-  slidesContainer.style.paddingRight = "0px";
-} else if (index === images.length - 1) {
-  // ultima slide: niente padding extra, allineata al bordo
-  slidesContainer.style.paddingLeft = "0px";
-  slidesContainer.style.paddingRight = "0px";
-} else {
-  // tutte le altre slide (inclusa la penultima)
-  slidesContainer.style.paddingLeft = "20px";
-  slidesContainer.style.paddingRight = "0px";
-}
+  // Gestione padding dinamico
+  if (index === 0) {
+    slidesContainer.style.paddingLeft = "20px";
+    slidesContainer.style.paddingRight = "0px";
+  } else if (index === images.length - 1) {
+    slidesContainer.style.paddingLeft = "0px";
+    slidesContainer.style.paddingRight = "20px";
+  } else {
+    slidesContainer.style.paddingLeft = "20px";
+    slidesContainer.style.paddingRight = "0px";
+  }
 
   updateIndicators();
 
