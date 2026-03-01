@@ -393,8 +393,7 @@ function updateIndicators() {
 }
 
 let isScrolling = false;
-let startTouchX = 0;
-let endTouchX = 0;
+let startScrollLeft = 0;
 
 slidesContainer.addEventListener("touchstart", (e) => {
   startTouchX = e.touches[0].clientX;
@@ -403,17 +402,12 @@ slidesContainer.addEventListener("touchstart", (e) => {
 slidesContainer.addEventListener("touchend", (e) => {
   if (isScrolling) return;
 
-  endTouchX = e.changedTouches[0].clientX;
-  const diffX = endTouchX - startTouchX;
+  let diffX = e.changedTouches[0].clientX - startTouchX;
 
-  const threshold = 50; // soglia minima reale stile Apple
-
-  if (Math.abs(diffX) > threshold) {
-    if (diffX < 0 && slideIndex < images.length - 1) {
-      slideIndex += 1;
-    } else if (diffX > 0 && slideIndex > 0) {
-      slideIndex -= 1;
-    }
+  if (diffX < -10) { // swipe verso sinistra → sempre +1
+    slideIndex = Math.min(slideIndex + 1, images.length - 1);
+  } else if (diffX > 10) { // swipe verso destra → sempre -1
+    slideIndex = Math.max(slideIndex - 1, 0);
   }
 
   goToSlide(slideIndex);
@@ -436,6 +430,26 @@ function goToSlide(index) {
     isScrolling = false;
   }, 400);
 }
+
+slidesContainer.addEventListener("scroll", () => {
+  if (isScrolling) return;
+
+  const slideWidth = slidesContainer.children[0].offsetWidth + 16;
+  const currentScroll = slidesContainer.scrollLeft;
+  const expectedScroll = slideWidth * slideIndex;
+
+  const diff = currentScroll - expectedScroll;
+
+  if (Math.abs(diff) > slideWidth / 2) {
+    if (diff > 0 && slideIndex < images.length - 1) {
+      slideIndex += 1;
+    } else if (diff < 0 && slideIndex > 0) {
+      slideIndex -= 1;
+    }
+
+    goToSlide(slideIndex);
+  }
+});
 
     // Download singolo
     document.getElementById("download-single-Volume3-interni-e-scenari-mobile").addEventListener("click", ()=>{
