@@ -303,27 +303,6 @@ function updateIndicators() {
   // Non cambiare padding qui, fallo in goToSlide()
 }
 
-function goToSlide(index) {
-  isScrolling = true;
-
-  const slides = slidesContainer.children;
-  const slideWidth = slides[0].offsetWidth + 16; // + gap
-  const totalSlides = slides.length;
-  const containerWidth = slidesContainer.clientWidth;
-
-  let targetScroll = slideWidth * index;
-
-  // se è l'ultima slide, scroll fino a fine container
-  if (index === totalSlides - 1) {
-    targetScroll = slidesContainer.scrollWidth - containerWidth;
-  }
-
-  slidesContainer.scrollTo({ left: targetScroll, behavior: "smooth" });
-  updateIndicators();
-
-  setTimeout(() => { isScrolling = false; }, 400);
-}
-
     let isScrolling = false;
 
     slidesContainer.addEventListener("touchstart", (e) => {
@@ -351,17 +330,23 @@ function goToSlide(index) {
 
   slidesContainer.scrollTo({ left: targetScroll, behavior: "smooth" });
 
-  // Gestione padding dinamico
-  if (index === 0) {
-    slidesContainer.style.paddingLeft = "20px";
-    slidesContainer.style.paddingRight = "0px";
-  } else if (index === images.length - 1) {
-    slidesContainer.style.paddingLeft = "0px";
-    slidesContainer.style.paddingRight = "20px";
-  } else {
-    slidesContainer.style.paddingLeft = "20px";
-    slidesContainer.style.paddingRight = "0px";
-  }
+// Gestione padding dinamico corretto
+if (index === 0) {
+  slidesContainer.style.paddingLeft = "20px";
+  slidesContainer.style.paddingRight = "0px";
+} else if (index === images.length - 1) {
+  // ultima slide: 20px a destra, 0 a sinistra
+  slidesContainer.style.paddingLeft = "0px";
+  slidesContainer.style.paddingRight = "20px";
+} else if (index === images.length - 2) {
+  // penultima slide, quando l'ultima non è attiva: 20px a sinistra, 0 a destra
+  slidesContainer.style.paddingLeft = "20px";
+  slidesContainer.style.paddingRight = "0px";
+} else {
+  // tutte le altre slide
+  slidesContainer.style.paddingLeft = "20px";
+  slidesContainer.style.paddingRight = "0px";
+}
 
   updateIndicators();
 
